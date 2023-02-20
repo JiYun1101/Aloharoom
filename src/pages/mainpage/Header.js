@@ -23,7 +23,7 @@ const Logo = styled.span`
 const NavGroup = styled.span`
     position: absolute;
     top: 0.5rem;
-    left: 40vw;
+    left: 43vw;
 `;
 
 const NavElement = styled.span`
