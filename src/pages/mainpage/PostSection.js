@@ -1,7 +1,9 @@
 import React from "react";
 
-const CardPostSection = () => {
+const PostSection = () => {
     return(
         <></>
     );
 }
+
+export default PostSection;
