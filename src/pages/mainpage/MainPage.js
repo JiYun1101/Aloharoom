@@ -1,6 +1,6 @@
 import React from "react";
 import MainSection from "./MainSection";
-import Header from "./Header";
+import Header from "../Header";
 
 const MainPage = () => {
     return (
