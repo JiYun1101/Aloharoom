@@ -1,12 +1,12 @@
 import React from "react";
-import Banner from "./Banner";
+import MainSection from "./MainSection";
 import Header from "./Header";
 
 const MainPage = () => {
     return (
         <>
             <Header/>
-            <Banner/>
+            <MainSection/>
         </>
     );
 }
