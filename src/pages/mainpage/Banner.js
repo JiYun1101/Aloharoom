@@ -21,12 +21,29 @@ const BannerImage = styled.img`
     border-radius: 0.5rem;
 `;
 
+const CardBox = styled.div`
+    position: absolute;
+    top: 50rem;
+`;
+
+const CardArea = styled.div`
+    width: 60rem;
+    height: 30rem;
+    border-color: blue;
+    border-style: solid;
+`
+
+
+
 const Banner = () => {
     return (
         <BannerBox>
             <BannerImageBox>
                 <BannerImage src="blue.png"/>
             </BannerImageBox>
+            <CardBox>
+                <CardArea/>
+            </CardBox>
         </BannerBox>
     );
 }
