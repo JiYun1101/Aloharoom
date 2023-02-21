@@ -37,6 +37,7 @@ const NavElement = styled.span`
     }
 `;
 
+
 const LogoGroup = styled.span`
     position: absolute;    
     right: 10vw;
