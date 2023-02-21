@@ -3,20 +3,41 @@ import styled from "styled-components";
 
 const CardBox = styled.div`
     position: absolute;
-    top: 50rem;
+    top: 43rem;
+    left: 18.5vw;
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    overflow: auto;
+    gap: 2rem;
 `;
 
-const CardArea = styled.div`
-    width: 60rem;
-    height: 30rem;
-    border-color: blue;
+const CardPost = styled.div`
+    min-width: 20%;
+    height: 20rem;
+    border-color: black;
     border-style: solid;
-`
+    border-radius: 1rem;
+`;
 
 const CardPostSection = () => {
     return (
         <CardBox>
-            <CardArea/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
+            <CardPost/>
         </CardBox>
     );
 }
