@@ -83,6 +83,21 @@ const MapPostBox = styled.div`
     height: 82%;
     border-color: blue;
     border-style: solid;
+    display: flex;
+`;
+
+const MapSection = styled.div`
+    border-color: blue;
+    border-style: solid;
+    width: 55%;
+    height: 100%;
+`;
+
+const PostSection = styled.div`
+    border-color: red;
+    border-style: solid;
+    width: 45%;
+    height: 100%;
 `;
 
 const FilterIconStyle = {
@@ -100,6 +115,11 @@ const SearchIconStyle = {
     color: "#47A5FD"
 }
 
+const TagTotalStyle = {
+    marginRight : "2rem",
+    fontWeight : "800"
+}
+
 const PostMapSection = () => {
     return (
         <PostMapBox>            
@@ -114,17 +134,21 @@ const PostMapSection = () => {
                         <TitleSpan>지도에서 위치 찾기</TitleSpan>
                     </TitleSection>
                     <HashSection>
-                        <HStack>
-                            <Tag colorScheme={'blue'}>#해시태그1</Tag>
-                            <Tag colorScheme='blue'>#해시태그1</Tag>
-                            <Tag colorScheme='blue'>#해시태그1</Tag>
-                            <Tag colorScheme='blue'>#해시태그1</Tag>
-                            <Tag colorScheme='blue'>#해시태그1</Tag>
+                        <HStack 
+                            spacing={25} 
+                            style={TagTotalStyle}>
+                            <Tag>#해시태그1</Tag>
+                            <Tag>#해시태그2</Tag>
+                            <Tag>#해시태그3</Tag>
+                            <Tag>#해시태그4</Tag>
+                            <Tag>#해시태그5</Tag>
                         </HStack>
                     </HashSection>
                 </HashTagBox>
             </SearchHashTagBox>
             <MapPostBox>
+                <MapSection/>
+                <PostSection/>
             </MapPostBox>
         </PostMapBox>
     );
