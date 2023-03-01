@@ -19,8 +19,6 @@ const SearchHashTagBox = styled.div`
     top: 0.1rem;
     width: 99.5%;
     height: 20%;
-    border-color: green;
-    border-style: solid;
     display: flex;
     flex-direction: column;
 `;
@@ -29,8 +27,6 @@ const SearchBox = styled.div`
     position: relative;
     width: 100%;
     height: 50%;
-    border-color: yellow;
-    border-style: solid;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -49,23 +45,17 @@ const SearchInput = styled.input`
 const HashTagBox = styled.div`
     width: 100%;
     height: 50%;
-    border-color: brown;
-    border-style: solid;
     display: flex;
 `;
 
 const TitleSection = styled.div`
     width: 50%;
-    border-color: brown;
-    border-style: solid;
     display: flex;
     align-items: center;
 `;
 
 const HashSection = styled.div`
     width: 50%;
-    border-color: brown;
-    border-style: solid;
     display: flex;
     flex-direction: row-reverse;
     align-content: center;
@@ -83,23 +73,58 @@ const MapPostBox = styled.div`
     top: 10.1rem;
     width: 99.5%;
     height: 82%;
-    border-color: blue;
-    border-style: solid;
     display: flex;
 `;
 
 const MapSection = styled.div`
-    border-color: blue;
-    border-style: solid;
     width: 55%;
     height: 100%;
 `;
 
 const PostSection = styled.div`
-    border-color: red;
+    border-width: 0.1rem;
     border-style: solid;
+    border-color: #47A5FD;
     width: 45%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const PostCardSection = styled.div`
+    width: 90%;
+    height: 95%;
+    margin-left: 6.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 0.5rem;          /* 스크롤바의 너비 */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        height: 1%;             /* 스크롤바의 길이 */
+        background: #47A5FD;    /* 스크롤바의 색상 */
+        border-radius: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: white;      /*스크롤바 뒷 배경 색상*/
+    }
+`;
+
+const PostCard = styled.div`
+    width: 25%;
+    height: 15rem;
+    border-style: solid;
+    border-color: #47A5FD;
+    border-radius: 1rem;
 `;
 
 const FilterIconStyle = {
@@ -159,7 +184,21 @@ const PostMapSection = () => {
             </SearchHashTagBox>
             <MapPostBox>
                 <MapSection id="map"/>
-                <PostSection/>
+                <PostSection>
+                    <PostCardSection>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                        <PostCard/>
+                    </PostCardSection>
+                </PostSection>
             </MapPostBox>
         </PostMapBox>
     );
