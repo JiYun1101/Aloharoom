@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const MyPageDiv = styled.div`
     //position: relative;
-    width: 100%;
+    width: 99.5%;
     height: 50rem;
     border-color: green;
     border-style: solid;
@@ -19,14 +19,43 @@ const MyPageBox = styled.div`
     border-style: solid;
     width: 35rem;
     height: 35rem;
+    display: flex;
+    flex-direction: column;
 `;
+
+const MyPageNavDiv = styled.div`
+    border-color: blue;
+    border-style: solid;
+    width: 99%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+`;
+
+const MyPageNav = styled.div`
+    &:hover {
+        text-decoration: underline;
+        text-decoration-color: #47A5FD;
+        text-decoration-thickness: 0.15rem;
+        text-underline-offset: 0.6rem;
+    }
+`;
+
 
 
 
 const MyPageSection = () => {
     return (
         <MyPageDiv>
-            <MyPageBox/>
+            <MyPageBox>
+                <MyPageNavDiv>
+                    <MyPageNav>내 정보</MyPageNav>
+                    <MyPageNav>좋아요 목록</MyPageNav>
+                    <MyPageNav>채팅</MyPageNav>
+                </MyPageNavDiv>
+            </MyPageBox>
         </MyPageDiv>
     );
 }
