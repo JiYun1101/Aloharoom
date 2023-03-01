@@ -1,12 +1,13 @@
 import React from 'react';
 
+import MyPage from './pages/mypage/MyPage';
 //import MainPage from './pages/mainpage/MainPage';
-import PostMapPage from './pages/postmappage/PostMapPage';
+//import PostMapPage from './pages/postmappage/PostMapPage';
 
 
 const App = () => {
   return (
-    <PostMapPage/>
+    <MyPage/>
   );
 }
 
