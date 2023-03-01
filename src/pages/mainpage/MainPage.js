@@ -3,12 +3,12 @@ import MainSection from "./MainSection";
 import Header from "../Header";
 
 const MainPage = () => {
-    return (
-        <>
-            <Header/>
-            <MainSection/>
-        </>
-    );
-}
+  return (
+    <>
+      <Header />
+      <MainSection />
+    </>
+  );
+};
 
 export default MainPage;
