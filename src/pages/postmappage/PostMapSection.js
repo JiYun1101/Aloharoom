@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect }from "react";
 import styled from "styled-components";
 import { Tag, HStack } from '@chakra-ui/react';
 import { IoSearchCircleSharp, IoFilterOutline } from "react-icons/io5";
+
+const { kakao } = window;
 
 const PostMapBox = styled.div`
     position: relative;
@@ -121,6 +123,15 @@ const TagTotalStyle = {
 }
 
 const PostMapSection = () => {
+    useEffect(() => {
+        const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+        const options = { //지도를 생성할 때 필요한 기본 옵션
+            center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+            level: 3 //지도의 레벨(확대, 축소 정도)
+        };
+        const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+    }, [])
+
     return (
         <PostMapBox>            
             <SearchHashTagBox>
@@ -134,7 +145,7 @@ const PostMapSection = () => {
                         <TitleSpan>지도에서 위치 찾기</TitleSpan>
                     </TitleSection>
                     <HashSection>
-                        <HStack 
+                        <HStack
                             spacing={25} 
                             style={TagTotalStyle}>
                             <Tag>#해시태그1</Tag>
@@ -147,7 +158,7 @@ const PostMapSection = () => {
                 </HashTagBox>
             </SearchHashTagBox>
             <MapPostBox>
-                <MapSection/>
+                <MapSection id="map"/>
                 <PostSection/>
             </MapPostBox>
         </PostMapBox>
