@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const MyPageContainer = styled.div`
@@ -42,6 +42,13 @@ const MyPageNavDiv = styled.div`
     border-width: 0.05rem;
 `;
 
+const MyPageContentDiv = styled.div`
+    max-width: 500px;
+    min-height: 525px;
+    border-style: solid;
+    border-color: blue;
+`;
+
 const MyPageNav = styled.div`
     &:hover {
         text-decoration: underline;
@@ -51,16 +58,44 @@ const MyPageNav = styled.div`
     }
 `;
 
-
 const MyPageSection = () => {
+    const [myInfoPage, setMyInfoPage] = useState(true);
+    const [likedListPage, setLikedListPage] = useState(false);
+    const [chattingPage, setChattingPage] = useState(false);
+
+    //좋아요 목록을 클릭했을 경우,
+    const myInfoClick = () => {
+        setMyInfoPage(true);
+        setLikedListPage(false);
+        setChattingPage(false);
+    }
+
+    const likedListClick = () => {
+        setMyInfoPage(false);
+        setLikedListPage(true);
+        setChattingPage(false);
+    }
+
+    const chattingClick = () => {
+        setMyInfoPage(false);
+        setLikedListPage(false);
+        setChattingPage(true);
+    }
+
+
     return (
         <MyPageContainer>
             <MyPageBox>
                 <MyPageNavDiv>
-                    <MyPageNav>내 정보</MyPageNav>
-                    <MyPageNav>좋아요 목록</MyPageNav>
-                    <MyPageNav>채팅</MyPageNav>
+                    <MyPageNav onClick={() => {myInfoClick()}}>내 정보</MyPageNav>
+                    <MyPageNav onClick={() => {likedListClick()}}>좋아요 목록</MyPageNav>
+                    <MyPageNav onClick={() => {chattingClick()}}>채팅</MyPageNav>
                 </MyPageNavDiv>
+                <MyPageContentDiv>
+                    {myInfoPage ? <h1>myInfoPage</h1> : <></>}
+                    {likedListPage ? <h1>likedListPage</h1> : <></>}
+                    {chattingPage ? <h1>chattingPage</h1> : <></>}
+                </MyPageContentDiv>
             </MyPageBox>
         </MyPageContainer>
     );
