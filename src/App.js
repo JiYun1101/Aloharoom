@@ -7,6 +7,7 @@ import PostMapPage from "./pages/postmappage/PostMapPage";
 import Login from "./pages/Login";
 import RegisterPage from "./pages/RegisterPage";
 import TermUser from "./pages/TermUser";
+import MyPage from "./pages/mypage/MyPage";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/termUser" element={<TermUser />} />
+        <Route path="/myPage" element={<MyPage/>}/>
         <Route path="*" element={<>Not found</>} />
       </Routes>
     </BrowserRouter>
