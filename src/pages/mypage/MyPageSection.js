@@ -63,25 +63,26 @@ const MyPageSection = () => {
     const [likedListPage, setLikedListPage] = useState(false);
     const [chattingPage, setChattingPage] = useState(false);
 
-    //좋아요 목록을 클릭했을 경우,
+    //내 정보 클릭
     const myInfoClick = () => {
         setMyInfoPage(true);
         setLikedListPage(false);
         setChattingPage(false);
     }
 
+    //좋아요 목록 클릭
     const likedListClick = () => {
         setMyInfoPage(false);
         setLikedListPage(true);
         setChattingPage(false);
     }
 
+    //채팅 목록 클릭
     const chattingClick = () => {
         setMyInfoPage(false);
         setLikedListPage(false);
         setChattingPage(true);
     }
-
 
     return (
         <MyPageContainer>
