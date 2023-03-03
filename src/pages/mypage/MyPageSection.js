@@ -26,12 +26,42 @@ const MyPageBox = styled.div`
     border-radius: 1.8rem;
     border-color: #85afe1;
     /* 페이지 디자인 */
+    display: flex;
+    flex-direction: column;
 `;
+
+const MyPageNavDiv = styled.div`
+    max-width: 500px;
+    min-height: 70px;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-style: none none solid none;
+    border-color: #BBBBBB;
+    border-width: 0.05rem;
+`;
+
+const MyPageNav = styled.div`
+    &:hover {
+        text-decoration: underline;
+        text-decoration-color: #47A5FD;
+        text-decoration-thickness: 0.15rem;
+        text-underline-offset: 0.6rem;
+    }
+`;
+
 
 const MyPageSection = () => {
     return (
         <MyPageContainer>
-            <MyPageBox/>
+            <MyPageBox>
+                <MyPageNavDiv>
+                    <MyPageNav>내 정보</MyPageNav>
+                    <MyPageNav>좋아요 목록</MyPageNav>
+                    <MyPageNav>채팅</MyPageNav>
+                </MyPageNavDiv>
+            </MyPageBox>
         </MyPageContainer>
     );
 }
