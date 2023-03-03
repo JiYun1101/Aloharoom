@@ -73,7 +73,7 @@ const Header = () => {
       <MenuBar>
         <Logo>aloharoom</Logo>
         <NavGroup>
-          <NavElement>뉴스</NavElement>
+          <NavElement>About</NavElement>
           <NavElement>게시물 보기</NavElement>
           <NavElement>새 글 쓰기</NavElement>
         </NavGroup>
