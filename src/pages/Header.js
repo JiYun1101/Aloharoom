@@ -40,13 +40,13 @@ const NavElement = styled.span`
 
 const LogoGroup = styled.span`
   position: absolute;
-  right: 10vw;
+  right: 11vw;
   vertical-align: middle;
 `;
 
 const LogoElement = styled.span`
-  margin-left: 0.1vw;
-  margin-right: 0.1vw;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
 `;
 
 const Button = styled.button`
