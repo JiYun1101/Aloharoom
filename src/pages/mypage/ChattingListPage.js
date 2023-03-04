@@ -1,7 +1,9 @@
 import React from "react";
 
 const ChattingListPage = () => {
-    return (<></>);
+    return (<>
+        <h1>ChattingListPage</h1>
+    </>);
 }
 
 export default ChattingListPage;

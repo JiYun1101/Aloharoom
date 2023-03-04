@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+import ChattingListPage from "./ChattingListPage";
+import LikedListPage from "./LikedListPage";
+import MyInfoPage from "./MyInfoPage";
+
 const MyPageContainer = styled.div`
     width: 100%;  
     text-align: center;
@@ -42,6 +46,7 @@ const MyPageNavDiv = styled.div`
     border-width: 0.05rem;
 `;
 
+//내 정보, 좋아요 목록, 채팅목록이 들어갈 div 태그
 const MyPageContentDiv = styled.div`
     max-width: 500px;
     min-height: 525px;
@@ -93,9 +98,9 @@ const MyPageSection = () => {
                     <MyPageNav onClick={() => {chattingClick()}}>채팅</MyPageNav>
                 </MyPageNavDiv>
                 <MyPageContentDiv>
-                    {myInfoPage ? <h1>myInfoPage</h1> : <></>}
-                    {likedListPage ? <h1>likedListPage</h1> : <></>}
-                    {chattingPage ? <h1>chattingPage</h1> : <></>}
+                    {myInfoPage ? <MyInfoPage/> : <></>}
+                    {likedListPage ? <LikedListPage/> : <></>}
+                    {chattingPage ? <ChattingListPage/> : <></>}
                 </MyPageContentDiv>
             </MyPageBox>
         </MyPageContainer>
