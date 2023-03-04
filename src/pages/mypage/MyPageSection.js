@@ -7,7 +7,7 @@ import MyInfoPage from "./MyInfoPage";
 
 const MyPageContainer = styled.div`
     width: 100%;  
-    text-align: center;
+    //text-align: center;
 `;
 
 const MyPageBox = styled.div`
@@ -50,8 +50,6 @@ const MyPageNavDiv = styled.div`
 const MyPageContentDiv = styled.div`
     max-width: 500px;
     min-height: 525px;
-    border-style: solid;
-    border-color: blue;
 `;
 
 const MyPageNav = styled.div`
