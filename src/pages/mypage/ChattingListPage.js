@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const ChattingListDiv = styled.div`
+    margin-top: 1.5rem;
     margin-left: 0.5rem;
     width: 490px;
-    height: 510px;
+    max-height: 480px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
