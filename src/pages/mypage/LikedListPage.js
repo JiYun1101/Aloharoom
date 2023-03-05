@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { AiFillHeart, AiOutlineHeart} from "react-icons/ai";
 
 const LikedListDiv = styled.div`
     margin-top: 1.5rem;
@@ -11,6 +12,7 @@ const LikedListDiv = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
+    gap: 1rem;
     overflow-x: hidden;
     overflow-y: auto;
     &::-webkit-scrollbar {
@@ -27,73 +29,59 @@ const LikedListDiv = styled.div`
         background: white;      /*스크롤바 뒷 배경 색상*/
     }
 `;
-
-const LikedElementDiv = styled.div`
-    position: relative;
-    width: 110px;
-    height: 150px;
-    border-style: solid;
-    border-color: blue;
-`;
+/* 지윤이에게 물어보기 위에 하트가 있는것이 의미가 있는지 */
+// const LikedElementDiv = styled.div`
+//     position: relative;
+//     width: 110px;
+//     height: 150px;
+//     border-style: solid;
+//     border-color: blue;
+// `;
 
 const LikedPostCard = styled.div`
-    position: absolute;
-    width: 105px;
-    height: 145px;
+    position: relative;
+    width: 100px;
+    height: 150px;
+    border-style: solid;
+    border-color: #47A5FD;
+    border-radius: 0.5rem;
 `;
 
+const heartStyle = {
+    color: "#47A5FD"
+};
+
+
+
 const LikedListPage = () => {
+    const [heartClick, setHeartClick] = useState(false);
+    const heartClickEvent = () => {
+        setHeartClick(!heartClick);
+    }
     return (
     <>
         <LikedListDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-            </LikedElementDiv>
+            <LikedPostCard>
+                {heartClick ? 
+                    <AiFillHeart size={35} style={heartStyle} onClick={heartClickEvent}/> : 
+                    <AiOutlineHeart size={35} style={heartStyle} onClick={heartClickEvent}/>
+                }
+            </LikedPostCard>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
+            <LikedPostCard/>
         </LikedListDiv>
     </>
     );
