@@ -21,8 +21,6 @@ const MyInfoDiv = styled.div`
 const MyInfoProfileDiv = styled.div`
     width: 400px;
     height: 180px;
-    border-style: solid;
-    border-color: green;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,8 +35,6 @@ const MyProfileImg = styled.img`
 const MyInfoContentDiv = styled.div`
     width: 400px;
     height: 30px;
-    border-style: solid;
-    border-color: green;
     display: flex;
     flex-direction: row;
 `;
@@ -46,8 +42,6 @@ const MyInfoContentDiv = styled.div`
 const MyInfoContentNoun = styled.div`
     width: 150px;
     height: 30px;
-    border-style: solid;
-    border-color: blue;
 `;
 
 const MyInfoContentSpan = styled.span`
@@ -60,10 +54,24 @@ const MyInfoContentSpan = styled.span`
 const MyInfoContentValue = styled.div`
     width: 250px;
     height: 30px;
-    border-style: solid;
-    border-color: blue;
-`
+`;
 
+const MyInfoAddressInfoDiv = styled.div`
+    width: 400px;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+`;
+
+const MyInfoAddressDiv = styled.div`
+    width: 150px;
+    height: 30px;
+`;
+
+const MyInfoAddressValue = styled.div`
+    width: 250px;
+    height: 120px;
+`;
 
 const MyInfoPage = () => {
     return (
@@ -89,14 +97,14 @@ const MyInfoPage = () => {
                             <MyInfoContentSpan>fkgnssla</MyInfoContentSpan>
                         </MyInfoContentValue>                        
                     </MyInfoContentDiv>
-                    <MyInfoContentDiv>
-                        <MyInfoContentNoun>
+                    <MyInfoAddressInfoDiv>
+                        <MyInfoAddressDiv>
                             <MyInfoContentSpan>주소:</MyInfoContentSpan>
-                        </MyInfoContentNoun>
-                        <MyInfoContentValue>
-                            <MyInfoContentSpan>서울시 삼선교로 16길, 한성대학교</MyInfoContentSpan>
-                        </MyInfoContentValue>                        
-                    </MyInfoContentDiv>
+                        </MyInfoAddressDiv>
+                        <MyInfoAddressValue>
+                            <MyInfoContentSpan>서울시 성북구 삼선교로 6길, 한성대학교 서울시 성북구 삼선교로 6길, 한성대학교 서울시 성북구 삼선교로 6길</MyInfoContentSpan>
+                        </MyInfoAddressValue>
+                    </MyInfoAddressInfoDiv>
                 </MyInfoDiv>
             </MyInfoBox>
         </>
