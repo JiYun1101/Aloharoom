@@ -58,7 +58,7 @@ const MyInfoContentValue = styled.div`
 
 const MyInfoAddressInfoDiv = styled.div`
     width: 400px;
-    height: 120px;
+    height: 100px;
     display: flex;
     flex-direction: row;
 `;
@@ -71,6 +71,74 @@ const MyInfoAddressDiv = styled.div`
 const MyInfoAddressValue = styled.div`
     width: 250px;
     height: 120px;
+`;
+
+const TasteHashTagDiv = styled.div`
+    width: 400px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+`;
+
+const TasteHashTagRow1Div = styled.div`
+    width: 150px;
+    height: 30px;
+`;
+
+const TasteHashTagRow2Div = styled.div`
+    width: 250px;
+    height: 30px;
+`;
+
+const HashTagNounSpan = styled.span`
+    line-height: 30px;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #47A5FD;
+`;
+
+const HashTagModifySpan = styled.span`
+    line-height: 30px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #BBBBBB;
+`;
+
+const HashTagModifyButtonDiv = styled.div`
+    width: 400px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const HashTagModifyButton = styled.button`
+    background-color: white;
+    font-weight: 600;
+    width: 10rem;
+    height: 2rem;
+    border: 2px solid #47a5fd;
+    border-radius: 2rem;
+    color: #47a5fd;
+`;
+
+const MyInfoButtonDiv = styled.div`
+    width: 400px;
+    height: 30px;
+    display: flex;
+    flex-direction: row-reverse;
+`;
+
+const MyInfoModifySaveButton = styled.button`
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    background-color: white;
+    font-weight: 600;
+    width: 3rem;
+    height: 1.5rem;
+    border: 2px solid #BBBBBB;
+    border-radius: 2rem;
+    color: #BBBBBB;
 `;
 
 const MyInfoPage = () => {
@@ -105,6 +173,21 @@ const MyInfoPage = () => {
                             <MyInfoContentSpan>서울시 성북구 삼선교로 6길, 한성대학교 서울시 성북구 삼선교로 6길, 한성대학교 서울시 성북구 삼선교로 6길</MyInfoContentSpan>
                         </MyInfoAddressValue>
                     </MyInfoAddressInfoDiv>
+                    <TasteHashTagDiv>
+                        <TasteHashTagRow1Div>
+                            <HashTagNounSpan>취향해시태그</HashTagNounSpan>
+                        </TasteHashTagRow1Div>
+                        <TasteHashTagRow2Div>
+                            <HashTagModifySpan>(클릭으로 해시태그를 적용시킬 수 있습니다.)</HashTagModifySpan>
+                        </TasteHashTagRow2Div>
+                    </TasteHashTagDiv>
+                    <HashTagModifyButtonDiv>
+                        <HashTagModifyButton>내 태그 다시 설정하기</HashTagModifyButton>
+                    </HashTagModifyButtonDiv>
+                    <MyInfoButtonDiv>
+                        <MyInfoModifySaveButton>수정</MyInfoModifySaveButton>
+                        <MyInfoModifySaveButton>삭제</MyInfoModifySaveButton>
+                    </MyInfoButtonDiv>
                 </MyInfoDiv>
             </MyInfoBox>
         </>
