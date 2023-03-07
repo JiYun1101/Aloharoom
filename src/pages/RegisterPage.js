@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-// import { useState } from "react";
-// import UserFile from "./TermUser";
 import {
   AutoComplete,
   Button,
@@ -49,32 +47,18 @@ const tailFormItemLayout = {
 const App = () => {
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    form
+      .validateFields()
+      .then(() => {
+        console.log("Received values of form: ", values);
+        // 모든 필드에 대한 유효성 검사가 성공한 경우
+        // RegisterPage2 컴포넌트로 이동
+        window.location.href = "/RegisterPage/RegisterPage2";
+      })
+      .catch((errorInfo) => {
+        console.log("Validation failed: ", errorInfo);
+      });
   };
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
-      </Select>
-    </Form.Item>
-  );
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
   const onWebsiteChange = (value) => {
     if (!value) {
@@ -100,7 +84,7 @@ const App = () => {
       </div>
       {/* page 안쪽 */}
       <div className="loginPage">
-        <div className="inputWrap">
+        <div className="inputWrap" style={{ margin: "0 -37px" }}>
           <Form
             name="normal_login"
             className="login-form"
@@ -118,20 +102,36 @@ const App = () => {
             }}
             style={{
               maxWidth: 600,
+              float: "left",
             }}
             scrollToFirstError
           >
             <Form.Item
               name="email"
-              label="E-mail"
+              label="이메일"
               rules={[
                 {
                   type: "email",
-                  message: "The input is not valid E-mail!",
+                  message: "이메일을 입력해주세요",
                 },
                 {
                   required: true,
-                  message: "Please input your E-mail!",
+                  message: "이메일이 입력되지 않았습니다!",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              name="nickname"
+              label="닉네임"
+              tooltip="당신이 글을 쓰거나 채팅을 할때 상대에게 보이는 이름입니다."
+              rules={[
+                {
+                  required: true,
+                  message: "닉네임이 입력되지 않았습니다!",
+                  whitespace: true,
                 },
               ]}
             >
@@ -140,11 +140,11 @@ const App = () => {
 
             <Form.Item
               name="password"
-              label="Password"
+              label="비밀번호"
               rules={[
                 {
                   required: true,
-                  message: "Please input your password!",
+                  message: "비밀번호가 입력되지 않았습니다!",
                 },
               ]}
               hasFeedback
@@ -154,46 +154,19 @@ const App = () => {
 
             <Form.Item
               name="gender"
-              label="Gender"
+              label="성별"
               rules={[
                 {
                   required: true,
-                  message: "Please select gender!",
+                  message: "성별이 입력되지 않았습니다!",
                 },
               ]}
             >
-              <Select placeholder="select your gender">
-                <Option value="male">Male</Option>
-                <Option value="female">Female</Option>
-                <Option value="other">Other</Option>
+              <Select placeholder="성별을 골라주세요.">
+                <Option value="male">남성</Option>
+                <Option value="female">여성</Option>
               </Select>
             </Form.Item>
-
-            <Form.Item
-              label="Captcha"
-              extra="We must make sure that your are a human."
-            >
-              <Row gutter={8}>
-                <Col span={12}>
-                  <Form.Item
-                    name="captcha"
-                    noStyle
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input the captcha you got!",
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Button>Get captcha</Button>
-                </Col>
-              </Row>
-            </Form.Item>
-
             <Form.Item
               name="agreement"
               valuePropName="checked"
@@ -202,12 +175,18 @@ const App = () => {
                   validator: (_, value) =>
                     value
                       ? Promise.resolve()
-                      : Promise.reject(new Error("Should accept agreement")),
+                      : Promise.reject(new Error("이용약관에 동의해야합니다.")),
                 },
               ]}
               {...tailFormItemLayout}
             >
-              <Checkbox>
+              <Checkbox
+                style={{
+                  margin: "20px -60px auto",
+                  width: "120%",
+                  textAlign: "left",
+                }}
+              >
                 ALOHAROOM의 이용약관,{" "}
                 <a href="../TermUser">
                   개인정보 수집 및 이용, 위치기반서비스 이용약관(선택)
@@ -216,8 +195,16 @@ const App = () => {
               </Checkbox>
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-              <Button type="primary" htmlType="submit">
-                Register
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+                style={{
+                  margin: "20px -60px auto",
+                  width: "120%",
+                }}
+              >
+                회원가입 진행하기
               </Button>
             </Form.Item>
           </Form>

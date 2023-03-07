@@ -1,16 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "../style/Login.css";
-// import {
-//   Select,
-//   NumberInput,
-//   NumberInputField,
-//   NumberInputStepper,
-//   NumberIncrementStepper,
-//   NumberDecrementStepper,
-//   Stack,
-// } from "@chakra-ui/react";
-// import { ChakraProvider } from "@chakra-ui/react";
 import { UserOutlined } from "@ant-design/icons";
 import { Input, Button } from "antd";
 
