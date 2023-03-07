@@ -85,7 +85,7 @@ const Header = () => {
             <AiOutlineUser size={30} />
           </LogoElement>
         </LogoGroup>
-        <Link to="login">
+        <Link to="../login">
           <Button>Login/Signup</Button>
         </Link>
       </MenuBar>

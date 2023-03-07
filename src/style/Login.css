@@ -198,3 +198,11 @@ inputWrap: 크기 고정 *간격 상대
   width: 100%;
   background-color: #85afe1;
 }
+
+.firstImg {
+  background-image: url("../img/cheers.png");
+  width: 100px;
+  height: 100px;
+  position: relative;
+  z-index: 1;
+}
