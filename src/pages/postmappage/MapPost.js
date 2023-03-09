@@ -1,19 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { Map } from 'react-kakao-maps-sdk';
+import KakaoMapPart from "./MapPostComponents/KakaoMapPart";
 
-const MapPostBox = styled.div`
+const MapPostContainer = styled.div`
     position: absolute;
     top: 10.1rem;
     width: 99.5%;
     height: 82%;
     display: flex;
 `;
-
-const kakaoMapStyle = {
-    width: "55%",
-    height: "100%"
-};
 
 const PostSection = styled.div`
     border-width: 0.1rem;
@@ -60,30 +55,27 @@ const PostCard = styled.div`
     border-color: #47A5FD;
     border-radius: 1rem;
 `;
+
 const MapPost = () => {
     return (
-        <MapPostBox>
-                <Map 
-                    center={{ lat: 33.5563, lng: 126.79581 }}   // 지도의 중심 좌표
-                    style={kakaoMapStyle} // 지도 크기
-                    level={3}                                   // 지도 확대 레벨
-                />
-                <PostSection>
-                    <PostCardSection>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                    </PostCardSection>
-                </PostSection>
-        </MapPostBox>
+        <MapPostContainer>
+            <KakaoMapPart/>
+            <PostSection>
+                <PostCardSection>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                </PostCardSection>
+            </PostSection>
+        </MapPostContainer>
     );
 }
 
