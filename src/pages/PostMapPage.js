@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import PostMapSection from "./postmappage/PostMapSection";
+import PostMapContent from "./postmappage/PostMapContent";
 
 
 // import { useEffect } from "react";
@@ -22,7 +22,7 @@ const PostMapPage = () => {
     return (
     <>
         <Header/>
-        <PostMapSection/>
+        <PostMapContent/>
     </>
     );
 }

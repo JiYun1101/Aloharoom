@@ -147,7 +147,7 @@ const TagTotalStyle = {
     fontWeight : "800"
 }
 
-const PostMapSection = () => {
+const PostMapContent = () => {
     return (
         <PostMapBox>            
             <SearchHashTagBox>
@@ -199,4 +199,4 @@ const PostMapSection = () => {
     );
 }
 
-export default PostMapSection;
+export default PostMapContent;
