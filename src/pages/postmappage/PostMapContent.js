@@ -5,7 +5,7 @@ import { Tag, HStack } from '@chakra-ui/react';
 import { IoSearchCircleSharp, IoFilterOutline } from "react-icons/io5";
 import { Map } from 'react-kakao-maps-sdk';
 
-const PostMapBox = styled.div`
+const PostMapContentContainer = styled.div`
     position: relative;
     width: 100%;
     height: 50rem;
@@ -149,7 +149,7 @@ const TagTotalStyle = {
 
 const PostMapContent = () => {
     return (
-        <PostMapBox>            
+        <PostMapContentContainer>            
             <SearchHashTagBox>
                 <SearchBox>
                     <IoFilterOutline size={30} style={FilterIconStyle}/>
@@ -195,7 +195,7 @@ const PostMapContent = () => {
                     </PostCardSection>
                 </PostSection>
             </MapPostBox>
-        </PostMapBox>
+        </PostMapContentContainer>
     );
 }
 
