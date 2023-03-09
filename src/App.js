@@ -2,12 +2,12 @@ import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
-import MainPage from "./pages/mainpage/MainPage";
-import PostMapPage from "./pages/postmappage/PostMapPage";
+import MainPage from "./pages/MainPage";
+import PostMapPage from "./pages/PostMapPage";
 import Login from "./pages/Login";
 import RegisterPage from "./pages/RegisterPage";
 import TermUser from "./pages/TermUser";
-import MyPage from "./pages/mypage/MyPage";
+import MyPage from "./pages/MyPage";
 import RegisterPage2 from "./pages/RegisterPage2";
 
 const App = () => {

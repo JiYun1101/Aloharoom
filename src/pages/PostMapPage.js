@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Header";
-import PostMapSection from "./PostMapSection";
+import Header from "./Header";
+import PostMapSection from "./postmappage/PostMapSection";
 
 
 // import { useEffect } from "react";
