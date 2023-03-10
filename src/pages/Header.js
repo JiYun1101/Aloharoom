@@ -67,14 +67,25 @@ const BlueLine = styled.hr`
   background: #47a5fd;
 `;
 
+const LinkToStyle = {
+  textDecoration: "none",
+  color: "inherit"
+};
+
 const Header = () => {
   return (
     <>
       <MenuBar>
-        <Logo>aloharoom</Logo>
+        <Link to="/" style={LinkToStyle}>
+          <Logo>aloharoom</Logo>
+        </Link>
         <NavGroup>
-          <NavElement>About</NavElement>
-          <NavElement>게시물 보기</NavElement>
+          <Link to="/" style={LinkToStyle}>
+            <NavElement>About</NavElement>
+          </Link>
+          <Link to="/postMapPage" style={LinkToStyle}>
+            <NavElement>게시물 보기</NavElement>
+          </Link>
           <NavElement>새 글 쓰기</NavElement>
         </NavGroup>
         <LogoGroup>
@@ -82,7 +93,9 @@ const Header = () => {
             <AiOutlineBell size={30} />
           </LogoElement>
           <LogoElement>
-            <AiOutlineUser size={30} />
+            <Link to="/myPage" style={LinkToStyle}>
+              <AiOutlineUser size={30} />
+            </Link>
           </LogoElement>
         </LogoGroup>
         <Link to="../login">
