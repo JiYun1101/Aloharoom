@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const MenuBar = styled.div`
   position: relative;
-  width: 100%;
+  width: 105rem;
   display: inline-block;
   font-family: "Pretendard-Regular";
   margin-top: 2rem;
@@ -14,7 +14,7 @@ const MenuBar = styled.div`
 
 const Logo = styled.span`
   position: absolute;
-  left: 10vw;
+  left: 10rem;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
   font-size: 1.5rem;
@@ -24,12 +24,12 @@ const Logo = styled.span`
 const NavGroup = styled.span`
   position: absolute;
   top: 0.5rem;
-  left: 43vw;
+  left: 46rem;
 `;
 
 const NavElement = styled.span`
-  margin-left: 1vw;
-  margin-right: 1vw;
+  margin-left: 1rem;
+  margin-right: 1rem;
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;
@@ -40,18 +40,18 @@ const NavElement = styled.span`
 
 const LogoGroup = styled.span`
   position: absolute;
-  right: 11vw;
+  right: 12rem;
   vertical-align: middle;
 `;
 
 const LogoElement = styled.span`
-  margin-left: 0.5vw;
-  margin-right: 0.5vw;
+  margin-left: 0.7rem;
+  margin-right: 0.7rem;
 `;
 
 const Button = styled.button`
   position: absolute;
-  right: 3vw;
+  right: 3rem;
   background-color: white;
   width: 7rem;
   height: 2rem;
