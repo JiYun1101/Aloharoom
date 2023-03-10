@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import KakaoMapPart from "./MapPostComponents/KakaoMapPart";
+import Post from "./MapPostComponents/Post";
 
 const MapPostContainer = styled.div`
     position: absolute;
@@ -60,21 +61,7 @@ const MapPost = () => {
     return (
         <MapPostContainer>
             <KakaoMapPart/>
-            <PostSection>
-                <PostCardSection>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                </PostCardSection>
-            </PostSection>
+            <Post/>
         </MapPostContainer>
     );
 }
