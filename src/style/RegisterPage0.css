@@ -1,0 +1,146 @@
+.titleWrap2 {
+  margin: -30% -2.5%;
+  position: absolute;
+
+  width: 100%;
+
+  top: 3rem;
+
+  font-size: 1rem;
+  text-align: center;
+  height: 300px;
+}
+
+.titleWrap3 {
+  margin: -25% -2.5%;
+  position: absolute;
+
+  width: 100%;
+
+  top: 3rem;
+
+  font-size: 1rem;
+  text-align: center;
+  height: 300px;
+}
+
+.button {
+  width: 130px;
+  height: 130px;
+  padding: 0;
+  border: none;
+  outline: none;
+  transition: all 0.15s ease-in-out; /* Modified transition speed */
+  margin: 25% 10px 0;
+  box-sizing: content-box;
+  /* line-height: -10%; */
+}
+
+.buttonWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.button:hover {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button-box {
+  box-sizing: border-box;
+}
+
+.button-img {
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.button-text {
+  font-size: 15px;
+  margin-top: 1px;
+  text-align: center;
+}
+
+.button-pressed {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(0.95);
+}
+
+.button-text2 {
+  height: 4rem;
+}
+
+.flex-container {
+  justify-content: center;
+  display: flex;
+  margin: 30px;
+  margin-left: 85px;
+  width: 300px;
+  font-size: 20px;
+}
+.flex-container.wrap {
+  flex-wrap: wrap;
+}
+
+/* tag */
+
+.tagWrap {
+  margin-left: 6%;
+  display: flex;
+  flex-wrap: wrap; /* 추가 */
+  justify-content: left;
+  margin-top: -35%;
+}
+
+.tag-button {
+  display: inline-block;
+  margin: 20% 10% 0;
+  height: auto; /* 수정 */
+  line-height: 28px;
+  padding: 0 13px;
+  border-radius: 20px;
+  background-color: #fff; /* modified */
+  border: 1px solid #ccc;
+  /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); */
+  cursor: pointer;
+  color: #000; /* modified */
+  font-size: 14px;
+  font-weight: bold;
+  /* text-shadow: 1px 1px #fff; */
+  transition: all 0.15s ease-in-out; /* Modified transition speed */
+  box-sizing: content-box;
+  white-space: nowrap; /* 추가 */
+  overflow: hidden; /* 추가 */
+  text-overflow: ellipsis; /* 추가 */
+  max-width: 100px; /* 추가 */
+}
+
+.tag-button:hover {
+  transform: scale(0.95);
+  /* border: 1px solid #aaa; */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tag-button:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+.tag-button-pressed {
+  background-color: #85afe1; /* 누른뒤 색 */
+  border: 1px solid #aaa; /* 이게 누른뒤 버튼 보더 색 */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(0.95);
+}
+
+.tag-button:focus {
+  outline: none;
+}
+
+.tag-button-wrap {
+  width: 130px;
+  height: 100px;
+  margin: 28% 2% -1.25%;
+  box-sizing: content-box;
+}
