@@ -69,7 +69,7 @@ const BlueLine = styled.hr`
 
 const LinkToStyle = {
   textDecoration: "none",
-  color: "inherit"
+  color: "inherit",
 };
 
 const Header = () => {
@@ -81,7 +81,9 @@ const Header = () => {
         </Link>
         <NavGroup>
           <Link to="/" style={LinkToStyle}>
-            <NavElement>About</NavElement>
+            <Link to="../about" style={LinkToStyle}>
+              <NavElement>About</NavElement>
+            </Link>
           </Link>
           <Link to="/postMapPage" style={LinkToStyle}>
             <NavElement>게시물 보기</NavElement>

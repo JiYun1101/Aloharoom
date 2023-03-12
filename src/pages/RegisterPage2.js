@@ -550,7 +550,7 @@ const App = () => {
                 }}
                 onClick={() => message.success("Processing complete!")}
               >
-                제출하기
+                <Link to="../">다음</Link>
               </Button>
             )}
             {current > 0 && (
