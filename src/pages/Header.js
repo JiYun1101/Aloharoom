@@ -15,7 +15,7 @@ const MenuBar = styled.div`
 const Logo = styled.span`
   position: absolute;
   left: 10rem;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Comfortaa' !important;
   font-weight: 500;
   font-size: 1.5rem;
   color: #47a5fd;
