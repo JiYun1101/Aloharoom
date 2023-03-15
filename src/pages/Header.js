@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import NotificationModal from "./NotificationModal";
 
 const MenuBar = styled.div`
   position: relative;
@@ -72,17 +73,6 @@ const LinkToStyle = {
   color: "inherit",
 };
 
-const ModalContainer = styled.div`
-  position: absolute;
-  right: 14vw;
-  border-style: solid;
-  border-color: blue; 
-  z-index: 5;
-  width: 20rem;
-  height: 20rem;
-  background-color: white;
-`;
-
 const Header = () => {
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
 
@@ -97,7 +87,7 @@ const Header = () => {
   return (
     <>
         <MenuBar>
-        {NotifyModalOpen ? <ModalContainer><button onClick={ModalClose}>x</button></ModalContainer> : <></>}
+        {NotifyModalOpen ? <NotificationModal ModalClose={ModalClose}/> : <></>}
         <Link to="/" style={LinkToStyle}>
           <Logo>aloharoom</Logo>
         </Link>
