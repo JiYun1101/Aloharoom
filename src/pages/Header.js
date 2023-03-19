@@ -100,7 +100,9 @@ const Header = () => {
           <Link to="/postMapPage" style={LinkToStyle}>
             <NavElement>게시물 보기</NavElement>
           </Link>
-          <NavElement>새 글 쓰기</NavElement>
+          <Link to="/newPostPage" style={LinkToStyle}>
+            <NavElement>새 글 쓰기</NavElement>
+          </Link>
         </NavGroup>
         <LogoGroup>
           <LogoElement>

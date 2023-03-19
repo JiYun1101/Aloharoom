@@ -10,6 +10,7 @@ import TermUser from "./pages/TermUser";
 import MyPage from "./pages/MyPage";
 import RegisterPage2 from "./pages/RegisterPage2";
 import About from "./pages/About";
+import NewPostPage from "./pages/NewPostPage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/postMapPage" element={<PostMapPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/newPostPage" element={<NewPostPage/>}/>
         <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="RegisterPage/registerPage2" element={<RegisterPage2 />} />
         <Route path="/termUser" element={<TermUser />} />
