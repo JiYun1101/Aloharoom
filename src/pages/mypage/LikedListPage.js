@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { AiFillHeart, AiOutlineHeart} from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 
 const LikedListDiv = styled.div`
     margin-top: 1.5rem;
