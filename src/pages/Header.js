@@ -115,7 +115,7 @@ const Header = () => {
           </LogoElement>
         </LogoGroup>
         <Link to="../login">
-          <Button>Login/Signup</Button>
+          <Button>Login / Signup</Button>
         </Link>
       </MenuBar>
       <BlueLine />
