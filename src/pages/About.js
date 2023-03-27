@@ -1,32 +1,43 @@
 import { Link } from "react-router-dom";
-import "../style/About.css";
 import React from "react";
-import ReactDOM from "react-dom";
+import Header from "./Header";
+import BannerSection from "./mainpage/BannerSection";
+import styled from "styled-components";
+import "../style/About.css";
 
-function About() {
+const MainBox = styled.section`
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const IntroBox = styled.div`
+  width: 40%;
+  margin: 0 30%;
+  text-align: center;
+  margin-top: 10rem;
+`;
+
+const About = () => {
   return (
-    <div className="about">
-      <h1>About Us</h1>
-      <p>
-        We are a company that provides high-quality services to our clients.
-      </p>
-      <p>
-        Our team consists of experienced professionals who are passionate about
-        their work and are committed to delivering exceptional results.
-      </p>
-      <p>
-        At our company, we believe in building long-term relationships with our
-        clients based on trust and mutual respect. We work closely with each
-        client to understand their unique needs and develop customized solutions
-        that meet their specific requirements.
-      </p>
-      <p>
-        Thank you for considering our company for your business needs. We look
-        forward to working with you!
-      </p>
-    </div>
+    <>
+      <Header />
+      <div className="App">
+        <div className="MainContainer">
+          <MainBox>
+            <BannerSection />
+            <IntroBox>
+              <p>높아지는 물가와 어려워지는 내집마련,</p>
+              <p>어딘가에 나랑 잘 맞는 룸메이트가 있지 않을까요?</p>
+            </IntroBox>
+          </MainBox>
+        </div>
+      </div>
+    </>
   );
-}
+};
 
-ReactDOM.render(<About />, document.getElementById("root"));
 export default About;

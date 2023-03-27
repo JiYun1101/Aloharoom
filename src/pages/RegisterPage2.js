@@ -10,21 +10,19 @@ import air_conditionerImg from "../img/air_conditioner.png";
 import microwaveImg from "../img/microwave.png";
 import washing_machineImg from "../img/washing_machine.png";
 import water_purifierImg from "../img/water_purifier.png";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const FirstContent = ({ onClick }) => {
-  const [clickedButtons, setClickedButtons] = useState([]);
+  const [clickedButton, setClickedButton] = useState(null);
 
   const handleClick = (buttonName) => {
-    if (clickedButtons.includes(buttonName)) {
-      setClickedButtons(clickedButtons.filter((name) => name !== buttonName));
-    } else {
-      setClickedButtons([...clickedButtons, buttonName]);
-      onClick();
-    }
+    setClickedButton(buttonName);
+    onClick(buttonName);
+    console.log(buttonName);
   };
 
   return (
-    //1번 문제
     <div>
       <div className="titleWrap2">당신은 집에서 주로 어떤 유형인가요?</div>
       <div
@@ -36,9 +34,7 @@ const FirstContent = ({ onClick }) => {
       >
         <Button
           onClick={() => handleClick("cheers")}
-          className={`button ${
-            clickedButtons.includes("cheers") && "button-pressed"
-          }`}
+          className={`button ${clickedButton === "cheers" && "button-pressed"}`}
         >
           <img src={cheersImg} alt="Cheers!" className="button-img" />
           <div className="button-text">친구와 함께</div>
@@ -47,7 +43,7 @@ const FirstContent = ({ onClick }) => {
         <Button
           onClick={() => handleClick("freelance")}
           className={`button ${
-            clickedButtons.includes("freelance") && "button-pressed"
+            clickedButton === "freelance" && "button-pressed"
           }`}
         >
           <img src={freelanceImg} alt="freelance!" className="button-img" />
@@ -57,27 +53,25 @@ const FirstContent = ({ onClick }) => {
         <Button
           onClick={() => handleClick("thinking")}
           className={`button ${
-            clickedButtons.includes("thinking") && "button-pressed"
+            clickedButton === "thinking" && "button-pressed"
           }`}
         >
           <img src={thinkingImg} alt="thinking!" className="button-img" />
           <div className="button-text">잘 모르겠다</div>
         </Button>
       </div>
+      {/* <input type="hidden" name="likeHashtags" value={clickedButton} /> */}
     </div>
   );
 };
 
 const SecondContent = ({ onClick }) => {
-  const [clickedButtons, setClickedButtons] = useState([]);
+  const [clickedButton2, setClickedButton2] = useState(null);
 
-  const handleClick = (buttonName) => {
-    if (clickedButtons.includes(buttonName)) {
-      setClickedButtons(clickedButtons.filter((name) => name !== buttonName));
-    } else {
-      setClickedButtons([...clickedButtons, buttonName]);
-      onClick();
-    }
+  const handleClick2 = (buttonName2) => {
+    setClickedButton2(buttonName2);
+    onClick(buttonName2);
+    console.log(buttonName2); // 새로 추가된 코드
   };
 
   return (
@@ -88,9 +82,9 @@ const SecondContent = ({ onClick }) => {
       <div style={{ display: "flex", marginTop: "2%", marginBottom: "-1.7%" }}>
         <div class="flex-container wrap">
           <Button
-            onClick={() => handleClick("water_purifier")}
+            onClick={() => handleClick2("water_purifier")}
             className={`button ${
-              clickedButtons.includes("water_purifier") && "button-pressed"
+              clickedButton2 === "water_purifier" && "button-pressed"
             }`}
           >
             <img
@@ -102,9 +96,9 @@ const SecondContent = ({ onClick }) => {
           </Button>
 
           <Button
-            onClick={() => handleClick("air_conditioner")}
+            onClick={() => handleClick2("air_conditioner")}
             className={`button ${
-              clickedButtons.includes("air_conditioner") && "button-pressed"
+              clickedButton2 === "air_conditioner" && "button-pressed"
             }`}
           >
             <img
@@ -116,9 +110,9 @@ const SecondContent = ({ onClick }) => {
           </Button>
 
           <Button
-            onClick={() => handleClick("microwave")}
+            onClick={() => handleClick2("microwave")}
             className={`button ${
-              clickedButtons.includes("microwave") && "button-pressed"
+              clickedButton2 === "microwave" && "button-pressed"
             }`}
             style={{ marginTop: "15px", marginBottom: "16%" }}
           >
@@ -127,9 +121,9 @@ const SecondContent = ({ onClick }) => {
           </Button>
 
           <Button
-            onClick={() => handleClick("washing_machine")}
+            onClick={() => handleClick2("washing_machine")}
             className={`button ${
-              clickedButtons.includes("washing_machine") && "button-pressed"
+              clickedButton2 === "washing_machine" && "button-pressed"
             }`}
             style={{ marginTop: "15px", marginBottom: "16%" }}
           >
@@ -149,13 +143,10 @@ const SecondContent = ({ onClick }) => {
 const ThirdContent = ({ onClick }) => {
   const [tagPressed, setTagPressed] = useState([]);
 
-  const handleTagClick = (buttonName) => {
-    if (tagPressed.includes(buttonName)) {
-      setTagPressed(tagPressed.filter((name) => name !== buttonName));
-      onClick(); // Button is released, trigger onClick
-    } else {
-      setTagPressed([...tagPressed, buttonName]);
-    }
+  const handleTagClick = (buttonName3) => {
+    console.log(buttonName3);
+    setTagPressed(buttonName3);
+    onClick(buttonName3);
   };
 
   return (
@@ -236,9 +227,9 @@ const ThirdContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("park")}
+            onClick={() => handleTagClick("gym")}
             className={`tag-button ${
-              tagPressed.includes("park") && "tag-button-pressed"
+              tagPressed.includes("gym") && "tag-button-pressed"
             }`}
           >
             #주변 체육시설
@@ -288,9 +279,9 @@ const ThirdContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("gym")}
+            onClick={() => handleTagClick("park")}
             className={`tag-button ${
-              tagPressed.includes("gym") && "tag-button-pressed"
+              tagPressed.includes("park") && "tag-button-pressed"
             }`}
           >
             #공원
@@ -302,15 +293,12 @@ const ThirdContent = ({ onClick }) => {
 };
 
 const LastContent = ({ onClick }) => {
-  const [tagPressed, setTagPressed] = useState([]);
+  const [tagPressed2, setTagPressed2] = useState([]);
 
-  const handleTagClick = (buttonName) => {
-    if (tagPressed.includes(buttonName)) {
-      setTagPressed(tagPressed.filter((name) => name !== buttonName));
-      onClick(); // Button is released, trigger onClick
-    } else {
-      setTagPressed([...tagPressed, buttonName]);
-    }
+  const handleTagClick2 = (buttonName4) => {
+    console.log(buttonName4);
+    setTagPressed2(buttonName4);
+    onClick(buttonName4);
   };
 
   return (
@@ -323,9 +311,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginLeft: "-5px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick("dust")}
+            onClick={() => handleTagClick2("dust")}
             className={`tag-button ${
-              tagPressed.includes("dust") && "tag-button-pressed"
+              tagPressed2.includes("dust") && "tag-button-pressed"
             }`}
           >
             #역세권
@@ -337,9 +325,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginLeft: "-30px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick("cough")}
+            onClick={() => handleTagClick2("cough")}
             className={`tag-button ${
-              tagPressed.includes("cough") && "tag-button-pressed"
+              tagPressed2.includes("cough") && "tag-button-pressed"
             }`}
           >
             #층간소음이 없는
@@ -351,9 +339,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginLeft: "5px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick("quiet")}
+            onClick={() => handleTagClick2("quiet")}
             className={`tag-button ${
-              tagPressed.includes("quiet") && "tag-button-pressed"
+              tagPressed2.includes("quiet") && "tag-button-pressed"
             }`}
           >
             #조용한 주거환경
@@ -365,9 +353,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginLeft: "0px", marginTop: "-40px" }}
         >
           <button
-            onClick={() => handleTagClick("convenience")}
+            onClick={() => handleTagClick2("convenience")}
             className={`tag-button ${
-              tagPressed.includes("convenience") && "tag-button-pressed"
+              tagPressed2.includes("convenience") && "tag-button-pressed"
             }`}
           >
             #성당/교회
@@ -379,9 +367,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginTop: "-40px", marginLeft: "-20px" }}
         >
           <button
-            onClick={() => handleTagClick("calm")}
+            onClick={() => handleTagClick2("calm")}
             className={`tag-button ${
-              tagPressed.includes("calm") && "tag-button-pressed"
+              tagPressed2.includes("calm") && "tag-button-pressed"
             }`}
           >
             #주차공간의 유무
@@ -395,9 +383,9 @@ const LastContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("park")}
+            onClick={() => handleTagClick2("park")}
             className={`tag-button ${
-              tagPressed.includes("park") && "tag-button-pressed"
+              tagPressed2.includes("park") && "tag-button-pressed"
             }`}
           >
             #공원
@@ -412,9 +400,9 @@ const LastContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("church")}
+            onClick={() => handleTagClick2("church")}
             className={`tag-button ${
-              tagPressed.includes("church") && "tag-button-pressed"
+              tagPressed2.includes("church") && "tag-button-pressed"
             }`}
           >
             #근처 편의점
@@ -430,9 +418,9 @@ const LastContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("car")}
+            onClick={() => handleTagClick2("car")}
             className={`tag-button ${
-              tagPressed.includes("car") && "tag-button-pressed"
+              tagPressed2.includes("car") && "tag-button-pressed"
             }`}
           >
             #비흡연자
@@ -447,9 +435,9 @@ const LastContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("gym")}
+            onClick={() => handleTagClick2("gym")}
             className={`tag-button ${
-              tagPressed.includes("gym") && "tag-button-pressed"
+              tagPressed2.includes("gym") && "tag-button-pressed"
             }`}
           >
             #주변 체육시설
@@ -479,10 +467,64 @@ const steps = [
   },
 ];
 
-const App = () => {
+const onFinish = async (use_state) => {
+  try {
+    console.log("username :" + use_state.username);
+    console.log("password :" + use_state.password);
+    console.log("nickname :" + use_state.nickname);
+    console.log("age :" + use_state.age);
+    console.log("gender :" + use_state.gender);
+    console.log("tendency :" + use_state.tendency);
+    console.log("likeHashtags :" + use_state.likeHashtags);
+    console.log("likeProducts :" + use_state.likeProducts);
+    console.log("myHashtags :" + use_state.myHashtags);
+    console.log("myProducts :" + use_state.myProducts);
+
+    await axios.post("http://localhost:8080/api/signup", {
+      username: use_state.username.toString(),
+      password: use_state.password.toString(),
+      nickname: use_state.nickname.toString(),
+      age: use_state.age.toString(),
+      gender: use_state.gender.toString(),
+      tendency: use_state.tendency.toString(),
+      likeHashtags: [use_state.likeHashtags.toString()],
+      likeProducts: [use_state.likeProducts.toString()],
+      myHashtags: [use_state.myHashtags.toString()],
+      myProducts: [use_state.myProducts.toString()],
+    });
+
+    // Navigate to RegisterPage2 on successful registration
+    // window.location.href = "/RegisterPage/RegisterPage2";
+  } catch (error) {
+    console.error("Registration failed:", error);
+  }
+};
+
+function RegisterPage2() {
+  const location = useLocation();
+
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
+  const [clickedButton, setClickedButton] = useState([]);
+  const [clickedButton2, setClickedButton2] = useState([]);
+  const [clickedButton3, setClickedButton3] = useState([]);
+  const [clickedButton4, setClickedButton4] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
+  const [firstClick, setFirstClick] = useState("");
+
+  const use_state = location.state;
+
+  // const username = location.state.username;
+  // const password = location.state.password;
+  // const nickname = location.state.nickname;
+  // const age = location.state.age;
+  // const gender = location.state.gender;
+
+  // console.log("reg2 page:" + username);
+  // console.log("reg2 page:" + password);
+  // console.log("reg2 page:" + nickname);
+  // console.log("reg2 page:" + age);
+  // console.log("reg2 page:" + gender);
 
   const next = () => {
     setCurrent(current + 1);
@@ -490,10 +532,12 @@ const App = () => {
   const prev = () => {
     setCurrent(current - 1);
   };
+
   const items = steps.map((item) => ({
     key: item.title,
     title: item.title,
   }));
+
   const contentStyle = {
     lineHeight: "460px",
     textAlign: "center",
@@ -504,8 +548,36 @@ const App = () => {
     marginTop: 16,
   };
 
-  const handleClick = () => {
+  const handleClick = (buttonName) => {
     setIsClicked(true);
+    setClickedButton(buttonName);
+    // if (!firstClick) {
+    //   setFirstClick(buttonName);
+    // }
+  };
+
+  const handleClick2 = (buttonName2) => {
+    setIsClicked(true);
+    setClickedButton2(buttonName2);
+    // if (!firstClick) {
+    //   setFirstClick(buttonName2);
+    // }
+  };
+
+  const handleTagClick = (buttonName3) => {
+    setIsClicked(true);
+    setClickedButton3(buttonName3);
+    // if (!firstClick) {
+    //   setFirstClick(buttonName3);
+    // }
+  };
+
+  const handleTagClick2 = (buttonName4) => {
+    setIsClicked(true);
+    setClickedButton4(buttonName4);
+    // if (!firstClick) {
+    //   setFirstClick(buttonName3);
+    // }
   };
 
   return (
@@ -515,7 +587,17 @@ const App = () => {
           <Steps current={current} items={items} />
           <div style={contentStyle}>
             {React.cloneElement(steps[current].content, {
-              onClick: handleClick,
+              onClick:
+                current === 0
+                  ? handleClick
+                  : current === 1
+                  ? handleClick2
+                  : current === 2
+                  ? handleTagClick
+                  : current === 3
+                  ? handleTagClick2
+                  : null,
+              // current 값에 따라 handleClick, handleClick2, handleClick3 함수 중 하나를 호출하도록 설정
             })}
           </div>
           <div
@@ -523,6 +605,7 @@ const App = () => {
               marginTop: 24,
             }}
           >
+            {" "}
             <Button
               style={{
                 position: "fixed",
@@ -546,11 +629,43 @@ const App = () => {
               <Button
                 type="primary"
                 style={{
-                  margin: "0 360px",
+                  margin: "0 385px",
                 }}
-                onClick={() => message.success("Processing complete!")}
+                onClick={() => {
+                  const buttonName = clickedButton;
+                  const buttonName2 = clickedButton2;
+                  const buttonName3 = clickedButton3; // clickedButton3 상태 값도 업데이트
+                  const buttonName4 = clickedButton4;
+
+                  setClickedButton([...clickedButton, buttonName]);
+                  setClickedButton2([...clickedButton2, buttonName2]);
+                  setClickedButton3([...clickedButton3, buttonName3]);
+                  setClickedButton4([...clickedButton4, buttonName4]);
+
+                  console.log("buttonName :", buttonName);
+                  console.log("buttonName2 :", buttonName2);
+                  console.log("buttonName3 :", buttonName3); // handleClick3에서 입력 받은 값을 출력합니다.
+                  console.log("buttonName4 :", buttonName4);
+
+                  use_state["tendency"] = buttonName;
+                  use_state["likeHashtags"] = buttonName3;
+                  use_state["likeProducts"] = buttonName2;
+                  use_state["myHashtags"] = buttonName4;
+                  use_state["myProducts"] = buttonName2;
+
+                  onFinish(use_state);
+
+                  // onFinish({
+                  //   // buttonName: buttonName,
+                  //   tendency: buttonName,
+                  //   likeHashtags: buttonName3,
+                  //   likeProducts: buttonName2,
+                  //   myHashtags: buttonName4,
+                  //   myProducts: buttonName2,
+                  // });
+                }}
               >
-                <Link to="../">다음</Link>
+                다음
               </Button>
             )}
             {current > 0 && (
@@ -569,5 +684,6 @@ const App = () => {
       </div>
     </div>
   );
-};
-export default App;
+}
+
+export default RegisterPage2;

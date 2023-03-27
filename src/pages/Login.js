@@ -6,6 +6,7 @@ import { Input, Button } from "antd";
 
 import { Form, Checkbox } from "antd";
 import LockOutlined from "@ant-design/icons";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ const Login = () => {
   const [nameValid, setnameValid] = useState(false);
   const [ConfirmPWValid, setConfirmPWValid] = useState(false);
   const [notAllow, setNotAllow] = useState(true);
+
 
   const onChange = (value) => {
     console.log("changed", value);
@@ -34,7 +36,7 @@ const Login = () => {
     setNotAllow(true);
   }, [emailValid, pwValid]);
 
-  const handleEmail = (e) => {
+  const username = (e) => {
     setEmail(e.target.value);
     // const regex =
     //   /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
