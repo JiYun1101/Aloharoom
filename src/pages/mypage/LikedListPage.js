@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { AiFillHeart, AiOutlineHeart} from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 
 const LikedListDiv = styled.div`
     margin-top: 1.5rem;
-    margin-left: 1.2rem;
-    width: 480px;
+    margin-left: 2.1rem;
+    width: 465px;
     max-height: 480px;
     display: flex;  
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
+    gap: 1rem;
     overflow-x: hidden;
     overflow-y: auto;
     &::-webkit-scrollbar {
@@ -32,16 +33,16 @@ const LikedListDiv = styled.div`
 const LikedElementDiv = styled.div`
     position: relative;
     left: 0.6rem;
-    width: 110px;
-    height: 180px;
+    width: 200px;
+    height: 300px;
 `;
 
 const LikedPostCard = styled.div`
     position: absolute;
     top: 0.7rem;
     left: 0.5rem;
-    width: 90px;
-    height: 150px;
+    width: 180px;
+    height: 280px;
     border-style: solid;
     border-color: #47A5FD;
     border-radius: 0.5rem;
@@ -56,82 +57,32 @@ const heartStyle = {
 };
 
 const LikedListPage = () => {
-    const [heartClick, setHeartClick] = useState(false);
-    const heartClickEvent = () => {
-        setHeartClick(!heartClick);
-    }
     return (
     <>
         <LikedListDiv>
             <LikedElementDiv>
                 <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
+                <AiFillHeart size={30} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
                 <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
+                <AiFillHeart size={30} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
                 <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
+                <AiFillHeart size={30} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
                 <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
+                <AiFillHeart size={30} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
                 <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
+                <AiFillHeart size={30} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
                 <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <LikedPostCard/>
-                {heartClick ? 
-                    <AiFillHeart size={30} style={heartStyle} onClick={heartClickEvent}/> : 
-                    <AiOutlineHeart size={30} style={heartStyle} onClick={heartClickEvent}/>
-                }
+                <AiFillHeart size={30} style={heartStyle}/>
             </LikedElementDiv>
         </LikedListDiv>
     </>

@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import NotificationModal from "./NotificationModal";
 
 const MenuBar = styled.div`
   position: relative;
-  width: 105rem;
+  width: 100%;
   display: inline-block;
   font-family: "Pretendard-Regular";
   margin-top: 2rem;
@@ -14,8 +15,8 @@ const MenuBar = styled.div`
 
 const Logo = styled.span`
   position: absolute;
-  left: 10rem;
-  font-family: "Noto Sans KR", sans-serif;
+  left: 10vw;
+  font-family: 'Comfortaa' !important;
   font-weight: 500;
   font-size: 1.5rem;
   color: #47a5fd;
@@ -24,12 +25,12 @@ const Logo = styled.span`
 const NavGroup = styled.span`
   position: absolute;
   top: 0.5rem;
-  left: 46rem;
+  left: 42vw;
 `;
 
 const NavElement = styled.span`
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 1.2vw;
+  margin-right: 1.2vw;
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;
@@ -40,18 +41,18 @@ const NavElement = styled.span`
 
 const LogoGroup = styled.span`
   position: absolute;
-  right: 12rem;
+  right: 11vw;
   vertical-align: middle;
 `;
 
 const LogoElement = styled.span`
-  margin-left: 0.7rem;
-  margin-right: 0.7rem;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
 `;
 
 const Button = styled.button`
   position: absolute;
-  right: 3rem;
+  right: 3vw;
   background-color: white;
   width: 7rem;
   height: 2rem;
@@ -73,9 +74,20 @@ const LinkToStyle = {
 };
 
 const Header = () => {
+  const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
+
+  const ModalOpen = () => {
+    setNotifyModalOpen(true);
+  }
+
+  const ModalClose = () => {
+    setNotifyModalOpen(false);
+  }
+
   return (
     <>
-      <MenuBar>
+        <MenuBar>
+        {NotifyModalOpen ? <NotificationModal ModalClose={ModalClose}/> : <></>}
         <Link to="/" style={LinkToStyle}>
           <Logo>aloharoom</Logo>
         </Link>
@@ -88,11 +100,13 @@ const Header = () => {
           <Link to="/postMapPage" style={LinkToStyle}>
             <NavElement>게시물 보기</NavElement>
           </Link>
-          <NavElement>새 글 쓰기</NavElement>
+          <Link to="/newPostPage" style={LinkToStyle}>
+            <NavElement>새 글 쓰기</NavElement>
+          </Link>
         </NavGroup>
         <LogoGroup>
           <LogoElement>
-            <AiOutlineBell size={30} />
+            <AiOutlineBell size={30} onClick={ModalOpen}/>
           </LogoElement>
           <LogoElement>
             <Link to="/myPage" style={LinkToStyle}>
@@ -101,7 +115,7 @@ const Header = () => {
           </LogoElement>
         </LogoGroup>
         <Link to="../login">
-          <Button>Login/Signup</Button>
+          <Button>Login / Signup</Button>
         </Link>
       </MenuBar>
       <BlueLine />
