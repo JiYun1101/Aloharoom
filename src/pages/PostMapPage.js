@@ -5,19 +5,6 @@ import PostMapContent from "./postmappage/PostMapContent";
 
 
 const PostMapPage = () => {
-    // async function getData() {
-    //     await axios.get('http://localhost:8080/api/board')
-    //     .then((response) => {
-    //         console.log('response data : ', response.data);
-    //     })
-    //     .catch((error) => {
-    //         console.log('axios error');
-    //     });
-    // }
-    // useEffect(() => {
-    //     getData();
-    // }, []);
-    
     //전체 게시물 데이터 받아오기
     async function fetchViewPostData() {
         await axios.get('http://localhost:8080/api/board')
