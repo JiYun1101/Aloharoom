@@ -91,7 +91,7 @@ const App = () => {
             className="login-form"
             initialValues={{ remember: true }}
             onFinish={onFinish}
-          ></Form>
+          />
           <Form
             {...formItemLayout}
             form={form}
