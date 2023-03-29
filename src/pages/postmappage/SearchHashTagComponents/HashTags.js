@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Tag, HStack } from '@chakra-ui/react';
 
+
 const HashSection = styled.div`
     width: 50%;
     display: flex;
@@ -9,10 +10,11 @@ const HashSection = styled.div`
     align-content: center;
 `;
 
-const TagTotalStyle = {
-    marginRight : "2rem",
-    fontWeight : "800"
-}
+const HashTagSwiperDiv = styled.div`
+    margin-top: 1.5rem;
+    margin-right : 2rem;
+    fontWeight: 800;
+`;
 
 const HashTagButton = styled.button`
     background-color: white;
@@ -28,15 +30,13 @@ const HashTagButton = styled.button`
 const HashTags = () => {
     return (
         <HashSection>
-            <HStack
-                spacing={10} 
-                style={TagTotalStyle}>
+            <HashTagSwiperDiv>
                 <HashTagButton>#주차가능</HashTagButton>
                 <HashTagButton>#주변 편의점</HashTagButton>
                 <HashTagButton>#공원</HashTagButton>
                 <HashTagButton>#층간소음</HashTagButton>
                 <HashTagButton>#남향</HashTagButton>
-            </HStack>
+            </HashTagSwiperDiv>
         </HashSection>
     );
 }
