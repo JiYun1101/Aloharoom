@@ -4,14 +4,13 @@ import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+//import '../../../style/HashTagSwiper.css';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
-
 
 const HashSection = styled.div`
     width: 50%;
@@ -22,7 +21,7 @@ const HashSection = styled.div`
 
 const HashTagSwiperDiv = styled.div`
     margin-top: 1.5rem;
-    margin-right : 2rem;
+    margin-right : 1rem;
     fontWeight: 800;
 `;
 
@@ -38,11 +37,8 @@ const HashTagButton = styled.button`
 `;
 
 const SwiperStyle = {
-    width: "45rem"
-}
-
-const SwiperElementStyle = {
-    gap: "0.1rem"
+    width: "43vw",
+    border: "5px solid black"
 }
 
 const HashTags = () => {
@@ -52,29 +48,29 @@ const HashTags = () => {
                 <Swiper
                     style={SwiperStyle}
                     // install Swiper modules
-                    modules={[Pagination, A11y]}
-                    spaceBetween={50}
-                    slidesPerView={3}
+                    modules={[Navigation, Scrollbar, Pagination, A11y]}
+                    spaceBetween={1}
+                    slidesPerView={5}
                     navigation
-                    pagination={{ clickable: true }}
                     onSwiper={(swiper) => console.log(swiper)}
-                    //슬라이드가 이동되었을때
                     onSlideChange={() => console.log('slide change')}
-                >
-                    <SwiperSlide
-                        style={SwiperElementStyle}>
+                > 
+                    <SwiperSlide>
                         <HashTagButton>#주차가능</HashTagButton>
                     </SwiperSlide>
-                    <SwiperSlide
-                        style={SwiperElementStyle}>
+                    <SwiperSlide>
                         <HashTagButton>#주차가능</HashTagButton>
                     </SwiperSlide>
-                    <SwiperSlide
-                        style={SwiperElementStyle}>
+                    <SwiperSlide>
                         <HashTagButton>#주차가능</HashTagButton>
                     </SwiperSlide>
-                    <SwiperSlide
-                        style={SwiperElementStyle}>
+                    <SwiperSlide>
+                        <HashTagButton>#주차가능</HashTagButton>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <HashTagButton>#주차가능</HashTagButton>
+                    </SwiperSlide>
+                    <SwiperSlide>
                         <HashTagButton>#주차가능</HashTagButton>
                     </SwiperSlide>
                 </Swiper>
