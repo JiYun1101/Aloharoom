@@ -3,15 +3,15 @@ import styled from "styled-components";
 import CardPost from "./CardPost";
 
 const CardPostContainer = styled.div`
-    width: 90%;
+    width: 93%;
     height: 95%;
-    margin-left: 6.5rem;
+    margin-left: 3rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
-    gap: 2rem;
+    gap: 0.5rem;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
