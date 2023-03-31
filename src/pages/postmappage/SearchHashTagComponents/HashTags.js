@@ -4,9 +4,7 @@ import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-//import '../../../style/HashTagSwiper.css';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -37,8 +35,7 @@ const HashTagButton = styled.button`
 `;
 
 const SwiperStyle = {
-    width: "43vw",
-    border: "5px solid black"
+    width: "43vw"
 }
 
 const HashTags = () => {
