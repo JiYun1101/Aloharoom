@@ -5,14 +5,14 @@ import CardPost from '../CardPost'
 const RoommateCardPosts = () => {
     return (
         <CardPostContainer>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
+            <CardPost type="룸메이트"/>
+            <CardPost type="룸메이트"/>
+            <CardPost type="룸메이트"/>
+            <CardPost type="룸메이트"/>
+            <CardPost type="룸메이트"/>
+            <CardPost type="룸메이트"/>
+            <CardPost type="룸메이트"/>
+            <CardPost type="룸메이트"/>
         </CardPostContainer>
     );
 }

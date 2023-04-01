@@ -5,17 +5,20 @@ import CardPost from '../CardPost'
 const ShareHousePosts = () => {
     return (
         <CardPostContainer>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
+            <CardPost type="쉐어하우스"/>
         </CardPostContainer>
     )
 }
