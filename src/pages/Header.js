@@ -29,8 +29,8 @@ const NavGroup = styled.span`
 `;
 
 const NavElement = styled.span`
-  margin-left: 1.2vw;
-  margin-right: 1.2vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;
@@ -98,11 +98,9 @@ const Header = () => {
             </Link>
           </Link>
           <Link to="/postMapPage" style={LinkToStyle}>
-            <NavElement>게시물 보기</NavElement>
+            <NavElement>방 보기</NavElement>
           </Link>
-          <Link to="/newPostPage" style={LinkToStyle}>
-            <NavElement>새 글 쓰기</NavElement>
-          </Link>
+            <NavElement>커뮤니티</NavElement>
         </NavGroup>
         <LogoGroup>
           <LogoElement>

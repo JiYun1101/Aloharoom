@@ -1,9 +1,5 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-
-import ChattingListPage from "../ChattingListPage";
-import LikedListPage from "../LikedListPage";
-import MyInfoPage from "../MyInfoPage";
 import MyPageContent from "./MyPageContent";
 import MyPageNavs from "./MyPageNavs";
 
@@ -31,11 +27,6 @@ const MyPageBoxContainer = styled.div`
     flex-direction: column;
 `;
 
-//내 정보, 좋아요 목록, 채팅목록이 들어갈 div 태그
-const MyPageContentDiv = styled.div`
-    max-width: 500px;
-    min-height: 525px;
-`;
 
 const MyPageBox = () => {
     const [myInfoPage, setMyInfoPage] = useState(true);
