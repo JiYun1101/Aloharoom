@@ -24,27 +24,42 @@ const CardPostContainer = styled.div`
         background: #47A5FD;    /* 스크롤바의 색상 */
         border-radius: 1rem;
     }
-
     &::-webkit-scrollbar-track {
         background: white;      /*스크롤바 뒷 배경 색상*/
     }
 `;
 
-const CardPosts = () => {
+const CardPosts = ({roommatePosts, sharehousePosts}) => {
     return (
-        <CardPostContainer>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-            <CardPost/>
-        </CardPostContainer>
+        <>
+            {roommatePosts ?  
+                <CardPostContainer>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                </CardPostContainer>
+            : <></>}
+            {sharehousePosts ? 
+                <CardPostContainer>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                    <CardPost/>
+                </CardPostContainer>
+            :  <></>}
+        </>
     );
 }
 

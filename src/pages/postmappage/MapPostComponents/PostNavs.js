@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import PostNav from './PostNav';
 
-const PostNavDiv = styled.div`
+const PostNavsDiv = styled.div`
     border-bottom: solid 0.1rem #47A5FD;
     width: 100%;
     height: 10%;
@@ -11,23 +12,17 @@ const PostNavDiv = styled.div`
     justify-content: space-around;
 `;
 
-const PostNav = styled.div`
-    color: #47A5FD;
-    &:hover {
-        text-decoration: underline;
-        text-decoration-color: #47A5FD;
-        text-decoration-thickness: 0.13rem;
-        text-underline-offset: 0.5rem;
-    }
-`;
-
-const PostNavs = () => {
+const PostNavs = ({roommatePostsClick, sharehousePostsClick}) => {
   return (
-    <PostNavDiv>
-      <PostNav>룸메이트</PostNav>
-      <PostNav>쉐어하우스</PostNav>
-    </PostNavDiv>
+    <PostNavsDiv>
+      <PostNav  
+        clickFunc={roommatePostsClick}
+        NavName="룸메이트"/>
+      <PostNav 
+        clickFunc={sharehousePostsClick}
+        NavName="쉐어하우스"/>
+    </PostNavsDiv>
   )
 }
 
-export default PostNavs
+export default PostNavs;
