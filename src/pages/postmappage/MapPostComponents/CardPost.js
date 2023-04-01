@@ -22,7 +22,7 @@ const RoomTypeDiv = styled.div`
 
 const RoomTypeButton = styled.button`
     background-color: white;
-    width: 4rem;
+    width: 4.5rem;
     height: 1.5rem;
     color: #bbbbbb;
     font-weight: 500;
@@ -32,11 +32,11 @@ const RoomTypeButton = styled.button`
     
 `;
 
-const CardPost = () => {
+const CardPost = ({type}) => {
     return (
         <Card>
             <RoomTypeDiv>
-                <RoomTypeButton>룸메이트</RoomTypeButton>
+                <RoomTypeButton>{type}</RoomTypeButton>
             </RoomTypeDiv>
         </Card>
         );
