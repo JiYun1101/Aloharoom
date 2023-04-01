@@ -292,13 +292,88 @@ const ThirdContent = ({ onClick }) => {
   );
 };
 
+const FourthContent = ({ onClick }) => {
+  const [clickedButton4, setClickedButton4] = useState(null);
+
+  const handleClick4 = (buttonName4) => {
+    setClickedButton4(buttonName4);
+    onClick(buttonName4);
+    console.log(buttonName4); // 새로 추가된 코드
+  };
+
+  return (
+    <div>
+      <div className="titleWrap2">
+        집에는 어떤 가구가 필요하다고 생각하시나요?
+      </div>
+      <div style={{ display: "flex", marginTop: "2%", marginBottom: "-1.7%" }}>
+        <div class="flex-container wrap">
+          <Button
+            onClick={() => handleClick4("water_purifier")}
+            className={`button ${
+              clickedButton4 === "water_purifier" && "button-pressed"
+            }`}
+          >
+            <img
+              src={water_purifierImg}
+              alt="water_purifier!"
+              className="button-img"
+            />
+            <div className="button-text">정수기</div>
+          </Button>
+
+          <Button
+            onClick={() => handleClick4("air_conditioner")}
+            className={`button ${
+              clickedButton4 === "air_conditioner" && "button-pressed"
+            }`}
+          >
+            <img
+              src={air_conditionerImg}
+              alt="air_conditioner!"
+              className="button-img"
+            />
+            <div className="button-text">에어컨</div>
+          </Button>
+
+          <Button
+            onClick={() => handleClick4("microwave")}
+            className={`button ${
+              clickedButton4 === "microwave" && "button-pressed"
+            }`}
+            style={{ marginTop: "15px", marginBottom: "16%" }}
+          >
+            <img src={microwaveImg} alt="microwave!" className="button-img" />
+            <div className="button-text">전자레인지</div>
+          </Button>
+
+          <Button
+            onClick={() => handleClick4("washing_machine")}
+            className={`button ${
+              clickedButton4 === "washing_machine" && "button-pressed"
+            }`}
+            style={{ marginTop: "15px", marginBottom: "16%" }}
+          >
+            <img
+              src={washing_machineImg}
+              alt="washing_machine!"
+              className="button-img"
+            />
+            <div className="button-text">세탁기</div>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const LastContent = ({ onClick }) => {
   const [tagPressed2, setTagPressed2] = useState([]);
 
-  const handleTagClick2 = (buttonName4) => {
-    console.log(buttonName4);
-    setTagPressed2(buttonName4);
-    onClick(buttonName4);
+  const handleTagClick2 = (buttonName5) => {
+    console.log(buttonName5);
+    setTagPressed2(buttonName5);
+    onClick(buttonName5);
   };
 
   return (
@@ -462,6 +537,10 @@ const steps = [
     content: <ThirdContent />,
   },
   {
+    title: "Fourth",
+    content: <FourthContent />,
+  },
+  {
     title: "Last",
     content: <LastContent />,
   },
@@ -509,6 +588,7 @@ function RegisterPage2() {
   const [clickedButton2, setClickedButton2] = useState([]);
   const [clickedButton3, setClickedButton3] = useState([]);
   const [clickedButton4, setClickedButton4] = useState([]);
+  const [clickedButton5, setClickedButton5] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const [firstClick, setFirstClick] = useState("");
 
@@ -563,6 +643,13 @@ function RegisterPage2() {
     //   setFirstClick(buttonName2);
     // }
   };
+  const handleClick4 = (buttonName4) => {
+    setIsClicked(true);
+    setClickedButton4(buttonName4);
+    // if (!firstClick) {
+    //   setFirstClick(buttonName2);
+    // }
+  };
 
   const handleTagClick = (buttonName3) => {
     setIsClicked(true);
@@ -572,9 +659,9 @@ function RegisterPage2() {
     // }
   };
 
-  const handleTagClick2 = (buttonName4) => {
+  const handleTagClick2 = (buttonName5) => {
     setIsClicked(true);
-    setClickedButton4(buttonName4);
+    setClickedButton5(buttonName5);
     // if (!firstClick) {
     //   setFirstClick(buttonName3);
     // }
@@ -595,6 +682,8 @@ function RegisterPage2() {
                   : current === 2
                   ? handleTagClick
                   : current === 3
+                  ? handleClick4
+                  : current === 4
                   ? handleTagClick2
                   : null,
               // current 값에 따라 handleClick, handleClick2, handleClick3 함수 중 하나를 호출하도록 설정
@@ -636,22 +725,25 @@ function RegisterPage2() {
                   const buttonName2 = clickedButton2;
                   const buttonName3 = clickedButton3; // clickedButton3 상태 값도 업데이트
                   const buttonName4 = clickedButton4;
+                  const buttonName5 = clickedButton5;
 
                   setClickedButton([...clickedButton, buttonName]);
                   setClickedButton2([...clickedButton2, buttonName2]);
                   setClickedButton3([...clickedButton3, buttonName3]);
                   setClickedButton4([...clickedButton4, buttonName4]);
+                  setClickedButton5([...clickedButton5, buttonName5]);
 
                   console.log("buttonName :", buttonName);
                   console.log("buttonName2 :", buttonName2);
                   console.log("buttonName3 :", buttonName3); // handleClick3에서 입력 받은 값을 출력합니다.
                   console.log("buttonName4 :", buttonName4);
+                  console.log("buttonName5 :", buttonName5);
 
                   use_state["tendency"] = buttonName;
                   use_state["likeHashtags"] = buttonName3;
                   use_state["likeProducts"] = buttonName2;
-                  use_state["myHashtags"] = buttonName4;
-                  use_state["myProducts"] = buttonName2;
+                  use_state["myHashtags"] = buttonName5;
+                  use_state["myProducts"] = buttonName4;
 
                   onFinish(use_state);
 
@@ -660,8 +752,8 @@ function RegisterPage2() {
                   //   tendency: buttonName,
                   //   likeHashtags: buttonName3,
                   //   likeProducts: buttonName2,
-                  //   myHashtags: buttonName4,
-                  //   myProducts: buttonName2,
+                  //   myHashtags: buttonName5,
+                  //   myProducts: buttonName4,
                   // });
                 }}
               >
