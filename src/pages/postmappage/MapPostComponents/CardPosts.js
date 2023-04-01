@@ -4,7 +4,8 @@ import CardPost from "./CardPost";
 
 const CardPostContainer = styled.div`
     width: 93%;
-    height: 95%;
+    height: 92%;
+    margin-top: 1rem;
     margin-left: 3rem;
     display: flex;
     flex-direction: row;
