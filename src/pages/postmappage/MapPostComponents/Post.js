@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CardPosts from "./CardPosts";
-import PostNavs from "./PostNavs";
+import PostNavs from "./PostNavComponents/PostNavs";
 
 const PostContainer = styled.div`
     border-width: 0.1rem;
