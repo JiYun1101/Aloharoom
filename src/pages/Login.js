@@ -8,71 +8,36 @@ import { Form, Checkbox } from "antd";
 import LockOutlined from "@ant-design/icons";
 import axios from "axios";
 
+const qs = require("qs");
+
+const onFinish = async (value) => {
+  try {
+    console.log("username :" + value.username);
+    console.log("password :" + value.password);
+
+    const data = qs.stringify({
+      username: value.username,
+      password: value.password,
+    });
+
+    await axios.post("http://localhost:8080/login", data, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      withCredentials: true, // 이 부분 추가
+    });
+
+    console.log("username:" + value.username);
+    console.log("Registration successful");
+
+    // Navigate to RegisterPage2 on successful registration
+    // window.location.href = "/RegisterPage/RegisterPage2";
+  } catch (error) {
+    console.error("Registration failed:", error);
+  }
+};
+
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
-  const [name, setName] = useState("");
-  const [ConfirmPW, setConfirmPW] = useState("");
-
-  const [emailValid, setEmailValid] = useState(false);
-  const [pwValid, setPwValid] = useState(false);
-  const [nameValid, setnameValid] = useState(false);
-  const [ConfirmPWValid, setConfirmPWValid] = useState(false);
-  const [notAllow, setNotAllow] = useState(true);
-
-
-  const onChange = (value) => {
-    console.log("changed", value);
-  };
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
-
-  useEffect(() => {
-    if (emailValid && pwValid) {
-      setNotAllow(false);
-      return;
-    }
-    setNotAllow(true);
-  }, [emailValid, pwValid]);
-
-  const username = (e) => {
-    setEmail(e.target.value);
-    // const regex =
-    //   /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-    // if (regex.test(e.target.value)) {
-    //   setEmailValid(true);
-    // } else {
-    //   setEmailValid(false);
-    // }
-  };
-
-  const handlePw = (e) => {
-    setPw(e.target.value);
-    // const regex =
-    //   /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
-    // if (regex.test(e.target.value)) {
-    //   setPwValid(true);
-    // } else {
-    //   setPwValid(false);
-    // }
-  };
-  const onClickConfirmButton = async () => {
-    if (email !== "" && pw !== "" && name !== "") {
-      //   try {
-      //     const res = await createUserWithEmailAndPassword(
-      //       authService,
-      //       email,
-      //       pw
-      //     );
-      //     await setUser({ email: email, name: name, uid: res.user.uid });
-      //     alert("등록에 성공했습니다.");
-      //   } catch (eroor) {
-      //     alert("등록에 실패했습니다.");
-      //   }
-    }
-  };
-
   return (
     <div className="page">
       {" "}
@@ -95,6 +60,7 @@ const Login = () => {
               rules={[
                 { required: true, message: "아이디가 입력되지 않았습니다!" },
               ]}
+              onFinish={onFinish}
             >
               <Input
                 prefix={<UserOutlined className="site-form-item-icon" />}
@@ -106,6 +72,7 @@ const Login = () => {
               rules={[
                 { required: true, message: "비밀번호가 입력되지 않았습니다!" },
               ]}
+              onFinish={onFinish}
             >
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
