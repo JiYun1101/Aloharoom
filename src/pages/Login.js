@@ -7,6 +7,17 @@ import { Input, Button } from "antd";
 import { Form, Checkbox } from "antd";
 import LockOutlined from "@ant-design/icons";
 import axios from "axios";
+import styled from "styled-components";
+
+const Logo = styled.span`
+  position: absolute;
+  left: 12.5vw;
+  top: 5vw;
+  font-family: "Comfortaa" !important;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #47a5fd;
+`;
 
 const qs = require("qs");
 
@@ -43,7 +54,7 @@ const Login = () => {
       {" "}
       <div className="titleWrap">
         <Link to="../">
-          <h2>ALOHAROOM</h2>
+          <Logo>aloharoom</Logo>
         </Link>
       </div>
       {/* page 안쪽 */}

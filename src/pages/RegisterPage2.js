@@ -144,9 +144,15 @@ const ThirdContent = ({ onClick }) => {
   const [tagPressed, setTagPressed] = useState([]);
 
   const handleTagClick = (buttonName3) => {
-    console.log(buttonName3);
-    setTagPressed(buttonName3);
-    onClick(buttonName3);
+    if (tagPressed.includes(buttonName3)) {
+      setTagPressed((prevTags) =>
+        prevTags.filter((tag) => tag !== buttonName3)
+      );
+      onClick(null); // 값이 없어졌으므로 null 전달
+    } else {
+      setTagPressed((prevTags) => [...prevTags, buttonName3]);
+      onClick(String(buttonName3)); // 문자열로 변환하여 전달
+    }
   };
 
   return (
@@ -371,9 +377,15 @@ const LastContent = ({ onClick }) => {
   const [tagPressed2, setTagPressed2] = useState([]);
 
   const handleTagClick2 = (buttonName5) => {
-    console.log(buttonName5);
-    setTagPressed2(buttonName5);
-    onClick(buttonName5);
+    if (tagPressed2.includes(buttonName5)) {
+      setTagPressed2((prevTags) =>
+        prevTags.filter((tag) => tag !== buttonName5)
+      );
+      onClick(null); // 값이 없어졌으므로 null 전달
+    } else {
+      setTagPressed2((prevTags) => [...prevTags, buttonName5]);
+      onClick(String(buttonName5)); // 문자열로 변환하여 전달
+    }
   };
 
   return (
@@ -525,23 +537,23 @@ const LastContent = ({ onClick }) => {
 
 const steps = [
   {
-    title: "First",
+    title: " ",
     content: <FirstContent />,
   },
   {
-    title: "Second",
+    title: " ",
     content: <SecondContent />,
   },
   {
-    title: "Third",
+    title: " ",
     content: <ThirdContent />,
   },
   {
-    title: "Fourth",
+    title: " ",
     content: <FourthContent />,
   },
   {
-    title: "Last",
+    title: " ",
     content: <LastContent />,
   },
 ];
@@ -559,6 +571,11 @@ const onFinish = async (use_state) => {
     console.log("myHashtags :" + use_state.myHashtags);
     console.log("myProducts :" + use_state.myProducts);
 
+    const likeHashtags = use_state.likeHashtags.toString().split(",");
+    const likeProducts = use_state.likeProducts.toString().split(",");
+    const myHashtags = use_state.myHashtags.toString().split(",");
+    const myProducts = use_state.myProducts.toString().split(",");
+
     await axios.post("http://localhost:8080/api/signup", {
       username: use_state.username.toString(),
       password: use_state.password.toString(),
@@ -566,17 +583,18 @@ const onFinish = async (use_state) => {
       age: use_state.age.toString(),
       gender: use_state.gender.toString(),
       tendency: use_state.tendency.toString(),
-      likeHashtags: [use_state.likeHashtags.toString()],
-      likeProducts: [use_state.likeProducts.toString()],
-      myHashtags: [use_state.myHashtags.toString()],
-      myProducts: [use_state.myProducts.toString()],
+      likeHashtags,
+      likeProducts,
+      myHashtags,
+      myProducts,
     });
 
     // Navigate to RegisterPage2 on successful registration
-    // window.location.href = "/RegisterPage/RegisterPage2";
+    message.success("Processing complete!");
   } catch (error) {
     console.error("Registration failed:", error);
   }
+  // window.location.href = "../../";
 };
 
 function RegisterPage2() {
@@ -652,21 +670,22 @@ function RegisterPage2() {
   };
 
   const handleTagClick = (buttonName3) => {
+    setClickedButton3((prevState) => [...prevState, buttonName3]);
+    console.log(buttonName3);
     setIsClicked(true);
-    setClickedButton3(buttonName3);
-    // if (!firstClick) {
-    //   setFirstClick(buttonName3);
-    // }
+    {
+      console.log("buttonName3 :", clickedButton3);
+    }
   };
 
   const handleTagClick2 = (buttonName5) => {
+    setClickedButton5((prevState) => [...prevState, buttonName5]);
+    console.log(buttonName5);
     setIsClicked(true);
-    setClickedButton5(buttonName5);
-    // if (!firstClick) {
-    //   setFirstClick(buttonName3);
-    // }
+    {
+      console.log("buttonName5 :", clickedButton5);
+    }
   };
-
   return (
     <div className="page">
       <div class="terms__content" style={{ margin: "10px" }}>
@@ -689,6 +708,7 @@ function RegisterPage2() {
               // current 값에 따라 handleClick, handleClick2, handleClick3 함수 중 하나를 호출하도록 설정
             })}
           </div>
+          {/* {console.log("buttonName3 :", clickedButton3)} */}
           <div
             style={{
               marginTop: 24,
@@ -721,29 +741,36 @@ function RegisterPage2() {
                   margin: "0 385px",
                 }}
                 onClick={() => {
-                  const buttonName = clickedButton;
-                  const buttonName2 = clickedButton2;
-                  const buttonName3 = clickedButton3; // clickedButton3 상태 값도 업데이트
-                  const buttonName4 = clickedButton4;
-                  const buttonName5 = clickedButton5;
+                  // const buttonName = clickedButton;
+                  // const buttonName2 = clickedButton2;
+                  // const buttonName3 = clickedButton3; // clickedButton3 상태 값도 업데이트
+                  // const buttonName4 = clickedButton4;
+                  // const buttonName5 = clickedButton5;
 
-                  setClickedButton([...clickedButton, buttonName]);
-                  setClickedButton2([...clickedButton2, buttonName2]);
-                  setClickedButton3([...clickedButton3, buttonName3]);
-                  setClickedButton4([...clickedButton4, buttonName4]);
-                  setClickedButton5([...clickedButton5, buttonName5]);
+                  // setClickedButton([...clickedButton, buttonName]);
+                  // setClickedButton2([...clickedButton2, buttonName2]);
+                  // setClickedButton3([...clickedButton3, buttonName3]);
+                  // setClickedButton4([...clickedButton4, buttonName4]);
+                  // setClickedButton5([...clickedButton5, buttonName5]);
 
-                  console.log("buttonName :", buttonName);
-                  console.log("buttonName2 :", buttonName2);
-                  console.log("buttonName3 :", buttonName3); // handleClick3에서 입력 받은 값을 출력합니다.
-                  console.log("buttonName4 :", buttonName4);
-                  console.log("buttonName5 :", buttonName5);
+                  console.log("buttonName :", clickedButton);
+                  console.log("buttonName2 :", clickedButton2);
+                  console.log("buttonName3 :", clickedButton3); // handleClick3에서 입력 받은 값을 출력합니다.
+                  console.log("buttonName4 :", clickedButton4);
+                  console.log("buttonName5 :", clickedButton5);
 
-                  use_state["tendency"] = buttonName;
-                  use_state["likeHashtags"] = buttonName3;
-                  use_state["likeProducts"] = buttonName2;
-                  use_state["myHashtags"] = buttonName5;
-                  use_state["myProducts"] = buttonName4;
+                  // const newButtonName3 = clickedButton3.map(
+                  //   (str) => `"${str.trim()}"`
+                  // );
+
+                  // console.log("buttonName3: ", clickedButton3); // ['quiet', 'gym']
+                  // console.log("newButtonName3: ", newButtonName3); // ["quiet", "gym"]
+
+                  use_state["tendency"] = clickedButton;
+                  use_state["likeHashtags"] = clickedButton2;
+                  use_state["likeProducts"] = clickedButton3;
+                  use_state["myHashtags"] = clickedButton5;
+                  use_state["myProducts"] = clickedButton4;
 
                   onFinish(use_state);
 
