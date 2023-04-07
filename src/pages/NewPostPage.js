@@ -2,8 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { DatePicker } from 'antd';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
-import { DatePicker, Space } from 'antd';
 const { RangePicker } = DatePicker;
 
 const NewPostContainer = styled.div`
@@ -443,45 +449,6 @@ const MyHashTagButton = styled.button`
     color: #bbbbbb;
 `;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const NewPostContentWritingContainer = styled.div`
     width: 50%;
     display: flex;
@@ -494,6 +461,8 @@ const NewPostContentWritingDiv = styled.div`
     height: 95%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `;
 
 const NewPostContentWritingArea = styled.div`
@@ -502,6 +471,47 @@ const NewPostContentWritingArea = styled.div`
     border-radius: 1rem;
     width: 100%;
     height: 68%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const PostTitleDiv = styled.div`
+    margin-top: 1rem;
+    width: 90%;
+    height: 3rem;
+`;
+
+const PostTitleInput = styled.input`
+    width: 99%;
+    height: 3rem;
+    font-size: 1.3rem;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: solid 0.1rem #bbbbbb;
+    :focus {
+        outline: none;
+    }
+`;
+
+const PostContentDiv = styled.div`
+    margin-top: 1rem;
+    width: 90%;
+    height: 28rem;
+`;
+
+const PostContentTextArea = styled.textarea`
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    :focus {
+        outline: none;
+    }
 `;
 
 const NewPostContentImageArea = styled.div`
@@ -510,7 +520,57 @@ const NewPostContentImageArea = styled.div`
     border-radius: 1rem;
     width: 100%;
     height: 32%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
+
+const ImageUploadDiv = styled.div`
+    margin-top: 1rem;
+    width: 90%;
+    height: 3rem;
+`;
+
+const ImageUploadLabel = styled.label`
+    color: #47a5fd;
+    font-size: 1.3rem;
+    cursor: pointer;
+`;
+
+const ImageUploadInput = styled.input`
+    display: none;
+`;
+
+const ImageSwiperDiv = styled.div`
+    width: 90%;
+    height: 9rem;
+    display: flex;
+    align-items: center;
+`;
+
+const UploadImg = styled.img`
+    width: 10rem;
+    height: 8rem;
+`;
+
+const PostButtonDiv = styled.div`
+    width: 90%;
+    height: 2rem;
+    display: flex;
+    flex-direction: row-reverse;
+`;
+
+const PostButton = styled.button`
+    width: 7rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-color: #47a5fd;
+    border-radius: 0.3rem;
+    background-color: #47a5fd;
+    color: white;
+`
 
 const BackPageIconStyle = {
     position: "absolute",
@@ -642,8 +702,55 @@ const NewPostPage = () => {
                 <NewPostContentWritingContainer>
                     <NewPostContentWritingDiv>
                         <NewPostContentWritingArea>
+                            <PostTitleDiv>
+                                <PostTitleInput type="text" placeholder="제목을 입력해주세요."/>
+                            </PostTitleDiv>
+                            <PostContentDiv>
+                                <PostContentTextArea placeholder="집에 대한 상세한 내용을 작성해주세요. (인원, 교통시설, 편의시설, 층수 등)"/>
+                            </PostContentDiv>
                         </NewPostContentWritingArea>
                         <NewPostContentImageArea>
+                            <ImageUploadDiv>
+                                <ImageUploadLabel htmlFor="imageUpload">이미지 업로드</ImageUploadLabel>
+                                <ImageUploadInput
+                                    type="file"
+                                    accept="image/*"
+                                    id="imageUpload"
+                                />
+                            </ImageUploadDiv>
+                            <ImageSwiperDiv>
+                                    <Swiper
+                                        // install Swiper modules
+                                        modules={[Navigation, Scrollbar, Pagination, A11y]}
+                                        spaceBetween={1}
+                                        slidesPerView={5}
+                                        navigation
+                                        onSwiper={(swiper) => console.log(swiper)}
+                                        onSlideChange={() => console.log('slide change')}
+                                    > 
+                                        <SwiperSlide>
+                                            <UploadImg src="blue.png"/>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <UploadImg src="blue.png"/>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <UploadImg src="blue.png"/>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <UploadImg src="blue.png"/>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <UploadImg src="blue.png"/>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <UploadImg src="blue.png"/>
+                                        </SwiperSlide>
+                                    </Swiper>
+                                </ImageSwiperDiv>
+                                <PostButtonDiv>
+                                    <PostButton>올리기</PostButton>
+                                </PostButtonDiv>
                         </NewPostContentImageArea>
                     </NewPostContentWritingDiv>
                 </NewPostContentWritingContainer>
