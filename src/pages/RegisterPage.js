@@ -15,8 +15,19 @@ import {
 } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 // import RegisterPage2 from "./RegisterPage2";
+
+const Logo = styled.span`
+  position: absolute;
+  left: 12.5vw;
+  top: 2vw;
+  font-family: "Comfortaa" !important;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #47a5fd;
+`;
 
 const { Option } = Select;
 
@@ -101,7 +112,7 @@ function RegisterPage() {
       {" "}
       <div className="titleWrap">
         <Link to="../">
-          <h2>ALOHAROOM</h2>
+          <Logo>aloharoom</Logo>
         </Link>
       </div>
       {/* page 안쪽 */}
