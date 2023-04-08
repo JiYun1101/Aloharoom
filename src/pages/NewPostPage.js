@@ -10,8 +10,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const { RangePicker } = DatePicker;
-
 const NewPostContainer = styled.div`
     position: relative;
     height: 57rem;
@@ -590,20 +588,13 @@ const NewPostPage = () => {
                     <NewPostContentInfoDiv>
                         <MoveInDateMonthNameDiv>
                             <MoveInDateDiv>
-                                <MoveInDateTitleSpan>입주 가능 날짜(~마감날)</MoveInDateTitleSpan>
+                                <MoveInDateTitleSpan>입주 가능 날짜</MoveInDateTitleSpan>
                             </MoveInDateDiv>
-                            <MonthNameDiv>
-                                <MonthNameTitleSpan>매월</MonthNameTitleSpan>
-                            </MonthNameDiv>
                         </MoveInDateMonthNameDiv>
                         <MoveInDateMonthInfoDiv>
                             <MoveInDateInfoDiv>
-                                <RangePicker/>
+                                <DatePicker />
                             </MoveInDateInfoDiv>
-                            <MonthInfoDiv>
-                                <MonthInfoInput type="text"/>
-                                <MonthInfoSpan>일</MonthInfoSpan>
-                            </MonthInfoDiv>
                         </MoveInDateMonthInfoDiv>
                         <AddressTitleDiv>
                             <AddressTitleSpan>주소</AddressTitleSpan>
