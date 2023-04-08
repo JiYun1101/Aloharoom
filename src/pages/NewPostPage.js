@@ -515,9 +515,6 @@ const PostContentTextArea = styled.textarea`
 `;
 
 const NewPostContentImageArea = styled.div`
-    border-style: solid;
-    border-color: #bbbbbb;
-    border-radius: 1rem;
     width: 100%;
     height: 32%;
     display: flex;
@@ -554,6 +551,7 @@ const UploadImg = styled.img`
 `;
 
 const PostButtonDiv = styled.div`
+    margin-top: 0.5rem;
     width: 90%;
     height: 2rem;
     display: flex;

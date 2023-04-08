@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import "../style/Login.css";
@@ -13,6 +14,22 @@ import {
   Row,
   Select,
 } from "antd";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+// import RegisterPage2 from "./RegisterPage2";
+
+const Logo = styled.span`
+  position: absolute;
+  left: 12.5vw;
+  top: 2vw;
+  font-family: "Comfortaa" !important;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #47a5fd;
+`;
+
 const { Option } = Select;
 
 const formItemLayout = {
@@ -33,6 +50,7 @@ const formItemLayout = {
     },
   },
 };
+
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -45,22 +63,13 @@ const tailFormItemLayout = {
     },
   },
 };
-const App = () => {
+
+function RegisterPage() {
+  const navigate = useNavigate();
+
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    form
-      .validateFields()
-      .then(() => {
-        console.log("Received values of form: ", values);
-        // 모든 필드에 대한 유효성 검사가 성공한 경우
-        // RegisterPage2 컴포넌트로 이동
-        window.location.href = "/RegisterPage/RegisterPage2";
-      })
-      .catch((errorInfo) => {
-        console.log("Validation failed: ", errorInfo);
-      });
-  };
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
+
   const onWebsiteChange = (value) => {
     if (!value) {
       setAutoCompleteResult([]);
@@ -70,17 +79,41 @@ const App = () => {
       );
     }
   };
+
   const websiteOptions = autoCompleteResult.map((website) => ({
     label: website,
     value: website,
   }));
+
+  const onFinish = (value) => {
+    try {
+      navigate("/RegisterPage/RegisterPage2", {
+        state: {
+          username: value.username,
+          password: value.password,
+          nickname: value.nickname,
+          age: value.age,
+          gender: value.gender,
+        },
+      });
+
+      console.log("username:" + value.username);
+
+      console.log("Registration successful");
+
+      // Navigate to RegisterPage2 on successful registration
+      // window.location.href = "/RegisterPage/RegisterPage2";
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  };
 
   return (
     <div className="page">
       {" "}
       <div className="titleWrap">
         <Link to="../">
-          <h2>ALOHAROOM</h2>
+          <Logo>aloharoom</Logo>
         </Link>
       </div>
       {/* page 안쪽 */}
@@ -97,10 +130,6 @@ const App = () => {
             form={form}
             name="register"
             onFinish={onFinish}
-            initialValues={{
-              residence: ["zhejiang", "hangzhou", "xihu"],
-              prefix: "86",
-            }}
             style={{
               maxWidth: 600,
               float: "left",
@@ -108,8 +137,9 @@ const App = () => {
             scrollToFirstError
           >
             <Form.Item
-              name="email"
+              name="username"
               label="이메일"
+              onFinish={onFinish}
               rules={[
                 {
                   type: "email",
@@ -127,6 +157,7 @@ const App = () => {
             <Form.Item
               name="nickname"
               label="닉네임"
+              onFinish={onFinish}
               tooltip="당신이 글을 쓰거나 채팅을 할때 상대에게 보이는 이름입니다."
               rules={[
                 {
@@ -142,6 +173,7 @@ const App = () => {
             <Form.Item
               name="password"
               label="비밀번호"
+              onFinish={onFinish}
               rules={[
                 {
                   required: true,
@@ -152,21 +184,47 @@ const App = () => {
             >
               <Input.Password />
             </Form.Item>
-
-            <Form.Item
-              name="gender"
-              label="성별"
-              rules={[
-                {
-                  required: true,
-                  message: "성별이 입력되지 않았습니다!",
-                },
-              ]}
-            >
-              <Select placeholder="성별을 골라주세요.">
-                <Option value="male">남성</Option>
-                <Option value="female">여성</Option>
-              </Select>
+            <Form.Item style={{ marginLeft: "100px" }}>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    style={{ width: "180px" }}
+                    label="나이"
+                    name="age"
+                    rules={[
+                      {
+                        required: true,
+                        message: "나이가 입력되지 않았습니다!",
+                      },
+                    ]}
+                    onFinish={onFinish}
+                  >
+                    <InputNumber />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    style={{ marginLeft: "50px" }}
+                    label="성별"
+                    name="gender"
+                    rules={[
+                      {
+                        required: true,
+                        message: "성별이 입력되지 않았습니다!",
+                      },
+                    ]}
+                    onFinish={onFinish}
+                  >
+                    <Select
+                      placeholder="성별을 골라주세요."
+                      style={{ width: "127px" }}
+                    >
+                      <Option value="male">남성</Option>
+                      <Option value="female">여성</Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+              </Row>
             </Form.Item>
             <Form.Item
               name="agreement"
@@ -213,6 +271,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+}
 
-export default App;
+export default RegisterPage;
