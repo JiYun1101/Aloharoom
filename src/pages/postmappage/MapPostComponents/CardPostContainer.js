@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 const CardPostContainer = styled.div`
-    width: 93%;
+    width: 97%;
     height: 92%;
     margin-top: 1rem;
-    margin-left: 3rem;
+    margin-left: 1rem;
+    //margin-left: 1.5rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
-    gap: 0.5rem;
-    overflow-y: scroll;
+    gap: 0.55rem;
+    overflow-y: auto;
 
     &::-webkit-scrollbar {
         width: 0.5rem;          /* 스크롤바의 너비 */
@@ -19,7 +20,7 @@ const CardPostContainer = styled.div`
 
     &::-webkit-scrollbar-thumb {
         height: 1%;             /* 스크롤바의 길이 */
-        background: #47A5FD;    /* 스크롤바의 색상 */
+        background: #bbbbbb;    /* 스크롤바의 색상 */
         border-radius: 1rem;
     }
     &::-webkit-scrollbar-track {

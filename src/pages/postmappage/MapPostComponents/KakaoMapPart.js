@@ -2,7 +2,7 @@ import React from "react";
 import { Map } from 'react-kakao-maps-sdk';
 
 const kakaoMapStyle = {
-    width: "55%",
+    width: "52%",
     height: "100%"
 };
 

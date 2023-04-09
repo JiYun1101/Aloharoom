@@ -6,8 +6,8 @@ import PostNavs from "./PostNavComponents/PostNavs";
 const PostContainer = styled.div`
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #47A5FD;
-    width: 45%;
+    border-color: #bbbbbb;
+    width: 48%;
     height: 100%;
     display: flex;
     flex-direction: column;
