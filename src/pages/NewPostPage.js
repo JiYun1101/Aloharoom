@@ -592,19 +592,25 @@ const BackPageIconStyle = {
 };
 
 const NewPostPage = () => {
-
+    //체크 박스 클릭시 활성화 되도록 하는 상태 변수
+    const [maintenanceChecked, setMaintenanceChecked] = useState(false);
+    const [depositChecked, setDepositChecked] = useState(false);
+    const handleMaintenanceCheckboxChange = () => {
+        setMaintenanceChecked(!maintenanceChecked);
+    }
+    const handleDepositCheckboxChange = () => {
+        setDepositChecked(!depositChecked);
+    }
     //방 개수 버튼 클릭 상태 변수
     const [selectedRoomCountButton, setSelectedRoomCountButton] = useState(null);
     const handleRoomCountButtonClick = (buttonIndex) => {
         setSelectedRoomCountButton(buttonIndex);
     }
-
     //주거형태 버튼 클릭 상태 변수
     const [selectedTypeInfoButton, setSelectedTypeInfoButton] = useState(null);
     const handleTypeInfoButton = (buttonIndex) => {
         setSelectedTypeInfoButton(buttonIndex);
     }
-
     //집 해시태그 버튼 클릭 상태 변수
     const [selectedHouseHashTagButtons, setSelectedHouseHashTagButtons] = useState([]);
     const handleHouseHashTagButtonClick = (index) => {
@@ -614,7 +620,6 @@ const NewPostPage = () => {
             setSelectedHouseHashTagButtons([...selectedHouseHashTagButtons, index]);
         }
     }
-
     //내 해시태그 버튼 클릭 상태 변수
     const [selectedMyHashTagButtons, setSelectedMyHashTagButtons] = useState([]);
     const handleMyHashTagButtonClick = (index) => {
@@ -625,6 +630,50 @@ const NewPostPage = () => {
             setSelectedMyHashTagButtons([...selectedMyHashTagButtons, index]);
         }
     };
+
+    //입주 가능 날짜
+    const [title, setTitle] = useState('');
+    const [contents, setContents] = useState('');
+    const [roomCount, setRoomCount] = useState('');
+    const [address, setAddress] = useState('');
+    const [homeType, setHomeType] = useState('');
+    const [tradeType, setTradeType] = useState('');
+    const [price, setPrice] = useState('');
+    const [deposit, setDeposit] = useState('');
+    const [rent, setRent] = useState('');
+    const [flat, setFlat] = useState('');
+    const [maintenance, setMaintenance] = useState('');
+    const [floor, setFloor] = useState('2');
+    const [totalFloor, setTotalFloor] = useState('3');
+    const [startDate, setStartDate] = useState('');
+    const [x, setX] = useState('');
+    const [y, setY] = useState('');
+    const [imageFiles, setImageFiles] = useState(null);
+
+    console.log('==============================')
+    console.log('title ', title);
+    console.log('contents ', contents);
+    console.log('roomCount ', roomCount);
+    console.log('address ', address);
+    console.log('homeType ', homeType);
+    console.log('tradeType ', tradeType);
+    console.log('price ', price);
+    console.log('deposit ', deposit);
+    console.log('rent ', rent);
+    console.log('flat ', flat);
+    console.log('maintenance ', maintenance);
+    console.log('floor ', floor);
+    console.log('totalFloor ', totalFloor);
+    console.log('startDate ', startDate);
+    console.log('x ', x);
+    console.log('y ', y);
+    console.log('imageFiles ', imageFiles);
+    console.log('==============================')
+
+    //입주 가능 날짜
+    const startDateOnChange = (date, dateString) => {
+        setStartDate(dateString);
+    }
 
     const navigate = useNavigate();
     return (
@@ -643,14 +692,14 @@ const NewPostPage = () => {
                         </MoveInDateMonthNameDiv>
                         <MoveInDateMonthInfoDiv>
                             <MoveInDateInfoDiv>
-                                <DatePicker />
+                                <DatePicker onChange={startDateOnChange}/>
                             </MoveInDateInfoDiv>
                         </MoveInDateMonthInfoDiv>
                         <AddressTitleDiv>
                             <AddressTitleSpan>주소</AddressTitleSpan>
                         </AddressTitleDiv>
                         <AddressInfoDiv>
-                            <AddressInput type="text"/>
+                            <AddressInput type="text" onChange={(e) => { setAddress(e.target.value);}}/>
                         </AddressInfoDiv>
                         <RoomCountTypeFlatTitleDiv>
                             <RoomCountTitleDiv>
@@ -667,13 +716,19 @@ const NewPostPage = () => {
                             <RoomCountInfoDiv>
                                 <RoomCountButton 
                                     selected={selectedRoomCountButton === 0} 
-                                    onClick={() => handleRoomCountButtonClick(0)}
+                                    onClick={() => {
+                                        handleRoomCountButtonClick(0);
+                                        setRoomCount("원룸");
+                                    }}
                                 >
                                     원 룸
                                 </RoomCountButton>
                                 <RoomCountButton 
                                     selected={selectedRoomCountButton === 1} 
-                                    onClick={() => handleRoomCountButtonClick(1)}
+                                    onClick={() => {
+                                        handleRoomCountButtonClick(1);
+                                        setRoomCount("투쓰리룸");
+                                    }}
                                 >
                                     투-쓰리룸
                                 </RoomCountButton>
@@ -681,19 +736,25 @@ const NewPostPage = () => {
                             <TypeInfoDiv>
                                 <TypeInfoButton
                                     selected={selectedTypeInfoButton === 0}
-                                    onClick={() => handleTypeInfoButton(0)}
+                                    onClick={() => {
+                                        handleTypeInfoButton(0);
+                                        setHomeType("오피스텔");
+                                    }}
                                 >
                                     오피스텔
                                 </TypeInfoButton>
                                 <TypeInfoButton
                                     selected={selectedTypeInfoButton === 1}
-                                    onClick={() => handleTypeInfoButton(1)}
+                                    onClick={() => {
+                                        handleTypeInfoButton(1);
+                                        setHomeType("아파트")
+                                    }}
                                 >
                                     아파트
                                 </TypeInfoButton>
                             </TypeInfoDiv>
                             <FlatInfoDiv>
-                                <FlatInfoInput type="text"/>
+                                <FlatInfoInput type="text" onChange={(e) => { setFlat(e.target.value)}}/>
                             </FlatInfoDiv>
                         </RoomCountTypeFlatInfoDiv>
                         <PriceTitleDiv>
@@ -701,9 +762,9 @@ const NewPostPage = () => {
                         </PriceTitleDiv>
                         <PriceInfoDiv>
                             <PriceInputSelectDiv>
-                                <PriceInput type="text"/>
+                                <PriceInput type="text" onChange={(e) => { setPrice(e.target.value); }}/>
                                 <PriceSpan>(</PriceSpan>
-                                <PriceSelect>
+                                <PriceSelect value={tradeType} onChange={(e) => { setTradeType(e.target.value)}}>
                                     <PriceOption value="월세">월세</PriceOption>
                                     <PriceOption value="전세">전세</PriceOption>
                                     <PriceOption value="매매">매매</PriceOption>
@@ -711,17 +772,17 @@ const NewPostPage = () => {
                                 <PriceSpan>)</PriceSpan>
                             </PriceInputSelectDiv>
                             <ManageMentDiv>
-                                <ManageMentPriceCheckbox type="checkbox"/>
+                                <ManageMentPriceCheckbox type="checkbox" checked={maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>
                                 <ManageMentSpan>관리비 별도</ManageMentSpan>
-                                <MangeMentInputText type="text"/>
+                                <MangeMentInputText type="text" disabled={!maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
                             </ManageMentDiv>
                         </PriceInfoDiv>
                         <GuaranteeDiv>
                             <GuaranteeEmptyDiv/>
                             <GuaranteeCheckBoxDiv>
-                                <GuaranteePriceCheckbox type="checkbox"/>
+                                <GuaranteePriceCheckbox type="checkbox" checked={depositChecked} onChange={handleDepositCheckboxChange}/>
                                 <GuaranteeSpan>보증금 별도</GuaranteeSpan>
-                                <GuaranteeInputText type="text"/>
+                                <GuaranteeInputText type="text" disabled={!depositChecked} onChange={(e) => { setDeposit(e.target.value);}}/>
                             </GuaranteeCheckBoxDiv>
                         </GuaranteeDiv>
                         <HouseHashTagTitleDiv>
@@ -847,10 +908,17 @@ const NewPostPage = () => {
                     <NewPostContentWritingDiv>
                         <NewPostContentWritingArea>
                             <PostTitleDiv>
-                                <PostTitleInput type="text" placeholder="제목을 입력해주세요."/>
+                                <PostTitleInput 
+                                    type="text" 
+                                    placeholder="제목을 입력해주세요." 
+                                    onChange={(e) => { setTitle(e.target.value);}}
+                                />
                             </PostTitleDiv>
                             <PostContentDiv>
-                                <PostContentTextArea placeholder="집에 대한 상세한 내용을 작성해주세요. (인원, 교통시설, 편의시설, 층수 등)"/>
+                                <PostContentTextArea 
+                                    placeholder="집에 대한 상세한 내용을 작성해주세요. (인원, 교통시설, 편의시설, 층수 등)"
+                                    onChange={(e) => { setContents(e.target.value);}}
+                                />
                             </PostContentDiv>
                         </NewPostContentWritingArea>
                         <NewPostContentImageArea>
@@ -860,6 +928,7 @@ const NewPostPage = () => {
                                     type="file"
                                     accept="image/*"
                                     id="imageUpload"
+                                    multiple
                                 />
                             </ImageUploadDiv>
                             <ImageSwiperDiv>
