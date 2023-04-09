@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { DatePicker } from 'antd';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -646,8 +647,8 @@ const NewPostPage = () => {
     const [floor, setFloor] = useState('2');
     const [totalFloor, setTotalFloor] = useState('3');
     const [startDate, setStartDate] = useState('');
-    const [x, setX] = useState('');
-    const [y, setY] = useState('');
+    const [x, setX] = useState(null);
+    const [y, setY] = useState(null);
     const [imageFiles, setImageFiles] = useState(null);
 
     console.log('==============================')
@@ -674,6 +675,18 @@ const NewPostPage = () => {
     const startDateOnChange = (date, dateString) => {
         setStartDate(dateString);
     }
+    //위도 경도 찾는 함수
+    const searchLatLng = () => {
+        const ps = new window.kakao.maps.services.Places()
+        ps.keywordSearch(address , (data, status, _pagination) => {
+            if (status === window.kakao.maps.services.Status.OK) {
+                setX(data[0].x.toString());
+                setY(data[0].y.toString())
+            }
+        })
+    };
+
+    
 
     const navigate = useNavigate();
     return (
@@ -699,7 +712,16 @@ const NewPostPage = () => {
                             <AddressTitleSpan>주소</AddressTitleSpan>
                         </AddressTitleDiv>
                         <AddressInfoDiv>
-                            <AddressInput type="text" onChange={(e) => { setAddress(e.target.value);}}/>
+                            <AddressInput 
+                                type="text" 
+                                value={address}
+                                onChange={(e) => { 
+                                    setAddress(e.target.value);
+                                }}
+                                onBlur={() => {
+                                    searchLatLng();
+                                }}
+                            />
                         </AddressInfoDiv>
                         <RoomCountTypeFlatTitleDiv>
                             <RoomCountTitleDiv>
