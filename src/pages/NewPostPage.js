@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
@@ -209,11 +209,15 @@ const RoomCountButton = styled.button`
     font-size: 1.2rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #bbbbbb;
     border-radius: 0.3rem;
     background-color: white;
-    color: #bbbbbb;
+    border-color:  ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    color: ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
     margin-right: 0.5rem;
+    :hover {
+        border-color: #47A5FD;
+        color: #47A5FD;
+    }
 `;
 
 const TypeInfoDiv = styled.div`
@@ -229,11 +233,15 @@ const TypeInfoButton = styled.button`
     font-size: 1.2rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #bbbbbb;
     border-radius: 0.3rem;
     background-color: white;
-    color: #bbbbbb;
     margin-right: 0.5rem;
+    border-color:  ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    color: ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    :hover {
+        border-color: #47A5FD;
+        color: #47A5FD;
+    }
 `;
 
 const FlatInfoDiv = styled.div`
@@ -403,10 +411,14 @@ const HouseHashTagButton = styled.button`
     font-size: 1rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #bbbbbb;
     border-radius: 0.3rem;
     background-color: white;
-    color: #bbbbbb;
+    border-color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    :hover {
+        border-color: #47A5FD;
+        color: #47A5FD;
+    }
 `;
 
 const MyHashTagTitleDiv = styled.div`
@@ -441,10 +453,14 @@ const MyHashTagButton = styled.button`
     font-size: 1rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #bbbbbb;
     border-radius: 0.3rem;
     background-color: white;
-    color: #bbbbbb;
+    border-color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    :hover {
+        border-color: #47A5FD;
+        color: #47A5FD;
+    }
 `;
 
 const NewPostContentWritingContainer = styled.div`
@@ -576,6 +592,40 @@ const BackPageIconStyle = {
 };
 
 const NewPostPage = () => {
+
+    //방 개수 버튼 클릭 상태 변수
+    const [selectedRoomCountButton, setSelectedRoomCountButton] = useState(null);
+    const handleRoomCountButtonClick = (buttonIndex) => {
+        setSelectedRoomCountButton(buttonIndex);
+    }
+
+    //주거형태 버튼 클릭 상태 변수
+    const [selectedTypeInfoButton, setSelectedTypeInfoButton] = useState(null);
+    const handleTypeInfoButton = (buttonIndex) => {
+        setSelectedTypeInfoButton(buttonIndex);
+    }
+
+    //집 해시태그 버튼 클릭 상태 변수
+    const [selectedHouseHashTagButtons, setSelectedHouseHashTagButtons] = useState([]);
+    const handleHouseHashTagButtonClick = (index) => {
+        if (selectedHouseHashTagButtons.includes(index)) {
+            setSelectedHouseHashTagButtons(selectedHouseHashTagButtons.filter((i) => i !== index));
+        } else {
+            setSelectedHouseHashTagButtons([...selectedHouseHashTagButtons, index]);
+        }
+    }
+
+    //내 해시태그 버튼 클릭 상태 변수
+    const [selectedMyHashTagButtons, setSelectedMyHashTagButtons] = useState([]);
+    const handleMyHashTagButtonClick = (index) => {
+        if (selectedMyHashTagButtons.includes(index)) {
+            setSelectedMyHashTagButtons(selectedMyHashTagButtons.filter((i) => i !== index));
+        } 
+        else {
+            setSelectedMyHashTagButtons([...selectedMyHashTagButtons, index]);
+        }
+    };
+
     const navigate = useNavigate();
     return (
         <NewPostContainer>
@@ -615,12 +665,32 @@ const NewPostPage = () => {
                         </RoomCountTypeFlatTitleDiv>
                         <RoomCountTypeFlatInfoDiv>
                             <RoomCountInfoDiv>
-                                <RoomCountButton>원 룸</RoomCountButton>
-                                <RoomCountButton>투-쓰리룸</RoomCountButton>
+                                <RoomCountButton 
+                                    selected={selectedRoomCountButton === 0} 
+                                    onClick={() => handleRoomCountButtonClick(0)}
+                                >
+                                    원 룸
+                                </RoomCountButton>
+                                <RoomCountButton 
+                                    selected={selectedRoomCountButton === 1} 
+                                    onClick={() => handleRoomCountButtonClick(1)}
+                                >
+                                    투-쓰리룸
+                                </RoomCountButton>
                             </RoomCountInfoDiv>
                             <TypeInfoDiv>
-                                <TypeInfoButton>오피스텔</TypeInfoButton>
-                                <TypeInfoButton>아파트</TypeInfoButton>
+                                <TypeInfoButton
+                                    selected={selectedTypeInfoButton === 0}
+                                    onClick={() => handleTypeInfoButton(0)}
+                                >
+                                    오피스텔
+                                </TypeInfoButton>
+                                <TypeInfoButton
+                                    selected={selectedTypeInfoButton === 1}
+                                    onClick={() => handleTypeInfoButton(1)}
+                                >
+                                    아파트
+                                </TypeInfoButton>
                             </TypeInfoDiv>
                             <FlatInfoDiv>
                                 <FlatInfoInput type="text"/>
@@ -659,32 +729,117 @@ const NewPostPage = () => {
                             <HouseHashTagTitleInfoSpan>(클릭으로 해시태그를 적용시킬 수 있습니다.)</HouseHashTagTitleInfoSpan>
                         </HouseHashTagTitleDiv>
                         <HouseHashTagButtonDiv>
-                            <HouseHashTagButton>#비흡연자</HouseHashTagButton>
-                            <HouseHashTagButton>#역세권</HouseHashTagButton>
-                            <HouseHashTagButton>#남향</HouseHashTagButton>
-                            <HouseHashTagButton>#편의점 근처</HouseHashTagButton>
-                            <HouseHashTagButton>#조용한</HouseHashTagButton>
-                            <HouseHashTagButton>#비흡연자</HouseHashTagButton>
-                            <HouseHashTagButton>#역세권</HouseHashTagButton>
-                            <HouseHashTagButton>#남향</HouseHashTagButton>
-                            <HouseHashTagButton>#편의점 근처</HouseHashTagButton>
-                            <HouseHashTagButton>#조용한</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(1)}
+                                onClick={() => handleHouseHashTagButtonClick(1)}
+                            >#비흡연자</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(2)}
+                                onClick={() => handleHouseHashTagButtonClick(2)}
+                            >#역세권</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(3)}
+                                onClick={() => handleHouseHashTagButtonClick(3)}
+                            >#남향</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(4)}
+                                onClick={() => handleHouseHashTagButtonClick(4)}
+                            >#편의점 근처</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(5)}
+                                onClick={() => handleHouseHashTagButtonClick(5)}
+                            >#조용한</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(6)}
+                                onClick={() => handleHouseHashTagButtonClick(6)}
+                            >#비흡연자</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(7)}
+                                onClick={() => handleHouseHashTagButtonClick(7)}
+                            >#역세권</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(8)}
+                                onClick={() => handleHouseHashTagButtonClick(8)}
+                            >#남향</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(9)}
+                                onClick={() => handleHouseHashTagButtonClick(9)}
+                            >#편의점 근처</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(10)}
+                                onClick={() => handleHouseHashTagButtonClick(10)}
+                            >#조용한</HouseHashTagButton>
                         </HouseHashTagButtonDiv>
                         <MyHashTagTitleDiv>
                             <MyHashTagTitleSpan>내 해시태그</MyHashTagTitleSpan>
                         </MyHashTagTitleDiv>    
                         <MyHashTagButtonDiv>
-                            <MyHashTagButton>#비흡연자</MyHashTagButton>
-                            <MyHashTagButton>#역세권</MyHashTagButton>
-                            <MyHashTagButton>#남향</MyHashTagButton>
-                            <MyHashTagButton>#조용한</MyHashTagButton>
-                            <MyHashTagButton>#비흡연자</MyHashTagButton>
-                            <MyHashTagButton>#역세권</MyHashTagButton>
-                            <MyHashTagButton>#남향</MyHashTagButton>
-                            <MyHashTagButton>#조용한</MyHashTagButton>
-                            <MyHashTagButton>#비흡연자</MyHashTagButton>
-                            <MyHashTagButton>#역세권</MyHashTagButton>
-                            <MyHashTagButton>#남향</MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(1)}
+                                onClick={() => handleMyHashTagButtonClick(1)}
+                            >
+                                #비흡연자
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(2)}
+                                onClick={() => handleMyHashTagButtonClick(2)}
+                            >
+                                #역세권
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(3)}
+                                onClick={() => handleMyHashTagButtonClick(3)}
+                            >
+                                #남향
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(4)}
+                                onClick={() => handleMyHashTagButtonClick(4)}
+                            >
+                                #조용한
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(5)}
+                                onClick={() => handleMyHashTagButtonClick(5)}
+                            >
+                                #비흡연자
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(6)}
+                                onClick={() => handleMyHashTagButtonClick(6)}
+                            >
+                                #역세권
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(7)}
+                                onClick={() => handleMyHashTagButtonClick(7)}
+                            >
+                                #남향
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(8)}
+                                onClick={() => handleMyHashTagButtonClick(8)}
+                            >
+                                #조용한
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(9)}
+                                onClick={() => handleMyHashTagButtonClick(9)}
+                            >
+                                #비흡연자
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(10)}
+                                onClick={() => handleMyHashTagButtonClick(10)}
+                            >
+                                #역세권
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(11)}
+                                onClick={() => handleMyHashTagButtonClick(11)}
+                            >
+                                #남향
+                            </MyHashTagButton>
                         </MyHashTagButtonDiv>
                     </NewPostContentInfoDiv>
                 </NewPostContentInfoContainer>
