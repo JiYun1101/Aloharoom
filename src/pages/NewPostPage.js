@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { DatePicker } from 'antd';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import axios from "axios";
 
 const NewPostContainer = styled.div`
     position: relative;
@@ -209,11 +211,15 @@ const RoomCountButton = styled.button`
     font-size: 1.2rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #bbbbbb;
     border-radius: 0.3rem;
     background-color: white;
-    color: #bbbbbb;
+    border-color:  ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    color: ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
     margin-right: 0.5rem;
+    :hover {
+        border-color: #47A5FD;
+        color: #47A5FD;
+    }
 `;
 
 const TypeInfoDiv = styled.div`
@@ -229,11 +235,15 @@ const TypeInfoButton = styled.button`
     font-size: 1.2rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #bbbbbb;
     border-radius: 0.3rem;
     background-color: white;
-    color: #bbbbbb;
     margin-right: 0.5rem;
+    border-color:  ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    color: ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    :hover {
+        border-color: #47A5FD;
+        color: #47A5FD;
+    }
 `;
 
 const FlatInfoDiv = styled.div`
@@ -403,10 +413,14 @@ const HouseHashTagButton = styled.button`
     font-size: 1rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #bbbbbb;
     border-radius: 0.3rem;
     background-color: white;
-    color: #bbbbbb;
+    border-color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    :hover {
+        border-color: #47A5FD;
+        color: #47A5FD;
+    }
 `;
 
 const MyHashTagTitleDiv = styled.div`
@@ -441,10 +455,14 @@ const MyHashTagButton = styled.button`
     font-size: 1rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-color: #bbbbbb;
     border-radius: 0.3rem;
     background-color: white;
-    color: #bbbbbb;
+    border-color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
+    :hover {
+        border-color: #47A5FD;
+        color: #47A5FD;
+    }
 `;
 
 const NewPostContentWritingContainer = styled.div`
@@ -576,6 +594,144 @@ const BackPageIconStyle = {
 };
 
 const NewPostPage = () => {
+    //체크 박스 클릭시 활성화 되도록 하는 상태 변수
+    const [maintenanceChecked, setMaintenanceChecked] = useState(false);
+    const [depositChecked, setDepositChecked] = useState(false);
+    const handleMaintenanceCheckboxChange = () => {
+        setMaintenanceChecked(!maintenanceChecked);
+    }
+    const handleDepositCheckboxChange = () => {
+        setDepositChecked(!depositChecked);
+    }
+    //방 개수 버튼 클릭 상태 변수
+    const [selectedRoomCountButton, setSelectedRoomCountButton] = useState(null);
+    const handleRoomCountButtonClick = (buttonIndex) => {
+        setSelectedRoomCountButton(buttonIndex);
+    }
+    //주거형태 버튼 클릭 상태 변수
+    const [selectedTypeInfoButton, setSelectedTypeInfoButton] = useState(null);
+    const handleTypeInfoButton = (buttonIndex) => {
+        setSelectedTypeInfoButton(buttonIndex);
+    }
+    //집 해시태그 버튼 클릭 상태 변수
+    const [selectedHouseHashTagButtons, setSelectedHouseHashTagButtons] = useState([]);
+    const handleHouseHashTagButtonClick = (index) => {
+        if (selectedHouseHashTagButtons.includes(index)) {
+            setSelectedHouseHashTagButtons(selectedHouseHashTagButtons.filter((i) => i !== index));
+        } else {
+            setSelectedHouseHashTagButtons([...selectedHouseHashTagButtons, index]);
+        }
+    }
+    //내 해시태그 버튼 클릭 상태 변수
+    const [selectedMyHashTagButtons, setSelectedMyHashTagButtons] = useState([]);
+    const handleMyHashTagButtonClick = (index) => {
+        if (selectedMyHashTagButtons.includes(index)) {
+            setSelectedMyHashTagButtons(selectedMyHashTagButtons.filter((i) => i !== index));
+        } 
+        else {
+            setSelectedMyHashTagButtons([...selectedMyHashTagButtons, index]);
+        }
+    };
+
+    //입주 가능 날짜
+    const [title, setTitle] = useState('');
+    const [contents, setContents] = useState('');
+    const [count, setCount] = useState('0');
+    const [roomCount, setRoomCount] = useState('');
+    const [address, setAddress] = useState('');
+    const [homeType, setHomeType] = useState('');
+    const [tradeType, setTradeType] = useState('');
+    const [price, setPrice] = useState('');
+    const [deposit, setDeposit] = useState('');
+    const [rent, setRent] = useState('0');
+    const [flat, setFlat] = useState('');
+    const [maintenance, setMaintenance] = useState('');
+    const [floor, setFloor] = useState('2');
+    const [totalFloor, setTotalFloor] = useState('3');
+    const [startDate, setStartDate] = useState('');
+    const [x, setX] = useState(null);
+    const [y, setY] = useState(null);
+    const [imgFiles, setImgFiles] = useState([]);
+
+    console.log('==============================')
+    console.log('title ', title);
+    console.log('contents ', contents);
+    console.log('roomCount ', roomCount);
+    console.log('address ', address);
+    console.log('homeType ', homeType);
+    console.log('tradeType ', tradeType);
+    console.log('price ', price);
+    console.log('deposit ', deposit);
+    console.log('rent ', rent);
+    console.log('flat ', flat);
+    console.log('maintenance ', maintenance);
+    console.log('floor ', floor);
+    console.log('totalFloor ', totalFloor);
+    console.log('startDate ', startDate);
+    console.log('x ', x);
+    console.log('y ', y);
+    console.log('imgFiles ', imgFiles);
+    console.log('==============================')
+
+    //입주 가능 날짜 설정 함수
+    const startDateOnChange = (date, dateString) => {
+        setStartDate(dateString);
+    }
+    //위도 경도 설정 함수
+    const searchLatLng = () => {
+        const ps = new window.kakao.maps.services.Places()
+        ps.keywordSearch(address , (data, status, _pagination) => {
+            if (status === window.kakao.maps.services.Status.OK) {
+                setX(data[0].x.toString());
+                setY(data[0].y.toString())
+            }
+        })
+    };
+
+    const handleImageFilesInputChange = (e) => {
+        setImgFiles(e.target.files);
+    }
+
+    const PostInfoSubmit = () => {
+        const data = {
+            "title": title,
+            "contents": contents,
+            "count": count,
+            "roomCount": roomCount,
+            "address": address,
+            "homeType": homeType,
+            "tradeType": tradeType,
+            "price": price,
+            "deposit": deposit,
+            "rent": rent,
+            "flat": flat,
+            "maintenance": maintenance,
+            "floor": floor,
+            "totalFloor": totalFloor,
+            "startDate": startDate,
+            "x": x,
+            "y": y
+        }
+        const jsonData = JSON.stringify(data);
+        const blob = new Blob([jsonData], { type: "application/json"});
+        const formData = new FormData();
+        formData.append("boardAddDto", blob);
+        for(let i = 0; i < imgFiles.length; i++) {
+            formData.append("imgFiles", imgFiles[i]);
+        }
+        axios.post("http://localhost:8080/api/board", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
     const navigate = useNavigate();
     return (
         <NewPostContainer>
@@ -593,14 +749,23 @@ const NewPostPage = () => {
                         </MoveInDateMonthNameDiv>
                         <MoveInDateMonthInfoDiv>
                             <MoveInDateInfoDiv>
-                                <DatePicker />
+                                <DatePicker onChange={startDateOnChange}/>
                             </MoveInDateInfoDiv>
                         </MoveInDateMonthInfoDiv>
                         <AddressTitleDiv>
                             <AddressTitleSpan>주소</AddressTitleSpan>
                         </AddressTitleDiv>
                         <AddressInfoDiv>
-                            <AddressInput type="text"/>
+                            <AddressInput 
+                                type="text" 
+                                value={address}
+                                onChange={(e) => { 
+                                    setAddress(e.target.value);
+                                }}
+                                onBlur={() => {
+                                    searchLatLng();
+                                }}
+                            />
                         </AddressInfoDiv>
                         <RoomCountTypeFlatTitleDiv>
                             <RoomCountTitleDiv>
@@ -615,15 +780,47 @@ const NewPostPage = () => {
                         </RoomCountTypeFlatTitleDiv>
                         <RoomCountTypeFlatInfoDiv>
                             <RoomCountInfoDiv>
-                                <RoomCountButton>원 룸</RoomCountButton>
-                                <RoomCountButton>투-쓰리룸</RoomCountButton>
+                                <RoomCountButton 
+                                    selected={selectedRoomCountButton === 0} 
+                                    onClick={() => {
+                                        handleRoomCountButtonClick(0);
+                                        setRoomCount("1");
+                                    }}
+                                >
+                                    원 룸
+                                </RoomCountButton>
+                                <RoomCountButton 
+                                    selected={selectedRoomCountButton === 1} 
+                                    onClick={() => {
+                                        handleRoomCountButtonClick(1);
+                                        setRoomCount("2");
+                                    }}
+                                >
+                                    투-쓰리룸
+                                </RoomCountButton>
                             </RoomCountInfoDiv>
                             <TypeInfoDiv>
-                                <TypeInfoButton>오피스텔</TypeInfoButton>
-                                <TypeInfoButton>아파트</TypeInfoButton>
+                                <TypeInfoButton
+                                    selected={selectedTypeInfoButton === 0}
+                                    onClick={() => {
+                                        handleTypeInfoButton(0);
+                                        setHomeType("오피스텔");
+                                    }}
+                                >
+                                    오피스텔
+                                </TypeInfoButton>
+                                <TypeInfoButton
+                                    selected={selectedTypeInfoButton === 1}
+                                    onClick={() => {
+                                        handleTypeInfoButton(1);
+                                        setHomeType("아파트")
+                                    }}
+                                >
+                                    아파트
+                                </TypeInfoButton>
                             </TypeInfoDiv>
                             <FlatInfoDiv>
-                                <FlatInfoInput type="text"/>
+                                <FlatInfoInput type="text" onChange={(e) => { setFlat(e.target.value)}}/>
                             </FlatInfoDiv>
                         </RoomCountTypeFlatInfoDiv>
                         <PriceTitleDiv>
@@ -631,9 +828,9 @@ const NewPostPage = () => {
                         </PriceTitleDiv>
                         <PriceInfoDiv>
                             <PriceInputSelectDiv>
-                                <PriceInput type="text"/>
+                                <PriceInput type="text" onChange={(e) => { setPrice(e.target.value); }}/>
                                 <PriceSpan>(</PriceSpan>
-                                <PriceSelect>
+                                <PriceSelect value={tradeType} onChange={(e) => { setTradeType(e.target.value)}}>
                                     <PriceOption value="월세">월세</PriceOption>
                                     <PriceOption value="전세">전세</PriceOption>
                                     <PriceOption value="매매">매매</PriceOption>
@@ -641,17 +838,17 @@ const NewPostPage = () => {
                                 <PriceSpan>)</PriceSpan>
                             </PriceInputSelectDiv>
                             <ManageMentDiv>
-                                <ManageMentPriceCheckbox type="checkbox"/>
+                                <ManageMentPriceCheckbox type="checkbox" checked={maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>
                                 <ManageMentSpan>관리비 별도</ManageMentSpan>
-                                <MangeMentInputText type="text"/>
+                                <MangeMentInputText type="text" disabled={!maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
                             </ManageMentDiv>
                         </PriceInfoDiv>
                         <GuaranteeDiv>
                             <GuaranteeEmptyDiv/>
                             <GuaranteeCheckBoxDiv>
-                                <GuaranteePriceCheckbox type="checkbox"/>
+                                <GuaranteePriceCheckbox type="checkbox" checked={depositChecked} onChange={handleDepositCheckboxChange}/>
                                 <GuaranteeSpan>보증금 별도</GuaranteeSpan>
-                                <GuaranteeInputText type="text"/>
+                                <GuaranteeInputText type="text" disabled={!depositChecked} onChange={(e) => { setDeposit(e.target.value);}}/>
                             </GuaranteeCheckBoxDiv>
                         </GuaranteeDiv>
                         <HouseHashTagTitleDiv>
@@ -659,32 +856,117 @@ const NewPostPage = () => {
                             <HouseHashTagTitleInfoSpan>(클릭으로 해시태그를 적용시킬 수 있습니다.)</HouseHashTagTitleInfoSpan>
                         </HouseHashTagTitleDiv>
                         <HouseHashTagButtonDiv>
-                            <HouseHashTagButton>#비흡연자</HouseHashTagButton>
-                            <HouseHashTagButton>#역세권</HouseHashTagButton>
-                            <HouseHashTagButton>#남향</HouseHashTagButton>
-                            <HouseHashTagButton>#편의점 근처</HouseHashTagButton>
-                            <HouseHashTagButton>#조용한</HouseHashTagButton>
-                            <HouseHashTagButton>#비흡연자</HouseHashTagButton>
-                            <HouseHashTagButton>#역세권</HouseHashTagButton>
-                            <HouseHashTagButton>#남향</HouseHashTagButton>
-                            <HouseHashTagButton>#편의점 근처</HouseHashTagButton>
-                            <HouseHashTagButton>#조용한</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(1)}
+                                onClick={() => handleHouseHashTagButtonClick(1)}
+                            >#비흡연자</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(2)}
+                                onClick={() => handleHouseHashTagButtonClick(2)}
+                            >#역세권</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(3)}
+                                onClick={() => handleHouseHashTagButtonClick(3)}
+                            >#남향</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(4)}
+                                onClick={() => handleHouseHashTagButtonClick(4)}
+                            >#편의점 근처</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(5)}
+                                onClick={() => handleHouseHashTagButtonClick(5)}
+                            >#조용한</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(6)}
+                                onClick={() => handleHouseHashTagButtonClick(6)}
+                            >#비흡연자</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(7)}
+                                onClick={() => handleHouseHashTagButtonClick(7)}
+                            >#역세권</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(8)}
+                                onClick={() => handleHouseHashTagButtonClick(8)}
+                            >#남향</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(9)}
+                                onClick={() => handleHouseHashTagButtonClick(9)}
+                            >#편의점 근처</HouseHashTagButton>
+                            <HouseHashTagButton
+                                selected={selectedHouseHashTagButtons.includes(10)}
+                                onClick={() => handleHouseHashTagButtonClick(10)}
+                            >#조용한</HouseHashTagButton>
                         </HouseHashTagButtonDiv>
                         <MyHashTagTitleDiv>
                             <MyHashTagTitleSpan>내 해시태그</MyHashTagTitleSpan>
                         </MyHashTagTitleDiv>    
                         <MyHashTagButtonDiv>
-                            <MyHashTagButton>#비흡연자</MyHashTagButton>
-                            <MyHashTagButton>#역세권</MyHashTagButton>
-                            <MyHashTagButton>#남향</MyHashTagButton>
-                            <MyHashTagButton>#조용한</MyHashTagButton>
-                            <MyHashTagButton>#비흡연자</MyHashTagButton>
-                            <MyHashTagButton>#역세권</MyHashTagButton>
-                            <MyHashTagButton>#남향</MyHashTagButton>
-                            <MyHashTagButton>#조용한</MyHashTagButton>
-                            <MyHashTagButton>#비흡연자</MyHashTagButton>
-                            <MyHashTagButton>#역세권</MyHashTagButton>
-                            <MyHashTagButton>#남향</MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(1)}
+                                onClick={() => handleMyHashTagButtonClick(1)}
+                            >
+                                #비흡연자
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(2)}
+                                onClick={() => handleMyHashTagButtonClick(2)}
+                            >
+                                #역세권
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(3)}
+                                onClick={() => handleMyHashTagButtonClick(3)}
+                            >
+                                #남향
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(4)}
+                                onClick={() => handleMyHashTagButtonClick(4)}
+                            >
+                                #조용한
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(5)}
+                                onClick={() => handleMyHashTagButtonClick(5)}
+                            >
+                                #비흡연자
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(6)}
+                                onClick={() => handleMyHashTagButtonClick(6)}
+                            >
+                                #역세권
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(7)}
+                                onClick={() => handleMyHashTagButtonClick(7)}
+                            >
+                                #남향
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(8)}
+                                onClick={() => handleMyHashTagButtonClick(8)}
+                            >
+                                #조용한
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(9)}
+                                onClick={() => handleMyHashTagButtonClick(9)}
+                            >
+                                #비흡연자
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(10)}
+                                onClick={() => handleMyHashTagButtonClick(10)}
+                            >
+                                #역세권
+                            </MyHashTagButton>
+                            <MyHashTagButton
+                                selected={selectedMyHashTagButtons.includes(11)}
+                                onClick={() => handleMyHashTagButtonClick(11)}
+                            >
+                                #남향
+                            </MyHashTagButton>
                         </MyHashTagButtonDiv>
                     </NewPostContentInfoDiv>
                 </NewPostContentInfoContainer>
@@ -692,10 +974,17 @@ const NewPostPage = () => {
                     <NewPostContentWritingDiv>
                         <NewPostContentWritingArea>
                             <PostTitleDiv>
-                                <PostTitleInput type="text" placeholder="제목을 입력해주세요."/>
+                                <PostTitleInput 
+                                    type="text" 
+                                    placeholder="제목을 입력해주세요." 
+                                    onChange={(e) => { setTitle(e.target.value);}}
+                                />
                             </PostTitleDiv>
                             <PostContentDiv>
-                                <PostContentTextArea placeholder="집에 대한 상세한 내용을 작성해주세요. (인원, 교통시설, 편의시설, 층수 등)"/>
+                                <PostContentTextArea 
+                                    placeholder="집에 대한 상세한 내용을 작성해주세요. (인원, 교통시설, 편의시설, 층수 등)"
+                                    onChange={(e) => { setContents(e.target.value);}}
+                                />
                             </PostContentDiv>
                         </NewPostContentWritingArea>
                         <NewPostContentImageArea>
@@ -705,6 +994,8 @@ const NewPostPage = () => {
                                     type="file"
                                     accept="image/*"
                                     id="imageUpload"
+                                    multiple
+                                    onChange={handleImageFilesInputChange}
                                 />
                             </ImageUploadDiv>
                             <ImageSwiperDiv>
@@ -738,7 +1029,10 @@ const NewPostPage = () => {
                                     </Swiper>
                                 </ImageSwiperDiv>
                                 <PostButtonDiv>
-                                    <PostButton>올리기</PostButton>
+                                    <PostButton onClick={() => {
+                                        PostInfoSubmit();
+                                        navigate(-1);
+                                    }}>올리기</PostButton>
                                 </PostButtonDiv>
                         </NewPostContentImageArea>
                     </NewPostContentWritingDiv>
