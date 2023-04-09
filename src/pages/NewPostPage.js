@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import axios from "axios";
 
 const NewPostContainer = styled.div`
     position: relative;
@@ -635,13 +636,14 @@ const NewPostPage = () => {
     //입주 가능 날짜
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
+    const [count, setCount] = useState('0');
     const [roomCount, setRoomCount] = useState('');
     const [address, setAddress] = useState('');
     const [homeType, setHomeType] = useState('');
     const [tradeType, setTradeType] = useState('');
     const [price, setPrice] = useState('');
     const [deposit, setDeposit] = useState('');
-    const [rent, setRent] = useState('');
+    const [rent, setRent] = useState('0');
     const [flat, setFlat] = useState('');
     const [maintenance, setMaintenance] = useState('');
     const [floor, setFloor] = useState('2');
@@ -649,7 +651,7 @@ const NewPostPage = () => {
     const [startDate, setStartDate] = useState('');
     const [x, setX] = useState(null);
     const [y, setY] = useState(null);
-    const [imageFiles, setImageFiles] = useState(null);
+    const [imgFiles, setImgFiles] = useState([]);
 
     console.log('==============================')
     console.log('title ', title);
@@ -668,14 +670,14 @@ const NewPostPage = () => {
     console.log('startDate ', startDate);
     console.log('x ', x);
     console.log('y ', y);
-    console.log('imageFiles ', imageFiles);
+    console.log('imgFiles ', imgFiles);
     console.log('==============================')
 
-    //입주 가능 날짜
+    //입주 가능 날짜 설정 함수
     const startDateOnChange = (date, dateString) => {
         setStartDate(dateString);
     }
-    //위도 경도 찾는 함수
+    //위도 경도 설정 함수
     const searchLatLng = () => {
         const ps = new window.kakao.maps.services.Places()
         ps.keywordSearch(address , (data, status, _pagination) => {
@@ -686,7 +688,49 @@ const NewPostPage = () => {
         })
     };
 
-    
+    const handleImageFilesInputChange = (e) => {
+        setImgFiles(e.target.files);
+    }
+
+    const PostInfoSubmit = () => {
+        const data = {
+            "title": title,
+            "contents": contents,
+            "count": count,
+            "roomCount": roomCount,
+            "address": address,
+            "homeType": homeType,
+            "tradeType": tradeType,
+            "price": price,
+            "deposit": deposit,
+            "rent": rent,
+            "flat": flat,
+            "maintenance": maintenance,
+            "floor": floor,
+            "totalFloor": totalFloor,
+            "startDate": startDate,
+            "x": x,
+            "y": y
+        }
+        const jsonData = JSON.stringify(data);
+        const blob = new Blob([jsonData], { type: "application/json"});
+        const formData = new FormData();
+        formData.append("boardAddDto", blob);
+        for(let i = 0; i < imgFiles.length; i++) {
+            formData.append("imgFiles", imgFiles[i]);
+        }
+        axios.post("http://localhost:8080/api/board", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
     const navigate = useNavigate();
     return (
@@ -740,7 +784,7 @@ const NewPostPage = () => {
                                     selected={selectedRoomCountButton === 0} 
                                     onClick={() => {
                                         handleRoomCountButtonClick(0);
-                                        setRoomCount("원룸");
+                                        setRoomCount("1");
                                     }}
                                 >
                                     원 룸
@@ -749,7 +793,7 @@ const NewPostPage = () => {
                                     selected={selectedRoomCountButton === 1} 
                                     onClick={() => {
                                         handleRoomCountButtonClick(1);
-                                        setRoomCount("투쓰리룸");
+                                        setRoomCount("2");
                                     }}
                                 >
                                     투-쓰리룸
@@ -951,6 +995,7 @@ const NewPostPage = () => {
                                     accept="image/*"
                                     id="imageUpload"
                                     multiple
+                                    onChange={handleImageFilesInputChange}
                                 />
                             </ImageUploadDiv>
                             <ImageSwiperDiv>
@@ -984,7 +1029,10 @@ const NewPostPage = () => {
                                     </Swiper>
                                 </ImageSwiperDiv>
                                 <PostButtonDiv>
-                                    <PostButton>올리기</PostButton>
+                                    <PostButton onClick={() => {
+                                        PostInfoSubmit();
+                                        navigate(-1);
+                                    }}>올리기</PostButton>
                                 </PostButtonDiv>
                         </NewPostContentImageArea>
                     </NewPostContentWritingDiv>
