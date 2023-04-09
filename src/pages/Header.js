@@ -25,12 +25,12 @@ const Logo = styled.span`
 const NavGroup = styled.span`
   position: absolute;
   top: 0.5rem;
-  left: 42vw;
+  left: 37.3vw;
 `;
 
 const NavElement = styled.span`
-  margin-left: 2vw;
-  margin-right: 2vw;
+  margin-left: 3vw;
+  margin-right: 3vw;
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;

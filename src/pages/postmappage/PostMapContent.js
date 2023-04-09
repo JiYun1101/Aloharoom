@@ -16,26 +16,25 @@ const PostMapContentContainer = styled.div`
     justify-content: center;
 `;
 
-const newPostIconStyle = {
-    position: "absolute",
-    right: "2rem",
-    bottom: "0.001rem",
-    zIndex: "2",
-    color: "#47a5fd"
-};
-
 const LinkToStyle = {
     textDecoration: "none",
     color: "inherit",
 };
 
 const PostMapContent = () => {
+    const newPostIconStyle = {
+        position: "absolute",
+        right: "2rem",
+        bottom: "0.001rem",
+        zIndex: "2",
+        color: '#bbbbbb'
+    };
     return (
         <PostMapContentContainer>            
             <SearchHashTag/>
             <MapPost/>
-            <Link to="/newPostPage" style={LinkToStyle}>
-                <AiOutlinePlusCircle size={50} style={newPostIconStyle}/>
+            <Link to="/newPostPage" style={LinkToStyle}> 
+                <AiOutlinePlusCircle size={50} style={newPostIconStyle} />
             </Link>
         </PostMapContentContainer>
     );

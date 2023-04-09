@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PostNav from './PostNav';
 
 const PostNavsDiv = styled.div`
-    border-bottom: solid 0.1rem #47A5FD;
+    border-bottom: solid 0.1rem #bbbbbb;
     width: 100%;
     height: 10%;
     display : flex;

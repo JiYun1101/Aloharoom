@@ -3,15 +3,18 @@ import styled from "styled-components";
 import {FaRegCommentDots} from "react-icons/fa";
 
 const Card = styled.div`
-    width: 31%;
-    height: 20rem;
+    width: 31.7%;
+    height: 22rem;
     border-style: solid;
-    border-color: #47A5FD;
+    border-color: #bbbbbb;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    &:hover {
+        border-color: #47A5FD;
+    }
 `;
 
 const RoomTypeDiv = styled.div`
@@ -46,7 +49,6 @@ const MoveInDateSpan = styled.span`
 const AddressInfoDiv = styled.div`
     width: 88%;
     height: 2.5rem;
-    //border-style:solid;
 `;
 
 const AddressInfoSpan = styled.span`
@@ -57,7 +59,6 @@ const AddressInfoSpan = styled.span`
 const PriceInfoDiv = styled.div`
     width: 88%;
     height: 2rem;
-    //border-style: solid;
 `;
 
 const PriceInfoSpan = styled.span`
@@ -68,16 +69,15 @@ const PriceInfoSpan = styled.span`
 
 const CardImageDiv = styled.div`
     width: 99%;
-    height: 6.5rem;
-    //border-style: solid;
+    height: 8.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
 const CardImage = styled.img`
-    width: 93%;
-    height: 6.3rem;
+    width: 95%;
+    height: 8.3rem;
 `;
 
 const HashTagDiv = styled.div`
@@ -93,7 +93,6 @@ const HashTagSpan = styled.span`
 const ProfileCommentDiv = styled.div`
     width: 95%;
     height: 2rem;
-    //border-style: solid;
     display: flex;
     flex-direction: row;
 `;
@@ -101,7 +100,6 @@ const ProfileCommentDiv = styled.div`
 const ProfileDiv = styled.div`
     width: 65%;
     height: 2rem;
-    //border-style: solid;
     display: flex;
     align-items: center;
 `;
@@ -121,7 +119,6 @@ const ProfileSpan = styled.span`
 const CommentDiv = styled.div`
     width: 34%;
     height: 2rem;
-    //border-style: solid;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -144,7 +141,7 @@ const CardPost = ({type}) => {
                 <RoomTypeButton>{type}</RoomTypeButton>
             </RoomTypeDiv>
             <MoveInDateDiv>
-                <MoveInDateSpan>입주 가능일 : 2023.01.11</MoveInDateSpan>
+                <MoveInDateSpan>입주 가능일 : 2023-11-11</MoveInDateSpan>
             </MoveInDateDiv>
             <AddressInfoDiv>
                 <AddressInfoSpan>서울시 성북구 한성대학교 입구역 한성오피스텔</AddressInfoSpan>
