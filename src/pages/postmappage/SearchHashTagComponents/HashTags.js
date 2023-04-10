@@ -35,7 +35,7 @@ const HashTagButton = styled.button`
 `;
 
 const SwiperStyle = {
-    width: "43vw"
+    width: "46vw"
 }
 
 const HashTags = () => {
