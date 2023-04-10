@@ -1,18 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { AiFillHeart } from "react-icons/ai";
+import CardPost from "../postmappage/MapPostComponents/CardPost";
 
 const LikedListDiv = styled.div`
-    margin-top: 1.5rem;
-    margin-left: 2.1rem;
-    width: 465px;
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    width: 35.7rem;
     max-height: 480px;
     display: flex;  
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
-    gap: 1rem;
+    gap: 1.2rem;
     overflow-x: hidden;
     overflow-y: auto;
     &::-webkit-scrollbar {
@@ -33,24 +34,15 @@ const LikedListDiv = styled.div`
 const LikedElementDiv = styled.div`
     position: relative;
     left: 0.6rem;
-    width: 200px;
-    height: 300px;
-`;
-
-const LikedPostCard = styled.div`
-    position: absolute;
-    top: 0.7rem;
-    left: 0.5rem;
-    width: 180px;
-    height: 280px;
-    border-style: solid;
-    border-color: #47A5FD;
-    border-radius: 0.5rem;
+    width: 16rem;
+    height: 24rem;;
+    display: flex;
+    align-items: center;
 `;
 
 const heartStyle = {
     position: "absolute",
-    top: "0px",
+    top: "0.2rem",
     right: "0px",
     zIndex: "3",
     color: "#47A5FD"
@@ -61,28 +53,32 @@ const LikedListPage = () => {
     <>
         <LikedListDiv>
             <LikedElementDiv>
-                <LikedPostCard/>
-                <AiFillHeart size={30} style={heartStyle}/>
+                <CardPost type="룸메이트"/>    
+                <AiFillHeart size={40} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
-                <LikedPostCard/>
-                <AiFillHeart size={30} style={heartStyle}/>
+                <CardPost type="쉐어하우스"/>    
+                <AiFillHeart size={40} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
-                <LikedPostCard/>
-                <AiFillHeart size={30} style={heartStyle}/>
+                <CardPost type="룸메이트"/>    
+                <AiFillHeart size={40} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
-                <LikedPostCard/>
-                <AiFillHeart size={30} style={heartStyle}/>
+                <CardPost type="쉐어하우스"/>    
+                <AiFillHeart size={40} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
-                <LikedPostCard/>
-                <AiFillHeart size={30} style={heartStyle}/>
+                <CardPost type="쉐어하우스"/>    
+                <AiFillHeart size={40} style={heartStyle}/>
             </LikedElementDiv>
             <LikedElementDiv>
-                <LikedPostCard/>
-                <AiFillHeart size={30} style={heartStyle}/>
+                <CardPost type="룸메이트"/>    
+                <AiFillHeart size={40} style={heartStyle}/>
+            </LikedElementDiv>
+            <LikedElementDiv>
+                <CardPost type="쉐어하우스"/>    
+                <AiFillHeart size={40} style={heartStyle}/>
             </LikedElementDiv>
         </LikedListDiv>
     </>
