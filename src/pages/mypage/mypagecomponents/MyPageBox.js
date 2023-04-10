@@ -8,10 +8,10 @@ const MyPageBoxContainer = styled.div`
     /* 기준이 되는 조상 페이지 */
     margin-top: 5rem;
     /* 위 간격 */
-    max-width: 500px;
+    max-width: 600px;
     /* 좌우 간격 */
     min-height: 600px;
-    max-height: 600px;
+    max-height: 700px;
     /* min/max-height = 크기고정 */
 
     left: 50%;

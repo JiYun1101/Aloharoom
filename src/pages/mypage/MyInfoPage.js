@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const MyInfoBox = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   margin-left: 0.5rem;
-  width: 480px;
-  height: 480px;
+  width: 36.5rem;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,7 +123,7 @@ const HashTagModifyButton = styled.button`
 `;
 
 const MyInfoButtonDiv = styled.div`
-  width: 400px;
+  width: 30rem;
   height: 30px;
   display: flex;
   flex-direction: row-reverse;

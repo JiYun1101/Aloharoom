@@ -3,7 +3,7 @@ import styled from "styled-components";
 import MyPageNav from "./MyPageNav";
 
 const MyPageNavsContainer = styled.div`
-    max-width: 500px;
+    max-width: 38rem;
     min-height: 70px;
     display : flex;
     flex-direction: row;
