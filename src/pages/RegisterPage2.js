@@ -744,7 +744,7 @@ function RegisterPage2() {
                   const buttonName = clickedButton;
                   const buttonName2 = clickedButton2;
                   const buttonName3 = clickedButton3;
-                  
+
                   const buttonName4 = clickedButton4;
                   const buttonName5 = clickedButton5;
 
