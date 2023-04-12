@@ -309,9 +309,8 @@ const FourthContent = ({ onClick }) => {
 
   return (
     <div>
-      <div className="titleWrap2">
-        집에는 어떤 가구가 필요하다고 생각하시나요?
-      </div>
+      <div className="titleWrap2">자신의 집에 대한 가전제품을 선택하세요</div>
+      <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div>
       <div style={{ display: "flex", marginTop: "2%", marginBottom: "-1.7%" }}>
         <div class="flex-container wrap">
           <Button
