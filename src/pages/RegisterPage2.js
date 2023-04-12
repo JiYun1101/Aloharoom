@@ -594,7 +594,7 @@ const onFinish = async (use_state) => {
   } catch (error) {
     console.error("Registration failed:", error);
   }
-  // window.location.href = "../../";
+  window.location.href = "../../login";
 };
 
 function RegisterPage2() {
@@ -741,11 +741,12 @@ function RegisterPage2() {
                   margin: "0 385px",
                 }}
                 onClick={() => {
-                  // const buttonName = clickedButton;
-                  // const buttonName2 = clickedButton2;
-                  // const buttonName3 = clickedButton3; // clickedButton3 상태 값도 업데이트
-                  // const buttonName4 = clickedButton4;
-                  // const buttonName5 = clickedButton5;
+                  const buttonName = clickedButton;
+                  const buttonName2 = clickedButton2;
+                  const buttonName3 = clickedButton3;
+
+                  const buttonName4 = clickedButton4;
+                  const buttonName5 = clickedButton5;
 
                   // setClickedButton([...clickedButton, buttonName]);
                   // setClickedButton2([...clickedButton2, buttonName2]);
@@ -753,11 +754,11 @@ function RegisterPage2() {
                   // setClickedButton4([...clickedButton4, buttonName4]);
                   // setClickedButton5([...clickedButton5, buttonName5]);
 
-                  console.log("buttonName :", clickedButton);
-                  console.log("buttonName2 :", clickedButton2);
-                  console.log("buttonName3 :", clickedButton3); // handleClick3에서 입력 받은 값을 출력합니다.
-                  console.log("buttonName4 :", clickedButton4);
-                  console.log("buttonName5 :", clickedButton5);
+                  console.log("buttonName :", buttonName);
+                  console.log("buttonName2 :", buttonName2);
+                  console.log("buttonName3 :", buttonName3); // handleClick3에서 입력 받은 값을 출력합니다.
+                  console.log("buttonName4 :", buttonName4);
+                  console.log("buttonName5 :", buttonName5);
 
                   // const newButtonName3 = clickedButton3.map(
                   //   (str) => `"${str.trim()}"`
@@ -766,9 +767,9 @@ function RegisterPage2() {
                   // console.log("buttonName3: ", clickedButton3); // ['quiet', 'gym']
                   // console.log("newButtonName3: ", newButtonName3); // ["quiet", "gym"]
 
-                  use_state["tendency"] = clickedButton;
-                  use_state["likeHashtags"] = clickedButton2;
-                  use_state["likeProducts"] = clickedButton3;
+                  use_state["tendency"] = buttonName;
+                  use_state["likeHashtags"] = buttonName3;
+                  use_state["likeProducts"] = buttonName2;
                   use_state["myHashtags"] = clickedButton5;
                   use_state["myProducts"] = clickedButton4;
 
