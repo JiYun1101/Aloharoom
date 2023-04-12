@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "../style/Login.css";
 import { UserOutlined } from "@ant-design/icons";
-import { Input, Button } from "antd";
+import { Input, Button, message } from "antd";
 
 import { Form, Checkbox } from "antd";
 import LockOutlined from "@ant-design/icons";
@@ -38,14 +38,14 @@ const onFinish = async (value) => {
       withCredentials: true, // 이 부분 추가
     });
 
+    message.success("Processing complete!");
     console.log("username:" + value.username);
     console.log("Registration successful");
-
-    // Navigate to RegisterPage2 on successful registration
-    // window.location.href = "/RegisterPage/RegisterPage2";
   } catch (error) {
     console.error("Registration failed:", error);
+    message.success("오류가 발생했습니다!");
   }
+  window.location.href = "../../";
 };
 
 const Login = () => {

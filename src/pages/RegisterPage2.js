@@ -594,7 +594,7 @@ const onFinish = async (use_state) => {
   } catch (error) {
     console.error("Registration failed:", error);
   }
-  // window.location.href = "../../";
+  window.location.href = "../../login";
 };
 
 function RegisterPage2() {
