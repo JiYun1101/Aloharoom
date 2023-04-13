@@ -10,7 +10,7 @@ const KakaoMapPart = () => {
     return (
         <>
             <Map 
-                center={{ lat: 33.5563, lng: 126.79581 }}   // 지도의 중심 좌표
+                center={{ lat: 37.56682420267543, lng: 126.978652258823 }}   // 지도의 중심 좌표
                 style={kakaoMapStyle} // 지도 크기
                 level={3}                                   // 지도 확대 레벨
             />
