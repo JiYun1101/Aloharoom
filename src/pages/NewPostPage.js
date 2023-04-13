@@ -5,12 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { DatePicker } from 'antd';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore from 'swiper/core';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import axios from "axios";
+
+SwiperCore.use([Pagination]);
 
 const NewPostContainer = styled.div`
     position: relative;
@@ -557,8 +560,13 @@ const ImageUploadInput = styled.input`
 const ImageSwiperDiv = styled.div`
     width: 90%;
     height: 9rem;
-    display: flex;
-    align-items: center;
+`;
+
+const SwiperContainer = styled.div`
+    margin-top: 0.5rem;
+    .swiper-slide {
+        margin-right: 1px; /* SwiperSlide 간격 조정 */
+    }
 `;
 
 const UploadImg = styled.img`
@@ -999,34 +1007,36 @@ const NewPostPage = () => {
                                 />
                             </ImageUploadDiv>
                             <ImageSwiperDiv>
-                                    <Swiper
-                                        // install Swiper modules
-                                        modules={[Navigation, Scrollbar, Pagination, A11y]}
-                                        spaceBetween={1}
-                                        slidesPerView={5}
-                                        navigation
-                                        onSwiper={(swiper) => console.log(swiper)}
-                                        onSlideChange={() => console.log('slide change')}
-                                    > 
-                                        <SwiperSlide>
-                                            <UploadImg src="blue.png"/>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <UploadImg src="blue.png"/>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <UploadImg src="blue.png"/>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <UploadImg src="blue.png"/>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <UploadImg src="blue.png"/>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <UploadImg src="blue.png"/>
-                                        </SwiperSlide>
-                                    </Swiper>
+                                    <SwiperContainer>
+                                        <Swiper
+                                            // install Swiper modules
+                                            modules={[Navigation, Scrollbar, Pagination, A11y]}
+                                            spaceBetween={1}
+                                            slidesPerView={3}
+                                            navigation
+                                            onSwiper={(swiper) => console.log(swiper)}
+                                            onSlideChange={() => console.log('slide change')}
+                                        > 
+                                            <SwiperSlide>
+                                                <UploadImg src="blue.png"/>
+                                            </SwiperSlide>
+                                            <SwiperSlide>
+                                                <UploadImg src="blue.png"/>
+                                            </SwiperSlide>
+                                            <SwiperSlide>
+                                                <UploadImg src="blue.png"/>
+                                            </SwiperSlide>
+                                            <SwiperSlide>
+                                                <UploadImg src="blue.png"/>
+                                            </SwiperSlide>
+                                            <SwiperSlide>
+                                                <UploadImg src="blue.png"/>
+                                            </SwiperSlide>
+                                            <SwiperSlide>
+                                                <UploadImg src="blue.png"/>
+                                            </SwiperSlide>
+                                        </Swiper>
+                                    </SwiperContainer>
                                 </ImageSwiperDiv>
                                 <PostButtonDiv>
                                     <PostButton onClick={() => {
