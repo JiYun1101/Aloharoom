@@ -11,6 +11,7 @@ import MyPage from "./pages/MyPage";
 import RegisterPage2 from "./pages/RegisterPage2";
 import About from "./pages/About";
 import NewPostPage from "./pages/NewPostPage";
+import PostInfoPage from "./pages/PostInfoPage";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/termUser" element={<TermUser />} />
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/postInfoPage" element= {<PostInfoPage/>}/>
         <Route path="*" element={<>Not found</>} />
       </Routes>
     </BrowserRouter>
