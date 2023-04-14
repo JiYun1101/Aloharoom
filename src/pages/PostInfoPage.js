@@ -4,7 +4,10 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper/core';
 //import { AiFillHeart } from "react-icons/ai";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
+import { GrDeliver } from "react-icons/gr";
+import { GiMeal } from "react-icons/gi";
+import { Map } from 'react-kakao-maps-sdk';
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -14,7 +17,7 @@ import "swiper/css/scrollbar";
 SwiperCore.use([Pagination]);
 
 const PostInfoPageContainer = styled.div`
-    height: 80rem;
+    height: 110rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -128,6 +131,123 @@ const TypeFlatDivSpan = styled.span`
     font-weight: 600;
 `;
 
+const PostHashTagDiv = styled.div`
+    width: 95%;
+    height: 6rem;    
+    display: flex;
+    //align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    border-bottom: solid 0.1rem #bbbbbb;
+`;
+const HashTagButton = styled.button`
+    width: 7rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-radius: 0.3rem;
+    background-color: white;
+    border-color: #47A5FD;
+    color: #47A5FD;
+`;
+
+const PostContentDiv = styled.div`
+    margin-top: 1rem;
+    width: 95%;
+    height: 15rem;    
+    border-bottom: solid 0.1rem #bbbbbb;
+`;
+
+const PostContentSpan = styled.span`
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 500;
+`;
+
+const DeliverTitleDiv = styled.div`
+    margin-top: 0.7rem;
+    width: 95%;
+    height: 3rem;  
+    display: flex;
+    align-items: center;
+`;
+
+const DeliverTitleSpan = styled.span`
+    font-size: 1.2rem;
+    color: #bbbbbb;
+`;
+
+const DeliverDiv = styled.div`
+    width: 95%;
+    height: 10rem;  
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid 0.1rem #bbbbbb;
+`;
+
+const DeliverInfoDiv = styled.div`
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+`;
+
+const DeliverFirstBox = styled.div`
+    width: 30%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+`;
+
+const DeliverSecondBox = styled.div`
+    width: 70%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+`;
+
+const DeliverInfoSpan = styled.span`
+    margin-left: 1rem;
+    font-size: 1.2rem;
+`;
+
+const MapFacilityDiv = styled.div`
+    margin-top: 1rem;
+    width: 95%;
+    height: 30rem;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const MapFacilitySection = styled.div`
+    width: 90%;
+    height: 28rem;
+`;
+
+const MatchingCompleteDiv = styled.div`
+    width: 95%;
+    height: 4rem;  
+    border-bottom: solid 0.1rem #bbbbbb;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+`;
+
+const MatchingCompleteButton = styled.button`
+    width: 7rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-radius: 0.3rem;
+    background-color: white;
+    border-color: #47A5FD;
+    color: #47A5FD;
+`;
+
 const PostInfoPage = () => {
     return (
         <PostInfoPageContainer>
@@ -174,6 +294,8 @@ const PostInfoPage = () => {
                     </ProfileDiv>
                     <HeartDiv>
                         <AiOutlineHeart size={40} />
+                        <AiOutlineEdit size={40}/>
+                        <AiOutlineDelete size={40}/>
                     </HeartDiv>
                 </ProfileHeartDiv>
                 <PriceTypeFlatDiv>
@@ -184,6 +306,74 @@ const PostInfoPage = () => {
                         <TypeFlatDivSpan>(투룸, 17평)</TypeFlatDivSpan>
                     </TypeFlatDiv>
                 </PriceTypeFlatDiv>
+                <PostHashTagDiv>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                    <HashTagButton>#남향</HashTagButton>
+                </PostHashTagDiv>
+                <PostContentDiv>
+                    <PostContentSpan>
+                        Flex 아이템들은 가로 방향으로 배치되고, 자신이 가진 내용물의 width 만큼만 차지하게 되지요. 
+                        마치 inline 요소들 처럼요. height는 컨테이너의 높이만큼 늘어납니다.
+                        height가 알아서 늘어나는 특징은 컬럼 레이아웃을 만들 때 아주 편리하겠네요~
+                        물론 나중에 정렬 속성을 통해 height를 어떻게 처리할지도 조정할 수 있습니다.
+                    </PostContentSpan>
+                </PostContentDiv>
+                <DeliverTitleDiv>
+                    <DeliverTitleSpan>이 지역은 하루 배송권이에요.</DeliverTitleSpan>
+                </DeliverTitleDiv>
+                <DeliverDiv>
+                    <DeliverInfoDiv>
+                        <DeliverFirstBox>
+                            <GrDeliver size={30}/>
+                            <DeliverInfoSpan>쿠팡</DeliverInfoSpan>
+                        </DeliverFirstBox>
+                        <DeliverSecondBox>
+                            <GiMeal size={30}/>
+                            <DeliverInfoSpan>배달의 민족</DeliverInfoSpan>
+                        </DeliverSecondBox>
+                    </DeliverInfoDiv>
+                    <DeliverInfoDiv>
+                        <DeliverFirstBox>
+                            <GrDeliver size={30}/>
+                            <DeliverInfoSpan>SSG</DeliverInfoSpan>
+                        </DeliverFirstBox>
+                        <DeliverSecondBox>
+                            <GiMeal size={30}/>
+                            <DeliverInfoSpan>요기요</DeliverInfoSpan>
+                        </DeliverSecondBox>
+                    </DeliverInfoDiv>
+                    <DeliverInfoDiv>
+                        <DeliverFirstBox>
+                            <GrDeliver size={30}/>
+                            <DeliverInfoSpan>마켓컬리</DeliverInfoSpan>
+                        </DeliverFirstBox>
+                    </DeliverInfoDiv>
+                </DeliverDiv>
+                <MapFacilityDiv>
+                    <MapFacilitySection>
+                        <Map 
+                            center={{ lat: 37.56682420267543, lng: 126.978652258823 }}   // 지도의 중심 좌표
+                            level={2}                                   // 지도 확대 레벨
+                            style= {{
+                                width: "100%",
+                                height: "100%"
+                            }}
+                        />
+                    </MapFacilitySection>
+                </MapFacilityDiv>
+                <MatchingCompleteDiv>
+                    <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
+                </MatchingCompleteDiv>
             </PostInfoPageBox>
         </PostInfoPageContainer>
     );
