@@ -24,7 +24,6 @@ const PostInfoPageContainer = styled.div`
 `;
 
 const PostInfoPageBox = styled.div`
-    border-style: solid;
     width: 50rem;
     height: 100%;
     display: flex;
@@ -248,6 +247,97 @@ const MatchingCompleteButton = styled.button`
     color: #47A5FD;
 `;
 
+const CommentSection = styled.div`
+    margin-top: 1rem;
+    width: 95%;
+    min-height: 5rem;  
+    display: flex;
+    flex-direction: column;
+`;
+
+const CommentBox = styled.div`
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-color: #47A5FD;
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+`;
+
+const SubCommentBox = styled.div`
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-color: #47A5FD;
+    margin-top: 0.5rem;
+    margin-left: 15%;
+    width: 85%;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+`;
+
+const CommentProfileDiv = styled.div`
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+`;
+
+const CommentInputDiv = styled.div`
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+`;
+
+const CommentProfileImg = styled.img`
+    margin-left: 0.7rem;
+    border-radius: 10rem;
+    width: 2.5rem;
+    height: 2.5rem;
+`;
+
+const CommentProfileSpan = styled.span`
+    margin-left: 0.5rem;
+    color: #47A5FD;
+    font-size: 1.2rem;
+`;
+
+const CommentSpan = styled.span`
+    margin-left: 4rem;
+    color: black;
+    font-size: 1.2rem;
+`;
+
+const AddCommentSpan = styled.span`
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    color: #47A5FD;
+    font-size: 0.8rem;
+`;
+
+const CommentInput = styled.input`
+    margin-left: 0.5rem;
+    border-color: #47A5FD;
+    border-radius: 0.5rem;
+    width: 80%;
+    height: 2rem;
+`
+
+const CommentWriteButton = styled.button`
+    margin-left: 3%;
+    width: 10%;
+    height: 2rem;
+    font-size: 1rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-radius: 0.3rem;
+    background-color: white;
+    border-color: #47A5FD;
+    color: #47A5FD;
+`;
+
 const PostInfoPage = () => {
     return (
         <PostInfoPageContainer>
@@ -374,6 +464,28 @@ const PostInfoPage = () => {
                 <MatchingCompleteDiv>
                     <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
                 </MatchingCompleteDiv>
+                <CommentSection>
+                    <CommentBox>
+                        <CommentProfileDiv>
+                            <CommentProfileImg src = "blue.png"/>
+                            <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
+                        </CommentProfileDiv>
+                        <CommentInputDiv>
+                            <CommentSpan>안녕하세요!</CommentSpan>
+                            <AddCommentSpan>답글 쓰기</AddCommentSpan>
+                        </CommentInputDiv>
+                    </CommentBox>
+                    <SubCommentBox>
+                        <CommentProfileDiv>
+                            <CommentProfileImg src = "blue.png"/>
+                            <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
+                        </CommentProfileDiv>
+                        <CommentInputDiv>
+                            <CommentInput type="text"/>
+                            <CommentWriteButton>쓰기</CommentWriteButton>
+                        </CommentInputDiv>
+                    </SubCommentBox>
+                </CommentSection>
             </PostInfoPageBox>
         </PostInfoPageContainer>
     );
