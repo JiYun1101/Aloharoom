@@ -16,545 +16,544 @@ import axios from "axios";
 SwiperCore.use([Pagination]);
 
 const NewPostContainer = styled.div`
-    position: relative;
-    height: 57rem;
-    display: flex;
-    flex-direction: column;
+  position: relative;
+  height: 57rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 const NewPostHeaderDiv = styled.div`
-    height: 3rem;
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 500;
-    color: #47a5fd;
+  height: 3rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #47a5fd;
 `;
 
 const NewPostContentDiv = styled.div`
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 `;
 
 const NewPostContentInfoContainer = styled.div`
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const NewPostContentInfoDiv = styled.div`
-    border-style: solid;
-    border-color: #47a5fd;
-    border-radius: 1rem;
-    width: 80%;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  border-style: solid;
+  border-color: #47a5fd;
+  border-radius: 1rem;
+  width: 80%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MoveInDateMonthNameDiv = styled.div`
-    margin-top: 1rem;
-    width: 90%;
-    height: 2rem;
-    display: flex;
-    flex-direction: row;
+  margin-top: 1rem;
+  width: 90%;
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
 `;
 
 const MoveInDateDiv = styled.div`
-    width: 60%;
-    height: 2rem;
+  width: 60%;
+  height: 2rem;
 `;
 
 const MonthNameDiv = styled.div`
-    width: 39%;
-    height: 2rem;
+  width: 39%;
+  height: 2rem;
 `;
 
-
 const MoveInDateTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    line-height: 2rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  line-height: 2rem;
 `;
 
 const MonthNameTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    line-height: 2rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  line-height: 2rem;
 `;
 
 const MoveInDateMonthInfoDiv = styled.div`
-    width: 90%;
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
+  width: 90%;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
 `;
 
 const MoveInDateInfoDiv = styled.div`
-    width: 60%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+  width: 60%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
 `;
 
 const MonthInfoDiv = styled.div`
-    width: 39%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+  width: 39%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
 `;
 
 const MonthInfoInput = styled.input`
-    width: 3rem;
-    height: 2rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-color: #bbbbbb;
-    border-radius: 0.5rem;
-    margin-right: 0.5rem;
+  width: 3rem;
+  height: 2rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
 `;
 
 const MonthInfoSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    line-height: 3rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  line-height: 3rem;
 `;
 
 const AddressTitleDiv = styled.div`
-    margin-top: 1.5rem;
-    width: 90%;
-    height: 2rem;
+  margin-top: 1.5rem;
+  width: 90%;
+  height: 2rem;
 `;
 
 const AddressTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    line-height: 2rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  line-height: 2rem;
 `;
 
 const AddressInfoDiv = styled.div`
-    width: 90%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+  width: 90%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
 `;
 
 const AddressInput = styled.input`
-    width: 30rem;
-    height: 2rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-color: #bbbbbb;
-    border-radius: 0.3rem;
+  width: 30rem;
+  height: 2rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 0.3rem;
 `;
 
 const RoomCountTypeFlatTitleDiv = styled.div`
-    margin-top: 1.5rem;
-    width: 90%;
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
+  margin-top: 1.5rem;
+  width: 90%;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
 `;
 
 const RoomCountTitleDiv = styled.div`
-    width: 40%;
-    height: 3rem;
+  width: 40%;
+  height: 3rem;
 `;
 
 const RoomCountTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    line-height: 3rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  line-height: 3rem;
 `;
 
 const TypeTitleDiv = styled.div`
-    width: 40%;
-    height: 3rem;
+  width: 40%;
+  height: 3rem;
 `;
 
 const TypeTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    line-height: 3rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  line-height: 3rem;
 `;
 
 const FlatTitleDiv = styled.div`
-    width: 20%;
-    height: 3rem;
+  width: 20%;
+  height: 3rem;
 `;
 
 const FlatTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    line-height: 3rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  line-height: 3rem;
 `;
 
 const RoomCountTypeFlatInfoDiv = styled.div`
-    width: 90%;
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
+  width: 90%;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
 `;
 
 const RoomCountInfoDiv = styled.div`
-    width: 40%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+  width: 40%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
 `;
 
 const RoomCountButton = styled.button`
-    width: 6rem;
-    height: 2rem;
-    font-size: 1.2rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-radius: 0.3rem;
-    background-color: white;
-    border-color:  ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
-    color: ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
-    margin-right: 0.5rem;
-    :hover {
-        border-color: #47A5FD;
-        color: #47A5FD;
-    }
+  width: 6rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-radius: 0.3rem;
+  background-color: white;
+  border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+  color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+  margin-right: 0.5rem;
+  :hover {
+    border-color: #47a5fd;
+    color: #47a5fd;
+  }
 `;
 
 const TypeInfoDiv = styled.div`
-    width: 40%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+  width: 40%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
 `;
 
 const TypeInfoButton = styled.button`
-    width: 6rem;
-    height: 2rem;
-    font-size: 1.2rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-radius: 0.3rem;
-    background-color: white;
-    margin-right: 0.5rem;
-    border-color:  ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
-    color: ${props => (props.selected ? '#47A5FD' : '#bbbbbb')};
-    :hover {
-        border-color: #47A5FD;
-        color: #47A5FD;
-    }
+  width: 6rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-radius: 0.3rem;
+  background-color: white;
+  margin-right: 0.5rem;
+  border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+  color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+  :hover {
+    border-color: #47a5fd;
+    color: #47a5fd;
+  }
 `;
 
 const FlatInfoDiv = styled.div`
-    width: 20%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+  width: 20%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
 `;
 
 const FlatInfoInput = styled.input`
-    width: 5rem;
-    height: 2rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-color: #bbbbbb;
-    border-radius: 0.3rem;
+  width: 5rem;
+  height: 2rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 0.3rem;
 `;
 
 const PriceTitleDiv = styled.div`
-    margin-top: 1.5rem;
-    width: 90%;
-    height: 2rem;
+  margin-top: 1.5rem;
+  width: 90%;
+  height: 2rem;
 `;
 
 const PriceTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    line-height: 2rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  line-height: 2rem;
 `;
 
 const PriceInfoDiv = styled.div`
-    width: 90%;
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
+  width: 90%;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
 `;
 
 const PriceInputSelectDiv = styled.div`
-    width: 55%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+  width: 55%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
 `;
 
 const PriceInput = styled.input`
-    width: 5rem;
-    height: 2rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-color: #bbbbbb;
-    border-radius: 0.3rem;
-    margin-right: 0.5rem;
+  width: 5rem;
+  height: 2rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 0.3rem;
+  margin-right: 0.5rem;
 `;
 
 const PriceSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1.2rem;
+  color: #47a5fd;
+  font-size: 1.2rem;
 `;
 
 const PriceSelect = styled.select`
-    width: 150px;
-    height: 35px;
-    background-size: 20px;
-    padding: 5px 30px 5px 10px;
-    border-radius: 4px;
-    outline: 0 none;
+  width: 150px;
+  height: 35px;
+  background-size: 20px;
+  padding: 5px 30px 5px 10px;
+  border-radius: 4px;
+  outline: 0 none;
 `;
 
 const PriceOption = styled.option`
-    color: black;
+  color: black;
 `;
 
 const ManageMentDiv = styled.div`
-    width: 45%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+  width: 45%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
 `;
 
 const ManageMentPriceCheckbox = styled.input`
-    background-color: #47A5FD;
-    margin-right: 0.5rem;
+  background-color: #47a5fd;
+  margin-right: 0.5rem;
 `;
 
 const ManageMentSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    margin-right: 2rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  margin-right: 2rem;
 `;
 
 const MangeMentInputText = styled.input`
-    width: 8rem;
-    height: 2rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-color: #bbbbbb;
-    border-radius: 0.3rem;
+  width: 8rem;
+  height: 2rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 0.3rem;
 `;
 
 const GuaranteeDiv = styled.div`
-    margin-top: 1.5rem;
-    width: 90%;
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
+  margin-top: 1.5rem;
+  width: 90%;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
 `;
 
 const GuaranteeEmptyDiv = styled.div`
-    width: 55%;
-    height: 3rem;
+  width: 55%;
+  height: 3rem;
 `;
 
 const GuaranteeCheckBoxDiv = styled.div`
-    width: 45%;
-    height: 3rem;
+  width: 45%;
+  height: 3rem;
 `;
 
 const GuaranteePriceCheckbox = styled.input`
-    background-color: #47A5FD;
-    margin-right: 0.5rem;
+  background-color: #47a5fd;
+  margin-right: 0.5rem;
 `;
 
 const GuaranteeSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    margin-right: 2rem;
-`
+  color: #47a5fd;
+  font-size: 1rem;
+  margin-right: 2rem;
+`;
 
 const GuaranteeInputText = styled.input`
-    width: 8rem;
-    height: 2rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-color: #bbbbbb;
-    border-radius: 0.3rem;
+  width: 8rem;
+  height: 2rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 0.3rem;
 `;
 
 const HouseHashTagTitleDiv = styled.div`
-    margin-top: 1.5rem;
-    width: 90%;
-    height: 2rem;
+  margin-top: 1.5rem;
+  width: 90%;
+  height: 2rem;
 `;
 
 const HouseHashTagTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    margin-right: 2rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  margin-right: 2rem;
 `;
 
 const HouseHashTagTitleInfoSpan = styled.span`
-    color: #bbbbbb;
-    font-size: 0.8rem;
+  color: #bbbbbb;
+  font-size: 0.8rem;
 `;
 
 const HouseHashTagButtonDiv = styled.div`
-    width: 90%;
-    height: 4.5rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  width: 90%;
+  height: 4.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 `;
 
 const HouseHashTagButton = styled.button`
-    width: 7rem;
-    height: 2rem;
-    font-size: 1rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-radius: 0.3rem;
-    background-color: white;
-    border-color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
-    color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
-    :hover {
-        border-color: #47A5FD;
-        color: #47A5FD;
-    }
+  width: 7rem;
+  height: 2rem;
+  font-size: 1rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-radius: 0.3rem;
+  background-color: white;
+  border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+  color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+  :hover {
+    border-color: #47a5fd;
+    color: #47a5fd;
+  }
 `;
 
 const MyHashTagTitleDiv = styled.div`
-    margin-top: 1.5rem;
-    width: 90%;
-    height: 2rem;
+  margin-top: 1.5rem;
+  width: 90%;
+  height: 2rem;
 `;
 
 const MyHashTagTitleSpan = styled.span`
-    color: #47A5FD;
-    font-size: 1rem;
-    margin-right: 2rem;
+  color: #47a5fd;
+  font-size: 1rem;
+  margin-right: 2rem;
 `;
 
 const MyHashTagTitleInfoSpan = styled.span`
-    color: #bbbbbb;
-    font-size: 0.8rem;
+  color: #bbbbbb;
+  font-size: 0.8rem;
 `;
 
 const MyHashTagButtonDiv = styled.div`
-    width: 90%;
-    height: 4.5rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  width: 90%;
+  height: 4.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 `;
 
 const MyHashTagButton = styled.button`
-    width: 7rem;
-    height: 2rem;
-    font-size: 1rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-radius: 0.3rem;
-    background-color: white;
-    border-color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
-    color: ${(props) => (props.selected ? '#47A5FD' : '#bbbbbb')};
-    :hover {
-        border-color: #47A5FD;
-        color: #47A5FD;
-    }
+  width: 7rem;
+  height: 2rem;
+  font-size: 1rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-radius: 0.3rem;
+  background-color: white;
+  border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+  color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+  :hover {
+    border-color: #47a5fd;
+    color: #47a5fd;
+  }
 `;
 
 const NewPostContentWritingContainer = styled.div`
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const NewPostContentWritingDiv = styled.div`
-    width: 80%;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 80%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const NewPostContentWritingArea = styled.div`
-    border-style: solid;
-    border-color: #bbbbbb;
-    border-radius: 1rem;
-    width: 100%;
-    height: 68%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 1rem;
+  width: 100%;
+  height: 68%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const PostTitleDiv = styled.div`
-    margin-top: 1rem;
-    width: 90%;
-    height: 3rem;
+  margin-top: 1rem;
+  width: 90%;
+  height: 3rem;
 `;
 
 const PostTitleInput = styled.input`
-    width: 99%;
-    height: 3rem;
-    font-size: 1.3rem;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: solid 0.1rem #bbbbbb;
-    :focus {
-        outline: none;
-    }
+  width: 99%;
+  height: 3rem;
+  font-size: 1.3rem;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: solid 0.1rem #bbbbbb;
+  :focus {
+    outline: none;
+  }
 `;
 
 const PostContentDiv = styled.div`
-    margin-top: 1rem;
-    width: 90%;
-    height: 28rem;
+  margin-top: 1rem;
+  width: 90%;
+  height: 28rem;
 `;
 
 const PostContentTextArea = styled.textarea`
-    width: 100%;
-    height: 100%;
-    font-size: 1rem;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: none;
-    :focus {
-        outline: none;
-    }
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  :focus {
+    outline: none;
+  }
 `;
 
 const NewPostContentImageArea = styled.div`
-    width: 100%;
-    height: 32%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  height: 32%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ImageUploadDiv = styled.div`
-    margin-top: 1rem;
-    width: 90%;
-    height: 3rem;
+  margin-top: 1rem;
+  width: 90%;
+  height: 3rem;
 `;
 
 const ImageUploadLabel = styled.label`
-    color: #47a5fd;
-    font-size: 1.3rem;
-    cursor: pointer;
+  color: #47a5fd;
+  font-size: 1.3rem;
+  cursor: pointer;
 `;
 
 const ImageUploadInput = styled.input`
-    display: none;
+  display: none;
 `;
 
 const ImageSwiperDiv = styled.div`
@@ -570,134 +569,166 @@ const SwiperContainer = styled.div`
 `;
 
 const UploadImg = styled.img`
-    width: 10rem;
-    height: 8rem;
+  width: 10rem;
+  height: 8rem;
 `;
 
 const PostButtonDiv = styled.div`
-    margin-top: 0.5rem;
-    width: 90%;
-    height: 2rem;
-    display: flex;
-    flex-direction: row-reverse;
+  margin-top: 0.5rem;
+  width: 90%;
+  height: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
 `;
 
 const PostButton = styled.button`
-    width: 7rem;
-    height: 2rem;
-    font-size: 1rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-color: #47a5fd;
-    border-radius: 0.3rem;
-    background-color: #47a5fd;
-    color: white;
-`
+  width: 7rem;
+  height: 2rem;
+  font-size: 1rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #47a5fd;
+  border-radius: 0.3rem;
+  background-color: #47a5fd;
+  color: white;
+`;
 
 const BackPageIconStyle = {
-    position: "absolute",
-    top: "1rem",
-    left: "1rem",
-    color: "#47a5fd"
+  position: "absolute",
+  top: "1rem",
+  left: "1rem",
+  color: "#47a5fd",
 };
 
 const NewPostPage = () => {
-    //체크 박스 클릭시 활성화 되도록 하는 상태 변수
-    const [maintenanceChecked, setMaintenanceChecked] = useState(false);
-    const [depositChecked, setDepositChecked] = useState(false);
-    const handleMaintenanceCheckboxChange = () => {
-        setMaintenanceChecked(!maintenanceChecked);
+  //체크 박스 클릭시 활성화 되도록 하는 상태 변수
+  const [maintenanceChecked, setMaintenanceChecked] = useState(false);
+  const [depositChecked, setDepositChecked] = useState(false);
+  const handleMaintenanceCheckboxChange = () => {
+    setMaintenanceChecked(!maintenanceChecked);
+  };
+  const handleDepositCheckboxChange = () => {
+    setDepositChecked(!depositChecked);
+  };
+  //방 개수 버튼 클릭 상태 변수
+  const [selectedRoomCountButton, setSelectedRoomCountButton] = useState(null);
+  const handleRoomCountButtonClick = (buttonIndex) => {
+    setSelectedRoomCountButton(buttonIndex);
+  };
+  //주거형태 버튼 클릭 상태 변수
+  const [selectedTypeInfoButton, setSelectedTypeInfoButton] = useState(null);
+  const handleTypeInfoButton = (buttonIndex) => {
+    setSelectedTypeInfoButton(buttonIndex);
+  };
+  //집 해시태그 버튼 클릭 상태 변수
+  const [selectedHouseHashTagButtons, setSelectedHouseHashTagButtons] =
+    useState([]);
+  const handleHouseHashTagButtonClick = (index) => {
+    if (selectedHouseHashTagButtons.includes(index)) {
+      setSelectedHouseHashTagButtons(
+        selectedHouseHashTagButtons.filter((i) => i !== index)
+      );
+    } else {
+      setSelectedHouseHashTagButtons([...selectedHouseHashTagButtons, index]);
     }
-    const handleDepositCheckboxChange = () => {
-        setDepositChecked(!depositChecked);
+  };
+  //내 해시태그 버튼 클릭 상태 변수
+  const [selectedMyHashTagButtons, setSelectedMyHashTagButtons] = useState([]);
+  const handleMyHashTagButtonClick = (index) => {
+    if (selectedMyHashTagButtons.includes(index)) {
+      setSelectedMyHashTagButtons(
+        selectedMyHashTagButtons.filter((i) => i !== index)
+      );
+    } else {
+      setSelectedMyHashTagButtons([...selectedMyHashTagButtons, index]);
     }
-    //방 개수 버튼 클릭 상태 변수
-    const [selectedRoomCountButton, setSelectedRoomCountButton] = useState(null);
-    const handleRoomCountButtonClick = (buttonIndex) => {
-        setSelectedRoomCountButton(buttonIndex);
-    }
-    //주거형태 버튼 클릭 상태 변수
-    const [selectedTypeInfoButton, setSelectedTypeInfoButton] = useState(null);
-    const handleTypeInfoButton = (buttonIndex) => {
-        setSelectedTypeInfoButton(buttonIndex);
-    }
-    //집 해시태그 버튼 클릭 상태 변수
-    const [selectedHouseHashTagButtons, setSelectedHouseHashTagButtons] = useState([]);
-    const handleHouseHashTagButtonClick = (index) => {
-        if (selectedHouseHashTagButtons.includes(index)) {
-            setSelectedHouseHashTagButtons(selectedHouseHashTagButtons.filter((i) => i !== index));
-        } else {
-            setSelectedHouseHashTagButtons([...selectedHouseHashTagButtons, index]);
-        }
-    }
-    //내 해시태그 버튼 클릭 상태 변수
-    const [selectedMyHashTagButtons, setSelectedMyHashTagButtons] = useState([]);
-    const handleMyHashTagButtonClick = (index) => {
-        if (selectedMyHashTagButtons.includes(index)) {
-            setSelectedMyHashTagButtons(selectedMyHashTagButtons.filter((i) => i !== index));
-        } 
-        else {
-            setSelectedMyHashTagButtons([...selectedMyHashTagButtons, index]);
-        }
+  };
+
+  //입주 가능 날짜
+  const [title, setTitle] = useState("");
+  const [contents, setContents] = useState("");
+  const [count, setCount] = useState("0");
+  const [roomCount, setRoomCount] = useState("");
+  const [address, setAddress] = useState("");
+  const [homeType, setHomeType] = useState("");
+  const [tradeType, setTradeType] = useState("");
+  const [price, setPrice] = useState("");
+  const [deposit, setDeposit] = useState("");
+  const [rent, setRent] = useState("0");
+  const [flat, setFlat] = useState("");
+  const [maintenance, setMaintenance] = useState("");
+  const [floor, setFloor] = useState("2");
+  const [totalFloor, setTotalFloor] = useState("3");
+  const [startDate, setStartDate] = useState("");
+  const [x, setX] = useState(null);
+  const [y, setY] = useState(null);
+  const [imgFiles, setImgFiles] = useState([]);
+
+  console.log("==============================");
+  console.log("title ", title);
+  console.log("contents ", contents);
+  console.log("roomCount ", roomCount);
+  console.log("address ", address);
+  console.log("homeType ", homeType);
+  console.log("tradeType ", tradeType);
+  console.log("price ", price);
+  console.log("deposit ", deposit);
+  console.log("rent ", rent);
+  console.log("flat ", flat);
+  console.log("maintenance ", maintenance);
+  console.log("floor ", floor);
+  console.log("totalFloor ", totalFloor);
+  console.log("startDate ", startDate);
+  console.log("x ", x);
+  console.log("y ", y);
+  console.log("imgFiles ", imgFiles);
+  console.log("==============================");
+
+  //입주 가능 날짜 설정 함수
+  const startDateOnChange = (date, dateString) => {
+    setStartDate(dateString);
+  };
+  //위도 경도 설정 함수
+  const searchLatLng = () => {
+    const ps = new window.kakao.maps.services.Places();
+    ps.keywordSearch(address, (data, status, _pagination) => {
+      if (status === window.kakao.maps.services.Status.OK) {
+        setX(data[0].x.toString());
+        setY(data[0].y.toString());
+      }
+    });
+  };
+
+  const handleImageFilesInputChange = (e) => {
+    setImgFiles(e.target.files);
+  };
+
+  const PostInfoSubmit = () => {
+    const data = {
+      title: title,
+      contents: contents,
+      count: count,
+      roomCount: roomCount,
+      address: address,
+      homeType: homeType,
+      tradeType: tradeType,
+      price: price,
+      deposit: deposit,
+      rent: rent,
+      flat: flat,
+      maintenance: maintenance,
+      floor: floor,
+      totalFloor: totalFloor,
+      startDate: startDate,
+      x: x,
+      y: y,
     };
-
-    //입주 가능 날짜
-    const [title, setTitle] = useState('');
-    const [contents, setContents] = useState('');
-    const [count, setCount] = useState('0');
-    const [roomCount, setRoomCount] = useState('');
-    const [address, setAddress] = useState('');
-    const [homeType, setHomeType] = useState('');
-    const [tradeType, setTradeType] = useState('');
-    const [price, setPrice] = useState('');
-    const [deposit, setDeposit] = useState('');
-    const [rent, setRent] = useState('0');
-    const [flat, setFlat] = useState('');
-    const [maintenance, setMaintenance] = useState('');
-    const [floor, setFloor] = useState('2');
-    const [totalFloor, setTotalFloor] = useState('3');
-    const [startDate, setStartDate] = useState('');
-    const [x, setX] = useState(null);
-    const [y, setY] = useState(null);
-    const [imgFiles, setImgFiles] = useState([]);
-
-    console.log('==============================')
-    console.log('title ', title);
-    console.log('contents ', contents);
-    console.log('roomCount ', roomCount);
-    console.log('address ', address);
-    console.log('homeType ', homeType);
-    console.log('tradeType ', tradeType);
-    console.log('price ', price);
-    console.log('deposit ', deposit);
-    console.log('rent ', rent);
-    console.log('flat ', flat);
-    console.log('maintenance ', maintenance);
-    console.log('floor ', floor);
-    console.log('totalFloor ', totalFloor);
-    console.log('startDate ', startDate);
-    console.log('x ', x);
-    console.log('y ', y);
-    console.log('imgFiles ', imgFiles);
-    console.log('==============================')
-
-    //입주 가능 날짜 설정 함수
-    const startDateOnChange = (date, dateString) => {
-        setStartDate(dateString);
-    }
-    //위도 경도 설정 함수
-    const searchLatLng = () => {
-        const ps = new window.kakao.maps.services.Places()
-        ps.keywordSearch(address , (data, status, _pagination) => {
-            if (status === window.kakao.maps.services.Status.OK) {
-                setX(data[0].x.toString());
-                setY(data[0].y.toString())
-            }
-        })
-    };
-
-    const handleImageFilesInputChange = (e) => {
-        setImgFiles(e.target.files);
+    const jsonData = JSON.stringify(data);
+    const blob = new Blob([jsonData], { type: "application/json" });
+    const formData = new FormData();
+    formData.append("boardAddDto", blob);
+    for (let i = 0; i < imgFiles.length; i++) {
+      formData.append("imgFiles", imgFiles[i]);
     }
 
     const PostInfoSubmit = () => {

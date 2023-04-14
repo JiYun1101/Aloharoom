@@ -8,36 +8,36 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const PostMapContentContainer = styled.div`
-    position: relative;
-    width: 100%;
-    height: 50rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 50rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 const LinkToStyle = {
-    textDecoration: "none",
-    color: "inherit",
+  textDecoration: "none",
+  color: "inherit",
 };
 
 const PostMapContent = () => {
-    const newPostIconStyle = {
-        position: "absolute",
-        right: "2rem",
-        bottom: "0.001rem",
-        zIndex: "2",
-        color: '#bbbbbb'
-    };
-    return (
-        <PostMapContentContainer>            
-            <SearchHashTag/>
-            <MapPost/>
-            <Link to="/newPostPage" style={LinkToStyle}> 
-                <AiOutlinePlusCircle size={50} style={newPostIconStyle} />
-            </Link>
-        </PostMapContentContainer>
-    );
-}
+  const newPostIconStyle = {
+    position: "absolute",
+    right: "2rem",
+    bottom: "0.001rem",
+    zIndex: "2",
+    color: "#bbbbbb",
+  };
+  return (
+    <PostMapContentContainer>
+      <SearchHashTag />
+      <MapPost />
+      <Link to="/newPostPage" style={LinkToStyle}>
+        <AiOutlinePlusCircle size={50} style={newPostIconStyle} />
+      </Link>
+    </PostMapContentContainer>
+  );
+};
 
 export default PostMapContent;
