@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -341,11 +341,30 @@ const CommentWriteButton = styled.button`
 `;
 
 const PostInfoPage = () => {
+    const [imgUrls, setImgUrls] = useState([]);
+    const [maintenance, setMaintenance] = useState(null);
+    const [nickname, setNickName] = useState(null);
+    const [contents, setContents] = useState('');
+    const [flat, setFlat] = useState(null);
+    const [rent, setRent] = useState(null);
+    const [title, setTitle] = useState('');
+    const [tradeType, setTradeType] = useState('');
+    const [hashtag, setHashTag] = useState([]);
+
     const boardId = 1
     async function FetchPostInfoData() {
         await axios.get(`http://localhost:8080/api/board/${boardId}`)
             .then((response) => {
-                console.log('response.data : ', response.data);
+                console.log(response.data);
+                setTitle(response.data.title);
+                setNickName(response.data.nickname);
+                setImgUrls(response.data.imgUrls);
+                setMaintenance(response.data.maintenance);
+                setRent(response.data.rent);
+                setTradeType(response.data.tradeType);
+                setFlat(response.data.flat);
+                setHashTag(response.data.hashtag);
+                setContents(response.data.contents);
             })
             .catch((error) => {
                 console.log('axios error');
@@ -370,34 +389,21 @@ const PostInfoPage = () => {
                             onSwiper={(swiper) => console.log(swiper)}
                             onSlideChange={() => console.log("slide change")}
                         >
-                            <SwiperSlide>
-                                <PostInfoImage src="blue.png" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <PostInfoImage src="blue.png" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <PostInfoImage src="blue.png" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <PostInfoImage src="blue.png" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <PostInfoImage src="blue.png" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <PostInfoImage src="blue.png" />    
-                            </SwiperSlide>
+                            {imgUrls.map((data, index) => 
+                                <SwiperSlide key={index}>
+                                    <PostInfoImage src={data} key={index}/>
+                                </SwiperSlide>
+                            )}
                         </Swiper>
                     </Container>
                 </PostInfoImageBox>
                 <TitleDiv>
-                    <TitleSpan>서울특별시 성북구 삼선동 역 앞 오피스텔</TitleSpan>
+                    <TitleSpan>{title}</TitleSpan>
                 </TitleDiv>
                 <ProfileHeartDiv>
                     <ProfileDiv>
                         <ProfileImg src="blue.png"/>
-                        <ProfileName>hwldus</ProfileName>
+                        <ProfileName>{nickname}</ProfileName>
                     </ProfileDiv>
                     <HeartDiv>
                         <AiOutlineHeart size={40} />
@@ -407,32 +413,18 @@ const PostInfoPage = () => {
                 </ProfileHeartDiv>
                 <PriceTypeFlatDiv>
                     <MaintenancePriceDiv>
-                        <MaintenancePriceSpan>300/25</MaintenancePriceSpan>
+                        <MaintenancePriceSpan>{maintenance}/{rent}</MaintenancePriceSpan>
                     </MaintenancePriceDiv>
                     <TypeFlatDiv>
-                        <TypeFlatDivSpan>(투룸, 17평)</TypeFlatDivSpan>
+                        <TypeFlatDivSpan>({tradeType}, 투룸, {flat}평)</TypeFlatDivSpan>
                     </TypeFlatDiv>
                 </PriceTypeFlatDiv>
                 <PostHashTagDiv>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
-                    <HashTagButton>#남향</HashTagButton>
+                    { hashtag && hashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                 </PostHashTagDiv>
                 <PostContentDiv>
                     <PostContentSpan>
-                        Flex 아이템들은 가로 방향으로 배치되고, 자신이 가진 내용물의 width 만큼만 차지하게 되지요. 
-                        마치 inline 요소들 처럼요. height는 컨테이너의 높이만큼 늘어납니다.
-                        height가 알아서 늘어나는 특징은 컬럼 레이아웃을 만들 때 아주 편리하겠네요~
-                        물론 나중에 정렬 속성을 통해 height를 어떻게 처리할지도 조정할 수 있습니다.
+                        {contents}
                     </PostContentSpan>
                 </PostContentDiv>
                 <DeliverTitleDiv>
