@@ -784,12 +784,8 @@ const NewPostPage = () => {
                             <AddressInput 
                                 type="text" 
                                 value={address}
-                                onChange={(e) => { 
-                                    setAddress(e.target.value);
-                                }}
-                                onBlur={() => {
-                                    searchLatLng();
-                                }}
+                                onChange={(e) => { setAddress(e.target.value); }}
+                                onBlur={() => { searchLatLng(); }}
                             />
                         </AddressInfoDiv>
                         <RoomCountTypeFlatTitleDiv>
@@ -884,43 +880,63 @@ const NewPostPage = () => {
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(1)}
                                 onClick={() => handleHouseHashTagButtonClick(1)}
-                            >#비흡연자</HouseHashTagButton>
+                            >
+                              #비흡연자
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(2)}
                                 onClick={() => handleHouseHashTagButtonClick(2)}
-                            >#역세권</HouseHashTagButton>
+                            >
+                              #역세권
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(3)}
                                 onClick={() => handleHouseHashTagButtonClick(3)}
-                            >#남향</HouseHashTagButton>
+                            >
+                              #남향
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(4)}
                                 onClick={() => handleHouseHashTagButtonClick(4)}
-                            >#편의점 근처</HouseHashTagButton>
+                            >
+                              #편의점 근처
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(5)}
                                 onClick={() => handleHouseHashTagButtonClick(5)}
-                            >#조용한</HouseHashTagButton>
+                            >
+                              #조용한
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(6)}
                                 onClick={() => handleHouseHashTagButtonClick(6)}
-                            >#비흡연자</HouseHashTagButton>
+                            >
+                              #비흡연자
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(7)}
                                 onClick={() => handleHouseHashTagButtonClick(7)}
-                            >#역세권</HouseHashTagButton>
+                            >
+                              #역세권
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(8)}
                                 onClick={() => handleHouseHashTagButtonClick(8)}
-                            >#남향</HouseHashTagButton>
+                            >
+                              #남향
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(9)}
                                 onClick={() => handleHouseHashTagButtonClick(9)}
-                            >#편의점 근처</HouseHashTagButton>
+                            >
+                              #편의점 근처
+                            </HouseHashTagButton>
                             <HouseHashTagButton
                                 selected={selectedHouseHashTagButtons.includes(10)}
                                 onClick={() => handleHouseHashTagButtonClick(10)}
-                            >#조용한</HouseHashTagButton>
+                            >
+                              #조용한
+                            </HouseHashTagButton>
                         </HouseHashTagButtonDiv>
                         <MyHashTagTitleDiv>
                             <MyHashTagTitleSpan>내 해시태그</MyHashTagTitleSpan>
