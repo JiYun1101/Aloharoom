@@ -35,7 +35,7 @@ const PostMapContent = () => {
     return (
         <PostMapContentContainer>            
             <SearchHashTag setSearchStr={setSearchStr}/>
-            <MapPost/>
+            <MapPost searchStr={searchStr}/>
             <Link to="/newPostPage" style={LinkToStyle}> 
                 <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
             </Link>
