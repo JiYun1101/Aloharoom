@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchHashTag from "./SearchHashTag";
 
 import styled from "styled-components";
@@ -31,9 +31,10 @@ const NewPostIconStyle = {
 
 const PostMapContent = () => {
     //여기에 검색에 대한 상태 변수를 지정
+    const [searchStr, setSearchStr] = useState(null);
     return (
         <PostMapContentContainer>            
-            <SearchHashTag/>
+            <SearchHashTag setSearchStr={setSearchStr}/>
             <MapPost/>
             <Link to="/newPostPage" style={LinkToStyle}> 
                 <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />

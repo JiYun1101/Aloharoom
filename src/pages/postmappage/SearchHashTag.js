@@ -12,10 +12,10 @@ const SearchHashTagContainer = styled.div`
     flex-direction: column;
 `;
 
-const SearchHashTag = () => {
+const SearchHashTag = ({setSearchStr}) => {
     return (
         <SearchHashTagContainer>
-            <Search/>
+            <Search setSearchStr={setSearchStr}/>
             <HashTagTitle/>
         </SearchHashTagContainer>
     );
