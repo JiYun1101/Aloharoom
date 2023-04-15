@@ -11,10 +11,10 @@ const MapPostContainer = styled.div`
     display: flex;
 `;
 
-const MapPost = () => {
+const MapPost = ({searchStr}) => {
     return (
         <MapPostContainer>
-            <KakaoMapPart/>
+            <KakaoMapPart searchStr={searchStr}/>
             <Post/>
         </MapPostContainer>
     );

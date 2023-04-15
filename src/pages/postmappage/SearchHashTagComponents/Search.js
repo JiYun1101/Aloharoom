@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { IoSearchCircleSharp, IoFilterOutline } from "react-icons/io5";
+import { useState } from "react";
 
 const SearchContainer = styled.div`
     position: relative;
@@ -36,12 +37,41 @@ const SearchIconStyle = {
     color: "#47A5FD"
 }
 
-const Search = () => {
+const Search = ({setSearchStr}) => {
+    const [inputValue, setInputValue] = useState(null);
+    
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    }
+
+    const handleButtonClick = () => {
+        setSearchStr(inputValue);
+        setInputValue('');
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleButtonClick();
+        }
+    }
+
     return (
         <SearchContainer>
-            <IoFilterOutline size={30} style={FilterIconStyle}/>
-            <IoSearchCircleSharp size={30} style={SearchIconStyle}/>
-            <SearchInput type="text"/>
+            <IoFilterOutline 
+                size={30} 
+                style={FilterIconStyle}
+            />
+            <IoSearchCircleSharp 
+                size={30} 
+                style={SearchIconStyle}
+                onClick={handleButtonClick}
+            />
+            <SearchInput 
+                type="text" 
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+            />
         </SearchContainer>
     );
 }

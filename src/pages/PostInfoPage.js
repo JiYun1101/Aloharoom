@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,6 +13,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import axios from "axios";
 
 SwiperCore.use([Pagination]);
 
@@ -140,6 +141,7 @@ const PostHashTagDiv = styled.div`
     gap: 0.2rem;
     border-bottom: solid 0.1rem #bbbbbb;
 `;
+
 const HashTagButton = styled.button`
     width: 7rem;
     height: 2rem;
@@ -339,6 +341,21 @@ const CommentWriteButton = styled.button`
 `;
 
 const PostInfoPage = () => {
+    const boardId = 1
+    async function FetchPostInfoData() {
+        await axios.get(`http://localhost:8080/api/board/${boardId}`)
+            .then((response) => {
+                console.log('response.data : ', response.data);
+            })
+            .catch((error) => {
+                console.log('axios error');
+            })
+    }
+    //한번 렌더링 될때 데이터를 받아온다.
+    useEffect(() => {
+        FetchPostInfoData();
+    }, []);
+
     return (
         <PostInfoPageContainer>
             <PostInfoPageBox>

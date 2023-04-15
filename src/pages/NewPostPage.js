@@ -1081,6 +1081,7 @@ const NewPostPage = () => {
             </NewPostContentDiv>
         </NewPostContainer>
     );
+  }
 }
 
 export default NewPostPage;
