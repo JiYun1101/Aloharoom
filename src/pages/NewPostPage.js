@@ -702,35 +702,6 @@ const NewPostPage = () => {
   const handleImageFilesInputChange = (e) => {
     setImgFiles(e.target.files);
   };
-
-  const PostInfoSubmit = () => {
-    const data = {
-      title: title,
-      contents: contents,
-      count: count,
-      roomCount: roomCount,
-      address: address,
-      homeType: homeType,
-      tradeType: tradeType,
-      price: price,
-      deposit: deposit,
-      rent: rent,
-      flat: flat,
-      maintenance: maintenance,
-      floor: floor,
-      totalFloor: totalFloor,
-      startDate: startDate,
-      x: x,
-      y: y,
-    };
-    const jsonData = JSON.stringify(data);
-    const blob = new Blob([jsonData], { type: "application/json" });
-    const formData = new FormData();
-    formData.append("boardAddDto", blob);
-    for (let i = 0; i < imgFiles.length; i++) {
-      formData.append("imgFiles", imgFiles[i]);
-    }
-
     const PostInfoSubmit = () => {
         const data = {
             "title": title,
@@ -1081,7 +1052,7 @@ const NewPostPage = () => {
             </NewPostContentDiv>
         </NewPostContainer>
     );
-  }
 }
+
 
 export default NewPostPage;
