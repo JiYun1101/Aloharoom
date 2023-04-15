@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchHashTag from "./SearchHashTag";
 
 import styled from "styled-components";
@@ -21,23 +21,26 @@ const LinkToStyle = {
   color: "inherit",
 };
 
-const PostMapContent = () => {
-  const newPostIconStyle = {
+const NewPostIconStyle = {
     position: "absolute",
     right: "2rem",
     bottom: "0.001rem",
     zIndex: "2",
-    color: "#bbbbbb",
-  };
-  return (
-    <PostMapContentContainer>
-      <SearchHashTag />
-      <MapPost />
-      <Link to="/newPostPage" style={LinkToStyle}>
-        <AiOutlinePlusCircle size={50} style={newPostIconStyle} />
-      </Link>
-    </PostMapContentContainer>
-  );
+    color: '#bbbbbb'
 };
+
+const PostMapContent = () => {
+    //여기에 검색에 대한 상태 변수를 지정
+    const [searchStr, setSearchStr] = useState(null);
+    return (
+        <PostMapContentContainer>            
+            <SearchHashTag setSearchStr={setSearchStr}/>
+            <MapPost searchStr={searchStr}/>
+            <Link to="/newPostPage" style={LinkToStyle}> 
+                <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+            </Link>
+        </PostMapContentContainer>
+    );
+}
 
 export default PostMapContent;
