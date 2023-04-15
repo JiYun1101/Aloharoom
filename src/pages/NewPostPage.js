@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
+import { BiImageAdd } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { DatePicker } from 'antd';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
@@ -569,7 +570,7 @@ const SwiperContainer = styled.div`
 `;
 
 const UploadImg = styled.img`
-  width: 10rem;
+  width: 12rem;
   height: 8rem;
 `;
 
@@ -651,7 +652,7 @@ const NewPostPage = () => {
   const [roomCount, setRoomCount] = useState("");
   const [address, setAddress] = useState("");
   const [homeType, setHomeType] = useState("");
-  const [tradeType, setTradeType] = useState("");
+  const [tradeType, setTradeType] = useState("월세");
   const [price, setPrice] = useState("");
   const [deposit, setDeposit] = useState("");
   const [rent, setRent] = useState("0");
@@ -663,6 +664,8 @@ const NewPostPage = () => {
   const [x, setX] = useState(null);
   const [y, setY] = useState(null);
   const [imgFiles, setImgFiles] = useState([]);
+
+  const [previewImages, setPreviewImages] = useState([]);
 
   console.log("==============================");
   console.log("title ", title);
@@ -701,6 +704,18 @@ const NewPostPage = () => {
 
   const handleImageFilesInputChange = (e) => {
     setImgFiles(e.target.files);
+    const files = e.target.files;
+    const images = [];
+    for(let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        images.push(reader.result);
+        if (images.length === files.length) {
+          setPreviewImages(images);
+        }
+      };
+      reader.readAsDataURL(files[i]);
+    }
   };
     const PostInfoSubmit = () => {
         const data = {
@@ -999,7 +1014,7 @@ const NewPostPage = () => {
                         </NewPostContentWritingArea>
                         <NewPostContentImageArea>
                             <ImageUploadDiv>
-                                <ImageUploadLabel htmlFor="imageUpload">이미지 업로드</ImageUploadLabel>
+                                <ImageUploadLabel htmlFor="imageUpload">이미지 업로드 <BiImageAdd size={25} htmlFor="imageUpload"/></ImageUploadLabel>
                                 <ImageUploadInput
                                     type="file"
                                     accept="image/*"
@@ -1019,24 +1034,11 @@ const NewPostPage = () => {
                                             onSwiper={(swiper) => console.log(swiper)}
                                             onSlideChange={() => console.log('slide change')}
                                         > 
+                                          { previewImages.map((previewImage, idx) => (
                                             <SwiperSlide>
-                                                <UploadImg src="blue.png"/>
+                                              <UploadImg key={idx} src={previewImage}/>
                                             </SwiperSlide>
-                                            <SwiperSlide>
-                                                <UploadImg src="blue.png"/>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
-                                                <UploadImg src="blue.png"/>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
-                                                <UploadImg src="blue.png"/>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
-                                                <UploadImg src="blue.png"/>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
-                                                <UploadImg src="blue.png"/>
-                                            </SwiperSlide>
+                                          ))}                                            
                                         </Swiper>
                                     </SwiperContainer>
                                 </ImageSwiperDiv>
