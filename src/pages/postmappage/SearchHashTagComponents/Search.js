@@ -37,17 +37,23 @@ const SearchIconStyle = {
 }
 
 const Search = ({setSearchStr}) => {
-
     const onChangeSearchStr = (e) => {
-        console.log('onChangeSearchStr doing');
         setSearchStr(e.target.value);
     }
-    
     return (
         <SearchContainer>
-            <IoFilterOutline size={30} style={FilterIconStyle}/>
-            <IoSearchCircleSharp size={30} style={SearchIconStyle}/>
-            <SearchInput type="text" onKeyUp={onChangeSearchStr}/>
+            <IoFilterOutline 
+                size={30} 
+                style={FilterIconStyle}
+            />
+            <IoSearchCircleSharp 
+                size={30} 
+                style={SearchIconStyle}
+            />
+            <SearchInput 
+                type="text" 
+                onChange={onChangeSearchStr}
+            />
         </SearchContainer>
     );
 }
