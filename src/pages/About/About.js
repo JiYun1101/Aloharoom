@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
-import Header from "./Header";
-import BannerSection from "./mainpage/BannerSection";
+import Header from "../Header";
+import BannerSection from "../mainpage/BannerSection";
 import styled from "styled-components";
-import "../style/About.css";
+import "../../style//About.css";
 import Graph_number from "./Graph_number";
 import Graph_cost from "./Graph_cost";
 import Graph_user from "./Graph_user";

@@ -26,7 +26,7 @@ const CommunityDiv = styled.div`
 
 const CommunityButton = styled.button`
   margin-top: 90px;
-  margin-left: 208px;
+  margin-left: 308px;
   background-color: white;
   width: 4.5rem;
   height: 1.5rem;
@@ -43,7 +43,7 @@ const DateDiv = styled.div`
 `;
 
 const DateSpan = styled.span`
-  margin-left: 200px;
+  margin-left: 300px;
   font-size: 0.8rem;
   color: #bbbbbb;
   line-height: 2rem;
@@ -57,7 +57,7 @@ const TitleDiv = styled.div`
 `;
 
 const TitleSpan = styled.span`
-  margin-left: 200px;
+  margin-left: 300px;
   font-size: 1.1rem;
   font-weight: 600;
 `;

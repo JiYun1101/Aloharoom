@@ -9,7 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import TermUser from "./pages/TermUser";
 import MyPage from "./pages/MyPage";
 import RegisterPage2 from "./pages/RegisterPage2";
-import About from "./pages/About";
+import About from "./pages/About/About";
 import NewPostPage from "./pages/NewPostPage";
 import PostInfoPage from "./pages/PostInfoPage";
 import Community from "./pages/Community/Community";

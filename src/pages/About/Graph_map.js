@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Scatter } from "@ant-design/plots";
-import map_korea from "../img/map_korea.jpg";
+import map_korea from "../../img/map_korea.jpg";
 
 const DemoScatter = () => {
   const data = [
