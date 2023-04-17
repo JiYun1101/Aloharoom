@@ -16,7 +16,7 @@ const MenuBar = styled.div`
 const Logo = styled.span`
   position: absolute;
   left: 10vw;
-  font-family: 'Comfortaa' !important;
+  font-family: "Comfortaa" !important;
   font-weight: 500;
   font-size: 1.5rem;
   color: #47a5fd;
@@ -78,33 +78,34 @@ const Header = () => {
 
   const ModalOpen = () => {
     setNotifyModalOpen(true);
-  }
+  };
 
   const ModalClose = () => {
     setNotifyModalOpen(false);
-  }
+  };
 
   return (
     <>
-        <MenuBar>
-        {NotifyModalOpen ? <NotificationModal ModalClose={ModalClose}/> : <></>}
-        <Link to="/" style={LinkToStyle}>
+      <MenuBar>
+        {NotifyModalOpen ? (
+          <NotificationModal ModalClose={ModalClose} />
+        ) : (
+          <></>
+        )}
+        <Link to="/about" style={LinkToStyle}>
           <Logo>aloharoom</Logo>
         </Link>
         <NavGroup>
-          <Link to="/" style={LinkToStyle}>
-            <Link to="../about" style={LinkToStyle}>
-              <NavElement>About</NavElement>
-            </Link>
-          </Link>
           <Link to="/postMapPage" style={LinkToStyle}>
             <NavElement>방 보기</NavElement>
           </Link>
+          <Link to="/Community" style={LinkToStyle}>
             <NavElement>커뮤니티</NavElement>
+          </Link>
         </NavGroup>
         <LogoGroup>
           <LogoElement>
-            <AiOutlineBell size={30} onClick={ModalOpen}/>
+            <AiOutlineBell size={30} onClick={ModalOpen} />
           </LogoElement>
           <LogoElement>
             <Link to="/myPage" style={LinkToStyle}>

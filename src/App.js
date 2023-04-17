@@ -12,6 +12,7 @@ import RegisterPage2 from "./pages/RegisterPage2";
 import About from "./pages/About";
 import NewPostPage from "./pages/NewPostPage";
 import PostInfoPage from "./pages/PostInfoPage";
+import Community from "./pages/Community/Community";
 
 const App = () => {
   return (
@@ -20,13 +21,14 @@ const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/postMapPage" element={<PostMapPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/newPostPage" element={<NewPostPage/>}/>
+        <Route path="/newPostPage" element={<NewPostPage />} />
         <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="RegisterPage/registerPage2" element={<RegisterPage2 />} />
         <Route path="/termUser" element={<TermUser />} />
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/postInfoPage" element= {<PostInfoPage/>}/>
+        <Route path="/postInfoPage" element={<PostInfoPage />} />
+        <Route path="/community" element={<Community />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>
     </BrowserRouter>
