@@ -1,23 +1,27 @@
 import { Button, Col, Row, Statistic } from "antd";
+
 const App = () => (
-  <Row gutter={16}>
+  <Row justify="center" gutter={16}>
     <Col span={12}>
-      <Statistic title="Active Users" value={112893} />
-    </Col>
-    <Col span={12}>
-      <Statistic title="Account Balance (CNY)" value={112893} precision={2} />
-      <Button
+      <div
         style={{
-          marginTop: 16,
+          border: "1px solid #000",
+          borderRadius: 8, // 둥근 모서리 적용
+          padding: 16,
         }}
-        type="primary"
       >
-        Recharge
-      </Button>
-    </Col>
-    <Col span={12}>
-      <Statistic title="Active Users" value={112893} loading />
+        <Statistic title="이용자 수" value={112893} precision={2} />
+        <Button
+          style={{
+            marginTop: 16,
+          }}
+          type="primary"
+        >
+          Recharge
+        </Button>
+      </div>
     </Col>
   </Row>
 );
+
 export default App;

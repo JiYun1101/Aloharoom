@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import BannerSection from "./mainpage/BannerSection";
 import styled from "styled-components";
@@ -54,6 +54,19 @@ const letter = styled.section`
 `;
 
 const About = () => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: 600,
+        behavior: "smooth",
+      });
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <MainContainer>
       <>
