@@ -42,12 +42,12 @@ const SwiperStyle = {
 const HashTags = () => {
   async function fetchMyHashTag() {
     await axios
-    .get("http://localhost:8080/api/myPage/1/home")
+    .get("http://localhost:8080/api/1/home")
       .then((response) => {
         console.log("fetchMyHashTag => response.data : ", response.data);
       })
       .catch((error) => {
-        console.log("axios error");
+        console.log("fetchMyHashTag => axios error");
       });
   }
 
