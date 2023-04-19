@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import axios from "axios";
 
 const HashSection = styled.div`
   width: 50%;
@@ -39,6 +40,21 @@ const SwiperStyle = {
 }
 
 const HashTags = () => {
+  async function fetchMyHashTag() {
+    await axios
+    .get("http://localhost:8080/api/myPage/1/home")
+      .then((response) => {
+        console.log("fetchMyHashTag => response.data : ", response.data);
+      })
+      .catch((error) => {
+        console.log("axios error");
+      });
+  }
+
+  useEffect(() => {
+    fetchMyHashTag();
+  }, []);
+
   return (
     <HashSection>
       <HashTagSwiperDiv>
