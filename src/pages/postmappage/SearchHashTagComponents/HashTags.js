@@ -70,7 +70,7 @@ const HashTags = () => {
           onSlideChange={() => console.log("slide change")}
         >
           {myHashTags.map((data, idx) => (
-            <SwiperSlide>
+            <SwiperSlide key={idx}>
               <HashTagButton>#{data}</HashTagButton>
             </SwiperSlide>
           ))}
