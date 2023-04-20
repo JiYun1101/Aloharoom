@@ -7,6 +7,7 @@ import PriceInfoSection from "./newpostcontentinfocomponents/PriceInfoSection";
 import GuaranteeSection from "./newpostcontentinfocomponents/GuaranteeSection";
 import HouseHashTagButtonSection from "./newpostcontentinfocomponents/HouseHashTagButtonSection";
 import MyHashTagButtonSection from "./newpostcontentinfocomponents/MyHashTagButtonSection";
+import SecondSection from "./newpostcontentinfocomponents/SecondSection";
 
 const NewPostContentInfoDiv = styled.div`
   border-style: solid;
@@ -96,6 +97,10 @@ const NewPostContentInfoSection = ({
                           startDateOnChange={startDateOnChange}
                         />
                         <TitleDiv height="2rem" marginTop="1rem">
+                            <TitleSpan fontSize="1rem" lineHeight="2rem">룸메이트 선호 연령층</TitleSpan>
+                        </TitleDiv>
+                        <SecondSection/>
+                        <TitleDiv height="2rem" marginTop="1rem">
                             <TitleSpan fontSize="1rem" lineHeight="2rem">주소</TitleSpan>
                         </TitleDiv>
                         <AddressInfoSection
@@ -104,13 +109,19 @@ const NewPostContentInfoSection = ({
                           searchLatLng={searchLatLng}
                         />
                         <TitleDiv height="3rem" marginTop="1.5rem">
-                            <TitleBox width="40%" height="3rem">
+                            <TitleBox width="25%" height="3rem">
                                 <TitleSpan fontSize="1rem" lineHeight="3rem">방 개수</TitleSpan>
                             </TitleBox>
-                            <TitleBox width="40%" height="3rem">
+                            <TitleBox width="25%" height="3rem">
                                 <TitleSpan fontSize="1rem" lineHeight="3rem">주거형태</TitleSpan>
                             </TitleBox>
-                            <TitleBox width="20%" height="3rem">
+                            <TitleBox width="16%" height="3rem">
+                                <TitleSpan fontSize="1rem" lineHeight="3rem">전체층수</TitleSpan>
+                            </TitleBox>
+                            <TitleBox width="16%" height="3rem">
+                                <TitleSpan fontSize="1rem" lineHeight="3rem">층수</TitleSpan>
+                            </TitleBox>
+                            <TitleBox width="16%" height="3rem">
                                 <TitleSpan fontSize="1rem" lineHeight="3rem">평수</TitleSpan>
                             </TitleBox>
                         </TitleDiv>
