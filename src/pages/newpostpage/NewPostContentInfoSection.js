@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MoveInDateMonthInfoSection from "./newpostcontentinfocomponents/MoveInDateMonthInfoSection";
+import FirstSection from "./newpostcontentinfocomponents/FirstSection";
 import AddressInfoSection from "./newpostcontentinfocomponents/AddressInfoSection";
 import RoomCountTypeFlatInfoSection from "./newpostcontentinfocomponents/RoomCountTypeFlatInfoSection";
 import PriceInfoSection from "./newpostcontentinfocomponents/PriceInfoSection";
@@ -12,14 +12,28 @@ const NewPostContentInfoDiv = styled.div`
   border-style: solid;
   border-color: #47a5fd;
   border-radius: 1rem;
-  width: 80%;
+  width: 85%;
   height: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 0.4rem;          /* 스크롤바의 너비 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 1%;             /* 스크롤바의 길이 */
+    background: #BBBBBB;    /* 스크롤바의 색상 */
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;      /*스크롤바 뒷 배경 색상*/
+  }  
 `;
 
-const MoveInDateMonthNameDiv = styled.div`
+const FirstTitleDiv = styled.div`
   margin-top: 1rem;
   width: 90%;
   height: 2rem;
@@ -27,12 +41,12 @@ const MoveInDateMonthNameDiv = styled.div`
   flex-direction: row;
 `;
 
-const MoveInDateDiv = styled.div`
-  width: 60%;
+const FirstTitleBox = styled.div`
+  width: 90%;
   height: 2rem;
 `;
 
-const MoveInDateTitleSpan = styled.span`
+const FirstTitleSpan = styled.span`
   color: #47a5fd;
   font-size: 1rem;
   line-height: 2rem;
@@ -164,12 +178,15 @@ const NewPostContentInfoSection = ({
     };
     return (
         <NewPostContentInfoDiv>
-                        <MoveInDateMonthNameDiv>
-                            <MoveInDateDiv>
-                                <MoveInDateTitleSpan>입주 가능 날짜</MoveInDateTitleSpan>
-                            </MoveInDateDiv>
-                        </MoveInDateMonthNameDiv>
-                        <MoveInDateMonthInfoSection
+                        <FirstTitleDiv>
+                            <FirstTitleBox>
+                              <FirstTitleSpan>입주 가능 날짜</FirstTitleSpan>
+                            </FirstTitleBox>
+                            <FirstTitleBox>
+                              <FirstTitleSpan>룸메이트 가격</FirstTitleSpan>
+                            </FirstTitleBox>
+                        </FirstTitleDiv>
+                        <FirstSection
                           startDateOnChange={startDateOnChange}
                         />
                         <AddressTitleDiv>
@@ -208,7 +225,6 @@ const NewPostContentInfoSection = ({
                         <GuaranteeSection setDeposit={setDeposit} />
                         <HouseHashTagTitleDiv>
                             <HouseHashTagTitleSpan>집 해시태그</HouseHashTagTitleSpan>
-                            <HouseHashTagTitleInfoSpan>(클릭으로 해시태그를 적용시킬 수 있습니다.)</HouseHashTagTitleInfoSpan>
                         </HouseHashTagTitleDiv>
                         <HouseHashTagButtonSection/>
                         <MyHashTagTitleDiv>

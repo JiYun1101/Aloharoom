@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const MyHashTagButtonDiv = styled.div`
     width: 90%;
-    height: 4.5rem;
+    min-height: 4.5rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
