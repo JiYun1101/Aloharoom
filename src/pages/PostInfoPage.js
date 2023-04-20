@@ -14,6 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 SwiperCore.use([Pagination]);
 
@@ -341,6 +342,7 @@ const CommentWriteButton = styled.button`
 `;
 
 const PostInfoPage = () => {
+    const boardId = useParams().id;
     const [imgUrls, setImgUrls] = useState([]);
     const [maintenance, setMaintenance] = useState(null);
     const [nickname, setNickName] = useState(null);
@@ -350,8 +352,6 @@ const PostInfoPage = () => {
     const [title, setTitle] = useState('');
     const [tradeType, setTradeType] = useState('');
     const [hashtag, setHashTag] = useState([]);
-
-    const boardId = 1
     async function FetchPostInfoData() {
         await axios.get(`http://localhost:8080/api/board/${boardId}`)
             .then((response) => {

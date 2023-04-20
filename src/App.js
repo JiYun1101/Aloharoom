@@ -26,7 +26,7 @@ const App = () => {
         <Route path="/termUser" element={<TermUser />} />
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/postInfoPage" element= {<PostInfoPage/>}/>
+        <Route path="/postInfoPage/:id" element= {<PostInfoPage/>}/>
         <Route path="*" element={<>Not found</>} />
       </Routes>
     </BrowserRouter>
