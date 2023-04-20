@@ -33,118 +33,24 @@ const NewPostContentInfoDiv = styled.div`
   }  
 `;
 
-const FirstTitleDiv = styled.div`
-  margin-top: 1rem;
+const TitleDiv = styled.div`
   width: 90%;
-  height: 2rem;
+  height: ${props => props.height ||  '0rem'};
+  margin-top: ${props => props.marginTop || '1rem'};
   display: flex;
   flex-direction: row;
 `;
 
-const FirstTitleBox = styled.div`
-  width: 90%;
-  height: 2rem;
+const TitleBox = styled.div`
+  width: ${props => props.width || '0rem'};
+  height: ${props => props.height || '0rem'};
 `;
 
-const FirstTitleSpan = styled.span`
+const TitleSpan = styled.span`
   color: #47a5fd;
-  font-size: 1rem;
-  line-height: 2rem;
-`;
-
-
-const AddressTitleDiv = styled.div`
-  margin-top: 1.5rem;
-  width: 90%;
-  height: 2rem;
-`;
-
-const AddressTitleSpan = styled.span`
-  color: #47a5fd;
-  font-size: 1rem;
-  line-height: 2rem;
-`;
-
-const RoomCountTypeFlatTitleDiv = styled.div`
-  margin-top: 1.5rem;
-  width: 90%;
-  height: 3rem;
-  display: flex;
-  flex-direction: row;
-`;
-
-const RoomCountTitleDiv = styled.div`
-  width: 40%;
-  height: 3rem;
-`;
-
-const RoomCountTitleSpan = styled.span`
-  color: #47a5fd;
-  font-size: 1rem;
-  line-height: 3rem;
-`;
-
-const TypeTitleDiv = styled.div`
-  width: 40%;
-  height: 3rem;
-`;
-
-const TypeTitleSpan = styled.span`
-  color: #47a5fd;
-  font-size: 1rem;
-  line-height: 3rem;
-`;
-
-const FlatTitleDiv = styled.div`
-  width: 20%;
-  height: 3rem;
-`;
-
-const FlatTitleSpan = styled.span`
-  color: #47a5fd;
-  font-size: 1rem;
-  line-height: 3rem;
-`;
-
-const PriceTitleDiv = styled.div`
-  margin-top: 1.5rem;
-  width: 90%;
-  height: 2rem;
-`;
-
-const PriceTitleSpan = styled.span`
-  color: #47a5fd;
-  font-size: 1rem;
-  line-height: 2rem;
-`;
-
-const HouseHashTagTitleDiv = styled.div`
-  margin-top: 1.5rem;
-  width: 90%;
-  height: 2rem;
-`;
-
-const HouseHashTagTitleSpan = styled.span`
-  color: #47a5fd;
-  font-size: 1rem;
-  margin-right: 2rem;
-`;
-
-const HouseHashTagTitleInfoSpan = styled.span`
-  color: #bbbbbb;
-  font-size: 0.8rem;
-`;
-
-const MyHashTagTitleDiv = styled.div`
-  margin-top: 1.5rem;
-  width: 90%;
-  height: 2rem;
-`;
-
-const MyHashTagTitleSpan = styled.span`
-  color: #47a5fd;
-  font-size: 1rem;
-  margin-right: 2rem;
+  font-size: ${ props => props.fontSize || "1rem"};
+  line-height: ${ props => props.lineHeight || "0rem"};
+  margin-right: ${ props => props.marginRight || "0rem"};
 `;
 
 const NewPostContentInfoSection = ({   
@@ -178,44 +84,44 @@ const NewPostContentInfoSection = ({
     };
     return (
         <NewPostContentInfoDiv>
-                        <FirstTitleDiv>
-                            <FirstTitleBox>
-                              <FirstTitleSpan>입주 가능 날짜</FirstTitleSpan>
-                            </FirstTitleBox>
-                            <FirstTitleBox>
-                              <FirstTitleSpan>룸메이트 가격</FirstTitleSpan>
-                            </FirstTitleBox>
-                        </FirstTitleDiv>
+                        <TitleDiv height="2rem" marginTop="2rem">
+                            <TitleBox width="90%" height="2rem ">
+                              <TitleSpan fontSize="1rem" lineHeight="2rem">입주 가능 날짜</TitleSpan>
+                            </TitleBox>
+                            <TitleBox width="90%" height="2rem ">
+                              <TitleSpan fontSize="1rem" lineHeight="2rem">룸메이트 가격</TitleSpan>
+                            </TitleBox>
+                        </TitleDiv>
                         <FirstSection
                           startDateOnChange={startDateOnChange}
                         />
-                        <AddressTitleDiv>
-                            <AddressTitleSpan>주소</AddressTitleSpan>
-                        </AddressTitleDiv>
+                        <TitleDiv height="2rem" marginTop="1rem">
+                            <TitleSpan fontSize="1rem" lineHeight="2rem">주소</TitleSpan>
+                        </TitleDiv>
                         <AddressInfoSection
                           address={address}
                           setAddress={setAddress}
                           searchLatLng={searchLatLng}
                         />
-                        <RoomCountTypeFlatTitleDiv>
-                            <RoomCountTitleDiv>
-                                <RoomCountTitleSpan>방 개수</RoomCountTitleSpan>
-                            </RoomCountTitleDiv>
-                            <TypeTitleDiv>
-                                <TypeTitleSpan>주거형태</TypeTitleSpan>
-                            </TypeTitleDiv>
-                            <FlatTitleDiv>
-                                <FlatTitleSpan>평수</FlatTitleSpan>
-                            </FlatTitleDiv>
-                        </RoomCountTypeFlatTitleDiv>
+                        <TitleDiv height="3rem" marginTop="1.5rem">
+                            <TitleBox width="40%" height="3rem">
+                                <TitleSpan fontSize="1rem" lineHeight="3rem">방 개수</TitleSpan>
+                            </TitleBox>
+                            <TitleBox width="40%" height="3rem">
+                                <TitleSpan fontSize="1rem" lineHeight="3rem">주거형태</TitleSpan>
+                            </TitleBox>
+                            <TitleBox width="20%" height="3rem">
+                                <TitleSpan fontSize="1rem" lineHeight="3rem">평수</TitleSpan>
+                            </TitleBox>
+                        </TitleDiv>
                         <RoomCountTypeFlatInfoSection
                           setRoomCount={setRoomCount}
                           setHomeType={setHomeType}
                           setFlat={setFlat}
                         />
-                        <PriceTitleDiv>
-                            <PriceTitleSpan>가격</PriceTitleSpan>
-                        </PriceTitleDiv>
+                        <TitleDiv height="2rem" marginTop="1.5rem">
+                            <TitleSpan fontSize="1rem" lineHeight="2rem">가격</TitleSpan>
+                        </TitleDiv> 
                         <PriceInfoSection
                           tradeType={tradeType}
                           setPrice={setPrice}
@@ -223,13 +129,13 @@ const NewPostContentInfoSection = ({
                           setMaintenance={setMaintenance}
                         />
                         <GuaranteeSection setDeposit={setDeposit} />
-                        <HouseHashTagTitleDiv>
-                            <HouseHashTagTitleSpan>집 해시태그</HouseHashTagTitleSpan>
-                        </HouseHashTagTitleDiv>
+                        <TitleDiv height="2rem" marginTop="1.5rem">
+                            <TitleSpan fontSize="1rem" marginRight="2rem">집 해시태그</TitleSpan>
+                        </TitleDiv>
                         <HouseHashTagButtonSection/>
-                        <MyHashTagTitleDiv>
-                            <MyHashTagTitleSpan>내 해시태그</MyHashTagTitleSpan>
-                        </MyHashTagTitleDiv>    
+                        <TitleDiv height="2rem" marginTop="1.5rem">
+                            <TitleSpan fontSize="1rem" marginRight="2rem">내 해시태그</TitleSpan>
+                        </TitleDiv>    
                         <MyHashTagButtonSection/>
                     </NewPostContentInfoDiv>
     );
