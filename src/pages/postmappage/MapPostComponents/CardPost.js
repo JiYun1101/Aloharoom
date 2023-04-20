@@ -134,20 +134,31 @@ const CommentSpan = styled.span`
     margin-right: 0.5rem;
 `;
 
-const CardPost = ({type}) => {
+const CardPost = ({
+    type,
+    address,
+    boardId,
+    commentNum,
+    flat,
+    imageUrls,
+    nickname,
+    rent,
+    roomCount,
+    startDate
+}) => {
     return (
         <Card>
             <RoomTypeDiv>
                 <RoomTypeButton>{type}</RoomTypeButton>
             </RoomTypeDiv>
             <MoveInDateDiv>
-                <MoveInDateSpan>입주 가능일 : 2023-11-11</MoveInDateSpan>
+                <MoveInDateSpan>입주 가능일 : {startDate}</MoveInDateSpan>
             </MoveInDateDiv>
             <AddressInfoDiv>
-                <AddressInfoSpan>서울시 성북구 한성대학교 입구역 한성오피스텔</AddressInfoSpan>
+                <AddressInfoSpan>{address}</AddressInfoSpan>
             </AddressInfoDiv>
             <PriceInfoDiv>
-                <PriceInfoSpan>월 20만원/보증금 300만원</PriceInfoSpan>
+                <PriceInfoSpan>월 {rent}만원/보증금 300만원</PriceInfoSpan>
             </PriceInfoDiv>
             <CardImageDiv>
                 <CardImage src="./blue.png"/>
@@ -163,10 +174,10 @@ const CardPost = ({type}) => {
             <ProfileCommentDiv>
                 <ProfileDiv>
                     <ProfileImg src="./blue.png"/>
-                    <ProfileSpan>gretea5</ProfileSpan>
+                    <ProfileSpan>{nickname}</ProfileSpan>
                 </ProfileDiv>
                 <CommentDiv>
-                    <CommentSpan>4</CommentSpan>
+                    <CommentSpan>{commentNum}</CommentSpan>
                     <FaRegCommentDots size={25} style={CommentLogoStyle}/>
                 </CommentDiv>
             </ProfileCommentDiv>

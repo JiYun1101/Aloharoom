@@ -2,10 +2,14 @@ import React from "react";
 import RoommateCardPosts from "./RoommateSectionComponents/RoommateCardPosts";
 import ShareHousePosts from "./ShareHouseSectionComponents/ShareHousePosts";
 
-const CardPosts = ({roommatePosts, sharehousePosts}) => {
+const CardPosts = ({
+    roommatePosts,
+    sharehousePosts,
+    cardPostData
+}) => {
     return (
         <>
-            {roommatePosts ?  <RoommateCardPosts/>: <></>}
+            {roommatePosts ?  <RoommateCardPosts cardPostData={cardPostData}/>: <></>}
             {sharehousePosts ? <ShareHousePosts/>:  <></>}
         </>
     );
