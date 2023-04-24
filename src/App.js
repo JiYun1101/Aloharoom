@@ -11,6 +11,7 @@ import MyPage from "./pages/MyPage";
 import RegisterPage2 from "./pages/RegisterPage2";
 import About from "./pages/About/About";
 import NewPostPage from "./pages/NewPostPage";
+import NewCommunityPostPage from "./pages/Community/newCommunityPostPage";
 import PostInfoPage from "./pages/PostInfoPage";
 import Community from "./pages/Community/Community";
 
@@ -22,6 +23,10 @@ const App = () => {
         <Route path="/postMapPage" element={<PostMapPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/newPostPage" element={<NewPostPage />} />
+        <Route
+          path="/newCommunityPostPage"
+          element={<NewCommunityPostPage />}
+        />
         <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="RegisterPage/registerPage2" element={<RegisterPage2 />} />
         <Route path="/termUser" element={<TermUser />} />

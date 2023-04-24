@@ -3,6 +3,24 @@ import React, { useEffect, useRef } from "react"; // useRef를 추가
 import Header from "../Header";
 import styled from "styled-components";
 import CardPost2 from "./CardPost2";
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar, Segmented, Space } from "antd";
+
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { Pagination } from "antd";
+
+const Page = styled.div`
+  margin-top: 1rem;
+`;
+
+const PageNum = styled.div`
+  margin-top: 113rem;
+  margin-left: 33rem;
+`;
+
+const CategoryNum = styled.div`
+  text-align: center;
+`;
 
 const CardBox2 = styled.div`
   position: absolute;
@@ -37,6 +55,28 @@ const CardPost3 = styled.div`
   border-radius: 1rem;
 `;
 
+const PostMapContentContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 50rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+`;
+
+const LinkToStyle = {
+  textDecoration: "none",
+  color: "inherit",
+};
+
+const NewPostIconStyle = {
+  position: "fixed",
+  right: "2rem",
+  bottom: "0.001rem",
+  zIndex: "2",
+  color: "#bbbbbb",
+};
+
 const Community = () => {
   const cardPost3Ref = useRef(null); // useRef를 사용하여 CardPost3의 ref를 생성
 
@@ -64,18 +104,85 @@ const Community = () => {
   return (
     <>
       <Header />
-      <div className="App"></div>
-      <CardBox2>
-        <CardPost2 />
-        <CardPost2 />
-        <CardPost2 />
-        <CardPost2 />
-        <CardPost2 />
-        <CardPost2 />
-        <CardPost2 />
-        <CardPost2 />
-      </CardBox2>
-      <CardPost3 ref={cardPost3Ref} /> {/* CardPost3에 ref 추가 */}
+      <div className="App"></div>{" "}
+      <Page>
+        <CategoryNum>
+          <Space direction="vertical">
+            <Segmented
+              options={[
+                {
+                  label: (
+                    <div
+                      style={{
+                        padding: 4,
+                      }}
+                    >
+                      <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
+                      <div>User 1</div>
+                    </div>
+                  ),
+                  value: "user1",
+                },
+                {
+                  label: (
+                    <div
+                      style={{
+                        padding: 4,
+                      }}
+                    >
+                      <Avatar
+                        style={{
+                          backgroundColor: "#f56a00",
+                        }}
+                      >
+                        K
+                      </Avatar>
+                      <div>User 2</div>
+                    </div>
+                  ),
+                  value: "user2",
+                },
+                {
+                  label: (
+                    <div
+                      style={{
+                        padding: 4,
+                      }}
+                    >
+                      <Avatar
+                        style={{
+                          backgroundColor: "#87d068",
+                        }}
+                        icon={<UserOutlined />}
+                      />
+                      <div>User 3</div>
+                    </div>
+                  ),
+                  value: "user3",
+                },
+              ]}
+            />
+          </Space>
+        </CategoryNum>
+        <Link to="/newCommunityPostPage" style={LinkToStyle}>
+          <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+        </Link>
+        <CardBox2>
+          <CardPost2 />
+          <CardPost2 />
+          <CardPost2 />
+          <CardPost2 />
+          <CardPost2 />
+          <CardPost2 />
+          <CardPost2 />
+          <CardPost2 />
+        </CardBox2>
+        <CardPost3 ref={cardPost3Ref} /> {/* CardPost3에 ref 추가 */}
+        <PageNum>
+          <Pagination defaultCurrent={1} total={50} />
+        </PageNum>
+        ;
+      </Page>
     </>
   );
 };
