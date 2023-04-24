@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import NewPostContentInfoSection2 from "./NewPostContentInfoSection2";
+//import NewPostContentInfoSection2 from "./NewPostContentInfoSection2";
 import NewPostContentWritingSection2 from "./NewPostContentWritingSection2";
 
 const NewPostContentDiv = styled.div`

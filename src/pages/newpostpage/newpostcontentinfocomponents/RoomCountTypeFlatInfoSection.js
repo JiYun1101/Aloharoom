@@ -1,70 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components';
+import { Select } from 'antd';
 
-const RoomCountTypeFlatInfoDiv = styled.div`
+const RoomCountTypeFlatInfoContainer = styled.div`
   width: 90%;
   height: 3rem;
   display: flex;
   flex-direction: row;
 `;
-
-const RoomCountInfoDiv = styled.div`
-  width: 40%;
+const RoomCountTypeFlatInfoBox = styled.div`
+  width: ${ props => props.width || "0rem"};
   height: 3rem;
   display: flex;
   align-items: center;
 `;
 
-const RoomCountButton = styled.button`
-  width: 6rem;
-  height: 2rem;
-  font-size: 1.2rem;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-radius: 0.3rem;
-  background-color: white;
-  border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
-  color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
-  margin-right: 0.5rem;
-  :hover {
-    border-color: #47a5fd;
-    color: #47a5fd;
-  }
-`;
-
-const TypeInfoDiv = styled.div`
-  width: 40%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-`;
-
-const TypeInfoButton = styled.button`
-  width: 6rem;
-  height: 2rem;
-  font-size: 1.2rem;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-radius: 0.3rem;
-  background-color: white;
-  margin-right: 0.5rem;
-  border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
-  color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
-  :hover {
-    border-color: #47a5fd;
-    color: #47a5fd;
-  }
-`;
-
-const FlatInfoDiv = styled.div`
-  width: 20%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-`;
-
-const FlatInfoInput = styled.input`
-  width: 5rem;
+const RoomCountTypeFlatInput = styled.input`
+  width: ${props => props.width || "0rem"}};
   height: 2rem;
   border-width: 0.1rem;
   border-style: solid;
@@ -72,64 +24,85 @@ const FlatInfoInput = styled.input`
   border-radius: 0.3rem;
 `;
 
-const RoomCountTypeFlatInfoSection = ({setRoomCount, setHomeType, setFlat}) => {
-    //방 개수 버튼 클릭 상태 변수
-    const [selectedRoomCountButton, setSelectedRoomCountButton] = useState(null);
-    const handleRoomCountButtonClick = (buttonIndex) => {
-        setSelectedRoomCountButton(buttonIndex);
-    };
-    //주거형태 버튼 클릭 상태 변수
-    const [selectedTypeInfoButton, setSelectedTypeInfoButton] = useState(null);
-    const handleTypeInfoButton = (buttonIndex) => {
-        setSelectedTypeInfoButton(buttonIndex);
-    };
+const RoomTypeOptions = [
+  {
+    value: '1',
+    label: '1',
+  },
+  {
+    value: '2',
+    label: '2',
+  },
+  {
+    value: '3',
+    label: '3',
+  },
+]
 
+const HouseTypeOptions = [
+  {
+    value: '주택',
+    label: '주택',
+  },
+  {
+    value: '오피스텔',
+    label: '오피스텔',
+  },
+  {
+    value: '아파트',
+    label: '아파트',
+  },
+]
+
+const RoomCountTypeFlatInfoSection = ({setRoomCount, setHomeType, setFlat}) => {
+  const onChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+  const onSearch = (value) => {
+    console.log('search:', value);
+  };
   return (
-    <RoomCountTypeFlatInfoDiv>
-                            <RoomCountInfoDiv>
-                                <RoomCountButton 
-                                    selected={selectedRoomCountButton === 0} 
-                                    onClick={() => {
-                                        handleRoomCountButtonClick(0);
-                                        setRoomCount("1");
-                                    }}
-                                >
-                                    원 룸
-                                </RoomCountButton>
-                                <RoomCountButton 
-                                    selected={selectedRoomCountButton === 1} 
-                                    onClick={() => {
-                                        handleRoomCountButtonClick(1);
-                                        setRoomCount("2");
-                                    }}
-                                >
-                                    투-쓰리룸
-                                </RoomCountButton>
-                            </RoomCountInfoDiv>
-                            <TypeInfoDiv>
-                                <TypeInfoButton
-                                    selected={selectedTypeInfoButton === 0}
-                                    onClick={() => {
-                                        handleTypeInfoButton(0);
-                                        setHomeType("오피스텔");
-                                    }}
-                                >
-                                    오피스텔
-                                </TypeInfoButton>
-                                <TypeInfoButton
-                                    selected={selectedTypeInfoButton === 1}
-                                    onClick={() => {
-                                        handleTypeInfoButton(1);
-                                        setHomeType("아파트")
-                                    }}
-                                >
-                                    아파트
-                                </TypeInfoButton>
-                            </TypeInfoDiv>
-                            <FlatInfoDiv>
-                                <FlatInfoInput type="text" onChange={(e) => { setFlat(e.target.value)}}/>
-                            </FlatInfoDiv>
-                        </RoomCountTypeFlatInfoDiv>
+    <RoomCountTypeFlatInfoContainer>
+      <RoomCountTypeFlatInfoBox width="25%">
+      <Select
+        showSearch
+        placeholder="방 개수 선택"
+        onChange={onChange}
+        onSearch={onSearch}
+        options={RoomTypeOptions}
+      />
+      </RoomCountTypeFlatInfoBox>
+      <RoomCountTypeFlatInfoBox width="25%">
+        <Select
+          showSearch
+          placeholder="주거 형태 선택"
+          onChange={onChange}
+          onSearch={onSearch}
+          options={HouseTypeOptions}
+        />
+      </RoomCountTypeFlatInfoBox>
+      <RoomCountTypeFlatInfoBox width="16%">
+        <RoomCountTypeFlatInput 
+          type="text" 
+          width="4rem" 
+          onChange={(e) => { setFlat(e.target.value)}}
+        />
+      </RoomCountTypeFlatInfoBox>
+      <RoomCountTypeFlatInfoBox width="16%">
+        <RoomCountTypeFlatInput 
+          type="text" 
+          width="4rem" 
+          onChange={(e) => { setFlat(e.target.value)}}
+        />
+      </RoomCountTypeFlatInfoBox>
+      <RoomCountTypeFlatInfoBox width="16%">
+        <RoomCountTypeFlatInput 
+          type="text" 
+          width="4rem" 
+          onChange={(e) => { setFlat(e.target.value)}}
+        />
+      </RoomCountTypeFlatInfoBox>
+    </RoomCountTypeFlatInfoContainer>
   );
 };
 

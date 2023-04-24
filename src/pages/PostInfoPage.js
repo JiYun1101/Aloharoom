@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper/core';
+import { Link, useNavigate } from 'react-router-dom';
 //import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { GrDeliver } from "react-icons/gr";
@@ -14,6 +15,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 SwiperCore.use([Pagination]);
 
@@ -340,7 +342,14 @@ const CommentWriteButton = styled.button`
     color: #47A5FD;
 `;
 
+const LinkToIconStyle = {
+    textDecoration: 'none',
+    color: 'black'
+}
+
 const PostInfoPage = () => {
+    const boardId = useParams().id;
+    const navigate = useNavigate();
     const [imgUrls, setImgUrls] = useState([]);
     const [maintenance, setMaintenance] = useState(null);
     const [nickname, setNickName] = useState(null);
@@ -350,8 +359,6 @@ const PostInfoPage = () => {
     const [title, setTitle] = useState('');
     const [tradeType, setTradeType] = useState('');
     const [hashtag, setHashTag] = useState([]);
-
-    const boardId = 1
     async function FetchPostInfoData() {
         await axios.get(`http://localhost:8080/api/board/${boardId}`)
             .then((response) => {
@@ -367,13 +374,26 @@ const PostInfoPage = () => {
                 setContents(response.data.contents);
             })
             .catch((error) => {
-                console.log('axios error');
+                console.log(' FetchPostInfoData axios error');
             })
     }
+
+    async function DeletePostInfoData() {
+        await axios.delete(`http://localhost:8080/api/board/${boardId}`)
+            .then((response) => {
+                navigate(`../postMapPage`);
+            })
+            .catch((error) => {
+                console.log('DeletePostInfoData axios error');
+            })
+    }
+
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
     }, []);
+
+    
 
     return (
         <PostInfoPageContainer>
@@ -408,7 +428,12 @@ const PostInfoPage = () => {
                     <HeartDiv>
                         <AiOutlineHeart size={40} />
                         <AiOutlineEdit size={40}/>
-                        <AiOutlineDelete size={40}/>
+                        <AiOutlineDelete 
+                            onClick={() => {
+                                DeletePostInfoData();
+                            }}
+                            size={40}
+                        />                        
                     </HeartDiv>
                 </ProfileHeartDiv>
                 <PriceTypeFlatDiv>

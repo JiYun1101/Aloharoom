@@ -4,12 +4,12 @@ import Search from "./SearchHashTagComponents/Search";
 import HashTagTitle from "./SearchHashTagComponents/HashTagTitle";
 
 const SearchHashTagContainer = styled.div`
-  position: absolute;
-  top: 0.1rem;
-  width: 99.5%;
-  height: 20%;
-  display: flex;
-  flex-direction: column;
+    position: absolute;
+    top: 0.1rem;
+    width: 99.5%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
 `;
 
 const SearchHashTag = ({ setSearchStr }) => {

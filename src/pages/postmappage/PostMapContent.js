@@ -8,17 +8,17 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const PostMapContentContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 50rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 50rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 `;
 
 const LinkToStyle = {
-  textDecoration: "none",
-  color: "inherit",
+    textDecoration: "none",
+    color: "inherit",
 };
 
 const NewPostIconStyle = {
@@ -32,12 +32,23 @@ const NewPostIconStyle = {
 const PostMapContent = () => {
     //여기에 검색에 대한 상태 변수를 지정
     const [searchStr, setSearchStr] = useState(null);
+
     return (
         <PostMapContentContainer>            
-            <SearchHashTag setSearchStr={setSearchStr}/>
-            <MapPost searchStr={searchStr}/>
-            <Link to="/newPostPage" style={LinkToStyle}> 
-                <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+            <SearchHashTag 
+                setSearchStr={setSearchStr}
+            />
+            <MapPost 
+                searchStr={searchStr}
+            />
+            <Link 
+                to="/newPostPage" 
+                style={LinkToStyle}
+            > 
+                <AiOutlinePlusCircle 
+                    size={50} 
+                    style={NewPostIconStyle} 
+                />
             </Link>
         </PostMapContentContainer>
     );

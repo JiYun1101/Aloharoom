@@ -15,7 +15,7 @@ const PostContainer = styled.div`
     justify-content: center;
 `;
 
-const Post = () => {
+const Post = ({cardPostData}) => {
     const [roommatePosts, setRoomMatePosts] = useState(true);
     const [sharehousePosts, setShareHousePosts] = useState(false);
 
@@ -31,8 +31,15 @@ const Post = () => {
 
     return (
         <PostContainer>
-            <PostNavs roommatePostsClick={roommatePostsClick} sharehousePostsClick={sharehousePostsClick}/>
-            <CardPosts roommatePosts={roommatePosts} sharehousePosts={sharehousePosts}/>
+            <PostNavs 
+                roommatePostsClick={roommatePostsClick} 
+                sharehousePostsClick={sharehousePostsClick}
+            />
+            <CardPosts 
+                roommatePosts={roommatePosts} 
+                sharehousePosts={sharehousePosts}
+                cardPostData={cardPostData}
+            />
         </PostContainer>
     );
 }

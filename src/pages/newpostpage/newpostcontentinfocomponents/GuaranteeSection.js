@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const GuaranteeDiv = styled.div`
+const GuaranteeContainer = styled.div`
     margin-top: 1.5rem;
     width: 90%;
     height: 3rem;
@@ -10,13 +10,8 @@ const GuaranteeDiv = styled.div`
     flex-direction: row;
 `;
 
-const GuaranteeEmptyDiv = styled.div`
-    width: 55%;
-    height: 3rem;
-`;
-
-const GuaranteeCheckBoxDiv = styled.div`
-    width: 45%;
+const GuaranteeBox = styled.div`
+    width: ${props => props.width || "0rem"};
     height: 3rem;
 `;
 
@@ -46,14 +41,14 @@ const GuaranteeSection = ({ setDeposit }) => {
         setDepositChecked(!depositChecked);
     };
     return (
-        <GuaranteeDiv>
-            <GuaranteeEmptyDiv/>
-            <GuaranteeCheckBoxDiv>
+        <GuaranteeContainer>
+            <GuaranteeBox width="50%"/>
+            <GuaranteeBox width="50%">
                 <GuaranteePriceCheckbox type="checkbox" checked={depositChecked} onChange={handleDepositCheckboxChange}/>
                 <GuaranteeSpan>보증금 별도</GuaranteeSpan>
                 <GuaranteeInputText type="text" disabled={!depositChecked} onChange={(e) => { setDeposit(e.target.value);}}/>
-            </GuaranteeCheckBoxDiv>
-        </GuaranteeDiv>
+            </GuaranteeBox>
+        </GuaranteeContainer>
     );
 }
 

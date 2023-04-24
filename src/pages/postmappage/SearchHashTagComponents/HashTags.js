@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import axios from "axios";
 
 const HashSection = styled.div`
   width: 50%;
@@ -39,6 +40,22 @@ const SwiperStyle = {
 }
 
 const HashTags = () => {
+  const [myHashTags, setMyHashTags] = useState([]);
+  async function fetchMyHashTag() {
+    await axios
+    .get("http://localhost:8080/api/1/home")
+      .then((response) => {
+        setMyHashTags(response.data.myHashtags);
+      })
+      .catch((error) => {
+        console.log("fetchMyHashTag => axios error");
+      });
+  }
+
+  useEffect(() => {
+    fetchMyHashTag();
+  }, []);
+
   return (
     <HashSection>
       <HashTagSwiperDiv>
@@ -52,24 +69,11 @@ const HashTags = () => {
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log("slide change")}
         >
-          <SwiperSlide>
-            <HashTagButton>#주차가능</HashTagButton>
-          </SwiperSlide>
-          <SwiperSlide>
-            <HashTagButton>#주차가능</HashTagButton>
-          </SwiperSlide>
-          <SwiperSlide>
-            <HashTagButton>#주차가능</HashTagButton>
-          </SwiperSlide>
-          <SwiperSlide>
-            <HashTagButton>#주차가능</HashTagButton>
-          </SwiperSlide>
-          <SwiperSlide>
-            <HashTagButton>#주차가능</HashTagButton>
-          </SwiperSlide>
-          <SwiperSlide>
-            <HashTagButton>#주차가능</HashTagButton>
-          </SwiperSlide>
+          {myHashTags.map((data, idx) => (
+            <SwiperSlide key={idx}>
+              <HashTagButton>#{data}</HashTagButton>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </HashTagSwiperDiv>
     </HashSection>
