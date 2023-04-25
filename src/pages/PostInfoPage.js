@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper/core';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 //import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { GrDeliver } from "react-icons/gr";
@@ -26,7 +26,7 @@ const PostInfoPageContainer = styled.div`
     align-items: center;
 `;
 
-const PostInfoPageBox = styled.div`
+const PostInfoPageSection  = styled.div`
     width: 50rem;
     height: 100%;
     display: flex;
@@ -34,17 +34,32 @@ const PostInfoPageBox = styled.div`
     align-items: center;
 `;
 
-const PostInfoImageBox = styled.div`
-    margin-top: 3rem;
-    width: 100%;
-    height: 15rem;
+const PostInfoDiv = styled.div`
+    width: ${ props => props.width || "0%"};
+    height: ${ props => props.height || "0rem"};
+    margin-top: ${ props => props.marginTop || "0rem"};
+    border-bottom: ${ props => props.borderBottom || "none"};
 `;
 
-const Container = styled.div`
-    margin-top: 1rem;
-    .swiper-slide {
-        margin-right: 20px; /* SwiperSlide 간격 조정 */
-    }
+const PostInfoFlexDiv = styled.div`
+    width: ${ props => props.width || "0%"};
+    min-height: ${ props => props.minHeight || "0rem"};
+
+    display: flex;
+    align-items: ${ props => props.alignItems || "stretch"};
+    flex-direction: ${ props => props.flexDirection || "row"};
+    flex-wrap: ${ props => props.flexWrap || "nowrap"};
+    justify-content: ${ props => props.justifyContent || "flex-start" };
+    gap: ${ props => props.gap || "0rem"};
+
+    border-style: ${ props => props.borderStyle || "none"};
+    border-radius: ${ props => props.borderRadius || "0rem"};
+    border-color: ${ props => props.borderColor || "black"};
+
+    border-bottom: ${ props => props.borderBottom || "none"};
+
+    margin-top: ${ props => props.marginTop || "0rem"};
+    margin-left: ${ props => props.marginLeft || "0rem"};
 `;
 
 const PostInfoImage = styled.img`
@@ -52,96 +67,26 @@ const PostInfoImage = styled.img`
     height: 13rem;
 `;
 
-const TitleDiv = styled.div`
-    width: 95%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+const SwiperContainer = styled.div`
+    margin-top: 1rem;
+    .swiper-slide {
+        margin-right: 20px; /* SwiperSlide 간격 조정 */
+    }
 `;
 
-const TitleSpan = styled.span`
-    color: black;
-    font-size: 1.2rem;
-    font-weight: 700;
+const PostInfoSpan = styled.span`
+    color: ${ props => props.color || "black"};
+    font-size: ${ props => props.fontSize || "1rem"};
+    font-weight: ${ props => props.fontWeight || "normal"};
+    margin-left: ${ props => props.marginLeft || "0rem"};
+    margin-top: ${ props => props.marginTop || "0rem"};
 `;
 
-const ProfileHeartDiv = styled.div`
-    width: 95%;
-    height: 4.5rem;
-    display: flex;
-    flex-direction: row;
-    border-bottom: solid 0.1rem #bbbbbb;
-`;
-
-const ProfileDiv = styled.div`
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-`;
-
-const ProfileImg = styled.img`
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50rem;
-`;
-
-const ProfileName = styled.span`
-    margin-left: 1rem;
-    color: #47a5fd;
-    font-size: 1.2rem;
-`;
-
-const HeartDiv = styled.div`
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-`;
-
-const PriceTypeFlatDiv = styled.div`
-    width: 95%;
-    height: 3rem;    
-    display: flex;
-    flex-direction: row;
-`;
-
-const MaintenancePriceDiv = styled.div`
-    width: 25%;
-    height: 3rem;    
-    display: flex;
-    align-items: center;
-`;
-
-const MaintenancePriceSpan = styled.span`
-    color: #47a5fd;
-    font-size: 1.2rem;
-    font-weight: 600;
-`;
-
-const TypeFlatDiv = styled.div`
-    width: 75%;
-    height: 3rem;    
-    display: flex;
-    align-items: center;
-`;
-
-const TypeFlatDivSpan = styled.span`
-    color: #bbbbbb;
-    font-size: 1.2rem;
-    font-weight: 600;
-`;
-
-const PostHashTagDiv = styled.div`
-    width: 95%;
-    height: 6rem;    
-    display: flex;
-    //align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.2rem;
-    border-bottom: solid 0.1rem #bbbbbb;
+const UserProfileImg = styled.img`
+    margin-left: ${ props => props.marginLeft || "0rem"};
+    width: ${ props => props.width || "0rem"};
+    height: ${ props => props.height || "0rem"};
+    border-radius: ${ props => props.borderRadius || "0rem"};
 `;
 
 const HashTagButton = styled.button`
@@ -156,89 +101,6 @@ const HashTagButton = styled.button`
     color: #47A5FD;
 `;
 
-const PostContentDiv = styled.div`
-    margin-top: 1rem;
-    width: 95%;
-    height: 15rem;    
-    border-bottom: solid 0.1rem #bbbbbb;
-`;
-
-const PostContentSpan = styled.span`
-    color: black;
-    font-size: 1.2rem;
-    font-weight: 500;
-`;
-
-const DeliverTitleDiv = styled.div`
-    margin-top: 0.7rem;
-    width: 95%;
-    height: 3rem;  
-    display: flex;
-    align-items: center;
-`;
-
-const DeliverTitleSpan = styled.span`
-    font-size: 1.2rem;
-    color: #bbbbbb;
-`;
-
-const DeliverDiv = styled.div`
-    width: 95%;
-    height: 10rem;  
-    display: flex;
-    flex-direction: column;
-    border-bottom: solid 0.1rem #bbbbbb;
-`;
-
-const DeliverInfoDiv = styled.div`
-    width: 100%;
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
-`;
-
-const DeliverFirstBox = styled.div`
-    width: 30%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-`;
-
-const DeliverSecondBox = styled.div`
-    width: 70%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-`;
-
-const DeliverInfoSpan = styled.span`
-    margin-left: 1rem;
-    font-size: 1.2rem;
-`;
-
-const MapFacilityDiv = styled.div`
-    margin-top: 1rem;
-    width: 95%;
-    height: 30rem;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const MapFacilitySection = styled.div`
-    width: 90%;
-    height: 28rem;
-`;
-
-const MatchingCompleteDiv = styled.div`
-    width: 95%;
-    height: 4rem;  
-    border-bottom: solid 0.1rem #bbbbbb;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-`;
-
 const MatchingCompleteButton = styled.button`
     width: 7rem;
     height: 2rem;
@@ -250,51 +112,6 @@ const MatchingCompleteButton = styled.button`
     border-color: #47A5FD;
     color: #47A5FD;
 `;
-
-const CommentSection = styled.div`
-    margin-top: 1rem;
-    width: 95%;
-    min-height: 5rem;  
-    display: flex;
-    flex-direction: column;
-`;
-
-const CommentBox = styled.div`
-    border-style: solid;
-    border-radius: 0.5rem;
-    border-color: #47A5FD;
-    width: 100%;
-    height: 6rem;
-    display: flex;
-    flex-direction: column;
-`;
-
-const SubCommentBox = styled.div`
-    border-style: solid;
-    border-radius: 0.5rem;
-    border-color: #47A5FD;
-    margin-top: 0.5rem;
-    margin-left: 15%;
-    width: 85%;
-    height: 6rem;
-    display: flex;
-    flex-direction: column;
-`;
-
-const CommentProfileDiv = styled.div`
-    width: 100%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-`;
-
-const CommentInputDiv = styled.div`
-    width: 100%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-`;
-
 const CommentProfileImg = styled.img`
     margin-left: 0.7rem;
     border-radius: 10rem;
@@ -302,24 +119,6 @@ const CommentProfileImg = styled.img`
     height: 2.5rem;
 `;
 
-const CommentProfileSpan = styled.span`
-    margin-left: 0.5rem;
-    color: #47A5FD;
-    font-size: 1.2rem;
-`;
-
-const CommentSpan = styled.span`
-    margin-left: 4rem;
-    color: black;
-    font-size: 1.2rem;
-`;
-
-const AddCommentSpan = styled.span`
-    margin-top: 0.5rem;
-    margin-left: 1rem;
-    color: #47A5FD;
-    font-size: 0.8rem;
-`;
 
 const CommentInput = styled.input`
     margin-left: 0.5rem;
@@ -393,13 +192,11 @@ const PostInfoPage = () => {
         FetchPostInfoData();
     }, []);
 
-    
-
     return (
         <PostInfoPageContainer>
-            <PostInfoPageBox>
-                <PostInfoImageBox>
-                    <Container>
+            <PostInfoPageSection>
+                <PostInfoDiv width="100%" height="15rem" marginTop="3rem">
+                    <SwiperContainer>
                         <Swiper
                             // install Swiper modules
                             modules={[Navigation, Scrollbar, Pagination, A11y]}
@@ -415,17 +212,17 @@ const PostInfoPage = () => {
                                 </SwiperSlide>
                             )}
                         </Swiper>
-                    </Container>
-                </PostInfoImageBox>
-                <TitleDiv>
-                    <TitleSpan>{title}</TitleSpan>
-                </TitleDiv>
-                <ProfileHeartDiv>
-                    <ProfileDiv>
-                        <ProfileImg src="blue.png"/>
-                        <ProfileName>{nickname}</ProfileName>
-                    </ProfileDiv>
-                    <HeartDiv>
+                    </SwiperContainer>
+                </PostInfoDiv>
+                <PostInfoFlexDiv width="95%" minHeight="3rem" alignItems="center">
+                    <PostInfoSpan color="black" fontSize="1.2rem" fontWeight="700">{title}</PostInfoSpan>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="95%" minHeight="4.5rem" flexDirections="row" borderBottom="solid 0.1rem #bbbbbb">
+                    <PostInfoFlexDiv width="50%" minHeight="100%" alignItems="center">
+                        <UserProfileImg width="2rem" height="2rem" borderRadius="50rem" src="blue.png"/>
+                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="1rem">{nickname}</PostInfoSpan>
+                    </PostInfoFlexDiv>
+                    <PostInfoFlexDiv width="50%" minHeight="100%" flexDirection="row-reverse" alignItems="center">
                         <AiOutlineHeart size={40} />
                         <AiOutlineEdit size={40}/>
                         <AiOutlineDelete 
@@ -434,57 +231,57 @@ const PostInfoPage = () => {
                             }}
                             size={40}
                         />                        
-                    </HeartDiv>
-                </ProfileHeartDiv>
-                <PriceTypeFlatDiv>
-                    <MaintenancePriceDiv>
-                        <MaintenancePriceSpan>{maintenance}/{rent}</MaintenancePriceSpan>
-                    </MaintenancePriceDiv>
-                    <TypeFlatDiv>
-                        <TypeFlatDivSpan>({tradeType}, 투룸, {flat}평)</TypeFlatDivSpan>
-                    </TypeFlatDiv>
-                </PriceTypeFlatDiv>
-                <PostHashTagDiv>
+                    </PostInfoFlexDiv>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row">
+                    <PostInfoFlexDiv width="25%" height="3rem" alignItems="center">
+                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" fontWeight="600">{maintenance}/{rent}</PostInfoSpan>
+                    </PostInfoFlexDiv>
+                    <PostInfoFlexDiv width="75%" height="3rem" alignItems="center">
+                        <PostInfoSpan color="#bbbbbb" fontSize="1.2rem" fontWeight="600">({tradeType}, 투룸, {flat}평)</PostInfoSpan>
+                    </PostInfoFlexDiv>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="95%" minHeight="6rem" flexDirections="row" flexWrap="wrap" gap="0.2rem" borderBottom="solid 0.1rem #bbbbbb">
                     { hashtag && hashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                </PostHashTagDiv>
-                <PostContentDiv>
-                    <PostContentSpan>
+                </PostInfoFlexDiv>
+                <PostInfoDiv width="95%" height="15rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
+                    <PostInfoSpan color="black" fontSize="1.2rem" fontWeight="500">
                         {contents}
-                    </PostContentSpan>
-                </PostContentDiv>
-                <DeliverTitleDiv>
-                    <DeliverTitleSpan>이 지역은 하루 배송권이에요.</DeliverTitleSpan>
-                </DeliverTitleDiv>
-                <DeliverDiv>
-                    <DeliverInfoDiv>
-                        <DeliverFirstBox>
+                    </PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoFlexDiv width="95%" minHeight="3rem" marginTop="0.7rem" alignItems="center">
+                    <PostInfoSpan color="#bbbbbb" fontSize="1.2rem">이 지역은 하루 배송권이에요.</PostInfoSpan>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="95%" minHeight="10rem" flexDirection="column" borderBottom="solid 0.1rem #bbbbbb">
+                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row">
+                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
                             <GrDeliver size={30}/>
-                            <DeliverInfoSpan>쿠팡</DeliverInfoSpan>
-                        </DeliverFirstBox>
-                        <DeliverSecondBox>
+                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">쿠팡</PostInfoSpan>
+                        </PostInfoFlexDiv>
+                        <PostInfoFlexDiv width="70%" minHeight="3rem" alignItems="center">
                             <GiMeal size={30}/>
-                            <DeliverInfoSpan>배달의 민족</DeliverInfoSpan>
-                        </DeliverSecondBox>
-                    </DeliverInfoDiv>
-                    <DeliverInfoDiv>
-                        <DeliverFirstBox>
+                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">배달의 민족</PostInfoSpan>
+                        </PostInfoFlexDiv>
+                    </PostInfoFlexDiv>
+                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row">
+                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
                             <GrDeliver size={30}/>
-                            <DeliverInfoSpan>SSG</DeliverInfoSpan>
-                        </DeliverFirstBox>
-                        <DeliverSecondBox>
+                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">SSG</PostInfoSpan>
+                        </PostInfoFlexDiv>
+                        <PostInfoFlexDiv width="70%" minHeight="3rem" alignItems="center">
                             <GiMeal size={30}/>
-                            <DeliverInfoSpan>요기요</DeliverInfoSpan>
-                        </DeliverSecondBox>
-                    </DeliverInfoDiv>
-                    <DeliverInfoDiv>
-                        <DeliverFirstBox>
+                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">요기요</PostInfoSpan>
+                        </PostInfoFlexDiv>
+                    </PostInfoFlexDiv>
+                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row"erInfoDiv>
+                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
                             <GrDeliver size={30}/>
-                            <DeliverInfoSpan>마켓컬리</DeliverInfoSpan>
-                        </DeliverFirstBox>
-                    </DeliverInfoDiv>
-                </DeliverDiv>
-                <MapFacilityDiv>
-                    <MapFacilitySection>
+                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">마켓컬리</PostInfoSpan>
+                        </PostInfoFlexDiv>
+                    </PostInfoFlexDiv>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
+                    <PostInfoDiv width="90%" height="28rem">
                         <Map 
                             center={{ lat: 37.56682420267543, lng: 126.978652258823 }}   // 지도의 중심 좌표
                             level={2}                                   // 지도 확대 레벨
@@ -493,34 +290,34 @@ const PostInfoPage = () => {
                                 height: "100%"
                             }}
                         />
-                    </MapFacilitySection>
-                </MapFacilityDiv>
-                <MatchingCompleteDiv>
+                    </PostInfoDiv>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="95%" minHeight="4rem" alignItems="center" flexDirection="row-reverse" borderBottom="solid 0.1rem #bbbbbb">
                     <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
-                </MatchingCompleteDiv>
-                <CommentSection>
-                    <CommentBox>
-                        <CommentProfileDiv>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
+                    <PostInfoFlexDiv width="100%" minHeight="6rem" flexDirection="column" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
+                        <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
                             <CommentProfileImg src = "blue.png"/>
-                            <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-                        </CommentProfileDiv>
-                        <CommentInputDiv>
-                            <CommentSpan>안녕하세요!</CommentSpan>
-                            <AddCommentSpan>답글 쓰기</AddCommentSpan>
-                        </CommentInputDiv>
-                    </CommentBox>
-                    <SubCommentBox>
-                        <CommentProfileDiv>
-                            <CommentProfileImg src = "blue.png"/>
-                            <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-                        </CommentProfileDiv>
-                        <CommentInputDiv>
+                            <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">wkdgns1979</PostInfoSpan>
+                        </PostInfoFlexDiv>
+                        <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
+                            <PostInfoSpan color="black" marginLeft="4rem" fontSize="1.2rem">안녕하세요!</PostInfoSpan>
+                            <PostInfoSpan color="#47a5fd" marginLeft="1rem" marginTop="0.5rem" fontSize="0.8rem">답글 쓰기</PostInfoSpan>
+                        </PostInfoFlexDiv>
+                    </PostInfoFlexDiv>
+                    <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
+                        <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
+                            <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src = "blue.png"/>
+                            <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">wkdgns1979</PostInfoSpan>
+                        </PostInfoFlexDiv>
+                        <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
                             <CommentInput type="text"/>
                             <CommentWriteButton>쓰기</CommentWriteButton>
-                        </CommentInputDiv>
-                    </SubCommentBox>
-                </CommentSection>
-            </PostInfoPageBox>
+                        </PostInfoFlexDiv>
+                    </PostInfoFlexDiv>
+                </PostInfoFlexDiv>
+            </PostInfoPageSection>
         </PostInfoPageContainer>
     );
 }
