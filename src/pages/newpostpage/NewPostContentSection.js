@@ -10,14 +10,7 @@ const NewPostContentDiv = styled.div`
     flex-direction: row;
 `;
 
-const NewPostContentInfoContainer = styled.div`
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-
-const NewPostContentWritingContainer = styled.div`
+const NewPostContentContainer = styled.div`
     width: 50%;
     display: flex;
     align-items: center;
@@ -108,7 +101,7 @@ const NewPostContentSection = () => {
 
     return (
         <NewPostContentDiv>
-                <NewPostContentInfoContainer>
+                <NewPostContentContainer>
                     <NewPostContentInfoSection
                         address={address}
                         setAddress={setAddress}
@@ -124,15 +117,15 @@ const NewPostContentSection = () => {
                         setMaintenance={setMaintenance}
                         setDeposit={setDeposit}
                     />
-                </NewPostContentInfoContainer>
-                <NewPostContentWritingContainer>
+                </NewPostContentContainer>
+                <NewPostContentContainer>
                     <NewPostContentWritingSection
                         setTitle={setTitle}
                         setContents={setContents}
                         setImgFiles={setImgFiles}
                         PostInfoSubmit={PostInfoSubmit}
                     />
-                </NewPostContentWritingContainer>
+                </NewPostContentContainer>
         </NewPostContentDiv>
     );
 }
