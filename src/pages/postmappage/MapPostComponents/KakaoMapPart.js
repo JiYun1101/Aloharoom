@@ -3,7 +3,8 @@ import { Map } from 'react-kakao-maps-sdk';
 
 const kakaoMapStyle = {
     width: "52%",
-    height: "100%"
+    height: "100%",
+    zIndex: -1
 };
 
 const KakaoMapPart = ({searchStr}) => {

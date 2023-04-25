@@ -16,6 +16,7 @@ const NotificationModalDiv2 = styled.div`
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  z-index: 100;
 `;
 
 const NotificationModalHeaderDiv2 = styled.div`

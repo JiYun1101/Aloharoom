@@ -22,6 +22,7 @@ const HashTagSwiperDiv = styled.div`
   margin-top: 1.5rem;
   margin-right: 1rem;
   fontweight: 800;
+  z-index: -1;
 `;
 
 const HashTagButton = styled.button`
