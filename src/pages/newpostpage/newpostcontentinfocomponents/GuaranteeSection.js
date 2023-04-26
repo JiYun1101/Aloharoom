@@ -35,7 +35,7 @@ const GuaranteeInputText = styled.input`
     border-radius: 0.3rem;
 `;
 
-const GuaranteeSection = ({ setDeposit }) => {
+const GuaranteeSection = ({ deposit, setDeposit }) => {
     const [depositChecked, setDepositChecked] = useState(false);
     const handleDepositCheckboxChange = () => {
         setDepositChecked(!depositChecked);
@@ -44,9 +44,9 @@ const GuaranteeSection = ({ setDeposit }) => {
         <GuaranteeContainer>
             <GuaranteeBox width="50%"/>
             <GuaranteeBox width="50%">
-                <GuaranteePriceCheckbox type="checkbox" checked={depositChecked} onChange={handleDepositCheckboxChange}/>
+                <GuaranteePriceCheckbox type="checkbox" checked={deposit !== "" ? true : depositChecked} onChange={handleDepositCheckboxChange}/>
                 <GuaranteeSpan>보증금 별도</GuaranteeSpan>
-                <GuaranteeInputText type="text" disabled={!depositChecked} onChange={(e) => { setDeposit(e.target.value);}}/>
+                <GuaranteeInputText value={deposit} type="text" disabled={deposit !== "" ? false : !depositChecked} onChange={(e) => { setDeposit(e.target.value);}}/>
             </GuaranteeBox>
         </GuaranteeContainer>
     );

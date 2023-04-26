@@ -28,28 +28,36 @@ const UploadImg = styled.img`
     height: 8rem;
 `;
 
-const ImageSwiperSection = ({previewImages}) => {
-  return (
-    <ImageSwiperDiv>
-        <SwiperContainer>
-            <Swiper
-            // install Swiper modules
-            modules={[Navigation, Scrollbar, Pagination, A11y]}
-            spaceBetween={1}
-            slidesPerView={3}
-            navigation
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
-            > 
-                { previewImages.map((previewImage, idx) => (
-                <SwiperSlide>
-                    <UploadImg key={idx} src={previewImage}/>
-                </SwiperSlide>
-                ))}                                            
-            </Swiper>
-        </SwiperContainer>
-    </ImageSwiperDiv>
-  );
+const ImageSwiperSection = ({ imgFiles, previewImages }) => {
+    return (
+        <ImageSwiperDiv>
+            <SwiperContainer>
+                <Swiper
+                // install Swiper modules
+                modules={[Navigation, Scrollbar, Pagination, A11y]}
+                spaceBetween={1}
+                slidesPerView={3}
+                navigation
+                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => console.log('slide change')}
+                > 
+                    { imgFiles.length === 0 ? 
+                        previewImages.map((previewImage, idx) => (
+                        <SwiperSlide>
+                            <UploadImg key={idx} src={previewImage}/>
+                        </SwiperSlide>
+                        ))
+                    :
+                        imgFiles.map((imgFile, idx) => (
+                            <SwiperSlide>
+                                <UploadImg key={idx} src={imgFile}/>
+                            </SwiperSlide>
+                        ))
+                    }    
+                </Swiper>
+            </SwiperContainer>
+        </ImageSwiperDiv>
+    );
 }
 
 export default ImageSwiperSection

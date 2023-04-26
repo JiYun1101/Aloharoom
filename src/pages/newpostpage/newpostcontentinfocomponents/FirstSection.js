@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import dayjs from "dayjs";
 import { DatePicker } from 'antd';
 
 const FirstInfoDiv = styled.div`
@@ -30,14 +31,24 @@ const RoomMatePriceSpan = styled.span`
     color: #47a5fd;
 `;
 
-const FirstSection = ({startDateOnChange, setRent}) => {
+const dateFormat = 'YYYY-MM-DD';
+const FirstSection = ({
+    startDate,
+    rent,
+    startDateOnChange, 
+    setRent
+}) => {
     return (
         <FirstInfoDiv>
             <FirstInfoBox>
-                <DatePicker onChange={startDateOnChange}/>
+                <DatePicker 
+                    defaultValue={ startDate === "" ? undefined : dayjs(startDate, dateFormat)}
+                    onChange={startDateOnChange}
+                />
             </FirstInfoBox>
             <FirstInfoBox>
                 <RoomMatePriceInput 
+                    value={rent}
                     type="text" 
                     onChange={(e) => { setRent(e.target.value);}}
                 />

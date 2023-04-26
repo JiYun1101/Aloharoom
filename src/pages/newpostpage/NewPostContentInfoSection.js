@@ -56,7 +56,21 @@ const TitleSpan = styled.span`
 
 const NewPostContentInfoSection = ({   
     address,
+    startDate,
+    x,
+    y,
+    roomCount,
+    homeType,
+    flat,
+    price,
     tradeType,
+    maintenance,
+    deposit,
+    rent,
+    floor,
+    totalFloor,
+    title,
+    ageRange,
     setAddress,
     setStartDate,
     setX,
@@ -71,7 +85,8 @@ const NewPostContentInfoSection = ({
     setRent,
     setFloor,
     setTotalFloor,
-    setTitle
+    setTitle,
+    setAgeRange
 }) => {
     //입주 가능 날짜 설정 함수
     const startDateOnChange = (date, dateString) => {
@@ -104,13 +119,18 @@ const NewPostContentInfoSection = ({
                             </TitleBox>
                         </TitleDiv>
                         <FirstSection
+                          startDate={startDate}
+                          rent={rent}
                           startDateOnChange={startDateOnChange}
                           setRent={setRent}
                         />
                         <TitleDiv height="2rem" marginTop="1rem">
                             <TitleSpan fontSize="1rem" lineHeight="2rem">룸메이트 선호 연령층</TitleSpan>
                         </TitleDiv>
-                        <SecondSection/>
+                        <SecondSection 
+                          ageRange={ageRange}
+                          setAgeRange={setAgeRange}
+                        />
                         <TitleDiv height="2rem" marginTop="1rem">
                             <TitleSpan fontSize="1rem" lineHeight="2rem">주소</TitleSpan>
                         </TitleDiv>
@@ -137,6 +157,11 @@ const NewPostContentInfoSection = ({
                             </TitleBox>
                         </TitleDiv>
                         <RoomCountTypeFlatInfoSection
+                          roomCount={roomCount}
+                          homeType={homeType}
+                          flat={flat}
+                          floor={floor}
+                          totalFloor={totalFloor}
                           setRoomCount={setRoomCount}
                           setHomeType={setHomeType}
                           setFlat={setFlat}
@@ -147,12 +172,17 @@ const NewPostContentInfoSection = ({
                             <TitleSpan fontSize="1rem" lineHeight="2rem">가격</TitleSpan>
                         </TitleDiv> 
                         <PriceInfoSection
+                          price={price}
                           tradeType={tradeType}
+                          maintenance={maintenance}
                           setPrice={setPrice}
                           setTradeType={setTradeType}
                           setMaintenance={setMaintenance}
                         />
-                        <GuaranteeSection setDeposit={setDeposit} />
+                        <GuaranteeSection 
+                          deposit={deposit}
+                          setDeposit={setDeposit} 
+                        />
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" marginRight="2rem">집 해시태그</TitleSpan>
                         </TitleDiv>

@@ -54,7 +54,9 @@ const TradeTypeOptions = [
 ]
 
 const PriceInfoSection = ({
+    price,
     tradeType,
+    maintenance,
     setPrice,
     setTradeType,
     setMaintenance
@@ -62,11 +64,12 @@ const PriceInfoSection = ({
     const TradeTypeOnChange = (value) => {
       setTradeType(value);
     };
-        //체크 박스 클릭시 활성화 되도록 하는 상태 변수
-        const [maintenanceChecked, setMaintenanceChecked] = useState(false);
-        const handleMaintenanceCheckboxChange = () => {
-            setMaintenanceChecked(!maintenanceChecked);
-        };
+    //체크 박스 클릭시 활성화 되도록 하는 상태 변수
+    const [maintenanceChecked, setMaintenanceChecked] = useState(false);
+    const handleMaintenanceCheckboxChange = () => {
+        setMaintenanceChecked(!maintenanceChecked);
+    };
+        
     return (
         <PriceInfoContainer>
           <PriceInfoBox width="50%" height="3rem">
@@ -75,15 +78,17 @@ const PriceInfoSection = ({
             <Select
               showSearch
               placeholder="계약형태 선택"
+              value={tradeType === "" ? undefined : tradeType}
               onChange={TradeTypeOnChange}
               options={TradeTypeOptions}
+              style={{ width: 130 }}
             />
             <PriceInfoSpan fontSize="2rem">)</PriceInfoSpan>
           </PriceInfoBox>
           <PriceInfoBox width="50%" height="3rem">
-            <ManageMentPriceCheckbox type="checkbox" checked={maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>
+            <ManageMentPriceCheckbox type="checkbox" checked={maintenance !== "" ?  true : maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>
             <PriceInfoSpan marginRight="2rem">관리비 별도</PriceInfoSpan>
-            <PriceInfoInput width="8rem" height="2rem" type="text" disabled={!maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
+            <PriceInfoInput value={maintenance} width="8rem" height="2rem" type="text" disabled={maintenance !== "" ?  false : !maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
           </PriceInfoBox>
         </PriceInfoContainer>
     );

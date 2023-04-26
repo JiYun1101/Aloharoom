@@ -9,7 +9,7 @@ const SecondInfoDiv = styled.div`
     flex-direction: row;
 `;
 
-const SecondSection = () => {
+const SecondSection = ({ageRange, setAgeRange}) => {
     const marks = {
         20: '20',
         25: '25',
@@ -26,13 +26,14 @@ const SecondSection = () => {
         <SecondInfoDiv>
             <div style={{width: '35vw'}}>
                 <Slider range 
+                    value={ageRange.length === 0 ? undefined : ageRange}
                     marks={marks} 
                     included={true} 
                     min={20} 
                     max={65} 
                     defaultValue={[20, 25]}
                     //배열의 형태로 받아와짐
-                    onChange={(value) => { console.log('slider value: ', value)}}
+                    onChange={(value) => { setAgeRange(value); }}
                 />
             </div>
         </SecondInfoDiv>

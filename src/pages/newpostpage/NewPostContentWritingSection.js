@@ -35,7 +35,8 @@ const NewPostContentImageArea = styled.div`
 
 
 const NewPostContentWritingSection = ({
-    setTitle,
+    contents,
+    imgFiles,
     setContents,
     setImgFiles,
     PostInfoSubmit
@@ -61,11 +62,17 @@ const NewPostContentWritingSection = ({
     return (
         <NewPostContentWritingDiv>
             <NewPostContentWritingArea>
-                <PostContentSection setContents={setContents}/>
+                <PostContentSection 
+                    contents={contents}
+                    setContents={setContents}
+                />
             </NewPostContentWritingArea>
             <NewPostContentImageArea>
                 <ImageUploadSection handleImageFilesInputChange={handleImageFilesInputChange}/>
-                <ImageSwiperSection previewImages={previewImages}/>
+                <ImageSwiperSection 
+                    imgFiles={imgFiles}
+                    previewImages={previewImages}
+                />
                 <PostButtonSection PostInfoSubmit={PostInfoSubmit}/>
             </NewPostContentImageArea>
         </NewPostContentWritingDiv>

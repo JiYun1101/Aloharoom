@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PostButtonDiv = styled.div`
     margin-top: 0.5rem;
@@ -24,14 +24,31 @@ const PostButton = styled.button`
 
 const PostButtonSection = ({PostInfoSubmit}) => {
     const navigate = useNavigate();
+    const updateID = useParams().id;
+    const IdExists = updateID != null;
+    //수정 페이지일 경우 상태 변수를 변경해주고 그 값을 넣으면 된다.
+    if (updateID != null) {
+        console.log('수정 페이지일 경우');
+    }
     return (
         <PostButtonDiv>
-            <PostButton onClick={() => {
-                PostInfoSubmit();
-                navigate(-1);
-            }}>
-                올리기
-            </PostButton>
+            {
+                IdExists 
+                ? 
+                    <PostButton onClick={() => {
+                        PostInfoSubmit();
+                        navigate(-1);
+                    }}>
+                        수정하기
+                    </PostButton>
+                :
+                    <PostButton onClick={() => {
+                        PostInfoSubmit();
+                        navigate(-1);
+                    }}>
+                        올리기
+                    </PostButton>
+            }
         </PostButtonDiv>
     )
 }

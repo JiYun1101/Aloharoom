@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import NewPostContentInfoSection from "./NewPostContentInfoSection";
 import NewPostContentWritingSection from "./NewPostContentWritingSection";
+import { useParams } from "react-router-dom";
 
 const NewPostContentDiv = styled.div`
     height: 100%;
@@ -36,7 +37,13 @@ const NewPostContentSection = () => {
     const [startDate, setStartDate] = useState("");
     const [x, setX] = useState(null);
     const [y, setY] = useState(null);
+    const [ageRange, setAgeRange] = useState([]);
     const [imgFiles, setImgFiles] = useState([]);
+
+    const updateID = useParams().id;
+    if (updateID != null) {
+        console.log('수정 페이지일 경우');
+    }
 
     console.log("==============================");
     console.log("title ", title);
@@ -55,6 +62,7 @@ const NewPostContentSection = () => {
     console.log("startDate ", startDate);
     console.log("x ", x);
     console.log("y ", y);
+    console.log("ageRange ", ageRange);
     console.log("imgFiles ", imgFiles);
     console.log("==============================");
 
@@ -77,7 +85,8 @@ const NewPostContentSection = () => {
             "totalFloor": totalFloor,
             "startDate": startDate,
             "x": x,
-            "y": y
+            "y": y,
+            "ageRange": ageRange
         }
         const jsonData = JSON.stringify(data);
         const blob = new Blob([jsonData], { type: "application/json"});
@@ -104,8 +113,21 @@ const NewPostContentSection = () => {
                 <NewPostContentContainer>
                     <NewPostContentInfoSection
                         address={address}
+                        startDate={startDate}
                         x={x}
                         y={y}
+                        roomCount={roomCount}
+                        homeType={homeType}
+                        flat={flat}
+                        price={price}
+                        tradeType={tradeType}
+                        maintenance={maintenance}
+                        deposit={deposit}
+                        rent={rent}
+                        floor={floor}
+                        totalFloor={totalFloor}
+                        title={title}
+                        ageRange={ageRange}
                         setAddress={setAddress}
                         setStartDate={setStartDate}
                         setX={setX}
@@ -114,7 +136,6 @@ const NewPostContentSection = () => {
                         setHomeType={setHomeType}
                         setFlat={setFlat}
                         setPrice={setPrice}
-                        tradeType={tradeType}
                         setTradeType={setTradeType}
                         setMaintenance={setMaintenance}
                         setDeposit={setDeposit}
@@ -122,11 +143,13 @@ const NewPostContentSection = () => {
                         setFloor={setFloor}
                         setTotalFloor={setTotalFloor}
                         setTitle={setTitle}
+                        setAgeRange={setAgeRange}
                     />
                 </NewPostContentContainer>
                 <NewPostContentContainer>
                     <NewPostContentWritingSection
-                        setTitle={setTitle}
+                        contents={contents}
+                        imgFiles={imgFiles}
                         setContents={setContents}
                         setImgFiles={setImgFiles}
                         PostInfoSubmit={PostInfoSubmit}

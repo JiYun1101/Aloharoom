@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const PostContentDiv = styled.div`
@@ -20,10 +20,12 @@ const PostContentTextArea = styled.textarea`
     }
 `;
 
-const PostContentSection = ({setContents}) => {
+const PostContentSection = ({contents, setContents}) => {
+    const isNotEmpty = contents !== '';
     return (
         <PostContentDiv>
             <PostContentTextArea 
+                value={isNotEmpty ? contents : undefined}
                 placeholder="집에 대한 상세한 내용을 작성해주세요. (인원, 교통시설, 편의시설, 층수 등)"
                 onChange={(e) => { setContents(e.target.value);}}
             />

@@ -55,6 +55,11 @@ const HouseTypeOptions = [
 ]
 
 const RoomCountTypeFlatInfoSection = ({
+  roomCount,
+  homeType,
+  flat,
+  floor,
+  totalFloor,
   setRoomCount,
   setHomeType,
   setFlat,
@@ -79,22 +84,27 @@ const RoomCountTypeFlatInfoSection = ({
       <Select
         showSearch
         placeholder="방 개수 선택"
+        value={roomCount === "" ? undefined : roomCount}
         onChange={RoomCountOnChange}
         options={RoomTypeOptions}
+        style={{ width: 100 }}
       />
       </RoomCountTypeFlatInfoBox>
       <RoomCountTypeFlatInfoBox width="25%">
         <Select
           showSearch
+          value={homeType === "" ? undefined : homeType}
           placeholder="주거 형태 선택"
           onChange={HomeTypeOnChange}
           options={HouseTypeOptions}
+          style={{ width: 100 }}
         />
       </RoomCountTypeFlatInfoBox>
       <RoomCountTypeFlatInfoBox width="16%">
         <RoomCountTypeFlatInput 
           type="text" 
           width="4rem" 
+          value={totalFloor}
           onChange={(e) => { setTotalFloor(e.target.value)}}
         />
       </RoomCountTypeFlatInfoBox>
@@ -102,6 +112,7 @@ const RoomCountTypeFlatInfoSection = ({
         <RoomCountTypeFlatInput 
           type="text" 
           width="4rem" 
+          value={floor}
           onChange={(e) => { setFloor(e.target.value)}}
         />
       </RoomCountTypeFlatInfoBox>
@@ -109,6 +120,7 @@ const RoomCountTypeFlatInfoSection = ({
         <RoomCountTypeFlatInput 
           type="text" 
           width="4rem" 
+          value={flat}
           onChange={(e) => { setFlat(e.target.value)}}
         />
       </RoomCountTypeFlatInfoBox>
