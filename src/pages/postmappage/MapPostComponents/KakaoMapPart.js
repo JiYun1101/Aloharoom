@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Map } from 'react-kakao-maps-sdk';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 const kakaoMapStyle = {
     width: "52%",
@@ -7,9 +7,10 @@ const kakaoMapStyle = {
     zIndex: 0
 };
 
-const KakaoMapPart = ({searchStr}) => {
+const KakaoMapPart = ({searchStr, cardPostData}) => {
     const [map, setMap] = useState();
-    const [mapLevel, setLevel] = useState(4);
+    const [mapLevel] = useState(4);
+    console.log('cardPostData ', cardPostData);
     useEffect(() => {
         if(!map) return;
         const ps = new window.kakao.maps.services.Places() 
@@ -21,6 +22,11 @@ const KakaoMapPart = ({searchStr}) => {
             }
         })
     }, [searchStr])
+
+    const mapMarkerComponents = cardPostData.map((data, index) => (
+        <MapMarker key={index} position={{lat: data.x, lng: data.y}}/>
+    ));
+
     return (
         <>
             <Map 
@@ -29,6 +35,7 @@ const KakaoMapPart = ({searchStr}) => {
                 level={mapLevel}                                   // 지도 확대 레벨
                 onCreate={setMap}
             >
+                {mapMarkerComponents}
             </Map>
         </>
     );
