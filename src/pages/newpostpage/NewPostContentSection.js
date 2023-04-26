@@ -31,8 +31,8 @@ const NewPostContentSection = () => {
     const [rent, setRent] = useState("");
     const [flat, setFlat] = useState("");
     const [maintenance, setMaintenance] = useState("");
-    const [floor, setFloor] = useState("0");
-    const [totalFloor, setTotalFloor] = useState("0");
+    const [floor, setFloor] = useState("");
+    const [totalFloor, setTotalFloor] = useState("");
     const [startDate, setStartDate] = useState("");
     const [x, setX] = useState(null);
     const [y, setY] = useState(null);
