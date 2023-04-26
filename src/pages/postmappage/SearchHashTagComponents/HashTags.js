@@ -21,7 +21,7 @@ const HashSection = styled.div`
 const HashTagSwiperDiv = styled.div`
   margin-top: 1.5rem;
   margin-right: 1rem;
-  fontweight: 800;
+  font-weight: 800;
   z-index: -1;
 `;
 
