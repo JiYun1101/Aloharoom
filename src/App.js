@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/postMapPage" element={<PostMapPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/newPostPage" element={<NewPostPage />} />
+        <Route path="/updatePostPage/:id" element={<NewPostPage/>}/>
         <Route
           path="/newCommunityPostPage"
           element={<NewCommunityPostPage />}
