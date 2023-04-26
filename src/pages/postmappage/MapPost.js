@@ -15,7 +15,6 @@ const MapPostContainer = styled.div`
 const MapPost = ({searchStr}) => {
     //서버에서 전달 받을 상태 변수
     const [cardPostData, setCardPostData] = useState([]);
-
     //전체 게시물 데이터 받아오기
     async function fetchCardPostData() {
         await axios
