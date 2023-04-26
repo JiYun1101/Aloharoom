@@ -4,7 +4,7 @@ import { Map } from 'react-kakao-maps-sdk';
 const kakaoMapStyle = {
     width: "52%",
     height: "100%",
-    zIndex: -1
+    zIndex: 0
 };
 
 const KakaoMapPart = ({searchStr}) => {
