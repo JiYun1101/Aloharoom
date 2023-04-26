@@ -59,11 +59,8 @@ const PriceInfoSection = ({
     setTradeType,
     setMaintenance
 }) => {
-    const onChange = (value) => {
-      console.log(`selected ${value}`);
-    };
-    const onSearch = (value) => {
-      console.log('search:', value);
+    const TradeTypeOnChange = (value) => {
+      setTradeType(value);
     };
         //체크 박스 클릭시 활성화 되도록 하는 상태 변수
         const [maintenanceChecked, setMaintenanceChecked] = useState(false);
@@ -78,8 +75,7 @@ const PriceInfoSection = ({
             <Select
               showSearch
               placeholder="계약형태 선택"
-              onChange={onChange}
-              onSearch={onSearch}
+              onChange={TradeTypeOnChange}
               options={TradeTypeOptions}
             />
             <PriceInfoSpan fontSize="2rem">)</PriceInfoSpan>

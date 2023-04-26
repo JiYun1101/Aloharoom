@@ -21,15 +21,15 @@ const PostTitleInput = styled.input`
 `;
 
 const PostTitleSection = ({ setTitle }) => {
-  return (
-    <PostTitleDiv>
-        <PostTitleInput 
-            type="text" 
-            placeholder="제목을 입력해주세요." 
-            onChange={(e) => { setTitle(e.target.value);}}
-        />
-    </PostTitleDiv>
-  )
+    return (
+        <PostTitleDiv>
+            <PostTitleInput 
+                type="text" 
+                placeholder="제목을 입력해주세요." 
+                onChange={(e) => { setTitle(e.target.value);}}
+            />
+        </PostTitleDiv>
+    );
 }
 
 export default PostTitleSection;

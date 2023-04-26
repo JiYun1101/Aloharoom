@@ -30,14 +30,17 @@ const RoomMatePriceSpan = styled.span`
     color: #47a5fd;
 `;
 
-const FirstSection = ({startDateOnChange}) => {
+const FirstSection = ({startDateOnChange, setRent}) => {
     return (
         <FirstInfoDiv>
             <FirstInfoBox>
                 <DatePicker onChange={startDateOnChange}/>
             </FirstInfoBox>
             <FirstInfoBox>
-                <RoomMatePriceInput type="text"/>
+                <RoomMatePriceInput 
+                    type="text" 
+                    onChange={(e) => { setRent(e.target.value);}}
+                />
                 <RoomMatePriceSpan>만원</RoomMatePriceSpan>
             </FirstInfoBox>
         </FirstInfoDiv>

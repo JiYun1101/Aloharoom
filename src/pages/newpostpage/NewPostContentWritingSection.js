@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import PostTitleSection from "./newpostcontentwritingcomponents/PostTitleSection";
 import PostContentSection from "./newpostcontentwritingcomponents/PostContentSection";
 import ImageUploadSection from "./newpostcontentwritingcomponents/ImageUploadSection";
 import ImageSwiperSection from "./newpostcontentwritingcomponents/ImageSwiperSection";
@@ -62,7 +61,6 @@ const NewPostContentWritingSection = ({
     return (
         <NewPostContentWritingDiv>
             <NewPostContentWritingArea>
-                <PostTitleSection setTitle={setTitle}/>
                 <PostContentSection setContents={setContents}/>
             </NewPostContentWritingArea>
             <NewPostContentImageArea>

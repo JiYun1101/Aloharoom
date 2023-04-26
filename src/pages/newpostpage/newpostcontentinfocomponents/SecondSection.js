@@ -25,7 +25,15 @@ const SecondSection = () => {
     return (
         <SecondInfoDiv>
             <div style={{width: '35vw'}}>
-                <Slider range marks={marks} included={true} min={20} max={65} defaultValue={[20, 25]}/>
+                <Slider range 
+                    marks={marks} 
+                    included={true} 
+                    min={20} 
+                    max={65} 
+                    defaultValue={[20, 25]}
+                    //배열의 형태로 받아와짐
+                    onChange={(value) => { console.log('slider value: ', value)}}
+                />
             </div>
         </SecondInfoDiv>
     );

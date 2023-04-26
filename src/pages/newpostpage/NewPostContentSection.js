@@ -21,18 +21,18 @@ const NewPostContentSection = () => {
     //입주 가능 날짜
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
-    const [count, setCount] = useState("0");
+    const [count, setCount] = useState("");
     const [roomCount, setRoomCount] = useState("");
     const [address, setAddress] = useState("");
     const [homeType, setHomeType] = useState("");
-    const [tradeType, setTradeType] = useState("월세");
+    const [tradeType, setTradeType] = useState("");
     const [price, setPrice] = useState("");
     const [deposit, setDeposit] = useState("");
-    const [rent, setRent] = useState("0");
+    const [rent, setRent] = useState("");
     const [flat, setFlat] = useState("");
     const [maintenance, setMaintenance] = useState("");
-    const [floor, setFloor] = useState("2");
-    const [totalFloor, setTotalFloor] = useState("3");
+    const [floor, setFloor] = useState("0");
+    const [totalFloor, setTotalFloor] = useState("0");
     const [startDate, setStartDate] = useState("");
     const [x, setX] = useState(null);
     const [y, setY] = useState(null);
@@ -104,6 +104,8 @@ const NewPostContentSection = () => {
                 <NewPostContentContainer>
                     <NewPostContentInfoSection
                         address={address}
+                        x={x}
+                        y={y}
                         setAddress={setAddress}
                         setStartDate={setStartDate}
                         setX={setX}
@@ -116,6 +118,10 @@ const NewPostContentSection = () => {
                         setTradeType={setTradeType}
                         setMaintenance={setMaintenance}
                         setDeposit={setDeposit}
+                        setRent={setRent}
+                        setFloor={setFloor}
+                        setTotalFloor={setTotalFloor}
+                        setTitle={setTitle}
                     />
                 </NewPostContentContainer>
                 <NewPostContentContainer>

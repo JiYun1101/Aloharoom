@@ -54,12 +54,24 @@ const HouseTypeOptions = [
   },
 ]
 
-const RoomCountTypeFlatInfoSection = ({setRoomCount, setHomeType, setFlat}) => {
+const RoomCountTypeFlatInfoSection = ({
+  setRoomCount,
+  setHomeType,
+  setFlat,
+  setFloor,
+  setTotalFloor
+}) => {
+
+  const RoomCountOnChange = roomCount => {
+    setRoomCount(roomCount);
+  }
+
+  const HomeTypeOnChange = homeType => {
+    setHomeType(homeType);
+  }
+
   const onChange = (value) => {
     console.log(`selected ${value}`);
-  };
-  const onSearch = (value) => {
-    console.log('search:', value);
   };
   return (
     <RoomCountTypeFlatInfoContainer>
@@ -67,8 +79,7 @@ const RoomCountTypeFlatInfoSection = ({setRoomCount, setHomeType, setFlat}) => {
       <Select
         showSearch
         placeholder="방 개수 선택"
-        onChange={onChange}
-        onSearch={onSearch}
+        onChange={RoomCountOnChange}
         options={RoomTypeOptions}
       />
       </RoomCountTypeFlatInfoBox>
@@ -76,8 +87,7 @@ const RoomCountTypeFlatInfoSection = ({setRoomCount, setHomeType, setFlat}) => {
         <Select
           showSearch
           placeholder="주거 형태 선택"
-          onChange={onChange}
-          onSearch={onSearch}
+          onChange={HomeTypeOnChange}
           options={HouseTypeOptions}
         />
       </RoomCountTypeFlatInfoBox>
@@ -85,14 +95,14 @@ const RoomCountTypeFlatInfoSection = ({setRoomCount, setHomeType, setFlat}) => {
         <RoomCountTypeFlatInput 
           type="text" 
           width="4rem" 
-          onChange={(e) => { setFlat(e.target.value)}}
+          onChange={(e) => { setTotalFloor(e.target.value)}}
         />
       </RoomCountTypeFlatInfoBox>
       <RoomCountTypeFlatInfoBox width="16%">
         <RoomCountTypeFlatInput 
           type="text" 
           width="4rem" 
-          onChange={(e) => { setFlat(e.target.value)}}
+          onChange={(e) => { setFloor(e.target.value)}}
         />
       </RoomCountTypeFlatInfoBox>
       <RoomCountTypeFlatInfoBox width="16%">

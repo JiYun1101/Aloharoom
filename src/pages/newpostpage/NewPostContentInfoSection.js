@@ -67,22 +67,32 @@ const NewPostContentInfoSection = ({
     setPrice,
     setTradeType,
     setMaintenance,
-    setDeposit
+    setDeposit,
+    setRent,
+    setFloor,
+    setTotalFloor,
+    setTitle
 }) => {
     //입주 가능 날짜 설정 함수
     const startDateOnChange = (date, dateString) => {
         setStartDate(dateString);
     };
-      //위도 경도 설정 함수
+    //위도 경도 설정 함수
     const searchLatLng = () => {
         const ps = new window.kakao.maps.services.Places();
         ps.keywordSearch(address, (data, status, _pagination) => {
-        if (status === window.kakao.maps.services.Status.OK) {
+          if (status === window.kakao.maps.services.Status.OK) {
             setX(data[0].x.toString());
             setY(data[0].y.toString());
-        }
+            setTitle(data[0].road_address_name.toString());
+          }
+          else {
+            setX(null);
+            setY(null);
+          }
         });
     };
+
     return (
         <NewPostContentInfoDiv>
                         <TitleDiv height="2rem" marginTop="2rem">
@@ -95,6 +105,7 @@ const NewPostContentInfoSection = ({
                         </TitleDiv>
                         <FirstSection
                           startDateOnChange={startDateOnChange}
+                          setRent={setRent}
                         />
                         <TitleDiv height="2rem" marginTop="1rem">
                             <TitleSpan fontSize="1rem" lineHeight="2rem">룸메이트 선호 연령층</TitleSpan>
@@ -129,6 +140,8 @@ const NewPostContentInfoSection = ({
                           setRoomCount={setRoomCount}
                           setHomeType={setHomeType}
                           setFlat={setFlat}
+                          setFloor={setFloor}
+                          setTotalFloor={setTotalFloor}
                         />
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" lineHeight="2rem">가격</TitleSpan>
