@@ -73,7 +73,7 @@ const PriceInfoSection = ({
     return (
         <PriceInfoContainer>
           <PriceInfoBox width="50%" height="3rem">
-            <PriceInfoInput width="5rem" height="2rem" type="text" onChange={(e) => { setPrice(e.target.value); }}/>
+            <PriceInfoInput value={price} width="5rem" height="2rem" type="text" onChange={(e) => { setPrice(e.target.value); }}/>
             <PriceInfoSpan fontSize="2rem">(</PriceInfoSpan>
             <Select
               showSearch

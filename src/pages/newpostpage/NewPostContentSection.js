@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import styled from "styled-components";
 import axios from "axios";
 import NewPostContentInfoSection from "./NewPostContentInfoSection";
@@ -22,7 +22,7 @@ const NewPostContentSection = () => {
     //입주 가능 날짜
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
-    const [count, setCount] = useState("");
+    const [count] = useState("");
     const [roomCount, setRoomCount] = useState("");
     const [address, setAddress] = useState("");
     const [homeType, setHomeType] = useState("");
@@ -41,8 +41,36 @@ const NewPostContentSection = () => {
     const [imgFiles, setImgFiles] = useState([]);
 
     const updateID = useParams().id;
-    if (updateID != null) {
-        console.log('수정 페이지일 경우');
+    useEffect(() => {
+        if (updateID != null) {
+            FetchPostInfoData();
+        }
+    }, []);
+
+    async function FetchPostInfoData() {
+        await axios.get(`http://localhost:8080/api/board/edit/${updateID}`)
+            .then((response) => {
+                console.log('FetchPostInfoData: ', response.data);
+                setAddress(response.data.address);
+                setAgeRange(response.data.ageRange);
+                setContents(response.data.contents);
+                setDeposit(response.data.deposit);
+                setFlat(response.data.flat);
+                setFloor(response.data.floor);
+                setHomeType(response.data.homeType);
+                setMaintenance(response.data.maintenance);
+                setPrice(response.data.price);
+                setRent(response.data.rent);
+                setRoomCount(response.data.roomCount);
+                setStartDate(response.data.startDate);
+                setTotalFloor(response.data.totalFloor);
+                setTradeType(response.data.tradeType);
+                setX(response.data.x);
+                setY(response.data.y);
+            })
+            .catch((error) => {
+                console.log(' FetchPostInfoData axios error');
+            })
     }
 
     console.log("==============================");
@@ -114,8 +142,6 @@ const NewPostContentSection = () => {
                     <NewPostContentInfoSection
                         address={address}
                         startDate={startDate}
-                        x={x}
-                        y={y}
                         roomCount={roomCount}
                         homeType={homeType}
                         flat={flat}
@@ -126,7 +152,6 @@ const NewPostContentSection = () => {
                         rent={rent}
                         floor={floor}
                         totalFloor={totalFloor}
-                        title={title}
                         ageRange={ageRange}
                         setAddress={setAddress}
                         setStartDate={setStartDate}

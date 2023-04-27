@@ -57,8 +57,6 @@ const TitleSpan = styled.span`
 const NewPostContentInfoSection = ({   
     address,
     startDate,
-    x,
-    y,
     roomCount,
     homeType,
     flat,
@@ -69,7 +67,6 @@ const NewPostContentInfoSection = ({
     rent,
     floor,
     totalFloor,
-    title,
     ageRange,
     setAddress,
     setStartDate,
@@ -88,10 +85,6 @@ const NewPostContentInfoSection = ({
     setTitle,
     setAgeRange
 }) => {
-    //입주 가능 날짜 설정 함수
-    const startDateOnChange = (date, dateString) => {
-        setStartDate(dateString);
-    };
     //위도 경도 설정 함수
     const searchLatLng = () => {
         const ps = new window.kakao.maps.services.Places();
@@ -121,7 +114,7 @@ const NewPostContentInfoSection = ({
                         <FirstSection
                           startDate={startDate}
                           rent={rent}
-                          startDateOnChange={startDateOnChange}
+                          setStartDate={setStartDate}
                           setRent={setRent}
                         />
                         <TitleDiv height="2rem" marginTop="1rem">

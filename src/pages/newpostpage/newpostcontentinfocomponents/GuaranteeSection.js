@@ -35,7 +35,10 @@ const GuaranteeInputText = styled.input`
     border-radius: 0.3rem;
 `;
 
-const GuaranteeSection = ({ deposit, setDeposit }) => {
+const GuaranteeSection = ({ 
+    deposit, 
+    setDeposit 
+}) => {
     const [depositChecked, setDepositChecked] = useState(false);
     const handleDepositCheckboxChange = () => {
         setDepositChecked(!depositChecked);
