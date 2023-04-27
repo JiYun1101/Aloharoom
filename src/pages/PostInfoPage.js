@@ -177,7 +177,7 @@ const PostInfoPage = () => {
     const [tradeType, setTradeType] = useState('');
     const [x, setX] = useState('');
     const [y, setY] = useState('');
-
+    const center = { lat: x, lng: y };
     async function FetchPostInfoData() {
         await axios.get(`http://localhost:8080/api/board/${boardId}`)
             .then((response) => {
@@ -362,7 +362,7 @@ const PostInfoPage = () => {
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
                     <PostInfoDiv width="90%" height="28rem">
                         <Map 
-                            center={{ lat: x, lng: y }}   // 지도의 중심 좌표
+                            center={center}   // 지도의 중심 좌표
                             level={2}                                   // 지도 확대 레벨
                             style= {{
                                 width: "100%",
@@ -370,18 +370,12 @@ const PostInfoPage = () => {
                             }}
                         >
                             <MapMarker 
-                                position={{ lat: x, lng: y }} 
+                                position={center} 
                                 image={{
                                     src: redMarker,
                                     size: {
                                         width: 30,
                                         height: 40,
-                                    },
-                                    options: {
-                                        offset: {
-                                            x: x,
-                                            y: y,
-                                        },
                                     },
                                 }}
                             />
