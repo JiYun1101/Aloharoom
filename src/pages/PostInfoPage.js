@@ -374,8 +374,8 @@ const PostInfoPage = () => {
                                 image={{
                                     src: redMarker,
                                     size: {
-                                        width: 50,
-                                        height: 69,
+                                        width: 30,
+                                        height: 40,
                                     },
                                     options: {
                                         offset: {
