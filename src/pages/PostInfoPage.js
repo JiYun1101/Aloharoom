@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper/core';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 //import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { GrDeliver } from "react-icons/gr";
@@ -224,13 +224,15 @@ const PostInfoPage = () => {
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="50%" minHeight="100%" flexDirection="row-reverse" alignItems="center">
                         <AiOutlineHeart size={40} />
-                        <AiOutlineEdit size={40}/>
+                        <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
+                            <AiOutlineEdit size={40}/>
+                        </Link>
                         <AiOutlineDelete 
                             onClick={() => {
                                 DeletePostInfoData();
                             }}
                             size={40}
-                        />                        
+                        />
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row">
