@@ -43,9 +43,9 @@ const ImageSwiperSection = ({ imgFiles, previewImages }) => {
                 > 
                     { imgFiles.length === 0 ? 
                         previewImages.map((previewImage, idx) => (
-                        <SwiperSlide>
-                            <UploadImg key={idx} src={previewImage}/>
-                        </SwiperSlide>
+                            <SwiperSlide>
+                                <UploadImg key={idx} src={previewImage}/>
+                            </SwiperSlide>
                         ))
                     :
                         imgFiles.map((imgFile, idx) => (
