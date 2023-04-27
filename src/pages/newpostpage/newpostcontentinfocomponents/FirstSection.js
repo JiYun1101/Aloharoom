@@ -48,7 +48,7 @@ const FirstSection = ({
         <FirstInfoDiv>
             <FirstInfoBox>
                 <DatePicker 
-                    value={dayjs(startDate)}
+                    value={startDate !== "" ? dayjs(startDate) : undefined}
                     format={dateFormat}
                     onChange={startDateOnChange}
                 />
