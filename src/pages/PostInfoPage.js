@@ -10,6 +10,9 @@ import { BiMale, BiFemale } from "react-icons/bi";
 import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import greenMarker from '../img/greenMarker.png';
+import blueMarker from '../img/blueMarker.png';
+import redMarker from '../img/redMarker.png';
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -366,7 +369,22 @@ const PostInfoPage = () => {
                                 height: "100%"
                             }}
                         >
-                            <MapMarker position={{ lat: x, lng: y }}/>
+                            <MapMarker 
+                                position={{ lat: x, lng: y }} 
+                                image={{
+                                    src: redMarker,
+                                    size: {
+                                        width: 50,
+                                        height: 69,
+                                    },
+                                    options: {
+                                        offset: {
+                                            x: x,
+                                            y: y,
+                                        },
+                                    },
+                                }}
+                            />
                         </Map>
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
