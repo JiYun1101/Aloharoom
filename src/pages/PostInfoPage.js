@@ -9,7 +9,7 @@ import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { BiMale, BiFemale } from "react-icons/bi";
 import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
-import { Map } from 'react-kakao-maps-sdk';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -172,8 +172,8 @@ const PostInfoPage = () => {
     const [startDate, setStartDate] = useState('');
     const [totalFloor, setTotalFloor] = useState('');
     const [tradeType, setTradeType] = useState('');
-    const [x, setX] = useState();
-    const [y, setY] = useState();
+    const [x, setX] = useState('');
+    const [y, setY] = useState('');
 
     async function FetchPostInfoData() {
         await axios.get(`http://localhost:8080/api/board/${boardId}`)
@@ -359,14 +359,14 @@ const PostInfoPage = () => {
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
                     <PostInfoDiv width="90%" height="28rem">
                         <Map 
-                            center={{ lat: 37.56682420267543, lng: 126.978652258823 }}   // 지도의 중심 좌표
+                            center={{ lat: x, lng: y }}   // 지도의 중심 좌표
                             level={2}                                   // 지도 확대 레벨
                             style= {{
                                 width: "100%",
                                 height: "100%"
                             }}
                         >
-                            
+                            <MapMarker position={{ lat: x, lng: y }}/>
                         </Map>
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
