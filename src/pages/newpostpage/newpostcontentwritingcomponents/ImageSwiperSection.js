@@ -19,7 +19,7 @@ const ImageSwiperDiv = styled.div`
 const SwiperContainer = styled.div`
     margin-top: 0.5rem;
     .swiper-slide {
-        margin-right: 1px; /* SwiperSlide 간격 조정 */
+        margin-right: 20px;
     }
 `;
 
@@ -41,19 +41,11 @@ const ImageSwiperSection = ({ imgFiles, previewImages }) => {
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
                 > 
-                    { imgFiles.length === 0 ? 
-                        previewImages.map((previewImage, idx) => (
-                            <SwiperSlide>
-                                <UploadImg key={idx} src={previewImage}/>
-                            </SwiperSlide>
-                        ))
-                    :
-                        imgFiles.map((imgFile, idx) => (
-                            <SwiperSlide>
-                                <UploadImg key={idx} src={imgFile}/>
-                            </SwiperSlide>
-                        ))
-                    }    
+                    {previewImages.map((previewImage, idx) => (
+                        <SwiperSlide key={idx}>
+                            <UploadImg key={idx} src={previewImage}/>
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </SwiperContainer>
         </ImageSwiperDiv>

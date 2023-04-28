@@ -44,20 +44,21 @@ const NewPostContentWritingSection = ({
     const [previewImages, setPreviewImages] = useState([]);
 
     const handleImageFilesInputChange = (e) => {
-        setImgFiles(e.target.files);
         const files = e.target.files;
+        setImgFiles((prevImage) => [...prevImage, ...files]);
+        console.log('imgFiles ', imgFiles);
         const images = [];
         for(let i = 0; i < files.length; i++) {
             const reader = new FileReader();
             reader.onload = () => {
                 images.push(reader.result);
                 if (images.length === files.length) {
-                setPreviewImages(images);
+                    setPreviewImages((prevImage) => [...prevImage, ...images]);
                 }
             };
             reader.readAsDataURL(files[i]);
-            }
-        };
+        }
+    };
 
     return (
         <NewPostContentWritingDiv>
