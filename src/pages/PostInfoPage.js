@@ -9,10 +9,6 @@ import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { BiMale, BiFemale } from "react-icons/bi";
 import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import greenMarker from '../img/greenMarker.png';
-import blueMarker from '../img/blueMarker.png';
-import redMarker from '../img/redMarker.png';
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -178,7 +174,6 @@ const PostInfoPage = () => {
     const [tradeType, setTradeType] = useState('');
     const [x, setX] = useState('');
     const [y, setY] = useState('');
-    const center = { lat: x, lng: y };
     async function FetchPostInfoData() {
         await axios.get(`http://localhost:8080/api/board/${boardId}`)
             .then((response) => {
