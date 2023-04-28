@@ -20,6 +20,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import InfoPageMapContainer from "./postinfopage/InfoPageMapContainer";
 
 SwiperCore.use([Pagination]);
 
@@ -361,25 +362,11 @@ const PostInfoPage = () => {
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
                     <PostInfoDiv width="90%" height="28rem">
-                        <Map 
-                            center={center}   // 지도의 중심 좌표
-                            level={2}                                   // 지도 확대 레벨
-                            style= {{
-                                width: "100%",
-                                height: "100%"
-                            }}
-                        >
-                            <MapMarker 
-                                position={center} 
-                                image={{
-                                    src: redMarker,
-                                    size: {
-                                        width: 30,
-                                        height: 40,
-                                    },
-                                }}
-                            />
-                        </Map>
+                        <InfoPageMapContainer 
+                            x={x} 
+                            y={y} 
+                            address={address}
+                        />
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="15rem" marginTop="1rem">
