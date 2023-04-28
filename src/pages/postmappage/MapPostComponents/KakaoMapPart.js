@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import greenMarker from '../../../img/greenMarker.png';
-import blueMarker from '../../../img/blueMarker.png';
-import redMarker from '../../../img/redMarker.png';
+import { Map } from 'react-kakao-maps-sdk';
 import HomeCategoryMenu from "./HomeCategoryMenu";
+import EventMarkerContainer from "./EventMarkerContainer";
 
 const kakaoMapStyle = {
     width: "52%",
@@ -29,16 +27,12 @@ const KakaoMapPart = ({searchStr, cardPostData}) => {
     }, [searchStr])
 
     const mapMarkerComponents = cardPostData.map((data, index) => (
-        <MapMarker 
-            key={index} 
-            position={{lat: data.x, lng: data.y}}
-            image={{
-                src: redMarker,
-                size: {
-                    width: 30,
-                    height: 40,
-                },
-            }}
+        <EventMarkerContainer
+            key={`EventMarkerContainer-${data.x}-${data.y}`}
+            x={data.x}
+            y={data.y}
+            content={data.address}
+            boardId={data.boardId}
         />
     ));
 

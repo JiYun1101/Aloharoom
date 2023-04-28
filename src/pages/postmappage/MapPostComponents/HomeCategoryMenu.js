@@ -26,7 +26,7 @@ const HomeCategoryMenuSpan = styled.span`
 `;
 
 const HomeCategoryMarkerImg = styled.img`
-    width: 30px;
+    width: 25px;
     height: 30px;
 `;
 
