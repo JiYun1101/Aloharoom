@@ -3,10 +3,13 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import greenMarker from '../../../img/greenMarker.png';
 import blueMarker from '../../../img/blueMarker.png';
 import redMarker from '../../../img/redMarker.png';
+import HomeCategoryMenu from "./HomeCategoryMenu";
+
 const kakaoMapStyle = {
     width: "52%",
     height: "100%",
-    zIndex: 0
+    zIndex: 0,
+    position: "relative"
 };
 
 const KakaoMapPart = ({searchStr, cardPostData}) => {
@@ -47,6 +50,7 @@ const KakaoMapPart = ({searchStr, cardPostData}) => {
                 level={mapLevel}                                   // 지도 확대 레벨
                 onCreate={setMap}
             >
+                <HomeCategoryMenu/>
                 {mapMarkerComponents}
             </Map>
         </>
