@@ -144,7 +144,8 @@ const CardPost = ({
     nickname,
     rent,
     roomCount,
-    startDate
+    startDate,
+    profileImgUrl
 }) => {
     return (
         <Card>
@@ -173,7 +174,7 @@ const CardPost = ({
             </HashTagDiv>
             <ProfileCommentDiv>
                 <ProfileDiv>
-                    <ProfileImg src="./blue.png"/>
+                    <ProfileImg src={profileImgUrl}/>
                     <ProfileSpan>{nickname}</ProfileSpan>
                 </ProfileDiv>
                 <CommentDiv>

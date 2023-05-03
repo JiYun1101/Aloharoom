@@ -12,8 +12,9 @@ const RoommateCardPosts = ({cardPostData}) => {
     return (
         <CardPostContainer>
             {cardPostData.map((data, idx) => (
-                <Link to={`../postInfoPage/${data.boardId}`} style={LinkToCardStyle}>
+                <Link key={idx} to={`../postInfoPage/${data.boardId}`} style={LinkToCardStyle}>
                     <CardPost 
+                        key={idx}
                         type="룸메이트"
                         address={data.address}
                         boardId={data.boardId}

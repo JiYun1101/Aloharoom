@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiFillHeart } from "react-icons/ai";
 import CardPost from "../postmappage/MapPostComponents/CardPost";
+import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const LikedListDiv = styled.div`
     margin-top: 0.5rem;
@@ -48,40 +50,53 @@ const heartStyle = {
     color: "#47A5FD"
 };
 
+const LinkToCardStyle = {
+    textDecoration: 'none',
+    color: 'black'
+}
+
 const LikedListPage = () => {
+    const [responseData, setResponseData] = useState([]);
+    async function fetchLikePost() {
+        await axios.get(`http://localhost:8080/api/heart`, {
+            withCredentials:true
+        })
+        .then((response) => {
+            console.log('response.data: ', response.data);
+            setResponseData(response.data);
+        })
+        .catch((error) => {
+            console.log('fetchLikePost fetch error');
+        })
+    }
+
+    useEffect(() => {
+        fetchLikePost();
+    }, []);
+
     return (
-    <>
         <LikedListDiv>
-            <LikedElementDiv>
-                <CardPost type="룸메이트"/>    
-                <AiFillHeart size={40} style={heartStyle}/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <CardPost type="쉐어하우스"/>    
-                <AiFillHeart size={40} style={heartStyle}/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <CardPost type="룸메이트"/>    
-                <AiFillHeart size={40} style={heartStyle}/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <CardPost type="쉐어하우스"/>    
-                <AiFillHeart size={40} style={heartStyle}/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <CardPost type="쉐어하우스"/>    
-                <AiFillHeart size={40} style={heartStyle}/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <CardPost type="룸메이트"/>    
-                <AiFillHeart size={40} style={heartStyle}/>
-            </LikedElementDiv>
-            <LikedElementDiv>
-                <CardPost type="쉐어하우스"/>    
-                <AiFillHeart size={40} style={heartStyle}/>
-            </LikedElementDiv>
+            {responseData.map((data, idx) => (
+                <LikedElementDiv key={idx}>
+                    <Link to={`../postInfoPage/${data.boardId}`} style={LinkToCardStyle}>
+                    <CardPost 
+                        type="룸메이트" 
+                        address={data.address}
+                        boardId={data.boardId}
+                        commentNum={data.commentNum}
+                        flat={data.flat}
+                        imageUrls={data.imgUrl}
+                        nickname={data.nickname}
+                        profileImgUrl={data.profileImgUrl}
+                        rent={data.rent}
+                        roomCount={data.roomCount}
+                        startDate={data.startDate}
+                        />    
+                    </Link>
+                    <AiFillHeart size={40} style={heartStyle}/>
+                </LikedElementDiv>    
+            ))}
         </LikedListDiv>
-    </>
     );
 }
 
