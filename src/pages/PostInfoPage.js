@@ -221,7 +221,7 @@ const PostInfoPage = () => {
     }
 
     async function AddLikePost() {
-        await axios.post(`http://localhost:8080/api/heart/${boardId}`, {
+        await axios.post(`http://localhost:8080/api/heart/${boardId}`,{},{
             withCredentials:true
         })
             .then((response) => {
