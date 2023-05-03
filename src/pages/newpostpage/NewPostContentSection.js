@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import NewPostContentInfoSection from "./NewPostContentInfoSection";
 import NewPostContentWritingSection from "./NewPostContentWritingSection";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const NewPostContentDiv = styled.div`
     height: 100%;
@@ -19,6 +19,7 @@ const NewPostContentContainer = styled.div`
 `;
 
 const NewPostContentSection = () => {
+    const navigate = useNavigate();
     //입주 가능 날짜
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
@@ -129,7 +130,7 @@ const NewPostContentSection = () => {
             },
         })
         .then((response) => {
-            console.log(response);
+            navigate(`../newPostPage`)
         })
         .catch((error) => {
             console.log(error);
