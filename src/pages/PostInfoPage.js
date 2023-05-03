@@ -220,6 +220,30 @@ const PostInfoPage = () => {
             })
     }
 
+    async function AddLikePost() {
+        await axios.post(`http://localhost:8080/api/heart/${boardId}`, {
+            withCredentials:true
+        })
+            .then((response) => {
+                console.log('좋아요 추가');
+            })
+            .catch((error) => {
+                console.log('AddLikePost axios error');
+            })
+    }
+
+    async function DeleteLikePost() {
+        await axios.delete(`http://localhost:8080/api/heart/${boardId}`, {
+            withCredentials:true
+        })
+            .then((response) => {
+                console.log('좋아요 삭제');
+            })
+            .catch((error) => {
+                console.log('DeleteLikePost axios error');
+            })
+    }
+
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
@@ -251,9 +275,21 @@ const PostInfoPage = () => {
                     <PostInfoSpan width="50%" color="black" fontSize="1.2rem" fontWeight="700">{address}</PostInfoSpan>
                     <PostInfoFlexDiv width="50%" minHeight="100%" flexDirection="row-reverse" alignItems="center">
                         {clickLikeButton ? 
-                        <AiFillHeart size={40} onClick={() => {setClickLickButton(!clickLikeButton)}} style={{color: "#47a5fd"}}/>
+                        <AiFillHeart 
+                            size={40} 
+                            onClick={() => {
+                                setClickLickButton(!clickLikeButton);
+                                DeleteLikePost();
+                            }} 
+                            style={{color: "#47a5fd"}}/>
                         :
-                        <AiOutlineHeart size={40} onClick={() => {setClickLickButton(!clickLikeButton)}}/>} 
+                        <AiOutlineHeart 
+                            size={40} 
+                            onClick={() => {
+                                setClickLickButton(!clickLikeButton);
+                                AddLikePost();
+                            }}
+                            />} 
                         <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
                             {<AiOutlineEdit size={40}/>}
                         </Link>
