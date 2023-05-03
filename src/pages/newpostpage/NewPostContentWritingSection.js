@@ -45,7 +45,7 @@ const NewPostContentWritingSection = ({
 
     const handleImageFilesInputChange = (e) => {
         const files = e.target.files;
-        setImgFiles((prevImage) => [...prevImage, ...files]);
+        setImgFiles([...imgFiles, ...files]);
         console.log('imgFiles ', imgFiles);
         const images = [];
         for(let i = 0; i < files.length; i++) {
@@ -53,7 +53,7 @@ const NewPostContentWritingSection = ({
             reader.onload = () => {
                 images.push(reader.result);
                 if (images.length === files.length) {
-                    setPreviewImages((prevImage) => [...prevImage, ...images]);
+                    setPreviewImages([...previewImages, ...images]);
                 }
             };
             reader.readAsDataURL(files[i]);
@@ -73,6 +73,8 @@ const NewPostContentWritingSection = ({
                 <ImageSwiperSection 
                     imgFiles={imgFiles}
                     previewImages={previewImages}
+                    setImgFiles={setImgFiles}
+                    setPreviewImages={setPreviewImages}
                 />
                 <PostButtonSection PostInfoSubmit={PostInfoSubmit}/>
             </NewPostContentImageArea>
