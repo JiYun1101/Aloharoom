@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper/core';
 import { Link, useNavigate } from 'react-router-dom';
 //import { AiFillHeart } from "react-icons/ai";
-import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit, AiFillHeart} from "react-icons/ai";
 import { BiMale, BiFemale } from "react-icons/bi";
 import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
@@ -151,6 +151,7 @@ const LinkToIconStyle = {
 const PostInfoPage = () => {
     const boardId = useParams().id;
     const navigate = useNavigate();
+    const [clickLikeButton, setClickLickButton] = useState(false);
     const [address, setAddress] = useState('');
     const [age, setAge] = useState('');
     const [contents, setContents] = useState('');
@@ -249,9 +250,12 @@ const PostInfoPage = () => {
                 <PostInfoFlexDiv width="95%" minHeight="3rem" alignItems="center">
                     <PostInfoSpan width="50%" color="black" fontSize="1.2rem" fontWeight="700">{address}</PostInfoSpan>
                     <PostInfoFlexDiv width="50%" minHeight="100%" flexDirection="row-reverse" alignItems="center">
-                        <AiOutlineHeart size={40} />
+                        {clickLikeButton ? 
+                        <AiFillHeart size={40} onClick={() => {setClickLickButton(!clickLikeButton)}} style={{color: "#47a5fd"}}/>
+                        :
+                        <AiOutlineHeart size={40} onClick={() => {setClickLickButton(!clickLikeButton)}}/>} 
                         <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
-                            <AiOutlineEdit size={40}/>
+                            {<AiOutlineEdit size={40}/>}
                         </Link>
                         <AiOutlineDelete 
                             onClick={() => {
