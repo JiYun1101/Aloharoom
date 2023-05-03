@@ -175,7 +175,9 @@ const PostInfoPage = () => {
     const [x, setX] = useState('');
     const [y, setY] = useState('');
     async function FetchPostInfoData() {
-        await axios.get(`http://localhost:8080/api/board/${boardId}`)
+        await axios.get(`http://localhost:8080/api/board/${boardId}`, {
+                withCredentials:true
+            })
             .then((response) => {
                 console.log('FetchPostInfoData ', response.data);
                 setAddress(response.data.address);
