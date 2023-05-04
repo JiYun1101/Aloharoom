@@ -182,12 +182,17 @@ const NewPostContentSection = () => {
         })
     }
 
-    function urlsToFileList(urls) {
+    async function urlsToFileList(urls) {
         console.log('urls ', urls);
-        const files = urls.map((url) => {
-            const filename = url.split("/").pop();
-            return new File([url], filename, { type: "image/jpeg image/png image/gif image/bmp image/webp image/svg+xml"});
-        });
+        const files = await Promise.all(
+            urls.map(async (url) => {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                const fileName = url.substring(url.lastIndexOf('/') + 1);
+                return new File([blob], fileName, { type: blob.type });
+            })
+        );
+        console.log('files ', files);
         setImgFiles(files);
         setPreviewImages(urls);
     }
