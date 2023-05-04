@@ -98,6 +98,48 @@ const NewPostContentSection = () => {
     console.log("imgFiles ", imgFiles);
     console.log("==============================");
 
+    const modifyPost = () => {
+        const data = {
+            "title": title,
+            "contents": contents,
+            "count": count,
+            "roomCount": roomCount,
+            "address": address,
+            "homeType": homeType,
+            "tradeType": tradeType,
+            "price": price,
+            "deposit": deposit,
+            "rent": rent,
+            "flat": flat,
+            "maintenance": maintenance,
+            "floor": floor,
+            "totalFloor": totalFloor,
+            "startDate": startDate,
+            "x": x,
+            "y": y,
+            "ageRange": ageRange,
+            "imgUrls": previewImages,
+        }
+        const jsonData = JSON.stringify(data);
+        const blob = new Blob([jsonData], { type: "application/json"});
+        const formData = new FormData();
+        formData.append("boardEditDto", blob);
+        for(let i = 0; i < imgFiles.length; i++) {
+            formData.append("imgFiles", imgFiles[i]);
+        }
+        axios.patch(`http://localhost:8080/api/board/edit/${updateID}`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+        .then((response) => {
+            navigate(`../postInfoPage/${updateID}`);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
     const PostInfoSubmit = () => {
         const data = {
             "title": title,
@@ -130,9 +172,10 @@ const NewPostContentSection = () => {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
+            withCredentials:true
         })
         .then((response) => {
-            navigate(`../newPostPage`)
+            navigate(`../postMapPage`);
         })
         .catch((error) => {
             console.log(error);
@@ -194,6 +237,7 @@ const NewPostContentSection = () => {
                         setImgFiles={setImgFiles}
                         setPreviewImages={setPreviewImages}
                         PostInfoSubmit={PostInfoSubmit}
+                        modifyPost={modifyPost}
                     />
                 </NewPostContentContainer>
         </NewPostContentDiv>

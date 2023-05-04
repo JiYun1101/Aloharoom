@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import PostContentSection from "./newpostcontentwritingcomponents/PostContentSection";
 import ImageUploadSection from "./newpostcontentwritingcomponents/ImageUploadSection";
@@ -39,7 +39,8 @@ const NewPostContentWritingSection = ({
     setContents,
     setImgFiles,
     setPreviewImages,
-    PostInfoSubmit
+    PostInfoSubmit,
+    modifyPost
 }) => {
 
     const handleImageFilesInputChange = (e) => {
@@ -75,7 +76,10 @@ const NewPostContentWritingSection = ({
                     setImgFiles={setImgFiles}
                     setPreviewImages={setPreviewImages}
                 />
-                <PostButtonSection PostInfoSubmit={PostInfoSubmit}/>
+                <PostButtonSection 
+                    PostInfoSubmit={PostInfoSubmit}
+                    modifyPost={modifyPost}
+                />
             </NewPostContentImageArea>
         </NewPostContentWritingDiv>
     );

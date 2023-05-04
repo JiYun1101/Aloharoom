@@ -22,19 +22,17 @@ const PostButton = styled.button`
     color: white;
 `;
 
-const PostButtonSection = ({PostInfoSubmit}) => {
+const PostButtonSection = ({PostInfoSubmit, modifyPost}) => {
     const updateID = useParams().id;
     const IdExists = updateID != null;
-    //수정 페이지일 경우 상태 변수를 변경해주고 그 값을 넣으면 된다.
-    if (updateID != null) {
-        console.log('수정 페이지일 경우');
-    }
     return (
         <PostButtonDiv>
             {
                 IdExists 
                 ? 
-                    <PostButton>
+                    <PostButton onClick={() => {
+                        modifyPost();
+                    }}>
                         수정하기
                     </PostButton>
                 :
