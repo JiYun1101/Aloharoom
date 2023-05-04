@@ -68,6 +68,7 @@ const NewPostContentSection = () => {
                 setTradeType(response.data.tradeType);
                 setX(response.data.x);
                 setY(response.data.y);
+                urlsToFileList(response.data.imgUrls);
             })
             .catch((error) => {
                 console.log(' FetchPostInfoData axios error');
@@ -135,6 +136,14 @@ const NewPostContentSection = () => {
         .catch((error) => {
             console.log(error);
         })
+    }
+    
+    function urlsToFileList(urls) {
+        const files = urls.map((url) => {
+        const filename = url.split("/").pop();
+        return new File([url], filename, { type: "image/jpeg" });
+        });
+        setImgFiles(files);
     }
 
     return (
