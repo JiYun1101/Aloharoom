@@ -1,66 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from 'swiper/core';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
-SwiperCore.use([Pagination]);
-
-const ImageSwiperDiv = styled.div`
-    width: 90%;
-    height: 9rem;
-`;
-
-const SwiperContainer = styled.div`
-    margin-top: 0.5rem;
-    .swiper-slide {
-        margin-right: 20px;
-    }
+const DragDropDiv = styled.div`
+    width: 100%;
 `;
 
 const UploadImg = styled.img`
-    width: 12rem;
-    height: 8rem;
+    width: 20rem;
+    height: 15rem;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
 `;
 
-// const ImageSwiperSection = ({ imgFiles, previewImages }) => {
-//     return (
-//         <ImageSwiperDiv>
-//             <SwiperContainer>
-//                 <Swiper
-//                 // install Swiper modules
-//                 modules={[Navigation, Scrollbar, Pagination, A11y]}
-//                 spaceBetween={1}
-//                 slidesPerView={3}
-//                 navigation
-//                 onSwiper={(swiper) => console.log(swiper)}
-//                 onSlideChange={() => console.log('slide change')}
-//                 > 
-//                     {previewImages.map((previewImage, idx) => (
-//                         <SwiperSlide key={idx}>
-//                             <UploadImg key={idx} src={previewImage}/>
-//                         </SwiperSlide>
-//                     ))}
-//                 </Swiper>
-//             </SwiperContainer>
-//         </ImageSwiperDiv>
-//     );
-// }
-
-// const ulStyle = {
-//     listStyleType: "none", 
-// }
-
-// const liStyle = {
-//     //marginRight: "10px",
-//     //borderStyle: "solid"
-// }
+const droppableDivStyle = {
+    width: "100%",
+    minHeight: "20rem",
+    overflow: "auto",
+}
 
 const ImageSwiperSection = ({
     imgFiles,
@@ -68,7 +27,6 @@ const ImageSwiperSection = ({
     setImgFiles,
     setPreviewImages
 }) => {
-
     const handleOnDragEnd = (result) => {
         if (!result.destination) return;
         const newPreviewImages = Array.from(previewImages);
@@ -78,17 +36,17 @@ const ImageSwiperSection = ({
     };
 
     return (
-        <ImageSwiperDiv>
+        <DragDropDiv>
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId="image-list">
                     {(provided) => (
-                        <div className='image-list' {...provided.droppableProps} ref={provided.innerRef} style={{listStyleType: "none", borderStyle: "solid", display: "flex", flexWrap: "wrap"}}>
+                        <div className='image-list' {...provided.droppableProps} ref={provided.innerRef} style={droppableDivStyle}>
                             {previewImages.map((previewImage, index) => (
                                 <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
                                     {(provided) => (
-                                        <span {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                             <UploadImg src={previewImage}/>
-                                        </span>
+                                        </div>
                                     )}
                                 </Draggable>
                             ))}
@@ -96,7 +54,7 @@ const ImageSwiperSection = ({
                     )}
                 </Droppable>
             </DragDropContext>
-        </ImageSwiperDiv>
+        </DragDropDiv>
     );
 }
 

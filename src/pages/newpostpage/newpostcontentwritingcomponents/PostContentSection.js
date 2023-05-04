@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const PostContentDiv = styled.div`
     margin-top: 1rem;
     width: 90%;
-    height: 35rem;
+    height: 90%;
 `;
 
 const PostContentTextArea = styled.textarea`

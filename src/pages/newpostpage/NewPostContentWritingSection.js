@@ -11,7 +11,6 @@ const NewPostContentWritingDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 `;
 
 const NewPostContentWritingArea = styled.div`
@@ -19,7 +18,7 @@ const NewPostContentWritingArea = styled.div`
     border-color: #bbbbbb;
     border-radius: 1rem;
     width: 100%;
-    height: 68%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,12 +26,11 @@ const NewPostContentWritingArea = styled.div`
 
 const NewPostContentImageArea = styled.div`
     width: 100%;
-    height: 32%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
 `;
-
 
 const NewPostContentWritingSection = ({
     contents,
