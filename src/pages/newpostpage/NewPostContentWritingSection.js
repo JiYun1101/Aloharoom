@@ -35,11 +35,12 @@ const NewPostContentImageArea = styled.div`
 const NewPostContentWritingSection = ({
     contents,
     imgFiles,
+    previewImages,
     setContents,
     setImgFiles,
+    setPreviewImages,
     PostInfoSubmit
 }) => {
-    const [previewImages, setPreviewImages] = useState([]);
 
     const handleImageFilesInputChange = (e) => {
         const files = e.target.files;

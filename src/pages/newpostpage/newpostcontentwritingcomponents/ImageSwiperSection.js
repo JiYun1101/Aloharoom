@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
@@ -17,7 +17,7 @@ const UploadImg = styled.img`
 
 const droppableDivStyle = {
     width: "100%",
-    minHeight: "20rem",
+    height: "20rem",
     overflow: "auto",
 }
 

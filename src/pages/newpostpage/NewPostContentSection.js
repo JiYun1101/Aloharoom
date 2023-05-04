@@ -41,6 +41,8 @@ const NewPostContentSection = () => {
     const [ageRange, setAgeRange] = useState([]);
     const [imgFiles, setImgFiles] = useState([]);
 
+    const [previewImages, setPreviewImages] = useState([]);
+
     const updateID = useParams().id;
     useEffect(() => {
         if (updateID != null) {
@@ -96,7 +98,6 @@ const NewPostContentSection = () => {
     console.log("imgFiles ", imgFiles);
     console.log("==============================");
 
-
     const PostInfoSubmit = () => {
         const data = {
             "title": title,
@@ -137,6 +138,8 @@ const NewPostContentSection = () => {
             console.log(error);
         })
     }
+
+
     
     function urlsToFileList(urls) {
         const files = urls.map((url) => {
@@ -144,6 +147,7 @@ const NewPostContentSection = () => {
         return new File([url], filename, { type: "image/jpeg" });
         });
         setImgFiles(files);
+        setPreviewImages(urls);
     }
 
     return (
@@ -185,8 +189,10 @@ const NewPostContentSection = () => {
                     <NewPostContentWritingSection
                         contents={contents}
                         imgFiles={imgFiles}
+                        previewImages={previewImages}
                         setContents={setContents}
                         setImgFiles={setImgFiles}
+                        setPreviewImages={setPreviewImages}
                         PostInfoSubmit={PostInfoSubmit}
                     />
                 </NewPostContentContainer>
