@@ -182,12 +182,11 @@ const NewPostContentSection = () => {
         })
     }
 
-
-    
     function urlsToFileList(urls) {
+        console.log('urls ', urls);
         const files = urls.map((url) => {
-        const filename = url.split("/").pop();
-        return new File([url], filename, { type: "image/jpeg" });
+            const filename = url.split("/").pop();
+            return new File([url], filename, { type: "image/jpeg image/png image/gif image/bmp image/webp image/svg+xml"});
         });
         setImgFiles(files);
         setPreviewImages(urls);
