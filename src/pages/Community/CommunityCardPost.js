@@ -1,6 +1,6 @@
 import React from "react";
-import CardPostContainer from "../CardPostContainer";
-import CardPost from "../CardPost";
+import CardPostContainer from "../Community/CardPostContainer2";
+import CardPost from "../Community/CardPost2";
 import { Link } from "react-router-dom";
 
 const LinkToCardStyle = {
@@ -8,11 +8,14 @@ const LinkToCardStyle = {
   color: "black",
 };
 
-const RoommateCardPosts = ({ cardPostData }) => {
+const CommunityCardPost = ({ cardPostData }) => {
   return (
     <CardPostContainer>
       {cardPostData.map((data, idx) => (
-        <Link to={`../postInfoPage/${data.boardId}`} style={LinkToCardStyle}>
+        <Link
+          to={`../CommunitypostInfoPage/${data.boardId}`}
+          style={LinkToCardStyle}
+        >
           <CardPost
             type="룸메이트"
             address={data.address}
@@ -31,4 +34,4 @@ const RoommateCardPosts = ({ cardPostData }) => {
   );
 };
 
-export default RoommateCardPosts;
+export default CommunityCardPost;

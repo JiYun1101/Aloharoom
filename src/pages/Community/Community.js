@@ -167,6 +167,9 @@ const Community = () => {
         <Link to="/newCommunityPostPage" style={LinkToStyle}>
           <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
         </Link>
+        <Link to="/newCommunityPostInfo" style={LinkToStyle}>
+          <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+        </Link>
         <CardBox2>
           <CardPost2 />
           <CardPost2 />

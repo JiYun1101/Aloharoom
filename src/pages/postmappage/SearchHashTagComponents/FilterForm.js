@@ -42,6 +42,31 @@ const marks = {
   },
 };
 
+const mark2 = {
+  0: {
+    style: {
+      color: "#f50",
+    },
+    label: <strong>0대</strong>,
+  },
+  10: "10대",
+  20: "20대",
+  30: "30대",
+  40: "40대",
+  50: "50대",
+  60: "60대",
+  70: "70대",
+  80: "80대",
+  90: "90대",
+  100: "100대",
+  100: {
+    style: {
+      color: "#f50",
+    },
+    label: <strong>100만원</strong>,
+  },
+};
+
 const FilterForm = () => {
   const handleTagClick = (buttonName3) => {
     if (tagPressed.includes(buttonName3)) {
@@ -62,6 +87,17 @@ const FilterForm = () => {
   return (
     <>
       <Form style={{ fontSize: "4rem" }}>
+        <Form.Item
+          label="성별"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 12 }}
+        >
+          <Select style={{ fontSize: "4rem" }}>
+            <Select.Option value="room1">남자</Select.Option>
+            <Select.Option value="room2">여자</Select.Option>
+            <Select.Option value="room3">상관없음</Select.Option>
+          </Select>
+        </Form.Item>
         <Form.Item
           label="방 개수"
           labelCol={{ span: 8 }}
@@ -89,6 +125,9 @@ const FilterForm = () => {
         </Form.Item>
         <Form.Item label="월세">
           <Slider range marks={marks} defaultValue={[26, 37]} />{" "}
+        </Form.Item>
+        <Form.Item label="나이">
+          <Slider range marks={mark2} defaultValue={[26, 37]} />{" "}
         </Form.Item>
         <div>
           <div className="titleWrap2">
