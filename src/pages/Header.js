@@ -83,6 +83,12 @@ const Header = () => {
   const ModalClose = () => {
     setNotifyModalOpen(false);
   };
+  const [username, setUsername] = useState(localStorage.getItem("username"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("username");
+    setUsername(null);
+  };
 
   return (
     <>
@@ -103,19 +109,29 @@ const Header = () => {
             <NavElement>커뮤니티</NavElement>
           </Link>
         </NavGroup>
-        <LogoGroup>
-          <LogoElement>
-            <AiOutlineBell size={30} onClick={ModalOpen} />
-          </LogoElement>
-          <LogoElement>
-            <Link to="/myPage" style={LinkToStyle}>
-              <AiOutlineUser size={30} />
-            </Link>
-          </LogoElement>
-        </LogoGroup>
-        <Link to="../login">
-          <Button>Login / Signup</Button>
-        </Link>
+        {username && (
+          <LogoGroup>
+            <LogoElement>
+              <AiOutlineBell size={30} onClick={ModalOpen} />
+            </LogoElement>
+            <LogoElement>
+              <Link to="/myPage" style={LinkToStyle}>
+                <AiOutlineUser size={30} />
+              </Link>
+            </LogoElement>
+          </LogoGroup>
+        )}
+        {username ? (
+          <>
+            <Button onClick={handleLogout}>Logout</Button>
+            {console.log("username exists")}
+          </>
+        ) : (
+          <Link to="../login">
+            <Button>Login / Signup</Button>
+          </Link>
+        )}
+        {username && console.log("username exists")}
       </MenuBar>
       <BlueLine />
     </>

@@ -26,6 +26,7 @@ const onFinish = async (value) => {
     console.log("username :" + value.username);
     console.log("password :" + value.password);
 
+    localStorage.setItem("username", value.username);
     const data = qs.stringify({
       username: value.username,
       password: value.password,
@@ -47,6 +48,8 @@ const onFinish = async (value) => {
   }
   window.location.href = "../../";
 };
+
+//로그인 시 스토리지 확인
 
 const Login = () => {
   return (

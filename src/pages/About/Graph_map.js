@@ -6,43 +6,43 @@ import map_korea from "../../img/map_korea.jpg";
 const DemoScatter = () => {
   const data = [
     {
-      city: "上海",
+      city: "경상도",
       搜索UV: 1.5,
       端DAU: 6,
       搜索DAU渗透率: 3,
     },
     {
-      city: "台北",
+      city: "전라도",
       搜索UV: 2,
       端DAU: 5,
       搜索DAU渗透率: 13,
     },
     {
-      city: "北京",
+      city: "경기도",
       搜索UV: 7,
       端DAU: 3.6,
       搜索DAU渗透率: 16,
     },
     {
-      city: "济南",
+      city: "서울",
       搜索UV: 5,
       端DAU: 5,
       搜索DAU渗透率: 16,
     },
     {
-      city: "青岛",
+      city: "강원도",
       搜索UV: 2,
       端DAU: 1,
       搜索DAU渗透率: 19,
     },
     {
-      city: "杭州",
+      city: "충청도",
       搜索UV: 7,
       端DAU: 2,
       搜索DAU渗透率: 90,
     },
     {
-      city: "广东",
+      city: "제주도",
       搜索UV: 7.4,
       端DAU: 1.5,
       搜索DAU渗透率: 30,
