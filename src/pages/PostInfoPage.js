@@ -4,7 +4,6 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper/core';
 import { Link, useNavigate } from 'react-router-dom';
-//import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit, AiFillHeart} from "react-icons/ai";
 import { BiMale, BiFemale } from "react-icons/bi";
 import { GrDeliver } from "react-icons/gr";
@@ -17,6 +16,14 @@ import "swiper/css/scrollbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import InfoPageMapContainer from "./postinfopage/InfoPageMapContainer";
+import PostInfoDiv from "./postinfopage/PostInfoDiv";
+import PostInfoFlexDiv from "./postinfopage/PostInfoFlexDiv";
+import PostInfoSpan from "./postinfopage/PostInfoSpan";
+import ReadComment from "./postinfopage/commentcomponents/ReadComment";
+import WriteReplyComment from "./postinfopage/commentcomponents/WriteReplyComment";
+import UserProfileImg from "./postinfopage/UserProfileImg";
+import ReadReplyComment from "./postinfopage/commentcomponents/ReadReplyComment";
+import WriteComment from "./postinfopage/commentcomponents/WriteComment";
 
 SwiperCore.use([Pagination]);
 
@@ -35,34 +42,6 @@ const PostInfoPageSection  = styled.div`
     align-items: center;
 `;
 
-const PostInfoDiv = styled.div`
-    width: ${ props => props.width || "0%"};
-    height: ${ props => props.height || "0rem"};
-    margin-top: ${ props => props.marginTop || "0rem"};
-    border-bottom: ${ props => props.borderBottom || "none"};
-`;
-
-const PostInfoFlexDiv = styled.div`
-    width: ${ props => props.width || "0%"};
-    min-height: ${ props => props.minHeight || "0rem"};
-
-    display: flex;
-    align-items: ${ props => props.alignItems || "stretch"};
-    flex-direction: ${ props => props.flexDirection || "row"};
-    flex-wrap: ${ props => props.flexWrap || "nowrap"};
-    justify-content: ${ props => props.justifyContent || "flex-start" };
-    gap: ${ props => props.gap || "0rem"};
-
-    border-style: ${ props => props.borderStyle || "none"};
-    border-radius: ${ props => props.borderRadius || "0rem"};
-    border-color: ${ props => props.borderColor || "black"};
-
-    border-bottom: ${ props => props.borderBottom || "none"};
-
-    margin-top: ${ props => props.marginTop || "0rem"};
-    margin-left: ${ props => props.marginLeft || "0rem"};
-`;
-
 const PostInfoImage = styled.img`
     width: 20rem;
     height: 13rem;
@@ -73,22 +52,6 @@ const SwiperContainer = styled.div`
     .swiper-slide {
         margin-right: 20px; /* SwiperSlide 간격 조정 */
     }
-`;
-
-const PostInfoSpan = styled.span`
-    width: ${ props => props.width};
-    color: ${ props => props.color || "black"};
-    font-size: ${ props => props.fontSize || "1rem"};
-    font-weight: ${ props => props.fontWeight || "normal"};
-    margin-left: ${ props => props.marginLeft || "0rem"};
-    margin-top: ${ props => props.marginTop || "0rem"};
-`;
-
-const UserProfileImg = styled.img`
-    margin-left: ${ props => props.marginLeft || "0rem"};
-    width: ${ props => props.width || "0rem"};
-    height: ${ props => props.height || "0rem"};
-    border-radius: ${ props => props.borderRadius || "0rem"};
 `;
 
 const HashTagButton = styled.button`
@@ -105,34 +68,6 @@ const HashTagButton = styled.button`
 
 const MatchingCompleteButton = styled.button`
     width: 7rem;
-    height: 2rem;
-    font-size: 1rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-radius: 0.3rem;
-    background-color: white;
-    border-color: #47A5FD;
-    color: #47A5FD;
-`;
-const CommentProfileImg = styled.img`
-    margin-left: 0.7rem;
-    border-radius: 10rem;
-    width: 2.5rem;
-    height: 2.5rem;
-`;
-
-
-const CommentInput = styled.input`
-    margin-left: 0.5rem;
-    border-color: #47A5FD;
-    border-radius: 0.5rem;
-    width: 80%;
-    height: 2rem;
-`
-
-const CommentWriteButton = styled.button`
-    margin-left: 3%;
-    width: 10%;
     height: 2rem;
     font-size: 1rem;
     border-width: 0.1rem;
@@ -415,26 +350,10 @@ const PostInfoPage = () => {
                     <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
-                    <PostInfoFlexDiv width="100%" minHeight="6rem" flexDirection="column" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
-                        <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                            <CommentProfileImg src = "blue.png"/>
-                            <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">wkdgns1979</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                        <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
-                            <PostInfoSpan color="black" marginLeft="4rem" fontSize="1.2rem">안녕하세요!</PostInfoSpan>
-                            <PostInfoSpan color="#47a5fd" marginLeft="1rem" marginTop="0.5rem" fontSize="0.8rem">답글 쓰기</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
-                        <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                            <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src = "blue.png"/>
-                            <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">wkdgns1979</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                        <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                            <CommentInput type="text"/>
-                            <CommentWriteButton>쓰기</CommentWriteButton>
-                        </PostInfoFlexDiv>
-                    </PostInfoFlexDiv>
+                    <WriteComment/>
+                    <ReadComment/>
+                    <ReadReplyComment/>
+                    <WriteReplyComment/>
                 </PostInfoFlexDiv>
             </PostInfoPageSection>
         </PostInfoPageContainer>
