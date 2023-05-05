@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import React, { useEffect, useRef } from "react"; // useRef를 추가
+import React, { useEffect, useState } from "react"; // useRef를 추가
 import Header from "../Header";
 import styled from "styled-components";
-import CardPost2 from "./CardPost2";
+// import CardPost2 from "./CardPost2";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Segmented, Space } from "antd";
-
-import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Pagination } from "antd";
+import axios from "axios";
+import { useRef } from "react";
 
 const Page = styled.div`
   margin-top: 1rem;
@@ -22,6 +22,20 @@ const CategoryNum = styled.div`
   text-align: center;
 `;
 
+const Card2 = styled.div`
+  min-width: 90%;
+  height: 10rem;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  &:hover {
+    border-color: #47a5fd;
+  }
+`;
 const CardBox2 = styled.div`
   position: absolute;
   top: 13rem;
@@ -36,18 +50,69 @@ const CardBox2 = styled.div`
   overflow: auto;
   gap: 2rem;
 `;
+const CommunityDiv = styled.div`
+  width: 90%;
+  height: 2rem;
+  display: flex;
+  align-items: flex-end;
+`;
 
-// const CardPost2 = styled.div`
-//   min-width: 90%;
-//   height: 10rem;
-//   border-color: black;
-//   border-style: solid;
-//   border-radius: 1rem;
-// `;
+const CommunityButton = styled.button`
+  margin-top: 90px;
+  margin-left: 308px;
+  background-color: white;
+  width: 4.5rem;
+  height: 1.5rem;
+  color: #bbbbbb;
+  font-weight: 500;
+  font-size: 0.8rem;
+  border: 2px solid #bbbbbb;
+  border-radius: 0.5rem;
+`;
+
+const DateDiv = styled.div`
+  width: 88%;
+  height: 2rem;
+`;
+
+const DateSpan = styled.span`
+  margin-left: 300px;
+  font-size: 0.8rem;
+  color: #bbbbbb;
+  line-height: 2rem;
+`;
+
+const TitleDiv = styled.div`
+  width: 88%;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+`;
+
+const TitleSpan = styled.span`
+  margin-left: 300px;
+  font-size: 1.1rem;
+  font-weight: 600;
+`;
+
+const CardImageDiv = styled.div`
+  width: 100%;
+  height: 20rem;
+  margin-right: auto;
+`;
+
+const CardImage = styled.img`
+  margin-top: -70px;
+  margin-left: 20px;
+  width: 25%;
+  height: 130px;
+  border-radius: 1rem;
+`;
 
 const CardPost3 = styled.div`
-  position: absolute;
-  right: 10px; // 왼쪽에서 10px 떨어진 위치
+  position: fixed;
+  top: 10rem;
+  right: 2%;
   width: 15%;
   height: 35rem;
   border-color: #bbbbbb;
@@ -55,49 +120,36 @@ const CardPost3 = styled.div`
   border-radius: 1rem;
 `;
 
-const PostMapContentContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 50rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-`;
+const CardPost2 = ({ type }) => {
+  const [data, setData] = useState([]);
+  const cardRef = useRef(null);
+  const [scrollTop, setScrollTop] = useState(0);
 
-const LinkToStyle = {
-  textDecoration: "none",
-  color: "inherit",
-};
-
-const NewPostIconStyle = {
-  position: "fixed",
-  right: "2rem",
-  bottom: "0.001rem",
-  zIndex: "2",
-  color: "#bbbbbb",
-};
-
-const Community = () => {
-  const cardPost3Ref = useRef(null); // useRef를 사용하여 CardPost3의 ref를 생성
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        "http://localhost:8080/api/communityboard"
+      );
+      setData(result.data);
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
-      const cardPost3 = cardPost3Ref.current;
-      if (cardPost3) {
-        // CardPost3의 위치를 업데이트
-        cardPost3.style.top = `${150 + scrollTop}px`;
+      if (cardRef.current) {
+        setScrollTop(cardRef.current.scrollTop);
       }
     };
 
-    window.addEventListener("scroll", handleScroll); // 스크롤 이벤트 리스너 등록
+    if (cardRef.current) {
+      cardRef.current.addEventListener("scroll", handleScroll);
+    }
 
     return () => {
-      window.removeEventListener("scroll", handleScroll); // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+      if (cardRef.current) {
+        cardRef.current.removeEventListener("scroll", handleScroll);
+      }
     };
   }, []);
 
@@ -164,30 +216,39 @@ const Community = () => {
             />
           </Space>
         </CategoryNum>
-        <Link to="/newCommunityPostPage" style={LinkToStyle}>
-          <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
-        </Link>
-        <Link to="/newCommunityPostInfo" style={LinkToStyle}>
-          <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
-        </Link>
         <CardBox2>
-          <CardPost2 />
-          <CardPost2 />
-          <CardPost2 />
-          <CardPost2 />
-          <CardPost2 />
-          <CardPost2 />
-          <CardPost2 />
-          <CardPost2 />
+          {data.map((post) => (
+            <Card2 key={post.communityId}>
+              <CommunityDiv>
+                <CommunityButton>
+                  {post.code === 1 ? "방자랑" : "정보공유"}
+                </CommunityButton>
+              </CommunityDiv>
+              <DateDiv>
+                <DateSpan>{post.createdAt}</DateSpan>
+              </DateDiv>
+              <TitleDiv>
+                <TitleSpan>{post.title}</TitleSpan>
+              </TitleDiv>
+              <CardImageDiv>
+                <CardImage src={post.imgUrls[0]} />
+              </CardImageDiv>
+            </Card2>
+          ))}
         </CardBox2>
-        <CardPost3 ref={cardPost3Ref} /> {/* CardPost3에 ref 추가 */}
+        <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
+          <h2>가장 인기 있는 글</h2>
+          <p>1. 내 방 자랑</p>
+          <p>2. 새로운 청소기</p>
+          <p>3. 오늘의 일기</p>
+        </CardPost3>{" "}
+        {/* CardPost3에 ref 추가 */}
         <PageNum>
           <Pagination defaultCurrent={1} total={50} />
         </PageNum>
-        ;
       </Page>
     </>
   );
 };
 
-export default Community;
+export default CardPost2;

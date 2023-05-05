@@ -16,45 +16,45 @@ const DemoScatter = () => {
       const modifiedData = [
         {
           city: "울산",
-          搜索UV: 3,
-          端DAU: 1.8,
-          搜索DAU渗透率: 3,
+          UV: 3,
+          DAU: 1.8,
+          region: 3,
         },
         {
           city: "광주",
-          搜索UV: 1.8,
-          端DAU: 1.8,
-          搜索DAU渗透率: 13,
+          UV: 1.8,
+          DAU: 1.8,
+          region: 13,
         },
         {
           city: "경기도",
-          搜索UV: 1.88,
-          端DAU: 4.2,
-          搜索DAU渗透率: 16,
+          UV: 1.88,
+          DAU: 4.2,
+          region: 16,
         },
         {
           city: "서울",
-          搜索UV: 1.8,
-          端DAU: 4,
-          搜索DAU渗透率: 16,
+          UV: 1.8,
+          DAU: 4,
+          region: 16,
         },
         {
           city: "강원도",
-          搜索UV: 2.8,
-          端DAU: 4,
-          搜索DAU渗透率: 19,
+          UV: 2.8,
+          DAU: 4,
+          region: 19,
         },
         {
           city: "대전",
-          搜索UV: 2.1,
-          端DAU: 3,
-          搜索DAU渗透率: 90,
+          UV: 2.1,
+          DAU: 3,
+          region: 90,
         },
         {
           city: "제주도",
-          搜索UV: 1.6,
-          端DAU: 0.0,
-          搜索DAU渗透率: 30,
+          UV: 1.6,
+          DAU: 0.0,
+          region: 30,
         },
       ];
 
@@ -64,7 +64,7 @@ const DemoScatter = () => {
       modifiedData.forEach((item) => {
         const target = newData.find((city) => city.city === item.city);
         if (target) {
-          item.搜索DAU渗透率 = target.搜索DAU渗透率;
+          item.region = target.region;
         }
       });
 
@@ -87,9 +87,9 @@ const DemoScatter = () => {
     autoFit: true,
     appendPadding: 16,
     data,
-    xField: "搜索UV",
-    yField: "端DAU",
-    sizeField: "搜索DAU渗透率",
+    xField: "UV",
+    yField: "DAU",
+    sizeField: "region",
     size: [12, 30],
     shape: "circle",
     pointStyle: {
@@ -100,13 +100,13 @@ const DemoScatter = () => {
     tooltip: {
       showTitle: true,
       showMarkers: false,
-      fields: ["搜索UV", "端DAU", "搜索DAU渗透率"],
+      fields: ["UV", "DAU", "region"],
       customContent: (title, items) => {
         const field = items?.[0];
         const formatterInfo = {
-          搜索UV: (value) => value + "万",
-          端DAU: (value) => value + "万",
-          搜索DAU渗透率: () => "%",
+          UV: (value) => value + "万",
+          DAU: (value) => value + "万",
+          region: () => "%",
         };
 
         let htmlStr = `<div style="margin:10px 0;font-weight:700;">${field?.data?.city}</div><div class="g2-tooltip-items">`;
@@ -116,7 +116,7 @@ const DemoScatter = () => {
                   item.name
                 }</span>
                 <span class="g2-tooltip-item-value">${
-                  item.name === "搜索DAU渗透率"
+                  item.name === "region"
                     ? field.data[item.name] + "%"
                     : item.value + formatterInfo[item.name](item.value)
                 }</span>
