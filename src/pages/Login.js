@@ -20,36 +20,39 @@ const Logo = styled.span`
 `;
 
 const qs = require("qs");
-
 const onFinish = async (value) => {
   try {
     console.log("username :" + value.username);
     console.log("password :" + value.password);
 
-    localStorage.setItem("username", value.username);
     const data = qs.stringify({
       username: value.username,
       password: value.password,
     });
 
-    await axios.post("http://localhost:8080/login", data, {
+    const response = await axios.post("http://localhost:8080/login", data, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      withCredentials: true, // 이 부분 추가
+      withCredentials: true,
     });
 
-    message.success("Processing complete!");
-    console.log("username:" + value.username);
-    console.log("Registration successful");
+    if (response.status === 200) {
+      message.success("Processing complete!");
+      console.log("username:" + value.username);
+      console.log("Registration successful");
+
+      localStorage.setItem("username", value.username);
+
+      window.location.href = "../../";
+    } else {
+      throw new Error("로그인 요청 실패");
+    }
   } catch (error) {
     console.error("Registration failed:", error);
-    message.success("오류가 발생했습니다!");
+    message.error("오류가 발생했습니다!");
   }
-  window.location.href = "../../";
 };
-
-//로그인 시 스토리지 확인
 
 const Login = () => {
   return (

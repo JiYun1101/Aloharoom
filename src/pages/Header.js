@@ -75,6 +75,7 @@ const LinkToStyle = {
 
 const Header = () => {
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
+  const [username, setUsername] = useState(localStorage.getItem("username"));
 
   const ModalOpen = () => {
     setNotifyModalOpen(true);
@@ -83,11 +84,11 @@ const Header = () => {
   const ModalClose = () => {
     setNotifyModalOpen(false);
   };
-  const [username, setUsername] = useState(localStorage.getItem("username"));
 
   const handleLogout = () => {
     localStorage.removeItem("username");
     setUsername(null);
+    console.log("Logged out successfully");
   };
 
   return (
