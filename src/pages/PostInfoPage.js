@@ -3,28 +3,24 @@ import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper/core';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit, AiFillHeart} from "react-icons/ai";
 import { BiMale, BiFemale } from "react-icons/bi";
 import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
+import axios from "axios";
+import InfoPageMapContainer from "./postinfopage/InfoPageMapContainer";
+import PostInfoDiv from "./postinfopage/PostInfoDiv";
+import PostInfoFlexDiv from "./postinfopage/PostInfoFlexDiv";
+import PostInfoSpan from "./postinfopage/PostInfoSpan";
+import UserProfileImg from "./postinfopage/UserProfileImg";
+import WriteComment from "./postinfopage/commentcomponents/WriteComment";
+import ReadCommentSection from "./postinfopage/commentcomponents/ReadCommentSection";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import axios from "axios";
-import { useParams } from "react-router-dom";
-import InfoPageMapContainer from "./postinfopage/InfoPageMapContainer";
-import PostInfoDiv from "./postinfopage/PostInfoDiv";
-import PostInfoFlexDiv from "./postinfopage/PostInfoFlexDiv";
-import PostInfoSpan from "./postinfopage/PostInfoSpan";
-import ReadComment from "./postinfopage/commentcomponents/ReadComment";
-import WriteReplyComment from "./postinfopage/commentcomponents/WriteReplyComment";
-import UserProfileImg from "./postinfopage/UserProfileImg";
-import ReadReplyComment from "./postinfopage/commentcomponents/ReadReplyComment";
-import WriteComment from "./postinfopage/commentcomponents/WriteComment";
-import ReadCommentSection from "./postinfopage/commentcomponents/ReadCommentSection";
 
 SwiperCore.use([Pagination]);
 
