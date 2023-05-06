@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import PostInfoFlexDiv from '../PostInfoFlexDiv';
 import PostInfoSpan from '../PostInfoSpan';
+import CommentInput from '../CommentInput';
+import CommentWriteButton from '../CommentWriteButton';
 
 const CommentProfileImg = styled.img`
     margin-left: 0.7rem;
@@ -10,29 +12,8 @@ const CommentProfileImg = styled.img`
     height: 2.5rem;
 `;
 
-const CommentInput = styled.input`
-    margin-left: 0.5rem;
-    border-color: #47A5FD;
-    border-radius: 0.5rem;
-    width: 80%;
-    height: 2rem;
-`;
-
-const CommentWriteButton = styled.button`
-    margin-left: 3%;
-    width: 10%;
-    height: 2rem;
-    font-size: 1rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-radius: 0.3rem;
-    background-color: white;
-    border-color: #47A5FD;
-    color: #47A5FD;
-`;
-
 const WriteComment = ({
-    makeCommentRequest = f => f,
+    makeCommentRequest,
     boardId
 }) => {
     const [inputValue, setInputValue] = useState("");
@@ -48,9 +29,9 @@ const WriteComment = ({
                     onClick={() => {
                         makeCommentRequest(1, 1, boardId, 0, inputValue, null, 0, null);
                     }}
-                    >
-                        쓰기
-                    </CommentWriteButton>
+                >
+                    쓰기
+                </CommentWriteButton>
             </PostInfoFlexDiv>
         </PostInfoFlexDiv>
     );

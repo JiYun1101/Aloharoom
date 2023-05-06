@@ -25,6 +25,15 @@ const ReadCommentSection = ({
         .catch((error) => {console.log('deleteComment axios error')});
     }
 
+    async function updateComment(commentId, content) {
+        await axios.patch(`http://localhost:8080/api/comment`, {
+            "homeCommentId": commentId, 
+            "content": content
+        })
+        .then((response) => { window.location.reload();})
+        .catch((error) => {console.log('updateComment axios error')});
+    }
+
     return (
         <>
             <ReadComment
@@ -42,6 +51,7 @@ const ReadCommentSection = ({
                 setClickTargetContent={setClickTargetContent}
                 setClickGroupId={setClickGroupId}
                 deleteComment={deleteComment}
+                updateComment={updateComment}
             />
             {showReplies && (
                 <>
@@ -59,6 +69,7 @@ const ReadCommentSection = ({
                             setClickTargetContent={setClickTargetContent}
                             setClickGroupId={setClickGroupId}
                             deleteComment={deleteComment}
+                            updateComment={updateComment}
                         />
                     ))}
                 </>
