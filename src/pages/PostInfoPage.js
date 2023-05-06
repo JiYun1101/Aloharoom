@@ -87,6 +87,7 @@ const PostInfoPage = () => {
     const boardId = useParams().id;
     const navigate = useNavigate();
     const [clickLikeButton, setClickLickButton] = useState(false);
+    const [commentData, setCommentData] = useState([]);
     const [address, setAddress] = useState('');
     const [age, setAge] = useState('');
     const [contents, setContents] = useState('');
@@ -159,9 +160,7 @@ const PostInfoPage = () => {
         await axios.post(`http://localhost:8080/api/heart/${boardId}`,{},{
             withCredentials:true
         })
-            .then((response) => {
-                console.log('좋아요 추가');
-            })
+            .then((response) => {})
             .catch((error) => {
                 console.log('AddLikePost axios error');
             })
@@ -171,17 +170,29 @@ const PostInfoPage = () => {
         await axios.delete(`http://localhost:8080/api/heart/${boardId}`, {
             withCredentials:true
         })
-            .then((response) => {
-                console.log('좋아요 삭제');
-            })
+            .then((response) => {})
             .catch((error) => {
                 console.log('DeleteLikePost axios error');
             })
     }
 
+    async function FetchBoardComment() {
+        await axios.get(`http://localhost:8080/api/comment/home/${boardId}`, {
+            withCredentials:true
+        })
+        .then((response) => {
+            console.log('response.data ', response.data);
+            setCommentData(response.data);
+        })
+        .catch((error) => {
+            console.log('fetchBoardComment axios error');
+        })
+    }
+
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
+        FetchBoardComment();
     }, []);
 
     return (
@@ -350,10 +361,32 @@ const PostInfoPage = () => {
                     <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
-                    <WriteComment/>
-                    <ReadComment/>
-                    <ReadReplyComment/>
+                    {commentData.map((data, index) => {
+                        return (
+                            <>
+                                <ReadComment
+                                    key={data.commentId}
+                                    commentId={data.commentId}
+                                    content={data.content}
+                                    createdDate={data.createdDate}
+                                    nickname={data.nickname}
+                                    userId={data.userId}
+                                />
+                                {data.commentDtos.map((data, index) => (
+                                    <ReadReplyComment
+                                        key={data.commentId}
+                                        commentId={data.commentId}
+                                        content={data.content}
+                                        createdDate={data.createdDate}
+                                        nickname={data.nickname}
+                                        userId={data.userId}
+                                    />
+                                ))}
+                            </>
+                        )
+                    })}
                     <WriteReplyComment/>
+                    <WriteComment/>
                 </PostInfoFlexDiv>
             </PostInfoPageSection>
         </PostInfoPageContainer>

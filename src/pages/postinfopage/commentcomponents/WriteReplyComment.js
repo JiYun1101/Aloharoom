@@ -2,13 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import PostInfoFlexDiv from '../PostInfoFlexDiv';
 import PostInfoSpan from '../PostInfoSpan';
-
-const UserProfileImg = styled.img`
-    margin-left: ${ props => props.marginLeft || "0rem"};
-    width: ${ props => props.width || "0rem"};
-    height: ${ props => props.height || "0rem"};
-    border-radius: ${ props => props.borderRadius || "0rem"};
-`;
+import UserProfileImg from '../UserProfileImg';
 
 const CommentInput = styled.input`
     margin-left: 0.5rem;
