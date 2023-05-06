@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CardPosts from "./CardPosts";
-import PostNavs from "./PostNavComponents/PostNavs";
+import PostNavs from "./PostNavs";
+// import CardPost2 from "./Community";
 
 const PostContainer = styled.div`
   border-width: 0.1rem;
@@ -24,22 +25,10 @@ const Post = ({ cardPostData }) => {
     setShareHousePosts(false);
   };
 
-  const sharehousePostsClick = () => {
-    setRoomMatePosts(false);
-    setShareHousePosts(true);
-  };
-
   return (
     <PostContainer>
-      <PostNavs
-        roommatePostsClick={roommatePostsClick}
-        sharehousePostsClick={sharehousePostsClick}
-      />
-      <CardPosts
-        roommatePosts={roommatePosts}
-        sharehousePosts={sharehousePosts}
-        cardPostData={cardPostData}
-      />
+      <PostNavs roommatePostsClick={roommatePostsClick} />
+      <CardPosts roommatePosts={roommatePosts} cardPostData={cardPostData} />
     </PostContainer>
   );
 };

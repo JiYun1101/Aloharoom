@@ -1,16 +1,16 @@
 import React from "react";
-import CardPost2 from "./CardPost2";
-import CommunityCardPost from "./CommunityCardPost";
+import RoommateCardPosts from "./RoommateCardPosts";
+// import ShareHousePosts from "./ShareHouseSectionComponents/ShareHousePosts";
 
 const CardPosts = ({ roommatePosts, sharehousePosts, cardPostData }) => {
   return (
     <>
       {roommatePosts ? (
-        <CommunityCardPost cardPostData={cardPostData} />
+        <RoommateCardPosts cardPostData={cardPostData} />
       ) : (
         <></>
       )}
-      {sharehousePosts ? <CommunityCardPost /> : <></>}
+      {/* {sharehousePosts ? <ShareHousePosts /> : <></>} */}
     </>
   );
 };

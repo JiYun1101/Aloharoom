@@ -383,7 +383,7 @@ const PostInfoPage = () => {
     await axios
       .delete(`http://localhost:8080/api/board/${boardId}`)
       .then((response) => {
-        navigate(`../postMapPage`);
+        navigate(`../Community`);
       })
       .catch((error) => {
         console.log("DeletePostInfoData axios error");
