@@ -21,7 +21,10 @@ const ReadCommentSection = ({data}) => {
                 createdDate={data.createdDate}
                 nickname={data.nickname}
                 userId={data.userId}
+                showReplies={showReplies}
+                showWriteReplies={showWriteReplies}
                 toggleReplies={toggleReplies}
+                toggleWriteReplies={toggleWriteReplies}
             />
             {showReplies && (
                 <>
@@ -33,13 +36,14 @@ const ReadCommentSection = ({data}) => {
                             createdDate={data.createdDate}
                             nickname={data.nickname}
                             userId={data.userId}
+                            showWriteReplies={showWriteReplies}
                             toggleWriteReplies={toggleWriteReplies}
                         />
                     ))}
-                    {showWriteReplies && (
-                        <WriteReplyComment/>
-                    )}
                 </>
+            )}
+            {showWriteReplies && (
+                <WriteReplyComment/>
             )}
         </>
     );

@@ -6,6 +6,7 @@ import UserProfileImg from '../UserProfileImg';
 const ReadReplyComment = ({
     nickname,
     content,
+    showWriteReplies,
     toggleWriteReplies
 }) => {
     return (
@@ -23,7 +24,7 @@ const ReadReplyComment = ({
                     fontSize="0.8rem"
                     onClick={toggleWriteReplies}
                 >
-                    답글 쓰기
+                    {showWriteReplies ? "답글 안쓰기" : "답글 쓰기"}
                 </PostInfoSpan>
             </PostInfoFlexDiv>
         </PostInfoFlexDiv>
