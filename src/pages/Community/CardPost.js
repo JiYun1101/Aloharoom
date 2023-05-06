@@ -154,100 +154,26 @@ const Community = ({ type }) => {
   }, []);
 
   return (
-    <>
-      <Header />
-      <div className="App"></div>{" "}
-      <Page>
-        <CategoryNum>
-          <Space direction="vertical">
-            <Segmented
-              options={[
-                {
-                  label: (
-                    <div
-                      style={{
-                        padding: 4,
-                      }}
-                    >
-                      <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
-                      <div>User 1</div>
-                    </div>
-                  ),
-                  value: "user1",
-                },
-                {
-                  label: (
-                    <div
-                      style={{
-                        padding: 4,
-                      }}
-                    >
-                      <Avatar
-                        style={{
-                          backgroundColor: "#f56a00",
-                        }}
-                      >
-                        K
-                      </Avatar>
-                      <div>User 2</div>
-                    </div>
-                  ),
-                  value: "user2",
-                },
-                {
-                  label: (
-                    <div
-                      style={{
-                        padding: 4,
-                      }}
-                    >
-                      <Avatar
-                        style={{
-                          backgroundColor: "#87d068",
-                        }}
-                        icon={<UserOutlined />}
-                      />
-                      <div>User 3</div>
-                    </div>
-                  ),
-                  value: "user3",
-                },
-              ]}
-            />
-          </Space>
-        </CategoryNum>
-        <CardBox2>
-          {data.map((post) => (
-            <Card2 key={post.communityId}>
-              <CommunityDiv>
-                <CommunityButton>
-                  {post.code === 1 ? "방자랑" : "정보공유"}
-                </CommunityButton>
-              </CommunityDiv>
-              <DateDiv>
-                <DateSpan>{post.createdAt}</DateSpan>
-              </DateDiv>
-              <TitleDiv>
-                <TitleSpan>{post.title}</TitleSpan>
-              </TitleDiv>
-              <CardImageDiv>
-                <CardImage src={post.imgUrls[0]} />
-              </CardImageDiv>
-            </Card2>
-          ))}
-        </CardBox2>
-        <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
-          <h2>가장 인기 있는 글</h2>
-          <p>1. 내 방 자랑</p>
-          <p>2. 새로운 청소기</p>
-          <p>3. 오늘의 일기</p>
-        </CardPost3>{" "}
-        {/* CardPost3에 ref 추가 */}
-        <PageNum>
-          <Pagination defaultCurrent={1} total={50} />
-        </PageNum>
-      </Page>
-    </>
+    <CardBox2>
+      {data.map((post) => (
+        <Card2 key={post.communityId}>
+          <CommunityDiv>
+            <CommunityButton>
+              {post.code === 1 ? "방자랑" : "정보공유"}
+            </CommunityButton>
+          </CommunityDiv>
+          <DateDiv>
+            <DateSpan>{post.createdAt}</DateSpan>
+          </DateDiv>
+          <TitleDiv>
+            <TitleSpan>{post.title}</TitleSpan>
+          </TitleDiv>
+          <CardImageDiv>
+            <CardImage src={post.imgUrls[0]} />
+          </CardImageDiv>
+        </Card2>
+      ))}
+    </CardBox2>
   );
 };
 
