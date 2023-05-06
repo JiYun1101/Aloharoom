@@ -386,7 +386,7 @@ const PostInfoPage = () => {
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
                     {commentData.map((data, idx) => (
-                        <ReadCommentSection 
+                        <ReadCommentSection
                             key={idx} 
                             data={data}
                             makeCommentRequest={makeCommentRequest}

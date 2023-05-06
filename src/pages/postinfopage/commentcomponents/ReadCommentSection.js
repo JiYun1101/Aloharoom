@@ -5,7 +5,8 @@ import WriteReplyComment from "./WriteReplyComment";
 
 const ReadCommentSection = ({
     data,
-    makeCommentRequest
+    makeCommentRequest,
+    boardId
 }) => {
     const [clickTargetUserId, setClickTargetUserId] = useState();
     const [clickTargetContent, setClickTargetContent] = useState();
@@ -57,6 +58,7 @@ const ReadCommentSection = ({
             {showWriteReplies && (
                 <WriteReplyComment 
                     makeCommentRequest={makeCommentRequest}
+                    boardId={boardId}
                     clickTargetUserId={clickTargetUserId}
                     clickTargetContent={clickTargetContent}
                     clickGroupId={clickGroupId}
