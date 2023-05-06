@@ -5,7 +5,8 @@ import UserProfileImg from '../UserProfileImg';
 
 const ReadReplyComment = ({
     nickname,
-    content
+    content,
+    toggleWriteReplies
 }) => {
     return (
         <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
@@ -15,7 +16,15 @@ const ReadReplyComment = ({
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
                 <PostInfoSpan color="black" marginLeft="4rem" fontSize="1.2rem">{content}</PostInfoSpan>
-                <PostInfoSpan color="#47a5fd" marginLeft="1rem" marginTop="0.5rem" fontSize="0.8rem">답글 쓰기</PostInfoSpan>
+                <PostInfoSpan 
+                    color="#47a5fd"
+                    marginLeft="1rem"
+                    marginTop="0.5rem"
+                    fontSize="0.8rem"
+                    onClick={toggleWriteReplies}
+                >
+                    답글 쓰기
+                </PostInfoSpan>
             </PostInfoFlexDiv>
         </PostInfoFlexDiv>
     );

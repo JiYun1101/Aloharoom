@@ -363,7 +363,6 @@ const PostInfoPage = () => {
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
                     {commentData.map((data, idx) => (<ReadCommentSection key={idx} data={data}/>))}
-                    <WriteReplyComment/>
                     <WriteComment/>
                 </PostInfoFlexDiv>
             </PostInfoPageSection>

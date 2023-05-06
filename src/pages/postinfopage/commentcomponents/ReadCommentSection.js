@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import ReadComment from "./ReadComment";
 import ReadReplyComment from "./ReadReplyComment";
+import WriteReplyComment from "./WriteReplyComment";
 
 const ReadCommentSection = ({data}) => {
     const [showReplies, setShowReplies] = useState(false);
+    const [showWriteReplies, setShowWriteReplies] = useState(false);
     const toggleReplies = () => {
         setShowReplies(!showReplies);
     };
+    const toggleWriteReplies = () => {
+        setShowWriteReplies(!showWriteReplies);
+    }
     return (
         <>
             <ReadComment
@@ -28,8 +33,12 @@ const ReadCommentSection = ({data}) => {
                             createdDate={data.createdDate}
                             nickname={data.nickname}
                             userId={data.userId}
+                            toggleWriteReplies={toggleWriteReplies}
                         />
                     ))}
+                    {showWriteReplies && (
+                        <WriteReplyComment/>
+                    )}
                 </>
             )}
         </>
