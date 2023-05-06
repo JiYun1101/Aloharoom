@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReadComment from "./ReadComment";
 import ReadReplyComment from "./ReadReplyComment";
 import WriteReplyComment from "./WriteReplyComment";
-
+import axios from "axios";
 const ReadCommentSection = ({
     data,
     makeCommentRequest,
@@ -19,6 +19,12 @@ const ReadCommentSection = ({
     const toggleWriteReplies = () => {
         setShowWriteReplies(!showWriteReplies);
     }
+    async function deleteComment(commentId) {
+        await axios.delete(`http://localhost:8080/api/comment/${commentId}`)
+        .then((response) => { window.location.reload();})
+        .catch((error) => {console.log('deleteComment axios error')});
+    }
+
     return (
         <>
             <ReadComment
@@ -35,6 +41,7 @@ const ReadCommentSection = ({
                 setClickTargetUserId={setClickTargetUserId}
                 setClickTargetContent={setClickTargetContent}
                 setClickGroupId={setClickGroupId}
+                deleteComment={deleteComment}
             />
             {showReplies && (
                 <>
@@ -51,6 +58,7 @@ const ReadCommentSection = ({
                             setClickTargetUserId={setClickTargetUserId}
                             setClickTargetContent={setClickTargetContent}
                             setClickGroupId={setClickGroupId}
+                            deleteComment={deleteComment}
                         />
                     ))}
                 </>

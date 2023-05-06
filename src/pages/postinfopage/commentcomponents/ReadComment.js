@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PostInfoFlexDiv from '../PostInfoFlexDiv';
 import PostInfoSpan from '../PostInfoSpan';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 const CommentProfileImg = styled.img`
     margin-left: 0.7rem;
@@ -22,13 +23,19 @@ const ReadComment = ({
     toggleWriteReplies,
     setClickTargetUserId,
     setClickTargetContent,
-    setClickGroupId
+    setClickGroupId,
+    deleteComment
 }) => {
     return (
         <PostInfoFlexDiv width="100%" minHeight="6rem" flexDirection="column" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
-            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                <CommentProfileImg src = "blue.png"/>
-                <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
+            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center" flexDirection="row">
+                <PostInfoFlexDiv width="50%" height="100%" alignItems="center">
+                    <CommentProfileImg src = "blue.png"/>
+                    <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="50%" height="100%" alignItems="center" flexDirection="row-reverse">
+                    <AiOutlineDelete size={30} style={{ marginRight: "0.5rem"}} onClick={() => { deleteComment(commentId);}}/>
+                </PostInfoFlexDiv>
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
                 <PostInfoSpan color="black" marginLeft="4rem" fontSize="1.2rem">{content}</PostInfoSpan>
