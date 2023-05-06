@@ -4,10 +4,16 @@ import PostInfoSpan from '../PostInfoSpan';
 import UserProfileImg from '../UserProfileImg';
 
 const ReadReplyComment = ({
-    nickname,
+    commentId,
     content,
+    //createdDate,
+    nickname,
+    userId,
     showWriteReplies,
-    toggleWriteReplies
+    toggleWriteReplies,
+    setClickTargetUserId,
+    setClickTargetContent,
+    setClickGroupId
 }) => {
     return (
         <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
@@ -22,7 +28,12 @@ const ReadReplyComment = ({
                     marginLeft="1rem"
                     marginTop="0.5rem"
                     fontSize="0.8rem"
-                    onClick={toggleWriteReplies}
+                    onClick={() => {
+                        setClickTargetUserId(userId);
+                        setClickTargetContent(content);
+                        setClickGroupId(commentId);
+                        toggleWriteReplies();
+                    }}
                 >
                     {showWriteReplies ? "답글 안쓰기" : "답글 쓰기"}
                 </PostInfoSpan>

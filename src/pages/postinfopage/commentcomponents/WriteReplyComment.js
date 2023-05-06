@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import PostInfoFlexDiv from '../PostInfoFlexDiv';
 import PostInfoSpan from '../PostInfoSpan';
@@ -25,7 +25,14 @@ const CommentWriteButton = styled.button`
     color: #47A5FD;
 `;
 
-const WriteReplyComment = () => {
+const WriteReplyComment = ({
+    makeCommentRequest,
+    boardId,
+    clickTargetUserId,
+    clickTargetContent,
+    clickGroupId
+}) => {
+    const [inputValue, setInputValue] = useState();
     return (
         <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
@@ -33,8 +40,17 @@ const WriteReplyComment = () => {
                 <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">wkdgns1979</PostInfoSpan>
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                <CommentInput type="text" placeholder="대댓글을 입력하세요."/>
-                <CommentWriteButton>쓰기</CommentWriteButton>
+                <CommentInput type="text" placeholder="대댓글을 입력하세요." onChange={(e) => { setInputValue(e.target.value)}}/>
+                <CommentWriteButton
+                    onClick={() =>{ 
+                        console.log('clickTargetUserId', clickTargetUserId);
+                        console.log('clickTargetContent', clickTargetContent);
+                        console.log('clickGroupId', clickGroupId);
+                        makeCommentRequest(1, clickTargetUserId, boardId, 0, inputValue, clickTargetContent, 1, clickGroupId);
+                    }}
+                >
+                    쓰기
+                </CommentWriteButton>
             </PostInfoFlexDiv>
         </PostInfoFlexDiv>
     );

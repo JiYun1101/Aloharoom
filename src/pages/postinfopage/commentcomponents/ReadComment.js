@@ -11,12 +11,18 @@ const CommentProfileImg = styled.img`
 `;
 
 const ReadComment = ({
-    nickname,
+    commentId,
     content,
+    //createdDate,
+    nickname,
+    userId,
     showReplies,
     showWriteReplies,
     toggleReplies,
-    toggleWriteReplies
+    toggleWriteReplies,
+    setClickTargetUserId,
+    setClickTargetContent,
+    setClickGroupId
 }) => {
     return (
         <PostInfoFlexDiv width="100%" minHeight="6rem" flexDirection="column" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
@@ -31,7 +37,12 @@ const ReadComment = ({
                     marginLeft="1rem" 
                     marginTop="0.5rem" 
                     fontSize="0.8rem"
-                    onClick={toggleWriteReplies}
+                    onClick={() =>{
+                        setClickTargetUserId(userId);
+                        setClickTargetContent(content);
+                        setClickGroupId(commentId);
+                        toggleWriteReplies();
+                    }}
                 >
                     {showWriteReplies ? "대댓글 안쓰기" : "대댓글 쓰기"}
                 </PostInfoSpan>

@@ -3,7 +3,13 @@ import ReadComment from "./ReadComment";
 import ReadReplyComment from "./ReadReplyComment";
 import WriteReplyComment from "./WriteReplyComment";
 
-const ReadCommentSection = ({data}) => {
+const ReadCommentSection = ({
+    data,
+    makeCommentRequest
+}) => {
+    const [clickTargetUserId, setClickTargetUserId] = useState();
+    const [clickTargetContent, setClickTargetContent] = useState();
+    const [clickGroupId, setClickGroupId] = useState();
     const [showReplies, setShowReplies] = useState(false);
     const [showWriteReplies, setShowWriteReplies] = useState(false);
     const toggleReplies = () => {
@@ -25,6 +31,9 @@ const ReadCommentSection = ({data}) => {
                 showWriteReplies={showWriteReplies}
                 toggleReplies={toggleReplies}
                 toggleWriteReplies={toggleWriteReplies}
+                setClickTargetUserId={setClickTargetUserId}
+                setClickTargetContent={setClickTargetContent}
+                setClickGroupId={setClickGroupId}
             />
             {showReplies && (
                 <>
@@ -38,12 +47,20 @@ const ReadCommentSection = ({data}) => {
                             userId={data.userId}
                             showWriteReplies={showWriteReplies}
                             toggleWriteReplies={toggleWriteReplies}
+                            setClickTargetUserId={setClickTargetUserId}
+                            setClickTargetContent={setClickTargetContent}
+                            setClickGroupId={setClickGroupId}
                         />
                     ))}
                 </>
             )}
             {showWriteReplies && (
-                <WriteReplyComment/>
+                <WriteReplyComment 
+                    makeCommentRequest={makeCommentRequest}
+                    clickTargetUserId={clickTargetUserId}
+                    clickTargetContent={clickTargetContent}
+                    clickGroupId={clickGroupId}
+                />
             )}
         </>
     );

@@ -206,7 +206,9 @@ const PostInfoPage = () => {
             "layer": layer,
             "groupId": groupId
         })
-        .then((response) => {console.log(response.data)})
+        .then((response) => {
+            window.location.reload();
+        })
         .error((error) => {console.log('makeCommentRequest axios error')});
     }
 
@@ -215,7 +217,6 @@ const PostInfoPage = () => {
         FetchPostInfoData();
         FetchBoardComment();
     }, []);
-
 
     return (
         <PostInfoPageContainer>
@@ -383,7 +384,13 @@ const PostInfoPage = () => {
                     <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
-                    {commentData.map((data, idx) => (<ReadCommentSection key={idx} data={data}/>))}
+                    {commentData.map((data, idx) => (
+                        <ReadCommentSection 
+                            key={idx} 
+                            data={data}
+                            makeCommentRequest={makeCommentRequest}
+                        />
+                    ))}
                     <WriteComment 
                         makeCommentRequest={makeCommentRequest}
                         boardId={boardId}
