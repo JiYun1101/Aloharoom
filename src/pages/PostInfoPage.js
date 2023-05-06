@@ -83,7 +83,6 @@ const LinkToIconStyle = {
 const PostInfoPage = () => {
     const boardId = useParams().id;
     const navigate = useNavigate();
-    const [clickLikeButton, setClickLickButton] = useState(false);
     const [commentData, setCommentData] = useState([]);
     const [address, setAddress] = useState('');
     const [age, setAge] = useState('');
@@ -95,6 +94,7 @@ const PostInfoPage = () => {
     const [hashtag, setHashTag] = useState([]);
     const [homeType, setHomeType] = useState('');
     const [imgUrls, setImgUrls] = useState([]);
+    const [isHeart, setIsHeart] = useState('');
     const [maintenance, setMaintenance] = useState('');
     const [nickname, setNickName] = useState('');
     const [preferAgeRange, setPreferAgeRange] = useState('');
@@ -124,6 +124,7 @@ const PostInfoPage = () => {
                 setHashTag(response.data.hashtag);
                 setHomeType(response.data.homeType);
                 setImgUrls(response.data.imgUrls);
+                setIsHeart(response.data.isHeart);
                 setMaintenance(response.data.maintenance);
                 setNickName(response.data.nickname);
                 setPreferAgeRange(response.data.preferAgeRange);
@@ -243,11 +244,11 @@ const PostInfoPage = () => {
                 <PostInfoFlexDiv width="95%" minHeight="3rem" alignItems="center">
                     <PostInfoSpan width="50%" color="black" fontSize="1.2rem" fontWeight="700">{address}</PostInfoSpan>
                     <PostInfoFlexDiv width="50%" minHeight="100%" flexDirection="row-reverse" alignItems="center">
-                        {clickLikeButton ? 
+                        {isHeart ? 
                         <AiFillHeart 
                             size={40} 
                             onClick={() => {
-                                setClickLickButton(!clickLikeButton);
+                                setIsHeart(!isHeart);
                                 DeleteLikePost();
                             }} 
                             style={{color: "#47a5fd"}}/>
@@ -255,7 +256,7 @@ const PostInfoPage = () => {
                         <AiOutlineHeart 
                             size={40} 
                             onClick={() => {
-                                setClickLickButton(!clickLikeButton);
+                                setIsHeart(!isHeart);
                                 AddLikePost();
                             }}
                             />} 
@@ -389,6 +390,7 @@ const PostInfoPage = () => {
                             key={idx} 
                             data={data}
                             makeCommentRequest={makeCommentRequest}
+                            boardId={boardId}
                         />
                     ))}
                     <WriteComment 
