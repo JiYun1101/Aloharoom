@@ -24,6 +24,7 @@ import WriteReplyComment from "./postinfopage/commentcomponents/WriteReplyCommen
 import UserProfileImg from "./postinfopage/UserProfileImg";
 import ReadReplyComment from "./postinfopage/commentcomponents/ReadReplyComment";
 import WriteComment from "./postinfopage/commentcomponents/WriteComment";
+import ReadCommentSection from "./postinfopage/commentcomponents/ReadCommentSection";
 
 SwiperCore.use([Pagination]);
 
@@ -361,30 +362,7 @@ const PostInfoPage = () => {
                     <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
-                    {commentData.map((data, index) => {
-                        return (
-                            <>
-                                <ReadComment
-                                    key={data.commentId}
-                                    commentId={data.commentId}
-                                    content={data.content}
-                                    createdDate={data.createdDate}
-                                    nickname={data.nickname}
-                                    userId={data.userId}
-                                />
-                                {data.commentDtos.map((data, index) => (
-                                    <ReadReplyComment
-                                        key={data.commentId}
-                                        commentId={data.commentId}
-                                        content={data.content}
-                                        createdDate={data.createdDate}
-                                        nickname={data.nickname}
-                                        userId={data.userId}
-                                    />
-                                ))}
-                            </>
-                        )
-                    })}
+                    {commentData.map((data, idx) => (<ReadCommentSection key={idx} data={data}/>))}
                     <WriteReplyComment/>
                     <WriteComment/>
                 </PostInfoFlexDiv>

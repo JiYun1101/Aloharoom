@@ -33,7 +33,7 @@ const WriteReplyComment = () => {
                 <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">wkdgns1979</PostInfoSpan>
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                <CommentInput type="text"/>
+                <CommentInput type="text" placeholder="대댓글을 입력하세요."/>
                 <CommentWriteButton>쓰기</CommentWriteButton>
             </PostInfoFlexDiv>
         </PostInfoFlexDiv>
