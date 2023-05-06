@@ -186,11 +186,36 @@ const PostInfoPage = () => {
         })
     }
 
+    async function makeCommentRequest(
+        userId,
+        targetUserId,
+        boardId,
+        flag,
+        content,
+        targetContent,
+        layer,
+        groupId
+    ) {
+        await axios.post("http://localhost:8080/api/comment", {
+            "userId": userId,
+            "targetUserId": targetUserId,
+            "boardId": boardId,
+            "flag": flag,
+            "content": content,
+            "targetContent": targetContent,
+            "layer": layer,
+            "groupId": groupId
+        })
+        .then((response) => {console.log(response.data)})
+        .error((error) => {console.log('makeCommentRequest axios error')});
+    }
+
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
         FetchBoardComment();
     }, []);
+
 
     return (
         <PostInfoPageContainer>
@@ -359,7 +384,10 @@ const PostInfoPage = () => {
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
                     {commentData.map((data, idx) => (<ReadCommentSection key={idx} data={data}/>))}
-                    <WriteComment/>
+                    <WriteComment 
+                        makeCommentRequest={makeCommentRequest}
+                        boardId={boardId}
+                    />
                 </PostInfoFlexDiv>
             </PostInfoPageSection>
         </PostInfoPageContainer>
