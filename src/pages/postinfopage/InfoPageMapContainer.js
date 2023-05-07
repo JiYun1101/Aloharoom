@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import redMarker from "../../img/redMarker.png";
+import CategoryMapMarker from "./mapcomponents/CategoryMapMarker";
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 
@@ -18,10 +19,7 @@ const InfoPageMapContainer = ({x, y, address}) => {
     }
 
     const categoryMarkerComponents = places.map((data) => (
-        <MapMarker 
-            key={data.id}
-            position={{lat: data.y, lng: data.x}}
-        />
+        <CategoryMapMarker data={data}/>
     ));
 
     return (
