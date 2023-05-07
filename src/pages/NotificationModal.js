@@ -70,21 +70,7 @@ const LinkToStyle = {
     color: "inherit",
 };
 
-const NotificationModal = ({ModalClose}) => {
-    const [notificationData, setNotificationData] = useState([]);
-    async function fetchNotificationInfo() {
-        await axios.get(`http://localhost:8080/api/notification`, {
-            withCredentials:true
-        })
-        .then((response) => {
-            console.log('notification Data:', response.data);
-            setNotificationData(response.data);
-        })
-        .catch((error) => { console.log(`fetchNotificationInfo axios error`);})
-    }
-    useEffect(() => {
-        fetchNotificationInfo();
-    }, []);
+const NotificationModal = ({ModalClose, notificationData}) => {
     return (
         <NotificationModalContainer>
             <NotificationModalFlexDiv width="20rem" height="3rem">
