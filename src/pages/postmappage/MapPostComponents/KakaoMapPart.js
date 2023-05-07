@@ -49,7 +49,7 @@ const KakaoMapPart = ({
         setNELon(neLatLng.getLng().toString());
     };
 
-    const handleDragEnd = (map) => {
+    const handleMapEvent = (map) => {
         const bounds = map.getBounds();
         const swLatLng = bounds.getSouthWest();
         const neLatLng = bounds.getNorthEast();
@@ -81,7 +81,8 @@ const KakaoMapPart = ({
                 style={kakaoMapStyle} // 지도 크기
                 level={mapLevel}                                   // 지도 확대 레벨
                 onCreate={handleOnCreate}
-                onDragEnd={handleDragEnd}
+                onDragEnd={handleMapEvent}
+                onZoomChanged={handleMapEvent}
             >
                 <HomeCategoryMenu/>
                 {mapMarkerComponents}
