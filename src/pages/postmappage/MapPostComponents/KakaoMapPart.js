@@ -10,7 +10,14 @@ const kakaoMapStyle = {
     position: "relative"
 };
 
-const KakaoMapPart = ({searchStr, cardPostData}) => {
+const KakaoMapPart = ({
+    searchStr,
+    cardPostData,
+    setSWLat,
+    setSWLon,
+    setNELat,
+    setNELon,
+}) => {
     const [map, setMap] = useState();
     const [mapLevel] = useState(4);
     console.log('cardPostData ', cardPostData);
@@ -25,6 +32,37 @@ const KakaoMapPart = ({searchStr, cardPostData}) => {
             }
         })
     }, [searchStr])
+
+    const handleOnCreate = (map) => {
+        setMap(map);
+        const bounds = map.getBounds();
+        const swLatLng = bounds.getSouthWest();
+        const neLatLng = bounds.getNorthEast();
+        // console.log('생성 남서쪽 위도:', swLatLng.getLat());
+        // console.log('생성 남서쪽 경도:', swLatLng.getLng());
+        // console.log('생성 북동쪽 위도:', neLatLng.getLat());
+        // console.log('생성 북동쪽 경도:', neLatLng.getLng());
+        // console.log('================================');
+        setSWLat(swLatLng.getLat().toString());
+        setSWLon(swLatLng.getLng().toString());
+        setNELat(neLatLng.getLat().toString());
+        setNELon(neLatLng.getLng().toString());
+    };
+
+    const handleDragEnd = (map) => {
+        const bounds = map.getBounds();
+        const swLatLng = bounds.getSouthWest();
+        const neLatLng = bounds.getNorthEast();
+        // console.log('움직인 후 남서쪽 위도:', swLatLng.getLat());
+        // console.log('움직인 후 남서쪽 경도:', swLatLng.getLng());
+        // console.log('움직인 후 북동쪽 위도:', neLatLng.getLat());
+        // console.log('움직인 후 북동쪽 경도:', neLatLng.getLng());
+        setSWLat(swLatLng.getLat().toString());
+        setSWLon(swLatLng.getLng().toString());
+        setNELat(neLatLng.getLat().toString());
+        setNELon(neLatLng.getLng().toString());
+    }
+
 
     const mapMarkerComponents = cardPostData.map((data, index) => (
         <EventMarkerContainer
@@ -42,7 +80,8 @@ const KakaoMapPart = ({searchStr, cardPostData}) => {
                 center={{ lat: 37.56682420267543, lng: 126.978652258823 }}   // 지도의 중심 좌표
                 style={kakaoMapStyle} // 지도 크기
                 level={mapLevel}                                   // 지도 확대 레벨
-                onCreate={setMap}
+                onCreate={handleOnCreate}
+                onDragEnd={handleDragEnd}
             >
                 <HomeCategoryMenu/>
                 {mapMarkerComponents}
