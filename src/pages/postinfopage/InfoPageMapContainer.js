@@ -18,9 +18,7 @@ const InfoPageMapContainer = ({x, y, address}) => {
         }, { size: 15});
     }
 
-    const categoryMarkerComponents = places.map((data) => (
-        <CategoryMapMarker data={data}/>
-    ));
+    const categoryMarkerComponents = places.map((data) => ( <CategoryMapMarker data={data}/> ));
 
     return (
         <Map 

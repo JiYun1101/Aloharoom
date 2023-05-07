@@ -1,6 +1,5 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const NotificationModalContainer = styled.div`
@@ -71,6 +70,9 @@ const LinkToStyle = {
 };
 
 const NotificationModal = ({ModalClose, notificationData}) => {
+    const location = useLocation();
+    console.log(location.pathname);
+    const startUrl = location.pathname === "/" ? "./" : "../";
     return (
         <NotificationModalContainer>
             <NotificationModalFlexDiv width="20rem" height="3rem">
@@ -83,7 +85,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
             </NotificationModalFlexDiv>
             <NotificationModalFlexDiv width="99%" height="16.5rem" flexDirection="column" overFlowY="auto">
                 {notificationData.map((data, index) => (
-                    <Link to={data.flag === 0 ? `./postInfoPage/${data.boardId}`: ``} style={LinkToStyle}>
+                    <Link to={data.flag === 0 ? `${startUrl}postInfoPage/${data.boardId}`: ``} style={LinkToStyle}>
                         <NotificationModalFlexDiv 
                             key={index} 
                             width="98%" 
