@@ -140,7 +140,7 @@ const CardPost = ({
     boardId,
     commentNum,
     flat,
-    imageUrls,
+    imageUrl,
     nickname,
     rent,
     roomCount,
@@ -162,7 +162,7 @@ const CardPost = ({
                 <PriceInfoSpan>월 {rent}만원/보증금 300만원</PriceInfoSpan>
             </PriceInfoDiv>
             <CardImageDiv>
-                <CardImage src="./blue.png"/>
+                <CardImage src={imageUrl}/>
             </CardImageDiv>
             <HashTagDiv>
                 <HashTagSpan>#외향</HashTagSpan>

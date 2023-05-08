@@ -85,7 +85,7 @@ const LikedListPage = () => {
                         boardId={data.boardId}
                         commentNum={data.commentNum}
                         flat={data.flat}
-                        imageUrls={data.imgUrl}
+                        imageUrl={data.imgUrl}
                         nickname={data.nickname}
                         profileImgUrl={data.profileImgUrl}
                         rent={data.rent}
