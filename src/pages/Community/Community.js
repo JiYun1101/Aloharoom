@@ -120,20 +120,19 @@ const CardPost3 = styled.div`
   border-radius: 1rem;
 `;
 
-const Community = ({ type }) => {
+const Community = ({ match }) => {
+  const { communityId } = match.params;
   const [data, setData] = useState([]);
-  const cardRef = useRef(null);
-  const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        "http://localhost:8080/api/communityboard"
+        `http://localhost:8080/api/communityboard?communityId=${communityId}`
       );
       setData(result.data);
     };
     fetchData();
-  }, []);
+  }, [communityId]);
 
   useEffect(() => {
     const handleScroll = () => {

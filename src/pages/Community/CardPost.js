@@ -8,6 +8,7 @@ import { Avatar, Segmented, Space } from "antd";
 import { Pagination } from "antd";
 import axios from "axios";
 import { useRef } from "react";
+import RoommateCardPosts from "./RoommateCardPosts";
 
 const Card2 = styled.div`
   min-width: 90%;
@@ -110,6 +111,7 @@ const Community = ({ communityId }) => {
   const handleLinkClick = (event, message) => {
     console.log(message);
   };
+
   return (
     <CardBox2 ref={cardRef}>
       {data.map((post) => (

@@ -34,7 +34,10 @@ const App = () => {
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/postInfoPage" element={<PostInfoPage />} />
-        <Route path="/communityInfoPage" element={<CommunityInfoPage />} />
+        <Route
+          path="/communityInfoPage/:communityId"
+          element={<CommunityInfoPage />}
+        />
         <Route path="/community" element={<Community />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>

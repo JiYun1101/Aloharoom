@@ -100,7 +100,6 @@ const HeartDiv = styled.div`
   align-items: center;
 `;
 
-
 const PostHashTagDiv = styled.div`
   width: 95%;
   height: 6rem;
@@ -136,7 +135,6 @@ const PostContentSpan = styled.span`
   font-size: 1.2rem;
   font-weight: 500;
 `;
-
 
 const CommentSection = styled.div`
   margin-top: 1rem;
@@ -233,9 +231,8 @@ const LinkToIconStyle = {
   textDecoration: "none",
   color: "black",
 };
-
 const PostInfoPage = () => {
-  const boardId = useParams().id;
+  const { id } = useParams();
   const navigate = useNavigate();
   const [imgUrls, setImgUrls] = useState([]);
   const [maintenance, setMaintenance] = useState(null);
@@ -246,29 +243,31 @@ const PostInfoPage = () => {
   const [title, setTitle] = useState("");
   const [tradeType, setTradeType] = useState("");
   const [hashtag, setHashTag] = useState([]);
+
   async function FetchPostInfoData() {
     await axios
-      .get(`http://localhost:8080//api/communityboard/${boardId}`)
+      .get(`http://localhost:8080///api/communityboard/{communityId}`)
       .then((response) => {
         console.log(response.data);
-        setTitle(response.data.title);
-        setNickName(response.data.nickname);
-        setImgUrls(response.data.imgUrls);
-        setMaintenance(response.data.maintenance);
-        setRent(response.data.rent);
-        setTradeType(response.data.tradeType);
-        setFlat(response.data.flat);
-        setHashTag(response.data.hashtag);
-        setContents(response.data.contents);
+        const { communityboard } = response.data;
+        setTitle(communityboard.title);
+        setNickName(communityboard.nickname);
+        setImgUrls(communityboard.imgUrls);
+        setMaintenance(communityboard.maintenance);
+        setRent(communityboard.rent);
+        setTradeType(communityboard.tradeType);
+        setFlat(communityboard.flat);
+        setHashTag(communityboard.hashtag);
+        setContents(communityboard.contents);
       })
       .catch((error) => {
-        console.log(" FetchPostInfoData axios error");
+        console.log("FetchPostInfoData axios error");
       });
   }
 
   async function DeletePostInfoData() {
     await axios
-      .delete(`http://localhost:8080/api/board/${boardId}`)
+      .delete(`http://localhost:8080///api/communityboard/{communityId}`)
       .then((response) => {
         navigate(`../Community`);
       })
