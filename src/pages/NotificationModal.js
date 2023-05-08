@@ -85,7 +85,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
             </NotificationModalFlexDiv>
             <NotificationModalFlexDiv width="99%" height="16.5rem" flexDirection="column" overFlowY="auto">
                 {notificationData.map((data, index) => (
-                    <Link to={data.flag === 0 ? `${startUrl}postInfoPage/${data.boardId}`: ``} style={LinkToStyle}>
+                    <Link key={index} to={data.flag === 0 ? `${startUrl}postInfoPage/${data.boardId}`: ``} style={LinkToStyle}>
                         <NotificationModalFlexDiv 
                             key={index} 
                             width="98%" 
