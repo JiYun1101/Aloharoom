@@ -5,6 +5,7 @@ const PostInfoDiv = styled.div`
     height: ${ props => props.height || "0rem"};
     margin-top: ${ props => props.marginTop || "0rem"};
     border-bottom: ${ props => props.borderBottom || "none"};
+    position: ${props => props.position};
 `;
 
 export default PostInfoDiv;

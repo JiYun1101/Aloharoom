@@ -368,7 +368,7 @@ const PostInfoPage = () => {
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
-                    <PostInfoDiv width="90%" height="28rem">
+                    <PostInfoDiv width="90%" height="28rem" position="relative">
                         <InfoPageMapContainer 
                             x={x} 
                             y={y} 

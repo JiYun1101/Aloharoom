@@ -3,6 +3,25 @@ import redMarker from "../../img/redMarker.png";
 import CategoryMapMarker from "./mapcomponents/CategoryMapMarker";
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
+const MapStyle = {
+    width: "100%",
+    height: "100%",
+    zIndex: 0,
+    position: "relative",
+}
+
+const FacilityCategoryMenuDivStyle = {
+    position: "absolute", 
+    width: "40%",
+    height: "10%",
+    borderRadius: "1rem",
+    backgroundColor: "white",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+    top: "1rem",
+    left: "1rem"
+}
 
 const InfoPageMapContainer = ({x, y, address}) => {
     const center = { lat: x, lng: y };
@@ -24,14 +43,9 @@ const InfoPageMapContainer = ({x, y, address}) => {
         <Map 
             center={center}   // 지도의 중심 좌표
             level={4}                                   // 지도 확대 레벨
-            style= {{
-                width: "100%",
-                height: "100%",
-                zIndex: 0,
-                position: "relative"
-            }}
+            style= {MapStyle}
         >
-            <div>
+            <div style={FacilityCategoryMenuDivStyle}>
                 <button onClick={() => FacilityCategorySearch('은행')}>은행</button>
                 <button onClick={() => FacilityCategorySearch('마트')}>마트</button>
                 <button onClick={() => FacilityCategorySearch('주유소')}>주유소</button>
