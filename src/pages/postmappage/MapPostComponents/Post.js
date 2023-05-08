@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import CardPosts from "./CardPosts";
-import PostNavs from "./PostNavComponents/PostNavs";
 
 const PostContainer = styled.div`
     border-width: 0.1rem;
@@ -16,35 +15,15 @@ const PostContainer = styled.div`
 `;
 
 const Post = ({cardPostData}) => {
-    const [roommatePosts, setRoomMatePosts] = useState(true);
-    const [sharehousePosts, setShareHousePosts] = useState(false);
-
-    const roommatePostsClick = () => {
-        setRoomMatePosts(true);
-        setShareHousePosts(false);
-    }
-
-    const sharehousePostsClick = () => {
-        setRoomMatePosts(false);
-        setShareHousePosts(true);
-    }
-
     return (
         <PostContainer>
             {cardPostData.length === 0 ? 
                 <div>찾으시는 방이 없습니다.</div> 
-                : 
-                <>
-                    <PostNavs 
-                    roommatePostsClick={roommatePostsClick} 
-                    sharehousePostsClick={sharehousePostsClick}
-                    />
-                    <CardPosts 
-                        roommatePosts={roommatePosts} 
-                        sharehousePosts={sharehousePosts}
-                        cardPostData={cardPostData}
-                    />
-                </>}
+                :                 
+                <CardPosts 
+                    cardPostData={cardPostData}
+                />
+            }
         </PostContainer>
     );
 }
