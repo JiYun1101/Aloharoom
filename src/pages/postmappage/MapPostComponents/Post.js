@@ -31,15 +31,20 @@ const Post = ({cardPostData}) => {
 
     return (
         <PostContainer>
-            <PostNavs 
-                roommatePostsClick={roommatePostsClick} 
-                sharehousePostsClick={sharehousePostsClick}
-            />
-            <CardPosts 
-                roommatePosts={roommatePosts} 
-                sharehousePosts={sharehousePosts}
-                cardPostData={cardPostData}
-            />
+            {cardPostData.length === 0 ? 
+                <div>찾으시는 방이 없습니다.</div> 
+                : 
+                <>
+                    <PostNavs 
+                    roommatePostsClick={roommatePostsClick} 
+                    sharehousePostsClick={sharehousePostsClick}
+                    />
+                    <CardPosts 
+                        roommatePosts={roommatePosts} 
+                        sharehousePosts={sharehousePosts}
+                        cardPostData={cardPostData}
+                    />
+                </>}
         </PostContainer>
     );
 }
