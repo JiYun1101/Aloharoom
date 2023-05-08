@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -70,6 +71,13 @@ const LinkToStyle = {
 };
 
 const NotificationModal = ({ModalClose, notificationData}) => {
+    async function ReadNotification(notificationId) {
+        await axios.post(`http://localhost:8080/api/notification/${notificationId}`,{}, {
+            withCredentials:true
+        })
+        .then((response) => { console.log(`알림 읽기 성공`); })
+        .catch((error) => { console.log(`알림 읽기 실패`);})
+    }
     const location = useLocation();
     console.log(location.pathname);
     const startUrl = location.pathname === "/" ? "./" : "../";
@@ -85,7 +93,12 @@ const NotificationModal = ({ModalClose, notificationData}) => {
             </NotificationModalFlexDiv>
             <NotificationModalFlexDiv width="99%" height="16.5rem" flexDirection="column" overFlowY="auto">
                 {notificationData.map((data, index) => (
-                    <Link key={index} to={data.flag === 0 ? `${startUrl}postInfoPage/${data.boardId}`: ``} style={LinkToStyle}>
+                    <Link 
+                        key={index} 
+                        to={data.flag === 0 ? `${startUrl}postInfoPage/${data.boardId}`: ``} 
+                        style={LinkToStyle}
+                        onClick={() => { ReadNotification(data.notificationId);}}
+                    >
                         <NotificationModalFlexDiv 
                             key={index} 
                             width="98%" 
@@ -94,12 +107,17 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                             borderBottom="1px solid #47a5fd"
                         >
                             <NotificationModalDiv width="100%" height="60%">
-                                <NotificationModalSpan>
+                                <NotificationModalSpan fontWeight={!data.isCheck && `600`}>
                                     {data.flag === 0 ? `방 보기 페이지 ${data.content}` : `커뮤니티 페이지 ${data.content}`}
                                 </NotificationModalSpan>
                             </NotificationModalDiv>
                             <NotificationModalFlexDiv width="100%" height="40%" flexDirection="row-reverse" alignItems="center">
-                                <NotificationModalSpan marginRight="0.5rem">{data.createdDate}</NotificationModalSpan>
+                                <NotificationModalSpan 
+                                    marginRight="0.5rem"
+                                    fontWeight={!data.isCheck && `600`}
+                                >
+                                    {data.createdDate}
+                                </NotificationModalSpan>
                             </NotificationModalFlexDiv>
                         </NotificationModalFlexDiv>
                     </Link>

@@ -78,6 +78,7 @@ const LinkToStyle = {
 const Header = () => {
   const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
+  const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
   const ModalOpen = () => {
     setNotifyModalOpen(true);
   };
@@ -96,8 +97,21 @@ const Header = () => {
     })
     .catch((error) => { console.log(`fetchNotificationInfo axios error`);})
   }
+  
+  async function fetchNotReadNotificationCount() {
+    await axios.get(`http://localhost:8080/api/notification/count`, {
+      withCredentials:true
+    })
+    .then((response) => {
+      console.log('notification count:', response.data);
+      setNotReadNotificationCount(response.data);
+    })
+    .catch((error) => { console.log(`fetchNotReadNotificationCount axios error`);})
+  }
+
   useEffect(() => {
     fetchNotificationInfo();
+    fetchNotReadNotificationCount();
   }, []);
   return (
     <>
@@ -123,7 +137,7 @@ const Header = () => {
         </NavGroup>
         <LogoGroup>
           <LogoElement>
-              <Badge count={5} size="small" overflowCount={10}>
+              <Badge count={notReadNotificationCount.notificationCount} size="small" overflowCount={10}>
                 <AiOutlineBell size={30} onClick={() => {
                   fetchNotificationInfo();
                   ModalOpen();
