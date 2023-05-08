@@ -3,46 +3,49 @@ import ReactDOM from "react-dom";
 import { Line } from "@ant-design/plots";
 
 const DemoLine = () => {
+  const [dataPoints, setDataPoints] = useState([]);
+
   const data = [
     {
-      year: "1991",
-      value: 3,
+      year: "11월",
+      value: 30,
     },
     {
-      year: "1992",
-      value: 4,
+      year: "12월",
+      value: 40,
     },
     {
-      year: "1993",
-      value: 3.5,
+      year: "1월",
+      value: 35,
     },
     {
-      year: "1994",
-      value: 5,
+      year: "2월",
+      value: 51,
     },
     {
-      year: "1995",
-      value: 4.9,
+      year: "3월",
+      value: 49,
     },
     {
-      year: "1996",
+      year: "4월",
       value: 6,
     },
     {
-      year: "1997",
-      value: 7,
+      year: "5월",
+      value: 37,
     },
     {
-      year: "1998",
-      value: 9,
+      year: "6월",
+      value: 29,
     },
     {
-      year: "1999",
-      value: 13,
+      year: "7월",
+      value: 53,
     },
   ];
+
   const config = {
-    data,
+    data: data,
     xField: "year",
     yField: "value",
     label: {},
@@ -73,9 +76,8 @@ const DemoLine = () => {
       },
     ],
   };
+
   return <Line {...config} />;
 };
-
-// ReactDOM.render(<DemoLine />, document.getElementById("container"));
 
 export default DemoLine;

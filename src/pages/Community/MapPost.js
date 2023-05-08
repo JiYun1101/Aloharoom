@@ -12,32 +12,41 @@ const MapPostContainer = styled.div`
   display: flex;
 `;
 
-const MapPost = ({ searchStr }) => {
-  //서버에서 전달 받을 상태 변수
+const MapPost = ({ clickedCommunityId, setClickedCommunityId }) => {
   const [cardPostData, setCardPostData] = useState([]);
 
-  //전체 게시물 데이터 받아오기
-  async function fetchCardPostData() {
-    await axios
-      .get("http://localhost:8080/api/board")
-      .then((response) => {
-        setCardPostData(response.data);
-        console.log("cardPostData => response.data : ", response.data);
-      })
-      .catch((error) => {
-        console.log("axios error");
-      });
+  async function fetchCardPostData(id) {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/communityboard?clickedCommunityId=${clickedCommunityId}`
+      );
+      setCardPostData(response.data);
+      // console.log("cardPostData => response.data : ", response.data.clickedCommunityId);
+      console.log("cardPostData => response.data : ", response.data);
+    } catch (error) {
+      console.log("axios error");
+    }
   }
 
-  //한번 렌더링 될때 데이터를 받아온다.
+  function handleClickPost(post) {
+    setClickedCommunityId(post.clickedCommunityId);
+  }
+
   useEffect(() => {
-    fetchCardPostData();
-  }, []);
+    async function fetchData() {
+      await fetchCardPostData(clickedCommunityId);
+    }
+    fetchData();
+  }, [clickedCommunityId]);
 
   return (
     <MapPostContainer>
       {/* <KakaoMapPart searchStr={searchStr} cardPostData={cardPostData} /> */}
-      <Post cardPostData={cardPostData} />
+      <Post
+        clickedCommunityId={clickedCommunityId}
+        cardPostData={cardPostData}
+        handleClickPost={handleClickPost}
+      />
     </MapPostContainer>
   );
 };

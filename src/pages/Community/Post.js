@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CardPosts from "./CardPosts";
 import PostNavs from "./PostNavs";
-import Header from "../Header";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Segmented, Space } from "antd";
 import { Pagination } from "antd";
@@ -45,7 +44,7 @@ const CardPost3 = styled.div`
 //   justify-content: center;
 // `;
 
-const Post = ({ cardPostData }) => {
+const Post = ({ clickedCommunityId, cardPostData }) => {
   const [roommatePosts, setRoomMatePosts] = useState(true);
   const [sharehousePosts, setShareHousePosts] = useState(false);
 
@@ -116,7 +115,11 @@ const Post = ({ cardPostData }) => {
           </Space>
         </CategoryNum>
         <PostNavs roommatePostsClick={roommatePostsClick} />
-        <CardPosts roommatePosts={roommatePosts} cardPostData={cardPostData} />
+        <CardPosts
+          roommatePosts={roommatePosts}
+          cardPostData={cardPostData}
+          clickedCommunityId={clickedCommunityId}
+        />
         <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
           <h2>가장 인기 있는 글</h2>
           <p>1. 내 방 자랑</p>

@@ -100,38 +100,6 @@ const HeartDiv = styled.div`
   align-items: center;
 `;
 
-const PriceTypeFlatDiv = styled.div`
-  width: 95%;
-  height: 3rem;
-  display: flex;
-  flex-direction: row;
-`;
-
-const MaintenancePriceDiv = styled.div`
-  width: 25%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-`;
-
-const MaintenancePriceSpan = styled.span`
-  color: #47a5fd;
-  font-size: 1.2rem;
-  font-weight: 600;
-`;
-
-const TypeFlatDiv = styled.div`
-  width: 75%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-`;
-
-const TypeFlatDivSpan = styled.span`
-  color: #bbbbbb;
-  font-size: 1.2rem;
-  font-weight: 600;
-`;
 
 const PostHashTagDiv = styled.div`
   width: 95%;
@@ -169,87 +137,6 @@ const PostContentSpan = styled.span`
   font-weight: 500;
 `;
 
-const DeliverTitleDiv = styled.div`
-  margin-top: 0.7rem;
-  width: 95%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-`;
-
-const DeliverTitleSpan = styled.span`
-  font-size: 1.2rem;
-  color: #bbbbbb;
-`;
-
-const DeliverDiv = styled.div`
-  width: 95%;
-  height: 10rem;
-  display: flex;
-  flex-direction: column;
-  border-bottom: solid 0.1rem #bbbbbb;
-`;
-
-const DeliverInfoDiv = styled.div`
-  width: 100%;
-  height: 3rem;
-  display: flex;
-  flex-direction: row;
-`;
-
-const DeliverFirstBox = styled.div`
-  width: 30%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-`;
-
-const DeliverSecondBox = styled.div`
-  width: 70%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-`;
-
-const DeliverInfoSpan = styled.span`
-  margin-left: 1rem;
-  font-size: 1.2rem;
-`;
-
-const MapFacilityDiv = styled.div`
-  margin-top: 1rem;
-  width: 95%;
-  height: 30rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const MapFacilitySection = styled.div`
-  width: 90%;
-  height: 28rem;
-`;
-
-const MatchingCompleteDiv = styled.div`
-  width: 95%;
-  height: 4rem;
-  border-bottom: solid 0.1rem #bbbbbb;
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-`;
-
-const MatchingCompleteButton = styled.button`
-  width: 7rem;
-  height: 2rem;
-  font-size: 1rem;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-radius: 0.3rem;
-  background-color: white;
-  border-color: #47a5fd;
-  color: #47a5fd;
-`;
 
 const CommentSection = styled.div`
   margin-top: 1rem;
@@ -361,7 +248,7 @@ const PostInfoPage = () => {
   const [hashtag, setHashTag] = useState([]);
   async function FetchPostInfoData() {
     await axios
-      .get(`http://localhost:8080/api/board/${boardId}`)
+      .get(`http://localhost:8080//api/communityboard/${boardId}`)
       .then((response) => {
         console.log(response.data);
         setTitle(response.data.title);
@@ -436,18 +323,7 @@ const PostInfoPage = () => {
             />
           </HeartDiv>
         </ProfileHeartDiv>
-        <PriceTypeFlatDiv>
-          <MaintenancePriceDiv>
-            <MaintenancePriceSpan>
-              {maintenance}/{rent}
-            </MaintenancePriceSpan>
-          </MaintenancePriceDiv>
-          <TypeFlatDiv>
-            <TypeFlatDivSpan>
-              ({tradeType}, 투룸, {flat}평)
-            </TypeFlatDivSpan>
-          </TypeFlatDiv>
-        </PriceTypeFlatDiv>
+
         <PostHashTagDiv>
           {hashtag &&
             hashtag.map((data, idx) => (
@@ -457,52 +333,7 @@ const PostInfoPage = () => {
         <PostContentDiv>
           <PostContentSpan>{contents}</PostContentSpan>
         </PostContentDiv>
-        <DeliverTitleDiv>
-          <DeliverTitleSpan>이 지역은 하루 배송권이에요.</DeliverTitleSpan>
-        </DeliverTitleDiv>
-        <DeliverDiv>
-          <DeliverInfoDiv>
-            <DeliverFirstBox>
-              <GrDeliver size={30} />
-              <DeliverInfoSpan>쿠팡</DeliverInfoSpan>
-            </DeliverFirstBox>
-            <DeliverSecondBox>
-              <GiMeal size={30} />
-              <DeliverInfoSpan>배달의 민족</DeliverInfoSpan>
-            </DeliverSecondBox>
-          </DeliverInfoDiv>
-          <DeliverInfoDiv>
-            <DeliverFirstBox>
-              <GrDeliver size={30} />
-              <DeliverInfoSpan>SSG</DeliverInfoSpan>
-            </DeliverFirstBox>
-            <DeliverSecondBox>
-              <GiMeal size={30} />
-              <DeliverInfoSpan>요기요</DeliverInfoSpan>
-            </DeliverSecondBox>
-          </DeliverInfoDiv>
-          <DeliverInfoDiv>
-            <DeliverFirstBox>
-              <GrDeliver size={30} />
-              <DeliverInfoSpan>마켓컬리</DeliverInfoSpan>
-            </DeliverFirstBox>
-          </DeliverInfoDiv>
-        </DeliverDiv>
-        <MapFacilityDiv>
-          <MapFacilitySection>
-            <Map
-              center={{ lat: 37.56682420267543, lng: 126.978652258823 }} // 지도의 중심 좌표
-              level={2} // 지도 확대 레벨
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          </MapFacilitySection>
-        </MapFacilityDiv>
-        <MatchingCompleteDiv>
-          <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
-        </MatchingCompleteDiv>
+
         <CommentSection>
           <CommentBox>
             <CommentProfileDiv>

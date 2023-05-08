@@ -8,12 +8,15 @@ const LinkToCardStyle = {
   color: "black",
 };
 
-const RoommateCardPosts = ({ cardPostData }) => {
+const RoommateCardPosts = ({ cardPostData, clickedCommunityId }) => {
   return (
     <CardPostContainer>
       {cardPostData.map((data, idx) => (
         <Link
-          to={`../postInfoPage/${data.boardId}`}
+          to={{
+            pathname: `../CommunityInfoPage/${clickedCommunityId}`,
+            state: { id: data.boardId },
+          }}
           style={LinkToCardStyle}
           key={data.boardId}
         >

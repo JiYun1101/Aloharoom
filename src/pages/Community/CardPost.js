@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react"; // useRef를 추가
+import React, { useEffect, useState } from "react";
 import Header from "../Header";
 import styled from "styled-components";
 import CardPost2 from "./CardPost2";
@@ -8,19 +8,6 @@ import { Avatar, Segmented, Space } from "antd";
 import { Pagination } from "antd";
 import axios from "axios";
 import { useRef } from "react";
-
-const Page = styled.div`
-  margin-top: 1rem;
-`;
-
-const PageNum = styled.div`
-  margin-top: 113rem;
-  margin-left: 33rem;
-`;
-
-const CategoryNum = styled.div`
-  text-align: center;
-`;
 
 const Card2 = styled.div`
   min-width: 90%;
@@ -50,25 +37,6 @@ const CardBox2 = styled.div`
   overflow: auto;
   gap: 2rem;
 `;
-const CommunityDiv = styled.div`
-  width: 90%;
-  height: 2rem;
-  display: flex;
-  align-items: flex-end;
-`;
-
-const CommunityButton = styled.button`
-  margin-top: 90px;
-  margin-left: 308px;
-  background-color: white;
-  width: 4.5rem;
-  height: 1.5rem;
-  color: #bbbbbb;
-  font-weight: 500;
-  font-size: 0.8rem;
-  border: 2px solid #bbbbbb;
-  border-radius: 0.5rem;
-`;
 
 const DateDiv = styled.div`
   width: 88%;
@@ -97,30 +65,17 @@ const TitleSpan = styled.span`
 
 const CardImageDiv = styled.div`
   width: 100%;
-  height: 20rem;
-  margin-right: auto;
+  height: 80%;
+  display: flex;
+  align-items: center;
 `;
 
 const CardImage = styled.img`
-  margin-top: -70px;
-  margin-left: 20px;
-  width: 25%;
-  height: 130px;
-  border-radius: 1rem;
-`;
-
-const CardPost3 = styled.div`
-  position: fixed;
-  top: 10rem;
-  right: 2%;
   width: 15%;
-  height: 35rem;
-  border-color: #bbbbbb;
-  border-style: solid;
-  border-radius: 1rem;
+  height: 100%;
 `;
 
-const Community = ({ type }) => {
+const Community = ({ communityId }) => {
   const [data, setData] = useState([]);
   const cardRef = useRef(null);
   const [scrollTop, setScrollTop] = useState(0);
@@ -128,12 +83,12 @@ const Community = ({ type }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        "http://localhost:8080/api/communityboard"
+        `http://localhost:8080/api/communityboard?communityId=${communityId}`
       );
       setData(result.data);
     };
     fetchData();
-  }, []);
+  }, [communityId]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -152,26 +107,30 @@ const Community = ({ type }) => {
       }
     };
   }, []);
-
+  const handleLinkClick = (event, message) => {
+    console.log(message);
+  };
   return (
-    <CardBox2>
+    <CardBox2 ref={cardRef}>
       {data.map((post) => (
-        <Card2 key={post.communityId}>
-          <CommunityDiv>
-            <CommunityButton>
-              {post.code === 1 ? "방자랑" : "정보공유"}
-            </CommunityButton>
-          </CommunityDiv>
-          <DateDiv>
-            <DateSpan>{post.createdAt}</DateSpan>
-          </DateDiv>
-          <TitleDiv>
-            <TitleSpan>{post.title}</TitleSpan>
-          </TitleDiv>
-          <CardImageDiv>
-            <CardImage src={post.imgUrls[0]} />
-          </CardImageDiv>
-        </Card2>
+        <Link to={`../CommunityInfoPage/${post.communityId}`}>
+          <Card2
+            key={post.communityId}
+            onClick={(event) =>
+              handleLinkClick(event, "../CommunityInfoPage/" + post.communityId)
+            }
+          >
+            <DateDiv>
+              <DateSpan>{post.createdAt}</DateSpan>
+            </DateDiv>
+            <TitleDiv>
+              <TitleSpan>{post.title}</TitleSpan>
+            </TitleDiv>
+            <CardImageDiv>
+              <CardImage src={post.imgUrls[0]} />
+            </CardImageDiv>
+          </Card2>
+        </Link>
       ))}
     </CardBox2>
   );
