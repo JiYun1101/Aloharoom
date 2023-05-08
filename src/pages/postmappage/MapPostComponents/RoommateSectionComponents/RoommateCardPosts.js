@@ -20,7 +20,7 @@ const RoommateCardPosts = ({cardPostData}) => {
                         boardId={data.boardId}
                         commentNum={data.commentNum}
                         flat={data.flat}
-                        imageUrls={data.imageUrls}
+                        imageUrl={data.imageUrl}
                         nickname={data.nickname}
                         rent={data.rent}
                         roomCount={data.roomCount}
