@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/postMapPage" element={<PostMapPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/newPostPage" element={<NewPostPage />} />
-        <Route path="/updatePostPage/:id" element={<NewPostPage/>}/>
+        <Route path="/updatePostPage/:id" element={<NewPostPage />} />
         <Route
           path="/newCommunityPostPage"
           element={<NewCommunityPostPage />}
@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/postInfoPage" element={<PostInfoPage />} />
-        <Route path="/postInfoPage/:id" element={<PostInfoPage />}/>
+        <Route path="/postInfoPage/:id" element={<PostInfoPage />} />
         <Route
           path="/communityInfoPage/:communityId"
           element={<CommunityInfoPage />}
