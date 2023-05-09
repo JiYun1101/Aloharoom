@@ -96,25 +96,31 @@ const Header = () => {
   };
 
   async function fetchNotificationInfo() {
-    await axios.get(`http://localhost:8080/api/notification`, {
-      withCredentials:true
-    })
-    .then((response) => {
-        console.log('notification Data:', response.data);
+    await axios
+      .get(`http://localhost:8080/api/notification`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log("notification Data:", response.data);
         setNotificationData(response.data);
-    })
-    .catch((error) => { console.log(`fetchNotificationInfo axios error`);})
+      })
+      .catch((error) => {
+        console.log(`fetchNotificationInfo axios error`);
+      });
   }
-  
+
   async function fetchNotReadNotificationCount() {
-    await axios.get(`http://localhost:8080/api/notification/count`, {
-      withCredentials:true
-    })
-    .then((response) => {
-      console.log('notification count:', response.data);
-      setNotReadNotificationCount(response.data);
-    })
-    .catch((error) => { console.log(`fetchNotReadNotificationCount axios error`);})
+    await axios
+      .get(`http://localhost:8080/api/notification/count`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log("notification count:", response.data);
+        setNotReadNotificationCount(response.data);
+      })
+      .catch((error) => {
+        console.log(`fetchNotReadNotificationCount axios error`);
+      });
   }
 
   useEffect(() => {
@@ -125,8 +131,8 @@ const Header = () => {
     <>
       <MenuBar>
         {NotifyModalOpen ? (
-          <NotificationModal 
-            ModalClose={ModalClose} 
+          <NotificationModal
+            ModalClose={ModalClose}
             notificationData={notificationData}
           />
         ) : (
@@ -168,16 +174,23 @@ const Header = () => {
         {username && console.log("username exists")}
         <LogoGroup>
           <LogoElement>
-              <Badge count={notReadNotificationCount.notificationCount} size="small" overflowCount={10}>
-                <AiOutlineBell size={30} onClick={() => {
+            <Badge
+              count={notReadNotificationCount.notificationCount}
+              size="small"
+              overflowCount={10}
+            >
+              <AiOutlineBell
+                size={30}
+                onClick={() => {
                   fetchNotificationInfo();
                   ModalOpen();
-                }} />
-              </Badge>
+                }}
+              />
+            </Badge>
           </LogoElement>
           <LogoElement>
             <Link to="/myPage" style={LinkToStyle}>
-                <AiOutlineUser size={30} />
+              <AiOutlineUser size={30} />
             </Link>
           </LogoElement>
         </LogoGroup>
