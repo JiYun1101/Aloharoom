@@ -81,7 +81,10 @@ const ReadComment = ({
                         marginLeft="1rem" 
                         marginTop="0.5rem" 
                         fontSize="0.8rem"
-                        onClick={toggleReplies}
+                        onClick={() =>{
+                            toggleReplies();
+                            setClickGroupId(commentId);
+                        }}
                     >
                         {showReplies ? "대댓글 가리기" : "대댓글 보기"}
                     </PostInfoSpan>

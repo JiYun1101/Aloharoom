@@ -16,7 +16,6 @@ const ReadReplyComment = ({
     toggleWriteReplies,
     setClickTargetUserId,
     setClickTargetContent,
-    setClickGroupId,
     deleteComment,
     updateComment
 }) => {
@@ -61,7 +60,6 @@ const ReadReplyComment = ({
                             onClick={() => {
                                 setClickTargetUserId(userId);
                                 setClickTargetContent(content);
-                                setClickGroupId(commentId);
                                 toggleWriteReplies();
                             }}
                         >

@@ -67,7 +67,6 @@ const ReadCommentSection = ({
                             toggleWriteReplies={toggleWriteReplies}
                             setClickTargetUserId={setClickTargetUserId}
                             setClickTargetContent={setClickTargetContent}
-                            setClickGroupId={setClickGroupId}
                             deleteComment={deleteComment}
                             updateComment={updateComment}
                         />
