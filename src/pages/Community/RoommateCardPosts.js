@@ -18,7 +18,7 @@ const RoommateCardPosts = ({ cardPostData }) => {
             state: { id: data.boardId },
           }}
           style={LinkToCardStyle}
-          key={data.boardId}
+          key={data.boardId} // key prop 추가
         >
           <CardPost
             type="룸메이트"

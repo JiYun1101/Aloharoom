@@ -218,20 +218,20 @@ const Community = ({ match }) => {
         <CardBox2>
           {data.map((post) => (
             <Card2 key={post.communityId}>
+              <CardImageDiv>
+                <Link to={`/community/${post.communityId}/post/${post.id}`}>
+                  <CardImage src={post.imageUrl} alt="cardImage" />
+                </Link>
+              </CardImageDiv>
               <CommunityDiv>
-                <CommunityButton>
-                  {post.code === 1 ? "방자랑" : "정보공유"}
-                </CommunityButton>
+                <CommunityButton>{post.community.name}</CommunityButton>
+                <DateDiv>
+                  <DateSpan>{post.createdAt}</DateSpan>
+                </DateDiv>
               </CommunityDiv>
-              <DateDiv>
-                <DateSpan>{post.createdAt}</DateSpan>
-              </DateDiv>
               <TitleDiv>
                 <TitleSpan>{post.title}</TitleSpan>
               </TitleDiv>
-              <CardImageDiv>
-                <CardImage src={post.imgUrls[0]} />
-              </CardImageDiv>
             </Card2>
           ))}
         </CardBox2>

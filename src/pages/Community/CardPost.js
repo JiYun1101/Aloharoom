@@ -9,6 +9,7 @@ import { Pagination } from "antd";
 import axios from "axios";
 import { useRef } from "react";
 import RoommateCardPosts from "./RoommateCardPosts";
+import { useParams } from "react-router-dom";
 
 const Card2 = styled.div`
   min-width: 90%;
@@ -137,5 +138,4 @@ const Community = ({ communityId }) => {
     </CardBox2>
   );
 };
-
 export default Community;

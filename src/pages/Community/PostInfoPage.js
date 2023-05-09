@@ -9,6 +9,7 @@ import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
 import { Map } from "react-kakao-maps-sdk";
+import { useRef } from "react";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -231,55 +232,122 @@ const LinkToIconStyle = {
   textDecoration: "none",
   color: "black",
 };
+
+const Card2 = styled.div`
+  min-width: 90%;
+  height: 10rem;
+  border-style: solid;
+  border-color: #bbbbbb;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  &:hover {
+    border-color: #47a5fd;
+  }
+`;
+const CardBox2 = styled.div`
+  position: absolute;
+  top: 13rem;
+  left: 18.5vw;
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  overflow: auto;
+  gap: 2rem;
+`;
+
+const DateDiv = styled.div`
+  width: 88%;
+  height: 2rem;
+`;
+
+const DateSpan = styled.span`
+  margin-left: 300px;
+  font-size: 0.8rem;
+  color: #bbbbbb;
+  line-height: 2rem;
+`;
+
+const CardImageDiv = styled.div`
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+`;
+
+const CardImage = styled.img`
+  width: 15%;
+  height: 100%;
+`;
+
 const PostInfoPage = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [imgUrls, setImgUrls] = useState([]);
-  const [maintenance, setMaintenance] = useState(null);
-  const [nickname, setNickName] = useState(null);
-  const [contents, setContents] = useState("");
-  const [flat, setFlat] = useState(null);
-  const [rent, setRent] = useState(null);
-  const [title, setTitle] = useState("");
-  const [tradeType, setTradeType] = useState("");
-  const [hashtag, setHashTag] = useState([]);
+  const { communityId } = useParams();
 
-  async function FetchPostInfoData() {
-    await axios
-      .get(`http://localhost:8080///api/communityboard/{communityId}`)
-      .then((response) => {
-        console.log(response.data);
-        const { communityboard } = response.data;
-        setTitle(communityboard.title);
-        setNickName(communityboard.nickname);
-        setImgUrls(communityboard.imgUrls);
-        setMaintenance(communityboard.maintenance);
-        setRent(communityboard.rent);
-        setTradeType(communityboard.tradeType);
-        setFlat(communityboard.flat);
-        setHashTag(communityboard.hashtag);
-        setContents(communityboard.contents);
-      })
-      .catch((error) => {
-        console.log("FetchPostInfoData axios error");
-      });
-  }
+  const [post, setPost] = useState({
+    title: "",
+    imgUrls: [],
+    contents: "",
+    views: [],
+    code: [],
+  });
 
-  async function DeletePostInfoData() {
-    await axios
-      .delete(`http://localhost:8080///api/communityboard/{communityId}`)
-      .then((response) => {
-        navigate(`../Community`);
-      })
-      .catch((error) => {
-        console.log("DeletePostInfoData axios error");
-      });
-  }
-
-  //한번 렌더링 될때 데이터를 받아온다.
   useEffect(() => {
-    FetchPostInfoData();
+    const fetchData = async () => {
+      const result = await axios.get(
+        `http://localhost:8080/api/communityboard?communityId=${communityId}`
+      );
+      setPost((prevPost) => ({
+        ...prevPost,
+        title: result.data[0].title,
+        imgUrls: result.data[0].imgUrls,
+        contents: result.data[0].contents,
+        views: result.data[0].views,
+        code: result.data[0].code,
+      }));
+    };
+
+    fetchData();
+  }, [communityId]);
+
+  console.log(post.title);
+
+  const cardRef = useRef(null);
+  const [scrollTop, setScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (cardRef.current) {
+        setScrollTop(cardRef.current.scrollTop);
+      }
+    };
+
+    if (cardRef.current) {
+      cardRef.current.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        cardRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
   }, []);
+
+  const DeletePostInfoData = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/communityboard?communityId=${communityId}`
+      );
+      // navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <PostInfoPageContainer>
@@ -295,7 +363,7 @@ const PostInfoPage = () => {
               onSwiper={(swiper) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
             >
-              {imgUrls.map((data, index) => (
+              {post.imgUrls.map((data, index) => (
                 <SwiperSlide key={index}>
                   <PostInfoImage src={data} key={index} />
                 </SwiperSlide>
@@ -304,12 +372,12 @@ const PostInfoPage = () => {
           </Container>
         </PostInfoImageBox>
         <TitleDiv>
-          <TitleSpan>{title}</TitleSpan>
+          <TitleSpan>{post.title}</TitleSpan>
         </TitleDiv>
         <ProfileHeartDiv>
           <ProfileDiv>
             <ProfileImg src="blue.png" />
-            <ProfileName>{nickname}</ProfileName>
+            {/* <ProfileName>{post.nickname}</ProfileName> */}
           </ProfileDiv>
           <HeartDiv>
             <AiOutlineHeart size={40} />
@@ -323,14 +391,9 @@ const PostInfoPage = () => {
           </HeartDiv>
         </ProfileHeartDiv>
 
-        <PostHashTagDiv>
-          {hashtag &&
-            hashtag.map((data, idx) => (
-              <HashTagButton key={idx}>{data}</HashTagButton>
-            ))}
-        </PostHashTagDiv>
+        <PostHashTagDiv></PostHashTagDiv>
         <PostContentDiv>
-          <PostContentSpan>{contents}</PostContentSpan>
+          <PostContentSpan>{post.contents}</PostContentSpan>
         </PostContentDiv>
 
         <CommentSection>
@@ -359,5 +422,4 @@ const PostInfoPage = () => {
     </PostInfoPageContainer>
   );
 };
-
 export default PostInfoPage;
