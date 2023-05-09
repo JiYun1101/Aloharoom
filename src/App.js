@@ -34,15 +34,11 @@ const App = () => {
         <Route path="/termUser" element={<TermUser />} />
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
-<<<<<<< HEAD
         <Route path="/postInfoPage" element={<PostInfoPage />} />
         <Route
           path="/communityInfoPage/:communityId"
           element={<CommunityInfoPage />}
         />
-=======
-        <Route path="/postInfoPage/:id" element={<PostInfoPage />} />
->>>>>>> pjh
         <Route path="/community" element={<Community />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>
