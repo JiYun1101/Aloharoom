@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import NotificationModal from "./NotificationModal";
+import { Badge } from "antd";
+import axios from "axios";
 
 const MenuBar = styled.div`
   position: relative;
@@ -74,9 +76,11 @@ const LinkToStyle = {
 };
 
 const Header = () => {
+  const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
   const [username, setUsername] = useState(localStorage.getItem("username"));
 
+  const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
   const ModalOpen = () => {
     setNotifyModalOpen(true);
   };
@@ -91,11 +95,40 @@ const Header = () => {
     console.log("Logged out successfully");
   };
 
+  async function fetchNotificationInfo() {
+    await axios.get(`http://localhost:8080/api/notification`, {
+      withCredentials:true
+    })
+    .then((response) => {
+        console.log('notification Data:', response.data);
+        setNotificationData(response.data);
+    })
+    .catch((error) => { console.log(`fetchNotificationInfo axios error`);})
+  }
+  
+  async function fetchNotReadNotificationCount() {
+    await axios.get(`http://localhost:8080/api/notification/count`, {
+      withCredentials:true
+    })
+    .then((response) => {
+      console.log('notification count:', response.data);
+      setNotReadNotificationCount(response.data);
+    })
+    .catch((error) => { console.log(`fetchNotReadNotificationCount axios error`);})
+  }
+
+  useEffect(() => {
+    fetchNotificationInfo();
+    fetchNotReadNotificationCount();
+  }, []);
   return (
     <>
       <MenuBar>
         {NotifyModalOpen ? (
-          <NotificationModal ModalClose={ModalClose} />
+          <NotificationModal 
+            ModalClose={ModalClose} 
+            notificationData={notificationData}
+          />
         ) : (
           <></>
         )}
@@ -133,6 +166,24 @@ const Header = () => {
           </Link>
         )}
         {username && console.log("username exists")}
+        <LogoGroup>
+          <LogoElement>
+              <Badge count={notReadNotificationCount.notificationCount} size="small" overflowCount={10}>
+                <AiOutlineBell size={30} onClick={() => {
+                  fetchNotificationInfo();
+                  ModalOpen();
+                }} />
+              </Badge>
+          </LogoElement>
+          <LogoElement>
+            <Link to="/myPage" style={LinkToStyle}>
+                <AiOutlineUser size={30} />
+            </Link>
+          </LogoElement>
+        </LogoGroup>
+        <Link to="../login">
+          <Button>Login / Signup</Button>
+        </Link>
       </MenuBar>
       <BlueLine />
     </>

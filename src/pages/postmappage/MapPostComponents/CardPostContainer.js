@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 const CardPostContainer = styled.div`
     width: 97%;
-    height: 92%;
-    margin-top: 1rem;
+    height: 98%;
+    margin-top: 0.1rem;
     margin-left: 1rem;
-    //margin-left: 1.5rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -1,55 +1,65 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from 'swiper/core';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-
-SwiperCore.use([Pagination]);
-
-const ImageSwiperDiv = styled.div`
-    width: 90%;
-    height: 9rem;
-`;
-
-const SwiperContainer = styled.div`
-    margin-top: 0.5rem;
-    .swiper-slide {
-        margin-right: 1px; /* SwiperSlide 간격 조정 */
-    }
+const DragDropDiv = styled.div`
+    width: 100%;
 `;
 
 const UploadImg = styled.img`
-    width: 12rem;
-    height: 8rem;
+    width: 20rem;
+    height: 15rem;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
 `;
 
-const ImageSwiperSection = ({previewImages}) => {
-  return (
-    <ImageSwiperDiv>
-        <SwiperContainer>
-            <Swiper
-            // install Swiper modules
-            modules={[Navigation, Scrollbar, Pagination, A11y]}
-            spaceBetween={1}
-            slidesPerView={3}
-            navigation
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
-            > 
-                { previewImages.map((previewImage, idx) => (
-                <SwiperSlide>
-                    <UploadImg key={idx} src={previewImage}/>
-                </SwiperSlide>
-                ))}                                            
-            </Swiper>
-        </SwiperContainer>
-    </ImageSwiperDiv>
-  );
+const droppableDivStyle = {
+    width: "100%",
+    height: "20rem",
+    overflow: "auto",
+}
+
+const ImageSwiperSection = ({
+    imgFiles,
+    previewImages,
+    setImgFiles,
+    setPreviewImages
+}) => {
+    const handleOnDragEnd = (result) => {
+        if (!result.destination) return;
+        const newImgFiles = Array.from(imgFiles);
+        const newPreviewImages = Array.from(previewImages);
+        const [reorderedImgFiles] = newImgFiles.splice(result.source.index, 1);
+        const [reorderedPreviewImages] = newPreviewImages.splice(result.source.index, 1);
+        newImgFiles.splice(result.destination.index, 0, reorderedImgFiles);
+        newPreviewImages.splice(result.destination.index, 0, reorderedPreviewImages);
+        setImgFiles(newImgFiles);
+        setPreviewImages(newPreviewImages);
+    };
+    
+    return (
+        <DragDropDiv>
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="image-list">
+                    {(provided) => (
+                        <div className='image-list' {...provided.droppableProps} ref={provided.innerRef} style={droppableDivStyle}>
+                            {previewImages.map((previewImage, index) => (
+                                <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
+                                    {(provided) => (
+                                        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                            <UploadImg src={previewImage}/>
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
+        </DragDropDiv>
+    );
 }
 
 export default ImageSwiperSection

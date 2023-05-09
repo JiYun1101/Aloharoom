@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { DatePicker } from 'antd';
+import dayjs from "dayjs";
 
 const FirstInfoDiv = styled.div`
     width: 90%;
@@ -30,14 +31,34 @@ const RoomMatePriceSpan = styled.span`
     color: #47a5fd;
 `;
 
-const FirstSection = ({startDateOnChange}) => {
+const FirstSection = ({
+    startDate,
+    rent,
+    setStartDate,
+    setRent
+}) => {
+    const dateFormat = 'YYYY-MM-DD';
+    //입주 가능 날짜 설정 함수
+    const startDateOnChange = date => {
+        setStartDate(date.format('YYYY-MM-DD'));
+    };
+    console.log('First Section rendered');
+    console.log('startDate ', startDate);
     return (
         <FirstInfoDiv>
             <FirstInfoBox>
-                <DatePicker onChange={startDateOnChange}/>
+                <DatePicker 
+                    value={startDate !== "" ? dayjs(startDate) : undefined}
+                    format={dateFormat}
+                    onChange={startDateOnChange}
+                />
             </FirstInfoBox>
             <FirstInfoBox>
-                <RoomMatePriceInput type="text"/>
+                <RoomMatePriceInput 
+                    value={rent}
+                    type="text" 
+                    onChange={(e) => { setRent(e.target.value);}}
+                />
                 <RoomMatePriceSpan>만원</RoomMatePriceSpan>
             </FirstInfoBox>
         </FirstInfoDiv>

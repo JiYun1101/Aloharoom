@@ -56,7 +56,18 @@ const TitleSpan = styled.span`
 
 const NewPostContentInfoSection = ({   
     address,
+    startDate,
+    roomCount,
+    homeType,
+    flat,
+    price,
     tradeType,
+    maintenance,
+    deposit,
+    rent,
+    floor,
+    totalFloor,
+    ageRange,
     setAddress,
     setStartDate,
     setX,
@@ -67,22 +78,29 @@ const NewPostContentInfoSection = ({
     setPrice,
     setTradeType,
     setMaintenance,
-    setDeposit
+    setDeposit,
+    setRent,
+    setFloor,
+    setTotalFloor,
+    setTitle,
+    setAgeRange
 }) => {
-    //입주 가능 날짜 설정 함수
-    const startDateOnChange = (date, dateString) => {
-        setStartDate(dateString);
-    };
-      //위도 경도 설정 함수
+    //위도 경도 설정 함수
     const searchLatLng = () => {
         const ps = new window.kakao.maps.services.Places();
         ps.keywordSearch(address, (data, status, _pagination) => {
-        if (status === window.kakao.maps.services.Status.OK) {
+          if (status === window.kakao.maps.services.Status.OK) {
             setX(data[0].x.toString());
             setY(data[0].y.toString());
-        }
+            setTitle(data[0].road_address_name.toString());
+          }
+          else {
+            setX(null);
+            setY(null);
+          }
         });
     };
+
     return (
         <NewPostContentInfoDiv>
                         <TitleDiv height="2rem" marginTop="2rem">
@@ -94,12 +112,18 @@ const NewPostContentInfoSection = ({
                             </TitleBox>
                         </TitleDiv>
                         <FirstSection
-                          startDateOnChange={startDateOnChange}
+                          startDate={startDate}
+                          rent={rent}
+                          setStartDate={setStartDate}
+                          setRent={setRent}
                         />
                         <TitleDiv height="2rem" marginTop="1rem">
                             <TitleSpan fontSize="1rem" lineHeight="2rem">룸메이트 선호 연령층</TitleSpan>
                         </TitleDiv>
-                        <SecondSection/>
+                        <SecondSection 
+                          ageRange={ageRange}
+                          setAgeRange={setAgeRange}
+                        />
                         <TitleDiv height="2rem" marginTop="1rem">
                             <TitleSpan fontSize="1rem" lineHeight="2rem">주소</TitleSpan>
                         </TitleDiv>
@@ -126,20 +150,32 @@ const NewPostContentInfoSection = ({
                             </TitleBox>
                         </TitleDiv>
                         <RoomCountTypeFlatInfoSection
+                          roomCount={roomCount}
+                          homeType={homeType}
+                          flat={flat}
+                          floor={floor}
+                          totalFloor={totalFloor}
                           setRoomCount={setRoomCount}
                           setHomeType={setHomeType}
                           setFlat={setFlat}
+                          setFloor={setFloor}
+                          setTotalFloor={setTotalFloor}
                         />
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" lineHeight="2rem">가격</TitleSpan>
                         </TitleDiv> 
                         <PriceInfoSection
+                          price={price}
                           tradeType={tradeType}
+                          maintenance={maintenance}
                           setPrice={setPrice}
                           setTradeType={setTradeType}
                           setMaintenance={setMaintenance}
                         />
-                        <GuaranteeSection setDeposit={setDeposit} />
+                        <GuaranteeSection 
+                          deposit={deposit}
+                          setDeposit={setDeposit} 
+                        />
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" marginRight="2rem">집 해시태그</TitleSpan>
                         </TitleDiv>

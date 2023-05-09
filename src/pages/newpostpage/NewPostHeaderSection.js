@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const NewPostHeaderDiv = styled.div`
@@ -13,8 +14,10 @@ const NewPostHeaderDiv = styled.div`
 `;
 
 const NewPostHeaderSection = () => {
+    const Id = useParams().id;
+    const IdExist = Id != null;
     return(
-        <NewPostHeaderDiv>새 글 쓰기</NewPostHeaderDiv>
+        <NewPostHeaderDiv>{IdExist ? `글 수정` : `새 글 쓰기`}</NewPostHeaderDiv>
     );
 }
 

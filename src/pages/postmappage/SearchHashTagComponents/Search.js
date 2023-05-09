@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { IoSearchCircleSharp, IoFilterOutline } from "react-icons/io5";
-import { useState } from "react";
 import NotificationModal2 from "./NotificationModal2";
+import { IoSearchCircleSharp, IoFilterOutline } from "react-icons/io5";
 
-const SearchContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 50%;
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+const SearchSection = styled.div`
+  width: 50%;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -15,7 +17,7 @@ const SearchContainer = styled.div`
 `;
 
 const SearchInput = styled.input`
-  width: 18%;
+  width: 36%;
   height: 40%;
   border-style: solid;
   border-radius: 2rem;
@@ -38,7 +40,7 @@ const SearchIconStyle = {
   color: "#47A5FD",
 };
 
-const Search = ({ setSearchStr }) => {
+const Search = ({setSearchStr}) => {
   const [inputValue, setInputValue] = useState(null);
 
   const handleInputChange = (e) => {
@@ -66,7 +68,7 @@ const Search = ({ setSearchStr }) => {
   };
 
   return (
-    <SearchContainer>
+    <SearchSection>
       {" "}
       {NotifyModalOpen ? <NotificationModal2 ModalClose={ModalClose} /> : <></>}
       <IoFilterOutline size={30} style={FilterIconStyle} onClick={ModalOpen} />
@@ -81,7 +83,7 @@ const Search = ({ setSearchStr }) => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-    </SearchContainer>
+    </SearchSection>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const PostButtonDiv = styled.div`
     margin-top: 0.5rem;
@@ -22,16 +22,26 @@ const PostButton = styled.button`
     color: white;
 `;
 
-const PostButtonSection = ({PostInfoSubmit}) => {
-    const navigate = useNavigate();
+const PostButtonSection = ({PostInfoSubmit, modifyPost}) => {
+    const updateID = useParams().id;
+    const IdExists = updateID != null;
     return (
         <PostButtonDiv>
-            <PostButton onClick={() => {
-                PostInfoSubmit();
-                navigate(-1);
-            }}>
-                올리기
-            </PostButton>
+            {
+                IdExists 
+                ? 
+                    <PostButton onClick={() => {
+                        modifyPost();
+                    }}>
+                        수정하기
+                    </PostButton>
+                :
+                    <PostButton onClick={() => {
+                        PostInfoSubmit();
+                    }}>
+                        올리기
+                    </PostButton>
+            }
         </PostButtonDiv>
     )
 }

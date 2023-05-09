@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Search from "./SearchHashTagComponents/Search";
-import HashTagTitle from "./SearchHashTagComponents/HashTagTitle";
+import EmptyBox from "./SearchHashTagComponents/EmptyBox";
+import SearchTitle from "./SearchHashTagComponents/SearchTitle";
 
 const SearchHashTagContainer = styled.div`
     position: absolute;
@@ -15,8 +15,8 @@ const SearchHashTagContainer = styled.div`
 const SearchHashTag = ({ setSearchStr }) => {
   return (
     <SearchHashTagContainer>
-      <Search setSearchStr={setSearchStr} />
-      <HashTagTitle />
+      <EmptyBox/>
+      <SearchTitle setSearchStr={setSearchStr}/>
     </SearchHashTagContainer>
   );
 };

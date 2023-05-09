@@ -22,14 +22,25 @@ const AddressInfoSection = ({
     setAddress,
     searchLatLng
 }) => {
+    const addressExists = address !== null;
     return (
         <AddressInfoDiv>
-            <AddressInput 
-                type="text" 
-                value={address}
-                onChange={(e) => { setAddress(e.target.value); }}
-                onBlur={() => { searchLatLng(); }}
-            />
+            {
+                addressExists 
+                ? 
+                    <AddressInput 
+                        type="text" 
+                        defaultValue={address}
+                        onChange={(e) => { setAddress(e.target.value); }}
+                        onBlur={() => { searchLatLng(); }}
+                    />
+                :
+                    <AddressInput 
+                        type="text" 
+                        onChange={(e) => { setAddress(e.target.value); }}
+                        onBlur={() => { searchLatLng(); }}
+                    />
+            }
         </AddressInfoDiv>
     );
 }

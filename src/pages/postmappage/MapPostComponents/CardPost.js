@@ -135,54 +135,55 @@ const CommentSpan = styled.span`
 `;
 
 const CardPost = ({
-  type,
-  address,
-  boardId,
-  commentNum,
-  flat,
-  imageUrls,
-  nickname,
-  rent,
-  roomCount,
-  startDate,
+    type,
+    address,
+    boardId,
+    commentNum,
+    flat,
+    imageUrl,
+    nickname,
+    rent,
+    roomCount,
+    startDate,
+    profileImgUrl
 }) => {
-  return (
-    <Card>
-      <RoomTypeDiv>
-        <RoomTypeButton>{type}</RoomTypeButton>
-      </RoomTypeDiv>
-      <MoveInDateDiv>
-        <MoveInDateSpan>입주 가능일 : {startDate}</MoveInDateSpan>
-      </MoveInDateDiv>
-      <AddressInfoDiv>
-        <AddressInfoSpan>{address}</AddressInfoSpan>
-      </AddressInfoDiv>
-      <PriceInfoDiv>
-        <PriceInfoSpan>월 {rent}만원/보증금 300만원</PriceInfoSpan>
-      </PriceInfoDiv>
-      <CardImageDiv>
-        <CardImage src="./blue.png" />
-      </CardImageDiv>
-      <HashTagDiv>
-        <HashTagSpan>#외향</HashTagSpan>
-        <HashTagSpan>#흡연</HashTagSpan>
-        <HashTagSpan>#편의점</HashTagSpan>
-        <HashTagSpan>#에어컨</HashTagSpan>
-        <HashTagSpan>#전자레인지</HashTagSpan>
-        <HashTagSpan>#주차가능</HashTagSpan>
-      </HashTagDiv>
-      <ProfileCommentDiv>
-        <ProfileDiv>
-          <ProfileImg src="./blue.png" />
-          <ProfileSpan>{nickname}</ProfileSpan>
-        </ProfileDiv>
-        <CommentDiv>
-          <CommentSpan>{commentNum}</CommentSpan>
-          <FaRegCommentDots size={25} style={CommentLogoStyle} />
-        </CommentDiv>
-      </ProfileCommentDiv>
-    </Card>
-  );
-};
+    return (
+        <Card>
+            <RoomTypeDiv>
+                <RoomTypeButton>{type}</RoomTypeButton>
+            </RoomTypeDiv>
+            <MoveInDateDiv>
+                <MoveInDateSpan>입주 가능일 : {startDate}</MoveInDateSpan>
+            </MoveInDateDiv>
+            <AddressInfoDiv>
+                <AddressInfoSpan>{address}</AddressInfoSpan>
+            </AddressInfoDiv>
+            <PriceInfoDiv>
+                <PriceInfoSpan>월 {rent}만원/보증금 300만원</PriceInfoSpan>
+            </PriceInfoDiv>
+            <CardImageDiv>
+                <CardImage src={imageUrl}/>
+            </CardImageDiv>
+            <HashTagDiv>
+                <HashTagSpan>#외향</HashTagSpan>
+                <HashTagSpan>#흡연</HashTagSpan>
+                <HashTagSpan>#편의점</HashTagSpan>
+                <HashTagSpan>#에어컨</HashTagSpan>
+                <HashTagSpan>#전자레인지</HashTagSpan>
+                <HashTagSpan>#주차가능</HashTagSpan>
+            </HashTagDiv>
+            <ProfileCommentDiv>
+                <ProfileDiv>
+                    <ProfileImg src={profileImgUrl}/>
+                    <ProfileSpan>{nickname}</ProfileSpan>
+                </ProfileDiv>
+                <CommentDiv>
+                    <CommentSpan>{commentNum}</CommentSpan>
+                    <FaRegCommentDots size={25} style={CommentLogoStyle}/>
+                </CommentDiv>
+            </ProfileCommentDiv>
+        </Card>
+        );
+}
 
 export default CardPost;

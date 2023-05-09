@@ -13,26 +13,35 @@ const MapPostContainer = styled.div`
 `;
 
 const MapPost = ({searchStr}) => {
-    //서버에서 전달 받을 상태 변수
     const [cardPostData, setCardPostData] = useState([]);
+    const [swLat, setSWLat] = useState("");
+    const [swLon, setSWLon] = useState("");
+    const [neLat, setNELat] = useState("");
+    const [neLon, setNELon] = useState("");
 
-    //전체 게시물 데이터 받아오기
     async function fetchCardPostData() {
         await axios
-        .get("http://localhost:8080/api/board")
+        .get(`http://localhost:8080/api/board`, {
+            params: {
+                southWestLatitude: swLat,
+                southWestLongitude: swLon,
+                northEastLatitude: neLat,
+                northEastLongitude: neLon
+            }
+        })
         .then((response) => {
             setCardPostData(response.data);
             console.log("cardPostData => response.data : ", response.data);
         })
         .catch((error) => {
-            console.log("axios error");
+            console.log("fetchCardPostData axios error");
         });
     }
 
-    //한번 렌더링 될때 데이터를 받아온다.
+    //위도 경도 값이 변할때마다 데이터를 가져온다.
     useEffect(() => {
         fetchCardPostData();
-    }, []);
+    }, [swLat, swLon, neLat, neLon]);
 
 
     return (
@@ -40,6 +49,10 @@ const MapPost = ({searchStr}) => {
             <KakaoMapPart 
                 searchStr={searchStr} 
                 cardPostData={cardPostData}
+                setSWLat={setSWLat}
+                setSWLon={setSWLon}
+                setNELat={setNELat}
+                setNELon={setNELon}
             />
             <Post cardPostData={cardPostData}/>
         </MapPostContainer>
