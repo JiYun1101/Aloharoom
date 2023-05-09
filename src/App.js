@@ -35,6 +35,7 @@ const App = () => {
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/postInfoPage" element={<PostInfoPage />} />
+        <Route path="/postInfoPage/:id" element={<PostInfoPage />}/>
         <Route
           path="/communityInfoPage/:communityId"
           element={<CommunityInfoPage />}
