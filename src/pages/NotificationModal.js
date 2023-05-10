@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import baseURL from "./api/baseURL";
 
 const NotificationModalContainer = styled.div`
     position: absolute;
@@ -72,7 +73,7 @@ const LinkToStyle = {
 
 const NotificationModal = ({ModalClose, notificationData}) => {
     async function ReadNotification(notificationId) {
-        await axios.post(`http://localhost:8080/api/notification/${notificationId}`,{}, {
+        await axios.post(`${baseURL}/api/notification/${notificationId}`,{}, {
             withCredentials:true
         })
         .then((response) => { console.log(`알림 읽기 성공`); })

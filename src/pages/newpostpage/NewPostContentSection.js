@@ -4,6 +4,7 @@ import axios from "axios";
 import NewPostContentInfoSection from "./NewPostContentInfoSection";
 import NewPostContentWritingSection from "./NewPostContentWritingSection";
 import { useNavigate, useParams } from "react-router-dom";
+import baseURL from "../api/baseURL";
 
 const NewPostContentDiv = styled.div`
     height: 100%;
@@ -51,7 +52,7 @@ const NewPostContentSection = () => {
     }, []);
 
     async function FetchPostInfoData() {
-        await axios.get(`http://localhost:8080/api/board/edit/${updateID}`)
+        await axios.get(`${baseURL}/api/board/edit/${updateID}`)
             .then((response) => {
                 console.log('FetchPostInfoData: ', response.data);
                 setAddress(response.data.address);
@@ -127,7 +128,7 @@ const NewPostContentSection = () => {
         for(let i = 0; i < imgFiles.length; i++) {
             formData.append("imgFiles", imgFiles[i]);
         }
-        axios.patch(`http://localhost:8080/api/board/edit/${updateID}`, formData, {
+        axios.patch(`${baseURL}/api/board/edit/${updateID}`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
@@ -168,7 +169,7 @@ const NewPostContentSection = () => {
         for(let i = 0; i < imgFiles.length; i++) {
             formData.append("imgFiles", imgFiles[i]);
         }
-        axios.post("http://localhost:8080/api/board", formData, {
+        axios.post(`${baseURL}/api/board`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import NotificationModal from "./NotificationModal";
 import { Badge } from "antd";
 import axios from "axios";
+import baseURL from "./api/baseURL";
 
 const MenuBar = styled.div`
   position: relative;
@@ -96,7 +97,7 @@ const Header = () => {
   };
 
   async function fetchNotificationInfo() {
-    await axios.get(`http://localhost:8080/api/notification`, {
+    await axios.get(`${baseURL}/api/notification`, {
       withCredentials:true
     })
     .then((response) => {
@@ -107,7 +108,7 @@ const Header = () => {
   }
   
   async function fetchNotReadNotificationCount() {
-    await axios.get(`http://localhost:8080/api/notification/count`, {
+    await axios.get(`${baseURL}/api/notification/count`, {
       withCredentials:true
     })
     .then((response) => {

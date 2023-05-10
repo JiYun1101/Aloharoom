@@ -104,14 +104,16 @@ const NotificationModal2 = ({
           <NotificationTitle2>맞춤필터</NotificationTitle2>
         </NotificationTitleDiv2>
         <NotificationModalCloseButtonDiv2>
-          <NotificationModalCloseButton2 onClick={ModalClose}>
+          <NotificationModalCloseButton2 
+            onClick={ModalClose}
+          >
             x
           </NotificationModalCloseButton2>
         </NotificationModalCloseButtonDiv2>
       </NotificationModalHeaderDiv2>
       <FilterFormDiv>
         <FilterForm2>
-          <FilterForm 
+          <FilterForm
             cardPostData={cardPostData}
             setCardPostData={setCardPostData}
             ModalClose={ModalClose}

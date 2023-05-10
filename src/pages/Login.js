@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../style/Login.css";
 import { UserOutlined } from "@ant-design/icons";
 import { Input, Button, message } from "antd";
@@ -8,6 +8,7 @@ import { Form, Checkbox } from "antd";
 import LockOutlined from "@ant-design/icons";
 import axios from "axios";
 import styled from "styled-components";
+import baseURL from "./api/baseURL";
 
 const Logo = styled.span`
   position: absolute;
@@ -30,7 +31,7 @@ const onFinish = async (value) => {
       password: value.password,
     });
 
-    const response = await axios.post("http://localhost:8080/login", data, {
+    const response = await axios.post(`${baseURL}/login`, data, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },

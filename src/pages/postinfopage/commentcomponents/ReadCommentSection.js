@@ -3,6 +3,7 @@ import ReadComment from "./ReadComment";
 import ReadReplyComment from "./ReadReplyComment";
 import WriteReplyComment from "./WriteReplyComment";
 import axios from "axios";
+import baseURL from "../../api/baseURL";
 const ReadCommentSection = ({
     data,
     makeCommentRequest,
@@ -20,13 +21,13 @@ const ReadCommentSection = ({
         setShowWriteReplies(!showWriteReplies);
     }
     async function deleteComment(commentId) {
-        await axios.delete(`http://localhost:8080/api/comment/${commentId}`)
+        await axios.delete(`${baseURL}/api/comment/${commentId}`)
         .then((response) => { window.location.reload();})
         .catch((error) => {console.log('deleteComment axios error')});
     }
 
     async function updateComment(commentId, content) {
-        await axios.patch(`http://localhost:8080/api/comment`, {
+        await axios.patch(`${baseURL}/api/comment`, {
             "homeCommentId": commentId, 
             "content": content
         })

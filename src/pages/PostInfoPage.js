@@ -16,6 +16,7 @@ import PostInfoSpan from "./postinfopage/PostInfoSpan";
 import UserProfileImg from "./postinfopage/UserProfileImg";
 import WriteComment from "./postinfopage/commentcomponents/WriteComment";
 import ReadCommentSection from "./postinfopage/commentcomponents/ReadCommentSection";
+import baseURL from "./api/baseURL";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -109,7 +110,7 @@ const PostInfoPage = () => {
     const [x, setX] = useState('');
     const [y, setY] = useState('');
     async function FetchPostInfoData() {
-        await axios.get(`http://localhost:8080/api/board/${boardId}`, {
+        await axios.get(`${baseURL}/api/board/${boardId}`, {
                 withCredentials:true
             })
             .then((response) => {
@@ -146,7 +147,7 @@ const PostInfoPage = () => {
 
   async function DeletePostInfoData() {
     await axios
-      .delete(`http://localhost:8080/api/board/${boardId}`)
+      .delete(`${baseURL}/api/board/${boardId}`)
       .then((response) => {
         navigate(`../postMapPage`);
       })
@@ -156,7 +157,7 @@ const PostInfoPage = () => {
   }
 
     async function AddLikePost() {
-        await axios.post(`http://localhost:8080/api/heart/${boardId}`,{},{
+        await axios.post(`${baseURL}/api/heart/${boardId}`,{},{
             withCredentials:true
         })
             .then((response) => {})
@@ -166,7 +167,7 @@ const PostInfoPage = () => {
     }
 
     async function DeleteLikePost() {
-        await axios.delete(`http://localhost:8080/api/heart/${boardId}`, {
+        await axios.delete(`${baseURL}/api/heart/${boardId}`, {
             withCredentials:true
         })
             .then((response) => {})
@@ -176,7 +177,7 @@ const PostInfoPage = () => {
     }
 
     async function FetchBoardComment() {
-        await axios.get(`http://localhost:8080/api/comment/home/${boardId}`, {
+        await axios.get(`${baseURL}/api/comment/home/${boardId}`, {
             withCredentials:true
         })
         .then((response) => {
@@ -198,7 +199,7 @@ const PostInfoPage = () => {
         layer,
         groupId
     ) {
-        await axios.post("http://localhost:8080/api/comment", {
+        await axios.post(`${baseURL}/api/comment`, {
             "userId": userId,
             "targetUserId": targetUserId,
             "boardId": boardId,

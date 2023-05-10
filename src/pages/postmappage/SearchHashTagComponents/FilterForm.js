@@ -3,7 +3,7 @@ import { Button, Form, Select,} from "antd";
 import { Slider } from "antd";
 import "../../../style/RegisterPage0.css";
 import axios from "axios";
-import QueryString from "qs";
+import baseURL from "../../api/baseURL";
 
 const marks = {
   0: {
@@ -89,16 +89,8 @@ const FilterForm = ({
     }
   };
 
-  const mockdata = {
-    "gender": gender,
-    "flatRange": flatRange.join(),
-    "rentRange": rentRange,
-    "likeHashtags": likeHashtags
-  }
-  console.log(`${QueryString.stringify(mockdata, { arrayFormat: 'repeat'})}`);
-
   async function fetchFilterCardPostData() {
-    await axios.get(`http://localhost:8080/api/search`, {
+    await axios.get(`${baseURL}/api/search`, {
       withCredentials: true,
       params: {
         gender: gender,

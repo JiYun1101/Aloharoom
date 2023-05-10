@@ -4,6 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 import CardPost from "../postmappage/MapPostComponents/CardPost";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import baseURL from "../api/baseURL";
 
 const LikedListDiv = styled.div`
     margin-top: 0.5rem;
@@ -58,7 +59,7 @@ const LinkToCardStyle = {
 const LikedListPage = () => {
     const [responseData, setResponseData] = useState([]);
     async function fetchLikePost() {
-        await axios.get(`http://localhost:8080/api/heart`, {
+        await axios.get(`${baseURL}/api/heart`, {
             withCredentials:true
         })
         .then((response) => {

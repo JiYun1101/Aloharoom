@@ -3,6 +3,7 @@ import styled from "styled-components";
 import KakaoMapPart from "./MapPostComponents/KakaoMapPart";
 import Post from "./MapPostComponents/Post";
 import axios from "axios";
+import baseURL from "../api/baseURL";
 
 const MapPostContainer = styled.div`
     position: absolute;
@@ -24,7 +25,7 @@ const MapPost = ({
 
     async function fetchCardPostData() {
         await axios
-        .get(`http://localhost:8080/api/board`, {
+        .get(`${baseURL}/api/board`, {
             params: {
                 southWestLatitude: swLat,
                 southWestLongitude: swLon,

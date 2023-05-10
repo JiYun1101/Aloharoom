@@ -4,8 +4,8 @@ import CardPost from "../CardPost";
 import { Link } from "react-router-dom";
 
 const LinkToCardStyle = {
-  textDecoration: "none",
-  color: "black",
+    textDecoration: "none",
+    color: "black",
 };
 
 const RoommateCardPosts = ({cardPostData}) => {
