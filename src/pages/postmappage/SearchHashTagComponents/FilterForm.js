@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Form, Select,} from "antd";
 import { Slider } from "antd";
 import "../../../style/RegisterPage0.css";
+import axios from "axios";
+import QueryString from "qs";
 
 const marks = {
   0: {
@@ -53,14 +55,18 @@ const mark2 = {
   },
 };
 
-const FilterForm = ({ cardPostData, setCardPostData }) => {
-  const [gender, setGender] = useState();
-  const [roomCount, setRoomCount] = useState();
-  const [homeType, setHomeType] = useState();
+const FilterForm = ({ 
+  cardPostData,
+  setCardPostData,
+  ModalClose
+}) => {
+  const [gender, setGender] = useState("");
+  const [roomCount, setRoomCount] = useState("");
+  const [homeType, setHomeType] = useState("");
   const [ageRange, setAgeRange] = useState([]);
   const [flatRange, setFlatRange] = useState([]);
   const [rentRange, setRentRange] = useState([]);
-  const [likeHashTags, setLikeHashTags] = useState([]);
+  const [likeHashtags, setLikeHashtags] = useState([]);
   console.log('===========================');
   console.log('gender', gender);
   console.log('roomCount', roomCount);
@@ -68,20 +74,50 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
   console.log('ageRange', ageRange);
   console.log('flatRange', flatRange);
   console.log('rentRange', rentRange);
-  console.log('likeHashTags', likeHashTags);
+  console.log('likeHashTags', likeHashtags);
   console.log('===========================');
 
   const handleLikeHashTagClick = (buttonName3) => {
-    if (likeHashTags.includes(buttonName3)) {
-      setLikeHashTags((prevTags) =>
+    if (likeHashtags.includes(buttonName3)) {
+      setLikeHashtags((prevTags) =>
         prevTags.filter((tag) => tag !== buttonName3)
       );
       // onClick(null);
     } else {
-      setLikeHashTags((prevTags) => [...prevTags, buttonName3]);
+      setLikeHashtags((prevTags) => [...prevTags, buttonName3]);
       // onClick(String(buttonName3));
     }
   };
+
+  const mockdata = {
+    "gender": gender,
+    "flatRange": flatRange.join(),
+    "rentRange": rentRange,
+    "likeHashtags": likeHashtags
+  }
+  console.log(`${QueryString.stringify(mockdata, { arrayFormat: 'repeat'})}`);
+
+  async function fetchFilterCardPostData() {
+    await axios.get(`http://localhost:8080/api/search`, {
+      withCredentials: true,
+      params: {
+        gender: gender,
+        roomCount: roomCount,
+        homeType: homeType,
+        ageRange: ageRange.join(),
+        flatRange: flatRange.join(),
+        rentRange: rentRange.join(),
+        likeHashtags: likeHashtags.join()
+      }
+    })
+    .then((response) => { 
+      console.log('fetchFilterCardPostData response data', response.data);
+      setCardPostData(response.data);
+      ModalClose();
+    })
+    .catch((error) => { console.log(`fetchFilterCardPostData axios error`);})
+  }
+
   const initialState = ""; // 예시로 초기 상태를 빈 문자열로 설정
   const [state, setState] = useState(""); // useState를 함수 컴포넌트 내에서 호출
 
@@ -94,9 +130,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
           wrapperCol={{ span: 12 }}
         >
           <Select style={{ fontSize: "4rem" }} onChange={(value) => {setGender(value);}}>
-            <Select.Option value="남자">남자</Select.Option>
-            <Select.Option value="여자">여자</Select.Option>
-            <Select.Option value="상관없음">상관없음</Select.Option>
+            <Select.Option value="male">남자</Select.Option>
+            <Select.Option value="female">여자</Select.Option>
+            <Select.Option value="notcare">상관없음</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -139,7 +175,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("dust")}
                 className={`tag-button ${
-                  likeHashTags.includes("dust") && "tag-button-pressed"
+                  likeHashtags.includes("dust") && "tag-button-pressed"
                 }`}
               >
                 #층간소음이 없는
@@ -153,7 +189,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("cough")}
                 className={`tag-button ${
-                  likeHashTags.includes("cough") && "tag-button-pressed"
+                  likeHashtags.includes("cough") && "tag-button-pressed"
                 }`}
               >
                 #역세권
@@ -167,7 +203,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("quiet")}
                 className={`tag-button ${
-                  likeHashTags.includes("quiet") && "tag-button-pressed"
+                  likeHashtags.includes("quiet") && "tag-button-pressed"
                 }`}
               >
                 #조용한 주거환경
@@ -181,7 +217,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("convenience")}
                 className={`tag-button ${
-                  likeHashTags.includes("convenience") && "tag-button-pressed"
+                  likeHashtags.includes("convenience") && "tag-button-pressed"
                 }`}
               >
                 #비흡연자
@@ -195,7 +231,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("calm")}
                 className={`tag-button ${
-                  likeHashTags.includes("calm") && "tag-button-pressed"
+                  likeHashtags.includes("calm") && "tag-button-pressed"
                 }`}
               >
                 #근처 편의점
@@ -211,7 +247,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("gym")}
                 className={`tag-button ${
-                  likeHashTags.includes("gym") && "tag-button-pressed"
+                  likeHashtags.includes("gym") && "tag-button-pressed"
                 }`}
               >
                 #주변 체육시설
@@ -227,7 +263,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("church")}
                 className={`tag-button ${
-                  likeHashTags.includes("church") && "tag-button-pressed"
+                  likeHashtags.includes("church") && "tag-button-pressed"
                 }`}
               >
                 #성당/교회
@@ -244,7 +280,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("car")}
                 className={`tag-button ${
-                  likeHashTags.includes("car") && "tag-button-pressed"
+                  likeHashtags.includes("car") && "tag-button-pressed"
                 }`}
               >
                 #주차공간 유무
@@ -260,7 +296,7 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               <button
                 onClick={() => handleLikeHashTagClick("park")}
                 className={`tag-button ${
-                  likeHashTags.includes("park") && "tag-button-pressed"
+                  likeHashtags.includes("park") && "tag-button-pressed"
                 }`}
               >
                 #공원
@@ -271,6 +307,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            onClick={() => {
+              fetchFilterCardPostData();
+            }}
           >
             확인
           </Button>

@@ -114,6 +114,7 @@ const NotificationModal2 = ({
           <FilterForm 
             cardPostData={cardPostData}
             setCardPostData={setCardPostData}
+            ModalClose={ModalClose}
           />
         </FilterForm2>
       </FilterFormDiv>
