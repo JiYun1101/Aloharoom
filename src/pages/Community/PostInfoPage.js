@@ -3,12 +3,8 @@ import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper/core";
-import { Link, useNavigate } from "react-router-dom";
 //import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { GrDeliver } from "react-icons/gr";
-import { GiMeal } from "react-icons/gi";
-import { Map } from "react-kakao-maps-sdk";
 import { useRef } from "react";
 
 import "swiper/css";
