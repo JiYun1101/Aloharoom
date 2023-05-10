@@ -32,11 +32,20 @@ const NewPostIconStyle = {
 const PostMapContent = () => {
   //여기에 검색에 대한 상태 변수를 지정
   const [searchStr, setSearchStr] = useState(null);
+  const [cardPostData, setCardPostData] = useState([]);
 
   return (
     <PostMapContentContainer>
-      <SearchHashTag setSearchStr={setSearchStr} />
-      <MapPost searchStr={searchStr} />
+      <SearchHashTag 
+        cardPostData={cardPostData}
+        setSearchStr={setSearchStr} 
+        setCardPostData={setCardPostData}
+      />
+      <MapPost 
+        searchStr={searchStr}
+        cardPostData={cardPostData}
+        setCardPostData={setCardPostData}
+      />
       <Link to="/newPostPage" style={LinkToStyle}>
         <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
       </Link>

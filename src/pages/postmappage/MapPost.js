@@ -12,8 +12,11 @@ const MapPostContainer = styled.div`
     display: flex;
 `;
 
-const MapPost = ({searchStr}) => {
-    const [cardPostData, setCardPostData] = useState([]);
+const MapPost = ({
+    searchStr,
+    cardPostData,
+    setCardPostData
+}) => {
     const [swLat, setSWLat] = useState("");
     const [swLon, setSWLon] = useState("");
     const [neLat, setNELat] = useState("");

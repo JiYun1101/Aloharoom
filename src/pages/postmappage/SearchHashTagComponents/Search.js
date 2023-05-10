@@ -40,7 +40,11 @@ const SearchIconStyle = {
   color: "#47A5FD",
 };
 
-const Search = ({setSearchStr}) => {
+const Search = ({
+  cardPostData,
+  setSearchStr,
+  setCardPostData
+}) => {
   const [inputValue, setInputValue] = useState(null);
 
   const handleInputChange = (e) => {
@@ -70,7 +74,15 @@ const Search = ({setSearchStr}) => {
   return (
     <SearchSection>
       {" "}
-      {NotifyModalOpen ? <NotificationModal2 ModalClose={ModalClose} /> : <></>}
+      {NotifyModalOpen ? 
+        <NotificationModal2 
+          cardPostData={cardPostData}
+          setCardPostData={setCardPostData}
+          ModalClose={ModalClose}
+          /> 
+        : 
+        <></>
+      }
       <IoFilterOutline size={30} style={FilterIconStyle} onClick={ModalOpen} />
       <IoSearchCircleSharp
         size={30}

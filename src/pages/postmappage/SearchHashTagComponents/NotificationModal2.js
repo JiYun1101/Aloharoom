@@ -89,7 +89,11 @@ const FilterForm2 = styled.div`
   height: 40rem;
 `;
 
-const NotificationModal2 = ({ ModalClose = (f) => f }) => {
+const NotificationModal2 = ({ 
+  cardPostData,
+  setCardPostData,
+  ModalClose = (f) => f 
+}) => {
   return (
     <NotificationModalDiv2>
       <NotificationModalHeaderDiv2>
@@ -107,7 +111,10 @@ const NotificationModal2 = ({ ModalClose = (f) => f }) => {
       </NotificationModalHeaderDiv2>
       <FilterFormDiv>
         <FilterForm2>
-          <FilterForm />
+          <FilterForm 
+            cardPostData={cardPostData}
+            setCardPostData={setCardPostData}
+          />
         </FilterForm2>
       </FilterFormDiv>
     </NotificationModalDiv2>

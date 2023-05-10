@@ -9,11 +9,19 @@ const SearchTitleContainer = styled.div`
     display: flex;
 `;
 
-const SearchTitle = ({setSearchStr}) => {
+const SearchTitle = ({
+    cardPostData,
+    setSearchStr,
+    setCardPostData
+}) => {
     return (
         <SearchTitleContainer>
             <Title/>
-            <Search setSearchStr={setSearchStr}/>
+            <Search 
+                cardPostData={cardPostData}
+                setSearchStr={setSearchStr}
+                setCardPostData={setCardPostData}
+            />
         </SearchTitleContainer>
     );
 }

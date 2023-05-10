@@ -1,19 +1,5 @@
-import React, { useState } from "react"; // useState를 import
-import { PlusOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Cascader,
-  Checkbox,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Switch,
-  TreeSelect,
-  Upload,
-} from "antd";
+import React, { useState } from "react"; 
+import { Button, Form, Select,} from "antd";
 import { Slider } from "antd";
 import "../../../style/RegisterPage0.css";
 
@@ -67,7 +53,7 @@ const mark2 = {
   },
 };
 
-const FilterForm = () => {
+const FilterForm = ({ cardPostData, setCardPostData }) => {
   const handleTagClick = (buttonName3) => {
     if (tagPressed.includes(buttonName3)) {
       setTagPressed((prevTags) =>
