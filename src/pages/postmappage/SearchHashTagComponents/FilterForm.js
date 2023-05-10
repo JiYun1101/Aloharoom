@@ -54,21 +54,36 @@ const mark2 = {
 };
 
 const FilterForm = ({ cardPostData, setCardPostData }) => {
-  const handleTagClick = (buttonName3) => {
-    if (tagPressed.includes(buttonName3)) {
-      setTagPressed((prevTags) =>
+  const [gender, setGender] = useState();
+  const [roomCount, setRoomCount] = useState();
+  const [homeType, setHomeType] = useState();
+  const [ageRange, setAgeRange] = useState([]);
+  const [flatRange, setFlatRange] = useState([]);
+  const [rentRange, setRentRange] = useState([]);
+  const [likeHashTags, setLikeHashTags] = useState([]);
+  console.log('===========================');
+  console.log('gender', gender);
+  console.log('roomCount', roomCount);
+  console.log('homeType', homeType);
+  console.log('ageRange', ageRange);
+  console.log('flatRange', flatRange);
+  console.log('rentRange', rentRange);
+  console.log('likeHashTags', likeHashTags);
+  console.log('===========================');
+
+  const handleLikeHashTagClick = (buttonName3) => {
+    if (likeHashTags.includes(buttonName3)) {
+      setLikeHashTags((prevTags) =>
         prevTags.filter((tag) => tag !== buttonName3)
       );
       // onClick(null);
     } else {
-      setTagPressed((prevTags) => [...prevTags, buttonName3]);
+      setLikeHashTags((prevTags) => [...prevTags, buttonName3]);
       // onClick(String(buttonName3));
     }
   };
   const initialState = ""; // 예시로 초기 상태를 빈 문자열로 설정
   const [state, setState] = useState(""); // useState를 함수 컴포넌트 내에서 호출
-
-  const [tagPressed, setTagPressed] = useState([]);
 
   return (
     <>
@@ -78,10 +93,10 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }}>
-            <Select.Option value="room1">남자</Select.Option>
-            <Select.Option value="room2">여자</Select.Option>
-            <Select.Option value="room3">상관없음</Select.Option>
+          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setGender(value);}}>
+            <Select.Option value="남자">남자</Select.Option>
+            <Select.Option value="여자">여자</Select.Option>
+            <Select.Option value="상관없음">상관없음</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -89,10 +104,10 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }}>
-            <Select.Option value="room1">1개</Select.Option>
-            <Select.Option value="room2">2개</Select.Option>
-            <Select.Option value="room3">3개</Select.Option>
+          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setRoomCount(value);}}>
+            <Select.Option value="1">1개</Select.Option>
+            <Select.Option value="2">2개</Select.Option>
+            <Select.Option value="3">3개</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -100,20 +115,20 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }}>
-            <Select.Option value="Officetels">오피스텔</Select.Option>
+          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setHomeType(value);}}>
+            <Select.Option value="officetels">오피스텔</Select.Option>
             <Select.Option value="apartment">아파트</Select.Option>
             <Select.Option value="house">주택</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item label="평수">
-          <Slider marks={marks} defaultValue={37} />
+          <Slider range marks={marks} defaultValue={[0, 10]} onChange={(value) => { setFlatRange(value)}}/>
         </Form.Item>
         <Form.Item label="월세">
-          <Slider range marks={marks} defaultValue={[26, 37]} />{" "}
+          <Slider range marks={marks} defaultValue={[26, 37]} onChange={(value) => { setRentRange(value);}}/>{" "}
         </Form.Item>
         <Form.Item label="나이">
-          <Slider range marks={mark2} defaultValue={[26, 37]} />{" "}
+          <Slider range marks={mark2} defaultValue={[26, 37]} onChange={(value) => { setAgeRange(value);}} />{" "}
         </Form.Item>
         <div>
           <div className="titleWrap2">
@@ -122,9 +137,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
           <div className="tagWrap">
             <div className="tag-button-wrap" style={{ zIndex: 1 }}>
               <button
-                onClick={() => handleTagClick("dust")}
+                onClick={() => handleLikeHashTagClick("dust")}
                 className={`tag-button ${
-                  tagPressed.includes("dust") && "tag-button-pressed"
+                  likeHashTags.includes("dust") && "tag-button-pressed"
                 }`}
               >
                 #층간소음이 없는
@@ -136,9 +151,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               style={{ marginLeft: "15px", zIndex: 1 }}
             >
               <button
-                onClick={() => handleTagClick("cough")}
+                onClick={() => handleLikeHashTagClick("cough")}
                 className={`tag-button ${
-                  tagPressed.includes("cough") && "tag-button-pressed"
+                  likeHashTags.includes("cough") && "tag-button-pressed"
                 }`}
               >
                 #역세권
@@ -150,9 +165,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               style={{ marginLeft: "40px", zIndex: 1 }}
             >
               <button
-                onClick={() => handleTagClick("quiet")}
+                onClick={() => handleLikeHashTagClick("quiet")}
                 className={`tag-button ${
-                  tagPressed.includes("quiet") && "tag-button-pressed"
+                  likeHashTags.includes("quiet") && "tag-button-pressed"
                 }`}
               >
                 #조용한 주거환경
@@ -164,9 +179,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               style={{ marginLeft: "-5px", marginTop: "-40px" }}
             >
               <button
-                onClick={() => handleTagClick("convenience")}
+                onClick={() => handleLikeHashTagClick("convenience")}
                 className={`tag-button ${
-                  tagPressed.includes("convenience") && "tag-button-pressed"
+                  likeHashTags.includes("convenience") && "tag-button-pressed"
                 }`}
               >
                 #비흡연자
@@ -178,9 +193,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               style={{ marginTop: "-40px", marginLeft: "-25px" }}
             >
               <button
-                onClick={() => handleTagClick("calm")}
+                onClick={() => handleLikeHashTagClick("calm")}
                 className={`tag-button ${
-                  tagPressed.includes("calm") && "tag-button-pressed"
+                  likeHashTags.includes("calm") && "tag-button-pressed"
                 }`}
               >
                 #근처 편의점
@@ -194,9 +209,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               }}
             >
               <button
-                onClick={() => handleTagClick("gym")}
+                onClick={() => handleLikeHashTagClick("gym")}
                 className={`tag-button ${
-                  tagPressed.includes("gym") && "tag-button-pressed"
+                  likeHashTags.includes("gym") && "tag-button-pressed"
                 }`}
               >
                 #주변 체육시설
@@ -210,9 +225,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               }}
             >
               <button
-                onClick={() => handleTagClick("church")}
+                onClick={() => handleLikeHashTagClick("church")}
                 className={`tag-button ${
-                  tagPressed.includes("church") && "tag-button-pressed"
+                  likeHashTags.includes("church") && "tag-button-pressed"
                 }`}
               >
                 #성당/교회
@@ -227,9 +242,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               }}
             >
               <button
-                onClick={() => handleTagClick("car")}
+                onClick={() => handleLikeHashTagClick("car")}
                 className={`tag-button ${
-                  tagPressed.includes("car") && "tag-button-pressed"
+                  likeHashTags.includes("car") && "tag-button-pressed"
                 }`}
               >
                 #주차공간 유무
@@ -243,9 +258,9 @@ const FilterForm = ({ cardPostData, setCardPostData }) => {
               }}
             >
               <button
-                onClick={() => handleTagClick("park")}
+                onClick={() => handleLikeHashTagClick("park")}
                 className={`tag-button ${
-                  tagPressed.includes("park") && "tag-button-pressed"
+                  likeHashTags.includes("park") && "tag-button-pressed"
                 }`}
               >
                 #공원
