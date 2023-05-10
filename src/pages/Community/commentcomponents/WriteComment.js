@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import PostInfoFlexDiv from '../PostInfoFlexDiv';
-import PostInfoSpan from '../PostInfoSpan';
-import CommentInput from '../CommentInput';
-import CommentWriteButton from '../CommentWriteButton';
+import PostInfoFlexDiv from './PostInfoFlexDiv';
+import PostInfoSpan from './PostInfoSpan';
+import CommentInput from './CommentInput';
+import CommentWriteButton from './CommentWriteButton';
 
 const CommentProfileImg = styled.img`
     margin-left: 0.7rem;
@@ -27,7 +27,7 @@ const WriteComment = ({
                 <CommentInput type="text" placeholder="댓글을 입력하세요." onChange={(e) => { setInputValue(e.target.value);}}/>
                 <CommentWriteButton 
                     onClick={() => {
-                        makeCommentRequest(1, 1, boardId, 0, inputValue, null, 0, null);
+                        makeCommentRequest(1, 1, boardId, 1, inputValue, null, 0, null);
                     }}
                 >
                     쓰기

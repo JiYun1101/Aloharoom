@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import PostInfoFlexDiv from '../PostInfoFlexDiv';
-import PostInfoSpan from '../PostInfoSpan';
-import UserProfileImg from '../UserProfileImg';
+import PostInfoFlexDiv from './PostInfoFlexDiv';
+import PostInfoSpan from './PostInfoSpan';
+import UserProfileImg from './UserProfileImg';
 
 const CommentInput = styled.input`
     margin-left: 0.5rem;
@@ -46,7 +46,7 @@ const WriteReplyComment = ({
                         console.log('clickTargetUserId', clickTargetUserId);
                         console.log('clickTargetContent', clickTargetContent);
                         console.log('clickGroupId', clickGroupId);
-                        makeCommentRequest(1, clickTargetUserId, boardId, 0, inputValue, clickTargetContent, 1, clickGroupId);
+                        makeCommentRequest(1, clickTargetUserId, boardId, 1, inputValue, clickTargetContent, 1, clickGroupId);
                     }}
                 >
                     쓰기

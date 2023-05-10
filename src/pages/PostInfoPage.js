@@ -147,13 +147,13 @@ const PostInfoPage = () => {
 
   async function DeletePostInfoData() {
     await axios
-      .delete(`${baseURL}/api/board/${boardId}`)
-      .then((response) => {
-        navigate(`../postMapPage`);
-      })
-      .catch((error) => {
-        console.log("DeletePostInfoData axios error");
-      });
+        .delete(`${baseURL}/api/board/${boardId}`)
+        .then((response) => {
+            navigate(`../postMapPage`);
+        })
+        .catch((error) => {
+            console.log("DeletePostInfoData axios error");
+        });
   }
 
     async function AddLikePost() {

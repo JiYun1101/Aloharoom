@@ -13,6 +13,9 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import baseURL from "../api/baseURL";
+import ReadCommentSection from "./commentcomponents/ReadCommentSection";
+import WriteComment from "../postinfopage/commentcomponents/WriteComment";
 
 SwiperCore.use([Pagination]);
 
@@ -284,6 +287,7 @@ const CardImage = styled.img`
 
 const PostInfoPage = () => {
   const { communityId } = useParams();
+  const [commentData, setCommentData] = useState([]);
 
   const [post, setPost] = useState({
     title: "",
@@ -293,10 +297,49 @@ const PostInfoPage = () => {
     code: [],
   });
 
+  async function fetchCommunityCommentData() {
+    await axios.get(`${baseURL}/api/comment/community/${communityId}`)
+    .then((response) => {
+      console.log('response.data', response.data);
+      setCommentData(response.data);
+    })
+    .catch((error) => { console.log(`fetchCommunityCommentData axios error`)});
+  }
+
+  async function makeCommentRequest(
+    userId,
+    targetUserId,
+    boardId,
+    flag,
+    content,
+    targetContent,
+    layer,
+    groupId
+) {
+    await axios.post(`${baseURL}/api/comment`, {
+        "userId": userId,
+        "targetUserId": targetUserId,
+        "boardId": boardId,
+        "flag": flag,
+        "content": content,
+        "targetContent": targetContent,
+        "layer": layer,
+        "groupId": groupId
+    })
+    .then((response) => {
+        window.location.reload();
+    })
+    .error((error) => {console.log('makeCommentRequest axios error')});
+}
+
+  useEffect(() => {
+    fetchCommunityCommentData();
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        `http://localhost:8080/api/communityboard?communityId=${communityId}`
+        `${baseURL}/api/communityboard?communityId=${communityId}`
       );
       setPost((prevPost) => ({
         ...prevPost,
@@ -307,7 +350,6 @@ const PostInfoPage = () => {
         code: result.data[0].code,
       }));
     };
-
     fetchData();
   }, [communityId]);
 
@@ -391,28 +433,19 @@ const PostInfoPage = () => {
         <PostContentDiv>
           <PostContentSpan>{post.contents}</PostContentSpan>
         </PostContentDiv>
-
         <CommentSection>
-          <CommentBox>
-            <CommentProfileDiv>
-              <CommentProfileImg src="blue.png" />
-              <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-            </CommentProfileDiv>
-            <CommentInputDiv>
-              <CommentSpan>안녕하세요!</CommentSpan>
-              <AddCommentSpan>답글 쓰기</AddCommentSpan>
-            </CommentInputDiv>
-          </CommentBox>
-          <SubCommentBox>
-            <CommentProfileDiv>
-              <CommentProfileImg src="blue.png" />
-              <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-            </CommentProfileDiv>
-            <CommentInputDiv>
-              <CommentInput type="text" />
-              <CommentWriteButton>쓰기</CommentWriteButton>
-            </CommentInputDiv>
-          </SubCommentBox>
+          {commentData.map((data, idx) => (
+            <ReadCommentSection
+              key={idx} 
+              data={data}
+              makeCommentRequest={makeCommentRequest}
+              boardId={communityId}
+            />
+          ))}
+          <WriteComment 
+            makeCommentRequest={makeCommentRequest}
+            boardId={communityId}
+          />
         </CommentSection>
       </PostInfoPageBox>
     </PostInfoPageContainer>

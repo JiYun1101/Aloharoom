@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import PostInfoFlexDiv from '../PostInfoFlexDiv';
-import PostInfoSpan from '../PostInfoSpan';
-import UserProfileImg from '../UserProfileImg';
-import CommentInput from '../CommentInput';
-import CommentWriteButton from '../CommentWriteButton';
+import PostInfoFlexDiv from './PostInfoFlexDiv';
+import PostInfoSpan from './PostInfoSpan';
+import UserProfileImg from './UserProfileImg';
+import CommentInput from './CommentInput';
+import CommentWriteButton from './CommentWriteButton';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 
 const ReadReplyComment = ({
