@@ -12,6 +12,7 @@ import washing_machineImg from "../img/washing_machine.png";
 import water_purifierImg from "../img/water_purifier.png";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import baseURL from "./api/baseURL";
 
 const FirstContent = ({ onClick }) => {
   const [clickedButton, setClickedButton] = useState(null);
@@ -575,7 +576,7 @@ const onFinish = async (use_state) => {
     const myHashtags = use_state.myHashtags.toString().split(",");
     const myProducts = use_state.myProducts.toString().split(",");
 
-    await axios.post("http://localhost:8080/api/signup", {
+    await axios.post(`${baseURL}/api/signup`, {
       username: use_state.username.toString(),
       password: use_state.password.toString(),
       nickname: use_state.nickname.toString(),
