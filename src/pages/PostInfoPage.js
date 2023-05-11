@@ -276,21 +276,21 @@ const PostInfoPage = () => {
                 <PostInfoFlexDiv width="95%" minHeight="4.5rem" flexDirections="row" borderBottom="solid 0.1rem #bbbbbb">
                     <PostInfoFlexDiv width="20%" minHeight="100%" alignItems="center">
                         <UserProfileImg width="2rem" height="2rem" borderRadius="50rem" src={profileImageUrl}/>
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="1rem">{nickname}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{nickname}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="20%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="1rem">성별:</PostInfoSpan>
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="1rem">
-                            {gender === 'male' ? <BiMale style={{ color: "#47a5fd"}} size={30}/> : <BiFemale style={{ color: "#47a5fd"}} size={30}/>}
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">성별:</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">
+                            {gender === 'male' ? <BiMale size={30}/> : <BiFemale size={30}/>}
                         </PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="20%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="1rem">나이:</PostInfoSpan>
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="1rem">{age}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">나이:</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{age}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="40%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="1rem">선호 연령층:</PostInfoSpan>
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="1rem">{preferAgeRange}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">선호 연령층:</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{preferAgeRange}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="6rem" marginTop="1rem" flexDirections="row" flexWrap="wrap" gap="0.2rem" borderBottom="solid 0.1rem #bbbbbb">
@@ -300,43 +300,43 @@ const PostInfoPage = () => {
                     { hashtag && hashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="3rem" marginTop="1rem">
-                    <PostInfoSpan color="#47a5fd" fontSize="1.2rem">입주 가능 날짜: {startDate}</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.2rem">입주 가능 날짜: {startDate}</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoDiv width="95%" height="3rem" marginTop="1rem">
-                    <PostInfoSpan color="#47a5fd" fontSize="1.2rem">주소: {address}</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.2rem">주소: {address}</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row" marginTop="1rem">
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem">방 개수: {roomCount}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">방 개수: {roomCount}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem">주거 형태: {homeType}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">주거 형태: {homeType}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem">평수: {flat}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row">
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem">전체층수: {totalFloor}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem">층수: {floor}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">평수: {flat}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row">
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem">계약형태: {tradeType}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">전체층수: {totalFloor}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem">가격: {price}만원</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">층수: {floor}</PostInfoSpan>
+                    </PostInfoFlexDiv>
+                </PostInfoFlexDiv>
+                <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row">
+                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
+                        <PostInfoSpan fontSize="1.2rem">계약형태: {tradeType}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan color="#47a5fd" fontSize="1.2rem">관리비: {maintenance}만원</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">가격: {price}만원</PostInfoSpan>
+                    </PostInfoFlexDiv>
+                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
+                        <PostInfoSpan fontSize="1.2rem">관리비: {maintenance}만원</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="5rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoSpan color="#47a5fd" fontSize="1.2rem">룸메이트 가격: {rent}만원</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.2rem">룸메이트 가격: {rent}만원</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="3rem" marginTop="0.7rem" alignItems="center">
                     <PostInfoSpan color="#bbbbbb" fontSize="1.2rem">이 지역은 하루 배송권이에요.</PostInfoSpan>
