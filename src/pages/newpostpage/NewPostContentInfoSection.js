@@ -90,8 +90,8 @@ const NewPostContentInfoSection = ({
         const ps = new window.kakao.maps.services.Places();
         ps.keywordSearch(address, (data, status, _pagination) => {
           if (status === window.kakao.maps.services.Status.OK) {
-            setX(data[0].x.toString());
-            setY(data[0].y.toString());
+            setX(data[0].y.toString());
+            setY(data[0].x.toString());
             setTitle(data[0].road_address_name.toString());
           }
           else {
