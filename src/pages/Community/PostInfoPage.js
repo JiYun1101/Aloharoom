@@ -15,7 +15,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import baseURL from "../api/baseURL";
 import ReadCommentSection from "./commentcomponents/ReadCommentSection";
-import WriteComment from "../postinfopage/commentcomponents/WriteComment";
+import WriteComment from "./commentcomponents/WriteComment";
 
 SwiperCore.use([Pagination]);
 
@@ -300,7 +300,7 @@ const PostInfoPage = () => {
   async function fetchCommunityCommentData() {
     await axios.get(`${baseURL}/api/comment/community/${communityId}`)
     .then((response) => {
-      console.log('response.data', response.data);
+      console.log('fetch community comment response.data', response.data);
       setCommentData(response.data);
     })
     .catch((error) => { console.log(`fetchCommunityCommentData axios error`)});
