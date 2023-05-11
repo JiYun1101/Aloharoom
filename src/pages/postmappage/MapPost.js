@@ -44,6 +44,7 @@ const MapPost = ({
 
     //위도 경도 값이 변할때마다 데이터를 가져온다.
     useEffect(() => {
+        //여기서 필터링을 눌렀는지 안눌렀는지에 대해서
         fetchCardPostData();
     }, [swLat, swLon, neLat, neLon]);
 
