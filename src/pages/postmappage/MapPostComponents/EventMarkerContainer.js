@@ -25,7 +25,7 @@ const EventMarkerContainer = ({
                     ? redMarker
                     : homeType === 'officetel' ? blueMarker : greenMarker,
                 size: {
-                    width: 30,
+                    width: 40,
                     height: 40,
                 },
             }}
