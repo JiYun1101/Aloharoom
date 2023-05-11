@@ -71,6 +71,7 @@ const KakaoMapPart = ({
             y={data.y}
             content={data.address}
             boardId={data.boardId}
+            homeType={data.homeType}
         />
     ));
 

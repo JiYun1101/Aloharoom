@@ -5,7 +5,13 @@ import blueMarker from '../../../img/blueMarker.png';
 import redMarker from '../../../img/redMarker.png';
 import { useNavigate } from "react-router-dom";
 
-const EventMarkerContainer = ({x, y, content, boardId}) => {
+const EventMarkerContainer = ({
+    x,
+    y,
+    content,
+    boardId,
+    homeType
+}) => {
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     return (
@@ -15,7 +21,9 @@ const EventMarkerContainer = ({x, y, content, boardId}) => {
             onMouseOver={() => setIsVisible(true)}
             onMouseOut={() => setIsVisible(false)}
             image={{
-                src: redMarker,
+                src:  homeType === 'apartment'
+                    ? redMarker
+                    : homeType === 'officetel' ? blueMarker : greenMarker,
                 size: {
                     width: 30,
                     height: 40,
