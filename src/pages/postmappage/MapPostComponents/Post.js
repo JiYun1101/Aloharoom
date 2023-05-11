@@ -18,7 +18,7 @@ const Post = ({cardPostData}) => {
     return (
         <PostContainer>
             {cardPostData.length === 0 ? 
-                <div>찾으시는 방이 없습니다.</div> 
+                <div style={{ color: "#a0a0a0"}}>찾으시는 방이 없습니다.</div> 
                 :                 
                 <CardPosts 
                     cardPostData={cardPostData}
