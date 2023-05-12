@@ -12,7 +12,7 @@ const CommentProfileImg = styled.img`
     height: 2.5rem;
 `;
 
-const WriteComment = ({
+const CommunityWriteComment = ({
     makeCommentRequest,
     boardId
 }) => {
@@ -37,4 +37,4 @@ const WriteComment = ({
     );
 }
 
-export default WriteComment
+export default CommunityWriteComment

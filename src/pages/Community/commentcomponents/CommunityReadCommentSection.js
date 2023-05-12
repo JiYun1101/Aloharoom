@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import ReadComment from "./ReadComment";
-import ReadReplyComment from "./ReadReplyComment";
-import WriteReplyComment from "./WriteReplyComment";
+import CommunityReadComment from "./CommunityReadComment";
+import CommunityReadReplyComment from "./CommunityReadReplyComment";
+import CommunityWriteReplyComment from "./CommunityWriteReplyComment";
 import axios from "axios";
 import baseURL from "../../api/baseURL";
-const ReadCommentSection = ({
+const CommunityReadCommentSection = ({
     data,
     makeCommentRequest,
     boardId
@@ -37,7 +37,7 @@ const ReadCommentSection = ({
 
     return (
         <>
-            <ReadComment
+            <CommunityReadComment
                 key={data.commentId}
                 commentId={data.commentId}
                 content={data.content}
@@ -57,7 +57,7 @@ const ReadCommentSection = ({
             {showReplies && (
                 <>
                     {data.commentDtos.map((data, index) => (
-                        <ReadReplyComment
+                        <CommunityReadReplyComment
                             key={data.commentId}
                             commentId={data.commentId}
                             content={data.content}
@@ -75,7 +75,7 @@ const ReadCommentSection = ({
                 </>
             )}
             {showWriteReplies && (
-                <WriteReplyComment 
+                <CommunityWriteReplyComment 
                     makeCommentRequest={makeCommentRequest}
                     boardId={boardId}
                     clickTargetUserId={clickTargetUserId}
@@ -87,4 +87,4 @@ const ReadCommentSection = ({
     );
 }
 
-export default ReadCommentSection;
+export default CommunityReadCommentSection;

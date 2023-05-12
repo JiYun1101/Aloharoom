@@ -13,7 +13,7 @@ const CommentProfileImg = styled.img`
     height: 2.5rem;
 `;
 
-const ReadComment = ({
+const CommunityReadComment = ({
     commentId,
     content,
     //createdDate,
@@ -95,4 +95,4 @@ const ReadComment = ({
     );
 }
 
-export default ReadComment
+export default CommunityReadComment

@@ -25,7 +25,7 @@ const CommentWriteButton = styled.button`
     color: #47A5FD;
 `;
 
-const WriteReplyComment = ({
+const CommunityWriteReplyComment = ({
     makeCommentRequest,
     boardId,
     clickTargetUserId,
@@ -56,4 +56,4 @@ const WriteReplyComment = ({
     );
 }
 
-export default WriteReplyComment;
+export default CommunityWriteReplyComment;

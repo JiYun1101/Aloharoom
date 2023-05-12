@@ -14,8 +14,8 @@ import "swiper/css/scrollbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import baseURL from "../api/baseURL";
-import ReadCommentSection from "./commentcomponents/ReadCommentSection";
-import WriteComment from "./commentcomponents/WriteComment";
+import CommunityReadCommentSection from "./commentcomponents/CommunityReadCommentSection";
+import CommunityWriteComment from "./commentcomponents/CommunityWriteComment";
 
 SwiperCore.use([Pagination]);
 
@@ -435,14 +435,14 @@ const PostInfoPage = () => {
         </PostContentDiv>
         <CommentSection>
           {commentData.map((data, idx) => (
-            <ReadCommentSection
+            <CommunityReadCommentSection
               key={idx} 
               data={data}
               makeCommentRequest={makeCommentRequest}
               boardId={communityId}
             />
           ))}
-          <WriteComment 
+          <CommunityWriteComment 
             makeCommentRequest={makeCommentRequest}
             boardId={communityId}
           />

@@ -6,7 +6,7 @@ import CommentInput from './CommentInput';
 import CommentWriteButton from './CommentWriteButton';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 
-const ReadReplyComment = ({
+const CommunityReadReplyComment = ({
     commentId,
     content,
     //createdDate,
@@ -72,4 +72,4 @@ const ReadReplyComment = ({
     );
 }
 
-export default ReadReplyComment
+export default CommunityReadReplyComment
