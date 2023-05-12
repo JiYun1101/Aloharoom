@@ -25,7 +25,8 @@ async function fetchUserId() {
     withCredentials:true
   })
   .then((response) => {
-    localStorage.setItem("userId", response.data);
+    localStorage.setItem("nickname", response.data.nickname);
+    localStorage.setItem("userId", response.data.loginUserId);
   })
   .catch((error) => { console.log(`fetchUserId axios error`);})
 }
