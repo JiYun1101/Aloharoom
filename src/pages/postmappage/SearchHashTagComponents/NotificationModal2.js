@@ -16,7 +16,7 @@ const NotificationModalDiv2 = styled.div`
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  z-index: 100;
+  z-index: 1;
 `;
 
 const NotificationModalHeaderDiv2 = styled.div`
@@ -34,6 +34,7 @@ const NotificationDiv3 = styled.div`
   display: flex; /* 가운데 정렬을 위해 display: flex; 추가 */
   justify-content: center; /* 가로 방향 가운데 정렬 */
   align-items: left; /* 세로 방향 가운데 정렬 */
+  z-index: 999;
 `;
 
 const Notification3 = styled.div`
@@ -98,7 +99,16 @@ const NotificationModal2 = ({
     <NotificationModalDiv2>
       <NotificationModalHeaderDiv2>
         <NotificationDiv3>
-          <Notification3>초기화</Notification3>
+          <Notification3
+            onClick={() => {
+              console.log(`초기화 버튼 클릭`);
+              localStorage.setItem('pressFilterButton', false);
+              ModalClose();
+            }}
+            style={{ borderStyle: "solid"}}
+          >
+            초기화
+          </Notification3>
         </NotificationDiv3>
         <NotificationTitleDiv2>
           <NotificationTitle2>맞춤필터</NotificationTitle2>

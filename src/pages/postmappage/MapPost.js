@@ -42,6 +42,26 @@ const MapPost = ({
         });
     }
 
+    async function fetchFilterCardPostData() {
+        await axios.get(`${baseURL}/api/search`, {
+            withCredentials: true,
+            params: {
+                // gender: gender,
+                // roomCount: roomCount,
+                // homeType: homeType,
+                // ageRange: ageRange.join(),
+                // flatRange: flatRange.join(),
+                // rentRange: rentRange.join(),
+                // likeHashtags: likeHashtags.join()
+            }
+        })
+        .then((response) => { 
+            console.log('fetchFilterCardPostData response data', response.data);
+            setCardPostData(response.data);
+        })
+        .catch((error) => { console.log(`fetchFilterCardPostData axios error`);})
+    }
+
     //위도 경도 값이 변할때마다 데이터를 가져온다.
     useEffect(() => {
         //여기서 필터링을 눌렀는지 안눌렀는지에 대해서

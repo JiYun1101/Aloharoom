@@ -89,27 +89,6 @@ const FilterForm = ({
     }
   };
 
-  async function fetchFilterCardPostData() {
-    await axios.get(`${baseURL}/api/search`, {
-      withCredentials: true,
-      params: {
-        gender: gender,
-        roomCount: roomCount,
-        homeType: homeType,
-        ageRange: ageRange.join(),
-        flatRange: flatRange.join(),
-        rentRange: rentRange.join(),
-        likeHashtags: likeHashtags.join()
-      }
-    })
-    .then((response) => { 
-      console.log('fetchFilterCardPostData response data', response.data);
-      setCardPostData(response.data);
-      ModalClose();
-    })
-    .catch((error) => { console.log(`fetchFilterCardPostData axios error`);})
-  }
-
   const initialState = ""; // 예시로 초기 상태를 빈 문자열로 설정
   const [state, setState] = useState(""); // useState를 함수 컴포넌트 내에서 호출
 
@@ -300,7 +279,9 @@ const FilterForm = ({
             htmlType="submit"
             className="login-form-button"
             onClick={() => {
-              fetchFilterCardPostData();
+              //fetchFilterCardPostData();
+              localStorage.setItem('pressFilterButton', true);
+              ModalClose();
             }}
           >
             확인
