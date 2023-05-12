@@ -8,6 +8,7 @@ import GuaranteeSection from "./newpostcontentinfocomponents/GuaranteeSection";
 import HouseHashTagButtonSection from "./newpostcontentinfocomponents/HouseHashTagButtonSection";
 import MyHashTagButtonSection from "./newpostcontentinfocomponents/MyHashTagButtonSection";
 import SecondSection from "./newpostcontentinfocomponents/SecondSection";
+import { useState } from "react";
 
 const NewPostContentInfoDiv = styled.div`
   border-style: solid;
@@ -83,7 +84,9 @@ const NewPostContentInfoSection = ({
     setFloor,
     setTotalFloor,
     setTitle,
-    setAgeRange
+    setAgeRange,
+    setAddressData,
+    showAddressInfoModal
 }) => {
     //위도 경도 설정 함수
     const searchLatLng = () => {
@@ -93,10 +96,12 @@ const NewPostContentInfoSection = ({
             setX(data[0].y.toString());
             setY(data[0].x.toString());
             setTitle(data[0].road_address_name.toString());
+            setAddressData(data[0]);
           }
           else {
             setX(null);
             setY(null);
+            setAddressData(null);
           }
         });
     };
@@ -131,6 +136,7 @@ const NewPostContentInfoSection = ({
                           address={address}
                           setAddress={setAddress}
                           searchLatLng={searchLatLng}
+                          showAddressInfoModal={showAddressInfoModal}
                         />
                         <TitleDiv height="3rem" marginTop="1.5rem">
                             <TitleBox width="25%" height="3rem">

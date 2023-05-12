@@ -19,7 +19,10 @@ const NewPostContentContainer = styled.div`
     justify-content: center;
 `;
 
-const NewPostContentSection = () => {
+const NewPostContentSection = ({
+    showAddressInfoModal,
+    setAddressData
+}) => {
     const navigate = useNavigate();
     //입주 가능 날짜
     const [title, setTitle] = useState("");
@@ -231,6 +234,8 @@ const NewPostContentSection = () => {
                         setTotalFloor={setTotalFloor}
                         setTitle={setTitle}
                         setAgeRange={setAgeRange}
+                        setAddressData={setAddressData}
+                        showAddressInfoModal={showAddressInfoModal}
                     />
                 </NewPostContentContainer>
                 <NewPostContentContainer>

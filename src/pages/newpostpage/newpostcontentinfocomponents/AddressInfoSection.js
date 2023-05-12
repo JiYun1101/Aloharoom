@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "antd";
 
 const AddressInfoDiv = styled.div`
     width: 90%;
@@ -20,7 +21,8 @@ const AddressInput = styled.input`
 const AddressInfoSection = ({
     address,
     setAddress,
-    searchLatLng
+    searchLatLng,
+    showAddressInfoModal
 }) => {
     const addressExists = address !== null;
     return (
@@ -41,6 +43,12 @@ const AddressInfoSection = ({
                         onBlur={() => { searchLatLng(); }}
                     />
             }
+            <Button 
+                style={{marginLeft: "1rem"}}
+                onClick={() => {showAddressInfoModal();}}
+            >
+                주소확인하기
+            </Button>
         </AddressInfoDiv>
     );
 }

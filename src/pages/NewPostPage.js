@@ -4,6 +4,8 @@ import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import NewPostHeaderSection from "./newpostpage/NewPostHeaderSection";
 import NewPostContentSection from "./newpostpage/NewPostContentSection";
+import { useState } from "react";
+import AddressInfoModal from "./modal/AddressInfoModal";
 
 const NewPostContainer = styled.div`
   position: relative;
@@ -20,13 +22,33 @@ const BackPageIconStyle = {
 };
 
 const NewPostPage = () => {
+  const [isAddressInfoModalOpen, setIsAddressInfoModalOpen] = useState(false);
+  const [addressData, setAddressData] = useState();
   const navigate = useNavigate();
+  const showAddressInfoModal = () => { setIsAddressInfoModalOpen(true);}
+  const handleAddressInfoOk = () => { setIsAddressInfoModalOpen(false); }
+  const handleAddressInfoCancel = () => { setIsAddressInfoModalOpen(false);}
     return (
+      <>
+        {isAddressInfoModalOpen ? 
+          <AddressInfoModal
+            isAddressInfoModalOpen={isAddressInfoModalOpen}
+            handleOk={handleAddressInfoOk}
+            handelCancel={handleAddressInfoCancel}
+            addressData={addressData}
+          />
+          : 
+          <></>
+        }
         <NewPostContainer>
             <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate(-1)}/>
             <NewPostHeaderSection/>
-            <NewPostContentSection/>
+            <NewPostContentSection
+              showAddressInfoModal={showAddressInfoModal}
+              setAddressData={setAddressData}
+            />
         </NewPostContainer>
+      </>
     );
 }
 
