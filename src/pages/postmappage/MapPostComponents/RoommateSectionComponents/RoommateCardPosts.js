@@ -25,6 +25,7 @@ const RoommateCardPosts = ({cardPostData}) => {
                         rent={data.rent}
                         roomCount={data.roomCount}
                         startDate={data.startDate}
+                        profileImgUrl={data.profileImgUrl}
                     />
                 </Link>
             ))}
