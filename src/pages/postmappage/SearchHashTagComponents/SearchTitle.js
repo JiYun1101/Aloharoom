@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Search from "./Search";
+import SearchSection from "./SearchSection";
 import Title from "./Title";
 
 const SearchTitleContainer = styled.div`
@@ -17,7 +17,7 @@ const SearchTitle = ({
     return (
         <SearchTitleContainer>
             <Title/>
-            <Search 
+            <SearchSection 
                 cardPostData={cardPostData}
                 setSearchStr={setSearchStr}
                 setCardPostData={setCardPostData}
