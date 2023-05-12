@@ -13,17 +13,17 @@ const SearchHashTagContainer = styled.div`
 `;
 
 const SearchHashTag = ({ 
-  cardPostData,
   setSearchStr,
-  setCardPostData
+  fetchCardPostData,
+  fetchFilterCardPostData
 }) => {
   return (
     <SearchHashTagContainer>
       <EmptyBox/>
       <SearchTitle 
-        cardPostData={cardPostData}
         setSearchStr={setSearchStr}
-        setCardPostData={setCardPostData}
+        fetchCardPostData={fetchCardPostData}
+        fetchFilterCardPostData={fetchFilterCardPostData}
       />
     </SearchHashTagContainer>
   );

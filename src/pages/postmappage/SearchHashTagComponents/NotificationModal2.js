@@ -91,9 +91,9 @@ const FilterForm2 = styled.div`
 `;
 
 const NotificationModal2 = ({ 
-  cardPostData,
-  setCardPostData,
-  ModalClose = (f) => f 
+  ModalClose,
+  fetchCardPostData,
+  fetchFilterCardPostData
 }) => {
   return (
     <NotificationModalDiv2>
@@ -101,11 +101,18 @@ const NotificationModal2 = ({
         <NotificationDiv3>
           <Notification3
             onClick={() => {
-              console.log(`초기화 버튼 클릭`);
-              localStorage.setItem('pressFilterButton', false);
+              localStorage.removeItem('pressFilterButton');
+              localStorage.removeItem('gender');
+              localStorage.removeItem('roomCount');
+              localStorage.removeItem('homeType');
+              localStorage.removeItem('ageRange');
+              localStorage.removeItem('flatRange');
+              localStorage.removeItem('rentRange');
+              localStorage.removeItem('likeHashtags');
+              localStorage.setItem('pressFilterButton', 0);
+              fetchCardPostData();
               ModalClose();
             }}
-            style={{ borderStyle: "solid"}}
           >
             초기화
           </Notification3>
@@ -114,7 +121,7 @@ const NotificationModal2 = ({
           <NotificationTitle2>맞춤필터</NotificationTitle2>
         </NotificationTitleDiv2>
         <NotificationModalCloseButtonDiv2>
-          <NotificationModalCloseButton2 
+          <NotificationModalCloseButton2
             onClick={ModalClose}
           >
             x
@@ -124,9 +131,8 @@ const NotificationModal2 = ({
       <FilterFormDiv>
         <FilterForm2>
           <FilterForm
-            cardPostData={cardPostData}
-            setCardPostData={setCardPostData}
             ModalClose={ModalClose}
+            fetchFilterCardPostData={fetchFilterCardPostData}
           />
         </FilterForm2>
       </FilterFormDiv>

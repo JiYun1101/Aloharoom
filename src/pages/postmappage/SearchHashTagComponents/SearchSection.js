@@ -20,9 +20,9 @@ const FilterIconStyle = {
 };
 
 const SearchSection = ({
-  cardPostData,
   setSearchStr,
-  setCardPostData
+  fetchCardPostData,
+  fetchFilterCardPostData
 }) => {
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
   const ModalOpen = () => {
@@ -42,9 +42,9 @@ const SearchSection = ({
       {" "}
       {NotifyModalOpen ? 
         <NotificationModal2 
-          cardPostData={cardPostData}
-          setCardPostData={setCardPostData}
           ModalClose={ModalClose}
+          fetchCardPostData={fetchCardPostData}
+          fetchFilterCardPostData={fetchFilterCardPostData}
           /> 
         : 
         <></>

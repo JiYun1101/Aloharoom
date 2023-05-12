@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Select,} from "antd";
 import { Slider } from "antd";
 import "../../../style/RegisterPage0.css";
-import axios from "axios";
-import baseURL from "../../api/baseURL";
 
 const marks = {
   0: {
@@ -56,9 +54,8 @@ const mark2 = {
 };
 
 const FilterForm = ({ 
-  cardPostData,
-  setCardPostData,
-  ModalClose
+  ModalClose,
+  fetchFilterCardPostData
 }) => {
   const [gender, setGender] = useState("");
   const [roomCount, setRoomCount] = useState("");
@@ -74,7 +71,7 @@ const FilterForm = ({
   console.log('ageRange', ageRange);
   console.log('flatRange', flatRange);
   console.log('rentRange', rentRange);
-  console.log('likeHashTags', likeHashtags);
+  console.log('likeHashtags', likeHashtags);
   console.log('===========================');
 
   const handleLikeHashTagClick = (buttonName3) => {
@@ -279,8 +276,15 @@ const FilterForm = ({
             htmlType="submit"
             className="login-form-button"
             onClick={() => {
-              //fetchFilterCardPostData();
-              localStorage.setItem('pressFilterButton', true);
+              localStorage.setItem('pressFilterButton', 1);
+              localStorage.setItem('gender', gender);
+              localStorage.setItem('roomCount', roomCount);
+              localStorage.setItem('homeType', homeType);
+              localStorage.setItem('ageRange', JSON.stringify(ageRange));
+              localStorage.setItem('flatRange', JSON.stringify(flatRange));
+              localStorage.setItem('rentRange', JSON.stringify(rentRange));
+              localStorage.setItem('likeHashtags', JSON.stringify(likeHashtags));
+              fetchFilterCardPostData();
               ModalClose();
             }}
           >

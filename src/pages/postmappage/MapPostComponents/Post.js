@@ -20,9 +20,7 @@ const Post = ({cardPostData}) => {
             {cardPostData.length === 0 ? 
                 <div style={{ color: "#a0a0a0"}}>찾으시는 방이 없습니다.</div> 
                 :                 
-                <CardPosts 
-                    cardPostData={cardPostData}
-                />
+                <CardPosts cardPostData={cardPostData} />
             }
         </PostContainer>
     );

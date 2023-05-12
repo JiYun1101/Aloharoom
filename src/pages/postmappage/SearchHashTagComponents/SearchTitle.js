@@ -10,17 +10,18 @@ const SearchTitleContainer = styled.div`
 `;
 
 const SearchTitle = ({
-    cardPostData,
     setSearchStr,
-    setCardPostData
+    fetchCardPostData,
+    fetchFilterCardPostData
 }) => {
     return (
         <SearchTitleContainer>
             <Title/>
             <SearchSection 
-                cardPostData={cardPostData}
                 setSearchStr={setSearchStr}
-                setCardPostData={setCardPostData}
+                fetchCardPostData={fetchCardPostData}
+                fetchFilterCardPostData={fetchFilterCardPostData}
+
             />
         </SearchTitleContainer>
     );
