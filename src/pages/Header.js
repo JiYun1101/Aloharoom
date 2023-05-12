@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import NotificationModal from "./NotificationModal";
+import NotificationModal from "./modal/NotificationModal";
 import { Badge } from "antd";
 import axios from "axios";
 import baseURL from "./api/baseURL";
