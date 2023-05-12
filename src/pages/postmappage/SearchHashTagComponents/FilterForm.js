@@ -86,9 +86,6 @@ const FilterForm = ({
     }
   };
 
-  const initialState = ""; // 예시로 초기 상태를 빈 문자열로 설정
-  const [state, setState] = useState(""); // useState를 함수 컴포넌트 내에서 호출
-
   return (
     <>
       <Form style={{ fontSize: "4rem" }}>

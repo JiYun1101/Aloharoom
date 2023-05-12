@@ -79,9 +79,13 @@ const LinkToStyle = {
 const Header = () => {
   const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
-  const [username, setUsername] = useState(localStorage.getItem("username"));
-
   const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
+  const [clickLogout, setClickLogout] = useState(false);
+
+  const handleClickLogout = () => {
+    setClickLogout(!clickLogout);
+  }
+
   const ModalOpen = () => {
     setNotifyModalOpen(true);
   };
@@ -90,11 +94,29 @@ const Header = () => {
     setNotifyModalOpen(false);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("username");
-    setUsername(null);
-    console.log("Logged out successfully");
-  };
+  async function fetchUserId() {
+    await axios.get(`${baseURL}/api/userId`, {
+      withCredentials:true
+    })
+    .then((response) => {
+      localStorage.setItem("nickname", response.data.nickname);
+      localStorage.setItem("userId", response.data.loginUserId);
+    })
+    .catch((error) => { console.log(`fetchUserId axios error`);})
+  }
+
+  async function userLogOut() {
+    await axios.get(`${baseURL}/logout`, {
+      withCredentials:true
+    })
+    .then((response) => {
+      localStorage.remove('username');
+      localStorage.remove('nickname');
+      localStorage.remove('userId');
+      console.log('axios logout success');
+    })
+    .catch((error) => {console.log('axios userLogOut error');})
+  }
 
   async function fetchNotificationInfo() {
     await axios.get(`${baseURL}/api/notification`, {
@@ -119,6 +141,9 @@ const Header = () => {
   }
 
   useEffect(() => {
+    if(localStorage.getItem('username')) {
+      fetchUserId();
+    }
     fetchNotificationInfo();
     fetchNotReadNotificationCount();
   }, []);
@@ -144,29 +169,6 @@ const Header = () => {
             <NavElement>커뮤니티</NavElement>
           </Link>
         </NavGroup>
-        {username && (
-          <LogoGroup>
-            <LogoElement>
-              <AiOutlineBell size={30} onClick={ModalOpen} />
-            </LogoElement>
-            <LogoElement>
-              <Link to="/myPage" style={LinkToStyle}>
-                <AiOutlineUser size={30} />
-              </Link>
-            </LogoElement>
-          </LogoGroup>
-        )}
-        {username ? (
-          <>
-            <Button onClick={handleLogout}>Logout</Button>
-            {console.log("username exists")}
-          </>
-        ) : (
-          <Link to="../login">
-            <Button>Login / Signup</Button>
-          </Link>
-        )}
-        {username && console.log("username exists")}
         <LogoGroup>
           <LogoElement>
               <Badge count={notReadNotificationCount.notificationCount} size="small" overflowCount={10}>
@@ -183,7 +185,9 @@ const Header = () => {
           </LogoElement>
         </LogoGroup>
         <Link to="../login">
-          <Button>Login / Signup</Button>
+          <Button>
+            Login / Signup
+          </Button>
         </Link>
       </MenuBar>
       <BlueLine />

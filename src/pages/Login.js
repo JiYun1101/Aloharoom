@@ -20,17 +20,6 @@ const Logo = styled.span`
   color: #47a5fd;
 `;
 
-async function fetchUserId() {
-  await axios.get(`${baseURL}/api/userId`, {
-    withCredentials:true
-  })
-  .then((response) => {
-    localStorage.setItem("nickname", response.data.nickname);
-    localStorage.setItem("userId", response.data.loginUserId);
-  })
-  .catch((error) => { console.log(`fetchUserId axios error`);})
-}
-
 const qs = require("qs");
 const onFinish = async (value) => {
   try {
@@ -53,7 +42,6 @@ const onFinish = async (value) => {
       message.success("Processing complete!");
       console.log("username:" + value.username);
       console.log("Registration successful");
-      fetchUserId();
       localStorage.setItem("username", value.username);
       window.location.href = "../../";
     } else {

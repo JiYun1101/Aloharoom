@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchHashTag from "./SearchHashTag";
-
 import styled from "styled-components";
 import MapPost from "./MapPost";
-
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -96,14 +94,12 @@ const PostMapContent = () => {
       //fetchCardPostData();
     }, [swLat, swLon, neLat, neLon]);
 
-
   return (
     <PostMapContentContainer>
       <SearchHashTag 
         setSearchStr={setSearchStr} 
         fetchCardPostData={fetchCardPostData}
         fetchFilterCardPostData={fetchFilterCardPostData}
-
       />
       <MapPost 
         searchStr={searchStr}
