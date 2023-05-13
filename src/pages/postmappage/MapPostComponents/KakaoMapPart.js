@@ -19,7 +19,9 @@ const KakaoMapPart = ({
     setNELon,
 }) => {
     const [map, setMap] = useState();
-    const [mapLevel] = useState(4);
+    const centerLat = localStorage.getItem('centerLat') ? parseFloat(localStorage.getItem('centerLat')) : 37.56682420267543;
+    const centerLng = localStorage.getItem('centerLng') ? parseFloat(localStorage.getItem('centerLng')) : 126.978652258823;
+    const zoomLevel = localStorage.getItem('mapLevel') ? parseInt(localStorage.getItem('mapLevel')) : 4;
     console.log('cardPostData ', cardPostData);
     useEffect(() => {
         if(!map) return;
@@ -38,11 +40,9 @@ const KakaoMapPart = ({
         const bounds = map.getBounds();
         const swLatLng = bounds.getSouthWest();
         const neLatLng = bounds.getNorthEast();
-        // console.log('생성 남서쪽 위도:', swLatLng.getLat());
-        // console.log('생성 남서쪽 경도:', swLatLng.getLng());
-        // console.log('생성 북동쪽 위도:', neLatLng.getLat());
-        // console.log('생성 북동쪽 경도:', neLatLng.getLng());
-        // console.log('================================');
+        localStorage.setItem('centerLat', map.getCenter().getLat());
+        localStorage.setItem('centerLng', map.getCenter().getLng());
+        localStorage.setItem('mapLevel', map.getLevel());
         setSWLat(swLatLng.getLat().toString());
         setSWLon(swLatLng.getLng().toString());
         setNELat(neLatLng.getLat().toString());
@@ -53,16 +53,14 @@ const KakaoMapPart = ({
         const bounds = map.getBounds();
         const swLatLng = bounds.getSouthWest();
         const neLatLng = bounds.getNorthEast();
-        // console.log('움직인 후 남서쪽 위도:', swLatLng.getLat());
-        // console.log('움직인 후 남서쪽 경도:', swLatLng.getLng());
-        // console.log('움직인 후 북동쪽 위도:', neLatLng.getLat());
-        // console.log('움직인 후 북동쪽 경도:', neLatLng.getLng());
+        localStorage.setItem('centerLat', map.getCenter().getLat());
+        localStorage.setItem('centerLng', map.getCenter().getLng());
+        localStorage.setItem('mapLevel', map.getLevel());
         setSWLat(swLatLng.getLat().toString());
         setSWLon(swLatLng.getLng().toString());
         setNELat(neLatLng.getLat().toString());
         setNELon(neLatLng.getLng().toString());
     }
-
 
     const mapMarkerComponents = cardPostData.map((data, index) => (
         <EventMarkerContainer
@@ -78,9 +76,12 @@ const KakaoMapPart = ({
     return (
         <>
             <Map 
-                center={{ lat: 37.56682420267543, lng: 126.978652258823 }}   // 지도의 중심 좌표
-                style={kakaoMapStyle} // 지도 크기
-                level={mapLevel}                                   // 지도 확대 레벨
+                center={{ 
+                    lat: centerLat, 
+                    lng: centerLng 
+                }}   
+                style={kakaoMapStyle} 
+                level={zoomLevel}                                   
                 onCreate={handleOnCreate}
                 onDragEnd={handleMapEvent}
                 onZoomChanged={handleMapEvent}
