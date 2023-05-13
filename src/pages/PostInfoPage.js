@@ -17,6 +17,7 @@ import UserProfileImg from "./postinfopage/UserProfileImg";
 import WriteComment from "./postinfopage/commentcomponents/WriteComment";
 import ReadCommentSection from "./postinfopage/commentcomponents/ReadCommentSection";
 import baseURL from "./api/baseURL";
+import DeletePostModal from "./modal/DeletePostModal";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -26,10 +27,10 @@ import "swiper/css/scrollbar";
 SwiperCore.use([Pagination]);
 
 const PostInfoPageContainer = styled.div`
-  height: 110rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    height: 110rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const PostInfoPageSection  = styled.div`
@@ -41,8 +42,8 @@ const PostInfoPageSection  = styled.div`
 `;
 
 const PostInfoImage = styled.img`
-  width: 20rem;
-  height: 13rem;
+    width: 20rem;
+    height: 13rem;
 `;
 
 const SwiperContainer = styled.div`
@@ -53,32 +54,32 @@ const SwiperContainer = styled.div`
 `;
 
 const HashTagButton = styled.button`
-  width: 7rem;
-  height: 2rem;
-  font-size: 1rem;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-radius: 0.3rem;
-  background-color: white;
-  border-color: #47a5fd;
-  color: #47a5fd;
+    width: 7rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-radius: 0.3rem;
+    background-color: white;
+    border-color: #47a5fd;
+    color: #47a5fd;
 `;
 
 const MatchingCompleteButton = styled.button`
-  width: 7rem;
-  height: 2rem;
-  font-size: 1rem;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-radius: 0.3rem;
-  background-color: white;
-  border-color: #47a5fd;
-  color: #47a5fd;
+    width: 7rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-radius: 0.3rem;
+    background-color: white;
+    border-color: #47a5fd;
+    color: #47a5fd;
 `;
 
 const LinkToIconStyle = {
-  textDecoration: "none",
-  color: "black",
+    textDecoration: "none",
+    color: "black",
 };
 
 const PostInfoPage = () => {
@@ -109,6 +110,14 @@ const PostInfoPage = () => {
     const [tradeType, setTradeType] = useState('');
     const [x, setX] = useState('');
     const [y, setY] = useState('');
+    const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
+    const showDeletePostModal = () => {setIsDeletePostModalOpen(true);}
+    const handleDeletePostCancel = () => {setIsDeletePostModalOpen(false);}
+    const handleDeletePostOk = () => {
+        DeletePostInfoData();
+        setIsDeletePostModalOpen(false);
+    }
+
     async function FetchPostInfoData() {
         await axios.get(`${baseURL}/api/board/${boardId}`, {
                 withCredentials:true
@@ -145,16 +154,16 @@ const PostInfoPage = () => {
             })
     }
 
-  async function DeletePostInfoData() {
-    await axios
-        .delete(`${baseURL}/api/board/${boardId}`)
-        .then((response) => {
-            navigate(`../postMapPage`);
-        })
-        .catch((error) => {
-            console.log("DeletePostInfoData axios error");
-        });
-  }
+    async function DeletePostInfoData() {
+        await axios
+            .delete(`${baseURL}/api/board/${boardId}`)
+            .then((response) => {
+                navigate(`../postMapPage`);
+            })
+            .catch((error) => {
+                console.log("DeletePostInfoData axios error");
+            });
+    }
 
     async function AddLikePost() {
         await axios.post(`${baseURL}/api/heart/${boardId}`,{},{
@@ -215,6 +224,21 @@ const PostInfoPage = () => {
         .error((error) => {console.log('makeCommentRequest axios error')});
     }
 
+    async function deleteComment(commentId) {
+        await axios.delete(`${baseURL}/api/comment/${commentId}`)
+        .then((response) => { window.location.reload();})
+        .catch((error) => {console.log('deleteComment axios error')});
+    }
+
+    async function updateComment(commentId, content) {
+        await axios.patch(`${baseURL}/api/comment`, {
+            "homeCommentId": commentId, 
+            "content": content
+        })
+        .then((response) => { window.location.reload();})
+        .catch((error) => {console.log('updateComment axios error')});
+    }
+
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
@@ -222,6 +246,16 @@ const PostInfoPage = () => {
     }, []);
 
     return (
+        <>
+        {isDeletePostModalOpen ? 
+            <DeletePostModal
+                isDeletePostModalOpen={isDeletePostModalOpen}
+                handleOk={handleDeletePostOk}
+                handelCancel={handleDeletePostCancel}
+            />
+        :
+            <></>
+        }
         <PostInfoPageContainer>
             <PostInfoPageSection>
                 <PostInfoDiv width="100%" height="15rem" marginTop="3rem">
@@ -267,7 +301,7 @@ const PostInfoPage = () => {
                         </Link>
                         <AiOutlineDelete 
                             onClick={() => {
-                                DeletePostInfoData();
+                                showDeletePostModal();
                             }}
                             size={40}
                         />
@@ -393,6 +427,8 @@ const PostInfoPage = () => {
                             data={data}
                             makeCommentRequest={makeCommentRequest}
                             boardId={boardId}
+                            deleteComment={deleteComment}
+                            updateComment={updateComment}
                         />
                     ))}
                     <WriteComment 
@@ -402,7 +438,9 @@ const PostInfoPage = () => {
                 </PostInfoFlexDiv>
             </PostInfoPageSection>
         </PostInfoPageContainer>
+        </>
     );
 }
 
 export default PostInfoPage;
+

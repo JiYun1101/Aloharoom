@@ -5,6 +5,7 @@ import UserProfileImg from '../UserProfileImg';
 import CommentInput from '../CommentInput';
 import CommentWriteButton from '../CommentWriteButton';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import DeleteCommentModal from '../../modal/DeleteCommentModal';
 
 const ReadReplyComment = ({
     commentId,
@@ -21,8 +22,25 @@ const ReadReplyComment = ({
 }) => {
     const [editMode, setEditMode] = useState(false);
     const [editInputValue, setEditInputValue] = useState(content);
+    const [isDeleteCommentModalOpen, setIsDeleteCommentModalOpen] = useState(false);
+    const showDeleteCommentModal = () => {setIsDeleteCommentModalOpen(true);}
+    const handleDeleteCommentCancel = () => {setIsDeleteCommentModalOpen(false);}
+    const handleDeleteCommentOk = () => {
+        deleteComment(commentId);
+        setIsDeleteCommentModalOpen(false);
+    }
     const editIconClick = () => {setEditMode(!editMode);}
     return (
+        <>
+        {isDeleteCommentModalOpen ?
+            <DeleteCommentModal
+                isDeleteCommentModalOpen={isDeleteCommentModalOpen}
+                handleOk={handleDeleteCommentOk}
+                handelCancel={handleDeleteCommentCancel}
+            />
+        :
+            <></>
+        }
         <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center" flexDirection="row">
                 <PostInfoFlexDiv width="50%" height="100%" alignItems="center">
@@ -30,8 +48,18 @@ const ReadReplyComment = ({
                     <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="50%" height="100%" alignItems="center" flexDirection="row-reverse">
-                    <AiOutlineDelete size={30} style={{ marginRight: "0.5rem"}} onClick={() => {deleteComment(commentId);}}/>
-                    <AiOutlineEdit size={30} style={{ marginRight: "0.5rem"}} onClick={editIconClick}/>
+                    <AiOutlineDelete 
+                        size={30} 
+                        style={{ marginRight: "0.5rem"}} 
+                        onClick={() => {
+                            showDeleteCommentModal();
+                        }}
+                    />
+                    <AiOutlineEdit 
+                        size={30} 
+                        style={{ marginRight: "0.5rem"}} 
+                        onClick={editIconClick}
+                    />
                 </PostInfoFlexDiv>
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
@@ -69,6 +97,7 @@ const ReadReplyComment = ({
                 }
             </PostInfoFlexDiv>
         </PostInfoFlexDiv>
+        </>
     );
 }
 

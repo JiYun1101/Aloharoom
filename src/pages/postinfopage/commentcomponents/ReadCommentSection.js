@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import ReadComment from "./ReadComment";
 import ReadReplyComment from "./ReadReplyComment";
 import WriteReplyComment from "./WriteReplyComment";
-import axios from "axios";
-import baseURL from "../../api/baseURL";
+
 const ReadCommentSection = ({
     data,
     makeCommentRequest,
-    boardId
+    boardId,
+    deleteComment,
+    updateComment
 }) => {
     const [clickTargetUserId, setClickTargetUserId] = useState();
     const [clickTargetContent, setClickTargetContent] = useState();
@@ -19,20 +20,6 @@ const ReadCommentSection = ({
     };
     const toggleWriteReplies = () => {
         setShowWriteReplies(!showWriteReplies);
-    }
-    async function deleteComment(commentId) {
-        await axios.delete(`${baseURL}/api/comment/${commentId}`)
-        .then((response) => { window.location.reload();})
-        .catch((error) => {console.log('deleteComment axios error')});
-    }
-
-    async function updateComment(commentId, content) {
-        await axios.patch(`${baseURL}/api/comment`, {
-            "homeCommentId": commentId, 
-            "content": content
-        })
-        .then((response) => { window.location.reload();})
-        .catch((error) => {console.log('updateComment axios error')});
     }
 
     return (

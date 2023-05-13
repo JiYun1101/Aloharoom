@@ -23,11 +23,11 @@ const BackPageIconStyle = {
 
 const NewPostPage = () => {
   const [isAddressInfoModalOpen, setIsAddressInfoModalOpen] = useState(false);
-  const [addressData, setAddressData] = useState();
+  const [addressData, setAddressData] = useState(null);
   const navigate = useNavigate();
-  const showAddressInfoModal = () => { setIsAddressInfoModalOpen(true);}
+  const showAddressInfoModal = () => { setIsAddressInfoModalOpen(true); }
   const handleAddressInfoOk = () => { setIsAddressInfoModalOpen(false); }
-  const handleAddressInfoCancel = () => { setIsAddressInfoModalOpen(false);}
+  const handleAddressInfoCancel = () => { setIsAddressInfoModalOpen(false); }
     return (
       <>
         {isAddressInfoModalOpen ? 
@@ -37,7 +37,7 @@ const NewPostPage = () => {
             handelCancel={handleAddressInfoCancel}
             addressData={addressData}
           />
-          : 
+          :
           <></>
         }
         <NewPostContainer>
