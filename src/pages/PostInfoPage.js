@@ -23,6 +23,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { useRef } from "react";
 
 SwiperCore.use([Pagination]);
 
@@ -85,6 +86,7 @@ const LinkToIconStyle = {
 const PostInfoPage = () => {
     const boardId = useParams().id;
     const navigate = useNavigate();
+    const postInfoContentSpanRef = useRef(null);
     const [commentData, setCommentData] = useState([]);
     const [address, setAddress] = useState('');
     const [age, setAge] = useState('');
@@ -243,6 +245,10 @@ const PostInfoPage = () => {
     useEffect(() => {
         FetchPostInfoData();
         FetchBoardComment();
+        if (postInfoContentSpanRef.current) {
+            const span = postInfoContentSpanRef.current;
+            span.innerHTML  = span.innerHTML.replace(/\n/g, "<br>");
+        }
     }, []);
 
     return (
@@ -413,7 +419,7 @@ const PostInfoPage = () => {
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="15rem" marginTop="1rem">
-                    <PostInfoSpan color="black" fontSize="1.2rem" fontWeight="500">
+                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500">
                         {contents}
                     </PostInfoSpan>
                 </PostInfoDiv>

@@ -588,14 +588,11 @@ const onFinish = async (use_state, navigate) => {
       myHashtags,
       myProducts,
     });
-
-    // Navigate to RegisterPage2 on successful registration
     message.success("Processing complete!");
   } catch (error) {
     console.error("Registration failed:", error);
   }
   navigate("../../login");
-  //window.location.href = "../../login";
 };
 
 function RegisterPage2() {
