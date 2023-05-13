@@ -48,18 +48,24 @@ const ReadReplyComment = ({
                     <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="50%" height="100%" alignItems="center" flexDirection="row-reverse">
-                    <AiOutlineDelete 
-                        size={30} 
-                        style={{ marginRight: "0.5rem"}} 
-                        onClick={() => {
-                            showDeleteCommentModal();
-                        }}
-                    />
-                    <AiOutlineEdit 
-                        size={30} 
-                        style={{ marginRight: "0.5rem"}} 
-                        onClick={editIconClick}
-                    />
+                    {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
+                        <>
+                            <AiOutlineDelete 
+                                size={30} 
+                                style={{ marginRight: "0.5rem"}} 
+                                onClick={() => {
+                                    showDeleteCommentModal();
+                                }}
+                            />
+                            <AiOutlineEdit 
+                                size={30} 
+                                style={{ marginRight: "0.5rem"}} 
+                                onClick={editIconClick}
+                            />
+                        </>
+                    :
+                        <></>
+                    }
                 </PostInfoFlexDiv>
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
