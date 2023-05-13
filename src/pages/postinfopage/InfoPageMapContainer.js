@@ -13,8 +13,8 @@ const MapStyle = {
 
 const FacilityCategoryMenuDivStyle = {
     position: "absolute", 
-    width: "100%",
-    height: "100%",
+    width: "20%",
+    height: "8%",
     borderRadius: "1rem",
     top: "1rem",
     left: "1rem"
