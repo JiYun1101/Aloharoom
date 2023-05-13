@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import redMarker from "../../img/redMarker.png";
 import CategoryMapMarker from "./mapcomponents/CategoryMapMarker";
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { Select } from "antd";
 
 const MapStyle = {
     width: "100%",
@@ -12,13 +13,9 @@ const MapStyle = {
 
 const FacilityCategoryMenuDivStyle = {
     position: "absolute", 
-    width: "40%",
-    height: "10%",
+    width: "100%",
+    height: "100%",
     borderRadius: "1rem",
-    backgroundColor: "white",
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center",
     top: "1rem",
     left: "1rem"
 }
@@ -37,6 +34,10 @@ const InfoPageMapContainer = ({x, y, address}) => {
         }, { size: 15});
     }
 
+    const handleCategoryChange = (value) => {
+        FacilityCategorySearch(value);
+    }
+
     const categoryMarkerComponents = places.map((data) => ( <CategoryMapMarker data={data}/> ));
 
     return (
@@ -46,12 +47,39 @@ const InfoPageMapContainer = ({x, y, address}) => {
             style= {MapStyle}
         >
             <div style={FacilityCategoryMenuDivStyle}>
-                <button onClick={() => FacilityCategorySearch('은행')}>은행</button>
-                <button onClick={() => FacilityCategorySearch('마트')}>마트</button>
-                <button onClick={() => FacilityCategorySearch('주유소')}>주유소</button>
-                <button onClick={() => FacilityCategorySearch('약국')}>약국</button>
-                <button onClick={() => FacilityCategorySearch('카페')}>카페</button>
-                <button onClick={() => FacilityCategorySearch('편의점')}>편의점</button>
+                <Select
+                    placeholder="주변편의시설"
+                    onChange={handleCategoryChange}
+                    style={{
+                        width: 120,
+                    }}
+                    options={[
+                        {
+                            value: '은행',
+                            label: '은행',
+                        },
+                        {
+                            value: '마트',
+                            label: '마트',
+                        },
+                        {
+                            value: '주유소',
+                            label: '주유소',
+                        },
+                        {
+                            value: '약국',
+                            label: '약국',
+                        },
+                        {
+                            value: '카페',
+                            label: '카페',
+                        },
+                        {
+                            value: '편의점',
+                            label: '편의점',
+                        },
+                    ]}
+                />
             </div>
             <MapMarker 
                 position={center} 
