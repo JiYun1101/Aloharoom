@@ -42,11 +42,12 @@ const Login = () => {
         },
         withCredentials: true,
       });
-  
+      
       if (response.status === 200) {
         message.success("Processing complete!");
         console.log("username:" + value.username);
         console.log("Registration successful");
+        localStorage.clear();
         localStorage.setItem("username", value.username);
         navigate("../about");
       } else {
