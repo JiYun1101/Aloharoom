@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NotificationModal from "./modal/NotificationModal";
 import { Badge } from "antd";
 import axios from "axios";
 import baseURL from "./api/baseURL";
+import LogoutModal from "./modal/LogoutModal";
 
 const MenuBar = styled.div`
   position: relative;
@@ -77,13 +78,18 @@ const LinkToStyle = {
 };
 
 const Header = () => {
+  const navigate = useNavigate();
   const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
   const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
   const [clickLogout, setClickLogout] = useState(false);
-
-  const handleClickLogout = () => {
-    setClickLogout(!clickLogout);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const showIsLogoutModal = () => {setIsLogoutModalOpen(true);}
+  const handleIsLogoutCancel = () => {setIsLogoutModalOpen(false);}
+  const handleIsLogoutOk = () => {
+    userLogout();
+    localStorage.clear();
+    navigate(`../login`);
   }
 
   const ModalOpen = () => {
@@ -149,6 +155,15 @@ const Header = () => {
   }, []);
   return (
     <>
+      {isLogoutModalOpen?
+        <LogoutModal
+          isLogoutModalOpen={isLogoutModalOpen}
+          handleOk={handleIsLogoutOk}
+          handelCancel={handleIsLogoutCancel}
+        />
+      :
+        <></>
+      }
       <MenuBar>
         {NotifyModalOpen ? (
           <NotificationModal 
@@ -190,14 +205,13 @@ const Header = () => {
           <></>
         }
         {localStorage.getItem("username") ?
-            <Link to="../login"
+            <Button
               onClick={() => {
-                userLogout();
-                localStorage.clear();
+                setIsLogoutModalOpen(true);
               }}
             >
-              <Button>Logout</Button>
-            </Link>
+              Logout
+            </Button>
           :
             <Link to="../login">
               <Button>
