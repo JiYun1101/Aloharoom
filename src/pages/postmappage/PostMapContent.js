@@ -95,7 +95,6 @@ const PostMapContent = () => {
         console.log(`필터링 모달을 눌러보지도 않았을 경우,`);
         fetchCardPostData();    
       }
-      //fetchCardPostData();
     }, [swLat, swLon, neLat, neLon]);
 
   return (

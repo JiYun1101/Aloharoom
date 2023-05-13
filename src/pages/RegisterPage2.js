@@ -10,7 +10,7 @@ import air_conditionerImg from "../img/air_conditioner.png";
 import microwaveImg from "../img/microwave.png";
 import washing_machineImg from "../img/washing_machine.png";
 import water_purifierImg from "../img/water_purifier.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseURL from "./api/baseURL";
 
@@ -558,7 +558,7 @@ const steps = [
   },
 ];
 
-const onFinish = async (use_state) => {
+const onFinish = async (use_state, navigate) => {
   try {
     console.log("username :" + use_state.username);
     console.log("password :" + use_state.password);
@@ -594,12 +594,13 @@ const onFinish = async (use_state) => {
   } catch (error) {
     console.error("Registration failed:", error);
   }
-  window.location.href = "../../login";
+  navigate("../../login");
+  //window.location.href = "../../login";
 };
 
 function RegisterPage2() {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
   const [clickedButton, setClickedButton] = useState([]);
@@ -773,7 +774,7 @@ function RegisterPage2() {
                   use_state["myHashtags"] = clickedButton5;
                   use_state["myProducts"] = clickedButton4;
 
-                  onFinish(use_state);
+                  onFinish(use_state, navigate);
 
                   // onFinish({
                   //   // buttonName: buttonName,
