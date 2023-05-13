@@ -41,15 +41,15 @@ const RoomTypeOptions = [
 
 const HouseTypeOptions = [
   {
-    value: '주택',
+    value: 'villa',
     label: '주택',
   },
   {
-    value: '오피스텔',
+    value: 'officetel',
     label: '오피스텔',
   },
   {
-    value: '아파트',
+    value: 'apartment',
     label: '아파트',
   },
 ]
