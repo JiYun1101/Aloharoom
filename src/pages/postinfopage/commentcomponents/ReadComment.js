@@ -96,20 +96,24 @@ const ReadComment = ({
                 :
                 <>
                     <PostInfoSpan color="black" marginLeft="4rem" fontSize="1.2rem">{content}</PostInfoSpan>
-                    <PostInfoSpan
-                        color="#47a5fd" 
-                        marginLeft="1rem" 
-                        marginTop="0.5rem" 
-                        fontSize="0.8rem"
-                        onClick={() =>{
-                            setClickTargetUserId(userId);
-                            setClickTargetContent(content);
-                            setClickGroupId(commentId);
-                            toggleWriteReplies();
-                        }}
-                    >
-                        {showWriteReplies ? "대댓글 안쓰기" : "대댓글 쓰기"}
-                    </PostInfoSpan>
+                    {localStorage.getItem('userId') ? 
+                        <PostInfoSpan
+                            color="#47a5fd" 
+                            marginLeft="1rem" 
+                            marginTop="0.5rem" 
+                            fontSize="0.8rem"
+                            onClick={() =>{
+                                setClickTargetUserId(userId);
+                                setClickTargetContent(content);
+                                setClickGroupId(commentId);
+                                toggleWriteReplies();
+                            }}
+                        >
+                            {showWriteReplies ? "대댓글 안쓰기" : "대댓글 쓰기"}
+                        </PostInfoSpan>
+                    :
+                        <></>
+                    }
                     <PostInfoSpan 
                         color="#47a5fd" 
                         marginLeft="1rem" 

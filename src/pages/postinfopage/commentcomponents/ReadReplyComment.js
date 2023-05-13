@@ -86,19 +86,23 @@ const ReadReplyComment = ({
                 :
                     <>
                         <PostInfoSpan color="black" marginLeft="4rem" fontSize="1.2rem">{content}</PostInfoSpan>
-                        <PostInfoSpan 
-                            color="#47a5fd"
-                            marginLeft="1rem"
-                            marginTop="0.5rem"
-                            fontSize="0.8rem"
-                            onClick={() => {
-                                setClickTargetUserId(userId);
-                                setClickTargetContent(content);
-                                toggleWriteReplies();
-                            }}
-                        >
-                            {showWriteReplies ? "답글 안쓰기" : "답글 쓰기"}
-                        </PostInfoSpan>
+                        {localStorage.getItem('userId') ? 
+                            <PostInfoSpan 
+                                color="#47a5fd"
+                                marginLeft="1rem"
+                                marginTop="0.5rem"
+                                fontSize="0.8rem"
+                                onClick={() => {
+                                    setClickTargetUserId(userId);
+                                    setClickTargetContent(content);
+                                    toggleWriteReplies();
+                                }}
+                            >
+                                {showWriteReplies ? "답글 안쓰기" : "답글 쓰기"}
+                            </PostInfoSpan>
+                        :
+                            <></>
+                        }
                     </>
                 }
             </PostInfoFlexDiv>

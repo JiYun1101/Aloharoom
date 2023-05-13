@@ -287,38 +287,45 @@ const PostInfoPage = () => {
                 <PostInfoFlexDiv width="95%" minHeight="3rem" alignItems="center">
                     <PostInfoSpan width="50%" color="black" fontSize="1.2rem" fontWeight="700">{address}</PostInfoSpan>
                     <PostInfoFlexDiv width="50%" minHeight="100%" flexDirection="row-reverse" alignItems="center">
-                        {isHeart ? 
-                        <AiFillHeart 
-                            size={40} 
-                            onClick={() => {
-                                setIsHeart(!isHeart);
-                                DeleteLikePost();
-                            }} 
-                            style={{color: "red"}}/>
-                        :
-                        <AiOutlineHeart 
-                            size={40} 
-                            onClick={() => {
-                                setIsHeart(!isHeart);
-                                AddLikePost();
-                            }}
-                            />
-                        } 
-                        {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
+                        {localStorage.getItem('userId') ? 
                             <>
-                                <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
-                                    {<AiOutlineEdit size={40}/>}
-                                </Link>
-                                <AiOutlineDelete 
-                                    onClick={() => {
-                                        showDeletePostModal();
-                                    }}
-                                    size={40}
-                                />
+                                {isHeart ? 
+                                    <AiFillHeart 
+                                        size={40} 
+                                        onClick={() => {
+                                            setIsHeart(!isHeart);
+                                            DeleteLikePost();
+                                        }} 
+                                        style={{color: "red"}}/>
+                                :
+                                    <AiOutlineHeart 
+                                        size={40} 
+                                        onClick={() => {
+                                            setIsHeart(!isHeart);
+                                            AddLikePost();
+                                        }}
+                                        />
+                                } 
+                                {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
+                                    <>
+                                        <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
+                                            {<AiOutlineEdit size={40}/>}
+                                        </Link>
+                                        <AiOutlineDelete 
+                                            onClick={() => {
+                                                showDeletePostModal();
+                                            }}
+                                            size={40}
+                                        />
+                                    </>
+                                :
+                                    <></>
+                                }
                             </>
                         :
                             <></>
                         }
+                        
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="4.5rem" flexDirections="row" borderBottom="solid 0.1rem #bbbbbb">
@@ -445,10 +452,14 @@ const PostInfoPage = () => {
                             updateComment={updateComment}
                         />
                     ))}
-                    <WriteComment 
-                        makeCommentRequest={makeCommentRequest}
-                        boardId={boardId}
-                    />
+                    {localStorage.getItem('userId') ? 
+                        <WriteComment 
+                            makeCommentRequest={makeCommentRequest}
+                            boardId={boardId}
+                        />
+                    :
+                        <></>
+                    }
                 </PostInfoFlexDiv>
             </PostInfoPageSection>
         </PostInfoPageContainer>
