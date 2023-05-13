@@ -149,9 +149,9 @@ const Header = () => {
   useEffect(() => {
     if(localStorage.getItem('username')) {
       fetchUserId();
+      fetchNotificationInfo();
+      fetchNotReadNotificationCount();
     }
-    fetchNotificationInfo();
-    fetchNotReadNotificationCount();
   }, []);
   return (
     <>
