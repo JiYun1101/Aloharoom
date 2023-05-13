@@ -190,7 +190,7 @@ const Header = () => {
           <></>
         }
         {localStorage.getItem("username") ?
-            <Link to="../postMapPage"
+            <Link to="../login"
               onClick={() => {
                 userLogout();
                 localStorage.clear();
