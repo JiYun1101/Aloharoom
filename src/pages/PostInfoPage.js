@@ -142,7 +142,7 @@ const PostInfoPage = () => {
                 setPreferAgeRange(response.data.preferAgeRange);
                 setPrice(response.data.price);
                 setProduct(response.data.product);
-                setProfileImageUrl(response.data.profileImageUrl);
+                setProfileImageUrl(response.data.profileImgUrl);
                 setRent(response.data.rent);
                 setRoomCount(response.data.roomCount);
                 setStartDate(response.data.startDate);
@@ -325,7 +325,6 @@ const PostInfoPage = () => {
                         :
                             <></>
                         }
-                        
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="4.5rem" flexDirections="row" borderBottom="solid 0.1rem #bbbbbb">
