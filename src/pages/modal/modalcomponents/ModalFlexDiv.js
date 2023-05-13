@@ -6,6 +6,7 @@ const ModalFlexDiv = styled.div`
     display: flex;
     flex-direction:${props => props.flexDirection || "row"};
     align-items:${props => props.alignItems};
+    justify-content: ${props => props.justifyContent};
     margin-top: ${props => props.marginTop};
     margin-left: ${props => props.marginLeft};
     overflow-y: ${props => props.overFlowY};
