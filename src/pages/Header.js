@@ -105,7 +105,7 @@ const Header = () => {
     .catch((error) => { console.log(`fetchUserId axios error`);})
   }
 
-  async function userLogOut() {
+  async function userLogout() {
     await axios.get(`${baseURL}/logout`, {
       withCredentials:true
     })
@@ -169,26 +169,42 @@ const Header = () => {
             <NavElement>커뮤니티</NavElement>
           </Link>
         </NavGroup>
-        <LogoGroup>
-          <LogoElement>
+        {localStorage.getItem("username") ?
+          <LogoGroup>
+            <LogoElement>
               <Badge count={notReadNotificationCount.notificationCount} size="small" overflowCount={10}>
                 <AiOutlineBell size={30} onClick={() => {
                   fetchNotificationInfo();
                   ModalOpen();
-                }} />
+                }} 
+                />
               </Badge>
-          </LogoElement>
-          <LogoElement>
-            <Link to="/myPage" style={LinkToStyle}>
+            </LogoElement>
+            <LogoElement>
+              <Link to="/myPage" style={LinkToStyle}>
                 <AiOutlineUser size={30} />
+              </Link>
+            </LogoElement>
+          </LogoGroup>
+        :
+          <></>
+        }
+        {localStorage.getItem("username") ?
+            <Link to="../postMapPage"
+              onClick={() => {
+                userLogout();
+                localStorage.clear();
+              }}
+            >
+              <Button>Logout</Button>
             </Link>
-          </LogoElement>
-        </LogoGroup>
-        <Link to="../login">
-          <Button>
-            Login / Signup
-          </Button>
-        </Link>
+          :
+            <Link to="../login">
+              <Button>
+                Login / Signup
+              </Button>
+            </Link>
+          }
       </MenuBar>
       <BlueLine />
     </>
