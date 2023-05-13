@@ -114,9 +114,13 @@ const PostMapContent = () => {
         fetchCardPostData={fetchCardPostData}
         fetchFilterCardPostData={fetchFilterCardPostData}
       />
-      <Link to="/newPostPage" style={LinkToStyle}>
-        <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
-      </Link>
+      {localStorage.getItem('userId') ?
+        <Link to="/newPostPage" style={LinkToStyle}>
+          <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+        </Link>
+      :
+        <></>
+      }
     </PostMapContentContainer>
   );
 };

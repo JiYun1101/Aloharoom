@@ -16,7 +16,7 @@ const RoomCountTypeFlatInfoBox = styled.div`
 `;
 
 const RoomCountTypeFlatInput = styled.input`
-  width: ${props => props.width || "0rem"}};
+  width: ${props => props.width || "0rem"};
   height: 2rem;
   border-width: 0.1rem;
   border-style: solid;
