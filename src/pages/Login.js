@@ -9,6 +9,8 @@ import LockOutlined from "@ant-design/icons";
 import axios from "axios";
 import styled from "styled-components";
 import baseURL from "./api/baseURL";
+import { useNavigate } from "react-router-dom";
+
 
 const Logo = styled.span`
   position: absolute;
@@ -21,39 +23,40 @@ const Logo = styled.span`
 `;
 
 const qs = require("qs");
-const onFinish = async (value) => {
-  try {
-    console.log("username :" + value.username);
-    console.log("password :" + value.password);
-
-    const data = qs.stringify({
-      username: value.username,
-      password: value.password,
-    });
-
-    const response = await axios.post(`${baseURL}/login`, data, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      withCredentials: true,
-    });
-
-    if (response.status === 200) {
-      message.success("Processing complete!");
-      console.log("username:" + value.username);
-      console.log("Registration successful");
-      localStorage.setItem("username", value.username);
-      window.location.href = "../../";
-    } else {
-      throw new Error("로그인 요청 실패");
-    }
-  } catch (error) {
-    console.error("Registration failed:", error);
-    message.error("오류가 발생했습니다!");
-  }
-};
 
 const Login = () => {
+  const navigate = useNavigate();
+  const onFinish = async (value) => {
+    try {
+      console.log("username :" + value.username);
+      console.log("password :" + value.password);
+  
+      const data = qs.stringify({
+        username: value.username,
+        password: value.password,
+      });
+  
+      const response = await axios.post(`${baseURL}/login`, data, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        withCredentials: true,
+      });
+  
+      if (response.status === 200) {
+        message.success("Processing complete!");
+        console.log("username:" + value.username);
+        console.log("Registration successful");
+        localStorage.setItem("username", value.username);
+        navigate("../about");
+      } else {
+        throw new Error("로그인 요청 실패");
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+      message.error("오류가 발생했습니다!");
+    }
+  };
   return (
     <div className="page">
       {" "}
