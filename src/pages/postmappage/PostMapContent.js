@@ -84,12 +84,16 @@ const PostMapContent = () => {
     useEffect(() => {
       let isFilterPressed = parseInt(localStorage.getItem('pressFilterButton'));
       if (isFilterPressed === 1) {
-          console.log(`필터링 모달을 눌렀을 경우,`);
+          console.log(`필터링 모달을 설정했을 경우,`);
           fetchFilterCardPostData();
       }
       else if (isFilterPressed === 0) {
-          console.log(`필터링 모달을 눌렀지 않았을 경우,`);
+          console.log(`필터링 모달을 설정하지 않았을 경우,`);
           fetchCardPostData();    
+      }
+      else {
+        console.log(`필터링 모달을 눌러보지도 않았을 경우,`);
+        fetchCardPostData();    
       }
       //fetchCardPostData();
     }, [swLat, swLon, neLat, neLon]);
