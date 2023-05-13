@@ -110,6 +110,7 @@ const PostInfoPage = () => {
     const [startDate, setStartDate] = useState('');
     const [totalFloor, setTotalFloor] = useState('');
     const [tradeType, setTradeType] = useState('');
+    const [userId, setUserId] = useState('');
     const [x, setX] = useState('');
     const [y, setY] = useState('');
     const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
@@ -119,7 +120,6 @@ const PostInfoPage = () => {
         DeletePostInfoData();
         setIsDeletePostModalOpen(false);
     }
-
     async function FetchPostInfoData() {
         await axios.get(`${baseURL}/api/board/${boardId}`, {
                 withCredentials:true
@@ -148,6 +148,7 @@ const PostInfoPage = () => {
                 setStartDate(response.data.startDate);
                 setTotalFloor(response.data.totalFloor);
                 setTradeType(response.data.tradeType);
+                setUserId(response.data.userId);
                 setX(response.data.x);
                 setY(response.data.y);
             })
@@ -301,16 +302,23 @@ const PostInfoPage = () => {
                                 setIsHeart(!isHeart);
                                 AddLikePost();
                             }}
-                            />} 
-                        <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
-                            {<AiOutlineEdit size={40}/>}
-                        </Link>
-                        <AiOutlineDelete 
-                            onClick={() => {
-                                showDeletePostModal();
-                            }}
-                            size={40}
-                        />
+                            />
+                        } 
+                        {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
+                            <>
+                                <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
+                                    {<AiOutlineEdit size={40}/>}
+                                </Link>
+                                <AiOutlineDelete 
+                                    onClick={() => {
+                                        showDeletePostModal();
+                                    }}
+                                    size={40}
+                                />
+                            </>
+                        :
+                            <></>
+                        }
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="4.5rem" flexDirections="row" borderBottom="solid 0.1rem #bbbbbb">

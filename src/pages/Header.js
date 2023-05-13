@@ -204,7 +204,7 @@ const Header = () => {
                 Login / Signup
               </Button>
             </Link>
-          }
+        }
       </MenuBar>
       <BlueLine />
     </>
