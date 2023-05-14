@@ -406,7 +406,12 @@ const PostInfoPage = () => {
                         <PostInfoSpan fontSize="1.2rem">방 개수: {roomCount}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">주거 형태: {homeType}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">주거 형태: 
+                        {homeType === 'apartment' ?
+                            `아파트` 
+                            : homeType === 'villa' ? `주택` : `오피스텔`
+                        }
+                        </PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
                         <PostInfoSpan fontSize="1.2rem">평수: {flat}</PostInfoSpan>
