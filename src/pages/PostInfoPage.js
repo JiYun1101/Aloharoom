@@ -414,14 +414,14 @@ const PostInfoPage = () => {
                         <PostInfoSpan fontSize="1.2rem">계약형태: {tradeType}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">가격: {price}만원</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">가격: {price}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">관리비: {maintenance}만원</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">관리비: {maintenance}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="5rem" marginTop="1rem" paddingBottom="1rem" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoSpan fontSize="1.2rem">룸메이트 가격: {rent}만원</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.2rem">룸메이트 가격: {rent}</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="3rem" marginTop="0.7rem" alignItems="center">
                     <PostInfoSpan color="#bbbbbb" fontSize="1.2rem">이 지역은 하루 배송권이에요.</PostInfoSpan>
