@@ -78,6 +78,12 @@ const MatchingCompleteButton = styled.button`
     color: #47a5fd;
 `;
 
+const PostInfohr = styled.hr`
+    height: 1px;
+    background-color: red;
+    border: none;
+`;
+
 const LinkToIconStyle = {
     textDecoration: "none",
     color: "black",
@@ -88,6 +94,7 @@ const PostInfoPage = () => {
     const navigate = useNavigate();
     const postInfoContentSpanRef = useRef(null);
     const [commentData, setCommentData] = useState([]);
+
     const [address, setAddress] = useState('');
     const [age, setAge] = useState('');
     const [contents, setContents] = useState('');
@@ -95,11 +102,12 @@ const PostInfoPage = () => {
     const [flat, setFlat] = useState('');
     const [floor, setFloor] = useState('');
     const [gender, setGender] = useState('');
-    const [hashtag, setHashTag] = useState([]);
     const [homeType, setHomeType] = useState('');
     const [imgUrls, setImgUrls] = useState([]);
     const [isHeart, setIsHeart] = useState('');
     const [maintenance, setMaintenance] = useState('');
+    const [myHashtag, setMyHashtag] = useState([]);
+    const [myHomeHashtag, setMyHomeHashtag] = useState([]);
     const [nickname, setNickName] = useState('');
     const [preferAgeRange, setPreferAgeRange] = useState('');
     const [price, setPrice] = useState('');
@@ -133,11 +141,12 @@ const PostInfoPage = () => {
                 setFlat(response.data.flat);
                 setFloor(response.data.floor);
                 setGender(response.data.gender);
-                setHashTag(response.data.hashtag);
                 setHomeType(response.data.homeType);
                 setImgUrls(response.data.imgUrls);
                 setIsHeart(response.data.isHeart);
                 setMaintenance(response.data.maintenance);
+                setMyHashtag(response.data.myHashtag);
+                setMyHomeHashtag(response.data.myHomeHashtag);
                 setNickName(response.data.nickname);
                 setPreferAgeRange(response.data.preferAgeRange);
                 setPrice(response.data.price);
@@ -347,12 +356,45 @@ const PostInfoPage = () => {
                         <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{preferAgeRange}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="6rem" marginTop="1rem" flexDirections="row" flexWrap="wrap" gap="0.2rem" borderBottom="solid 0.1rem #bbbbbb">
-                    { hashtag && hashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                    { hashtag && hashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                    { hashtag && hashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                    { hashtag && hashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                <PostInfoDiv width="95%" height="auto" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.5rem">작성자 성향</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoFlexDiv 
+                    width="95%" 
+                    minHeight="auto" 
+                    paddingTop="1rem"
+                    paddingBottom="1rem"
+                    flexDirections="row" 
+                    flexWrap="wrap" 
+                    gap="0.5rem" 
+                    borderBottom="solid 0.1rem #bbbbbb"
+                >
+                    { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                    { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                    { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                    { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                 </PostInfoFlexDiv>
+                <PostInfoDiv width="95%" height="auto" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.5rem">작성자 거주지 성향</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoFlexDiv 
+                    width="95%" 
+                    minHeight="auto" 
+                    paddingTop="1rem"
+                    paddingBottom="1rem"
+                    flexDirections="row" 
+                    flexWrap="wrap" 
+                    gap="0.5rem" 
+                    borderBottom="solid 0.1rem #bbbbbb"
+                >
+                    { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                    { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                    { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                    { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                </PostInfoFlexDiv>
+                <PostInfoDiv width="95%" height="auto" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.5rem">작성자 거주지 정보</PostInfoSpan>
+                </PostInfoDiv>
                 <PostInfoDiv width="95%" height="3rem" marginTop="1rem">
                     <PostInfoSpan fontSize="1.2rem">입주 가능 날짜: {startDate}</PostInfoSpan>
                 </PostInfoDiv>
@@ -389,7 +431,7 @@ const PostInfoPage = () => {
                         <PostInfoSpan fontSize="1.2rem">관리비: {maintenance}만원</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" height="5rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
+                <PostInfoDiv width="95%" height="5rem" marginTop="1rem" paddingBottom="1rem" borderBottom="solid 0.1rem #bbbbbb">
                     <PostInfoSpan fontSize="1.2rem">룸메이트 가격: {rent}만원</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="3rem" marginTop="0.7rem" alignItems="center">
@@ -432,7 +474,7 @@ const PostInfoPage = () => {
                         />
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" height="15rem" marginTop="1rem">
+                <PostInfoDiv width="95%" height="auto" marginTop="1rem">
                     <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500">
                         {contents}
                     </PostInfoSpan>
