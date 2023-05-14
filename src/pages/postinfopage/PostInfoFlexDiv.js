@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const PostInfoFlexDiv = styled.div`
     width: ${ props => props.width || "0%"};
+    height: ${ props => props.height};
     min-height: ${ props => props.minHeight || "0rem"};
 
     display: flex;

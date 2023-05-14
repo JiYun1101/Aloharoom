@@ -376,7 +376,7 @@ const PostInfoPage = () => {
                     { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                     { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                 </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" height="auto" marginTop="1rem">
+                <PostInfoDiv width="95%" height="3rem" marginTop="1rem">
                     <PostInfoSpan fontSize="1.5rem">작성자 거주지 정보</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoDiv width="95%" height="3rem" marginTop="1rem">

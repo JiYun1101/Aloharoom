@@ -68,7 +68,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                             width="98%" 
                             height="5rem" 
                             flexDirection="row" 
-                            borderBottom="1px solid black"
+                            borderBottom={`1px solid ${!data.isCheck ? `black`: `#a0a0a0`}`}
                         >
                             <ModalFlexDiv
                                 width="20%"
