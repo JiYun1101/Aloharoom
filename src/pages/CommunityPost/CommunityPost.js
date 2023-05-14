@@ -172,11 +172,6 @@ const Post = ({ clickedCommunityId, cardPostData }) => {
             </div>
           </Space>
         </CategoryNum>
-        <CardPosts
-          roommatePosts={roommatePosts}
-          cardPostData={cardPostData}
-          clickedCommunityId={clickedCommunityId}
-        />
         <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
           <h2>가장 인기 있는 글</h2>
           <p>1. 내 방 자랑</p>
@@ -184,9 +179,6 @@ const Post = ({ clickedCommunityId, cardPostData }) => {
           <p>3. 오늘의 일기</p>
         </CardPost3>{" "}
         {/* CardPost3에 ref 추가 */}
-        <PageNum>
-          <Pagination defaultCurrent={1} total={50} />
-        </PageNum>
       </Page>
     </>
   );

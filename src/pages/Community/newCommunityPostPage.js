@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import NewPostHeaderSection2 from "./NewPostHeaderSection2";
-import NewPostContentSection2 from "./NewPostContentSection2";
+import NewCommunityPostContentSection2 from "./NewCommunityPostContentSection2";
 
 const NewPostContainer2 = styled.div`
   position: relative;
@@ -29,7 +29,7 @@ const NewCommnityPostPage = () => {
         onClick={() => navigate(-1)}
       />
       <NewPostHeaderSection2 />
-      <NewPostContentSection2 />
+      <NewCommunityPostContentSection2 />
     </NewPostContainer2>
   );
 };

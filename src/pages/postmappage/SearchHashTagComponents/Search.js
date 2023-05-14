@@ -40,7 +40,7 @@ const SearchIconStyle = {
   color: "#47A5FD",
 };
 
-const Search = ({setSearchStr}) => {
+const Search = ({ setSearchStr }) => {
   const [inputValue, setInputValue] = useState(null);
 
   const handleInputChange = (e) => {

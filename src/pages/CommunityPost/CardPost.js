@@ -83,10 +83,13 @@ const CardPost = ({ communityId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // console.log("communityId = " + communityId);
       const result = await axios.get(
-        `http://localhost:8080/api/communityboard/code/${code}`
+        // `http://localhost:8080/api/communityboard/code/${code}`
+        `http://localhost:8080/api/communityboard/code/1`
       );
-      setData(result.data);
+      setData(result.data[0]); // result.data[0] = 전체, result.data[1] = Top3
+      console.log(result.data[0]);
     };
     fetchData();
   }, [communityId, code]); // code를 의존성 배열에 추가
@@ -115,7 +118,7 @@ const CardPost = ({ communityId }) => {
   return (
     <CardBox2 ref={cardRef}>
       {data.map((post, index) => (
-        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code}>
+        <Link to={`../CommunityInfoPage/${post.communityId}`}>
           <Card2
             key={post.code}
             onClick={(event) => {
@@ -127,7 +130,8 @@ const CardPost = ({ communityId }) => {
             }}
           >
             <DateDiv>
-              <DateSpan>{post.createdAt}</DateSpan>
+              <DateSpan>{post.userId}</DateSpan>
+              <DateSpan>{post.nickname}</DateSpan>
             </DateDiv>
             <TitleDiv>
               <TitleSpan>{post.title}</TitleSpan>

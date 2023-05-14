@@ -1,13 +1,7 @@
-import React from "react";
 import RoommateCardPosts from "./RoommateCardPosts";
 // import ShareHousePosts from "./ShareHouseSectionComponents/ShareHousePosts";
 
-const CardPosts = ({
-  roommatePosts,
-  sharehousePosts,
-  cardPostData,
-  clickedCommunityId,
-}) => {
+const CardPosts = ({ roommatePosts, cardPostData, clickedCommunityId }) => {
   return (
     <>
       {roommatePosts ? (

@@ -288,6 +288,8 @@ const CardImage = styled.img`
 
 const PostInfoPage = () => {
   const { communityId } = useParams();
+  const [data, setData] = useState({}); // 조회된 데이터를 저장할 상태 변수
+
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [imgUrls, setImgUrls] = useState([]);
@@ -296,42 +298,28 @@ const PostInfoPage = () => {
   const [views, setviews] = useState([]);
   const [code, setcode] = useState([]);
 
-  async function FetchPostInfoData() {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/communityboard/${communityId}`
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        `http://localhost:8080/api/communityboard/${communityId}`,
+        { withCredentials: true }
       );
-
-      console.log(response.data);
-
-      const { communityBoard } = response.data;
-
-      if (communityBoard && communityBoard.title) {
-        setTitle(communityBoard.title);
-        setImgUrls(communityBoard.imgUrls);
-        setContents(communityBoard.contents);
-        setviews(communityBoard.views);
-        setcode(communityBoard.code);
-      }
-    } catch (error) {
-      console.log("FetchPostInfoData axios error", error);
-    }
-  }
+      setData(result.data);
+      console.log(result.data);
+    };
+    fetchData();
+  }, [communityId, code]); // code를 의존성 배열에 추가
 
   async function DeletePostInfoData() {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/api/communityboard?communityId=${communityId}`
+        `http://localhost:8080/api/communityboard/${communityId}`
       );
       navigate(`../Community`);
     } catch (error) {
       console.log("DeletePostInfoData axios error", error);
     }
   }
-
-  useEffect(() => {
-    FetchPostInfoData();
-  }, []);
 
   return (
     <PostInfoPageContainer>
@@ -356,7 +344,7 @@ const PostInfoPage = () => {
           </Container>
         </PostInfoImageBox>
         <TitleDiv>
-          <TitleSpan>{title}</TitleSpan>
+          <TitleSpan>{data.title}</TitleSpan>
         </TitleDiv>
         <ProfileHeartDiv>
           <ProfileDiv>
@@ -377,7 +365,7 @@ const PostInfoPage = () => {
 
         <PostHashTagDiv></PostHashTagDiv>
         <PostContentDiv>
-          <PostContentSpan>{contents}</PostContentSpan>
+          <PostContentSpan>{data.contents}</PostContentSpan>
         </PostContentDiv>
 
         <CommentSection>

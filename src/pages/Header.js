@@ -148,6 +148,9 @@ const Header = () => {
           <Link to="/Community" style={LinkToStyle}>
             <NavElement>커뮤니티</NavElement>
           </Link>
+          <Link to="/CommunityPage" style={LinkToStyle}>
+            <NavElement>커뮤니티2</NavElement>
+          </Link>
         </NavGroup>
         {username && (
           <LogoGroup>

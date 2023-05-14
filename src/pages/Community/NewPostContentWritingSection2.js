@@ -5,8 +5,10 @@ import PostContentSection from "../newpostpage/newpostcontentwritingcomponents/P
 import ImageUploadSection from "../newpostpage/newpostcontentwritingcomponents/ImageUploadSection";
 import ImageSwiperSection from "../newpostpage/newpostcontentwritingcomponents/ImageSwiperSection";
 import PostButtonSection from "../newpostpage/newpostcontentwritingcomponents/PostButtonSection";
+import PostCodeSection from "../newpostpage/newpostcontentwritingcomponents/PostCodeSection";
 
 const NewPostContentWritingDiv = styled.div`
+  margin-top: -1rem;
   width: 80%;
   height: 95%;
   display: flex;
@@ -16,6 +18,7 @@ const NewPostContentWritingDiv = styled.div`
 `;
 
 const NewPostContentWritingArea = styled.div`
+  margin-top: 1rem;
   border-style: solid;
   border-color: #bbbbbb;
   border-radius: 1rem;
@@ -60,6 +63,7 @@ const NewPostContentWritingSection2 = ({
 
   return (
     <NewPostContentWritingDiv>
+      <PostCodeSection />
       <NewPostContentWritingArea>
         <PostTitleSection setTitle={setTitle} />
         <PostContentSection setContents={setContents} />
