@@ -89,13 +89,17 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                 flexDirection="column"
                             >
                                 <ModalDiv width="100%" height="60%">
-                                    <ModalSpan fontWeight={!data.isCheck && `600`}>
+                                    <ModalSpan 
+                                        color={!data.isCheck ? `black`: `#a0a0a0`}
+                                        fontWeight={!data.isCheck && `600`}
+                                    >
                                         {data.flag === 0 ? `방 보기 페이지 ${data.content}` : `커뮤니티 페이지 ${data.content}`}
                                     </ModalSpan>
                                 </ModalDiv>
                                 <ModalFlexDiv width="100%" height="40%" flexDirection="row-reverse" alignItems="center">
                                     <ModalSpan 
                                         marginRight="0.5rem"
+                                        color={!data.isCheck ? `black`: `#a0a0a0`}
                                         fontWeight={!data.isCheck && `600`}
                                     >
                                         {data.createdDate}
