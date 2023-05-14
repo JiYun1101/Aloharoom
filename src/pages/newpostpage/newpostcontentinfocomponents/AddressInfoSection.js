@@ -45,7 +45,10 @@ const AddressInfoSection = ({
             }
             <Button 
                 style={{marginLeft: "1rem"}}
-                onClick={() => {showAddressInfoModal();}}
+                onClick={() => {
+                    searchLatLng();
+                    showAddressInfoModal();
+                }}
             >
                 주소확인하기
             </Button>
