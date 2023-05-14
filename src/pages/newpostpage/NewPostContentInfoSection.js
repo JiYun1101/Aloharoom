@@ -8,6 +8,10 @@ import GuaranteeSection from "./newpostcontentinfocomponents/GuaranteeSection";
 import HouseHashTagButtonSection from "./newpostcontentinfocomponents/HouseHashTagButtonSection";
 import MyHashTagButtonSection from "./newpostcontentinfocomponents/MyHashTagButtonSection";
 import SecondSection from "./newpostcontentinfocomponents/SecondSection";
+import axios from "axios";
+import baseURL from "../api/baseURL";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const NewPostContentInfoDiv = styled.div`
   border-style: solid;
@@ -87,6 +91,18 @@ const NewPostContentInfoSection = ({
     setAddressData,
     showAddressInfoModal
 }) => {
+    const [myHashtags, setMyHashtags] = useState([]);
+    const [myHomeHashtags, setMyHomeHashtags] = useState([]);
+    async function fetchHashTag() {
+      await axios.get(`${baseURL}/api/home`, {
+        withCredentials:true
+      })
+      .then((response) => {
+        setMyHashtags(response.data.myHashtags);
+        setMyHomeHashtags(response.data.myHomeHashtags);
+      })
+      .catch((error) => { console.log(`fetchHashTag axios error`)})
+    }
     //위도 경도 설정 함수
     const searchLatLng = () => {
         const ps = new window.kakao.maps.services.Places();
@@ -104,6 +120,10 @@ const NewPostContentInfoSection = ({
           }
         });
     };
+
+    useEffect(() => {
+      fetchHashTag();
+    }, [])
 
     return (
         <NewPostContentInfoDiv>
@@ -184,11 +204,15 @@ const NewPostContentInfoSection = ({
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" marginRight="2rem">집 해시태그</TitleSpan>
                         </TitleDiv>
-                        <HouseHashTagButtonSection/>
+                        <HouseHashTagButtonSection 
+                          myHomeHashtags={myHomeHashtags}
+                        />
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" marginRight="2rem">내 해시태그</TitleSpan>
                         </TitleDiv>    
-                        <MyHashTagButtonSection/>
+                        <MyHashTagButtonSection
+                          myHashtags={myHashtags}
+                        />
                     </NewPostContentInfoDiv>
     );
 }

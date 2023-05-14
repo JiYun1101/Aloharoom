@@ -27,7 +27,7 @@ const MyHashTagButton = styled.button`
     }
 `;
 
-const MyHashTagButtonSection = () => {
+const MyHashTagButtonSection = ({ myHashtags }) => {
     //내 해시태그 버튼 클릭 상태 변수
     const [selectedMyHashTagButtons, setSelectedMyHashTagButtons] = useState([]);
     const handleMyHashTagButtonClick = (index) => {
@@ -40,74 +40,17 @@ const MyHashTagButtonSection = () => {
         }
     };
     return (
-                    <MyHashTagButtonDiv>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(1)}
-                                onClick={() => handleMyHashTagButtonClick(1)}
-                            >
-                                #비흡연자
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(2)}
-                                onClick={() => handleMyHashTagButtonClick(2)}
-                            >
-                                #역세권
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(3)}
-                                onClick={() => handleMyHashTagButtonClick(3)}
-                            >
-                                #남향
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(4)}
-                                onClick={() => handleMyHashTagButtonClick(4)}
-                            >
-                                #조용한
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(5)}
-                                onClick={() => handleMyHashTagButtonClick(5)}
-                            >
-                                #비흡연자
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(6)}
-                                onClick={() => handleMyHashTagButtonClick(6)}
-                            >
-                                #역세권
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(7)}
-                                onClick={() => handleMyHashTagButtonClick(7)}
-                            >
-                                #남향
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(8)}
-                                onClick={() => handleMyHashTagButtonClick(8)}
-                            >
-                                #조용한
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(9)}
-                                onClick={() => handleMyHashTagButtonClick(9)}
-                            >
-                                #비흡연자
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(10)}
-                                onClick={() => handleMyHashTagButtonClick(10)}
-                            >
-                                #역세권
-                            </MyHashTagButton>
-                            <MyHashTagButton
-                                selected={selectedMyHashTagButtons.includes(11)}
-                                onClick={() => handleMyHashTagButtonClick(11)}
-                            >
-                                #남향
-                            </MyHashTagButton>
-                        </MyHashTagButtonDiv>
+        <MyHashTagButtonDiv>
+            {myHashtags.map((data, idx) => (
+                <MyHashTagButton
+                    key={idx}
+                    selected={selectedMyHashTagButtons.includes(data)}
+                    onClick={() => handleMyHashTagButtonClick(data)}
+                >
+                    {data}
+                </MyHashTagButton>
+            ))}
+        </MyHashTagButtonDiv>
     );
 }
 
