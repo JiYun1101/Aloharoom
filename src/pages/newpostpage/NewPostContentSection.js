@@ -42,7 +42,7 @@ const NewPostContentSection = ({
     const [startDate, setStartDate] = useState("");
     const [x, setX] = useState(null);
     const [y, setY] = useState(null);
-    const [ageRange, setAgeRange] = useState([]);
+    const [ageRange, setAgeRange] = useState([20, 25]);
     const [imgFiles, setImgFiles] = useState([]);
 
     const [previewImages, setPreviewImages] = useState([]);

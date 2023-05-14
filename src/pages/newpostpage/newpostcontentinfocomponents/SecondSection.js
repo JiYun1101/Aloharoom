@@ -23,13 +23,11 @@ const marks = {
 };
 
 const SecondSection = ({ageRange, setAgeRange}) => {
-    const Id = useParams().id;
-    const IdExist = Id != null;
     return (
         <SecondInfoDiv>
             <div style={{width: '35vw'}}>
                 <Slider range 
-                    value={IdExist ? ageRange : undefined}
+                    value={ageRange}
                     marks={marks} 
                     included={true} 
                     min={20} 
