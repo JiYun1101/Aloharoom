@@ -3,22 +3,26 @@ import { useState } from "react";
 
 const { Option } = Select;
 
-const PostCodeSection = ({ setCode }) => {
-  const [code, _setCode] = useState("");
+const PostCodeSection = () => {
+  const [code, setCode] = useState("");
+
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  };
 
   const handleSelectChange = (value) => {
-    _setCode(value);
+    setCode(value);
   };
 
   const handleSubmit = () => {
     console.log("Selected code: ", code);
-    setCode(code);
+    // 이곳에서 선택된 value 값을 사용할 수 있습니다.
   };
 
   return (
     <Form
       name="complex-form"
-      onFinish={() => {}}
+      onFinish={onFinish}
       labelCol={{
         span: 8,
       }}

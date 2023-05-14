@@ -4,6 +4,7 @@ import axios from "axios";
 import NewPostContentInfoSection from "./NewPostContentInfoSection";
 import NewPostContentWritingSection from "./NewPostContentWritingSection";
 import { useNavigate, useParams } from "react-router-dom";
+// import baseURL from "../api/baseURL";
 
 const NewPostContentDiv = styled.div`
   height: 100%;
@@ -18,7 +19,7 @@ const NewPostContentContainer = styled.div`
   justify-content: center;
 `;
 
-const NewPostContentSection = () => {
+const NewPostContentSection = ({ showAddressInfoModal, setAddressData }) => {
   const navigate = useNavigate();
   //입주 가능 날짜
   const [title, setTitle] = useState("");
@@ -38,7 +39,7 @@ const NewPostContentSection = () => {
   const [startDate, setStartDate] = useState("");
   const [x, setX] = useState(null);
   const [y, setY] = useState(null);
-  const [ageRange, setAgeRange] = useState([]);
+  const [ageRange, setAgeRange] = useState([20, 25]);
   const [imgFiles, setImgFiles] = useState([]);
 
   const [previewImages, setPreviewImages] = useState([]);
@@ -170,9 +171,8 @@ const NewPostContentSection = () => {
     for (let i = 0; i < imgFiles.length; i++) {
       formData.append("imgFiles", imgFiles[i]);
     }
-    console.log(formData.imgFiles);
     axios
-      .post("http://localhost:8080/api/board", formData, {
+      .post(`http://localhost:8080/api/board`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -234,6 +234,8 @@ const NewPostContentSection = () => {
           setTotalFloor={setTotalFloor}
           setTitle={setTitle}
           setAgeRange={setAgeRange}
+          setAddressData={setAddressData}
+          showAddressInfoModal={showAddressInfoModal}
         />
       </NewPostContentContainer>
       <NewPostContentContainer>
