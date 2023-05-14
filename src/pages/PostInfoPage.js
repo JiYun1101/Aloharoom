@@ -43,14 +43,15 @@ const PostInfoPageSection  = styled.div`
 `;
 
 const PostInfoImage = styled.img`
-    width: 20rem;
-    height: 13rem;
+    width: 25rem;
+    height: 19rem;
 `;
 
 const SwiperContainer = styled.div`
     margin-top: 1rem;
     .swiper-slide {
-        margin-right: 20px; /* SwiperSlide 간격 조정 */
+        margin-right: 10px; /* SwiperSlide 간격 조정 */
+        margin-left: 15px
     }
 `;
 
@@ -76,12 +77,6 @@ const MatchingCompleteButton = styled.button`
     background-color: white;
     border-color: #47a5fd;
     color: #47a5fd;
-`;
-
-const PostInfohr = styled.hr`
-    height: 1px;
-    background-color: red;
-    border: none;
 `;
 
 const LinkToIconStyle = {
@@ -274,7 +269,7 @@ const PostInfoPage = () => {
         }
         <PostInfoPageContainer>
             <PostInfoPageSection>
-                <PostInfoDiv width="100%" height="15rem" marginTop="3rem">
+                <PostInfoDiv width="100%" height="auto" marginTop="3rem">
                     <SwiperContainer>
                         <Swiper
                             // install Swiper modules
