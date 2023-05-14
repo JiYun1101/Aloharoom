@@ -1,10 +1,8 @@
 import React, { useState } from "react"; 
 import { Button, Form, Select,} from "antd";
 import { Slider } from "antd";
-import ModalDiv from "../../modal/modalcomponents/ModalDiv";
 import ModalFlexDiv from "../../modal/modalcomponents/ModalFlexDiv";
 import "../../../style/RegisterPage0.css";
-import styled from "styled-components";
 import HoverHashTagButton from "../../HoverHashTagButton";
 
 
@@ -91,6 +89,9 @@ const FilterForm = ({
   const [flatRange, setFlatRange] = useState([0, 100]);
   const [rentRange, setRentRange] = useState([0, 100]);
   const [likeHashtags, setLikeHashtags] = useState([]);
+  const [selectedHouseHashTagButtons, setSelectedHouseHashTagButtons] = useState([]);
+  const [selectedMyHashTagButtons, setSelectedMyHashTagButtons] = useState([]);
+  const mockArr = [`활발한`, `조용한`, `시끄러운`, '헬창', `배달의 민족`]
   console.log('===========================');
   console.log('gender', gender);
   console.log('roomCount', roomCount);
@@ -100,16 +101,22 @@ const FilterForm = ({
   console.log('rentRange', rentRange);
   console.log('likeHashtags', likeHashtags);
   console.log('===========================');
-
-  const handleLikeHashTagClick = (buttonName3) => {
-    if (likeHashtags.includes(buttonName3)) {
-      setLikeHashtags((prevTags) =>
-        prevTags.filter((tag) => tag !== buttonName3)
+  const handleHouseHashTagButtonClick = (index) => {
+    if (selectedHouseHashTagButtons.includes(index)) {
+      setSelectedHouseHashTagButtons(
+        selectedHouseHashTagButtons.filter((i) => i !== index)
       );
-      // onClick(null);
     } else {
-      setLikeHashtags((prevTags) => [...prevTags, buttonName3]);
-      // onClick(String(buttonName3));
+      setSelectedHouseHashTagButtons([...selectedHouseHashTagButtons, index]);
+    }
+  };
+  const handleMyHashTagButtonClick = (index) => {
+    if (selectedMyHashTagButtons.includes(index)) {
+      setSelectedMyHashTagButtons(
+      selectedMyHashTagButtons.filter((i) => i !== index)
+      );
+    } else {
+      setSelectedMyHashTagButtons([...selectedMyHashTagButtons, index]);
     }
   };
 
@@ -170,28 +177,14 @@ const FilterForm = ({
         flexWrap="wrap"
         gap="0.5rem"
       >
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
+        {mockArr.map((data, idx) => (
+          <HoverHashTagButton
+            selected={selectedHouseHashTagButtons.includes(data)}
+            onClick={() => handleHouseHashTagButtonClick(data)}
+          >
+            {data}
+          </HoverHashTagButton>  
+        ))}
       </ModalFlexDiv>
       <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
         사람 해시태그
@@ -204,22 +197,36 @@ const FilterForm = ({
         flexWrap="wrap"
         gap="0.5rem"
       >
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
-        <HoverHashTagButton>활발한</HoverHashTagButton>
+        {mockArr.map((data, idx) => (
+          <HoverHashTagButton
+            selected={selectedMyHashTagButtons.includes(data)}
+            onClick={() => handleMyHashTagButtonClick(data)}
+          >
+            {data}
+          </HoverHashTagButton>  
+        ))}
+        {mockArr.map((data, idx) => (
+          <HoverHashTagButton
+            selected={selectedMyHashTagButtons.includes(data)}
+            onClick={() => handleMyHashTagButtonClick(data)}
+          >
+            {data}
+          </HoverHashTagButton>  
+        ))}
+        {mockArr.map((data, idx) => (
+          <HoverHashTagButton
+            selected={selectedMyHashTagButtons.includes(data)}
+            onClick={() => handleMyHashTagButtonClick(data)}
+          >
+            {data}
+          </HoverHashTagButton>  
+        ))}
       </ModalFlexDiv>
         <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            style={{marginBottom: "1rem"}}
             onClick={() => {
               localStorage.setItem('pressFilterButton', 1);
               localStorage.setItem('gender', gender);
