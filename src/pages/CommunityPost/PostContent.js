@@ -12,7 +12,6 @@ import { Avatar, Segmented, Space } from "antd";
 
 import { Button, Form, Input, Radio } from "antd";
 import CardPosts from "./CardPosts"; // CardPosts import
-import HotCardPosts from "./HotCardPosts"; // CardPosts import
 
 const CategoryNum = styled.div`
   text-align: center;
@@ -171,9 +170,12 @@ const PostContent = () => {
         </Space>
       </CategoryNum>
       <CardPosts />
-      <CardPost3>
-        <HotCardPosts />
-      </CardPost3>
+      <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
+        <h2>가장 인기 있는 글</h2>
+        <p>1. 내 방 자랑</p>
+        <p>2. 새로운 청소기</p>
+        <p>3. 오늘의 일기</p>
+      </CardPost3>{" "}
       <Link to="/newCommunityPostPage" style={LinkToStyle}>
         <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
       </Link>
