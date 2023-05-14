@@ -1,7 +1,12 @@
 import React, { useState } from "react"; 
 import { Button, Form, Select,} from "antd";
 import { Slider } from "antd";
+import ModalDiv from "../../modal/modalcomponents/ModalDiv";
+import ModalFlexDiv from "../../modal/modalcomponents/ModalFlexDiv";
 import "../../../style/RegisterPage0.css";
+import styled from "styled-components";
+import HoverHashTagButton from "../../HoverHashTagButton";
+
 
 const flatMarks = {
   0: {
@@ -85,7 +90,7 @@ const FilterForm = ({
   const [ageRange, setAgeRange] = useState([0, 100]);
   const [flatRange, setFlatRange] = useState([0, 100]);
   const [rentRange, setRentRange] = useState([0, 100]);
-  const [likeHashtags, setLikeHashtags] = useState(null);
+  const [likeHashtags, setLikeHashtags] = useState([]);
   console.log('===========================');
   console.log('gender', gender);
   console.log('roomCount', roomCount);
@@ -153,144 +158,65 @@ const FilterForm = ({
         <Form.Item label="나이">
           <Slider range marks={ageMarks} onChange={(value) => { setAgeRange(value);}} />{" "}
         </Form.Item>
-        <div>
-          <div className="titleWrap2">
-            그외에 어떤 것들을 중요하게 생각하나요?
-          </div>
-          <div className="tagWrap">
-            <div className="tag-button-wrap" style={{ zIndex: 1 }}>
-              <button
-                onClick={() => handleLikeHashTagClick("dust")}
-                className={`tag-button ${
-                  likeHashtags.includes("dust") && "tag-button-pressed"
-                }`}
-              >
-                #층간소음이 없는
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{ marginLeft: "15px", zIndex: 1 }}
-            >
-              <button
-                onClick={() => handleLikeHashTagClick("cough")}
-                className={`tag-button ${
-                  likeHashtags.includes("cough") && "tag-button-pressed"
-                }`}
-              >
-                #역세권
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{ marginLeft: "40px", zIndex: 1 }}
-            >
-              <button
-                onClick={() => handleLikeHashTagClick("quiet")}
-                className={`tag-button ${
-                  likeHashtags.includes("quiet") && "tag-button-pressed"
-                }`}
-              >
-                #조용한 주거환경
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{ marginLeft: "-5px", marginTop: "-40px" }}
-            >
-              <button
-                onClick={() => handleLikeHashTagClick("convenience")}
-                className={`tag-button ${
-                  likeHashtags.includes("convenience") && "tag-button-pressed"
-                }`}
-              >
-                #비흡연자
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{ marginTop: "-40px", marginLeft: "-25px" }}
-            >
-              <button
-                onClick={() => handleLikeHashTagClick("calm")}
-                className={`tag-button ${
-                  likeHashtags.includes("calm") && "tag-button-pressed"
-                }`}
-              >
-                #근처 편의점
-              </button>
-            </div>
-            <div
-              className="tag-button-wrap"
-              style={{
-                marginTop: "-40px",
-                marginLeft: "-17px",
-              }}
-            >
-              <button
-                onClick={() => handleLikeHashTagClick("gym")}
-                className={`tag-button ${
-                  likeHashtags.includes("gym") && "tag-button-pressed"
-                }`}
-              >
-                #주변 체육시설
-              </button>
-            </div>
-            <div
-              className="tag-button-wrap"
-              style={{
-                marginTop: "-40px",
-                marginLeft: "0px",
-              }}
-            >
-              <button
-                onClick={() => handleLikeHashTagClick("church")}
-                className={`tag-button ${
-                  likeHashtags.includes("church") && "tag-button-pressed"
-                }`}
-              >
-                #성당/교회
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{
-                marginTop: "-40px",
-                marginLeft: "-20px",
-              }}
-            >
-              <button
-                onClick={() => handleLikeHashTagClick("car")}
-                className={`tag-button ${
-                  likeHashtags.includes("car") && "tag-button-pressed"
-                }`}
-              >
-                #주차공간 유무
-              </button>
-            </div>
-            <div
-              className="tag-button-wrap"
-              style={{
-                marginTop: "-40px",
-                marginLeft: "-28px",
-              }}
-            >
-              <button
-                onClick={() => handleLikeHashTagClick("park")}
-                className={`tag-button ${
-                  likeHashtags.includes("park") && "tag-button-pressed"
-                }`}
-              >
-                #공원
-              </button>
-            </div>
-          </div>
-          <Button
+      </Form>
+      <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
+        집 해시태그
+      </ModalFlexDiv>
+      <ModalFlexDiv 
+        width="100%" 
+        height="auto"
+        marginBottom="1rem"
+        flexDirection="row"
+        flexWrap="wrap"
+        gap="0.5rem"
+      >
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+      </ModalFlexDiv>
+      <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
+        사람 해시태그
+      </ModalFlexDiv>
+      <ModalFlexDiv 
+        width="100%" 
+        height="auto"
+        marginBottom="1rem"
+        flexDirection="row"
+        flexWrap="wrap"
+        gap="0.5rem"
+      >
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+        <HoverHashTagButton>활발한</HoverHashTagButton>
+      </ModalFlexDiv>
+        <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
@@ -308,9 +234,7 @@ const FilterForm = ({
             }}
           >
             확인
-          </Button>
-        </div>
-      </Form>
+        </Button>
     </>
   );
 };

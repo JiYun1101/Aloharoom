@@ -1,0 +1,19 @@
+import styled from "styled-components";
+
+const HoverHashTagButton = styled.button`
+    width: auto;
+    height: 2rem;
+    font-size: 1rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-radius: 0.3rem;
+    background-color: white;
+    border-color: #a0a0a0;
+    color: #a0a0a0;
+    &:hover {
+        border-color: #47a5fd;
+        color: #47a5fd;
+    }
+`;
+
+export default HoverHashTagButton;

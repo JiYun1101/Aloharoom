@@ -18,6 +18,7 @@ import WriteComment from "./postinfopage/commentcomponents/WriteComment";
 import ReadCommentSection from "./postinfopage/commentcomponents/ReadCommentSection";
 import baseURL from "./api/baseURL";
 import DeletePostModal from "./modal/DeletePostModal";
+import HashTagButton from "./HashTagButton";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -53,18 +54,6 @@ const SwiperContainer = styled.div`
         margin-right: 10px; /* SwiperSlide 간격 조정 */
         margin-left: 15px
     }
-`;
-
-const HashTagButton = styled.button`
-    width: 7rem;
-    height: 2rem;
-    font-size: 1rem;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-radius: 0.3rem;
-    background-color: white;
-    border-color: #47a5fd;
-    color: #47a5fd;
 `;
 
 const MatchingCompleteButton = styled.button`
