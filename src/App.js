@@ -13,7 +13,7 @@ import About from "./pages/About/About";
 import NewPostPage from "./pages/NewPostPage";
 import NewCommunityPostPage from "./pages/Community/newCommunityPostPage";
 import PostInfoPage from "./pages/PostInfoPage";
-import Community from "./pages/Community/PostMapPage";
+// import Community from "./pages/Community/PostMapPage";
 import CommunityInfoPage from "./pages/CommunityPost/PostInfoPage";
 import CommunityPage from "./pages/CommunityPost/PostPage";
 
@@ -41,7 +41,7 @@ const App = () => {
           path="/communityInfoPage/:communityId"
           element={<CommunityInfoPage />}
         />
-        <Route path="/Community" element={<Community />} />
+        {/* <Route path="/Community" element={<Community />} /> */}
         <Route path="/CommunityPage" element={<CommunityPage />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>
