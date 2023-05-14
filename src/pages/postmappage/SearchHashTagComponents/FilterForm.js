@@ -3,7 +3,31 @@ import { Button, Form, Select,} from "antd";
 import { Slider } from "antd";
 import "../../../style/RegisterPage0.css";
 
-const marks = {
+const flatMarks = {
+  0: {
+    style: {
+      color: "#f50",
+    },
+    label: <strong>0평</strong>,
+  },
+  10: "10평",
+  20: "20평",
+  30: "30평",
+  40: "40평",
+  50: "50평",
+  60: "60평",
+  70: "70평",
+  80: "80평",
+  90: "90평",
+  100: {
+    style: {
+      color: "#f50",
+    },
+    label: <strong>100평</strong>,
+  },
+};
+
+const rentMarks = {
   0: {
     style: {
       color: "#f50",
@@ -19,7 +43,6 @@ const marks = {
   70: "70만원",
   80: "80만원",
   90: "90만원",
-  100: "100만원",
   100: {
     style: {
       color: "#f50",
@@ -28,7 +51,7 @@ const marks = {
   },
 };
 
-const mark2 = {
+const ageMarks = {
   0: {
     style: {
       color: "#f50",
@@ -44,12 +67,11 @@ const mark2 = {
   70: "70대",
   80: "80대",
   90: "90대",
-  100: "100대",
   100: {
     style: {
       color: "#f50",
     },
-    label: <strong>100만원</strong>,
+    label: <strong>100대</strong>,
   },
 };
 
@@ -57,13 +79,13 @@ const FilterForm = ({
   ModalClose,
   fetchFilterCardPostData
 }) => {
-  const [gender, setGender] = useState("");
-  const [roomCount, setRoomCount] = useState("");
-  const [homeType, setHomeType] = useState("");
-  const [ageRange, setAgeRange] = useState([]);
-  const [flatRange, setFlatRange] = useState([]);
-  const [rentRange, setRentRange] = useState([]);
-  const [likeHashtags, setLikeHashtags] = useState([]);
+  const [gender, setGender] = useState("nocare");
+  const [roomCount, setRoomCount] = useState(0);
+  const [homeType, setHomeType] = useState("nocare");
+  const [ageRange, setAgeRange] = useState([0, 100]);
+  const [flatRange, setFlatRange] = useState([0, 100]);
+  const [rentRange, setRentRange] = useState([0, 100]);
+  const [likeHashtags, setLikeHashtags] = useState(null);
   console.log('===========================');
   console.log('gender', gender);
   console.log('roomCount', roomCount);
@@ -123,13 +145,13 @@ const FilterForm = ({
           </Select>
         </Form.Item>
         <Form.Item label="평수">
-          <Slider range marks={marks} defaultValue={[0, 10]} onChange={(value) => { setFlatRange(value)}}/>
+          <Slider range marks={flatMarks} onChange={(value) => { setFlatRange(value)}}/>
         </Form.Item>
         <Form.Item label="월세">
-          <Slider range marks={marks} defaultValue={[26, 37]} onChange={(value) => { setRentRange(value);}}/>{" "}
+          <Slider range marks={rentMarks} onChange={(value) => { setRentRange(value);}}/>{" "}
         </Form.Item>
         <Form.Item label="나이">
-          <Slider range marks={mark2} defaultValue={[26, 37]} onChange={(value) => { setAgeRange(value);}} />{" "}
+          <Slider range marks={ageMarks} onChange={(value) => { setAgeRange(value);}} />{" "}
         </Form.Item>
         <div>
           <div className="titleWrap2">

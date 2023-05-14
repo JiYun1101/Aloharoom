@@ -37,7 +37,6 @@ const PostMapContent = () => {
   const [swLon, setSWLon] = useState("");
   const [neLat, setNELat] = useState("");
   const [neLon, setNELon] = useState("");
-
   async function fetchCardPostData() {
         await axios
         .get(`${baseURL}/api/board`, {

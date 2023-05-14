@@ -8,7 +8,6 @@ import GuaranteeSection from "./newpostcontentinfocomponents/GuaranteeSection";
 import HouseHashTagButtonSection from "./newpostcontentinfocomponents/HouseHashTagButtonSection";
 import MyHashTagButtonSection from "./newpostcontentinfocomponents/MyHashTagButtonSection";
 import SecondSection from "./newpostcontentinfocomponents/SecondSection";
-import { useState } from "react";
 
 const NewPostContentInfoDiv = styled.div`
   border-style: solid;
@@ -95,7 +94,7 @@ const NewPostContentInfoSection = ({
           if (status === window.kakao.maps.services.Status.OK) {
             setX(data[0].y.toString());
             setY(data[0].x.toString());
-            setTitle(data[0].road_address_name.toString());
+            setAddress(data[0].road_address_name.toString());
             setAddressData(data[0]);
           }
           else {
