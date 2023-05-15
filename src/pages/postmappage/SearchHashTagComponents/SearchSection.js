@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NotificationModal2 from "./NotificationModal2";
 import { IoFilterOutline } from "react-icons/io5";
 import { Input } from "antd";
+import axios from "axios";
+import baseURL from "../../api/baseURL";
 const { Search } = Input;
 
 const SearchSectionContainer = styled.div`
@@ -25,6 +27,19 @@ const SearchSection = ({
   fetchFilterCardPostData
 }) => {
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
+  const [myLikeHashtags, setMyLikeHashtags] = useState([]);
+  const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
+  async function fetchHashtag() {
+    await axios.get(`${baseURL}/api/home`,{
+      withCredentials:true
+    })
+    .then((response) => { 
+      console.log('fetchHashtag', response.data);
+      setMyLikeHashtags(response.data.likeHashtags);
+      setMyLikeHomeHashtags(response.data.likeHomeHashtags);
+    })
+    .catch((error) => { console.log(`axios fetchHashtag error`)})
+  }
   const ModalOpen = () => {
     setNotifyModalOpen(true);
   };
@@ -37,6 +52,12 @@ const SearchSection = ({
     setSearchStr(value);
   }
 
+  useEffect(() => {
+    if(localStorage.getItem('userId')) {
+      fetchHashtag();  
+    }
+  }, []);
+
   return (
     <SearchSectionContainer>
       {" "}
@@ -45,6 +66,8 @@ const SearchSection = ({
           ModalClose={ModalClose}
           fetchCardPostData={fetchCardPostData}
           fetchFilterCardPostData={fetchFilterCardPostData}
+          myLikeHashtags={myLikeHashtags}
+          myLikeHomeHashtags={myLikeHomeHashtags}
           /> 
         : 
         <></>

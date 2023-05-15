@@ -4,8 +4,6 @@ import { Slider } from "antd";
 import ModalFlexDiv from "../../modal/modalcomponents/ModalFlexDiv";
 import "../../../style/RegisterPage0.css";
 import HoverHashTagButton from "../../HoverHashTagButton";
-import axios from "axios";
-import baseURL from "../../api/baseURL";
 import { useEffect } from "react";
 
 
@@ -83,7 +81,9 @@ const ageMarks = {
 
 const FilterForm = ({ 
   ModalClose,
-  fetchFilterCardPostData
+  fetchFilterCardPostData,
+  myLikeHashtags,
+  myLikeHomeHashtags
 }) => {
   const [gender, setGender] = useState("nocare");
   const [roomCount, setRoomCount] = useState(0);
@@ -93,8 +93,8 @@ const FilterForm = ({
   const [rentRange, setRentRange] = useState([0, 100]);
   const [likeHashtags, setLikeHashtags] = useState([]);
   const [likeHomeHashtags, setLikeHomeHashtags] = useState([]);
-  const [myLikeHashtags, setMyLikeHashtags] = useState([]);
-  const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
+  // const [myLikeHashtags, setMyLikeHashtags] = useState([]);
+  // const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
   console.log('===========================');
   console.log('gender', gender);
   console.log('roomCount', roomCount);
@@ -107,23 +107,11 @@ const FilterForm = ({
   console.log('')
   console.log('===========================');
 
-  async function fetchHashtag() {
-    await axios.get(`${baseURL}/api/home`,{
-      withCredentials:true
-    })
-    .then((response) => { 
-      console.log('fetchHashtag', response.data);
-      setMyLikeHashtags(response.data.likeHashtags);
-      setMyLikeHomeHashtags(response.data.likeHomeHashtags);
-    })
-    .catch((error) => { console.log(`axios fetchHashtag error`)})
-  }
-
   const handleLikeHashTagClick = (index) => {
     if (likeHashtags.includes(index)) {
       setLikeHashtags(  likeHashtags.filter((i) => i !== index));
     } else {
-      setLikeHashtags([...setLikeHashtags, index]);
+      setLikeHashtags([...likeHashtags, index]);
     }
   };
   const handleLikeHomeHashtagClick = (index) => {
@@ -133,12 +121,6 @@ const FilterForm = ({
       setLikeHomeHashtags([...likeHomeHashtags, index]);
     }
   };
-
-  useEffect(() => {
-    if(localStorage.getItem('userId')) {
-      fetchHashtag();  
-    }
-  }, []);
 
   return (
     <>

@@ -105,7 +105,9 @@ const FilterForm2 = styled.div`
 const NotificationModal2 = ({ 
   ModalClose,
   fetchCardPostData,
-  fetchFilterCardPostData
+  fetchFilterCardPostData,
+  myLikeHashtags,
+  myLikeHomeHashtags
 }) => {
   return (
     <NotificationModalDiv2>
@@ -146,6 +148,8 @@ const NotificationModal2 = ({
           <FilterForm
             ModalClose={ModalClose}
             fetchFilterCardPostData={fetchFilterCardPostData}
+            myLikeHashtags={myLikeHashtags}
+            myLikeHomeHashtags={myLikeHomeHashtags}
           />
         </FilterForm2>
       </FilterFormDiv>
