@@ -6,7 +6,7 @@ const HoverHashTagButton = styled.button`
     font-size: 1rem;
     border-width: 0.1rem;
     border-style: solid;
-    border-radius: 0.3rem;
+    border-radius: 1rem;
     background-color: white;
     border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
     color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
