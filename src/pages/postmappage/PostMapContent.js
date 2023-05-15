@@ -71,6 +71,7 @@ const PostMapContent = () => {
                 flatRange: JSON.parse(localStorage.getItem('flatRange')).join(),
                 rentRange: JSON.parse(localStorage.getItem('rentRange')).join(),
                 likeHashtags: JSON.parse(localStorage.getItem('likeHashtags')).join(),
+                likeHomeHashtags: JSON.parse(localStorage.getItem('likeHomeHashtags')).join(),
             }
         })
         .then((response) => { 

@@ -24,7 +24,6 @@ const NewPostContentSection = ({
     setAddressData
 }) => {
     const navigate = useNavigate();
-    //입주 가능 날짜
     const [contents, setContents] = useState("");
     const [openChatUrl, setOpenChatUrl] = useState("");
     const [roomCount, setRoomCount] = useState("");

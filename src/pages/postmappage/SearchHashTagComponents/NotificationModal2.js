@@ -121,6 +121,7 @@ const NotificationModal2 = ({
               localStorage.removeItem('flatRange');
               localStorage.removeItem('rentRange');
               localStorage.removeItem('likeHashtags');
+              localStorage.removeItem('likeHomeHashtags');
               localStorage.setItem('pressFilterButton', 0);
               fetchCardPostData();
               ModalClose();

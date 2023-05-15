@@ -92,9 +92,9 @@ const FilterForm = ({
   const [flatRange, setFlatRange] = useState([0, 100]);
   const [rentRange, setRentRange] = useState([0, 100]);
   const [likeHashtags, setLikeHashtags] = useState([]);
-  const [selectedHouseHashTagButtons, setSelectedHouseHashTagButtons] = useState([]);
-  const [selectedMyHashTagButtons, setSelectedMyHashTagButtons] = useState([]);
-  const mockArr = [`활발한`, `조용한`, `시끄러운`, '헬창', `배달의 민족`]
+  const [likeHomeHashtags, setLikeHomeHashtags] = useState([]);
+  const [myLikeHashtags, setMyLikeHashtags] = useState([]);
+  const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
   console.log('===========================');
   console.log('gender', gender);
   console.log('roomCount', roomCount);
@@ -103,32 +103,34 @@ const FilterForm = ({
   console.log('flatRange', flatRange);
   console.log('rentRange', rentRange);
   console.log('likeHashtags', likeHashtags);
+  console.log('likeHomeHashtags', likeHomeHashtags);
+  console.log('')
   console.log('===========================');
 
   async function fetchHashtag() {
     await axios.get(`${baseURL}/api/home`,{
       withCredentials:true
     })
-    .then((response) => { console.log('fetchHashtag', response.data);})
+    .then((response) => { 
+      console.log('fetchHashtag', response.data);
+      setMyLikeHashtags(response.data.likeHashtags);
+      setMyLikeHomeHashtags(response.data.likeHomeHashtags);
+    })
     .catch((error) => { console.log(`axios fetchHashtag error`)})
   }
 
-  const handleHouseHashTagButtonClick = (index) => {
-    if (selectedHouseHashTagButtons.includes(index)) {
-      setSelectedHouseHashTagButtons(
-        selectedHouseHashTagButtons.filter((i) => i !== index)
-      );
+  const handleLikeHashTagClick = (index) => {
+    if (likeHashtags.includes(index)) {
+      setLikeHashtags(  likeHashtags.filter((i) => i !== index));
     } else {
-      setSelectedHouseHashTagButtons([...selectedHouseHashTagButtons, index]);
+      setLikeHashtags([...setLikeHashtags, index]);
     }
   };
-  const handleMyHashTagButtonClick = (index) => {
-    if (selectedMyHashTagButtons.includes(index)) {
-      setSelectedMyHashTagButtons(
-      selectedMyHashTagButtons.filter((i) => i !== index)
-      );
+  const handleLikeHomeHashtagClick = (index) => {
+    if (likeHomeHashtags.includes(index)) {
+      setLikeHomeHashtags(likeHomeHashtags.filter((i) => i !== index));
     } else {
-      setSelectedMyHashTagButtons([...selectedMyHashTagButtons, index]);
+      setLikeHomeHashtags([...likeHomeHashtags, index]);
     }
   };
 
@@ -169,7 +171,7 @@ const FilterForm = ({
           wrapperCol={{ span: 12 }}
         >
           <Select style={{ fontSize: "4rem" }} onChange={(value) => {setHomeType(value);}}>
-            <Select.Option value="officetels">오피스텔</Select.Option>
+            <Select.Option value="officetel">오피스텔</Select.Option>
             <Select.Option value="apartment">아파트</Select.Option>
             <Select.Option value="house">주택</Select.Option>
           </Select>
@@ -195,10 +197,11 @@ const FilterForm = ({
             flexWrap="wrap"
             gap="0.5rem"
           >
-            {mockArr.map((data, idx) => (
+            {myLikeHashtags.map((data, idx) => (
               <HoverHashTagButton
-                selected={selectedHouseHashTagButtons.includes(data)}
-                onClick={() => handleHouseHashTagButtonClick(data)}
+                key={idx}
+                selected={likeHashtags.includes(data)}
+                onClick={() => handleLikeHashTagClick(data)}
               >
                 {data}
               </HoverHashTagButton>  
@@ -215,10 +218,11 @@ const FilterForm = ({
             flexWrap="wrap"
             gap="0.5rem"
           >
-            {mockArr.map((data, idx) => (
+            {myLikeHomeHashtags.map((data, idx) => (
               <HoverHashTagButton
-                selected={selectedMyHashTagButtons.includes(data)}
-                onClick={() => handleMyHashTagButtonClick(data)}
+                key={idx}
+                selected={likeHomeHashtags.includes(data)}
+                onClick={() => handleLikeHomeHashtagClick(data)}
               >
                 {data}
               </HoverHashTagButton>  
@@ -239,6 +243,7 @@ const FilterForm = ({
               localStorage.setItem('flatRange', JSON.stringify(flatRange));
               localStorage.setItem('rentRange', JSON.stringify(rentRange));
               localStorage.setItem('likeHashtags', JSON.stringify(likeHashtags));
+              localStorage.setItem('likeHomeHashtags', JSON.stringify(likeHomeHashtags));
               fetchFilterCardPostData();
               ModalClose();
             }}
