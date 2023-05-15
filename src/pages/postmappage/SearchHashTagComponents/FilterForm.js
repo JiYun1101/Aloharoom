@@ -4,6 +4,9 @@ import { Slider } from "antd";
 import ModalFlexDiv from "../../modal/modalcomponents/ModalFlexDiv";
 import "../../../style/RegisterPage0.css";
 import HoverHashTagButton from "../../HoverHashTagButton";
+import axios from "axios";
+import baseURL from "../../api/baseURL";
+import { useEffect } from "react";
 
 
 const flatMarks = {
@@ -101,6 +104,15 @@ const FilterForm = ({
   console.log('rentRange', rentRange);
   console.log('likeHashtags', likeHashtags);
   console.log('===========================');
+
+  async function fetchHashtag() {
+    await axios.get(`${baseURL}/api/home`,{
+      withCredentials:true
+    })
+    .then((response) => { console.log('fetchHashtag', response.data);})
+    .catch((error) => { console.log(`axios fetchHashtag error`)})
+  }
+
   const handleHouseHashTagButtonClick = (index) => {
     if (selectedHouseHashTagButtons.includes(index)) {
       setSelectedHouseHashTagButtons(
@@ -119,6 +131,12 @@ const FilterForm = ({
       setSelectedMyHashTagButtons([...selectedMyHashTagButtons, index]);
     }
   };
+
+  useEffect(() => {
+    if(localStorage.getItem('userId')) {
+      fetchHashtag();  
+    }
+  }, []);
 
   return (
     <>
@@ -166,62 +184,47 @@ const FilterForm = ({
           <Slider range marks={ageMarks} onChange={(value) => { setAgeRange(value);}} />{" "}
         </Form.Item>
       </Form>
-      <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
-        집 해시태그
-      </ModalFlexDiv>
-      <ModalFlexDiv 
-        width="100%" 
-        height="auto"
-        marginBottom="1rem"
-        flexDirection="row"
-        flexWrap="wrap"
-        gap="0.5rem"
-      >
-        {mockArr.map((data, idx) => (
-          <HoverHashTagButton
-            selected={selectedHouseHashTagButtons.includes(data)}
-            onClick={() => handleHouseHashTagButtonClick(data)}
+          <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
+            집 해시태그
+          </ModalFlexDiv>
+          <ModalFlexDiv 
+            width="100%" 
+            height="auto"
+            marginBottom="1rem"
+            flexDirection="row"
+            flexWrap="wrap"
+            gap="0.5rem"
           >
-            {data}
-          </HoverHashTagButton>  
-        ))}
-      </ModalFlexDiv>
-      <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
-        사람 해시태그
-      </ModalFlexDiv>
-      <ModalFlexDiv 
-        width="100%" 
-        height="auto"
-        marginBottom="1rem"
-        flexDirection="row"
-        flexWrap="wrap"
-        gap="0.5rem"
-      >
-        {mockArr.map((data, idx) => (
-          <HoverHashTagButton
-            selected={selectedMyHashTagButtons.includes(data)}
-            onClick={() => handleMyHashTagButtonClick(data)}
+            {mockArr.map((data, idx) => (
+              <HoverHashTagButton
+                selected={selectedHouseHashTagButtons.includes(data)}
+                onClick={() => handleHouseHashTagButtonClick(data)}
+              >
+                {data}
+              </HoverHashTagButton>  
+            ))}
+          </ModalFlexDiv>
+          <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
+            사람 해시태그
+          </ModalFlexDiv>
+          <ModalFlexDiv 
+            width="100%" 
+            height="auto"
+            marginBottom="1rem"
+            flexDirection="row"
+            flexWrap="wrap"
+            gap="0.5rem"
           >
-            {data}
-          </HoverHashTagButton>  
-        ))}
-        {mockArr.map((data, idx) => (
-          <HoverHashTagButton
-            selected={selectedMyHashTagButtons.includes(data)}
-            onClick={() => handleMyHashTagButtonClick(data)}
-          >
-            {data}
-          </HoverHashTagButton>  
-        ))}
-        {mockArr.map((data, idx) => (
-          <HoverHashTagButton
-            selected={selectedMyHashTagButtons.includes(data)}
-            onClick={() => handleMyHashTagButtonClick(data)}
-          >
-            {data}
-          </HoverHashTagButton>  
-        ))}
-      </ModalFlexDiv>
+            {mockArr.map((data, idx) => (
+              <HoverHashTagButton
+                selected={selectedMyHashTagButtons.includes(data)}
+                onClick={() => handleMyHashTagButtonClick(data)}
+              >
+                {data}
+              </HoverHashTagButton>  
+            ))}
+          </ModalFlexDiv>
+        
         <Button
             type="primary"
             htmlType="submit"
