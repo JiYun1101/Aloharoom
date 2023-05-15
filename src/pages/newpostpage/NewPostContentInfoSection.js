@@ -72,6 +72,8 @@ const NewPostContentInfoSection = ({
     floor,
     totalFloor,
     ageRange,
+    openChatUrl,
+    setOpenChatUrl,
     setAddress,
     setStartDate,
     setX,
@@ -86,7 +88,6 @@ const NewPostContentInfoSection = ({
     setRent,
     setFloor,
     setTotalFloor,
-    setTitle,
     setAgeRange,
     setAddressData,
     showAddressInfoModal
@@ -197,9 +198,14 @@ const NewPostContentInfoSection = ({
                           setTradeType={setTradeType}
                           setMaintenance={setMaintenance}
                         />
+                        <TitleDiv height="1rem" marginTop="1.5rem">
+                            <TitleSpan fontSize="1rem" lineHeight="2rem">카카오톡 오픈채팅 링크</TitleSpan>
+                        </TitleDiv> 
                         <GuaranteeSection 
                           deposit={deposit}
+                          openChatUrl={openChatUrl}
                           setDeposit={setDeposit} 
+                          setOpenChatUrl={setOpenChatUrl}
                         />
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" marginRight="2rem">집 해시태그</TitleSpan>

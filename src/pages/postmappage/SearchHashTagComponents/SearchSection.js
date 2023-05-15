@@ -49,7 +49,7 @@ const SearchSection = ({
         : 
         <></>
       }
-      <IoFilterOutline size={30} style={FilterIconStyle} onClick={ModalOpen} />
+      {localStorage.getItem('userId') ? <IoFilterOutline size={30} style={FilterIconStyle} onClick={ModalOpen} /> : <></>}
       <Search
         placeholder="지명을 입력하세요"
         size="large"
@@ -57,6 +57,7 @@ const SearchSection = ({
         onSearch={onSearch}
         style={{
           width: 300,
+          marginRight: "0.7rem"
         }}
       />
     </SearchSectionContainer>

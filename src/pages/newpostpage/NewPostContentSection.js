@@ -25,9 +25,8 @@ const NewPostContentSection = ({
 }) => {
     const navigate = useNavigate();
     //입주 가능 날짜
-    const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
-    const [count] = useState("");
+    const [openChatUrl, setOpenChatUrl] = useState("");
     const [roomCount, setRoomCount] = useState("");
     const [address, setAddress] = useState("");
     const [homeType, setHomeType] = useState("");
@@ -44,7 +43,6 @@ const NewPostContentSection = ({
     const [y, setY] = useState(null);
     const [ageRange, setAgeRange] = useState([20, 25]);
     const [imgFiles, setImgFiles] = useState([]);
-
     const [previewImages, setPreviewImages] = useState([]);
 
     const updateID = useParams().id;
@@ -82,7 +80,6 @@ const NewPostContentSection = ({
     }
 
     console.log("==============================");
-    console.log("title ", title);
     console.log("contents ", contents);
     console.log("roomCount ", roomCount);
     console.log("address ", address);
@@ -104,9 +101,7 @@ const NewPostContentSection = ({
 
     const modifyPost = () => {
         const data = {
-            "title": title,
             "contents": contents,
-            "count": count,
             "roomCount": roomCount,
             "address": address,
             "homeType": homeType,
@@ -146,9 +141,8 @@ const NewPostContentSection = ({
 
     const PostInfoSubmit = () => {
         const data = {
-            "title": title,
             "contents": contents,
-            "count": count,
+            "openChatUrl": openChatUrl,
             "roomCount": roomCount,
             "address": address,
             "homeType": homeType,
@@ -218,6 +212,8 @@ const NewPostContentSection = ({
                         floor={floor}
                         totalFloor={totalFloor}
                         ageRange={ageRange}
+                        openChatUrl={openChatUrl}
+                        setOpenChatUrl={setOpenChatUrl}
                         setAddress={setAddress}
                         setStartDate={setStartDate}
                         setX={setX}
@@ -232,7 +228,6 @@ const NewPostContentSection = ({
                         setRent={setRent}
                         setFloor={setFloor}
                         setTotalFloor={setTotalFloor}
-                        setTitle={setTitle}
                         setAgeRange={setAgeRange}
                         setAddressData={setAddressData}
                         showAddressInfoModal={showAddressInfoModal}

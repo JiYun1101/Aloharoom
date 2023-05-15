@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import styled from 'styled-components';
+import { Input } from 'antd';
 
 const GuaranteeContainer = styled.div`
     margin-top: 1.5rem;
@@ -37,7 +38,9 @@ const GuaranteeInputText = styled.input`
 
 const GuaranteeSection = ({ 
     deposit, 
-    setDeposit 
+    openChatUrl,
+    setDeposit,
+    setOpenChatUrl
 }) => {
     const [depositChecked, setDepositChecked] = useState(false);
     const handleDepositCheckboxChange = () => {
@@ -45,7 +48,14 @@ const GuaranteeSection = ({
     };
     return (
         <GuaranteeContainer>
-            <GuaranteeBox width="50%"/>
+            <GuaranteeBox width="50%">
+                <Input 
+                    size='large'
+                    style={{ width: "17vw"}}
+                    value={openChatUrl}
+                    onChange={(e) => {setOpenChatUrl(e.target.value);}}
+                />
+            </GuaranteeBox>
             <GuaranteeBox width="50%">
                 <GuaranteePriceCheckbox type="checkbox" checked={deposit !== "" ? true : depositChecked} onChange={handleDepositCheckboxChange}/>
                 <GuaranteeSpan>보증금 별도</GuaranteeSpan>

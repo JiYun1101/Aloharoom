@@ -354,9 +354,6 @@ const PostInfoPage = () => {
                     borderBottom="solid 0.1rem #bbbbbb"
                 >
                     { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                    { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                    { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                    { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="auto" marginTop="1rem">
                     <PostInfoSpan fontSize="1.5rem">작성자 거주지 성향</PostInfoSpan>
@@ -371,9 +368,6 @@ const PostInfoPage = () => {
                     gap="0.5rem" 
                     borderBottom="solid 0.1rem #bbbbbb"
                 >
-                    { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                    { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                    { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                     { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="3rem" marginTop="1rem">
