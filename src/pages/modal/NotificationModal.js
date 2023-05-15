@@ -66,19 +66,19 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                         <ModalFlexDiv 
                             key={index} 
                             width="98%" 
-                            height="5rem" 
+                            height="6rem" 
                             flexDirection="row" 
                             borderBottom={`1px solid ${!data.isCheck ? `black`: `#a0a0a0`}`}
                         >
                             <ModalFlexDiv
                                 width="20%"
                                 height="100%"
-                                alignItems="center"
+                                marginTop="0.5rem"
                                 justifyContent="center"
                             >
                                 <ModalProfileImg 
-                                    width="4rem"
-                                    height="4rem" 
+                                    width="3.5rem"
+                                    height="3.5rem" 
                                     borderRadius="8rem" 
                                     src={data.profileUrl}
                                 />
@@ -88,15 +88,21 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                 height="100%"
                                 flexDirection="column"
                             >
-                                <ModalDiv width="100%" height="60%">
+                                <ModalDiv width="100%" height="25%">
+                                    <ModalSpan color="black" fontWeight="600">
+                                        {data.flag === 0 ? `[방]` : `[커뮤니티]`}
+                                    </ModalSpan>
+                                </ModalDiv>
+                                <ModalDiv width="100%" height="50%">
                                     <ModalSpan 
                                         color={!data.isCheck ? `black`: `#a0a0a0`}
                                         fontWeight={!data.isCheck && `600`}
                                     >
-                                        {data.flag === 0 ? `방 보기 페이지 ${data.content}` : `커뮤니티 페이지 ${data.content}`}
+                                        {/* {data.flag === 0 ? `방 보기 페이지 ${data.content}` : `커뮤니티 페이지 ${data.content}`} */}
+                                        {data.content}
                                     </ModalSpan>
                                 </ModalDiv>
-                                <ModalFlexDiv width="100%" height="40%" flexDirection="row-reverse" alignItems="center">
+                                <ModalFlexDiv width="100%" height="25%" flexDirection="row-reverse" alignItems="center">
                                     <ModalSpan 
                                         marginRight="0.5rem"
                                         color={!data.isCheck ? `black`: `#a0a0a0`}
