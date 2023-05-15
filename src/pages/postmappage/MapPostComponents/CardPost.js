@@ -12,6 +12,7 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border-color: #a0a0a0;
   &:hover {
     border-color: #47a5fd;
   }
@@ -28,10 +29,10 @@ const RoomTypeButton = styled.button`
   background-color: white;
   width: 4.5rem;
   height: 1.5rem;
-  color: #bbbbbb;
+  color: #47a5fd;
   font-weight: 500;
   font-size: 0.8rem;
-  border: 2px solid #bbbbbb;
+  border: 2px solid #47a5fd;
   border-radius: 0.5rem;
 `;
 
@@ -42,7 +43,7 @@ const MoveInDateDiv = styled.div`
 
 const MoveInDateSpan = styled.span`
   font-size: 0.8rem;
-  color: #bbbbbb;
+  color: black;
   line-height: 2rem;
 `;
 
@@ -102,7 +103,7 @@ const ProfileImg = styled.img`
 
 const ProfileSpan = styled.span`
   margin-left: 0.5rem;
-  color: #47a5fd;
+  color: black;
   font-size: 0.9rem;
 `;
 
