@@ -73,6 +73,10 @@ const LinkToIconStyle = {
     color: "black",
 };
 
+const PostInfoContentstyles = {
+    whiteSpace: "pre-line"
+};
+
 const PostInfoPage = () => {
     const boardId = useParams().id;
     const navigate = useNavigate();
@@ -239,10 +243,6 @@ const PostInfoPage = () => {
     useEffect(() => {
         FetchPostInfoData();
         FetchBoardComment();
-        if (postInfoContentSpanRef.current) {
-            const span = postInfoContentSpanRef.current;
-            span.innerHTML  = span.innerHTML.replace(/\n/g, "<br>");
-        }
     }, []);
 
     return (
@@ -458,7 +458,7 @@ const PostInfoPage = () => {
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="auto" marginTop="1rem">
-                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500">
+                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500" style={PostInfoContentstyles}>
                         {contents}
                     </PostInfoSpan>
                 </PostInfoDiv>
