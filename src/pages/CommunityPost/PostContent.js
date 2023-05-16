@@ -69,6 +69,7 @@ const NewPostIconStyle = {
 
 const PostContent = () => {
   const [code, setCode] = useState(1); // 코드 초기값을 null로 변경
+  const [isCardPostsVisible, setIsCardPostsVisible] = useState(true); // CardPosts의 가시성 상태 추가
 
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("horizontal");
@@ -97,9 +98,12 @@ const PostContent = () => {
       : null;
 
   const handleAvatarClick = (code) => {
-    // handleAvatarClick 함수 추가
     setCode(code);
     console.log(code);
+  };
+
+  const handleNavigation = () => {
+    setIsCardPostsVisible(false); // navigation 이벤트가 발생하면 CardPosts를 가려줍니다.
   };
 
   return (
@@ -138,31 +142,33 @@ const PostContent = () => {
       <CategoryNum>
         <Space>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Link to={{ pathname: "/community", search: "?code=1" }}>
-              <Avatar
-                src="https://xsgames.co/randomusers/avatar.php?g=pixel"
-                onClick={() => handleAvatarClick(1)}
-              />
-              <div>User 1</div>
-            </Link>
-            <Link to={{ pathname: "/community", search: "?code=2" }}>
+            <Link
+              to={{ pathname: "/community", search: "?code=1" }}
+              onClick={() => {
+                handleNavigation();
+                setIsCardPostsVisible(true);
+              }} // navigation 이벤트 핸들러 추가 및 CardPosts 가시성 상태 변경
+            >
               <Avatar
                 style={{
                   backgroundColor: "#f56a00",
                 }}
-                onClick={() => handleAvatarClick(2)} // onClick 이벤트 추가
+                onClick={() => handleAvatarClick(2)}
               >
                 K
               </Avatar>
               <div>User 2</div>
             </Link>
-            <Link to={{ pathname: "/community", search: "?code=3" }}>
+            <Link
+              to={{ pathname: "/community", search: "?code=3" }}
+              onClick={handleNavigation} // navigation 이벤트 핸들러 추가
+            >
               <Avatar
                 style={{
                   backgroundColor: "#87d068",
                 }}
                 icon={<UserOutlined />}
-                onClick={() => handleAvatarClick(3)} // onClick 이벤트 추가
+                onClick={() => handleAvatarClick(3)}
               />
               <div>User 3</div>
             </Link>

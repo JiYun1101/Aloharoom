@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import NewPostContentWritingSection2 from "./NewPostContentWritingSection2";
+// import PostCodeSection from "../newpostpage/newpostcontentwritingcomponents/PostCodeSection";
 
 const NewPostContentDiv = styled.div`
   height: 100%;
@@ -17,6 +19,7 @@ const NewPostContentWritingContainer2 = styled.div`
 `;
 
 const NewCommunityPostContentSection2 = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [imgFiles, setImgFiles] = useState([]);
@@ -31,12 +34,9 @@ const NewCommunityPostContentSection2 = () => {
 
   const PostInfoSubmit = () => {
     const data = {
-      boardAddDto: {
-        title: title,
-        contents: contents,
-        code: code,
-      },
-      imgFiles: imgFiles,
+      title: title,
+      contents: contents,
+      code: code,
     };
 
     const jsonData = JSON.stringify(data);
@@ -56,14 +56,17 @@ const NewCommunityPostContentSection2 = () => {
       .then((response) => {
         if (response.status === 200) {
           console.log("HTTP Status: 200");
+          navigate(`../CommunityPage`); // Navigate to CommunityPage after successful post creation
         } else {
           console.log("HTTP Status: ", response.status);
         }
+        navigate(`../CommunityPage`);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   return (
     <NewPostContentDiv>
       <NewPostContentWritingContainer2>
@@ -75,6 +78,7 @@ const NewCommunityPostContentSection2 = () => {
           PostInfoSubmit={PostInfoSubmit}
         />
       </NewPostContentWritingContainer2>
+      {/* <PostCodeSection handleSubmit={PostInfoSubmit} setCode={setCode} /> */}
     </NewPostContentDiv>
   );
 };
