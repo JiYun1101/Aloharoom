@@ -4,7 +4,7 @@ import HomeCategoryMenu from "./HomeCategoryMenu";
 import EventMarkerContainer from "./EventMarkerContainer";
 
 const kakaoMapStyle = {
-    width: "52%",
+    width: "80vw",
     height: "100%",
     zIndex: 0,
     position: "relative"
