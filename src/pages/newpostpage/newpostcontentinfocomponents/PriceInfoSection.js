@@ -69,7 +69,7 @@ const PriceInfoSection = ({
     const handleMaintenanceCheckboxChange = () => {
         setMaintenanceChecked(!maintenanceChecked);
     };
-        
+    
     return (
         <PriceInfoContainer>
           <PriceInfoBox width="50%" height="5vh">
@@ -87,7 +87,7 @@ const PriceInfoSection = ({
           </PriceInfoBox>
           <PriceInfoBox width="50%" height="5vh">
             <ManageMentPriceCheckbox type="checkbox" checked={maintenance !== "" ?  true : maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>
-            <PriceInfoSpan marginRight="2rem">관리비 별도</PriceInfoSpan>
+            <PriceInfoSpan marginRight="2vw">관리비 별도</PriceInfoSpan>
             <PriceInfoInput value={maintenance} width="7.5vw" height="3.5vh" type="text" disabled={maintenance !== "" ?  false : !maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
           </PriceInfoBox>
         </PriceInfoContainer>
