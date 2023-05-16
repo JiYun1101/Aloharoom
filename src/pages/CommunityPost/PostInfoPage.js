@@ -300,15 +300,24 @@ const PostInfoPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(
-        `http://localhost:8080/api/communityboard/${communityId}`,
-        { withCredentials: true }
-      );
-      setData(result.data);
-      console.log(result.data);
+      try {
+        const result = await axios.get(
+          `http://localhost:8080/api/communityboard/${communityId}`,
+          { withCredentials: true }
+        );
+        setData(result.data);
+        console.log(result.data);
+      } catch (error) {
+        if (error.response && error.response.status === 500) {
+          navigate("../Login");
+        } else {
+          console.log("DeletePostInfoData axios error", error);
+        }
+      }
     };
+
     fetchData();
-  }, [communityId, code]); // code를 의존성 배열에 추가
+  }, [communityId, code]);
 
   async function DeletePostInfoData() {
     try {

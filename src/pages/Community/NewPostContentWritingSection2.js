@@ -39,22 +39,28 @@ const NewPostContentImageArea = styled.div`
 
 const NewPostContentWritingSection2 = ({
   setTitle,
+  imgFiles,
   setContents,
+  setCode,
   setImgFiles,
   PostInfoSubmit,
 }) => {
   const [previewImages, setPreviewImages] = useState([]);
 
   const handleImageFilesInputChange = (e) => {
-    setImgFiles(e.target.files);
     const files = e.target.files;
+    setImgFiles((prevImgFiles) => [...prevImgFiles, ...files]);
+    console.log("imgFiles ", imgFiles);
     const images = [];
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
       reader.onload = () => {
         images.push(reader.result);
         if (images.length === files.length) {
-          setPreviewImages(images);
+          setPreviewImages((prevPreviewImages) => [
+            ...prevPreviewImages,
+            ...images,
+          ]);
         }
       };
       reader.readAsDataURL(files[i]);
@@ -63,7 +69,7 @@ const NewPostContentWritingSection2 = ({
 
   return (
     <NewPostContentWritingDiv>
-      <PostCodeSection />
+      <PostCodeSection setCode={setCode} />
       <NewPostContentWritingArea>
         <PostTitleSection setTitle={setTitle} />
         <PostContentSection setContents={setContents} />
