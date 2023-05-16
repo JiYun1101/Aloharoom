@@ -242,7 +242,7 @@ const PostInfoPage = () => {
             "groupId": groupId
         })
         .then((response) => {
-            window.location.reload();
+            FetchBoardComment();
         })
         .error((error) => {console.log('makeCommentRequest axios error')});
     }
