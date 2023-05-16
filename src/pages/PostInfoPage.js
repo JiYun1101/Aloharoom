@@ -68,6 +68,19 @@ const MatchingCompleteButton = styled.button`
     color: #47a5fd;
 `;
 
+const KakaoUrlSpan = styled.span`
+    text-decoration: underline;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    background-color: #bbbbbb;
+    opacity: 0.5;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+`;
+
+
 const LinkToIconStyle = {
     textDecoration: "none",
     color: "black",
@@ -99,7 +112,7 @@ const PostInfoPage = () => {
     const [nickname, setNickName] = useState('');
     const [preferAgeRange, setPreferAgeRange] = useState('');
     const [price, setPrice] = useState('');
-    const [product, setProduct] = useState([]);
+    const [openChatUrl, setOpenChatUrl] = useState('');
     const [profileImageUrl, setProfileImageUrl] = useState('');
     const [rent, setRent] = useState('');
     const [roomCount, setRoomCount] = useState('');
@@ -138,7 +151,7 @@ const PostInfoPage = () => {
                 setNickName(response.data.nickname);
                 setPreferAgeRange(response.data.preferAgeRange);
                 setPrice(response.data.price);
-                setProduct(response.data.product);
+                setOpenChatUrl(response.data.openChatUrl);
                 setProfileImageUrl(response.data.profileImgUrl);
                 setRent(response.data.rent);
                 setRoomCount(response.data.roomCount);
@@ -320,7 +333,7 @@ const PostInfoPage = () => {
                         }
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="4.5rem" flexDirections="row" borderBottom="solid 0.1rem #bbbbbb">
+                <PostInfoFlexDiv width="95%" minHeight="4.5rem" flexDirections="row">
                     <PostInfoFlexDiv width="20%" minHeight="100%" alignItems="center">
                         <UserProfileImg width="2rem" height="2rem" borderRadius="50rem" src={profileImageUrl}/>
                         <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{nickname}</PostInfoSpan>
@@ -340,6 +353,24 @@ const PostInfoPage = () => {
                         <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{preferAgeRange}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
+                {openChatUrl !== "" ? 
+                    <PostInfoFlexDiv width="95%" minHeight="auto" flexDirections="row" marginBottom="1rem">
+                        <a 
+                            href={openChatUrl}
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{
+                                textDecoration: "none",
+                                color: "initial"
+                            }}
+                        >
+                            <KakaoUrlSpan>카카오톡 오픈채팅</KakaoUrlSpan>
+                        </a>
+                    </PostInfoFlexDiv>
+                :
+                    <></>
+                }
+                <PostInfoFlexDiv width="95%" borderBottom="solid 0.1rem #bbbbbb"/>
                 <PostInfoDiv width="95%" height="auto" marginTop="1rem">
                     <PostInfoSpan fontSize="1.5rem">작성자 성향</PostInfoSpan>
                 </PostInfoDiv>
