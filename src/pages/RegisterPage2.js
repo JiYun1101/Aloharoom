@@ -66,74 +66,163 @@ const FirstContent = ({ onClick }) => {
 };
 
 const SecondContent = ({ onClick }) => {
-  const [clickedButton2, setClickedButton2] = useState(null);
+  const [tagPressed3, setTagPressed3] = useState([]);
 
-  const handleClick2 = (buttonName2) => {
-    setClickedButton2(buttonName2);
-    onClick(buttonName2);
-    console.log(buttonName2); // 새로 추가된 코드
+  const handleTagClick3 = (buttonName2) => {
+    if (tagPressed3.includes(buttonName2)) {
+      setTagPressed3((prevTags) =>
+        prevTags.filter((tag) => tag !== buttonName2)
+      );
+      onClick(null); // 값이 없어졌으므로 null 전달
+    } else {
+      setTagPressed3((prevTags) => [...prevTags, buttonName2]);
+      onClick(String(buttonName2)); // 문자열로 변환하여 전달
+    }
   };
 
   return (
     <div>
       <div className="titleWrap2">
-        집에는 어떤 가구가 필요하다고 생각하시나요?
+        선호하는 사람에 대한 해시태그를 골라주세요!
       </div>
-      <div style={{ display: "flex", marginTop: "2%", marginBottom: "-1.7%" }}>
-        <div class="flex-container wrap">
-          <Button
-            onClick={() => handleClick2("water_purifier")}
-            className={`button ${
-              clickedButton2 === "water_purifier" && "button-pressed"
+      {/* <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div> */}
+      <div className="tagWrap">
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "-5px", zIndex: 1 }}
+        >
+          <button
+            onClick={() => handleTagClick3("night")}
+            className={`tag-button ${
+              tagPressed3.includes("night") && "tag-button-pressed"
             }`}
           >
-            <img
-              src={water_purifierImg}
-              alt="water_purifier!"
-              className="button-img"
-            />
-            <div className="button-text">정수기</div>
-          </Button>
+            #야행성
+          </button>
+        </div>
 
-          <Button
-            onClick={() => handleClick2("air_conditioner")}
-            className={`button ${
-              clickedButton2 === "air_conditioner" && "button-pressed"
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "-30px", zIndex: 1 }}
+        >
+          <button
+            onClick={() => handleTagClick3("delivery")}
+            className={`tag-button ${
+              tagPressed3.includes("delivery") && "tag-button-pressed"
             }`}
           >
-            <img
-              src={air_conditionerImg}
-              alt="air_conditioner!"
-              className="button-img"
-            />
-            <div className="button-text">에어컨</div>
-          </Button>
+            #배달의 민족
+          </button>
+        </div>
 
-          <Button
-            onClick={() => handleClick2("microwave")}
-            className={`button ${
-              clickedButton2 === "microwave" && "button-pressed"
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "5px", zIndex: 1 }}
+        >
+          <button
+            onClick={() => handleTagClick3("morning")}
+            className={`tag-button ${
+              tagPressed3.includes("morning") && "tag-button-pressed"
             }`}
-            style={{ marginTop: "15px", marginBottom: "16%" }}
           >
-            <img src={microwaveImg} alt="microwave!" className="button-img" />
-            <div className="button-text">전자레인지</div>
-          </Button>
+            #아침형
+          </button>
+        </div>
 
-          <Button
-            onClick={() => handleClick2("washing_machine")}
-            className={`button ${
-              clickedButton2 === "washing_machine" && "button-pressed"
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "0px", marginTop: "-40px" }}
+        >
+          <button
+            onClick={() => handleTagClick3("in")}
+            className={`tag-button ${
+              tagPressed3.includes("in") && "tag-button-pressed"
             }`}
-            style={{ marginTop: "15px", marginBottom: "16%" }}
           >
-            <img
-              src={washing_machineImg}
-              alt="washing_machine!"
-              className="button-img"
-            />
-            <div className="button-text">세탁기</div>
-          </Button>
+            #집순/집돌이
+          </button>
+        </div>
+
+        <div
+          className="tag-button-wrap"
+          style={{ marginTop: "-40px", marginLeft: "-20px" }}
+        >
+          <button
+            onClick={() => handleTagClick3("out")}
+            className={`tag-button ${
+              tagPressed3.includes("out") && "tag-button-pressed"
+            }`}
+          >
+            #밖순/밖돌이
+          </button>
+        </div>
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "-15px",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick3("quiet")}
+            className={`tag-button ${
+              tagPressed3.includes("quiet") && "tag-button-pressed"
+            }`}
+          >
+            #조용한
+          </button>
+        </div>
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "5px",
+            marginBottom: "65%",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick3("qym")}
+            className={`tag-button ${
+              tagPressed3.includes("qym") && "tag-button-pressed"
+            }`}
+          >
+            #헬스 매니아
+          </button>
+        </div>
+
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "-25px",
+            marginBottom: "65%",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick3("nightWork")}
+            className={`tag-button ${
+              tagPressed3.includes("nightWork") && "tag-button-pressed"
+            }`}
+          >
+            #야간근무
+          </button>
+        </div>
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "-28px",
+            marginBottom: "65%",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick3("mbti-p")}
+            className={`tag-button ${
+              tagPressed3.includes("mbti-p") && "tag-button-pressed"
+            }`}
+          >
+            # P형
+          </button>
         </div>
       </div>
     </div>
@@ -141,10 +230,10 @@ const SecondContent = ({ onClick }) => {
 };
 
 const ThirdContent = ({ onClick }) => {
-  const [tagPressed, setTagPressed] = useState([]);
+  const [tagPressed3, setTagPressed] = useState([]);
 
   const handleTagClick = (buttonName3) => {
-    if (tagPressed.includes(buttonName3)) {
+    if (tagPressed3.includes(buttonName3)) {
       setTagPressed((prevTags) =>
         prevTags.filter((tag) => tag !== buttonName3)
       );
@@ -157,13 +246,16 @@ const ThirdContent = ({ onClick }) => {
 
   return (
     <div>
-      <div className="titleWrap2">그외에 어떤 것들을 중요하게 생각하나요?</div>
+      <div className="titleWrap2">
+        선호하는 사람에 대한 해시태그를 골라주세요!
+      </div>
+      {/* <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div> */}
       <div className="tagWrap">
         <div className="tag-button-wrap" style={{ zIndex: 1 }}>
           <button
-            onClick={() => handleTagClick("dust")}
+            onClick={() => handleTagClick("quiet")}
             className={`tag-button ${
-              tagPressed.includes("dust") && "tag-button-pressed"
+              tagPressed3.includes("quiet") && "tag-button-pressed"
             }`}
           >
             #층간소음이 없는
@@ -175,9 +267,9 @@ const ThirdContent = ({ onClick }) => {
           style={{ marginLeft: "-5px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick("cough")}
+            onClick={() => handleTagClick("subway")}
             className={`tag-button ${
-              tagPressed.includes("cough") && "tag-button-pressed"
+              tagPressed3.includes("subway") && "tag-button-pressed"
             }`}
           >
             #역세권
@@ -191,7 +283,7 @@ const ThirdContent = ({ onClick }) => {
           <button
             onClick={() => handleTagClick("quiet")}
             className={`tag-button ${
-              tagPressed.includes("quiet") && "tag-button-pressed"
+              tagPressed3.includes("quiet") && "tag-button-pressed"
             }`}
           >
             #조용한 주거환경
@@ -203,9 +295,9 @@ const ThirdContent = ({ onClick }) => {
           style={{ marginLeft: "-5px", marginTop: "-40px" }}
         >
           <button
-            onClick={() => handleTagClick("convenience")}
+            onClick={() => handleTagClick("smoking")}
             className={`tag-button ${
-              tagPressed.includes("convenience") && "tag-button-pressed"
+              tagPressed3.includes("smoking") && "tag-button-pressed"
             }`}
           >
             #비흡연자
@@ -217,9 +309,9 @@ const ThirdContent = ({ onClick }) => {
           style={{ marginTop: "-40px", marginLeft: "-25px" }}
         >
           <button
-            onClick={() => handleTagClick("calm")}
+            onClick={() => handleTagClick("convenience")}
             className={`tag-button ${
-              tagPressed.includes("calm") && "tag-button-pressed"
+              tagPressed3.includes("convenience") && "tag-button-pressed"
             }`}
           >
             #근처 편의점
@@ -235,7 +327,7 @@ const ThirdContent = ({ onClick }) => {
           <button
             onClick={() => handleTagClick("gym")}
             className={`tag-button ${
-              tagPressed.includes("gym") && "tag-button-pressed"
+              tagPressed3.includes("gym") && "tag-button-pressed"
             }`}
           >
             #주변 체육시설
@@ -252,7 +344,7 @@ const ThirdContent = ({ onClick }) => {
           <button
             onClick={() => handleTagClick("church")}
             className={`tag-button ${
-              tagPressed.includes("church") && "tag-button-pressed"
+              tagPressed3.includes("church") && "tag-button-pressed"
             }`}
           >
             #성당/교회
@@ -270,7 +362,7 @@ const ThirdContent = ({ onClick }) => {
           <button
             onClick={() => handleTagClick("car")}
             className={`tag-button ${
-              tagPressed.includes("car") && "tag-button-pressed"
+              tagPressed3.includes("car") && "tag-button-pressed"
             }`}
           >
             #주차공간 유무
@@ -287,7 +379,7 @@ const ThirdContent = ({ onClick }) => {
           <button
             onClick={() => handleTagClick("park")}
             className={`tag-button ${
-              tagPressed.includes("park") && "tag-button-pressed"
+              tagPressed3.includes("park") && "tag-button-pressed"
             }`}
           >
             #공원
@@ -299,73 +391,161 @@ const ThirdContent = ({ onClick }) => {
 };
 
 const FourthContent = ({ onClick }) => {
-  const [clickedButton4, setClickedButton4] = useState(null);
+  const [tagPressed4, setTagPressed4] = useState([]);
 
-  const handleClick4 = (buttonName4) => {
-    setClickedButton4(buttonName4);
-    onClick(buttonName4);
-    console.log(buttonName4); // 새로 추가된 코드
+  const handleTagClick4 = (buttonName4) => {
+    if (tagPressed4.includes(buttonName4)) {
+      setTagPressed4((prevTags) =>
+        prevTags.filter((tag) => tag !== buttonName4)
+      );
+      onClick(null); // 값이 없어졌으므로 null 전달
+    } else {
+      setTagPressed4((prevTags) => [...prevTags, buttonName4]);
+      onClick(String(buttonName4)); // 문자열로 변환하여 전달
+    }
   };
 
   return (
     <div>
-      <div className="titleWrap2">자신의 집에 대한 가전제품을 선택하세요</div>
+      <div className="titleWrap2">나에 대한 해시태그를 골라주세요!</div>
       <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div>
-      <div style={{ display: "flex", marginTop: "2%", marginBottom: "-1.7%" }}>
-        <div class="flex-container wrap">
-          <Button
-            onClick={() => handleClick4("water_purifier")}
-            className={`button ${
-              clickedButton4 === "water_purifier" && "button-pressed"
+      <div className="tagWrap">
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "-5px", zIndex: 1 }}
+        >
+          <button
+            onClick={() => handleTagClick4("quiet")}
+            className={`tag-button ${
+              tagPressed4.includes("quiet") && "tag-button-pressed"
             }`}
           >
-            <img
-              src={water_purifierImg}
-              alt="water_purifier!"
-              className="button-img"
-            />
-            <div className="button-text">정수기</div>
-          </Button>
+            #조용한
+          </button>
+        </div>
 
-          <Button
-            onClick={() => handleClick4("air_conditioner")}
-            className={`button ${
-              clickedButton4 === "air_conditioner" && "button-pressed"
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "-30px", zIndex: 1 }}
+        >
+          <button
+            onClick={() => handleTagClick4("out")}
+            className={`tag-button ${
+              tagPressed4.includes("out") && "tag-button-pressed"
             }`}
           >
-            <img
-              src={air_conditionerImg}
-              alt="air_conditioner!"
-              className="button-img"
-            />
-            <div className="button-text">에어컨</div>
-          </Button>
+            #외향적인
+          </button>
+        </div>
 
-          <Button
-            onClick={() => handleClick4("microwave")}
-            className={`button ${
-              clickedButton4 === "microwave" && "button-pressed"
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "5px", zIndex: 1 }}
+        >
+          <button
+            onClick={() => handleTagClick4("eat")}
+            className={`tag-button ${
+              tagPressed4.includes("eat") && "tag-button-pressed"
             }`}
-            style={{ marginTop: "15px", marginBottom: "16%" }}
           >
-            <img src={microwaveImg} alt="microwave!" className="button-img" />
-            <div className="button-text">전자레인지</div>
-          </Button>
+            #맛집 러버
+          </button>
+        </div>
 
-          <Button
-            onClick={() => handleClick4("washing_machine")}
-            className={`button ${
-              clickedButton4 === "washing_machine" && "button-pressed"
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "0px", marginTop: "-40px" }}
+        >
+          <button
+            onClick={() => handleTagClick4("out")}
+            className={`tag-button ${
+              tagPressed4.includes("out") && "tag-button-pressed"
             }`}
-            style={{ marginTop: "15px", marginBottom: "16%" }}
           >
-            <img
-              src={washing_machineImg}
-              alt="washing_machine!"
-              className="button-img"
-            />
-            <div className="button-text">세탁기</div>
-          </Button>
+            #집순이/집돌이
+          </button>
+        </div>
+
+        <div
+          className="tag-button-wrap"
+          style={{ marginTop: "-40px", marginLeft: "-20px" }}
+        >
+          <button
+            onClick={() => handleTagClick4("nightWork")}
+            className={`tag-button ${
+              tagPressed4.includes("nightWork") && "tag-button-pressed"
+            }`}
+          >
+            #야간근무/교대근무
+          </button>
+        </div>
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "-15px",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick4("qym")}
+            className={`tag-button ${
+              tagPressed4.includes("qym") && "tag-button-pressed"
+            }`}
+          >
+            #운동을 좋아하는
+          </button>
+        </div>
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "5px",
+            marginBottom: "65%",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick4("convenience")}
+            className={`tag-button ${
+              tagPressed4.includes("convenience") && "tag-button-pressed"
+            }`}
+          >
+            #근처 편의점
+          </button>
+        </div>
+
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "-25px",
+            marginBottom: "65%",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick4("smoking")}
+            className={`tag-button ${
+              tagPressed4.includes("smoking") && "tag-button-pressed"
+            }`}
+          >
+            #비흡연자
+          </button>
+        </div>
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "-28px",
+            marginBottom: "65%",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick4("cook")}
+            className={`tag-button ${
+              tagPressed4.includes("cook") && "tag-button-pressed"
+            }`}
+          >
+            #요리마스터
+          </button>
         </div>
       </div>
     </div>
@@ -389,7 +569,9 @@ const LastContent = ({ onClick }) => {
 
   return (
     <div>
-      <div className="titleWrap2">자신의 집에 대한 해시태그를 제공하세요!</div>
+      <div className="titleWrap2">
+        선호하는 집에 대한 해시태그를 제공하세요!
+      </div>
       <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div>
       <div className="tagWrap">
         <div
@@ -566,14 +748,14 @@ const onFinish = async (use_state) => {
     console.log("gender :" + use_state.gender);
     console.log("tendency :" + use_state.tendency);
     console.log("likeHashtags :" + use_state.likeHashtags);
-    console.log("likeProducts :" + use_state.likeProducts);
+    console.log("likeHomeHashtags :" + use_state.likeHomeHashtags);
     console.log("myHashtags :" + use_state.myHashtags);
-    console.log("myProducts :" + use_state.myProducts);
+    console.log("myHomeHashtags :" + use_state.myHomeHashtags);
 
     const likeHashtags = use_state.likeHashtags.toString().split(",");
-    const likeProducts = use_state.likeProducts.toString().split(",");
+    const likeHomeHashtags = use_state.likeHomeHashtags.toString().split(",");
     const myHashtags = use_state.myHashtags.toString().split(",");
-    const myProducts = use_state.myProducts.toString().split(",");
+    const myHomeHashtags = use_state.myHomeHashtags.toString().split(",");
 
     await axios.post("http://localhost:8080/api/signup", {
       username: use_state.username.toString(),
@@ -583,9 +765,9 @@ const onFinish = async (use_state) => {
       gender: use_state.gender.toString(),
       tendency: use_state.tendency.toString(),
       likeHashtags,
-      likeProducts,
+      likeHomeHashtags,
       myHashtags,
-      myProducts,
+      myHomeHashtags,
     });
 
     // Navigate to RegisterPage2 on successful registration
@@ -593,7 +775,7 @@ const onFinish = async (use_state) => {
   } catch (error) {
     console.error("Registration failed:", error);
   }
-  window.location.href = "../../login";
+  // window.location.href = "../../login";
 };
 
 function RegisterPage2() {
@@ -653,19 +835,21 @@ function RegisterPage2() {
     // }
   };
 
-  const handleClick2 = (buttonName2) => {
+  const handleTagClick3 = (buttonName2) => {
+    setClickedButton2((prevState) => [...prevState, buttonName2]);
+    console.log(buttonName2);
     setIsClicked(true);
-    setClickedButton2(buttonName2);
-    // if (!firstClick) {
-    //   setFirstClick(buttonName2);
-    // }
+    {
+      console.log("buttonName2 :", clickedButton2);
+    }
   };
-  const handleClick4 = (buttonName4) => {
+  const handleTagClick4 = (buttonName4) => {
+    setClickedButton4((prevState) => [...prevState, buttonName4]);
+    console.log(buttonName4);
     setIsClicked(true);
-    setClickedButton4(buttonName4);
-    // if (!firstClick) {
-    //   setFirstClick(buttonName2);
-    // }
+    {
+      console.log("buttonName4 :", clickedButton4);
+    }
   };
 
   const handleTagClick = (buttonName3) => {
@@ -696,11 +880,11 @@ function RegisterPage2() {
                 current === 0
                   ? handleClick
                   : current === 1
-                  ? handleClick2
+                  ? handleTagClick3
                   : current === 2
                   ? handleTagClick
                   : current === 3
-                  ? handleClick4
+                  ? handleTagClick4
                   : current === 4
                   ? handleTagClick2
                   : null,
@@ -768,9 +952,9 @@ function RegisterPage2() {
 
                   use_state["tendency"] = buttonName;
                   use_state["likeHashtags"] = buttonName3;
-                  use_state["likeProducts"] = buttonName2;
+                  use_state["likeHomeHashtags"] = buttonName2;
                   use_state["myHashtags"] = clickedButton5;
-                  use_state["myProducts"] = clickedButton4;
+                  use_state["myHomeHashtags"] = clickedButton4;
 
                   onFinish(use_state);
 
@@ -778,9 +962,9 @@ function RegisterPage2() {
                   //   // buttonName: buttonName,
                   //   tendency: buttonName,
                   //   likeHashtags: buttonName3,
-                  //   likeProducts: buttonName2,
+                  //   likeHomeHashtags: buttonName2,
                   //   myHashtags: buttonName5,
-                  //   myProducts: buttonName4,
+                  //   myHomeHashtags: buttonName4,
                   // });
                 }}
               >
