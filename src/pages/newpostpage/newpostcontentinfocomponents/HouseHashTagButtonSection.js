@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import styled from 'styled-components';
-import HoverHashTagButton from '../../HoverHashTagButton';
+import HashTagButton from '../../HashTagButton';
 
 const HouseHashTagButtonDiv = styled.div`
   width: 90%;
@@ -26,13 +26,13 @@ const HouseHashTagButtonSection = ({ myHomeHashtags }) => {
     return (
         <HouseHashTagButtonDiv>
           {myHomeHashtags.map((data, idx) => (
-            <HoverHashTagButton
+            <HashTagButton
               key={idx}
               selected={selectedHouseHashTagButtons.includes(data)}
               onClick={() => handleHouseHashTagButtonClick(data)}
             >
               {data}
-            </HoverHashTagButton>
+            </HashTagButton>
           ))}
       </HouseHashTagButtonDiv>
     );
