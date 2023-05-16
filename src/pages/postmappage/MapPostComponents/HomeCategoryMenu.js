@@ -12,7 +12,7 @@ const HomeCategoryMenuDivStyle = {
     left: 10,
     zIndex: 1,
     borderRadius: "2rem",
-    width: "20%",
+    width: "15vw",
     height: "4rem",
     backgroundColor: "white",
     opacity: "0.8",
@@ -26,7 +26,7 @@ const HomeCategoryMenuSpan = styled.span`
 `;
 
 const HomeCategoryMarkerImg = styled.img`
-    width: 25px;
+    width: 35px;
     height: 30px;
 `;
 
@@ -36,26 +36,32 @@ const HomeCategoryMenu = () => {
             {categories.map((category, idx) => {
                 if(category === '주택') {
                     return (
-                        <HomeCategoryMenuSpan key={idx} color="green">
+                        <>
                             <HomeCategoryMarkerImg key={idx} src={greenMarker} alt="주택"/>
-                            {category}
-                        </HomeCategoryMenuSpan>
+                            <HomeCategoryMenuSpan key={idx} color="green">
+                                {category}
+                            </HomeCategoryMenuSpan>
+                        </>
                     );
                 }
                 else if(category === '아파트') {
                     return (
+                        <>
+                        <HomeCategoryMarkerImg key={idx} src={redMarker} alt="주택"/>
                         <HomeCategoryMenuSpan key={idx} color="red">
-                            <HomeCategoryMarkerImg key={idx} src={redMarker} alt="주택"/>
                             {category}
                         </HomeCategoryMenuSpan>
+                        </>
                     );
                 }
                 else {
                     return (
+                        <>
+                        <HomeCategoryMarkerImg key={idx} src={blueMarker} alt="주택"/>
                         <HomeCategoryMenuSpan key={idx} color="blue">
-                            <HomeCategoryMarkerImg key={idx} src={blueMarker} alt="주택"/>
                             {category}
                         </HomeCategoryMenuSpan>
+                        </>
                     );
                 }
             })}
