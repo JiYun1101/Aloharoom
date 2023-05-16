@@ -8,6 +8,10 @@ import GuaranteeSection from "./newpostcontentinfocomponents/GuaranteeSection";
 import HouseHashTagButtonSection from "./newpostcontentinfocomponents/HouseHashTagButtonSection";
 import MyHashTagButtonSection from "./newpostcontentinfocomponents/MyHashTagButtonSection";
 import SecondSection from "./newpostcontentinfocomponents/SecondSection";
+import axios from "axios";
+import baseURL from "../api/baseURL";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const NewPostContentInfoDiv = styled.div`
   border-style: solid;
@@ -68,6 +72,8 @@ const NewPostContentInfoSection = ({
     floor,
     totalFloor,
     ageRange,
+    openChatUrl,
+    setOpenChatUrl,
     setAddress,
     setStartDate,
     setX,
@@ -82,24 +88,43 @@ const NewPostContentInfoSection = ({
     setRent,
     setFloor,
     setTotalFloor,
-    setTitle,
-    setAgeRange
+    setAgeRange,
+    setAddressData,
+    showAddressInfoModal
 }) => {
+    const [myHashtags, setMyHashtags] = useState([]);
+    const [myHomeHashtags, setMyHomeHashtags] = useState([]);
+    async function fetchHashTag() {
+      await axios.get(`${baseURL}/api/home`, {
+        withCredentials:true
+      })
+      .then((response) => {
+        setMyHashtags(response.data.myHashtags);
+        setMyHomeHashtags(response.data.myHomeHashtags);
+      })
+      .catch((error) => { console.log(`fetchHashTag axios error`)})
+    }
     //위도 경도 설정 함수
     const searchLatLng = () => {
         const ps = new window.kakao.maps.services.Places();
         ps.keywordSearch(address, (data, status, _pagination) => {
           if (status === window.kakao.maps.services.Status.OK) {
-            setX(data[0].x.toString());
-            setY(data[0].y.toString());
-            setTitle(data[0].road_address_name.toString());
+            setX(data[0].y.toString());
+            setY(data[0].x.toString());
+            setAddress(data[0].road_address_name.toString());
+            setAddressData(data[0]);
           }
           else {
             setX(null);
             setY(null);
+            setAddressData(null);
           }
         });
     };
+
+    useEffect(() => {
+      fetchHashTag();
+    }, [])
 
     return (
         <NewPostContentInfoDiv>
@@ -131,6 +156,7 @@ const NewPostContentInfoSection = ({
                           address={address}
                           setAddress={setAddress}
                           searchLatLng={searchLatLng}
+                          showAddressInfoModal={showAddressInfoModal}
                         />
                         <TitleDiv height="3rem" marginTop="1.5rem">
                             <TitleBox width="25%" height="3rem">
@@ -172,18 +198,27 @@ const NewPostContentInfoSection = ({
                           setTradeType={setTradeType}
                           setMaintenance={setMaintenance}
                         />
+                        <TitleDiv height="1rem" marginTop="1.5rem">
+                            <TitleSpan fontSize="1rem" lineHeight="2rem">카카오톡 오픈채팅 링크</TitleSpan>
+                        </TitleDiv> 
                         <GuaranteeSection 
                           deposit={deposit}
+                          openChatUrl={openChatUrl}
                           setDeposit={setDeposit} 
+                          setOpenChatUrl={setOpenChatUrl}
                         />
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" marginRight="2rem">집 해시태그</TitleSpan>
                         </TitleDiv>
-                        <HouseHashTagButtonSection/>
+                        <HouseHashTagButtonSection 
+                          myHomeHashtags={myHomeHashtags}
+                        />
                         <TitleDiv height="2rem" marginTop="1.5rem">
                             <TitleSpan fontSize="1rem" marginRight="2rem">내 해시태그</TitleSpan>
                         </TitleDiv>    
-                        <MyHashTagButtonSection/>
+                        <MyHashTagButtonSection
+                          myHashtags={myHashtags}
+                        />
                     </NewPostContentInfoDiv>
     );
 }

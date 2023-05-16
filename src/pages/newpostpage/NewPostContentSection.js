@@ -4,7 +4,7 @@ import axios from "axios";
 import NewPostContentInfoSection from "./NewPostContentInfoSection";
 import NewPostContentWritingSection from "./NewPostContentWritingSection";
 import { useNavigate, useParams } from "react-router-dom";
-// import baseURL from "../api/baseURL";
+import baseURL from "../api/baseURL";
 
 const NewPostContentDiv = styled.div`
     height: 100%;
@@ -24,10 +24,8 @@ const NewPostContentSection = ({
     setAddressData
 }) => {
     const navigate = useNavigate();
-    //입주 가능 날짜
-    const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
-    const [count] = useState("");
+    const [openChatUrl, setOpenChatUrl] = useState("");
     const [roomCount, setRoomCount] = useState("");
     const [address, setAddress] = useState("");
     const [homeType, setHomeType] = useState("");
@@ -44,7 +42,6 @@ const NewPostContentSection = ({
     const [y, setY] = useState(null);
     const [ageRange, setAgeRange] = useState([20, 25]);
     const [imgFiles, setImgFiles] = useState([]);
-
     const [previewImages, setPreviewImages] = useState([]);
 
     const updateID = useParams().id;
@@ -55,7 +52,7 @@ const NewPostContentSection = ({
     }, []);
 
     async function FetchPostInfoData() {
-        await axios.get(`http://localhost:8080/api/board/edit/${updateID}`)
+        await axios.get(`${baseURL}/api/board/edit/${updateID}`)
             .then((response) => {
                 console.log('FetchPostInfoData: ', response.data);
                 setAddress(response.data.address);
@@ -66,6 +63,7 @@ const NewPostContentSection = ({
                 setFloor(response.data.floor);
                 setHomeType(response.data.homeType);
                 setMaintenance(response.data.maintenance);
+                setOpenChatUrl(response.data.openChatUrl);
                 setPrice(response.data.price);
                 setRent(response.data.rent);
                 setRoomCount(response.data.roomCount);
@@ -82,7 +80,6 @@ const NewPostContentSection = ({
     }
 
     console.log("==============================");
-    console.log("title ", title);
     console.log("contents ", contents);
     console.log("roomCount ", roomCount);
     console.log("address ", address);
@@ -100,13 +97,12 @@ const NewPostContentSection = ({
     console.log("y ", y);
     console.log("ageRange ", ageRange);
     console.log("imgFiles ", imgFiles);
+    console.log('openChatUrl', openChatUrl);
     console.log("==============================");
 
     const modifyPost = () => {
         const data = {
-            "title": title,
             "contents": contents,
-            "count": count,
             "roomCount": roomCount,
             "address": address,
             "homeType": homeType,
@@ -123,6 +119,7 @@ const NewPostContentSection = ({
             "y": y,
             "ageRange": ageRange,
             "imgUrls": previewImages,
+            "openChatUrl": openChatUrl
         }
         const jsonData = JSON.stringify(data);
         const blob = new Blob([jsonData], { type: "application/json"});
@@ -131,7 +128,7 @@ const NewPostContentSection = ({
         for(let i = 0; i < imgFiles.length; i++) {
             formData.append("imgFiles", imgFiles[i]);
         }
-        axios.patch(`http://localhost:8080/api/board/edit/${updateID}`, formData, {
+        axios.patch(`${baseURL}/api/board/edit/${updateID}`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
@@ -146,9 +143,8 @@ const NewPostContentSection = ({
 
     const PostInfoSubmit = () => {
         const data = {
-            "title": title,
             "contents": contents,
-            "count": count,
+            "openChatUrl": openChatUrl,
             "roomCount": roomCount,
             "address": address,
             "homeType": homeType,
@@ -172,7 +168,7 @@ const NewPostContentSection = ({
         for(let i = 0; i < imgFiles.length; i++) {
             formData.append("imgFiles", imgFiles[i]);
         }
-        axios.post(`http://localhost:8080/api/board`, formData, {
+        axios.post(`${baseURL}/api/board`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
@@ -218,6 +214,8 @@ const NewPostContentSection = ({
                         floor={floor}
                         totalFloor={totalFloor}
                         ageRange={ageRange}
+                        openChatUrl={openChatUrl}
+                        setOpenChatUrl={setOpenChatUrl}
                         setAddress={setAddress}
                         setStartDate={setStartDate}
                         setX={setX}
@@ -232,7 +230,6 @@ const NewPostContentSection = ({
                         setRent={setRent}
                         setFloor={setFloor}
                         setTotalFloor={setTotalFloor}
-                        setTitle={setTitle}
                         setAgeRange={setAgeRange}
                         setAddressData={setAddressData}
                         showAddressInfoModal={showAddressInfoModal}

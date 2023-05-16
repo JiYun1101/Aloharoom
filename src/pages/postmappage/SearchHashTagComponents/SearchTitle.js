@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Search from "./Search";
+import SearchSection from "./SearchSection";
 import Title from "./Title";
 
 const SearchTitleContainer = styled.div`
@@ -9,11 +9,20 @@ const SearchTitleContainer = styled.div`
     display: flex;
 `;
 
-const SearchTitle = ({setSearchStr}) => {
+const SearchTitle = ({
+    setSearchStr,
+    fetchCardPostData,
+    fetchFilterCardPostData
+}) => {
     return (
         <SearchTitleContainer>
             <Title/>
-            <Search setSearchStr={setSearchStr}/>
+            <SearchSection 
+                setSearchStr={setSearchStr}
+                fetchCardPostData={fetchCardPostData}
+                fetchFilterCardPostData={fetchFilterCardPostData}
+
+            />
         </SearchTitleContainer>
     );
 }

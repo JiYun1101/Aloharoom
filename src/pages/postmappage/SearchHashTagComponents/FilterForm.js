@@ -1,23 +1,37 @@
-import React, { useState } from "react"; // useState를 import
-import { PlusOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Cascader,
-  Checkbox,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Switch,
-  TreeSelect,
-  Upload,
-} from "antd";
+import React, { useState } from "react"; 
+import { Button, Form, Select,} from "antd";
 import { Slider } from "antd";
+import ModalFlexDiv from "../../modal/modalcomponents/ModalFlexDiv";
 import "../../../style/RegisterPage0.css";
+import HoverHashTagButton from "../../HoverHashTagButton";
+import { useEffect } from "react";
 
-const marks = {
+
+const flatMarks = {
+  0: {
+    style: {
+      color: "#f50",
+    },
+    label: <strong>0평</strong>,
+  },
+  10: "10평",
+  20: "20평",
+  30: "30평",
+  40: "40평",
+  50: "50평",
+  60: "60평",
+  70: "70평",
+  80: "80평",
+  90: "90평",
+  100: {
+    style: {
+      color: "#f50",
+    },
+    label: <strong>100평</strong>,
+  },
+};
+
+const rentMarks = {
   0: {
     style: {
       color: "#f50",
@@ -33,7 +47,6 @@ const marks = {
   70: "70만원",
   80: "80만원",
   90: "90만원",
-  100: "100만원",
   100: {
     style: {
       color: "#f50",
@@ -42,7 +55,7 @@ const marks = {
   },
 };
 
-const mark2 = {
+const ageMarks = {
   0: {
     style: {
       color: "#f50",
@@ -58,31 +71,56 @@ const mark2 = {
   70: "70대",
   80: "80대",
   90: "90대",
-  100: "100대",
   100: {
     style: {
       color: "#f50",
     },
-    label: <strong>100만원</strong>,
+    label: <strong>100대</strong>,
   },
 };
 
-const FilterForm = () => {
-  const handleTagClick = (buttonName3) => {
-    if (tagPressed.includes(buttonName3)) {
-      setTagPressed((prevTags) =>
-        prevTags.filter((tag) => tag !== buttonName3)
-      );
-      // onClick(null);
+const FilterForm = ({ 
+  ModalClose,
+  fetchFilterCardPostData,
+  myLikeHashtags,
+  myLikeHomeHashtags
+}) => {
+  const [gender, setGender] = useState("nocare");
+  const [roomCount, setRoomCount] = useState(0);
+  const [homeType, setHomeType] = useState("nocare");
+  const [ageRange, setAgeRange] = useState([0, 100]);
+  const [flatRange, setFlatRange] = useState([0, 100]);
+  const [rentRange, setRentRange] = useState([0, 100]);
+  const [likeHashtags, setLikeHashtags] = useState([]);
+  const [likeHomeHashtags, setLikeHomeHashtags] = useState([]);
+  // const [myLikeHashtags, setMyLikeHashtags] = useState([]);
+  // const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
+  console.log('===========================');
+  console.log('gender', gender);
+  console.log('roomCount', roomCount);
+  console.log('homeType', homeType);
+  console.log('ageRange', ageRange);
+  console.log('flatRange', flatRange);
+  console.log('rentRange', rentRange);
+  console.log('likeHashtags', likeHashtags);
+  console.log('likeHomeHashtags', likeHomeHashtags);
+  console.log('')
+  console.log('===========================');
+
+  const handleLikeHashTagClick = (index) => {
+    if (likeHashtags.includes(index)) {
+      setLikeHashtags(  likeHashtags.filter((i) => i !== index));
     } else {
-      setTagPressed((prevTags) => [...prevTags, buttonName3]);
-      // onClick(String(buttonName3));
+      setLikeHashtags([...likeHashtags, index]);
     }
   };
-  const initialState = ""; // 예시로 초기 상태를 빈 문자열로 설정
-  const [state, setState] = useState(""); // useState를 함수 컴포넌트 내에서 호출
-
-  const [tagPressed, setTagPressed] = useState([]);
+  const handleLikeHomeHashtagClick = (index) => {
+    if (likeHomeHashtags.includes(index)) {
+      setLikeHomeHashtags(likeHomeHashtags.filter((i) => i !== index));
+    } else {
+      setLikeHomeHashtags([...likeHomeHashtags, index]);
+    }
+  };
 
   return (
     <>
@@ -92,10 +130,10 @@ const FilterForm = () => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }}>
-            <Select.Option value="room1">남자</Select.Option>
-            <Select.Option value="room2">여자</Select.Option>
-            <Select.Option value="room3">상관없음</Select.Option>
+          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setGender(value);}}>
+            <Select.Option value="male">남자</Select.Option>
+            <Select.Option value="female">여자</Select.Option>
+            <Select.Option value="notcare">상관없음</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -103,10 +141,10 @@ const FilterForm = () => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }}>
-            <Select.Option value="room1">1개</Select.Option>
-            <Select.Option value="room2">2개</Select.Option>
-            <Select.Option value="room3">3개</Select.Option>
+          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setRoomCount(value);}}>
+            <Select.Option value="1">1개</Select.Option>
+            <Select.Option value="2">2개</Select.Option>
+            <Select.Option value="3">3개</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -114,167 +152,86 @@ const FilterForm = () => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }}>
-            <Select.Option value="Officetels">오피스텔</Select.Option>
+          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setHomeType(value);}}>
+            <Select.Option value="officetel">오피스텔</Select.Option>
             <Select.Option value="apartment">아파트</Select.Option>
             <Select.Option value="house">주택</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item label="평수">
-          <Slider marks={marks} defaultValue={37} />
+          <Slider range marks={flatMarks} onChange={(value) => { setFlatRange(value)}}/>
         </Form.Item>
         <Form.Item label="월세">
-          <Slider range marks={marks} defaultValue={[26, 37]} />{" "}
+          <Slider range marks={rentMarks} onChange={(value) => { setRentRange(value);}}/>{" "}
         </Form.Item>
         <Form.Item label="나이">
-          <Slider range marks={mark2} defaultValue={[26, 37]} />{" "}
+          <Slider range marks={ageMarks} onChange={(value) => { setAgeRange(value);}} />{" "}
         </Form.Item>
-        <div>
-          <div className="titleWrap2">
-            그외에 어떤 것들을 중요하게 생각하나요?
-          </div>
-          <div className="tagWrap">
-            <div className="tag-button-wrap" style={{ zIndex: 1 }}>
-              <button
-                onClick={() => handleTagClick("dust")}
-                className={`tag-button ${
-                  tagPressed.includes("dust") && "tag-button-pressed"
-                }`}
+      </Form>
+          <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
+            집 해시태그
+          </ModalFlexDiv>
+          <ModalFlexDiv 
+            width="100%" 
+            height="auto"
+            marginBottom="1rem"
+            flexDirection="row"
+            flexWrap="wrap"
+            gap="0.5rem"
+          >
+            {myLikeHashtags.map((data, idx) => (
+              <HoverHashTagButton
+                key={idx}
+                selected={likeHashtags.includes(data)}
+                onClick={() => handleLikeHashTagClick(data)}
               >
-                #층간소음이 없는
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{ marginLeft: "15px", zIndex: 1 }}
-            >
-              <button
-                onClick={() => handleTagClick("cough")}
-                className={`tag-button ${
-                  tagPressed.includes("cough") && "tag-button-pressed"
-                }`}
+                {data}
+              </HoverHashTagButton>  
+            ))}
+          </ModalFlexDiv>
+          <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
+            사람 해시태그
+          </ModalFlexDiv>
+          <ModalFlexDiv 
+            width="100%" 
+            height="auto"
+            marginBottom="1rem"
+            flexDirection="row"
+            flexWrap="wrap"
+            gap="0.5rem"
+          >
+            {myLikeHomeHashtags.map((data, idx) => (
+              <HoverHashTagButton
+                key={idx}
+                selected={likeHomeHashtags.includes(data)}
+                onClick={() => handleLikeHomeHashtagClick(data)}
               >
-                #역세권
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{ marginLeft: "40px", zIndex: 1 }}
-            >
-              <button
-                onClick={() => handleTagClick("quiet")}
-                className={`tag-button ${
-                  tagPressed.includes("quiet") && "tag-button-pressed"
-                }`}
-              >
-                #조용한 주거환경
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{ marginLeft: "-5px", marginTop: "-40px" }}
-            >
-              <button
-                onClick={() => handleTagClick("convenience")}
-                className={`tag-button ${
-                  tagPressed.includes("convenience") && "tag-button-pressed"
-                }`}
-              >
-                #비흡연자
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{ marginTop: "-40px", marginLeft: "-25px" }}
-            >
-              <button
-                onClick={() => handleTagClick("calm")}
-                className={`tag-button ${
-                  tagPressed.includes("calm") && "tag-button-pressed"
-                }`}
-              >
-                #근처 편의점
-              </button>
-            </div>
-            <div
-              className="tag-button-wrap"
-              style={{
-                marginTop: "-40px",
-                marginLeft: "-17px",
-              }}
-            >
-              <button
-                onClick={() => handleTagClick("gym")}
-                className={`tag-button ${
-                  tagPressed.includes("gym") && "tag-button-pressed"
-                }`}
-              >
-                #주변 체육시설
-              </button>
-            </div>
-            <div
-              className="tag-button-wrap"
-              style={{
-                marginTop: "-40px",
-                marginLeft: "0px",
-              }}
-            >
-              <button
-                onClick={() => handleTagClick("church")}
-                className={`tag-button ${
-                  tagPressed.includes("church") && "tag-button-pressed"
-                }`}
-              >
-                #성당/교회
-              </button>
-            </div>
-
-            <div
-              className="tag-button-wrap"
-              style={{
-                marginTop: "-40px",
-                marginLeft: "-20px",
-              }}
-            >
-              <button
-                onClick={() => handleTagClick("car")}
-                className={`tag-button ${
-                  tagPressed.includes("car") && "tag-button-pressed"
-                }`}
-              >
-                #주차공간 유무
-              </button>
-            </div>
-            <div
-              className="tag-button-wrap"
-              style={{
-                marginTop: "-40px",
-                marginLeft: "-28px",
-              }}
-            >
-              <button
-                onClick={() => handleTagClick("park")}
-                className={`tag-button ${
-                  tagPressed.includes("park") && "tag-button-pressed"
-                }`}
-              >
-                #공원
-              </button>
-            </div>
-          </div>
-          <Button
+                {data}
+              </HoverHashTagButton>  
+            ))}
+          </ModalFlexDiv>
+        
+        <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            style={{marginBottom: "1rem"}}
+            onClick={() => {
+              localStorage.setItem('pressFilterButton', 1);
+              localStorage.setItem('gender', gender);
+              localStorage.setItem('roomCount', roomCount);
+              localStorage.setItem('homeType', homeType);
+              localStorage.setItem('ageRange', JSON.stringify(ageRange));
+              localStorage.setItem('flatRange', JSON.stringify(flatRange));
+              localStorage.setItem('rentRange', JSON.stringify(rentRange));
+              localStorage.setItem('likeHashtags', JSON.stringify(likeHashtags));
+              localStorage.setItem('likeHomeHashtags', JSON.stringify(likeHomeHashtags));
+              fetchFilterCardPostData();
+              ModalClose();
+            }}
           >
             확인
-          </Button>
-        </div>
-      </Form>
+        </Button>
     </>
   );
 };

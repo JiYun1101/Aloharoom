@@ -3,12 +3,8 @@ import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper/core";
-import { Link, useNavigate } from "react-router-dom";
 //import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { GrDeliver } from "react-icons/gr";
-import { GiMeal } from "react-icons/gi";
-import { Map } from "react-kakao-maps-sdk";
 import { useRef } from "react";
 
 import "swiper/css";
@@ -16,7 +12,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import baseURL from "../api/baseURL";
+import CommunityReadCommentSection from "./commentcomponents/CommunityReadCommentSection";
+import CommunityWriteComment from "./commentcomponents/CommunityWriteComment";
 
 SwiperCore.use([Pagination]);
 
@@ -303,6 +302,71 @@ const PostInfoPage = () => {
       );
 
       console.log(response.data);
+  const [commentData, setCommentData] = useState([]);
+
+  const [post, setPost] = useState({
+    title: "",
+    imgUrls: [],
+    contents: "",
+    views: [],
+    code: [],
+  });
+
+  async function fetchCommunityCommentData() {
+    await axios.get(`${baseURL}/api/comment/community/${communityId}`)
+    .then((response) => {
+      console.log('fetch community comment response.data', response.data);
+      setCommentData(response.data);
+    })
+    .catch((error) => { console.log(`fetchCommunityCommentData axios error`)});
+  }
+
+  async function makeCommentRequest(
+    userId,
+    targetUserId,
+    boardId,
+    flag,
+    content,
+    targetContent,
+    layer,
+    groupId
+) {
+    await axios.post(`${baseURL}/api/comment`, {
+        "userId": userId,
+        "targetUserId": targetUserId,
+        "boardId": boardId,
+        "flag": flag,
+        "content": content,
+        "targetContent": targetContent,
+        "layer": layer,
+        "groupId": groupId
+    })
+    .then((response) => {
+        window.location.reload();
+    })
+    .error((error) => {console.log('makeCommentRequest axios error')});
+}
+
+  useEffect(() => {
+    fetchCommunityCommentData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        `${baseURL}/api/communityboard?communityId=${communityId}`
+      );
+      setPost((prevPost) => ({
+        ...prevPost,
+        title: result.data[0].title,
+        imgUrls: result.data[0].imgUrls,
+        contents: result.data[0].contents,
+        views: result.data[0].views,
+        code: result.data[0].code,
+      }));
+    };
+    fetchData();
+  }, [communityId]);
 
       const { communityBoard } = response.data;
 
@@ -379,28 +443,19 @@ const PostInfoPage = () => {
         <PostContentDiv>
           <PostContentSpan>{contents}</PostContentSpan>
         </PostContentDiv>
-
         <CommentSection>
-          <CommentBox>
-            <CommentProfileDiv>
-              <CommentProfileImg src="blue.png" />
-              <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-            </CommentProfileDiv>
-            <CommentInputDiv>
-              <CommentSpan>안녕하세요!</CommentSpan>
-              <AddCommentSpan>답글 쓰기</AddCommentSpan>
-            </CommentInputDiv>
-          </CommentBox>
-          <SubCommentBox>
-            <CommentProfileDiv>
-              <CommentProfileImg src="blue.png" />
-              <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-            </CommentProfileDiv>
-            <CommentInputDiv>
-              <CommentInput type="text" />
-              <CommentWriteButton>쓰기</CommentWriteButton>
-            </CommentInputDiv>
-          </SubCommentBox>
+          {commentData.map((data, idx) => (
+            <CommunityReadCommentSection
+              key={idx} 
+              data={data}
+              makeCommentRequest={makeCommentRequest}
+              boardId={communityId}
+            />
+          ))}
+          <CommunityWriteComment 
+            makeCommentRequest={makeCommentRequest}
+            boardId={communityId}
+          />
         </CommentSection>
       </PostInfoPageBox>
     </PostInfoPageContainer>

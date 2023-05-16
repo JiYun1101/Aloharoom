@@ -12,6 +12,7 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border-color: #a0a0a0;
   &:hover {
     border-color: #47a5fd;
   }
@@ -28,10 +29,10 @@ const RoomTypeButton = styled.button`
   background-color: white;
   width: 4.5rem;
   height: 1.5rem;
-  color: #bbbbbb;
+  color: #47a5fd;
   font-weight: 500;
   font-size: 0.8rem;
-  border: 2px solid #bbbbbb;
+  border: 2px solid #47a5fd;
   border-radius: 0.5rem;
 `;
 
@@ -42,7 +43,7 @@ const MoveInDateDiv = styled.div`
 
 const MoveInDateSpan = styled.span`
   font-size: 0.8rem;
-  color: #bbbbbb;
+  color: black;
   line-height: 2rem;
 `;
 
@@ -53,7 +54,7 @@ const AddressInfoDiv = styled.div`
 
 const AddressInfoSpan = styled.span`
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 550;
 `;
 
 const PriceInfoDiv = styled.div`
@@ -62,14 +63,14 @@ const PriceInfoDiv = styled.div`
 `;
 
 const PriceInfoSpan = styled.span`
-  font-size: 1rem;
-  color: #47a5fd;
+  font-size: 1.2rem;
   line-height: 2rem;
+  font-weight: 600;
 `;
 
 const CardImageDiv = styled.div`
   width: 99%;
-  height: 8.5rem;
+  height: 11rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,17 +78,7 @@ const CardImageDiv = styled.div`
 
 const CardImage = styled.img`
   width: 95%;
-  height: 8.3rem;
-`;
-
-const HashTagDiv = styled.div`
-  width: 88%;
-  height: 2.5rem;
-`;
-
-const HashTagSpan = styled.span`
-  font-size: 0.9rem;
-  color: #bbbbbb;
+  height: 10rem;
 `;
 
 const ProfileCommentDiv = styled.div`
@@ -112,7 +103,7 @@ const ProfileImg = styled.img`
 
 const ProfileSpan = styled.span`
   margin-left: 0.5rem;
-  color: #47a5fd;
+  color: black;
   font-size: 0.9rem;
 `;
 
@@ -159,19 +150,11 @@ const CardPost = ({
                 <AddressInfoSpan>{address}</AddressInfoSpan>
             </AddressInfoDiv>
             <PriceInfoDiv>
-                <PriceInfoSpan>월 {rent}만원/보증금 300만원</PriceInfoSpan>
+                <PriceInfoSpan>{rent}만원</PriceInfoSpan>
             </PriceInfoDiv>
             <CardImageDiv>
                 <CardImage src={imageUrl}/>
             </CardImageDiv>
-            <HashTagDiv>
-                <HashTagSpan>#외향</HashTagSpan>
-                <HashTagSpan>#흡연</HashTagSpan>
-                <HashTagSpan>#편의점</HashTagSpan>
-                <HashTagSpan>#에어컨</HashTagSpan>
-                <HashTagSpan>#전자레인지</HashTagSpan>
-                <HashTagSpan>#주차가능</HashTagSpan>
-            </HashTagDiv>
             <ProfileCommentDiv>
                 <ProfileDiv>
                     <ProfileImg src={profileImgUrl}/>

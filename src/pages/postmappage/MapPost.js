@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import KakaoMapPart from "./MapPostComponents/KakaoMapPart";
 import Post from "./MapPostComponents/Post";
-import axios from "axios";
 
 const MapPostContainer = styled.div`
     position: absolute;
@@ -12,38 +11,14 @@ const MapPostContainer = styled.div`
     display: flex;
 `;
 
-const MapPost = ({searchStr}) => {
-    const [cardPostData, setCardPostData] = useState([]);
-    const [swLat, setSWLat] = useState("");
-    const [swLon, setSWLon] = useState("");
-    const [neLat, setNELat] = useState("");
-    const [neLon, setNELon] = useState("");
-
-    async function fetchCardPostData() {
-        await axios
-        .get(`http://localhost:8080/api/board`, {
-            params: {
-                southWestLatitude: swLat,
-                southWestLongitude: swLon,
-                northEastLatitude: neLat,
-                northEastLongitude: neLon
-            }
-        })
-        .then((response) => {
-            setCardPostData(response.data);
-            console.log("cardPostData => response.data : ", response.data);
-        })
-        .catch((error) => {
-            console.log("fetchCardPostData axios error");
-        });
-    }
-
-    //위도 경도 값이 변할때마다 데이터를 가져온다.
-    useEffect(() => {
-        fetchCardPostData();
-    }, [swLat, swLon, neLat, neLon]);
-
-
+const MapPost = ({
+    searchStr,
+    cardPostData,
+    setSWLat,
+    setSWLon,
+    setNELat,
+    setNELon,
+}) => {
     return (
         <MapPostContainer>
             <KakaoMapPart 
@@ -54,7 +29,7 @@ const MapPost = ({searchStr}) => {
                 setNELat={setNELat}
                 setNELon={setNELon}
             />
-            <Post cardPostData={cardPostData}/>
+            <Post cardPostData={cardPostData} />
         </MapPostContainer>
     );
 }

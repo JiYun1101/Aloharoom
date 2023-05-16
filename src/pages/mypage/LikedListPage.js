@@ -4,6 +4,15 @@ import { AiFillHeart } from "react-icons/ai";
 import CardPost from "../postmappage/MapPostComponents/CardPost";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import baseURL from "../api/baseURL";
+
+const EmptyLikedListDiv = styled.div`
+    width: 37.3rem;
+    height: 33rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 const LikedListDiv = styled.div`
     margin-top: 0.5rem;
@@ -32,7 +41,7 @@ const LikedListDiv = styled.div`
         background: white;      /*스크롤바 뒷 배경 색상*/
     }
 `;
-/* 지윤이에게 물어보기 위에 하트가 있는것이 의미가 있는지 */
+
 const LikedElementDiv = styled.div`
     position: relative;
     left: 0.6rem;
@@ -58,7 +67,7 @@ const LinkToCardStyle = {
 const LikedListPage = () => {
     const [responseData, setResponseData] = useState([]);
     async function fetchLikePost() {
-        await axios.get(`http://localhost:8080/api/heart`, {
+        await axios.get(`${baseURL}/api/heart`, {
             withCredentials:true
         })
         .then((response) => {
@@ -75,28 +84,36 @@ const LikedListPage = () => {
     }, []);
 
     return (
-        <LikedListDiv>
-            {responseData.map((data, idx) => (
-                <LikedElementDiv key={idx}>
-                    <Link to={`../postInfoPage/${data.boardId}`} style={LinkToCardStyle}>
-                    <CardPost 
-                        type="룸메이트" 
-                        address={data.address}
-                        boardId={data.boardId}
-                        commentNum={data.commentNum}
-                        flat={data.flat}
-                        imageUrl={data.imgUrl}
-                        nickname={data.nickname}
-                        profileImgUrl={data.profileImgUrl}
-                        rent={data.rent}
-                        roomCount={data.roomCount}
-                        startDate={data.startDate}
-                        />    
-                    </Link>
-                    <AiFillHeart size={40} style={heartStyle}/>
-                </LikedElementDiv>    
-            ))}
-        </LikedListDiv>
+        <>
+        {responseData.length === 0 ?
+            <EmptyLikedListDiv>
+                <div style={{color: "#a0a0a0"}}>좋아요 방이 없습니다.</div>
+            </EmptyLikedListDiv>
+        :
+            <LikedListDiv>
+                {responseData.map((data, idx) => (
+                    <LikedElementDiv key={idx}>
+                        <Link to={`../postInfoPage/${data.boardId}`} style={LinkToCardStyle}>
+                        <CardPost 
+                            type="룸메이트" 
+                            address={data.address}
+                            boardId={data.boardId}
+                            commentNum={data.commentNum}
+                            flat={data.flat}
+                            imageUrl={data.imgUrl}
+                            nickname={data.nickname}
+                            profileImgUrl={data.profileImgUrl}
+                            rent={data.rent}
+                            roomCount={data.roomCount}
+                            startDate={data.startDate}
+                            />    
+                        </Link>
+                        <AiFillHeart size={40} style={heartStyle}/>
+                    </LikedElementDiv>    
+                ))}
+            </LikedListDiv>
+        }
+        </>
     );
 }
 

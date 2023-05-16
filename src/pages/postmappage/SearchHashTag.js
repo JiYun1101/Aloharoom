@@ -12,11 +12,19 @@ const SearchHashTagContainer = styled.div`
     flex-direction: column;
 `;
 
-const SearchHashTag = ({ setSearchStr }) => {
+const SearchHashTag = ({ 
+  setSearchStr,
+  fetchCardPostData,
+  fetchFilterCardPostData
+}) => {
   return (
     <SearchHashTagContainer>
       <EmptyBox/>
-      <SearchTitle setSearchStr={setSearchStr}/>
+      <SearchTitle 
+        setSearchStr={setSearchStr}
+        fetchCardPostData={fetchCardPostData}
+        fetchFilterCardPostData={fetchFilterCardPostData}
+      />
     </SearchHashTagContainer>
   );
 };

@@ -10,8 +10,9 @@ import air_conditionerImg from "../img/air_conditioner.png";
 import microwaveImg from "../img/microwave.png";
 import washing_machineImg from "../img/washing_machine.png";
 import water_purifierImg from "../img/water_purifier.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import baseURL from "./api/baseURL";
 
 const FirstContent = ({ onClick }) => {
   const [clickedButton, setClickedButton] = useState(null);
@@ -739,7 +740,7 @@ const steps = [
   },
 ];
 
-const onFinish = async (use_state) => {
+const onFinish = async (use_state, navigate) => {
   try {
     console.log("username :" + use_state.username);
     console.log("password :" + use_state.password);
@@ -757,7 +758,7 @@ const onFinish = async (use_state) => {
     const myHashtags = use_state.myHashtags.toString().split(",");
     const myHomeHashtags = use_state.myHomeHashtags.toString().split(",");
 
-    await axios.post("http://localhost:8080/api/signup", {
+    await axios.post(`${baseURL}/api/signup`, {
       username: use_state.username.toString(),
       password: use_state.password.toString(),
       nickname: use_state.nickname.toString(),
@@ -769,18 +770,16 @@ const onFinish = async (use_state) => {
       myHashtags,
       myHomeHashtags,
     });
-
-    // Navigate to RegisterPage2 on successful registration
     message.success("Processing complete!");
   } catch (error) {
     console.error("Registration failed:", error);
   }
-  // window.location.href = "../../login";
+  navigate("../../login");
 };
 
 function RegisterPage2() {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
   const [clickedButton, setClickedButton] = useState([]);
@@ -956,7 +955,7 @@ function RegisterPage2() {
                   use_state["myHashtags"] = clickedButton5;
                   use_state["myHomeHashtags"] = clickedButton4;
 
-                  onFinish(use_state);
+                  onFinish(use_state, navigate);
 
                   // onFinish({
                   //   // buttonName: buttonName,
