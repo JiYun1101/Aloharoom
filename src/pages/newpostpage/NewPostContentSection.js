@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import baseURL from "../api/baseURL";
 
 const NewPostContentDiv = styled.div`
-    height: 100%;
+    height: 94vh;
     display: flex;
     flex-direction: row;
 `;

@@ -4,20 +4,20 @@ import { Select } from 'antd';
 
 const RoomCountTypeFlatInfoContainer = styled.div`
   width: 90%;
-  height: 3rem;
+  height: 5vh;
   display: flex;
   flex-direction: row;
 `;
 const RoomCountTypeFlatInfoBox = styled.div`
   width: ${ props => props.width || "0rem"};
-  height: 3rem;
+  height: 4.5vh;
   display: flex;
   align-items: center;
 `;
 
 const RoomCountTypeFlatInput = styled.input`
   width: ${props => props.width || "0rem"};
-  height: 2rem;
+  height: 3.5vh;
   border-width: 0.1rem;
   border-style: solid;
   border-color: #bbbbbb;
@@ -103,7 +103,7 @@ const RoomCountTypeFlatInfoSection = ({
       <RoomCountTypeFlatInfoBox width="16%">
         <RoomCountTypeFlatInput 
           type="text" 
-          width="4rem" 
+          width="4vw" 
           value={totalFloor}
           onChange={(e) => { setTotalFloor(e.target.value)}}
         />
@@ -111,7 +111,7 @@ const RoomCountTypeFlatInfoSection = ({
       <RoomCountTypeFlatInfoBox width="16%">
         <RoomCountTypeFlatInput 
           type="text" 
-          width="4rem" 
+          width="4vw" 
           value={floor}
           onChange={(e) => { setFloor(e.target.value)}}
         />
@@ -119,7 +119,7 @@ const RoomCountTypeFlatInfoSection = ({
       <RoomCountTypeFlatInfoBox width="16%">
         <RoomCountTypeFlatInput 
           type="text" 
-          width="4rem" 
+          width="4vw" 
           value={flat}
           onChange={(e) => { setFlat(e.target.value)}}
         />

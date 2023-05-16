@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { BiImageAdd } from "react-icons/bi";
 
 const ImageUploadDiv = styled.div`
-    margin-top: 1rem;
-    width: 90%;
-    height: 3rem;
+    margin-top: 2vh;
+    width: 100%;
+    height: 3.5vh;
 `;
 
 const ImageUploadLabel = styled.label`

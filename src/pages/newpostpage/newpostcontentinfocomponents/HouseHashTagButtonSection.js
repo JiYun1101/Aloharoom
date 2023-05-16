@@ -5,7 +5,7 @@ import HashTagButton from '../../HashTagButton';
 
 const HouseHashTagButtonDiv = styled.div`
   width: 90%;
-  min-height: 4.5rem;
+  min-height: 4.5vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

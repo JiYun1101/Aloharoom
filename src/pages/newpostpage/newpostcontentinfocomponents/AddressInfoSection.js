@@ -4,14 +4,14 @@ import { Button } from "antd";
 
 const AddressInfoDiv = styled.div`
     width: 90%;
-    height: 3rem;
+    height: 4vh;
     display: flex;
     align-items: center;
 `;
 
 const AddressInput = styled.input`
-    width: 30rem;
-    height: 2rem;
+    width: 30vw;
+    height: 3.5vh;
     border-width: 0.1rem;
     border-style: solid;
     border-color: #bbbbbb;
@@ -44,7 +44,7 @@ const AddressInfoSection = ({
                     />
             }
             <Button 
-                style={{marginLeft: "1rem"}}
+                style={{marginLeft: "1vw"}}
                 onClick={() => {
                     searchLatLng();
                     showAddressInfoModal();
