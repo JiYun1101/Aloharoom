@@ -63,6 +63,7 @@ const NewPostContentSection = ({
                 setFloor(response.data.floor);
                 setHomeType(response.data.homeType);
                 setMaintenance(response.data.maintenance);
+                setOpenChatUrl(response.data.openChatUrl);
                 setPrice(response.data.price);
                 setRent(response.data.rent);
                 setRoomCount(response.data.roomCount);
@@ -96,6 +97,7 @@ const NewPostContentSection = ({
     console.log("y ", y);
     console.log("ageRange ", ageRange);
     console.log("imgFiles ", imgFiles);
+    console.log('openChatUrl', openChatUrl);
     console.log("==============================");
 
     const modifyPost = () => {
@@ -117,6 +119,7 @@ const NewPostContentSection = ({
             "y": y,
             "ageRange": ageRange,
             "imgUrls": previewImages,
+            "openChatUrl": openChatUrl
         }
         const jsonData = JSON.stringify(data);
         const blob = new Blob([jsonData], { type: "application/json"});
