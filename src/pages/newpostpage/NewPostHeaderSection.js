@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const NewPostHeaderDiv = styled.div`
-    height: 3rem;
+    height: 4vh;
     margin-top: 1rem;
     display: flex;
     align-items: center;

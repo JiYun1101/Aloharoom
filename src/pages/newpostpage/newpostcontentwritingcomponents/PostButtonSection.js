@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 
 const PostButtonDiv = styled.div`
-    margin-top: 0.5rem;
-    width: 90%;
-    height: 2rem;
+    margin-top: 1vh;
+    width: 100%;
+    height: 2vh;
     display: flex;
     flex-direction: row-reverse;
 `;

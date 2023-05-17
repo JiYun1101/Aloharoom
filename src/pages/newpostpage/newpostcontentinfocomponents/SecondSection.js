@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components';
 import { Slider } from 'antd';
-import { useParams } from 'react-router-dom';
 
 const SecondInfoDiv = styled.div`
     width: 90%;
-    height: 3rem;
+    height: 5vh;
     display: flex;
     flex-direction: row;
 `;

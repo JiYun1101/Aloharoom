@@ -1,23 +1,42 @@
 import React from 'react'
 import styled from 'styled-components'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { hover } from '@testing-library/user-event/dist/hover';
 
 const DragDropDiv = styled.div`
     width: 100%;
 `;
 
 const UploadImg = styled.img`
-    width: 20rem;
-    height: 15rem;
+    width: 20vw;
+    height: 25vh;
     margin-left: 0.5%;
     margin-right: 0.5%;
     margin-top: 0.5%;
     margin-bottom: 0.5%;
 `;
 
+const droppableDiv = styled.div`
+    width: 100%;
+    height: 35vh;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: "0.5rem";          /* 스크롤바의 너비 */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        height: 1%;             /* 스크롤바의 길이 */
+        background: #bbbbbb;    /* 스크롤바의 색상 */
+        border-radius: 1rem;
+    }
+    &::-webkit-scrollbar-track {
+        background: white;      /*스크롤바 뒷 배경 색상*/
+    }
+`;
+
 const droppableDivStyle = {
     width: "100%",
-    height: "20rem",
+    height: "35vh",
     overflow: "auto",
 }
 

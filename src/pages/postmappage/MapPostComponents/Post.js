@@ -6,7 +6,7 @@ const PostContainer = styled.div`
     border-width: 0.1rem;
     border-style: solid;
     border-color: #bbbbbb;
-    width: 48%;
+    width: 33vw;
     height: 100%;
     display: flex;
     flex-direction: column;

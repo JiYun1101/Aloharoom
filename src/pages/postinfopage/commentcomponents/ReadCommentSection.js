@@ -8,7 +8,8 @@ const ReadCommentSection = ({
     makeCommentRequest,
     boardId,
     deleteComment,
-    updateComment
+    updateComment,
+    myProfileURL
 }) => {
     const [clickTargetUserId, setClickTargetUserId] = useState();
     const [clickTargetContent, setClickTargetContent] = useState();
@@ -31,6 +32,7 @@ const ReadCommentSection = ({
                 createdDate={data.createdDate}
                 nickname={data.nickname}
                 userId={data.userId}
+                profileUrl={data.profileUrl}
                 showReplies={showReplies}
                 showWriteReplies={showWriteReplies}
                 toggleReplies={toggleReplies}
@@ -51,6 +53,7 @@ const ReadCommentSection = ({
                             createdDate={data.createdDate}
                             nickname={data.nickname}
                             userId={data.userId}
+                            profileUrl={data.profileUrl}
                             showWriteReplies={showWriteReplies}
                             toggleWriteReplies={toggleWriteReplies}
                             setClickTargetUserId={setClickTargetUserId}
@@ -68,6 +71,7 @@ const ReadCommentSection = ({
                     clickTargetUserId={clickTargetUserId}
                     clickTargetContent={clickTargetContent}
                     clickGroupId={clickGroupId}
+                    myProfileURL={myProfileURL}
                 />
             )}
         </>

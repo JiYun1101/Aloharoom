@@ -8,6 +8,7 @@ import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit, AiFillHeart} from "reac
 import { BiMale, BiFemale } from "react-icons/bi";
 import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
+import { AiOutlineLeft } from "react-icons/ai";
 import axios from "axios";
 import InfoPageMapContainer from "./postinfopage/InfoPageMapContainer";
 import PostInfoDiv from "./postinfopage/PostInfoDiv";
@@ -29,6 +30,7 @@ import { useRef } from "react";
 SwiperCore.use([Pagination]);
 
 const PostInfoPageContainer = styled.div`
+    position: relative;
     height: 110rem;
     display: flex;
     flex-direction: column;
@@ -90,6 +92,14 @@ const PostInfoContentstyles = {
     whiteSpace: "pre-line"
 };
 
+
+const BackPageIconStyle = {
+    position: "absolute",
+    top: "1vh",
+    left: "1vw",
+    color: "#47a5fd",
+};
+
 const PostInfoPage = () => {
     const boardId = useParams().id;
     const navigate = useNavigate();
@@ -122,6 +132,7 @@ const PostInfoPage = () => {
     const [userId, setUserId] = useState('');
     const [x, setX] = useState('');
     const [y, setY] = useState('');
+    const [myProfileURL, setMyProfileURL] = useState('');
     const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
     const showDeletePostModal = () => {setIsDeletePostModalOpen(true);}
     const handleDeletePostCancel = () => {setIsDeletePostModalOpen(false);}
@@ -232,14 +243,14 @@ const PostInfoPage = () => {
             "groupId": groupId
         })
         .then((response) => {
-            window.location.reload();
+            FetchBoardComment();
         })
         .error((error) => {console.log('makeCommentRequest axios error')});
     }
 
     async function deleteComment(commentId) {
         await axios.delete(`${baseURL}/api/comment/${commentId}`)
-        .then((response) => { window.location.reload();})
+        .then((response) => { FetchBoardComment();})
         .catch((error) => {console.log('deleteComment axios error')});
     }
 
@@ -248,14 +259,23 @@ const PostInfoPage = () => {
             "homeCommentId": commentId, 
             "content": content
         })
-        .then((response) => { window.location.reload();})
+        .then((response) => { FetchBoardComment();})
         .catch((error) => {console.log('updateComment axios error')});
+    }
+
+    async function fetchMyInfo() {
+        await axios.get(`${baseURL}/api/myPage`, {
+            withCredentials:true
+        })
+        .then((response) => { setMyProfileURL(response.data.profileUrl);})
+        .catch((error) => { console.log('axios fetchMyInfo error');})
     }
 
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
         FetchBoardComment();
+        fetchMyInfo();
     }, []);
 
     return (
@@ -270,6 +290,7 @@ const PostInfoPage = () => {
             <></>
         }
         <PostInfoPageContainer>
+        <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate(-1)}/>
             <PostInfoPageSection>
                 <PostInfoDiv width="100%" height="auto" marginTop="3rem">
                     <SwiperContainer>
@@ -505,12 +526,14 @@ const PostInfoPage = () => {
                             boardId={boardId}
                             deleteComment={deleteComment}
                             updateComment={updateComment}
+                            myProfileURL={myProfileURL}
                         />
                     ))}
                     {localStorage.getItem('userId') ? 
                         <WriteComment 
                             makeCommentRequest={makeCommentRequest}
                             boardId={boardId}
+                            myProfileURL={myProfileURL}
                         />
                     :
                         <></>

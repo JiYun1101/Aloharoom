@@ -20,6 +20,7 @@ const ReadComment = ({
     //createdDate,
     nickname,
     userId,
+    profileUrl,
     showReplies,
     showWriteReplies,
     toggleReplies,
@@ -54,7 +55,7 @@ const ReadComment = ({
         <PostInfoFlexDiv width="100%" minHeight="6rem" flexDirection="column" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center" flexDirection="row">
                 <PostInfoFlexDiv width="50%" height="100%" alignItems="center">
-                    <CommentProfileImg src = "blue.png"/>
+                    <CommentProfileImg src={profileUrl}/>
                     <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="50%" height="100%" alignItems="center" flexDirection="row-reverse">

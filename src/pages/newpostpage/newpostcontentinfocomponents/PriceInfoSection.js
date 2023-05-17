@@ -5,7 +5,7 @@ import { Select } from 'antd';
 
 const PriceInfoContainer = styled.div`
   width: 90%;
-  height: 3rem;
+  height: 5vh;
   display: flex;
   flex-direction: row;
 `;
@@ -35,7 +35,7 @@ const PriceInfoSpan = styled.span`
 
 const ManageMentPriceCheckbox = styled.input`
   background-color: #47a5fd;
-  margin-right: 0.5rem;
+  margin-right: 0.5vw;
 `;
 
 const TradeTypeOptions = [
@@ -69,11 +69,11 @@ const PriceInfoSection = ({
     const handleMaintenanceCheckboxChange = () => {
         setMaintenanceChecked(!maintenanceChecked);
     };
-        
+    
     return (
         <PriceInfoContainer>
-          <PriceInfoBox width="50%" height="3rem">
-            <PriceInfoInput value={price} width="5rem" height="2rem" type="text" onChange={(e) => { setPrice(e.target.value); }}/>
+          <PriceInfoBox width="50%" height="5vh">
+            <PriceInfoInput value={price} width="5vw" height="3.5vh" type="text" onChange={(e) => { setPrice(e.target.value); }}/>
             <PriceInfoSpan fontSize="2rem">(</PriceInfoSpan>
             <Select
               showSearch
@@ -85,10 +85,10 @@ const PriceInfoSection = ({
             />
             <PriceInfoSpan fontSize="2rem">)</PriceInfoSpan>
           </PriceInfoBox>
-          <PriceInfoBox width="50%" height="3rem">
+          <PriceInfoBox width="50%" height="5vh">
             <ManageMentPriceCheckbox type="checkbox" checked={maintenance !== "" ?  true : maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>
-            <PriceInfoSpan marginRight="2rem">관리비 별도</PriceInfoSpan>
-            <PriceInfoInput value={maintenance} width="8rem" height="2rem" type="text" disabled={maintenance !== "" ?  false : !maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
+            <PriceInfoSpan marginRight="2vw">관리비 별도</PriceInfoSpan>
+            <PriceInfoInput value={maintenance} width="7.5vw" height="3.5vh" type="text" disabled={maintenance !== "" ?  false : !maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
           </PriceInfoBox>
         </PriceInfoContainer>
     );

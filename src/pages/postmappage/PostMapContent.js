@@ -10,7 +10,7 @@ import baseURL from "../api/baseURL";
 const PostMapContentContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 50rem;
+  height: 86.8vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;

@@ -7,7 +7,7 @@ import PostButtonSection from "./newpostcontentwritingcomponents/PostButtonSecti
 
 const NewPostContentWritingDiv = styled.div`
     width: 80%;
-    height: 95%;
+    height: 89vh;
     display: flex;
     flex-direction: column;
     align-items: center;

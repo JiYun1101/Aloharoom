@@ -4,32 +4,32 @@ import styled from 'styled-components';
 import { Input } from 'antd';
 
 const GuaranteeContainer = styled.div`
-    margin-top: 1.5rem;
+    margin-top: 1vh;
     width: 90%;
-    height: 3rem;
+    height: 4.5vh;
     display: flex;
     flex-direction: row;
 `;
 
 const GuaranteeBox = styled.div`
     width: ${props => props.width || "0rem"};
-    height: 3rem;
+    height: 4.5vh;
 `;
 
 const GuaranteePriceCheckbox = styled.input`
     background-color: #47a5fd;
-    margin-right: 0.5rem;
+    margin-right: 0.5vw;
 `;
 
 const GuaranteeSpan = styled.span`
     color: #47a5fd;
     font-size: 1rem;
-    margin-right: 2rem;
+    margin-right: 2vw;
 `;
 
 const GuaranteeInputText = styled.input`
-    width: 8rem;
-    height: 2rem;
+    width: 7.5vw;
+    height: 3.5vh;
     border-width: 0.1rem;
     border-style: solid;
     border-color: #bbbbbb;

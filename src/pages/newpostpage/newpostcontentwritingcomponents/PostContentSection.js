@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const PostContentDiv = styled.div`
-  margin-top: 2rem;
+  margin-top: 2.5vh;
   width: 90%;
   height: 90%;
 `;

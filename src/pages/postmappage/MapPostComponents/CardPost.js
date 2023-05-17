@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { FaRegCommentDots } from "react-icons/fa";
 
 const Card = styled.div`
-  width: 15.5rem;
-  height: 22rem;
+  //width: 15.5rem;
+  //height: 22rem;
+  width: 14.6vw;
+  height: 38vh;
+  //height: 22rem;
   border-style: solid;
   border-color: #bbbbbb;
   border-radius: 1rem;
