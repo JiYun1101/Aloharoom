@@ -1,7 +1,7 @@
 import React from "react";
-import MyInfoPage from "../MyInfoPage";
-import LikedListPage from "../LikedListPage";
-import ChattingListPage from "../ChattingListPage";
+import MyInfoPageArea from "./MyInfoPageArea";
+// import LikedListPage from "../LikedListPage";
+// import ChattingListPage from "../ChattingListPage";
 
 import styled from "styled-components";
 
@@ -14,9 +14,7 @@ const MyPageContentDiv = styled.div`
 const MyPageContent = ({myInfoPage, likedListPage, chattingPage}) => {
     return (
         <MyPageContentDiv>
-            {myInfoPage ? <MyInfoPage/> : <></>}
-            {likedListPage ? <LikedListPage/> : <></>}
-            {chattingPage ? <ChattingListPage/> : <></>}
+            <MyInfoPageArea/>
         </MyPageContentDiv>
     );
 }
