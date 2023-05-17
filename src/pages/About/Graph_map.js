@@ -16,53 +16,50 @@ const DemoScatter = () => {
       const modifiedData = [
         {
           city: "울산",
-          UV: 3,
+          UV: 2.3,
           DAU: 1.8,
           region: 3,
         },
         {
           city: "광주",
-          UV: 1.8,
+          UV: 1.2,
           DAU: 1.8,
           region: 13,
         },
         {
           city: "경기도",
-          UV: 1.88,
+          UV: 1.18,
           DAU: 4.2,
           region: 16,
         },
         {
           city: "서울",
-          UV: 1.8,
+          UV: 1.1,
           DAU: 4,
           region: 16,
         },
         {
           city: "강원도",
-          UV: 2.8,
+          UV: 2.1,
           DAU: 4,
           region: 19,
         },
         {
           city: "대전",
-          UV: 2.1,
+          UV: 1.5,
           DAU: 3,
           region: 90,
         },
         {
           city: "제주도",
-          UV: 1.6,
+          UV: 1.1,
           DAU: 0.0,
           region: 30,
         },
       ];
 
-      const { data: newData } = await axios.get(
-        "http://localhost:8080/api/data"
-      );
       modifiedData.forEach((item) => {
-        const target = newData.find((city) => city.city === item.city);
+        const target = regionBoardMap[item.city];
         if (target) {
           item.region = target.region;
         }
@@ -72,7 +69,7 @@ const DemoScatter = () => {
 
       console.log("Data loaded successfully");
     } catch (error) {
-      console.error("Data loading failed:", error);
+      console.error("Data loading failed", error);
     }
   };
 

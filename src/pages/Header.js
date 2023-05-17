@@ -84,13 +84,17 @@ const Header = () => {
   const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
   const [clickLogout, setClickLogout] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-  const showIsLogoutModal = () => {setIsLogoutModalOpen(true);}
-  const handleIsLogoutCancel = () => {setIsLogoutModalOpen(false);}
+  const showIsLogoutModal = () => {
+    setIsLogoutModalOpen(true);
+  };
+  const handleIsLogoutCancel = () => {
+    setIsLogoutModalOpen(false);
+  };
   const handleIsLogoutOk = () => {
     userLogout();
     localStorage.clear();
     navigate(`../login`);
-  }
+  };
 
   const ModalOpen = () => {
     setNotifyModalOpen(true);
@@ -101,35 +105,42 @@ const Header = () => {
   };
 
   async function fetchUserId() {
-    await axios.get(`${baseURL}/api/userId`, {
-      withCredentials:true
-    })
-    .then((response) => {
-      localStorage.setItem("nickname", response.data.nickname);
-      localStorage.setItem("userId", response.data.loginUserId);
-    })
-    .catch((error) => { console.log(`fetchUserId axios error`);})
+    await axios
+      .get(`${baseURL}/api/userId`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        localStorage.setItem("nickname", response.data.nickname);
+        localStorage.setItem("userId", response.data.loginUserId);
+      })
+      .catch((error) => {
+        console.log(`fetchUserId axios error`);
+      });
   }
 
   async function userLogout() {
-    await axios.get(`${baseURL}/logout`, {
-      withCredentials:true
-    })
-    .then((response) => {
-      localStorage.remove('username');
-      localStorage.remove('nickname');
-      localStorage.remove('userId');
-      console.log('axios logout success');
-    })
-    .catch((error) => {console.log('axios userLogOut error');})
+    await axios
+      .get(`${baseURL}/logout`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        localStorage.remove("username");
+        localStorage.remove("nickname");
+        localStorage.remove("userId");
+        console.log("axios logout success");
+      })
+      .catch((error) => {
+        console.log("axios userLogOut error");
+      });
   }
 
   async function fetchNotificationInfo() {
-    await axios.get(`${baseURL}/api/notification`, {
-      withCredentials:true
-    })
-    .then((response) => {
-        console.log('notification Data:', response.data);
+    await axios
+      .get(`${baseURL}/api/notification`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log("notification Data:", response.data);
         setNotificationData(response.data);
       })
       .catch((error) => {
@@ -138,18 +149,21 @@ const Header = () => {
   }
 
   async function fetchNotReadNotificationCount() {
-    await axios.get(`${baseURL}/api/notification/count`, {
-      withCredentials:true
-    })
-    .then((response) => {
-      console.log('notification count:', response.data);
-      setNotReadNotificationCount(response.data);
-    })
-    .catch((error) => { console.log(`fetchNotReadNotificationCount axios error`);})
+    await axios
+      .get(`${baseURL}/api/notification/count`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log("notification count:", response.data);
+        setNotReadNotificationCount(response.data);
+      })
+      .catch((error) => {
+        console.log(`fetchNotReadNotificationCount axios error`);
+      });
   }
 
   useEffect(() => {
-    if(localStorage.getItem('username')) {
+    if (localStorage.getItem("username")) {
       fetchUserId();
       fetchNotificationInfo();
       fetchNotReadNotificationCount();
@@ -157,15 +171,15 @@ const Header = () => {
   }, []);
   return (
     <>
-      {isLogoutModalOpen?
+      {isLogoutModalOpen ? (
         <LogoutModal
           isLogoutModalOpen={isLogoutModalOpen}
           handleOk={handleIsLogoutOk}
           handelCancel={handleIsLogoutCancel}
         />
-      :
+      ) : (
         <></>
-      }
+      )}
       <MenuBar>
         {NotifyModalOpen ? (
           <NotificationModal
@@ -182,21 +196,27 @@ const Header = () => {
           <Link to="/postMapPage" style={LinkToStyle}>
             <NavElement>방 보기</NavElement>
           </Link>
-          <Link to="/Community" style={LinkToStyle}>
+          {/* <Link to="/Community" style={LinkToStyle}>
+            <NavElement>커뮤니티</NavElement>
+          </Link> */}
+          <Link to="/CommunityPage" style={LinkToStyle}>
             <NavElement>커뮤니티</NavElement>
           </Link>
-          <Link to="/CommunityPage" style={LinkToStyle}>
-            <NavElement>커뮤니티2</NavElement>
-          </Link>
         </NavGroup>
-        {localStorage.getItem("username") ?
+        {localStorage.getItem("username") ? (
           <LogoGroup>
             <LogoElement>
-              <Badge count={notReadNotificationCount.notificationCount} size="small" overflowCount={10}>
-                <AiOutlineBell size={30} onClick={() => {
-                  fetchNotificationInfo();
-                  ModalOpen();
-                }} 
+              <Badge
+                count={notReadNotificationCount.notificationCount}
+                size="small"
+                overflowCount={10}
+              >
+                <AiOutlineBell
+                  size={30}
+                  onClick={() => {
+                    fetchNotificationInfo();
+                    ModalOpen();
+                  }}
                 />
               </Badge>
             </LogoElement>
@@ -206,24 +226,22 @@ const Header = () => {
               </Link>
             </LogoElement>
           </LogoGroup>
-        :
+        ) : (
           <></>
-        }
-        {localStorage.getItem("username") ?
-            <Button
-              onClick={() => {
-                setIsLogoutModalOpen(true);
-              }}
-            >
-              Logout
-            </Button>
-          :
-            <Link to="../login">
-              <Button>
-                Login / Signup
-              </Button>
-            </Link>
-        }
+        )}
+        {localStorage.getItem("username") ? (
+          <Button
+            onClick={() => {
+              setIsLogoutModalOpen(true);
+            }}
+          >
+            Logout
+          </Button>
+        ) : (
+          <Link to="../login">
+            <Button>Login / Signup</Button>
+          </Link>
+        )}
       </MenuBar>
       <BlueLine />
     </>

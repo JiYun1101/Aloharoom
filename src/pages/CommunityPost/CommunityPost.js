@@ -1,23 +1,17 @@
 import React, { useState } from "react";
+// import SearchHashTag from "./SearchHashTag";
+
 import styled from "styled-components";
-import CardPosts from "./CardPosts";
+// import MapPost from "./MapPost";
+
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Segmented, Space } from "antd";
-import { Pagination } from "antd";
-import { Link } from "react-router-dom"; // Link import 추가
-// import CardPost2 from "./Community";
 
 import { Button, Form, Input, Radio } from "antd";
-
-const Page = styled.div`
-  width: 100%;
-  margin-top: 1rem;
-`;
-
-const PageNum = styled.div`
-  margin-top: 113rem;
-  margin-left: 33rem;
-`;
+import CardPosts from "./CardPosts"; // CardPosts import
 
 const CategoryNum = styled.div`
   text-align: center;
@@ -51,27 +45,31 @@ const FormItemContainer = styled.div`
   align-items: center;
 `;
 
-// const PostContainer = styled.div`
-//   border-width: 0.1rem;
-//   border-style: solid;
-//   border-color: #bbbbbb;
-//   width: 48%;
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-// `;
+const PostMapContentContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 50rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+`;
 
-const Post = ({ clickedCommunityId, cardPostData }) => {
-  const [roommatePosts, setRoomMatePosts] = useState(true);
-  const [sharehousePosts, setShareHousePosts] = useState(false);
+const LinkToStyle = {
+  textDecoration: "none",
+  color: "inherit",
+};
+
+const NewPostIconStyle = {
+  position: "absolute",
+  right: "2rem",
+  bottom: "0.001rem",
+  zIndex: "2",
+  color: "#bbbbbb",
+};
+
+const PostContent = () => {
   const [code, setCode] = useState(1); // 코드 초기값을 null로 변경
-
-  const roommatePostsClick = () => {
-    setRoomMatePosts(true);
-    setShareHousePosts(false);
-  };
+  const [isCardPostsVisible, setIsCardPostsVisible] = useState(true); // CardPosts의 가시성 상태 추가
 
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("horizontal");
@@ -100,88 +98,112 @@ const Post = ({ clickedCommunityId, cardPostData }) => {
       : null;
 
   const handleAvatarClick = (code) => {
-    // handleAvatarClick 함수 추가
     setCode(code);
+    console.log(code);
+  };
+
+  const handleNavigation = () => {
+    setIsCardPostsVisible(false); // navigation 이벤트가 발생하면 CardPosts를 가려줍니다.
+  };
+
+  const handleOnClick = () => {
+    handleNavigation();
+    setIsCardPostsVisible(true);
   };
 
   return (
-    <>
-      <Page>
-        <Form
-          {...formItemLayout}
-          layout={formLayout}
-          form={form}
-          initialValues={{
-            layout: formLayout,
-          }}
-          onValuesChange={onFormLayoutChange}
-          style={{
-            maxWidth: 600,
-          }}
-        >
-          <div>
-            <FormContainer
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+    <PostMapContentContainer>
+      <Form
+        {...formItemLayout}
+        layout={formLayout}
+        form={form}
+        initialValues={{
+          layout: formLayout,
+        }}
+        onValuesChange={onFormLayoutChange}
+        style={{
+          maxWidth: 600,
+        }}
+      >
+        <div>
+          <FormContainer
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <FormItemContainer>
+              <Form.Item label="검색창" style={{ marginRight: "1rem" }}>
+                <Input placeholder="검색어를 입력하세요" />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary">Submit</Button>
+              </Form.Item>
+            </FormItemContainer>
+          </FormContainer>
+        </div>
+      </Form>
+      <CategoryNum>
+        <Space>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Link
+              to={{ pathname: "/community", search: "" }}
+              onClick={handleOnClick}
             >
-              <FormItemContainer>
-                <Form.Item label="검색창" style={{ marginRight: "1rem" }}>
-                  <Input placeholder="검색어를 입력하세요" />
-                </Form.Item>
-                <Form.Item>
-                  <Button type="primary">Submit</Button>
-                </Form.Item>
-              </FormItemContainer>
-            </FormContainer>
+              <Link
+                to={{ pathname: "/community", search: "" }}
+                onClick={handleOnClick}
+              ></Link>
+              <Avatar
+                style={{
+                  backgroundColor: "#87d068",
+                }}
+                icon={<UserOutlined />}
+                onClick={() => handleAvatarClick(3)}
+              />
+              <div>User 1</div>
+              <Avatar
+                style={{
+                  backgroundColor: "#f56a00",
+                }}
+                onClick={() => {
+                  handleNavigation();
+                  setIsCardPostsVisible(true);
+                }} // navigation 이벤트 핸들러 추가 및 CardPosts 가시성 상태 변경
+              >
+                K
+              </Avatar>
+              <div>User 2</div>
+            </Link>
+            <Link
+              to={{ pathname: "/community", search: "" }}
+              onClick={handleOnClick}
+            >
+              <Avatar
+                style={{
+                  backgroundColor: "#87d068",
+                }}
+                icon={<UserOutlined />}
+                onClick={() => handleAvatarClick(3)}
+              />
+              <div>User 3</div>
+            </Link>
           </div>
-        </Form>
-        <CategoryNum>
-          <Space>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Link to={{ pathname: "/community", search: "?code=1" }}>
-                <Avatar
-                  src="https://xsgames.co/randomusers/avatar.php?g=pixel"
-                  onClick={() => handleAvatarClick(1)}
-                />
-                <div>User 1</div>
-              </Link>
-              <Link to={{ pathname: "/community", search: "?code=2" }}>
-                <Avatar
-                  style={{
-                    backgroundColor: "#f56a00",
-                  }}
-                  onClick={() => handleAvatarClick(2)} // onClick 이벤트 추가
-                >
-                  K
-                </Avatar>
-                <div>User 2</div>
-              </Link>
-              <Link to={{ pathname: "/community", search: "?code=3" }}>
-                <Avatar
-                  style={{
-                    backgroundColor: "#87d068",
-                  }}
-                  icon={<UserOutlined />}
-                  onClick={() => handleAvatarClick(3)} // onClick 이벤트 추가
-                />
-                <div>User 3</div>
-              </Link>
-            </div>
-          </Space>
-        </CategoryNum>
-        <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
-          <h2>가장 인기 있는 글</h2>
-          <p>1. 내 방 자랑</p>
-          <p>2. 새로운 청소기</p>
-          <p>3. 오늘의 일기</p>
-        </CardPost3>{" "}
-        {/* CardPost3에 ref 추가 */}
-      </Page>
-    </>
+        </Space>
+      </CategoryNum>
+      <CardPosts />
+      <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
+        <h2>가장 인기 있는 글</h2>
+        <p>1. 내 방 자랑</p>
+        <p>2. 새로운 청소기</p>
+        <p>3. 오늘의 일기</p>
+      </CardPost3>{" "}
+      <Link to="/newCommunityPostPage" style={LinkToStyle}>
+        <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+      </Link>
+    </PostMapContentContainer>
   );
 };
 
-export default Post;
+export default PostContent;

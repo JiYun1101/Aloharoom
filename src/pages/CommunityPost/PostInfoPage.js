@@ -347,6 +347,7 @@ const PostInfoPage = () => {
               {imgUrls.map((data, index) => (
                 <SwiperSlide key={index}>
                   <PostInfoImage src={data} key={index} />
+                  {data.imgUrls}
                 </SwiperSlide>
               ))}
             </Swiper>
