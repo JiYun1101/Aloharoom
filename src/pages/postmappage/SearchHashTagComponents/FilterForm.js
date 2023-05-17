@@ -173,46 +173,69 @@ const FilterForm = ({
           <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
             사람 해시태그
           </ModalFlexDiv>
-          <ModalFlexDiv 
-            width="100%" 
-            height="auto"
-            marginBottom="1rem"
-            flexDirection="row"
-            flexWrap="wrap"
-            gap="0.5rem"
-          >
-            {myLikeHashtags.map((data, idx) => (
-              <HoverHashTagButton
-                key={idx}
-                selected={likeHashtags.includes(data)}
-                onClick={() => handleLikeHashTagClick(data)}
-              >
-                {data}
-              </HoverHashTagButton>  
-            ))}
-          </ModalFlexDiv>
+          {localStorage.getItem('userId') ? 
+            <ModalFlexDiv 
+              width="100%" 
+              height="auto"
+              marginBottom="1rem"
+              flexDirection="row"
+              flexWrap="wrap"
+              gap="0.5rem"
+            >
+              {myLikeHashtags.map((data, idx) => (
+                <HoverHashTagButton
+                  key={idx}
+                  selected={likeHashtags.includes(data)}
+                  onClick={() => handleLikeHashTagClick(data)}
+                >
+                  {data}
+                </HoverHashTagButton>  
+              ))}
+            </ModalFlexDiv>
+          :
+            <ModalFlexDiv
+              width="100%"
+              height="auto"
+              justifyContent="center"
+              alignItems="center"
+              marginBottom="1rem"
+            >
+              <div style={{ fontSize:"1.2rem", color:"#a0a0a0"}}>회원가입후 해시태그를 설정할 수 있습니다.</div>
+            </ModalFlexDiv>
+          }
           <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
             집 해시태그
           </ModalFlexDiv>
-          <ModalFlexDiv 
-            width="100%" 
+          {localStorage.getItem('userId') ? 
+            <ModalFlexDiv 
+              width="100%" 
+              height="auto"
+              marginBottom="1rem"
+              flexDirection="row"
+              flexWrap="wrap"
+              gap="0.5rem"
+            >
+              {myLikeHomeHashtags.map((data, idx) => (
+                <HoverHashTagButton
+                  key={idx}
+                  selected={likeHomeHashtags.includes(data)}
+                  onClick={() => handleLikeHomeHashtagClick(data)}
+                >
+                  {data}
+                </HoverHashTagButton>  
+              ))}
+            </ModalFlexDiv>
+          :
+          <ModalFlexDiv
+            width="100%"
             height="auto"
+            justifyContent="center"
+            alignItems="center"
             marginBottom="1rem"
-            flexDirection="row"
-            flexWrap="wrap"
-            gap="0.5rem"
           >
-            {myLikeHomeHashtags.map((data, idx) => (
-              <HoverHashTagButton
-                key={idx}
-                selected={likeHomeHashtags.includes(data)}
-                onClick={() => handleLikeHomeHashtagClick(data)}
-              >
-                {data}
-              </HoverHashTagButton>  
-            ))}
+            <div style={{ fontSize:"1.2rem", color:"#a0a0a0"}}>회원가입후 해시태그를 설정할 수 있습니다.</div>
           </ModalFlexDiv>
-        
+          }
         <Button
             type="primary"
             htmlType="submit"
