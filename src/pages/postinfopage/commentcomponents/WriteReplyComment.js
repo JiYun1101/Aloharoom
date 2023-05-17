@@ -30,13 +30,14 @@ const WriteReplyComment = ({
     boardId,
     clickTargetUserId,
     clickTargetContent,
-    clickGroupId
+    clickGroupId,
+    myProfileURL
 }) => {
     const [inputValue, setInputValue] = useState();
     return (
         <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src = "blue.png"/>
+                <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src={myProfileURL}/>
                 <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{localStorage.getItem('nickname')}</PostInfoSpan>
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">

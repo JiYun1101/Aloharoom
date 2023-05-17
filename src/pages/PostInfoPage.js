@@ -132,6 +132,7 @@ const PostInfoPage = () => {
     const [userId, setUserId] = useState('');
     const [x, setX] = useState('');
     const [y, setY] = useState('');
+    const [myProfileURL, setMyProfileURL] = useState('');
     const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
     const showDeletePostModal = () => {setIsDeletePostModalOpen(true);}
     const handleDeletePostCancel = () => {setIsDeletePostModalOpen(false);}
@@ -249,7 +250,7 @@ const PostInfoPage = () => {
 
     async function deleteComment(commentId) {
         await axios.delete(`${baseURL}/api/comment/${commentId}`)
-        .then((response) => { window.location.reload();})
+        .then((response) => { FetchBoardComment();})
         .catch((error) => {console.log('deleteComment axios error')});
     }
 
@@ -258,14 +259,23 @@ const PostInfoPage = () => {
             "homeCommentId": commentId, 
             "content": content
         })
-        .then((response) => { window.location.reload();})
+        .then((response) => { FetchBoardComment();})
         .catch((error) => {console.log('updateComment axios error')});
+    }
+
+    async function fetchMyInfo() {
+        await axios.get(`${baseURL}/api/myPage`, {
+            withCredentials:true
+        })
+        .then((response) => { setMyProfileURL(response.data.profileUrl);})
+        .catch((error) => { console.log('axios fetchMyInfo error');})
     }
 
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
         FetchBoardComment();
+        fetchMyInfo();
     }, []);
 
     return (
@@ -516,12 +526,14 @@ const PostInfoPage = () => {
                             boardId={boardId}
                             deleteComment={deleteComment}
                             updateComment={updateComment}
+                            myProfileURL={myProfileURL}
                         />
                     ))}
                     {localStorage.getItem('userId') ? 
                         <WriteComment 
                             makeCommentRequest={makeCommentRequest}
                             boardId={boardId}
+                            myProfileURL={myProfileURL}
                         />
                     :
                         <></>

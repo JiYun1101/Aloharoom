@@ -13,6 +13,7 @@ const ReadReplyComment = ({
     //createdDate,
     nickname,
     userId,
+    profileUrl,
     showWriteReplies,
     toggleWriteReplies,
     setClickTargetUserId,
@@ -44,7 +45,7 @@ const ReadReplyComment = ({
         <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center" flexDirection="row">
                 <PostInfoFlexDiv width="50%" height="100%" alignItems="center">
-                    <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src = "blue.png"/>
+                    <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src={profileUrl}/>
                     <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="50%" height="100%" alignItems="center" flexDirection="row-reverse">
