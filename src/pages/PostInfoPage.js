@@ -506,6 +506,7 @@ const PostInfoPage = () => {
                             x={x} 
                             y={y} 
                             address={address}
+                            homeType={homeType}
                         />
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
