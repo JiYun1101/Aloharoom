@@ -156,7 +156,7 @@ const FilterForm = ({
           <Select style={{ fontSize: "4rem" }} onChange={(value) => {setHomeType(value);}}>
             <Select.Option value="officetel">오피스텔</Select.Option>
             <Select.Option value="apartment">아파트</Select.Option>
-            <Select.Option value="house">주택</Select.Option>
+            <Select.Option value="villa">주택</Select.Option>
             <Select.Option value="notcare">상관없음</Select.Option>
           </Select>
         </Form.Item>
