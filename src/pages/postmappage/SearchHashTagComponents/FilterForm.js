@@ -145,6 +145,7 @@ const FilterForm = ({
             <Select.Option value="1">1개</Select.Option>
             <Select.Option value="2">2개</Select.Option>
             <Select.Option value="3">3개</Select.Option>
+            <Select.Option value="0">상관없음</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -156,6 +157,7 @@ const FilterForm = ({
             <Select.Option value="officetel">오피스텔</Select.Option>
             <Select.Option value="apartment">아파트</Select.Option>
             <Select.Option value="house">주택</Select.Option>
+            <Select.Option value="notcare">상관없음</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item label="평수">
@@ -169,7 +171,7 @@ const FilterForm = ({
         </Form.Item>
       </Form>
           <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
-            집 해시태그
+            사람 해시태그
           </ModalFlexDiv>
           <ModalFlexDiv 
             width="100%" 
@@ -190,7 +192,7 @@ const FilterForm = ({
             ))}
           </ModalFlexDiv>
           <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
-            사람 해시태그
+            집 해시태그
           </ModalFlexDiv>
           <ModalFlexDiv 
             width="100%" 
