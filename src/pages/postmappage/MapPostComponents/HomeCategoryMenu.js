@@ -23,6 +23,7 @@ const HomeCategoryMenuDivStyle = {
 
 const HomeCategoryMenuSpan = styled.span`
     color: ${props => props.color || "black"};
+    font-weight: ${props => props.fontWeight};
 `;
 
 const HomeCategoryMarkerImg = styled.img`
@@ -38,7 +39,7 @@ const HomeCategoryMenu = () => {
                     return (
                         <>
                             <HomeCategoryMarkerImg key={idx} src={greenMarker} alt="주택"/>
-                            <HomeCategoryMenuSpan key={idx} color="green">
+                            <HomeCategoryMenuSpan key={idx} color="green" fontWeight="600">
                                 {category}
                             </HomeCategoryMenuSpan>
                         </>
@@ -48,7 +49,7 @@ const HomeCategoryMenu = () => {
                     return (
                         <>
                         <HomeCategoryMarkerImg key={idx} src={redMarker} alt="주택"/>
-                        <HomeCategoryMenuSpan key={idx} color="red">
+                        <HomeCategoryMenuSpan key={idx} color="red" fontWeight="600">
                             {category}
                         </HomeCategoryMenuSpan>
                         </>
@@ -58,7 +59,7 @@ const HomeCategoryMenu = () => {
                     return (
                         <>
                         <HomeCategoryMarkerImg key={idx} src={blueMarker} alt="주택"/>
-                        <HomeCategoryMenuSpan key={idx} color="blue">
+                        <HomeCategoryMenuSpan key={idx} color="blue" fontWeight="600">
                             {category}
                         </HomeCategoryMenuSpan>
                         </>
