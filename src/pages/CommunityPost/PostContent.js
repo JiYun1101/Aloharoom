@@ -13,6 +13,51 @@ import { Avatar, Segmented, Space } from "antd";
 import { Button, Form, Input, Radio } from "antd";
 import CardPosts from "./CardPosts"; // CardPosts import
 
+import { useEffect } from "react";
+import SearchHashTag from "../postmappage/SearchHashTag";
+
+import EmptyBox from "../postmappage/SearchHashTagComponents/EmptyBox";
+import SearchTitle from "../postmappage/SearchHashTagComponents/SearchTitle";
+
+import NotificationModal2 from "../postmappage/SearchHashTagComponents/NotificationModal2";
+import { IoFilterOutline } from "react-icons/io5";
+import axios from "axios";
+// import baseURL from "../../api/baseURL";
+
+const SearchHashTagContainer = styled.div`
+  position: absolute;
+  width: 99.5%;
+  height: 17vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SearchSection = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  z-index: 1;
+`;
+
+const SearchInput = styled.input`
+  width: 36%;
+  height: 70%;
+  border-style: solid;
+  border-radius: 2rem;
+  border-color: #47a5fd;
+  z-index: 1;
+`;
+
+const SearchIconStyle = {
+  position: "absolute",
+  right: "2rem",
+  zIndex: "3",
+  marginRight: "3rem",
+  marginLeft: "1rem",
+  color: "#47A5FD",
+};
+
 const CategoryNum = styled.div`
   text-align: center;
 `;
@@ -48,7 +93,7 @@ const FormItemContainer = styled.div`
 const PostMapContentContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 50rem;
+  height: 86.8vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -67,7 +112,27 @@ const NewPostIconStyle = {
   color: "#bbbbbb",
 };
 
-const PostContent = () => {
+const { Search } = Input;
+
+const SearchSectionContainer = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  z-index: 1;
+`;
+
+const PostContent = (
+  setSearchStr,
+  fetchCardPostData,
+  fetchFilterCardPostData
+) => {
+  const [cardPostData, setCardPostData] = useState([]);
+  const [swLat, setSWLat] = useState("");
+  const [swLon, setSWLon] = useState("");
+  const [neLat, setNELat] = useState("");
+  const [neLon, setNELon] = useState("");
+
   const [code, setCode] = useState(1); // 코드 초기값을 null로 변경
   const [isCardPostsVisible, setIsCardPostsVisible] = useState(true); // CardPosts의 가시성 상태 추가
 
@@ -97,6 +162,33 @@ const PostContent = () => {
         }
       : null;
 
+  const [myLikeHashtags, setMyLikeHashtags] = useState([]);
+  const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
+  async function fetchHashtag() {
+    // await axios
+    //   .get(`${baseURL}/api/home`, {
+    //     withCredentials: true,
+    //   })
+    //   .then((response) => {
+    //     console.log("fetchHashtag", response.data);
+    //     setMyLikeHashtags(response.data.likeHashtags);
+    //     setMyLikeHomeHashtags(response.data.likeHomeHashtags);
+    //   })
+    //   .catch((error) => {
+    //     console.log(`axios fetchHashtag error`);
+    //   });
+  }
+
+  const onSearch = (value) => {
+    setSearchStr(value);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("userId")) {
+      fetchHashtag();
+    }
+  }, []);
+
   const handleAvatarClick = (code) => {
     setCode(code);
     console.log(code);
@@ -106,75 +198,67 @@ const PostContent = () => {
     setIsCardPostsVisible(false); // navigation 이벤트가 발생하면 CardPosts를 가려줍니다.
   };
 
+  const [inputValue, setInputValue] = useState(null);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleButtonClick = () => {
+    // setSearchStr(inputValue);
+    setInputValue("");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleButtonClick();
+    }
+  };
+  const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
+
+  const ModalOpen = () => {
+    setNotifyModalOpen(true);
+  };
+
+  const ModalClose = () => {
+    setNotifyModalOpen(false);
+  };
+
   return (
     <PostMapContentContainer>
-      <Form
-        {...formItemLayout}
-        layout={formLayout}
-        form={form}
-        initialValues={{
-          layout: formLayout,
-        }}
-        onValuesChange={onFormLayoutChange}
+      <Space.Compact
+        block
         style={{
-          maxWidth: 600,
+          width: 600,
+          marginLeft: "32.7rem",
+          marginTop: "5.7rem",
+          border: "1px solid black",
+          borderRadius: "5px", // 모서리를 둥글게 만듦
         }}
       >
-        <div>
-          <FormContainer
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <FormItemContainer>
-              <Form.Item label="검색창" style={{ marginRight: "1rem" }}>
-                <Input placeholder="검색어를 입력하세요" />
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary">Submit</Button>
-              </Form.Item>
-            </FormItemContainer>
-          </FormContainer>
-        </div>
-      </Form>
-      <CategoryNum>
-        <Space>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Link
-              to={{ pathname: "/community", search: "?code=1" }}
-              onClick={() => {
-                handleNavigation();
-                setIsCardPostsVisible(true);
-              }} // navigation 이벤트 핸들러 추가 및 CardPosts 가시성 상태 변경
-            >
-              <Avatar
-                style={{
-                  backgroundColor: "#f56a00",
-                }}
-                onClick={() => handleAvatarClick(2)}
-              >
-                K
-              </Avatar>
-              <div>User 2</div>
-            </Link>
-            <Link
-              to={{ pathname: "/community", search: "?code=3" }}
-              onClick={handleNavigation} // navigation 이벤트 핸들러 추가
-            >
-              <Avatar
-                style={{
-                  backgroundColor: "#87d068",
-                }}
-                icon={<UserOutlined />}
-                onClick={() => handleAvatarClick(3)}
-              />
-              <div>User 3</div>
-            </Link>
-          </div>
-        </Space>
-      </CategoryNum>
+        <Button
+          style={{
+            color: "#85afe1",
+          }}
+        >
+          방자랑
+        </Button>
+        <Button>정보 공유</Button>
+        <Button>자랑</Button>
+      </Space.Compact>
+      <SearchSectionContainer>
+        <Search
+          placeholder="게시물 키워드를 입력하세요"
+          size="large"
+          allowClear
+          onSearch={onSearch}
+          style={{
+            width: 300,
+            marginLeft: "13.7rem",
+            marginTop: "5.7rem",
+          }}
+        />
+      </SearchSectionContainer>
       <CardPosts />
       <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
         <h2>가장 인기 있는 글</h2>
