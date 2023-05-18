@@ -230,7 +230,7 @@ const PostContent = (
         block
         style={{
           width: 600,
-          marginLeft: "32.7rem",
+          marginLeft: "29rem",
           marginTop: "5.7rem",
           border: "1px solid black",
           borderRadius: "5px", // 모서리를 둥글게 만듦
