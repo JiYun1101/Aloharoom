@@ -4,11 +4,16 @@ import HomeCategoryMenu from "./HomeCategoryMenu";
 import EventMarkerContainer from "./EventMarkerContainer";
 
 const kakaoMapStyle = {
-    width: "80vw",
+    width: "51.5vw",
     height: "100%",
     zIndex: 0,
-    position: "relative"
+    position: "relative",
+    borderWidth: "0.1rem",
+    borderStyle: "solid",
+    borderColor: "#bbbbbb"
 };
+
+
 
 const KakaoMapPart = ({
     searchStr,

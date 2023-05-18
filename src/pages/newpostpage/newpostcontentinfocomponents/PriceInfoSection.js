@@ -31,6 +31,7 @@ const PriceInfoSpan = styled.span`
   color: #47a5fd;
   font-size: ${props => props.fontSize || "1rem"};
   margin-right: ${props => props.marginRight || "0rem"};
+  font-weight: ${props => props.fontWeight};
 `;
 
 const ManageMentPriceCheckbox = styled.input`
@@ -87,7 +88,7 @@ const PriceInfoSection = ({
           </PriceInfoBox>
           <PriceInfoBox width="50%" height="5vh">
             <ManageMentPriceCheckbox type="checkbox" checked={maintenance !== "" ?  true : maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>
-            <PriceInfoSpan marginRight="2vw">관리비 별도</PriceInfoSpan>
+            <PriceInfoSpan marginRight="2vw" fontWeight="600">관리비 별도</PriceInfoSpan>
             <PriceInfoInput value={maintenance} width="7.5vw" height="3.5vh" type="text" disabled={maintenance !== "" ?  false : !maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
           </PriceInfoBox>
         </PriceInfoContainer>

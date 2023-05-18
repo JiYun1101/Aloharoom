@@ -56,8 +56,8 @@ const AddressInfoDiv = styled.div`
 `;
 
 const AddressInfoSpan = styled.span`
-  font-size: 1.1rem;
-  font-weight: 550;
+  font-size: 1rem;
+  font-weight: 600;
 `;
 
 const PriceInfoDiv = styled.div`
@@ -124,7 +124,7 @@ const CommentLogoStyle = {
 
 const CommentSpan = styled.span`
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-right: 0.5rem;
 `;
 

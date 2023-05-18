@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import redMarker from "../../img/redMarker.png";
+import blueMarker from "../../img/blueMarker.png";
+import greenMarker from "../../img/greenMarker.png";
+
 import CategoryMapMarker from "./mapcomponents/CategoryMapMarker";
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { Select } from "antd";
@@ -20,7 +23,12 @@ const FacilityCategoryMenuDivStyle = {
     left: "1rem"
 }
 
-const InfoPageMapContainer = ({x, y, address}) => {
+const InfoPageMapContainer = ({
+    x,
+    y,
+    address,
+    homeType
+}) => {
     const center = { lat: x, lng: y };
     const [places, setPlaces] = useState([]);
     
@@ -84,7 +92,9 @@ const InfoPageMapContainer = ({x, y, address}) => {
             <MapMarker 
                 position={center} 
                 image={{
-                    src: redMarker,
+                    src: homeType === 'apartment'
+                    ? redMarker
+                    : homeType === 'officetel' ? blueMarker : greenMarker,
                     size: {
                         width: 30,
                         height: 40,

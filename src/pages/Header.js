@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import NotificationModal from "./modal/NotificationModal";
-import { Badge } from "antd";
+import { Badge,  Dropdown, Menu } from "antd";
 import axios from "axios";
 import baseURL from "./api/baseURL";
 import LogoutModal from "./modal/LogoutModal";
@@ -29,12 +29,13 @@ const Logo = styled.span`
 const NavGroup = styled.span`
   position: absolute;
   top: 0.5rem;
-  left: 37.3vw;
+  left: 42.5vw;
 `;
 
 const NavElement = styled.span`
   margin-left: 3vw;
   margin-right: 3vw;
+  font-weight: ${props => props.fontWeight};
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;
@@ -82,11 +83,7 @@ const Header = () => {
   const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
   const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
-  const [clickLogout, setClickLogout] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-  const showIsLogoutModal = () => {
-    setIsLogoutModalOpen(true);
-  };
   const handleIsLogoutCancel = () => {
     setIsLogoutModalOpen(false);
   };
@@ -162,6 +159,28 @@ const Header = () => {
       });
   }
 
+  const handleMenuClick = (e) => {
+    console.log('Menu clicked:', e);
+  };
+
+  const menu = (
+    <Menu onClick={handleMenuClick}>
+      <Menu.Item key="myInfoPage">
+        <Link to="/myInfoPage">내 정보</Link>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <Link to="/page2">좋아요 방 목록</Link>
+      </Menu.Item>
+      <Menu.Item key="3">
+        <Link to="/page3">작성 목록</Link>
+      </Menu.Item>
+      <Menu.Item key="4">
+        <Link to="/page3">댓글 목록</Link>
+      </Menu.Item>
+    </Menu>
+  );
+
+
   useEffect(() => {
     if (localStorage.getItem("username")) {
       fetchUserId();
@@ -194,13 +213,10 @@ const Header = () => {
         </Link>
         <NavGroup>
           <Link to="/postMapPage" style={LinkToStyle}>
-            <NavElement>방 보기</NavElement>
+            <NavElement fontWeight="600">방 보기</NavElement>
           </Link>
-          {/* <Link to="/Community" style={LinkToStyle}>
-            <NavElement>커뮤니티</NavElement>
-          </Link> */}
           <Link to="/CommunityPage" style={LinkToStyle}>
-            <NavElement>커뮤니티</NavElement>
+            <NavElement fontWeight="600">커뮤니티</NavElement>
           </Link>
         </NavGroup>
         {localStorage.getItem("username") ? (
@@ -221,9 +237,11 @@ const Header = () => {
               </Badge>
             </LogoElement>
             <LogoElement>
-              <Link to="/myPage" style={LinkToStyle}>
-                <AiOutlineUser size={30} />
-              </Link>
+              <Dropdown overlay={menu}>
+                <a className="ant-dropdown-link" onClick={(e) => {e.preventDefault()}}>
+                  <AiOutlineUser size={30} />
+                </a>
+              </Dropdown>
             </LogoElement>
           </LogoGroup>
         ) : (

@@ -9,7 +9,7 @@ const NewPostHeaderDiv = styled.div`
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: ${props => props.fontWeight};
     color: #47a5fd;
 `;
 
@@ -17,7 +17,7 @@ const NewPostHeaderSection = () => {
     const Id = useParams().id;
     const IdExist = Id != null;
     return(
-        <NewPostHeaderDiv>{IdExist ? `글 수정` : `새 글 쓰기`}</NewPostHeaderDiv>
+        <NewPostHeaderDiv fontWeight="600">{IdExist ? `글 수정` : `새 글 쓰기`}</NewPostHeaderDiv>
     );
 }
 

@@ -89,7 +89,10 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                 flexDirection="column"
                             >
                                 <ModalDiv width="100%" height="25%">
-                                    <ModalSpan color="black" fontWeight="600">
+                                    <ModalSpan 
+                                        color={!data.isCheck ? `black`: `#a0a0a0`}
+                                        fontWeight="600"
+                                    >
                                         {data.flag === 0 ? `[방]` : `[커뮤니티]`}
                                     </ModalSpan>
                                 </ModalDiv>

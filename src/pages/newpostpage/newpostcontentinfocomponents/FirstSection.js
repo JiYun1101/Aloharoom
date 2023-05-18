@@ -29,6 +29,7 @@ const RoomMatePriceInput = styled.input`
 const RoomMatePriceSpan = styled.span`
     margin-left: 0.5vw;
     color: #47a5fd;
+    font-weight: ${props => props.fontWeight};
 `;
 
 const FirstSection = ({
@@ -59,7 +60,7 @@ const FirstSection = ({
                     type="text" 
                     onChange={(e) => { setRent(e.target.value);}}
                 />
-                <RoomMatePriceSpan>만원</RoomMatePriceSpan>
+                <RoomMatePriceSpan fontWeight="600">만원</RoomMatePriceSpan>
             </FirstInfoBox>
         </FirstInfoDiv>
     );

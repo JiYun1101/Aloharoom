@@ -72,7 +72,7 @@ const SearchSection = ({
         : 
         <></>
       }
-      {localStorage.getItem('userId') ? <IoFilterOutline size={30} style={FilterIconStyle} onClick={ModalOpen} /> : <></>}
+      <IoFilterOutline size={30} style={FilterIconStyle} onClick={ModalOpen} />
       <Search
         placeholder="지명을 입력하세요"
         size="large"

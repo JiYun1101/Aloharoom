@@ -11,6 +11,7 @@ const ImageUploadDiv = styled.div`
 const ImageUploadLabel = styled.label`
     color: #47a5fd;
     font-size: 1.3rem;
+    font-weight: ${props => props.fontWeight};
     cursor: pointer;
 `;
 
@@ -21,7 +22,11 @@ const ImageUploadInput = styled.input`
 const ImageUploadSection = ({ handleImageFilesInputChange }) => {
     return (
         <ImageUploadDiv>
-            <ImageUploadLabel htmlFor="imageUpload">이미지 업로드 <BiImageAdd size={25} htmlFor="imageUpload"/></ImageUploadLabel>
+            <ImageUploadLabel 
+                htmlFor="imageUpload"
+                fontWeight="600"
+            >
+                이미지 업로드 <BiImageAdd size={25} htmlFor="imageUpload"/></ImageUploadLabel>
                 <ImageUploadInput
                     type="file"
                     accept="image/*"
