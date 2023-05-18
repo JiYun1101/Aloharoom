@@ -10,6 +10,13 @@ import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
 import { Map } from "react-kakao-maps-sdk";
 import { useRef } from "react";
+import neonsign from "../../img/neonsign.jpg";
+import neonsign2 from "../../img/neonsign2.jpg";
+import music from "../../img/music.jpg";
+import clock from "../../img/clock.jpg";
+import box from "../../img/box.jpg";
+import blue from "../../img/blue.jpg";
+import mint from "../../img/mint.jpg";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -285,49 +292,20 @@ const CardImage = styled.img`
   width: 15%;
   height: 100%;
 `;
-
 const PostInfoPage = () => {
-  const { communityId } = useParams();
-  const [data, setData] = useState({}); // 조회된 데이터를 저장할 상태 변수
+  const [data, setData] = useState({
+    title: "새로 산 네온사인",
+    nickname: "닉네임골라줘",
+    imgUrls: [neonsign, neonsign2],
+    userUrls: [music],
+    contents: "불 끄면 이상해서 계속 켜놔야겠다. 그래도 색은 예쁘지 않음?",
+    // 데이터 필드를 필요에 맞게 추가할 수 있습니다.
+  });
 
-  const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [imgUrls, setImgUrls] = useState([]);
-  // const [nickname, setNickName] = useState(null);
-  const [contents, setContents] = useState("");
-  const [views, setviews] = useState([]);
-  const [code, setcode] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios.get(
-          `http://localhost:8080/api/communityboard/${communityId}`,
-          { withCredentials: true }
-        );
-        setData(result.data);
-        console.log(result.data);
-      } catch (error) {
-        if (error.response && error.response.status === 500) {
-          navigate("../Login");
-        } else {
-          console.log("DeletePostInfoData axios error", error);
-        }
-      }
-    };
-
-    fetchData();
-  }, [communityId, code]);
+  // 기존의 useEffect 부분은 삭제합니다.
 
   async function DeletePostInfoData() {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/communityboard/${communityId}`
-      );
-      navigate(`../Community`);
-    } catch (error) {
-      console.log("DeletePostInfoData axios error", error);
-    }
+    // DeletePostInfoData 함수 내용은 그대로 둡니다.
   }
 
   return (
@@ -336,7 +314,6 @@ const PostInfoPage = () => {
         <PostInfoImageBox>
           <Container>
             <Swiper
-              // install Swiper modules
               modules={[Navigation, Scrollbar, Pagination, A11y]}
               spaceBetween={1}
               slidesPerView={2}
@@ -344,10 +321,10 @@ const PostInfoPage = () => {
               onSwiper={(swiper) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
             >
-              {imgUrls.map((data, index) => (
+              {data.imgUrls.map((url, index) => (
                 <SwiperSlide key={index}>
-                  <PostInfoImage src={data} key={index} />
-                  {data.imgUrls}
+                  <PostInfoImage src={url} key={index} />
+                  {/* 이미지 관련 내용 추가 */}
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -358,8 +335,8 @@ const PostInfoPage = () => {
         </TitleDiv>
         <ProfileHeartDiv>
           <ProfileDiv>
-            <ProfileImg src="blue.png" />
-            {/* <ProfileName>{nickname}</ProfileName> */}
+            <ProfileImg src={music} />
+            <ProfileName>{data.nickname}</ProfileName>
           </ProfileDiv>
           <HeartDiv>
             <AiOutlineHeart size={40} />
@@ -373,26 +350,24 @@ const PostInfoPage = () => {
           </HeartDiv>
         </ProfileHeartDiv>
 
-        <PostHashTagDiv></PostHashTagDiv>
         <PostContentDiv>
           <PostContentSpan>{data.contents}</PostContentSpan>
         </PostContentDiv>
-
         <CommentSection>
           <CommentBox>
             <CommentProfileDiv>
-              <CommentProfileImg src="blue.png" />
-              <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
+              <CommentProfileImg src={box} />
+              <CommentProfileSpan>동동이</CommentProfileSpan>
             </CommentProfileDiv>
             <CommentInputDiv>
-              <CommentSpan>안녕하세요!</CommentSpan>
+              <CommentSpan>어디서 샀는지 물어봐도 되나?</CommentSpan>
               <AddCommentSpan>답글 쓰기</AddCommentSpan>
             </CommentInputDiv>
           </CommentBox>
           <SubCommentBox>
             <CommentProfileDiv>
-              <CommentProfileImg src="blue.png" />
-              <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
+              <CommentProfileImg src={music} />
+              <CommentProfileSpan>닉네임골라줘</CommentProfileSpan>
             </CommentProfileDiv>
             <CommentInputDiv>
               <CommentInput type="text" />
@@ -404,4 +379,5 @@ const PostInfoPage = () => {
     </PostInfoPageContainer>
   );
 };
+
 export default PostInfoPage;
