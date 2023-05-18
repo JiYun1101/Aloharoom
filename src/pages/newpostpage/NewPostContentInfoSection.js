@@ -44,6 +44,7 @@ const TitleDiv = styled.div`
   margin-top: ${props => props.marginTop || '1rem'};
   display: flex;
   flex-direction: row;
+  font-weight: ${props => props.fontWeight};
 `;
 
 const TitleBox = styled.div`
@@ -56,6 +57,7 @@ const TitleSpan = styled.span`
   font-size: ${ props => props.fontSize || "1rem"};
   line-height: ${ props => props.lineHeight || "0rem"};
   margin-right: ${ props => props.marginRight || "0rem"};
+  font-weight: ${props => props.fontWeight};
 `;
 
 const NewPostContentInfoSection = ({   
@@ -130,10 +132,10 @@ const NewPostContentInfoSection = ({
         <NewPostContentInfoDiv>
                         <TitleDiv height="4vh" marginTop="2vh">
                             <TitleBox width="90%" height="4vh">
-                              <TitleSpan fontSize="1rem" lineHeight="4vh">입주 가능 날짜</TitleSpan>
+                              <TitleSpan fontSize="1rem" lineHeight="4vh" fontWeight="600">입주 가능 날짜</TitleSpan>
                             </TitleBox>
                             <TitleBox width="90%" height="4vh">
-                              <TitleSpan fontSize="1rem" lineHeight="4vh">룸메이트 가격</TitleSpan>
+                              <TitleSpan fontSize="1rem" lineHeight="4vh" fontWeight="600">룸메이트 가격</TitleSpan>
                             </TitleBox>
                         </TitleDiv>
                         <FirstSection
@@ -143,14 +145,14 @@ const NewPostContentInfoSection = ({
                           setRent={setRent}
                         />
                         <TitleDiv height="3.5vh" marginTop="1.5vh">
-                            <TitleSpan fontSize="1rem" lineHeight="3.5vh">룸메이트 선호 연령층</TitleSpan>
+                            <TitleSpan fontSize="1rem" lineHeight="3.5vh" fontWeight="600">룸메이트 선호 연령층</TitleSpan>
                         </TitleDiv>
                         <SecondSection 
                           ageRange={ageRange}
                           setAgeRange={setAgeRange}
                         />
                         <TitleDiv height="3.5vh" marginTop="1.5vh">
-                            <TitleSpan fontSize="1rem" lineHeight="3.5vh">주소</TitleSpan>
+                            <TitleSpan fontSize="1rem" lineHeight="3.5vh" fontWeight="600">주소</TitleSpan>
                         </TitleDiv>
                         <AddressInfoSection
                           address={address}
@@ -160,19 +162,19 @@ const NewPostContentInfoSection = ({
                         />
                         <TitleDiv height="4vh" marginTop="1.5vh">
                             <TitleBox width="25%" height="4vh">
-                                <TitleSpan fontSize="1rem" lineHeight="4vh">방 개수</TitleSpan>
+                                <TitleSpan fontSize="1rem" lineHeight="4vh" fontWeight="600">방 개수</TitleSpan>
                             </TitleBox>
                             <TitleBox width="25%" height="4vh">
-                                <TitleSpan fontSize="1rem" lineHeight="4vh">주거형태</TitleSpan>
+                                <TitleSpan fontSize="1rem" lineHeight="4vh" fontWeight="600">주거형태</TitleSpan>
                             </TitleBox>
                             <TitleBox width="16%" height="4vh">
-                                <TitleSpan fontSize="1rem" lineHeight="4vh">전체층수</TitleSpan>
+                                <TitleSpan fontSize="1rem" lineHeight="4vh" fontWeight="600">전체층수</TitleSpan>
                             </TitleBox>
                             <TitleBox width="16%" height="4vh">
-                                <TitleSpan fontSize="1rem" lineHeight="4vh">층수</TitleSpan>
+                                <TitleSpan fontSize="1rem" lineHeight="4vh" fontWeight="600">층수</TitleSpan>
                             </TitleBox>
                             <TitleBox width="16%" height="4vh">
-                                <TitleSpan fontSize="1rem" lineHeight="4vh">평수</TitleSpan>
+                                <TitleSpan fontSize="1rem" lineHeight="4vh" fontWeight="600">평수</TitleSpan>
                             </TitleBox>
                         </TitleDiv>
                         <RoomCountTypeFlatInfoSection
@@ -188,7 +190,7 @@ const NewPostContentInfoSection = ({
                           setTotalFloor={setTotalFloor}
                         />
                         <TitleDiv height="3.5vh" marginTop="1.5vh">
-                            <TitleSpan fontSize="1rem" lineHeight="3.5vh">가격</TitleSpan>
+                            <TitleSpan fontSize="1rem" lineHeight="3.5vh" fontWeight="600">가격</TitleSpan>
                         </TitleDiv> 
                         <PriceInfoSection
                           price={price}
@@ -199,7 +201,7 @@ const NewPostContentInfoSection = ({
                           setMaintenance={setMaintenance}
                         />
                         <TitleDiv height="3vh" marginTop="1.5vh">
-                            <TitleSpan fontSize="1rem" lineHeight="3vh">카카오톡 오픈채팅 링크</TitleSpan>
+                            <TitleSpan fontSize="1rem" lineHeight="3vh" fontWeight="600">카카오톡 오픈채팅 링크</TitleSpan>
                         </TitleDiv> 
                         <GuaranteeSection 
                           deposit={deposit}
@@ -208,16 +210,16 @@ const NewPostContentInfoSection = ({
                           setOpenChatUrl={setOpenChatUrl}
                         />
                         <TitleDiv height="3.5vh" marginTop="1.5vh">
-                            <TitleSpan fontSize="1rem" marginRight="2rem" lineHeight="3.5vh">집 해시태그</TitleSpan>
-                        </TitleDiv>
-                        <HouseHashTagButtonSection 
-                          myHomeHashtags={myHomeHashtags}
-                        />
-                        <TitleDiv height="3.5vh" marginTop="1.5vh">
-                            <TitleSpan fontSize="1rem" marginRight="3.5vh" lineHeight="3.5vh">내 해시태그</TitleSpan>
+                            <TitleSpan fontSize="1rem" marginRight="3.5vh" lineHeight="3.5vh" fontWeight="600">내 해시태그</TitleSpan>
                         </TitleDiv>    
                         <MyHashTagButtonSection
                           myHashtags={myHashtags}
+                        />
+                        <TitleDiv height="3.5vh" marginTop="1.5vh">
+                            <TitleSpan fontSize="1rem" marginRight="2rem" lineHeight="3.5vh" fontWeight="600">집 해시태그</TitleSpan>
+                        </TitleDiv>
+                        <HouseHashTagButtonSection 
+                          myHomeHashtags={myHomeHashtags}
                         />
                     </NewPostContentInfoDiv>
     );

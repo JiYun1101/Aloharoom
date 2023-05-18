@@ -46,15 +46,20 @@ const PostInfoPageSection  = styled.div`
 `;
 
 const PostInfoImage = styled.img`
-    width: 25rem;
-    height: 19rem;
+    width: 40vw;
+    height: 50vh;
 `;
 
 const SwiperContainer = styled.div`
+    position: relative;
     margin-top: 1rem;
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
     .swiper-slide {
-        margin-right: 10px; /* SwiperSlide 간격 조정 */
-        margin-left: 15px
+        display: flex;
+        justify-content: center; /* 가로 중앙 정렬 */
+        align-items: center; /* 세로 중앙 정렬 */
     }
 `;
 
@@ -297,8 +302,8 @@ const PostInfoPage = () => {
                         <Swiper
                             // install Swiper modules
                             modules={[Navigation, Scrollbar, Pagination, A11y]}
-                            spaceBetween={1}
-                            slidesPerView={2}
+                            spaceBetween={20}
+                            slidesPerView={1}
                             navigation
                             onSwiper={(swiper) => console.log(swiper)}
                             onSlideChange={() => console.log("slide change")}
@@ -311,8 +316,8 @@ const PostInfoPage = () => {
                         </Swiper>
                     </SwiperContainer>
                 </PostInfoDiv>
-                <PostInfoFlexDiv width="95%" minHeight="3rem" alignItems="center">
-                    <PostInfoSpan width="50%" color="black" fontSize="1.2rem" fontWeight="700">{address}</PostInfoSpan>
+                <PostInfoFlexDiv width="95%" minHeight="4rem" alignItems="center">
+                    <PostInfoSpan width="50%" color="black" fontSize="1.5rem" fontWeight="700">{address}</PostInfoSpan>
                     <PostInfoFlexDiv width="50%" minHeight="100%" flexDirection="row-reverse" alignItems="center">
                         {localStorage.getItem('userId') ? 
                             <>
@@ -323,7 +328,7 @@ const PostInfoPage = () => {
                                             setIsHeart(!isHeart);
                                             DeleteLikePost();
                                         }} 
-                                        style={{color: "red"}}/>
+                                        style={{color: "red", marginRight: "10vw"}}/>
                                 :
                                     <AiOutlineHeart 
                                         size={40} 
@@ -331,6 +336,7 @@ const PostInfoPage = () => {
                                             setIsHeart(!isHeart);
                                             AddLikePost();
                                         }}
+                                        style={{marginRight: "2vw"}}
                                         />
                                 } 
                                 {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
@@ -357,21 +363,21 @@ const PostInfoPage = () => {
                 <PostInfoFlexDiv width="95%" minHeight="4.5rem" flexDirections="row">
                     <PostInfoFlexDiv width="20%" minHeight="100%" alignItems="center">
                         <UserProfileImg width="2rem" height="2rem" borderRadius="50rem" src={profileImageUrl}/>
-                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{nickname}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600"> {nickname}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="20%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">성별:</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600">성별:</PostInfoSpan>
                         <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">
                             {gender === 'male' ? <BiMale size={30}/> : <BiFemale size={30}/>}
                         </PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="20%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">나이:</PostInfoSpan>
-                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{age}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600">나이:</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600">{age}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="40%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">선호 연령층:</PostInfoSpan>
-                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">{preferAgeRange}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600">선호 연령층:</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600">{preferAgeRange}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
                 {openChatUrl !== "" ? 
@@ -393,7 +399,7 @@ const PostInfoPage = () => {
                 }
                 <PostInfoFlexDiv width="95%" borderBottom="solid 0.1rem #bbbbbb"/>
                 <PostInfoDiv width="95%" height="auto" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.5rem">작성자 성향</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 성향</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoFlexDiv 
                     width="95%" 
@@ -408,7 +414,7 @@ const PostInfoPage = () => {
                     { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
                 </PostInfoFlexDiv>
                 <PostInfoDiv width="95%" height="auto" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.5rem">작성자 거주지 성향</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 거주지 성향</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoFlexDiv 
                     width="95%" 
