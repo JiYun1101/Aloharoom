@@ -146,6 +146,12 @@ const CardImage = styled.img`
   margin-left: 1rem; /* 왼쪽으로 1rem 떨어뜨리기 */
   border-radius: 10px; /* 가로에 둥글게 깍기 */
 `;
+
+const LinkToStyle = {
+  textDecoration: "none",
+  color: "inherit",
+};
+
 const CardPost = ({ communityId }) => {
   const [data, setData] = useState([
     {
@@ -160,7 +166,7 @@ const CardPost = ({ communityId }) => {
       userUrls: [music],
     },
     {
-      userId: "정보공유",
+      userId: "방자랑",
       code: 1,
       title: "이 시계 어디껀지 아시는분?",
       imgUrls: [clock],
@@ -169,7 +175,7 @@ const CardPost = ({ communityId }) => {
       userPost: "2",
     },
     {
-      userId: "자유",
+      userId: "방자랑",
       code: 1,
       title: "이렇게 생긴 냉장고는 별론가",
       imgUrls: [box],
@@ -178,7 +184,7 @@ const CardPost = ({ communityId }) => {
       userPost: "2",
     },
     {
-      userId: "정보공유",
+      userId: "방자랑",
       code: 1,
       title: "이 턴테이블 어디껀지 아시는분?",
       imgUrls: [music],
@@ -196,7 +202,7 @@ const CardPost = ({ communityId }) => {
       userUrls: [neonsign],
     },
     {
-      userId: "정보공유",
+      userId: "방자랑",
       code: 1,
       title: "이 회사 턴테이블 음질 어떄?",
       imgUrls: [music],
@@ -214,7 +220,7 @@ const CardPost = ({ communityId }) => {
   return (
     <CardBox2>
       {data.map((post, index) => (
-        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code}>
+        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code} style={LinkToStyle}>
           <Card2
             onClick={(event) => {
               setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
