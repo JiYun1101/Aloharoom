@@ -339,7 +339,7 @@ const PostInfoPage = () => {
             <ProfileName>{data.nickname}</ProfileName>
           </ProfileDiv>
           <HeartDiv>
-            <AiOutlineHeart size={40} />
+            {/* <AiOutlineHeart size={40} /> */}
             <AiOutlineEdit size={40} />
             <AiOutlineDelete
               onClick={() => {
