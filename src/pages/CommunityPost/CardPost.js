@@ -6,22 +6,12 @@ import axios from "axios";
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { FaRegCommentDots } from "react-icons/fa";
-
-const Card = styled.div`
-  width: 15.5rem;
-  height: 22rem;
-  border-style: solid;
-  border-color: #bbbbbb;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border-color: #a0a0a0;
-  &:hover {
-    border-color: #47a5fd;
-  }
-`;
+import neonsign from "../../img/neonsign.jpg";
+import music from "../../img/music.jpg";
+import clock from "../../img/clock.jpg";
+import box from "../../img/box.jpg";
+import blue from "../../img/blue.jpg";
+import mint from "../../img/mint.jpg";
 
 const RoomTypeDiv = styled.div`
   width: 90%;
@@ -40,38 +30,6 @@ const RoomTypeButton = styled.button`
   border: 2px solid #47a5fd;
   border-radius: 0.5rem;
   margin-left: 15rem;
-`;
-
-const MoveInDateDiv = styled.div`
-  width: 88%;
-  height: 2rem;
-`;
-
-const MoveInDateSpan = styled.span`
-  font-size: 0.8rem;
-  color: black;
-  line-height: 2rem;
-`;
-
-const AddressInfoDiv = styled.div`
-  width: 88%;
-  height: 2.5rem;
-`;
-
-const AddressInfoSpan = styled.span`
-  font-size: 1.1rem;
-  font-weight: 550;
-`;
-
-const PriceInfoDiv = styled.div`
-  width: 88%;
-  height: 2rem;
-`;
-
-const PriceInfoSpan = styled.span`
-  font-size: 1.2rem;
-  line-height: 2rem;
-  font-weight: 600;
 `;
 
 const ProfileCommentDiv = styled.div`
@@ -120,7 +78,7 @@ const CommentSpan = styled.span`
 `;
 
 const Card2 = styled.div`
-  min-width: 90%;
+  min-width: 150%;
   height: 10rem;
   border-style: solid;
   border-color: #bbbbbb;
@@ -136,11 +94,11 @@ const Card2 = styled.div`
 const CardBox2 = styled.div`
   position: absolute;
   top: 10rem;
-  left: 28.5vw;
+  left: 5.5vw;
   width: 70%;
   height: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
   justify-content: flex-start;
@@ -183,60 +141,81 @@ const CardImageDiv = styled.div`
 `;
 
 const CardImage = styled.img`
-  width: 25%; /* 20% 너비 설정 */
-  // height: auto;
+  width: 10rem; /* 이미지 너비를 100%로 설정 */
+  height: 9rem; /* 이미지 높이를 자동으로 조정 */
   margin-left: 1rem; /* 왼쪽으로 1rem 떨어뜨리기 */
   border-radius: 10px; /* 가로에 둥글게 깍기 */
 `;
 const CardPost = ({ communityId }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([
+    {
+      userId: "방자랑",
+      communityId: "",
+      code: 1,
+      title: "새로 산 네온 사인",
+      imgUrls: [neonsign],
+      nickname: "닉네임골라줘",
+      userPost: "3",
+
+      userUrls: [music],
+    },
+    {
+      userId: "정보공유",
+      code: 1,
+      title: "이 시계 어디껀지 아시는분?",
+      imgUrls: [clock],
+      nickname: "동동사",
+      userUrls: [mint],
+      userPost: "2",
+    },
+    {
+      userId: "자유",
+      code: 1,
+      title: "이렇게 생긴 냉장고는 별론가",
+      imgUrls: [box],
+      nickname: "흐에에에",
+      userUrls: [blue],
+      userPost: "2",
+    },
+    {
+      userId: "정보공유",
+      code: 1,
+      title: "이 턴테이블 어디껀지 아시는분?",
+      imgUrls: [music],
+      nickname: "동동이",
+      userUrls: [clock],
+      userPost: "3",
+    },
+    {
+      userId: "방자랑",
+      communityId: "",
+      code: 1,
+      title: "새로 산 네온 사인",
+      imgUrls: [neonsign],
+      nickname: "닉네임 1",
+      userUrls: [neonsign],
+    },
+    {
+      userId: "정보공유",
+      code: 1,
+      title: "이 회사 턴테이블 음질 어떄?",
+      imgUrls: [music],
+      nickname: "닉네임 1",
+      userUrls: [clock],
+    },
+    // 추가 데이터를 여기에 추가하세요
+  ]);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
 
-  const cardRef = useRef(null);
-  const [scrollTop, setScrollTop] = useState(0);
-  const location = useLocation();
-  const code = 0; // 1이 아닌 다른 값으로 변경
-
-  useEffect(() => {
-    const fetchData = async () => {
-      // console.log("communityId = " + communityId);
-      const result = await axios.get(
-        // `http://localhost:8080/api/communityboard/code/${code}`
-        `http://localhost:8080/api/communityboard/code/1`
-      );
-      setData(result.data[0]); // result.data[0] = 전체, result.data[1] = Top3
-      console.log(result.data[0]);
-    };
-    fetchData();
-  }, [communityId, code]); // code를 의존성 배열에 추가
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (cardRef.current) {
-        setScrollTop(cardRef.current.scrollTop);
-      }
-    };
-
-    if (cardRef.current) {
-      cardRef.current.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        cardRef.current.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
   const handleLinkClick = (event, message) => {
     console.log(message);
   };
 
   return (
-    <CardBox2 ref={cardRef}>
+    <CardBox2>
       {data.map((post, index) => (
-        <Link to={`../CommunityInfoPage/${post.communityId}`}>
+        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code}>
           <Card2
-            key={post.code}
             onClick={(event) => {
               setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
               handleLinkClick(
@@ -259,11 +238,11 @@ const CardPost = ({ communityId }) => {
             </CardImageDiv>
             <ProfileCommentDiv>
               <ProfileDiv>
-                <ProfileImg src={post.imgUrls[0]} />
+                <ProfileImg src={post.userUrls[0]} />
                 <ProfileSpan>{post.nickname}</ProfileSpan>
               </ProfileDiv>
               <CommentDiv>
-                <CommentSpan>{post.userId}</CommentSpan>
+                <CommentSpan>{post.userPost}</CommentSpan>
                 <FaRegCommentDots size={25} style={CommentLogoStyle} />
               </CommentDiv>
             </ProfileCommentDiv>
@@ -273,4 +252,5 @@ const CardPost = ({ communityId }) => {
     </CardBox2>
   );
 };
+
 export default CardPost;
