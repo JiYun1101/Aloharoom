@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 const CardPostContainer = styled.div`
-    width: 31.5vw;
+    width: 47.5vw;
     height: 98%;
-    margin-top: 0.1rem;
+    margin-top: 0.1vh;
     margin-left: 1vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
-    gap: 0.8rem;
+    gap: 1vw;
     overflow-y: auto;
 
     &::-webkit-scrollbar {

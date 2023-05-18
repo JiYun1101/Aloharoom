@@ -8,8 +8,8 @@ const categories = ['주택', '아파트', '오피스텔'];
 
 const HomeCategoryMenuDivStyle = {
     position: 'absolute',
-    top: 10,
-    left: 10,
+    top: 20,
+    left: 20,
     zIndex: 1,
     borderRadius: "2rem",
     width: "15vw",
