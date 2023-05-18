@@ -29,12 +29,13 @@ const Logo = styled.span`
 const NavGroup = styled.span`
   position: absolute;
   top: 0.5rem;
-  left: 37.3vw;
+  left: 42.5vw;
 `;
 
 const NavElement = styled.span`
   margin-left: 3vw;
   margin-right: 3vw;
+  font-weight: ${props => props.fontWeight};
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;
@@ -212,10 +213,10 @@ const Header = () => {
         </Link>
         <NavGroup>
           <Link to="/postMapPage" style={LinkToStyle}>
-            <NavElement>방 보기</NavElement>
+            <NavElement fontWeight="600">방 보기</NavElement>
           </Link>
           <Link to="/CommunityPage" style={LinkToStyle}>
-            <NavElement>커뮤니티</NavElement>
+            <NavElement fontWeight="600">커뮤니티</NavElement>
           </Link>
         </NavGroup>
         {localStorage.getItem("username") ? (
