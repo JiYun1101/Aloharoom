@@ -175,7 +175,7 @@ const Header = () => {
         <Link to="/myWritePage">작성 목록</Link>
       </Menu.Item>
       <Menu.Item key="4">
-        <Link to="/page3">댓글 목록</Link>
+        <Link to="/MyCommentPage">댓글 목록</Link>
       </Menu.Item>
     </Menu>
   );

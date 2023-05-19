@@ -18,6 +18,7 @@ import CommunityPage from "./pages/CommunityPost/PostPage";
 import MyInfoPage from "./pages/MyInfoPage";
 import LikedListPage from "./pages/LikeListPage";
 import MyWritePage from "./pages/MyWritePage";
+import MyCommentPage from "./pages/MyCommentPage";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/myInfoPage" element={<MyInfoPage />} />
         <Route path="/likeListPage" element={<LikedListPage />} />
         <Route path="/myWritePage" element={<MyWritePage/>}/>
+        <Route path="/myCommentPage" element={<MyCommentPage/>}/>
         <Route path="/about" element={<About />} />
         <Route path="/postInfoPage" element={<PostInfoPage />} />
         <Route path="/postInfoPage/:id" element={<PostInfoPage />} />
