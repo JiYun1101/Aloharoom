@@ -19,6 +19,7 @@ import MyInfoPage from "./pages/MyInfoPage";
 import LikedListPage from "./pages/LikeListPage";
 import MyWritePage from "./pages/MyWritePage";
 import MyCommentPage from "./pages/MyCommentPage";
+import RecentViewPage from "./pages/RecentViewPage";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/likeListPage" element={<LikedListPage />} />
         <Route path="/myWritePage" element={<MyWritePage/>}/>
         <Route path="/myCommentPage" element={<MyCommentPage/>}/>
+        <Route path="/recentViewPage" element={<RecentViewPage/>}/>
         <Route path="/about" element={<About />} />
         <Route path="/postInfoPage" element={<PostInfoPage />} />
         <Route path="/postInfoPage/:id" element={<PostInfoPage />} />

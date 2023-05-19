@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import baseURL from "../../api/baseURL";
 
-const EmptyMyCommentPageRoomAreaDiv = styled.div`
+const EmptyRecentViewAreaDiv = styled.div`
     width: 37.3rem;
     height: 33rem;
     display: flex;
@@ -13,7 +13,7 @@ const EmptyMyCommentPageRoomAreaDiv = styled.div`
     align-items: center;
 `;
 
-const MyCommentPageRoomAreaDiv = styled.div`
+const RecentViewAreaDiv = styled.div`
     margin-top: 0.5rem;
     margin-left: 1.5rem;
     width: 35.7rem;
@@ -41,7 +41,7 @@ const MyCommentPageRoomAreaDiv = styled.div`
     }
 `;
 
-const MyCommentPageRoomElementDiv = styled.div`
+const RecentViewElementDiv = styled.div`
     position: relative;
     left: 0.6rem;
     width: 16rem;
@@ -50,44 +50,39 @@ const MyCommentPageRoomElementDiv = styled.div`
     align-items: center;
 `;
 
-const heartStyle = {
-    position: "absolute",
-    top: "0.2rem",
-    right: "0px",
-    zIndex: "3",
-    color: "#47A5FD"
-};
-
 const LinkToCardStyle = {
     textDecoration: 'none',
     color: 'black'
 }
-const MyCommentPageRoomArea = () => {
-    const [responseData, setResponseData] = useState([]);
 
-    async function fetchMyCommentRoomInfo() {
-        await axios.get(`${baseURL}/api/board/my/comment`, {
+
+const RecentViewPageArea = () => {
+    const [responseData, setResponseData] = useState([]);
+    async function fetchRecentViewData() {
+        await axios.get(`${baseURL}/api/recentView`, {
             withCredentials:true
         })
-        .then((response) => { 
+        .then((response) => {
+            console.log(`response data`, response.data);
             setResponseData(response.data);
-            console.log('response.data', response.data);})
-        .catch((error) => { console.log(`axios fetchMyCommentRoomInfo error`);})
+        })
+        .catch((error) => {
+            console.log(`axios fetchRecentViewData error`);
+        })
     }
-
     useEffect(() => {
-        fetchMyCommentRoomInfo();
+        fetchRecentViewData();
     }, [])
     return (
-    <>
+        <>
         {responseData.length === 0 ?
-            <EmptyMyCommentPageRoomAreaDiv>
-                <div style={{color: "#a0a0a0"}}>댓글을 작성한 방이 없습니다.</div>
-            </EmptyMyCommentPageRoomAreaDiv>
+            <EmptyRecentViewAreaDiv>
+                <div style={{color: "#a0a0a0"}}>좋아요 방이 없습니다.</div>
+            </EmptyRecentViewAreaDiv>
         :
-            <MyCommentPageRoomAreaDiv>
+            <RecentViewAreaDiv>
                 {responseData.map((data, idx) => (
-                    <MyCommentPageRoomElementDiv key={idx}>
+                    <RecentViewElementDiv key={idx}>
                         <Link to={`../postInfoPage/${data.boardId}`} style={LinkToCardStyle}>
                         <CardPost 
                             type="룸메이트" 
@@ -103,12 +98,12 @@ const MyCommentPageRoomArea = () => {
                             startDate={data.startDate}
                             />    
                         </Link>
-                    </MyCommentPageRoomElementDiv>    
+                    </RecentViewElementDiv>    
                 ))}
-            </MyCommentPageRoomAreaDiv>
+            </RecentViewAreaDiv>
         }
-    </>
+        </>
     );
 }
 
-export default MyCommentPageRoomArea;
+export default RecentViewPageArea;

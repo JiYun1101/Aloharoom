@@ -169,13 +169,16 @@ const Header = () => {
         <Link to="/myInfoPage">내 정보</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to="/likeListPage">좋아요 방 목록</Link>
+        <Link to="/likeListPage">방 좋아요</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <Link to="/myWritePage">작성 목록</Link>
+        <Link to="/myWritePage">작성 글</Link>
       </Menu.Item>
       <Menu.Item key="4">
         <Link to="/MyCommentPage">댓글 목록</Link>
+      </Menu.Item>
+      <Menu.Item key="5">
+        <Link to="/recentViewPage">최근 본 글</Link>
       </Menu.Item>
     </Menu>
   );
