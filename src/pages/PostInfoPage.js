@@ -345,7 +345,7 @@ const PostInfoPage = () => {
                                             setIsHeart(!isHeart);
                                             DeleteLikePost();
                                         }} 
-                                        style={{color: "red", marginRight: "10vw"}}/>
+                                        style={{color: "red", marginRight: "2vw"}}/>
                                 :
                                     <AiOutlineHeart 
                                         size={40} 

@@ -16,6 +16,7 @@ import PostInfoPage from "./pages/PostInfoPage";
 import CommunityInfoPage from "./pages/CommunityPost/PostInfoPage";
 import CommunityPage from "./pages/CommunityPost/PostPage";
 import MyInfoPage from "./pages/MyInfoPage";
+import LikedListPage from "./pages/LikeListPage";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="RegisterPage/registerPage2" element={<RegisterPage2 />} />
         <Route path="/termUser" element={<TermUser />} />
         <Route path="/myInfoPage" element={<MyInfoPage />} />
+        <Route path="/likeListPage" element={<LikedListPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/postInfoPage" element={<PostInfoPage />} />
         <Route path="/postInfoPage/:id" element={<PostInfoPage />} />
