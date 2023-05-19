@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MyPageTitle from "./myinfopagecomponents/MyInfoPageTitle";
 import MyInfoPageContent from "./myinfopagecomponents/MyInfoPageContent";
+import HoverHashTagButton from "../HoverHashTagButton";
 
 const MyPageBoxContainer = styled.div`
     position: relative;
@@ -31,6 +32,7 @@ const MyPageBoxContainer = styled.div`
 const MyPageBox = () => {
     return (
         <MyPageBoxContainer>
+            <HoverHashTagButton style={{ position: "absolute", top:"1rem", right: "1rem"}}>내 정보 수정</HoverHashTagButton>
             <MyPageTitle title="내 정보"/>
             <MyInfoPageContent/>
         </MyPageBoxContainer>
