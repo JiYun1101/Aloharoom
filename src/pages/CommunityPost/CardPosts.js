@@ -9,7 +9,7 @@ const CardPostListWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const CardPosts = () => {
+const CardPosts = (props) => {
   // 게시물 리스트를 가져올 API 호출 등의 로직은 생략하고, 하드코딩으로 데이터를 만듦
   const data = [
     { id: 1, title: "첫 번째 게시물", content: "첫 번째 게시물의 내용입니다." },
@@ -26,7 +26,12 @@ const CardPosts = () => {
   return (
     <CardPostListWrapper>
       {data.map((post) => (
-        <CardPost key={post.id} title={post.title} content={post.content} />
+        <CardPost
+          key={post.id}
+          title={post.title}
+          content={post.content}
+          code={props.code}
+        />
       ))}
     </CardPostListWrapper>
   );

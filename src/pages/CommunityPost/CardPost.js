@@ -151,77 +151,53 @@ const LinkToStyle = {
   textDecoration: "none",
   color: "inherit",
 };
-
-const CardPost = ({ communityId }) => {
-  const [data, setData] = useState([
-    {
-      userId: "방자랑",
-      communityId: "",
-      code: 1,
-      title: "새로 산 네온 사인",
-      imgUrls: [neonsign],
-      nickname: "닉네임골라줘",
-      userPost: "3",
-
-      userUrls: [music],
-    },
-    {
-      userId: "방자랑",
-      code: 1,
-      title: "이 시계 어디껀지 아시는분?",
-      imgUrls: [clock],
-      nickname: "동동사",
-      userUrls: [mint],
-      userPost: "2",
-    },
-    {
-      userId: "방자랑",
-      code: 1,
-      title: "이렇게 생긴 냉장고는 별론가",
-      imgUrls: [box],
-      nickname: "흐에에에",
-      userUrls: [blue],
-      userPost: "2",
-    },
-    {
-      userId: "방자랑",
-      code: 1,
-      title: "이 턴테이블 어디껀지 아시는분?",
-      imgUrls: [music],
-      nickname: "동동이",
-      userUrls: [clock],
-      userPost: "3",
-    },
-    {
-      userId: "방자랑",
-      communityId: "",
-      code: 1,
-      title: "새로 산 네온 사인",
-      imgUrls: [neonsign],
-      nickname: "닉네임 1",
-      userUrls: [neonsign],
-    },
-    {
-      userId: "방자랑",
-      code: 1,
-      title: "이 회사 턴테이블 음질 어떄?",
-      imgUrls: [music],
-      nickname: "닉네임 1",
-      userUrls: [clock],
-    },
-    // 추가 데이터를 여기에 추가하세요
-  ]);
+const CardPost = ({ communityId, code }) => {
+  const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
 
+  const cardRef = useRef(null);
+  const [scrollTop, setScrollTop] = useState(0);
+  const location = useLocation();
+  console.log(code);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        `http://localhost:8080/api/communityboard/code/${code}`
+      );
+      setData(result.data[0]);
+      console.log(result.data[0]);
+    };
+    fetchData();
+  }, [communityId, code]); // code를 의존성 배열에 추가
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (cardRef.current) {
+        setScrollTop(cardRef.current.scrollTop);
+      }
+    };
+
+    if (cardRef.current) {
+      cardRef.current.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        cardRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
   const handleLinkClick = (event, message) => {
     console.log(message);
   };
 
   return (
-    <CardBox2>
+    <CardBox2 ref={cardRef}>
       {data.map((post, index) => (
-        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code} style={LinkToStyle}>
+        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code}>
           <Card2
+            key={post.code}
             onClick={(event) => {
               setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
               handleLinkClick(
@@ -231,32 +207,19 @@ const CardPost = ({ communityId }) => {
             }}
           >
             <DateDiv>
-              <RoomTypeDiv>
-                <RoomTypeButton>{post.userId}</RoomTypeButton>
-              </RoomTypeDiv>
+              <DateSpan>{post.createdAt}</DateSpan>
             </DateDiv>
             <TitleDiv>
               <TitleSpan>{post.title}</TitleSpan>
             </TitleDiv>
             <CardImageDiv>
-              <CardImage src={post.imgUrls[0]} />
+              <CardImage src={post.imgUrls} />
               {/* <CardImage src={post.imgUrls[0]} /> */}
             </CardImageDiv>
-            <ProfileCommentDiv>
-              <ProfileDiv>
-                <ProfileImg src={post.userUrls[0]} />
-                <ProfileSpan>{post.nickname}</ProfileSpan>
-              </ProfileDiv>
-              <CommentDiv>
-                <CommentSpan>{post.userPost}</CommentSpan>
-                <FaRegCommentDots size={25} style={CommentLogoStyle} />
-              </CommentDiv>
-            </ProfileCommentDiv>
           </Card2>
         </Link>
       ))}
     </CardBox2>
   );
 };
-
 export default CardPost;

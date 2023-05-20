@@ -133,7 +133,10 @@ const PostContent = (
   const [neLat, setNELat] = useState("");
   const [neLon, setNELon] = useState("");
 
-  const [code, setCode] = useState(1); // 코드 초기값을 null로 변경
+  const [button1Color, setButton1Color] = useState("#000000");
+  const [button2Color, setButton2Color] = useState("#000000");
+  const [button3Color, setButton3Color] = useState("#000000");
+  const [code, setCode] = useState(1);
   const [isCardPostsVisible, setIsCardPostsVisible] = useState(true); // CardPosts의 가시성 상태 추가
 
   const [form] = Form.useForm();
@@ -204,11 +207,6 @@ const PostContent = (
     setInputValue(e.target.value);
   };
 
-  const handleButtonClick = () => {
-    // setSearchStr(inputValue);
-    setInputValue("");
-  };
-
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleButtonClick();
@@ -223,6 +221,27 @@ const PostContent = (
   const ModalClose = () => {
     setNotifyModalOpen(false);
   };
+  const handleButtonClick = (buttonNumber) => {
+    // 버튼에 따라 상태를 개별적으로 변경
+    if (buttonNumber === 1) {
+      setButton1Color("#85afe1");
+      setButton2Color("#000000");
+      setButton3Color("#000000");
+      setCode(1); // code 값을 1로 변경
+    } else if (buttonNumber === 2) {
+      setButton1Color("#000000");
+      setButton2Color("#85afe1");
+      setButton3Color("#000000");
+      setCode(2); // code 값을 2로 변경
+    } else if (buttonNumber === 3) {
+      setButton1Color("#000000");
+      setButton2Color("#000000");
+      setButton3Color("#85afe1");
+      setCode(3); // code 값을 3으로 변경
+    }
+    // window.location.reload(); // 현재 페이지 새로고침
+  };
+  console.log("code =", code); // 콘솔에 code 값 출력
 
   return (
     <PostMapContentContainer>
@@ -238,13 +257,28 @@ const PostContent = (
       >
         <Button
           style={{
-            color: "#85afe1",
+            color: button1Color,
           }}
+          onClick={() => handleButtonClick(1)} // 첫 번째 버튼 클릭 시 handleButtonClick(1) 호출
         >
           방자랑
         </Button>
-        <Button>정보 공유</Button>
-        <Button>자랑</Button>
+        <Button
+          style={{
+            color: button2Color,
+          }}
+          onClick={() => handleButtonClick(2)} // 두 번째 버튼 클릭 시 handleButtonClick(2) 호출
+        >
+          정보 공유
+        </Button>
+        <Button
+          style={{
+            color: button3Color,
+          }}
+          onClick={() => handleButtonClick(3)} // 세 번째 버튼 클릭 시 handleButtonClick(3) 호출
+        >
+          자랑
+        </Button>
       </Space.Compact>
       <SearchSectionContainer>
         <Search
@@ -259,7 +293,7 @@ const PostContent = (
           }}
         />
       </SearchSectionContainer>
-      <CardPosts />
+      <CardPosts code={code} />
       <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
         <h2>가장 인기 있는 글</h2>
         <p>1. 내 방 자랑</p>
