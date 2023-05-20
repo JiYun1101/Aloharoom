@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import MyPageTitle from "./myinfopagecomponents/MyInfoPageTitle";
 import MyInfoPageContent from "./myinfopagecomponents/MyInfoPageContent";
 import HoverHashTagButton from "../HoverHashTagButton";
+import MyProfileUpdateModal from "../modal/MyProfileUpdateModal";
 
 const MyPageBoxContainer = styled.div`
     position: relative;
@@ -28,14 +29,35 @@ const MyPageBoxContainer = styled.div`
     flex-direction: column;
 `;
 
-
 const MyPageBox = () => {
+    const [isMyProfileUpdateModalOpen, setIsMyProfileUpdateModalOpen] = useState(false);
+    const showMyProfileUpdateModal = () => {setIsMyProfileUpdateModalOpen(true);}
+    const handleMyProfileUpdateModalCancel = () => {setIsMyProfileUpdateModalOpen(false);}
+    const handleMyProfileUpdateModalOk = () => { setIsMyProfileUpdateModalOpen(false); }
     return (
+        <>
+        {isMyProfileUpdateModalOpen ? 
+            <MyProfileUpdateModal
+                isMyProfileUpdateModalOpen={isMyProfileUpdateModalOpen}
+                handleOk={handleMyProfileUpdateModalOk}
+                handelCancel={handleMyProfileUpdateModalCancel}
+            />
+        :
+            <></>
+        }
         <MyPageBoxContainer>
-            <HoverHashTagButton style={{ position: "absolute", top:"1rem", right: "1rem"}}>내 정보 수정</HoverHashTagButton>
+            <HoverHashTagButton 
+                onClick={() => {
+                    showMyProfileUpdateModal();
+                }}
+                style={{ position: "absolute", top:"1rem", right: "1rem"}}
+            >
+                내 정보 수정
+            </HoverHashTagButton>
             <MyPageTitle title="내 정보"/>
             <MyInfoPageContent/>
         </MyPageBoxContainer>
+        </>
     );
 }
 
