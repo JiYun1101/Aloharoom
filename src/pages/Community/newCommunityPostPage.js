@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import NewPostHeaderSection2 from "./NewPostHeaderSection2";
-import NewCommunityPostContentSection2 from "./NewCommunityPostContentSection2";
+import NewCommunityPostContentSection2 from "../newpostpage2/NewCommunityPostContentSection";
 
 const NewPostContainer2 = styled.div`
   position: relative;

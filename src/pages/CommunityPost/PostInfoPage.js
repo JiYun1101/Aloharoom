@@ -12,6 +12,15 @@ import { Map } from "react-kakao-maps-sdk";
 import { useRef } from "react";
 import baseURL from "../api/baseURL";
 
+import InfoPageMapContainer from "../postinfopage/InfoPageMapContainer";
+import PostInfoDiv from "../postinfopage/PostInfoDiv";
+import PostInfoFlexDiv from "../postinfopage/PostInfoFlexDiv";
+import PostInfoSpan from "../postinfopage/PostInfoSpan";
+import UserProfileImg from "../postinfopage/UserProfileImg";
+import WriteComment from "../postinfopage/commentcomponents/WriteComment";
+import ReadCommentSection from "../postinfopage/commentcomponents/ReadCommentSection";
+import DeletePostModal from "../modal/DeletePostModal";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -450,77 +459,104 @@ const PostInfoPage = () => {
   }, []);
 
   return (
-    <PostInfoPageContainer>
-      <PostInfoPageBox>
-        <PostInfoImageBox>
-          <Container>
-            <Swiper
-              // install Swiper modules
-              modules={[Navigation, Scrollbar, Pagination, A11y]}
-              spaceBetween={1}
-              slidesPerView={2}
-              navigation
-              onSwiper={(swiper) => console.log(swiper)}
-              onSlideChange={() => console.log("slide change")}
-            >
-              {imgUrls.map((data, index) => (
-                <SwiperSlide key={index}>
-                  <PostInfoImage src={data} key={index} />
-                  {data.imgUrls}
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </Container>
-        </PostInfoImageBox>
-        <TitleDiv>
-          <TitleSpan>{data.title}</TitleSpan>
-        </TitleDiv>
-        <ProfileHeartDiv>
-          <ProfileDiv>
-            <ProfileImg src="blue.png" />
-            {/* <ProfileName>{nickname}</ProfileName> */}
-          </ProfileDiv>
-          <HeartDiv>
-            <AiOutlineHeart size={40} />
-            <AiOutlineEdit size={40} />
-            <AiOutlineDelete
-              onClick={() => {
-                DeletePostInfoData();
-              }}
-              size={40}
-            />
-          </HeartDiv>
-        </ProfileHeartDiv>
+    <>
+      {isDeletePostModalOpen ? (
+        <DeletePostModal
+          isDeletePostModalOpen={isDeletePostModalOpen}
+          handleOk={handleDeletePostOk}
+          handelCancel={handleDeletePostCancel}
+        />
+      ) : (
+        <></>
+      )}
+      <PostInfoPageContainer>
+        <PostInfoPageBox>
+          <PostInfoImageBox>
+            <Container>
+              <Swiper
+                modules={[Navigation, Scrollbar, Pagination, A11y]}
+                spaceBetween={20}
+                slidesPerView={1}
+                navigation
+                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => console.log("slide change")}
+              >
+                {imgUrls.map((data, index) => (
+                  <SwiperSlide key={index}>
+                    <PostInfoImage src={data} key={index} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </Container>
+          </PostInfoImageBox>
+          <TitleDiv>
+            <TitleSpan>{data.title}</TitleSpan>
+          </TitleDiv>
+          <ProfileHeartDiv>
+            <ProfileDiv>
+              <ProfileImg src="blue.png" />
+              {/* <ProfileName>{nickname}</ProfileName> */}
+            </ProfileDiv>
+            <HeartDiv>
+              {localStorage.getItem("userId") ? (
+                <>
+                  {parseInt(userId) ===
+                  parseInt(localStorage.getItem("userId")) ? (
+                    <>
+                      <Link
+                        to={`../updateCommunityPostPage/${boardId}`}
+                        style={LinkToIconStyle}
+                      >
+                        {<AiOutlineEdit size={40} />}
+                      </Link>
+                      <AiOutlineDelete
+                        onClick={() => {
+                          showDeletePostModal();
+                        }}
+                        size={40}
+                      />
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              ) : (
+                <></>
+              )}
+            </HeartDiv>
+          </ProfileHeartDiv>
 
-        <PostHashTagDiv></PostHashTagDiv>
-        <PostContentDiv>
-          <PostContentSpan>{data.contents}</PostContentSpan>
-        </PostContentDiv>
+          <PostHashTagDiv></PostHashTagDiv>
+          <PostContentDiv>
+            <PostContentSpan>{data.contents}</PostContentSpan>
+          </PostContentDiv>
 
-        <CommentSection>
-          <CommentBox>
-            <CommentProfileDiv>
-              <CommentProfileImg src="blue.png" />
-              <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-            </CommentProfileDiv>
-            <CommentInputDiv>
-              <CommentSpan>안녕하세요!</CommentSpan>
-              <AddCommentSpan>답글 쓰기</AddCommentSpan>
-            </CommentInputDiv>
-          </CommentBox>
-          <SubCommentBox>
-            <CommentProfileDiv>
-              <CommentProfileImg src="blue.png" />
-              <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-            </CommentProfileDiv>
-            <CommentInputDiv>
-              <CommentInput type="text" />
-              <CommentWriteButton>쓰기</CommentWriteButton>
-            </CommentInputDiv>
-          </SubCommentBox>
-        </CommentSection>
-      </PostInfoPageBox>
-    </PostInfoPageContainer>
+          <CommentSection>
+            <CommentBox>
+              <CommentProfileDiv>
+                <CommentProfileImg src="blue.png" />
+                <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
+              </CommentProfileDiv>
+              <CommentInputDiv>
+                <CommentSpan>안녕하세요!</CommentSpan>
+                <AddCommentSpan>답글 쓰기</AddCommentSpan>
+              </CommentInputDiv>
+            </CommentBox>
+            <SubCommentBox>
+              <CommentProfileDiv>
+                <CommentProfileImg src="blue.png" />
+                <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
+              </CommentProfileDiv>
+              <CommentInputDiv>
+                <CommentInput type="text" />
+                <CommentWriteButton>쓰기</CommentWriteButton>
+              </CommentInputDiv>
+            </SubCommentBox>
+          </CommentSection>
+        </PostInfoPageBox>
+      </PostInfoPageContainer>
+    </>
   );
 };
+
 export default PostInfoPage;
