@@ -195,9 +195,9 @@ const CardPost = ({ communityId, code }) => {
   return (
     <CardBox2 ref={cardRef}>
       {data.map((post, index) => (
-        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code}>
+        <Link to={`../CommunityInfoPage/${post.communityId}`} key={index}>
           <Card2
-            key={post.code}
+            key={index}
             onClick={(event) => {
               setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
               handleLinkClick(

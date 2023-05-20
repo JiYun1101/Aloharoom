@@ -59,8 +59,8 @@ const PostCodeSection = ({ setCode }) => {
             onChange={handleSelectChange}
           >
             <Option value="1">방자랑</Option>
-            <Option value="1">정보공유</Option>
-            <Option value="1">자유</Option>
+            <Option value="2">정보공유</Option>
+            <Option value="3">자유</Option>
           </Select>
         </Form.Item>
         <Form.Item label=" " colon={false}>

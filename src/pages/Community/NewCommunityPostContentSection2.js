@@ -65,6 +65,8 @@ const NewCommunityPostContentSection2 = () => {
       .catch((error) => {
         console.log(error);
       });
+
+    setCode(""); // Reset the code value after post submission
   };
 
   return (
