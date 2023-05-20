@@ -39,14 +39,15 @@ const NewPostContentImageArea = styled.div`
 
 const NewPostContentWritingSection2 = ({
   setTitle,
-  imgFiles,
-  setContents,
   setCode,
+  imgFiles,
+  previewImages,
+  setContents,
   setImgFiles,
+  setPreviewImages,
   PostInfoSubmit,
+  modifyPost,
 }) => {
-  const [previewImages, setPreviewImages] = useState([]);
-
   const handleImageFilesInputChange = (e) => {
     const files = e.target.files;
     setImgFiles((prevImgFiles) => [...prevImgFiles, ...files]);
@@ -79,7 +80,10 @@ const NewPostContentWritingSection2 = ({
           handleImageFilesInputChange={handleImageFilesInputChange}
         />
         <ImageSwiperSection previewImages={previewImages} />
-        <PostButtonSection PostInfoSubmit={PostInfoSubmit} />
+        <PostButtonSection
+          PostInfoSubmit={PostInfoSubmit}
+          modifyPost={modifyPost}
+        />
       </NewPostContentImageArea>
     </NewPostContentWritingDiv>
   );

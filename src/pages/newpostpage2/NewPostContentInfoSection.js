@@ -17,88 +17,183 @@ const NewPostContentWritingContainer2 = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-const NewCommunityPostContentSection2 = () => {
+const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
+  const [openChatUrl, setOpenChatUrl] = useState("");
+  const [roomCount, setRoomCount] = useState("");
+  const [address, setAddress] = useState("");
+  const [homeType, setHomeType] = useState("");
+  const [tradeType, setTradeType] = useState("");
+  const [price, setPrice] = useState("");
+  const [deposit, setDeposit] = useState("");
+  const [rent, setRent] = useState("");
+  const [flat, setFlat] = useState("");
+  const [maintenance, setMaintenance] = useState("");
+  const [floor, setFloor] = useState("");
+  const [totalFloor, setTotalFloor] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [x, setX] = useState(null);
+  const [y, setY] = useState(null);
+  const [ageRange, setAgeRange] = useState([20, 25]);
   const [imgFiles, setImgFiles] = useState([]);
-  const [code, setCode] = useState("");
+  const [previewImages, setPreviewImages] = useState([]);
+
+  const updateID = useParams().id;
+  useEffect(() => {
+    if (updateID != null) {
+      FetchPostInfoData();
+    }
+  }, []);
+
+  async function FetchPostInfoData() {
+    await axios
+      .get(`${baseURL}/api/board/edit/${updateID}`)
+      .then((response) => {
+        console.log("FetchPostInfoData: ", response.data);
+        setAddress(response.data.address);
+        setAgeRange(response.data.ageRange);
+        setContents(response.data.contents);
+        setDeposit(response.data.deposit);
+        setFlat(response.data.flat);
+        setFloor(response.data.floor);
+        setHomeType(response.data.homeType);
+        setMaintenance(response.data.maintenance);
+        setOpenChatUrl(response.data.openChatUrl);
+        setPrice(response.data.price);
+        setRent(response.data.rent);
+        setRoomCount(response.data.roomCount);
+        setStartDate(response.data.startDate);
+        setTotalFloor(response.data.totalFloor);
+        setTradeType(response.data.tradeType);
+        setX(response.data.x);
+        setY(response.data.y);
+        urlsToFileList(response.data.imgUrls);
+      })
+      .catch((error) => {
+        console.log(" FetchPostInfoData axios error");
+      });
+  }
 
   console.log("==============================");
-  console.log("title ", title);
   console.log("contents ", contents);
+  console.log("roomCount ", roomCount);
+  console.log("address ", address);
+  console.log("homeType ", homeType);
+  console.log("tradeType ", tradeType);
+  console.log("price ", price);
+  console.log("deposit ", deposit);
+  console.log("rent ", rent);
+  console.log("flat ", flat);
+  console.log("maintenance ", maintenance);
+  console.log("floor ", floor);
+  console.log("totalFloor ", totalFloor);
+  console.log("startDate ", startDate);
+  console.log("x ", x);
+  console.log("y ", y);
+  console.log("ageRange ", ageRange);
   console.log("imgFiles ", imgFiles);
-  console.log("code ", code);
+  console.log("openChatUrl", openChatUrl);
   console.log("==============================");
 
-  const PostInfoSubmit = () => {
+  const modifyPost = () => {
     const data = {
-      title: title,
       contents: contents,
-      code: code,
+      roomCount: roomCount,
+      address: address,
+      homeType: homeType,
+      tradeType: tradeType,
+      price: price,
+      deposit: deposit,
+      rent: rent,
+      flat: flat,
+      maintenance: maintenance,
+      floor: floor,
+      totalFloor: totalFloor,
+      startDate: startDate,
+      x: x,
+      y: y,
+      ageRange: ageRange,
+      imgUrls: previewImages,
+      openChatUrl: openChatUrl,
     };
-
     const jsonData = JSON.stringify(data);
     const blob = new Blob([jsonData], { type: "application/json" });
     const formData = new FormData();
-    formData.append("communityBoardDto", blob);
+    formData.append("boardEditDto", blob);
     for (let i = 0; i < imgFiles.length; i++) {
       formData.append("imgFiles", imgFiles[i]);
     }
     axios
-      .post("http://localhost:8080/api/communityboard", formData, {
-        withCredentials: true,
+      .patch(`${baseURL}/api/board/edit/${updateID}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then((response) => {
-        if (response.status === 200) {
-          console.log("HTTP Status: 200");
-          navigate(`../CommunityPage`); // Navigate to CommunityPage after successful post creation
-        } else {
-          console.log("HTTP Status: ", response.status);
-        }
-        navigate(`../CommunityPage`);
+        navigate(`../postInfoPage/${updateID}`);
       })
       .catch((error) => {
         console.log(error);
       });
-
-    setCode(""); // Reset the code value after post submission
   };
 
-  const modifyPost = (communityId) => {
+  const PostInfoSubmit = () => {
     const data = {
-      title: title,
       contents: contents,
-      code: code,
+      openChatUrl: openChatUrl,
+      roomCount: roomCount,
+      address: address,
+      homeType: homeType,
+      tradeType: tradeType,
+      price: price,
+      deposit: deposit,
+      rent: rent,
+      flat: flat,
+      maintenance: maintenance,
+      floor: floor,
+      totalFloor: totalFloor,
+      startDate: startDate,
+      x: x,
+      y: y,
+      ageRange: ageRange,
     };
-
+    const jsonData = JSON.stringify(data);
+    const blob = new Blob([jsonData], { type: "application/json" });
+    const formData = new FormData();
+    formData.append("boardAddDto", blob);
+    for (let i = 0; i < imgFiles.length; i++) {
+      formData.append("imgFiles", imgFiles[i]);
+    }
     axios
-      .patch(
-        `http://localhost:8080/api/communityboard/edit/${communityId}`,
-        data,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      .post(`${baseURL}/api/board`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      })
       .then((response) => {
-        if (response.status === 200) {
-          console.log("HTTP Status: 200");
-          navigate(`../CommunityPage`); // Navigate to CommunityPage after successful post modification
-        } else {
-          console.log("HTTP Status: ", response.status);
-        }
+        navigate(`../postMapPage`);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  async function urlsToFileList(urls) {
+    console.log("urls ", urls);
+    const files = await Promise.all(
+      urls.map(async (url) => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const fileName = url.substring(url.lastIndexOf("/") + 1);
+        return new File([blob], fileName, { type: blob.type });
+      })
+    );
+    console.log("files ", files);
+    setImgFiles(files);
+    setPreviewImages(urls);
+  }
 
   return (
     <NewPostContentDiv>
@@ -117,4 +212,4 @@ const NewCommunityPostContentSection2 = () => {
   );
 };
 
-export default NewCommunityPostContentSection2;
+export default NewPostContentSection2;

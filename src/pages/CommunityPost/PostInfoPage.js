@@ -305,6 +305,8 @@ const PostInfoPage = () => {
   const navigate = useNavigate();
   const postInfoContentSpanRef = useRef(null);
   const [commentData, setCommentData] = useState([]);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   const [address, setAddress] = useState("");
   const [age, setAge] = useState("");
@@ -344,6 +346,30 @@ const PostInfoPage = () => {
     DeletePostInfoData();
     setIsDeletePostModalOpen(false);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get(
+          `http://localhost:8080/api/communityboard/${communityId}`,
+          { withCredentials: true }
+        );
+        setData(result.data);
+        setTitle(result.data.title);
+        setContents(result.data.contents);
+        setImgUrls(result.data.imgUrls);
+        console.log(result.data);
+      } catch (error) {
+        if (error.response && error.response.status === 500) {
+          navigate("../Login");
+        } else {
+          console.log("DeletePostInfoData axios error", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [communityId]);
 
   async function FetchPostInfoData() {
     await axios
@@ -504,7 +530,7 @@ const PostInfoPage = () => {
                   parseInt(localStorage.getItem("userId")) ? (
                     <>
                       <Link
-                        to={`../updateCommunityPostPage/${boardId}`}
+                        to={`../updateCommunityPostPage/${communityId}`}
                         style={LinkToIconStyle}
                       >
                         {<AiOutlineEdit size={40} />}

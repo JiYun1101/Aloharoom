@@ -302,71 +302,77 @@ const PostInfoPage = () => {
       );
 
       console.log(response.data);
-  const [commentData, setCommentData] = useState([]);
+      const [commentData, setCommentData] = useState([]);
 
-  const [post, setPost] = useState({
-    title: "",
-    imgUrls: [],
-    contents: "",
-    views: [],
-    code: [],
-  });
+      const [post, setPost] = useState({
+        title: "",
+        imgUrls: [],
+        contents: "",
+        views: [],
+        code: [],
+      });
 
-  async function fetchCommunityCommentData() {
-    await axios.get(`${baseURL}/api/comment/community/${communityId}`)
-    .then((response) => {
-      console.log('fetch community comment response.data', response.data);
-      setCommentData(response.data);
-    })
-    .catch((error) => { console.log(`fetchCommunityCommentData axios error`)});
-  }
+      async function fetchCommunityCommentData() {
+        await axios
+          .get(`${baseURL}/api/comment/community/${communityId}`)
+          .then((response) => {
+            console.log("fetch community comment response.data", response.data);
+            setCommentData(response.data);
+          })
+          .catch((error) => {
+            console.log(`fetchCommunityCommentData axios error`);
+          });
+      }
 
-  async function makeCommentRequest(
-    userId,
-    targetUserId,
-    boardId,
-    flag,
-    content,
-    targetContent,
-    layer,
-    groupId
-) {
-    await axios.post(`${baseURL}/api/comment`, {
-        "userId": userId,
-        "targetUserId": targetUserId,
-        "boardId": boardId,
-        "flag": flag,
-        "content": content,
-        "targetContent": targetContent,
-        "layer": layer,
-        "groupId": groupId
-    })
-    .then((response) => {
-        window.location.reload();
-    })
-    .error((error) => {console.log('makeCommentRequest axios error')});
-}
+      async function makeCommentRequest(
+        userId,
+        targetUserId,
+        boardId,
+        flag,
+        content,
+        targetContent,
+        layer,
+        groupId
+      ) {
+        await axios
+          .post(`${baseURL}/api/comment`, {
+            userId: userId,
+            targetUserId: targetUserId,
+            boardId: boardId,
+            flag: flag,
+            content: content,
+            targetContent: targetContent,
+            layer: layer,
+            groupId: groupId,
+          })
+          .then((response) => {
+            window.location.reload();
+          })
+          .error((error) => {
+            console.log("makeCommentRequest axios error");
+          });
+      }
 
-  useEffect(() => {
-    fetchCommunityCommentData();
-  }, []);
+      useEffect(() => {
+        fetchCommunityCommentData();
+      }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get(
-        `${baseURL}/api/communityboard?communityId=${communityId}`
-      );
-      setPost((prevPost) => ({
-        ...prevPost,
-        title: result.data[0].title,
-        imgUrls: result.data[0].imgUrls,
-        contents: result.data[0].contents,
-        views: result.data[0].views,
-        code: result.data[0].code,
-      }));
-    };
-    fetchData();
-  }, [communityId]);
+      useEffect(() => {
+        const fetchData = async () => {
+          const result = await axios.get(
+            `${baseURL}/api/communityboard?communityId=${communityId}`
+          );
+          setPost((prevPost) => ({
+            ...prevPost,
+            title: result.data[0].title,
+            imgUrls: result.data[0].imgUrls,
+            contents: result.data[0].contents,
+            views: result.data[0].views,
+            code: result.data[0].code,
+          }));
+        };
+        fetchData();
+      }, [communityId]);
 
       const { communityBoard } = response.data;
 
@@ -446,13 +452,13 @@ const PostInfoPage = () => {
         <CommentSection>
           {commentData.map((data, idx) => (
             <CommunityReadCommentSection
-              key={idx} 
+              key={idx}
               data={data}
               makeCommentRequest={makeCommentRequest}
               boardId={communityId}
             />
           ))}
-          <CommunityWriteComment 
+          <CommunityWriteComment
             makeCommentRequest={makeCommentRequest}
             boardId={communityId}
           />
