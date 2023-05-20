@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import baseURL from "../../api/baseURL";
-import axios from "axios";
 import HashTagButton from "../../HashTagButton";
 const MyInfoFlexDiv = styled.div`
     margin-top: ${props => props.marginTop};
@@ -50,31 +48,15 @@ const MyInfoProfile = styled.img`
     border-radius: ${props => props.borderRadius};
 `;
 //아이디, 비밀번호, 닉네임, 나이, 성별, 프로필 사진, 해시태그 목록
-const MyInfoPage = () => {
-  const [responseData, setResponseData] = useState({});
-  const [myHashtags, setMyHashtags] = useState([]);
-  const [myHomeHashtags, setMyHomeHashtags] = useState([]);
-  const [likeHashtags, setLikeHashtags] = useState([]);
-  const [likeHomeHashtags, setLikeHomeHashtags] = useState([]);
-  async function fetchMyInfoData() {
-    await axios.get(`${baseURL}/api/myPage`, {
-      withCredentials:true
-    }) 
-    .then((response) => {
-      console.log('response.data', response.data);
-      setResponseData(response.data);
-      setMyHashtags(response.data.myHashtags);
-      setMyHomeHashtags(response.data.myHomeHashtags);
-      setLikeHashtags(response.data.likeHashtags);
-      setLikeHomeHashtags(response.data.likeHomeHashtags)
-    })
-    .catch((error) => {
-      console.log(`axios MyInfoPage error`);
-    })
-  }
-  useEffect(() => {
-    fetchMyInfoData();
-  }, []);
+const MyInfoPage = ({
+    responseData,
+    myHashtags,
+    myHomeHashtags,
+    likeHashtags,
+    likeHomeHashtags,
+    fetchMyInfoData
+}) => {
+
   return (
       <MyInfoFlexDiv marginTop="0.5rem" marginLeft="0.5rem" width="36.5rem" height="500px" alignItems="center" justifyContent="center">
         <MyInfoFlexDiv width="36.5rem" height="500px" flexDirection="column" overflowY="auto" overflowX="auto" alignItems="center">

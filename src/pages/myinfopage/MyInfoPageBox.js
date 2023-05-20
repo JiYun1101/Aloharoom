@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MyPageTitle from "./myinfopagecomponents/MyInfoPageTitle";
 import MyInfoPageContent from "./myinfopagecomponents/MyInfoPageContent";
 import HoverHashTagButton from "../HoverHashTagButton";
 import MyProfileUpdateModal from "../modal/MyProfileUpdateModal";
+import axios from "axios";
+import baseURL from "../api/baseURL";
 
 const MyPageBoxContainer = styled.div`
     position: relative;
@@ -31,16 +33,44 @@ const MyPageBoxContainer = styled.div`
 
 const MyPageBox = () => {
     const [isMyProfileUpdateModalOpen, setIsMyProfileUpdateModalOpen] = useState(false);
+    const [responseData, setResponseData] = useState({});
+    const [myHashtags, setMyHashtags] = useState([]);
+    const [myHomeHashtags, setMyHomeHashtags] = useState([]);
+    const [likeHashtags, setLikeHashtags] = useState([]);
+    const [likeHomeHashtags, setLikeHomeHashtags] = useState([]);
+    async function fetchMyInfoData() {
+        await axios.get(`${baseURL}/api/myPage`, {
+            withCredentials:true
+        }) 
+        .then((response) => {
+            console.log('response.data', response.data);
+            setResponseData(response.data);
+            setMyHashtags(response.data.myHashtags);
+            setMyHomeHashtags(response.data.myHomeHashtags);
+            setLikeHashtags(response.data.likeHashtags);
+            setLikeHomeHashtags(response.data.likeHomeHashtags);
+        })
+        .catch((error) => {
+            console.log(`axios MyInfoPage error`);
+        })
+    }
     const showMyProfileUpdateModal = () => {setIsMyProfileUpdateModalOpen(true);}
     const handleMyProfileUpdateModalCancel = () => {setIsMyProfileUpdateModalOpen(false);}
-    const handleMyProfileUpdateModalOk = () => { setIsMyProfileUpdateModalOpen(false); }
+    useEffect(() => {
+        fetchMyInfoData();
+    }, []);
+
+    useEffect(() => {
+        fetchMyInfoData();
+    }, [isMyProfileUpdateModalOpen, responseData]);
     return (
         <>
         {isMyProfileUpdateModalOpen ? 
             <MyProfileUpdateModal
                 isMyProfileUpdateModalOpen={isMyProfileUpdateModalOpen}
-                handleOk={handleMyProfileUpdateModalOk}
+                setIsMyProfileUpdateModalOpen={setIsMyProfileUpdateModalOpen}
                 handelCancel={handleMyProfileUpdateModalCancel}
+                fetchMyInfoData={fetchMyInfoData}
             />
         :
             <></>
@@ -55,7 +85,14 @@ const MyPageBox = () => {
                 내 정보 수정
             </HoverHashTagButton>
             <MyPageTitle title="내 정보"/>
-            <MyInfoPageContent/>
+            <MyInfoPageContent
+                responseData={responseData}
+                myHashtags={myHashtags}
+                myHomeHashtags={myHomeHashtags}
+                likeHashtags={likeHashtags}
+                likeHomeHashtags={likeHomeHashtags}
+                fetchMyInfoData={fetchMyInfoData}
+            />
         </MyPageBoxContainer>
         </>
     );

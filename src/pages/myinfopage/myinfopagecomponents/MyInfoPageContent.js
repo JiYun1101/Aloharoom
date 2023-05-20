@@ -9,10 +9,24 @@ const MyPageContentDiv = styled.div`
     min-height: 45vh;
 `;
 
-const MyPageContent = ({myInfoPage, likedListPage, chattingPage}) => {
+const MyPageContent = ({
+    responseData,
+    myHashtags,
+    myHomeHashtags,
+    likeHashtags,
+    likeHomeHashtags,
+    fetchMyInfoData
+}) => {
     return (
         <MyPageContentDiv>
-            <MyInfoPageArea/>
+            <MyInfoPageArea
+                responseData={responseData}
+                myHashtags={myHashtags}
+                myHomeHashtags={myHomeHashtags}
+                likeHashtags={likeHashtags}
+                likeHomeHashtags={likeHomeHashtags}
+                fetchMyInfoData={fetchMyInfoData}
+            />
         </MyPageContentDiv>
     );
 }
