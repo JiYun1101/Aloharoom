@@ -213,8 +213,8 @@ const CardPost = ({ communityId, code }) => {
               <TitleSpan>{post.title}</TitleSpan>
             </TitleDiv>
             <CardImageDiv>
-              {/* <CardImage src={post.imgUrls} /> */}
-              <CardImage src={post.imgUrls[0]} />
+              <CardImage src={post.imgUrls} />
+              {/* <CardImage src={post.imgUrls[0]} /> */}
             </CardImageDiv>
           </Card2>
         </Link>
