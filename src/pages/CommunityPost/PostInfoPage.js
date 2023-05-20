@@ -10,6 +10,7 @@ import { GrDeliver } from "react-icons/gr";
 import { GiMeal } from "react-icons/gi";
 import { Map } from "react-kakao-maps-sdk";
 import { useRef } from "react";
+import baseURL from "../api/baseURL";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -290,45 +291,163 @@ const PostInfoPage = () => {
   const { communityId } = useParams();
   const [data, setData] = useState({}); // 조회된 데이터를 저장할 상태 변수
 
+  console.log("1: ", communityId);
+  const boardId = useParams().id;
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [imgUrls, setImgUrls] = useState([]);
-  // const [nickname, setNickName] = useState(null);
+  const postInfoContentSpanRef = useRef(null);
+  const [commentData, setCommentData] = useState([]);
+
+  const [address, setAddress] = useState("");
+  const [age, setAge] = useState("");
   const [contents, setContents] = useState("");
-  const [views, setviews] = useState([]);
-  const [code, setcode] = useState([]);
+  const [deposit, setDeposit] = useState("");
+  const [flat, setFlat] = useState("");
+  const [floor, setFloor] = useState("");
+  const [gender, setGender] = useState("");
+  const [homeType, setHomeType] = useState("");
+  const [imgUrls, setImgUrls] = useState([]);
+  const [isHeart, setIsHeart] = useState("");
+  const [maintenance, setMaintenance] = useState("");
+  const [myHashtag, setMyHashtag] = useState([]);
+  const [myHomeHashtag, setMyHomeHashtag] = useState([]);
+  const [nickname, setNickName] = useState("");
+  const [preferAgeRange, setPreferAgeRange] = useState("");
+  const [price, setPrice] = useState("");
+  const [openChatUrl, setOpenChatUrl] = useState("");
+  const [profileImageUrl, setProfileImageUrl] = useState("");
+  const [rent, setRent] = useState("");
+  const [roomCount, setRoomCount] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [totalFloor, setTotalFloor] = useState("");
+  const [tradeType, setTradeType] = useState("");
+  const [userId, setUserId] = useState("");
+  const [x, setX] = useState("");
+  const [y, setY] = useState("");
+  const [myProfileURL, setMyProfileURL] = useState("");
+  const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
+  const showDeletePostModal = () => {
+    setIsDeletePostModalOpen(true);
+  };
+  const handleDeletePostCancel = () => {
+    setIsDeletePostModalOpen(false);
+  };
+  const handleDeletePostOk = () => {
+    DeletePostInfoData();
+    setIsDeletePostModalOpen(false);
+  };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios.get(
-          `http://localhost:8080/api/communityboard/${communityId}`,
-          { withCredentials: true }
-        );
-        setData(result.data);
-        console.log(result.data);
-      } catch (error) {
-        if (error.response && error.response.status === 500) {
-          navigate("../Login");
-        } else {
-          console.log("DeletePostInfoData axios error", error);
-        }
-      }
-    };
-
-    fetchData();
-  }, [communityId, code]);
+  async function FetchPostInfoData() {
+    await axios
+      .get(`${baseURL}/api/communityboard/${communityId}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log("FetchPostInfoData ", response.data);
+        setAddress(response.data.address);
+        setAge(response.data.age);
+        setContents(response.data.contents);
+        setDeposit(response.data.deposit);
+        setFlat(response.data.flat);
+        setFloor(response.data.floor);
+        setGender(response.data.gender);
+        setHomeType(response.data.homeType);
+        setImgUrls(response.data.imgUrls);
+        setIsHeart(response.data.isHeart);
+        setMaintenance(response.data.maintenance);
+        setMyHashtag(response.data.myHashtag);
+        setMyHomeHashtag(response.data.myHomeHashtag);
+        setNickName(response.data.nickname);
+        setPreferAgeRange(response.data.preferAgeRange);
+        setPrice(response.data.price);
+        setOpenChatUrl(response.data.openChatUrl);
+        setProfileImageUrl(response.data.profileImgUrl);
+        setRent(response.data.rent);
+        setRoomCount(response.data.roomCount);
+        setStartDate(response.data.startDate);
+        setTotalFloor(response.data.totalFloor);
+        setTradeType(response.data.tradeType);
+        setUserId(response.data.userId);
+        setX(response.data.x);
+        setY(response.data.y);
+      })
+      .catch((error) => {
+        console.log(" FetchPostInfoData axios error");
+      });
+  }
 
   async function DeletePostInfoData() {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/communityboard/${communityId}`
-      );
-      navigate(`../Community`);
-    } catch (error) {
-      console.log("DeletePostInfoData axios error", error);
-    }
+    await axios
+      .delete(`${baseURL}/api/communityboard/${communityId}`)
+      .then((response) => {
+        navigate(`../postMapPage`);
+      })
+      .catch((error) => {
+        console.log("DeletePostInfoData axios error");
+      });
   }
+
+  async function FetchBoardComment() {
+    await axios
+      .get(`${baseURL}/api/communityboard/${communityId}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log("response.data ", response.data);
+        setCommentData(response.data);
+      })
+      .catch((error) => {
+        console.log("fetchBoardComment axios error");
+      });
+  }
+
+  async function makeCommentRequest(
+    userId,
+    targetUserId,
+    boardId,
+    flag,
+    content,
+    targetContent,
+    layer,
+    groupId
+  ) {
+    await axios
+      .post(`${baseURL}/api/comment`, {
+        userId: userId,
+        targetUserId: targetUserId,
+        boardId: boardId,
+        flag: flag,
+        content: content,
+        targetContent: targetContent,
+        layer: layer,
+        groupId: groupId,
+      })
+      .then((response) => {
+        FetchBoardComment();
+      })
+      .error((error) => {
+        console.log("makeCommentRequest axios error");
+      });
+  }
+
+  async function fetchMyInfo() {
+    await axios
+      .get(`${baseURL}/api/communityboard/myPage`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setMyProfileURL(response.data.profileUrl);
+      })
+      .catch((error) => {
+        console.log("axios fetchMyInfo error");
+      });
+  }
+
+  //한번 렌더링 될때 데이터를 받아온다.
+  useEffect(() => {
+    FetchPostInfoData();
+    FetchBoardComment();
+    fetchMyInfo();
+  }, []);
 
   return (
     <PostInfoPageContainer>

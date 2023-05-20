@@ -69,6 +69,37 @@ const NewCommunityPostContentSection2 = () => {
     setCode(""); // Reset the code value after post submission
   };
 
+  const modifyPost = (communityId) => {
+    const data = {
+      title: title,
+      contents: contents,
+      code: code,
+    };
+
+    axios
+      .patch(
+        `http://localhost:8080/api/communityboard/edit/${communityId}`,
+        data,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("HTTP Status: 200");
+          navigate(`../CommunityPage`); // Navigate to CommunityPage after successful post modification
+        } else {
+          console.log("HTTP Status: ", response.status);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <NewPostContentDiv>
       <NewPostContentWritingContainer2>
@@ -78,6 +109,7 @@ const NewCommunityPostContentSection2 = () => {
           setImgFiles={setImgFiles}
           setCode={setCode}
           PostInfoSubmit={PostInfoSubmit}
+          modifyPost={modifyPost}
         />
       </NewPostContentWritingContainer2>
       {/* <PostCodeSection handleSubmit={PostInfoSubmit} setCode={setCode} /> */}
