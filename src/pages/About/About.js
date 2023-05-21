@@ -85,28 +85,29 @@ const About = () => {
 
   useEffect(() => {
     // 데이터를 받아오는 API 호출
-    fetch(`http://localhost:8080/api/data/${flat}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [flat]);
-  const [componentDisabled, setComponentDisabled] = useState(false);
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     window.scrollTo({
-  //       top: 600,
-  //       behavior: "smooth",
-  //     });
-  //   }, 200);
+    fetchData();
+  }, []);
 
-  //   return () => {
-  //     clearTimeout(timer);
-  //   };
-  // }, []);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/data/${flat}`);
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleButtonClick = () => {
+    console.log(flat); // flat 값을 콘솔에 출력
+    fetchData();
+  };
+
+  const handleInputChange = (e) => {
+    setFlat(e.target.value); // 입력한 값을 flat에 저장
+  };
+
+  const [componentDisabled, setComponentDisabled] = useState(false);
 
   return (
     <MainContainer>
@@ -117,9 +118,6 @@ const About = () => {
           <BannerSection />
         </MainBox>
         <IntroBox>
-          {/* <letter>Aloharoom</letter>
-          <p>우리는 당신의 취향에 딱 맞는 공간을 찾아줄 수 있습니다.</p>
-          <MainBox2 /> */}
           <p>높아지는 물가와 어려워지는 내집마련,</p>
           <p>어딘가에 나랑 잘 맞는 룸메이트가 있지 않을까요?</p>
           <MainBox2 />
@@ -128,14 +126,8 @@ const About = () => {
           <Graph_number />
           <Graph_user />
           <Graph_map />
-          <Graph_cost />
+          <Graph_cost flat={flat} />
           <>
-            {/* <Checkbox
-              checked={componentDisabled}
-              onChange={(e) => setComponentDisabled(e.target.checked)}
-            >
-              Form disabled
-            </Checkbox> */}
             <Form
               labelCol={{
                 span: 4,
@@ -150,10 +142,10 @@ const About = () => {
               }}
             >
               <Form.Item label="Input">
-                <Input value={flat} onChange={(e) => setFlat(e.target.value)} />
+                <Input value={flat} onChange={handleInputChange} />
               </Form.Item>
               <Form.Item label="Button">
-                <Button>Button</Button>
+                <Button onClick={handleButtonClick}>Button</Button>
               </Form.Item>
             </Form>
             {/* 데이터 출력을 위한 컴포넌트 */}
