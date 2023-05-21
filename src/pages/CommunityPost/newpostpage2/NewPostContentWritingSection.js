@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import PostTitleSection from "../newpostpage/newpostcontentwritingcomponents/PostTitleSection";
-import PostContentSection from "../newpostpage/newpostcontentwritingcomponents/PostContentSection";
-import ImageUploadSection from "../newpostpage/newpostcontentwritingcomponents/ImageUploadSection";
-import ImageSwiperSection from "../newpostpage/newpostcontentwritingcomponents/ImageSwiperSection";
-import PostButtonSection from "../newpostpage/newpostcontentwritingcomponents/PostButtonSection";
-import PostCodeSection from "../newpostpage/newpostcontentwritingcomponents/PostCodeSection";
+import PostTitleSection from "../newpostpage2/newpostcontentwritingcomponents/PostTitleSection";
+import PostContentSection from "../newpostpage2/newpostcontentwritingcomponents/PostContentSection";
+import ImageUploadSection from "../newpostpage2/newpostcontentwritingcomponents/ImageUploadSection";
+import ImageSwiperSection from "../newpostpage2/newpostcontentwritingcomponents/ImageSwiperSection";
+import PostButtonSection from "../newpostpage2/newpostcontentwritingcomponents/PostButtonSection";
+import PostCodeSection from "../newpostpage2/newpostcontentwritingcomponents/PostCodeSection";
 
 const NewPostContentWritingDiv = styled.div`
   margin-top: -1rem;

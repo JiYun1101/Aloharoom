@@ -9,6 +9,7 @@ import Graph_number from "./Graph_number";
 import Graph_cost from "./Graph_cost";
 import Graph_user from "./Graph_user";
 import Graph_map from "./Graph_map";
+import baseURL from "../api/baseURL";
 
 import { PlusOutlined } from "@ant-design/icons";
 import {
@@ -90,7 +91,7 @@ const About = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/data/${flat}`);
+      const response = await fetch(`${baseURL}/api/data/${flat}`);
       const data = await response.json();
       setData(data);
     } catch (error) {

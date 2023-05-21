@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NewPostHeaderSection from "./newpostpage2/NewPostHeaderSection";
 import NewPostContentSection from "./newpostpage2/NewPostContentSection";
 import { useState } from "react";
-import AddressInfoModal from "./modal/AddressInfoModal";
+import AddressInfoModal from "../modal/AddressInfoModal";
 
 const NewPostContainer = styled.div`
   position: relative;

@@ -15,7 +15,7 @@ import PostInfoPage from "./pages/PostInfoPage";
 import CommunityInfoPage from "./pages/CommunityPost/PostInfoPage";
 import CommunityPage from "./pages/CommunityPost/PostPage";
 import MyInfoPage from "./pages/MyInfoPage";
-import NewCommunityPostPage from "./pages/NewCommunityPostPage";
+import NewCommunityPostPage from "./pages/CommunityPost/NewCommunityPostPage";
 
 const App = () => {
   return (

@@ -24,7 +24,7 @@
 //         return;
 //       }
 //       const response = await axios.get(
-//         `http://localhost:8080/api/communityboard/code/${code}`
+//         `${baseURL}/api/communityboard/code/${code}`
 //       );
 //       setCardPostData(response.data);
 //       console.log("cardPostData => response.data : ", response.data);

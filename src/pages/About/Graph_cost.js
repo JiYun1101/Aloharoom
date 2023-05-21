@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Column } from "@ant-design/charts";
 import axios from "axios";
+import baseURL from "../api/baseURL";
 
 const DemoColumn = ({ flat }) => {
   // 컴포넌트 이름을 DemoColumn으로 변경
@@ -10,9 +11,7 @@ const DemoColumn = ({ flat }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/api/data/${flat}`
-        );
+        const response = await axios.get(`${baseURL}/api/data/${flat}`);
         setDataPoints(response.data);
         console.log("response.data:", response.data);
       } catch (error) {

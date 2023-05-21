@@ -12,6 +12,7 @@ import clock from "../../img/clock.jpg";
 import box from "../../img/box.jpg";
 import blue from "../../img/blue.jpg";
 import mint from "../../img/mint.jpg";
+import baseURL from "../api/baseURL";
 
 const RoomTypeDiv = styled.div`
   width: 90%;
@@ -163,7 +164,7 @@ const CardPost = ({ communityId, code }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        `http://localhost:8080/api/communityboard/code/${code}`
+        `${baseURL}/api/communityboard/code/${code}`
       );
       setData(result.data[0]);
       console.log(result.data[0]);

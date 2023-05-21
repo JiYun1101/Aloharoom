@@ -5,6 +5,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
+import baseURL from "../api/baseURL";
 
 const Card2 = styled.div`
   min-width: 90%;
@@ -84,7 +85,7 @@ const CardPost = ({ communityId }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        `http://localhost:8080/api/communityboard/code/${code}`
+        `${baseURL}/api/communityboard/code/${code}`
       );
       setData(result.data);
     };

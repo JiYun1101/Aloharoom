@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NewPostContentWritingSection2 from "./NewPostContentWritingSection2";
 // import PostCodeSection from "../newpostpage/newpostcontentwritingcomponents/PostCodeSection";
+import baseURL from "../api/baseURL";
 
 const NewPostContentDiv = styled.div`
   height: 100%;
@@ -47,7 +48,7 @@ const NewCommunityPostContentSection2 = () => {
       formData.append("imgFiles", imgFiles[i]);
     }
     axios
-      .post("http://localhost:8080/api/communityboard", formData, {
+      .post(`${baseURL}/api/communityboard`, formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
@@ -77,16 +78,12 @@ const NewCommunityPostContentSection2 = () => {
     };
 
     axios
-      .patch(
-        `http://localhost:8080/api/communityboard/edit/${communityId}`,
-        data,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      .patch(`${baseURL}/api/communityboard/edit/${communityId}`, data, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((response) => {
         if (response.status === 200) {
           console.log("HTTP Status: 200");

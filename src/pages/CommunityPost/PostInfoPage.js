@@ -351,7 +351,7 @@ const PostInfoPage = () => {
     const fetchData = async () => {
       try {
         const result = await axios.get(
-          `http://localhost:8080/api/communityboard/${communityId}`,
+          `${baseURL}/api/communityboard/${communityId}`,
           { withCredentials: true }
         );
         setData(result.data);

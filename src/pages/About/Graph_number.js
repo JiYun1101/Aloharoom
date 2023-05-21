@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Col, Row, Statistic } from "antd";
+import baseURL from "../api/baseURL";
 
 const Graph_number = () => {
   const [userTotal, setUserTotal] = useState(0);
@@ -9,7 +10,7 @@ const Graph_number = () => {
   const fetchData = () => {
     setIsFetching(true);
     axios
-      .get("http://localhost:8080/api/data")
+      .get(`${baseURL}/api/data`)
       .then((response) => {
         const newData = response.data;
         const parsedTotal = parseFloat(newData.userTotal);

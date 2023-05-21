@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import NewPostContentWritingSection from "./NewPostContentWritingSection"; // 변경된 부분
-import baseURL from "../api/baseURL";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import baseURL from "../../api/baseURL";
 
 const NewPostContentDiv = styled.div`
   height: 100%;

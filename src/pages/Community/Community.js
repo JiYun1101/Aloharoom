@@ -127,9 +127,9 @@ const Community = ({ match }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        `http://localhost:8080/api/communityboard?communityId=${communityId}`
+        `${baseURL}/api/communityboard?communityId=${communityId}`
       );
-      console.log('result.data', result.data);
+      console.log("result.data", result.data);
       setData(result.data);
     };
     fetchData();
@@ -141,11 +141,9 @@ const Community = ({ match }) => {
     //     setScrollTop(cardRef.current.scrollTop);
     //   }
     // };
-
     // if (cardRef.current) {
     //   cardRef.current.addEventListener("scroll", handleScroll);
     // }
-
     // return () => {
     //   if (cardRef.current) {
     //     cardRef.current.removeEventListener("scroll", handleScroll);
@@ -216,7 +214,7 @@ const Community = ({ match }) => {
             />
           </Space>
         </CategoryNum>
-        <CardBox2 style={{ borderStyle: "solid"}}>
+        <CardBox2 style={{ borderStyle: "solid" }}>
           {data.map((post) => (
             <Card2 key={post.communityId}>
               <CardImageDiv>

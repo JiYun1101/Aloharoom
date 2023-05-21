@@ -16,6 +16,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import baseURL from "../api/baseURL";
 import CommunityReadCommentSection from "./commentcomponents/CommunityReadCommentSection";
 import CommunityWriteComment from "./commentcomponents/CommunityWriteComment";
+import baseURL from "../api/baseURL";
 
 SwiperCore.use([Pagination]);
 
@@ -298,7 +299,7 @@ const PostInfoPage = () => {
   async function FetchPostInfoData() {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/communityboard/${communityId}`
+        `${baseURL}/api/communityboard/${communityId}`
       );
 
       console.log(response.data);
@@ -391,7 +392,7 @@ const PostInfoPage = () => {
   async function DeletePostInfoData() {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/api/communityboard?communityId=${communityId}`
+        `${baseURL}/api/communityboard?communityId=${communityId}`
       );
       navigate(`../Community`);
     } catch (error) {
