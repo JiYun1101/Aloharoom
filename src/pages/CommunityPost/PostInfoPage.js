@@ -1,3 +1,4 @@
+//삭제 후 이동
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -12,13 +13,12 @@ import { Map } from "react-kakao-maps-sdk";
 import { useRef } from "react";
 import baseURL from "../api/baseURL";
 
-import InfoPageMapContainer from "../postinfopage/InfoPageMapContainer";
-import PostInfoDiv from "../postinfopage/PostInfoDiv";
-import PostInfoFlexDiv from "../postinfopage/PostInfoFlexDiv";
-import PostInfoSpan from "../postinfopage/PostInfoSpan";
-import UserProfileImg from "../postinfopage/UserProfileImg";
-import WriteComment from "../postinfopage/commentcomponents/WriteComment";
-import ReadCommentSection from "../postinfopage/commentcomponents/ReadCommentSection";
+import PostInfoDiv from "./postinfopage2/PostInfoDiv";
+import PostInfoFlexDiv from "./postinfopage2/PostInfoFlexDiv";
+import PostInfoSpan from "./postinfopage2/PostInfoSpan";
+import UserProfileImg from "./postinfopage2/UserProfileImg";
+import WriteComment from "./postinfopage2/commentcomponents/WriteComment";
+import ReadCommentSection from "./postinfopage2/commentcomponents/ReadCommentSection";
 import DeletePostModal from "../modal/DeletePostModal";
 
 import "swiper/css";
@@ -414,7 +414,7 @@ const PostInfoPage = () => {
     await axios
       .delete(`${baseURL}/api/communityboard/${communityId}`)
       .then((response) => {
-        navigate(`../postMapPage`);
+        navigate(`../CommunityPage`);
       })
       .catch((error) => {
         console.log("DeletePostInfoData axios error");

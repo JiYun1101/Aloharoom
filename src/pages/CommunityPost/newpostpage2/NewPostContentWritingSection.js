@@ -79,7 +79,12 @@ const NewPostContentWritingSection2 = ({
         <ImageUploadSection
           handleImageFilesInputChange={handleImageFilesInputChange}
         />
-        <ImageSwiperSection previewImages={previewImages} />
+        <ImageSwiperSection
+          imgFiles={imgFiles}
+          previewImages={previewImages}
+          setImgFiles={setImgFiles}
+          setPreviewImages={setPreviewImages}
+        />
         <PostButtonSection
           PostInfoSubmit={PostInfoSubmit}
           modifyPost={modifyPost}
