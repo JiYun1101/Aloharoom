@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import NewPostContentWritingSection from "./NewPostContentWritingSection"; // 변경된 부분
+import NewPostContentWritingSection from "./NewPostContentWritingSection";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import baseURL from "../../api/baseURL";
@@ -20,11 +20,11 @@ const NewPostContentWritingContainer2 = styled.div`
 `;
 
 const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
-  const [code, setCode] = useState("");
-
-  const [title, setTitle] = useState("");
-
   const navigate = useNavigate();
+  const [code, setCode] = useState("");
+  const [userId, setUserId] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [openChatUrl, setOpenChatUrl] = useState("");
   const [roomCount, setRoomCount] = useState("");
@@ -46,6 +46,7 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   const [previewImages, setPreviewImages] = useState([]);
 
   const updateID = useParams().id;
+
   useEffect(() => {
     if (updateID != null) {
       FetchPostInfoData();
@@ -53,43 +54,45 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   }, []);
 
   async function FetchPostInfoData() {
-    await axios
-      .get(`${baseURL}/api/communityboard/edit/${updateID}`)
-      .then((response) => {
-        console.log("FetchPostInfoData: ", response.data);
-        setTitle(response.data.title);
-        setCode(response.data.code);
-        setContents(response.data.contents);
-        setAddress(response.data.address);
-        setAgeRange(response.data.ageRange);
-        setContents(response.data.contents);
-        setDeposit(response.data.deposit);
-        setFlat(response.data.flat);
-        setFloor(response.data.floor);
-        setHomeType(response.data.homeType);
-        setMaintenance(response.data.maintenance);
-        setOpenChatUrl(response.data.openChatUrl);
-        setPrice(response.data.price);
-        setRent(response.data.rent);
-        setRoomCount(response.data.roomCount);
-        setStartDate(response.data.startDate);
-        setTotalFloor(response.data.totalFloor);
-        setTradeType(response.data.tradeType);
-        setX(response.data.x);
-        setY(response.data.y);
-        urlsToFileList(response.data.imgUrls);
-      })
-      .catch((error) => {
-        console.log(" FetchPostInfoData axios error");
-      });
+    try {
+      const response = await axios.get(
+        `${baseURL}/api/communityboard/edit/${updateID}`
+      );
+      console.log("FetchPostInfoData: ", response.data);
+      setUserId(response.data.id);
+      setNickname(response.data.nickname);
+      setTitle(response.data.title);
+      setCode(response.data.code);
+      setAddress(response.data.address);
+      setAgeRange(response.data.ageRange);
+      setContents(response.data.contents);
+      setDeposit(response.data.deposit);
+      setFlat(response.data.flat);
+      setFloor(response.data.floor);
+      setHomeType(response.data.homeType);
+      setMaintenance(response.data.maintenance);
+      setOpenChatUrl(response.data.openChatUrl);
+      setPrice(response.data.price);
+      setRent(response.data.rent);
+      setRoomCount(response.data.roomCount);
+      setStartDate(response.data.startDate);
+      setTotalFloor(response.data.totalFloor);
+      setTradeType(response.data.tradeType);
+      setX(response.data.x);
+      setY(response.data.y);
+      urlsToFileList(response.data.imgUrls);
+    } catch (error) {
+      console.log("FetchPostInfoData axios error:", error);
+    }
   }
 
   console.log("==============================");
+  console.log("userId ", userId);
+  console.log("nickname ", nickname);
   console.log("title ", title);
   console.log("contents ", contents);
   console.log("imgFiles ", imgFiles);
   console.log("code ", code);
-  console.log("contents ", contents);
   console.log("roomCount ", roomCount);
   console.log("address ", address);
   console.log("homeType ", homeType);
@@ -112,9 +115,7 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   const modifyPost = () => {
     const data = {
       title: title,
-      contents: contents,
       code: code,
-      imgUrls: previewImages,
       contents: contents,
       roomCount: roomCount,
       address: address,
@@ -137,7 +138,7 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
     const jsonData = JSON.stringify(data);
     const blob = new Blob([jsonData], { type: "application/json" });
     const formData = new FormData();
-    formData.append("communityEditDto", blob); // 수정된 부분
+    formData.append("communityEditDto", blob);
     for (let i = 0; i < imgFiles.length; i++) {
       formData.append("imgFiles", imgFiles[i]);
     }
@@ -157,10 +158,10 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
 
   const PostInfoSubmit = () => {
     const data = {
+      userId: userId,
+      nickname: nickname,
       title: title,
-      contents: contents,
       code: code,
-      imgUrls: previewImages,
       contents: contents,
       openChatUrl: openChatUrl,
       roomCount: roomCount,
@@ -182,8 +183,9 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
     const jsonData = JSON.stringify(data);
     const blob = new Blob([jsonData], { type: "application/json" });
     const formData = new FormData();
-    formData.append("communityBoardDto", blob); // 수정된 부분
+    formData.append("communityBoardDto", blob);
     for (let i = 0; i < imgFiles.length; i++) {
+      formData.append("title", title);
       formData.append("imgFiles", imgFiles[i]);
     }
     axios
@@ -219,7 +221,7 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
     <NewPostContentDiv>
       <NewPostContentWritingContainer2>
         <NewPostContentWritingSection
-          setTitle={setTitle}
+          title={title}
           contents={contents}
           setCode={setCode}
           imgFiles={imgFiles}
