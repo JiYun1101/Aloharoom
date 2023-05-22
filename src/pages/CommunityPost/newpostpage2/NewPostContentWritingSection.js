@@ -37,11 +37,8 @@ const NewPostContentImageArea = styled.div`
   align-items: center;
 `;
 
-const NewPostContentWritingSection = ({
-  title,
-  code,
+const NewPostContentWritingSection2 = ({
   setTitle,
-  contents,
   setCode,
   imgFiles,
   previewImages,
@@ -51,7 +48,6 @@ const NewPostContentWritingSection = ({
   PostInfoSubmit,
   modifyPost,
 }) => {
-  console.log("이거", title);
   const handleImageFilesInputChange = (e) => {
     const files = e.target.files;
     setImgFiles((prevImgFiles) => [...prevImgFiles, ...files]);
@@ -74,16 +70,21 @@ const NewPostContentWritingSection = ({
 
   return (
     <NewPostContentWritingDiv>
-      <PostCodeSection code={code} setCode={setCode} />
+      <PostCodeSection setCode={setCode} />
       <NewPostContentWritingArea>
-        <PostTitleSection title={title} setTitle={setTitle} />
-        <PostContentSection contents={contents} setContents={setContents} />
+        <PostTitleSection setTitle={setTitle} />
+        <PostContentSection setContents={setContents} />
       </NewPostContentWritingArea>
       <NewPostContentImageArea>
         <ImageUploadSection
           handleImageFilesInputChange={handleImageFilesInputChange}
         />
-        <ImageSwiperSection previewImages={previewImages} />
+        <ImageSwiperSection
+          imgFiles={imgFiles}
+          previewImages={previewImages}
+          setImgFiles={setImgFiles}
+          setPreviewImages={setPreviewImages}
+        />
         <PostButtonSection
           PostInfoSubmit={PostInfoSubmit}
           modifyPost={modifyPost}
@@ -93,4 +94,4 @@ const NewPostContentWritingSection = ({
   );
 };
 
-export default NewPostContentWritingSection;
+export default NewPostContentWritingSection2;

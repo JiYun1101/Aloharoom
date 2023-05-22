@@ -48,8 +48,8 @@ const ImageSwiperSection = ({
 }) => {
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
-    const newImgFiles = Array.from(imgFiles);
-    const newPreviewImages = Array.from(previewImages);
+    const newImgFiles = Array.from(imgFiles || []);
+    const newPreviewImages = Array.from(previewImages || []);
     const [reorderedImgFiles] = newImgFiles.splice(result.source.index, 1);
     const [reorderedPreviewImages] = newPreviewImages.splice(
       result.source.index,
