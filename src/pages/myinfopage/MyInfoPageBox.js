@@ -62,7 +62,7 @@ const MyPageBox = () => {
 
     useEffect(() => {
         fetchMyInfoData();
-    }, [isMyProfileUpdateModalOpen, responseData]);
+    }, [isMyProfileUpdateModalOpen]);
     return (
         <>
         {isMyProfileUpdateModalOpen ? 
