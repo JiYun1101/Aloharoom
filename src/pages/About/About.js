@@ -61,6 +61,10 @@ const IntroBox = styled.div`
   margin-top: 2rem;
 `;
 
+const SpanDiv = styled.div`
+  height: 5rem;
+`;
+
 const MainContainer = styled.section`
   justify-content: flex-start;
   overflow: auto;
@@ -123,11 +127,18 @@ const About = () => {
           <p>어딘가에 나랑 잘 맞는 룸메이트가 있지 않을까요?</p>
           <MainBox2 />
           <p>지금까지 공유공간을 찾은 사람의 수!</p>
+          <SpanDiv />
           <MainBox2 />
+
+          <SpanDiv />
           <Graph_number />
+          <SpanDiv />
           <Graph_user />
+          <SpanDiv />
           <Graph_map />
+          <SpanDiv />
           <Graph_cost flat={flat} />
+          <SpanDiv />
           <>
             <Form
               labelCol={{
@@ -153,6 +164,8 @@ const About = () => {
           </>
         </IntroBox>
       </>
+      <SpanDiv />
+      <SpanDiv />
     </MainContainer>
   );
 };

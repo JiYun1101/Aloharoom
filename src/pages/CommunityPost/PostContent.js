@@ -106,9 +106,9 @@ const LinkToStyle = {
 };
 
 const NewPostIconStyle = {
-  position: "absolute",
+  position: "fixed",
   right: "2rem",
-  bottom: "0.001rem",
+  bottom: "2rem",
   zIndex: "2",
   color: "#bbbbbb",
 };

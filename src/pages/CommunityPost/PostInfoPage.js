@@ -20,6 +20,7 @@ import UserProfileImg from "../postinfopage/UserProfileImg";
 import WriteComment from "../postinfopage/commentcomponents/WriteComment";
 import ReadCommentSection from "../postinfopage/commentcomponents/ReadCommentSection";
 import DeletePostModal from "../modal/DeletePostModal";
+import { AiOutlineLeft } from "react-icons/ai";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -29,6 +30,13 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 SwiperCore.use([Pagination]);
+
+const BackPageIconStyle = {
+  position: "absolute",
+  top: "1vh",
+  left: "1vw",
+  color: "black",
+};
 
 const PostInfoPageContainer = styled.div`
   height: 110rem;
@@ -496,6 +504,11 @@ const PostInfoPage = () => {
         <></>
       )}
       <PostInfoPageContainer>
+        <AiOutlineLeft
+          size={40}
+          style={BackPageIconStyle}
+          onClick={() => navigate("../postMapPage")}
+        />
         <PostInfoPageBox>
           <PostInfoImageBox>
             <Container>
@@ -552,7 +565,6 @@ const PostInfoPage = () => {
             </HeartDiv>
           </ProfileHeartDiv>
 
-          <PostHashTagDiv></PostHashTagDiv>
           <PostContentDiv>
             <PostContentSpan>{data.contents}</PostContentSpan>
           </PostContentDiv>

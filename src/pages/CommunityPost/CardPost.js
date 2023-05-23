@@ -60,6 +60,20 @@ const ProfileSpan = styled.span`
   font-size: 0.9rem;
 `;
 
+const ViewsSpan = styled.span`
+  margin-right: 0.5rem;
+  color: black;
+  font-size: 0.9rem;
+`;
+
+const ViewsDiv = styled.div`
+  width: 120%;
+  height: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+`;
+
 const CommentDiv = styled.div`
   width: 34%;
   height: 2rem;
@@ -228,6 +242,14 @@ const CardPost = ({ communityId, code }) => {
                 <ProfileImg src={post.profile} />
                 <ProfileSpan>{post.nickname}</ProfileSpan>
               </ProfileDiv>
+              <ViewsDiv>
+                <ViewsSpan>
+                  <b>
+                    조회수
+                    {post.views}
+                  </b>
+                </ViewsSpan>
+              </ViewsDiv>
               <CommentDiv>
                 <CommentSpan>{post.userPost}</CommentSpan>
                 <FaRegCommentDots size={25} style={CommentLogoStyle} />

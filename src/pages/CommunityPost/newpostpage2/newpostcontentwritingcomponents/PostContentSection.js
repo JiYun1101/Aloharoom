@@ -4,7 +4,7 @@ import styled from "styled-components";
 const PostContentDiv = styled.div`
   margin-top: 2.5vh;
   width: 90%;
-  height: 90%;
+  height: 70%;
 `;
 
 const PostContentTextArea = styled.textarea`
