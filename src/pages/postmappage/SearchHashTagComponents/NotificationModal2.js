@@ -58,7 +58,6 @@ const NotificationTitle2 = styled.div`
   font-size: 2rem;
   text-align: center; 
   margin-top: 1.4px;
-  color: #47a5fd;
 `;
 
 const NotificationModalCloseButtonDiv2 = styled.div`
@@ -69,11 +68,11 @@ const NotificationModalCloseButtonDiv2 = styled.div`
 const NotificationModalCloseButton2 = styled.button`
   margin-right: 3.5rem;
   font-size: 2.5rem;
-  color: #47a5fd;
   background-color: white;
   border-radius: 0.5rem;
   border-style: none;
   z-index: 999;
+  cursor: pointer;
 `;
 
 const FilterFormDiv = styled.div`
@@ -102,6 +101,20 @@ const FilterForm2 = styled.div`
   height: 40rem;
 `;
 
+const FilterClearButton = styled.button`
+  width: auto;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  color: #a0a0a0;
+  background-color: #E2E2E2;
+  border-style: none;
+  border-radius: 0.5rem;
+  margin-top: 15px;
+  cursor: pointer;
+`;
+
+
+
 const NotificationModal2 = ({ 
   ModalClose,
   fetchCardPostData,
@@ -113,7 +126,7 @@ const NotificationModal2 = ({
     <NotificationModalDiv2>
       <NotificationModalHeaderDiv2>
         <NotificationDiv3>
-          <Notification3
+          <FilterClearButton
             onClick={() => {
               localStorage.removeItem('pressFilterButton');
               localStorage.removeItem('gender');
@@ -130,7 +143,7 @@ const NotificationModal2 = ({
             }}
           >
             초기화
-          </Notification3>
+          </FilterClearButton>
         </NotificationDiv3>
         <NotificationTitleDiv2>
           <NotificationTitle2>맞춤필터</NotificationTitle2>
