@@ -20,10 +20,13 @@ const PostTitleInput = styled.input`
   }
 `;
 
-const PostTitleSection = ({ setTitle }) => {
+const PostTitleSection = ({ title, setTitle }) => {
+  console.log("저기", title);
+  const isNotEmpty = title !== "";
   return (
     <PostTitleDiv>
       <PostTitleInput
+        value={isNotEmpty ? title : ""}
         type="text"
         placeholder="제목을 입력해주세요."
         onChange={(e) => {

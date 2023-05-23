@@ -1,18 +1,20 @@
-import { Button, Form, Input, Select, Space } from "antd";
+import { Form, Input, Select } from "antd";
 import { useState } from "react";
 
 const { Option } = Select;
 
 const PostCodeSection = ({ setCode }) => {
-  const [code, _setCode] = useState("");
+  const [code, setCodeValue] = useState("");
 
-  const handleSelectChange = (value) => {
-    _setCode(value);
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    setCodeValue(value);
+    setCode(value);
   };
 
-  const handleSubmit = () => {
-    console.log("Selected code: ", code);
-    setCode(code);
+  const handleSelectChange = (value) => {
+    console.log(`Selected: ${value}`);
+    // 여기에서 선택된 값에 대한 처리를 할 수 있습니다.
   };
 
   return (
@@ -31,48 +33,31 @@ const PostCodeSection = ({ setCode }) => {
         margin: "0 auto",
       }}
     >
-      <Space
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+      <Form.Item
+        label="Select"
+        name="username"
+        noStyle
+        style={{ width: "50%", margin: "0 auto" }}
+        rules={[
+          {
+            required: true,
+            message: "Username is required",
+          },
+        ]}
       >
-        <Form.Item
-          label="Select"
-          name="username"
-          noStyle
-          style={{ width: "50%", margin: "0 auto" }}
-          rules={[
-            {
-              required: true,
-              message: "Username is required",
-            },
-          ]}
+        <Select
+          style={{
+            width: "100%",
+            width: 200,
+          }}
+          placeholder="어떤 종류의 게시물인가요?"
+          onChange={handleSelectChange}
         >
-          <Select
-            style={{
-              width: "100%",
-              width: 200,
-            }}
-            placeholder="어떤 종류의 게시물인가요?"
-            onChange={handleSelectChange}
-          >
-            <Option value="1">방자랑</Option>
-            <Option value="2">정보공유</Option>
-            <Option value="3">자유</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label=" " colon={false}>
-          <Button
-            type="primary"
-            style={{ marginTop: "20px" }}
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
-        </Form.Item>
-      </Space>
+          <Option value="1">방자랑</Option>
+          <Option value="2">정보공유</Option>
+          <Option value="3">자유</Option>
+        </Select>
+      </Form.Item>
     </Form>
   );
 };

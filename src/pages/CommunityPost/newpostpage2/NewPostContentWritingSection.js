@@ -6,6 +6,7 @@ import ImageUploadSection from "../newpostpage2/newpostcontentwritingcomponents/
 import ImageSwiperSection from "../newpostpage2/newpostcontentwritingcomponents/ImageSwiperSection";
 import PostButtonSection from "../newpostpage2/newpostcontentwritingcomponents/PostButtonSection";
 import PostCodeSection from "../newpostpage2/newpostcontentwritingcomponents/PostCodeSection";
+import { useParams } from "react-router-dom";
 
 const NewPostContentWritingDiv = styled.div`
   margin-top: -1rem;
@@ -23,7 +24,7 @@ const NewPostContentWritingArea = styled.div`
   border-color: #bbbbbb;
   border-radius: 1rem;
   width: 100%;
-  height: 100%;
+  height: 68%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,10 +32,31 @@ const NewPostContentWritingArea = styled.div`
 
 const NewPostContentImageArea = styled.div`
   width: 100%;
-  height: 22%;
+  height: 32%;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const RoomTypeDiv = styled.div`
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RoomTypeButton = styled.button`
+  background-color: white;
+  width: 4.5rem;
+  height: 1.5rem;
+  color: #47a5fd;
+  font-weight: 500;
+  font-size: 0.8rem;
+  border: 2px solid #47a5fd;
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: center;
 `;
 
 const NewPostContentWritingSection = ({
@@ -51,6 +73,8 @@ const NewPostContentWritingSection = ({
   PostInfoSubmit,
   modifyPost,
 }) => {
+  const Id = useParams().id;
+  const IdExist = Id != null;
   console.log("이거", title);
   const handleImageFilesInputChange = (e) => {
     const files = e.target.files;
@@ -74,7 +98,13 @@ const NewPostContentWritingSection = ({
 
   return (
     <NewPostContentWritingDiv>
-      <PostCodeSection code={code} setCode={setCode} />
+      {IdExist ? (
+        <RoomTypeDiv>
+          <RoomTypeButton>{code}</RoomTypeButton>
+        </RoomTypeDiv>
+      ) : (
+        <PostCodeSection code={code} setCode={setCode} />
+      )}
       <NewPostContentWritingArea>
         <PostTitleSection title={title} setTitle={setTitle} />
         <PostContentSection contents={contents} setContents={setContents} />
@@ -83,7 +113,12 @@ const NewPostContentWritingSection = ({
         <ImageUploadSection
           handleImageFilesInputChange={handleImageFilesInputChange}
         />
-        <ImageSwiperSection previewImages={previewImages} />
+        <ImageSwiperSection
+          imgFiles={imgFiles}
+          previewImages={previewImages}
+          setImgFiles={setImgFiles}
+          setPreviewImages={setPreviewImages}
+        />
         <PostButtonSection
           PostInfoSubmit={PostInfoSubmit}
           modifyPost={modifyPost}

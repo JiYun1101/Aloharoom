@@ -314,7 +314,8 @@ const PostInfoPage = () => {
   const postInfoContentSpanRef = useRef(null);
   const [commentData, setCommentData] = useState([]);
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+
+  const [code, setCode] = useState("");
 
   const [address, setAddress] = useState("");
   const [age, setAge] = useState("");
@@ -386,6 +387,8 @@ const PostInfoPage = () => {
       })
       .then((response) => {
         console.log("FetchPostInfoData ", response.data);
+        setTitle(response.data.title);
+        setCode(response.data.code);
         setAddress(response.data.address);
         setAge(response.data.age);
         setContents(response.data.contents);
@@ -444,6 +447,8 @@ const PostInfoPage = () => {
   }
 
   async function makeCommentRequest(
+    title,
+    code,
     userId,
     targetUserId,
     boardId,
@@ -455,6 +460,8 @@ const PostInfoPage = () => {
   ) {
     await axios
       .post(`${baseURL}/api/comment`, {
+        title: title,
+        code: code,
         userId: userId,
         targetUserId: targetUserId,
         boardId: boardId,
@@ -507,7 +514,7 @@ const PostInfoPage = () => {
         <AiOutlineLeft
           size={40}
           style={BackPageIconStyle}
-          onClick={() => navigate("../postMapPage")}
+          onClick={() => navigate("../CommunityPage")}
         />
         <PostInfoPageBox>
           <PostInfoImageBox>

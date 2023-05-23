@@ -21,7 +21,7 @@ const PostContentTextArea = styled.textarea`
 `;
 
 const PostContentSection = ({ contents, setContents }) => {
-  console.log("여기", contents);
+  // console.log("여기", contents);
   const isNotEmpty = contents !== "";
   return (
     <PostContentDiv>

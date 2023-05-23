@@ -130,6 +130,8 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
     <NewPostContentDiv>
       <NewPostContentWritingContainer2>
         <NewPostContentWritingSection
+          title={title}
+          code={code}
           setTitle={setTitle}
           contents={contents}
           setCode={setCode}
