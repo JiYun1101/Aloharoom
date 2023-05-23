@@ -152,6 +152,7 @@ const LinkToStyle = {
   textDecoration: "none",
   color: "inherit",
 };
+
 const CardPost = ({ communityId, code }) => {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
@@ -196,7 +197,11 @@ const CardPost = ({ communityId, code }) => {
   return (
     <CardBox2>
       {data.map((post, index) => (
-        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code}>
+        <Link
+          to={`../CommunityInfoPage/${post.communityId}`}
+          key={post.code}
+          style={LinkToStyle}
+        >
           <Card2
             onClick={(event) => {
               setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
