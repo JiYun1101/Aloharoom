@@ -218,7 +218,19 @@ const FilterForm = ({
           <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
             사람 해시태그
           </ModalFlexDiv>
-          {localStorage.getItem('userId') ? 
+          {localStorage.getItem('userId') ?
+            <> 
+            {myLikeHashtags.length === 0 ?
+              <ModalFlexDiv
+                width="100%"
+                height="auto"
+                justifyContent="center"
+                alignItems="center"
+                marginBottom="1rem"
+              >
+                <div style={{ fontSize:"1.2rem", color:"#a0a0a0"}}>설정된 선호 해시태그가 없습니다.</div>
+              </ModalFlexDiv>
+            :
             <ModalFlexDiv 
               width="100%" 
               height="auto"
@@ -237,6 +249,8 @@ const FilterForm = ({
                 </HoverHashTagButton>  
               ))}
             </ModalFlexDiv>
+            }
+            </>
           :
             <ModalFlexDiv
               width="100%"
@@ -252,6 +266,18 @@ const FilterForm = ({
             집 해시태그
           </ModalFlexDiv>
           {localStorage.getItem('userId') ? 
+            <>
+            {myLikeHomeHashtags.length === 0 ? 
+              <ModalFlexDiv
+                width="100%"
+                height="auto"
+                justifyContent="center"
+                alignItems="center"
+                marginBottom="1rem"
+              >
+                <div style={{ fontSize:"1.2rem", color:"#a0a0a0"}}>설정된 선호 해시태그가 없습니다.</div>
+              </ModalFlexDiv>
+            :
             <ModalFlexDiv 
               width="100%" 
               height="auto"
@@ -270,6 +296,9 @@ const FilterForm = ({
                 </HoverHashTagButton>  
               ))}
             </ModalFlexDiv>
+            }
+            </>
+            
           :
           <ModalFlexDiv
             width="100%"
