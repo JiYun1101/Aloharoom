@@ -14,14 +14,17 @@ import NickNameNotDuplicatedModal from "./NickNameNotDuplicatedModal";
 
 const PersonHashtags = [
     "조용한", "활발한", "아침형", "야행성", "배달의 민족", 
-    "집돌이", "집순이", "밖돌이", "밖순이", "자기계발",
-    "평일근무", "주말근무", "교대근무", "야간근무",
-    "헬창", "맛집러버", "요리마스터", "I", "E", "S", "N", "F", "T", "J", "P"
+    "집돌이/집순이", "밖돌이", "밖순이", "자기계발", "성실한",
+    "평일근무", "주말근무", "교대근무", "야간근무", "헬창",
+    "맛집러버", "요리마스터", "I", "E", "S",
+    "N", "F", "T", "J", "P"
 ];
 
 const HomeHashtags = [
-    "숲세권", "역세권", "한강세권", "편세권", "야경맛집", 
-    "엘리베이터", "주차장", "통창", "남향", "고층", "로켓와우", "샛별배송", "SSG배송"
+    "숲세권", "역세권", "한강세권", "편세권", "야경맛집",
+    "주차가능", "엘리베이터", "주차장", "통창", "남향",
+    "고층", "로켓와우", "샛별배송", "SSG배송", "베란다/발코니",
+    "복층"
 ];
 
 const ImageUploadInput = styled.input`
@@ -54,6 +57,8 @@ const MyProfileUpdateModal = ({
     const handleNickNameNotDuplicatedModalCancel = () => {setNickNameNotDuplicatedModalOpen(false);}
     const handleNickNameNotDuplicatedModalOk = () => { setNickNameNotDuplicatedModalOpen(false); }
 
+    console.log('profileImg', profileImg);
+    console.log('previewImage', previewImage);
     async function fetchMyEditData() {
         await axios.get(`${baseURL}/api/myPage/edit`, {
             withCredentials:true
@@ -68,7 +73,7 @@ const MyProfileUpdateModal = ({
             setLikeHomeHashtags(response.data.likeHomeHashtags);
             setMyHashtags(response.data.myHashtags);
             setMyHomeHashtags(response.data.myHomeHashtags);
-            imageUrlToFile(response.data.profileUrl);
+            urlToFile(response.data.profileUrl.toString());
         })
         .catch((error) => {
             console.log(`axios fetchMyEditData error`);
@@ -96,14 +101,27 @@ const MyProfileUpdateModal = ({
     }
 
 
-    function imageUrlToFile(imageUrl) {
-        return fetch(imageUrl)
-            .then(response => response.blob())
-            .then(blob => {
-                const file = new File([blob], 'image.jpg', { type: blob.type });
-                setProfileImg(file);
-                setPreviewImage(imageUrl);
+    function getFilenameFromURL(url) {
+        const urlParts = url.split('/');
+        return urlParts[urlParts.length - 1];
+    }
+
+    async function urlToFile(url) {
+        setPreviewImage(url);
+        try {
+            const response = await axios.get(url, {
+                responseType: 'blob'
             });
+            console.log(response);
+            const blob = response.data;
+            const filename = getFilenameFromURL(url);
+            console.log(filename);
+            const newFile = new File([blob], filename, { type: blob.type });
+            setProfileImg(newFile);
+        } catch (error) {
+            console.error(error);
+            throw new Error('Failed to convert URL to File object.');
+        }
     }
 
     async function UpdateMyInfoData() {
@@ -128,7 +146,10 @@ const MyProfileUpdateModal = ({
             },
             withCredentials:true
         })
-        .then((response) => { console.log('response data', response.data);})
+        .then((response) => { 
+            console.log('response data', response.data);
+            fetchMyInfoData();
+        })
         .catch((error) => {console.log(`UpdateMyInfoData error`);})
     }
 
@@ -165,6 +186,7 @@ const MyProfileUpdateModal = ({
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
+        console.log('file', file);
         setProfileImg(file);
         if (file) {
             const reader = new FileReader();
