@@ -17,7 +17,7 @@ const RecentViewPageTitleContainer = styled.div`
 const RecentViewPageTitle = ({title}) => {
     return (
         <RecentViewPageTitleContainer>
-            <div>{title}</div>
+            <div style={{fontWeight: "600"}}>{title}</div>
         </RecentViewPageTitleContainer>
     );
 }

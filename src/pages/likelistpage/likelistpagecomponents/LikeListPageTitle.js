@@ -17,7 +17,7 @@ const LikeListPageTitleContainer = styled.div`
 const LikeListPageTitle = ({title}) => {
     return (
         <LikeListPageTitleContainer>
-            <div>{title}</div>
+            <div style={{fontWeight: "600"}}>{title}</div>
         </LikeListPageTitleContainer>
     );
 }
