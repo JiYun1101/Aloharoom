@@ -11,11 +11,11 @@ import styled from "styled-components";
 import baseURL from "./api/baseURL";
 import { useNavigate } from "react-router-dom";
 
-
 const Logo = styled.span`
   position: absolute;
-  left: 12.5vw;
-  top: 5vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-family: "Comfortaa" !important;
   font-weight: 500;
   font-size: 1.5rem;
@@ -30,19 +30,19 @@ const Login = () => {
     try {
       console.log("username :" + value.username);
       console.log("password :" + value.password);
-  
+
       const data = qs.stringify({
         username: value.username,
         password: value.password,
       });
-  
+
       const response = await axios.post(`${baseURL}/login`, data, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         withCredentials: true,
       });
-      
+
       if (response.status === 200) {
         message.success("Processing complete!");
         console.log("username:" + value.username);
@@ -100,7 +100,8 @@ const Login = () => {
                 placeholder="Password"
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item></Form.Item>
+            {/* <Form.Item>
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>로그인 상태유지</Checkbox>
               </Form.Item>
@@ -108,7 +109,7 @@ const Login = () => {
               <a className="login-form-forgot" href="">
                 로그인/비밀번호 찾기
               </a>
-            </Form.Item>
+            </Form.Item> */}
 
             <Form.Item>
               <Button

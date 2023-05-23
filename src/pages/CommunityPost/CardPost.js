@@ -196,7 +196,11 @@ const CardPost = ({ communityId, code }) => {
   return (
     <CardBox2 ref={cardRef}>
       {data.map((post, index) => (
-        <Link to={`../CommunityInfoPage/${post.communityId}`} key={index}>
+        <Link
+          to={`../CommunityInfoPage/${post.communityId}`}
+          key={index}
+          style={LinkToStyle}
+        >
           <Card2
             key={index}
             onClick={(event) => {
@@ -209,7 +213,7 @@ const CardPost = ({ communityId, code }) => {
           >
             <DateDiv>
               <RoomTypeDiv>
-                <RoomTypeButton>{post.userId}</RoomTypeButton>
+                <RoomTypeButton style={LinkToStyle}>{post.code}</RoomTypeButton>
               </RoomTypeDiv>
             </DateDiv>
             <TitleDiv>

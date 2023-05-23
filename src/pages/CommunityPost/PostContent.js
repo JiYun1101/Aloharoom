@@ -126,7 +126,8 @@ const SearchSectionContainer = styled.div`
 const PostContent = (
   setSearchStr,
   fetchCardPostData,
-  fetchFilterCardPostData
+  fetchFilterCardPostData,
+  communityId
 ) => {
   const [cardPostData, setCardPostData] = useState([]);
   const [swLat, setSWLat] = useState("");
@@ -168,20 +169,7 @@ const PostContent = (
 
   const [myLikeHashtags, setMyLikeHashtags] = useState([]);
   const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
-  async function fetchHashtag() {
-    // await axios
-    //   .get(`${baseURL}/api/home`, {
-    //     withCredentials: true,
-    //   })
-    //   .then((response) => {
-    //     console.log("fetchHashtag", response.data);
-    //     setMyLikeHashtags(response.data.likeHashtags);
-    //     setMyLikeHomeHashtags(response.data.likeHomeHashtags);
-    //   })
-    //   .catch((error) => {
-    //     console.log(`axios fetchHashtag error`);
-    //   });
-  }
+  async function fetchHashtag() {}
 
   const onSearch = (value) => {
     setSearchStr(value);
@@ -243,9 +231,14 @@ const PostContent = (
     // window.location.reload(); // 현재 페이지 새로고침
   };
   console.log("code =", code); // 콘솔에 code 값 출력
+
+  console.log(code);
+
   const [data, setData] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
 
   const cardRef = useRef(null);
+  const [scrollTop, setScrollTop] = useState(0);
 
   console.log(code);
 
@@ -253,32 +246,10 @@ const PostContent = (
     const fetchData = async () => {
       const result = await axios.get(`${baseURL}/api/communityboard/code/1`);
       setData(result.data[1]);
-      console.log("여기", result.data[1]);
+      console.log(result.data[1]);
     };
     fetchData();
-  }, [code]); // code를 의존성 배열에 추가
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (cardRef.current) {
-  //       setScrollTop(cardRef.current.scrollTop);
-  //     }
-  //   };
-
-  //   if (cardRef.current) {
-  //     cardRef.current.addEventListener("scroll", handleScroll);
-  //   }
-
-  //   return () => {
-  //     if (cardRef.current) {
-  //       cardRef.current.removeEventListener("scroll", handleScroll);
-  //     }
-  //   };
-  // }, []);
-  // const handleLinkClick = (event, message) => {
-  //   console.log(message);
-  // };
-
+  }, [communityId, code]); // code를 의존성 배열에 추가
   return (
     <PostMapContentContainer>
       <Space.Compact
@@ -329,10 +300,17 @@ const PostContent = (
           }}
         />
       </SearchSectionContainer>
-      <CardPosts code={code} />
+      <CardPosts code={code} />{" "}
       <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
-        {data.title}
-      </CardPost3>{" "}
+        <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b> <br />
+        {data.map((post, index) => (
+          <React.Fragment key={index}>
+            <b>{post.title}</b>
+
+            <br />
+          </React.Fragment>
+        ))}
+      </CardPost3>
       <Link to="/newCommunityPostPage" style={LinkToStyle}>
         <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
       </Link>
