@@ -225,7 +225,7 @@ const CardPost = ({ communityId, code }) => {
             </CardImageDiv>
             <ProfileCommentDiv>
               <ProfileDiv>
-                <ProfileImg src={post.userUrls} />
+                <ProfileImg src={post.profile} />
                 <ProfileSpan>{post.nickname}</ProfileSpan>
               </ProfileDiv>
               <CommentDiv>
