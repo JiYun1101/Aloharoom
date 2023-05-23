@@ -110,7 +110,6 @@ const PostInfoPage = () => {
     const navigate = useNavigate();
     const postInfoContentSpanRef = useRef(null);
     const [commentData, setCommentData] = useState([]);
-
     const [address, setAddress] = useState('');
     const [age, setAge] = useState('');
     const [contents, setContents] = useState('');
@@ -120,6 +119,7 @@ const PostInfoPage = () => {
     const [gender, setGender] = useState('');
     const [homeType, setHomeType] = useState('');
     const [imgUrls, setImgUrls] = useState([]);
+    const [isActivate, setIsActivate] = useState(true);
     const [isHeart, setIsHeart] = useState('');
     const [maintenance, setMaintenance] = useState('');
     const [myHashtag, setMyHashtag] = useState([]);
@@ -160,6 +160,7 @@ const PostInfoPage = () => {
                 setGender(response.data.gender);
                 setHomeType(response.data.homeType);
                 setImgUrls(response.data.imgUrls);
+                setIsActivate(response.data.isActivate);
                 setIsHeart(response.data.isHeart);
                 setMaintenance(response.data.maintenance);
                 setMyHashtag(response.data.myHashtag);
@@ -276,6 +277,22 @@ const PostInfoPage = () => {
         .catch((error) => { console.log('axios fetchMyInfo error');})
     }
 
+    async function PostDeActivate() {
+        await axios.post(`${baseURL}/api/board/deactivate/${boardId}`, {
+            withCredentials:true
+        })
+        .then((response) => { FetchPostInfoData(); })
+        .catch((error) => { console.log(`axios PostDeActivate error`);})
+    }
+
+    async function PostActivate() {
+        await axios.post(`${baseURL}/api/board/activate/${boardId}`, {
+            withCredentials:true
+        })
+        .then((response) => { FetchPostInfoData(); })
+        .catch((error) => { console.log(`axios PostActivate error`);})
+    }
+
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
@@ -295,7 +312,7 @@ const PostInfoPage = () => {
             <></>
         }
         <PostInfoPageContainer>
-        <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate(-1)}/>
+        <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate('../postMapPage')}/>
             <PostInfoPageSection>
                 <PostInfoDiv width="100%" height="auto" marginTop="3rem">
                     <SwiperContainer>
@@ -328,7 +345,7 @@ const PostInfoPage = () => {
                                             setIsHeart(!isHeart);
                                             DeleteLikePost();
                                         }} 
-                                        style={{color: "red", marginRight: "10vw"}}/>
+                                        style={{color: "red", marginRight: "2vw"}}/>
                                 :
                                     <AiOutlineHeart 
                                         size={40} 
@@ -521,9 +538,34 @@ const PostInfoPage = () => {
                         {contents}
                     </PostInfoSpan>
                 </PostInfoDiv>
-                <PostInfoFlexDiv width="95%" minHeight="4rem" alignItems="center" flexDirection="row-reverse" borderBottom="solid 0.1rem #bbbbbb">
-                    <MatchingCompleteButton>매칭완료</MatchingCompleteButton>
-                </PostInfoFlexDiv>
+                {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
+                    <>
+                        {isActivate ?
+                            <PostInfoFlexDiv width="95%" minHeight="4rem" alignItems="center" flexDirection="row-reverse">
+                                <MatchingCompleteButton
+                                    onClick={() => {
+                                        PostDeActivate();
+                                    }}
+                                >
+                                    매칭완료
+                                </MatchingCompleteButton>
+                            </PostInfoFlexDiv>
+                        :
+                            <PostInfoFlexDiv width="95%" minHeight="4rem" alignItems="center" flexDirection="row-reverse">
+                                <MatchingCompleteButton
+                                    onClick={() => {
+                                        PostActivate();
+                                    }}
+                                >
+                                    매칭재개
+                                </MatchingCompleteButton>
+                            </PostInfoFlexDiv>
+                        }
+                    </>
+                :
+                    <></>
+                }
+                <PostInfoFlexDiv width="95%" borderBottom="solid 0.1rem #bbbbbb"/>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
                     {commentData.map((data, idx) => (
                         <ReadCommentSection

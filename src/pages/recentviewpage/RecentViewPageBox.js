@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import LikeListPageTitle from "./likelistpagecomponents/LikeListPageTitle";
-import LikeListPageContent from "./likelistpagecomponents/LikeListPageContent";
+import RecentViewPageTitle from "./recentviewpagecomponents/RecentViewPageTitle";
+import RecentViewPageContent from "./recentviewpagecomponents/RecentViewPageContent";
 
-const LikeListPageBoxContainer = styled.div`
+const RecentViewPageBoxContainer = styled.div`
     position: relative;
     /* 기준이 되는 조상 페이지 */
     margin-top: 5rem;
@@ -27,13 +27,13 @@ const LikeListPageBoxContainer = styled.div`
     flex-direction: column;
 `;
 
-const LikeListPageBox = () => {
+const RecentViewPageBox = () => {
     return (
-    <LikeListPageBoxContainer>
-        <LikeListPageTitle title="좋아요 목록"/>
-        <LikeListPageContent/>
-    </LikeListPageBoxContainer>
+        <RecentViewPageBoxContainer>
+            <RecentViewPageTitle title="최근 본 글"/>
+            <RecentViewPageContent/>
+        </RecentViewPageBoxContainer>
     );
 }
 
-export default LikeListPageBox;
+export default RecentViewPageBox;

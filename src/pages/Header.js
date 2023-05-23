@@ -165,17 +165,20 @@ const Header = () => {
 
   const menu = (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key="myInfoPage">
+      <Menu.Item key="1">
         <Link to="/myInfoPage">내 정보</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to="/page2">좋아요 방 목록</Link>
+        <Link to="/likeListPage">방 좋아요</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <Link to="/page3">작성 목록</Link>
+        <Link to="/myWritePage">작성 글</Link>
       </Menu.Item>
       <Menu.Item key="4">
-        <Link to="/page3">댓글 목록</Link>
+        <Link to="/MyCommentPage">댓글 목록</Link>
+      </Menu.Item>
+      <Menu.Item key="5">
+        <Link to="/recentViewPage">최근 본 글</Link>
       </Menu.Item>
     </Menu>
   );

@@ -1,201 +1,229 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import HashTagButton from "../../HashTagButton";
+const MyInfoFlexDiv = styled.div`
+    margin-top: ${props => props.marginTop};
+    margin-left: ${props => props.marginLeft};
+    width: ${props => props.width};
+    height: ${props => props.height};
+    display: flex;
+    align-items: ${props => props.alignItems};
+    flex-direction: ${props => props.flexDirection};
+    justify-content: ${props => props.justifyContent};
+    overflow-x: ${props => props.overflowX};
+    overflow-y: ${props => props.overflowY};
+    border-style: ${props => props.borderStyle};
+    border-color: ${props => props.borderColor};
+    border-width: ${props => props.borderWidth};
+    border-radius: ${props => props.borderRadius};
+    flex-wrap: ${props => props.flexWrap};
+    gap: ${props => props.gap};
+    &::-webkit-scrollbar {
+        width: 0.5rem;          /* 스크롤바의 너비 */
+    }
 
-const MyInfoBox = styled.div`
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
-  width: 36.5rem;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    &::-webkit-scrollbar-thumb {
+        height: 1%;             /* 스크롤바의 길이 */
+        background: #bbbbbb;    /* 스크롤바의 색상 */
+        border-radius: 1rem;
+    }
+    &::-webkit-scrollbar-track {
+        background: white;      /*스크롤바 뒷 배경 색상*/
+    }
 `;
 
-const MyInfoDiv = styled.div`
-  width: 400px;
-  height: 480px;
-  display: flex;
-  flex-direction: column;
-`;
+const MyInfoSpan = styled.span`
+    line-height: ${props => props.lineHeight};
+    margin-left: ${props => props.marginLeft};
+    font-size: ${props => props.fontSize};
+    font-weight: ${props => props.fontWeight};
+    margin-right: ${props => props.marginRight};
+`
 
-const MyInfoProfileDiv = styled.div`
-  width: 400px;
-  height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const MyInfoProfile = styled.img`
+    width: ${props => props.width};
+    height: ${props => props.height};
+    margin-left: ${props => props.marginLeft};
+    margin-right: ${props => props.marginRight};
+    border-radius: ${props => props.borderRadius};
 `;
+//아이디, 비밀번호, 닉네임, 나이, 성별, 프로필 사진, 해시태그 목록
+const MyInfoPage = ({
+    responseData,
+    myHashtags,
+    myHomeHashtags,
+    likeHashtags,
+    likeHomeHashtags,
+    fetchMyInfoData
+}) => {
 
-const MyProfileImg = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 70%;
-`;
-
-const MyInfoContentDiv = styled.div`
-  width: 400px;
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-`;
-
-const MyInfoContentNoun = styled.div`
-  width: 150px;
-  height: 30px;
-`;
-
-const MyInfoContentSpan = styled.span`
-  line-height: 30px;
-  font-weight: 500;
-  font-size: 1rem;
-  color: #47a5fd;
-`;
-
-const MyInfoContentValue = styled.div`
-  width: 250px;
-  height: 30px;
-`;
-
-const MyInfoAddressInfoDiv = styled.div`
-  width: 400px;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-`;
-
-const MyInfoAddressDiv = styled.div`
-  width: 150px;
-  height: 30px;
-`;
-
-const MyInfoAddressValue = styled.div`
-  width: 250px;
-  height: 120px;
-`;
-
-const TasteHashTagDiv = styled.div`
-  width: 400px;
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-`;
-
-const TasteHashTagRow1Div = styled.div`
-  width: 150px;
-  height: 30px;
-`;
-
-const TasteHashTagRow2Div = styled.div`
-  width: 250px;
-  height: 30px;
-`;
-
-const HashTagNounSpan = styled.span`
-  line-height: 30px;
-  font-weight: 500;
-  font-size: 1rem;
-  color: #47a5fd;
-`;
-
-const HashTagModifySpan = styled.span`
-  line-height: 30px;
-  font-weight: 500;
-  font-size: 0.8rem;
-  color: #bbbbbb;
-`;
-
-const HashTagModifyButtonDiv = styled.div`
-  width: 400px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const HashTagModifyButton = styled.button`
-  background-color: white;
-  font-weight: 600;
-  width: 10rem;
-  height: 2rem;
-  border: 2px solid #47a5fd;
-  border-radius: 2rem;
-  color: #47a5fd;
-`;
-
-const MyInfoButtonDiv = styled.div`
-  width: 30rem;
-  height: 30px;
-  display: flex;
-  flex-direction: row-reverse;
-`;
-
-const MyInfoModifySaveButton = styled.button`
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
-  background-color: white;
-  font-weight: 600;
-  width: 3rem;
-  height: 1.5rem;
-  border: 2px solid #bbbbbb;
-  border-radius: 2rem;
-  color: #bbbbbb;
-`;
-
-const MyInfoPage = () => {
   return (
-    <>
-      <MyInfoBox>
-        <MyInfoDiv>
-          <MyInfoProfileDiv>
-            <MyProfileImg src="blue.png" />
-          </MyInfoProfileDiv>
-          <MyInfoContentDiv>
-            <MyInfoContentNoun>
-              <MyInfoContentSpan>이름:</MyInfoContentSpan>
-            </MyInfoContentNoun>
-            <MyInfoContentValue>
-              <MyInfoContentSpan>fkgnssla</MyInfoContentSpan>
-            </MyInfoContentValue>
-          </MyInfoContentDiv>
-          <MyInfoContentDiv>
-            <MyInfoContentNoun>
-              <MyInfoContentSpan>비밀번호:</MyInfoContentSpan>
-            </MyInfoContentNoun>
-            <MyInfoContentValue>
-              <MyInfoContentSpan>fkgnssla</MyInfoContentSpan>
-            </MyInfoContentValue>
-          </MyInfoContentDiv>
-          <MyInfoAddressInfoDiv>
-            <MyInfoAddressDiv>
-              <MyInfoContentSpan>주소:</MyInfoContentSpan>
-            </MyInfoAddressDiv>
-            <MyInfoAddressValue>
-              <MyInfoContentSpan>
-                서울시 성북구 삼선교로 6길, 한성대학교 서울시 성북구 삼선교로
-                6길, 한성대학교 서울시 성북구 삼선교로 6길
-              </MyInfoContentSpan>
-            </MyInfoAddressValue>
-          </MyInfoAddressInfoDiv>
-          <TasteHashTagDiv>
-            <TasteHashTagRow1Div>
-              <HashTagNounSpan>취향해시태그</HashTagNounSpan>
-            </TasteHashTagRow1Div>
-            <TasteHashTagRow2Div>
-              <HashTagModifySpan>
-                (클릭으로 해시태그를 적용시킬 수 있습니다.)
-              </HashTagModifySpan>
-            </TasteHashTagRow2Div>
-          </TasteHashTagDiv>
-          <HashTagModifyButtonDiv>
-            <HashTagModifyButton>내 태그 다시 설정하기</HashTagModifyButton>
-          </HashTagModifyButtonDiv>
-          <MyInfoButtonDiv>
-            <MyInfoModifySaveButton>수정</MyInfoModifySaveButton>
-            <MyInfoModifySaveButton>삭제</MyInfoModifySaveButton>
-          </MyInfoButtonDiv>
-        </MyInfoDiv>
-      </MyInfoBox>
-    </>
+      <MyInfoFlexDiv marginTop="0.5rem" marginLeft="0.5rem" width="36.5rem" height="500px" alignItems="center" justifyContent="center">
+        <MyInfoFlexDiv width="36.5rem" height="500px" flexDirection="column" overflowY="auto" overflowX="auto" alignItems="center">
+          <MyInfoFlexDiv width="34rem" height="25vh">
+            <MyInfoFlexDiv width="40%" height="25vh" alignItems="center" justifyContent="center">
+              <MyInfoProfile width="70%" height="70%" borderRadius="70%" src={responseData.profileUrl} />
+            </MyInfoFlexDiv>
+            <MyInfoFlexDiv width="60%" height="100%" flexDirection="column">
+              <MyInfoFlexDiv width="100%" height="20%">
+                <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
+                  <MyInfoSpan>아이디:</MyInfoSpan>
+                </MyInfoFlexDiv>
+                <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
+                  <MyInfoSpan>{responseData.username}</MyInfoSpan>
+                </MyInfoFlexDiv>
+              </MyInfoFlexDiv>
+              <MyInfoFlexDiv width="100%" height="20%">
+                <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
+                  <MyInfoSpan>비밀번호:</MyInfoSpan>
+                </MyInfoFlexDiv>
+                <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
+                  <MyInfoSpan>{`*******`}</MyInfoSpan>
+                </MyInfoFlexDiv>
+              </MyInfoFlexDiv>
+              <MyInfoFlexDiv width="100%" height="20%">
+                <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
+                  <MyInfoSpan>닉네임:</MyInfoSpan>
+                </MyInfoFlexDiv>
+                <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
+                  <MyInfoSpan>{responseData.nickname}</MyInfoSpan>
+                </MyInfoFlexDiv>
+              </MyInfoFlexDiv>
+              <MyInfoFlexDiv width="100%" height="20%">
+                  <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
+                    <MyInfoSpan>나이:</MyInfoSpan>
+                  </MyInfoFlexDiv>
+                  <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
+                    <MyInfoSpan>{responseData.age}</MyInfoSpan>
+                  </MyInfoFlexDiv>
+              </MyInfoFlexDiv>
+              <MyInfoFlexDiv width="100%" height="20%">
+                  <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
+                    <MyInfoSpan>성별:</MyInfoSpan>
+                  </MyInfoFlexDiv>
+                  <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
+                    <MyInfoSpan>{responseData.gender === 'male' ? `남자` : `여자`}</MyInfoSpan> 
+                  </MyInfoFlexDiv>
+              </MyInfoFlexDiv>
+            </MyInfoFlexDiv>
+          </MyInfoFlexDiv>
+          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
+            <MyInfoSpan fontSize="1.2rem">내 해시태그</MyInfoSpan>
+          </MyInfoFlexDiv>
+          {myHashtags.length === 0 ? 
+            <MyInfoFlexDiv
+              width="34rem"
+              height="auto"
+              marginTop="1rem"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <div style={{color: "#a0a0a0"}}>설정한 내 해시태그가 없습니다.</div>
+            </MyInfoFlexDiv>
+          :
+            <MyInfoFlexDiv 
+              width="34rem" 
+              height="auto"
+              marginTop="1rem"
+              flexDirection="row"
+              flexWrap="wrap"
+              gap="0.3rem"
+            >
+              {myHashtags.map((data, idx) => (
+                <HashTagButton key={idx}>
+                  {data}
+                </HashTagButton>
+              ))}
+            </MyInfoFlexDiv>
+          }
+          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
+            <MyInfoSpan fontSize="1.2rem">집 해시태그</MyInfoSpan>
+          </MyInfoFlexDiv>
+          {myHomeHashtags.length === 0 ? 
+            <MyInfoFlexDiv
+              width="34rem"
+              height="auto"
+              marginTop="1rem"
+              alignItems="center"
+              justifyContent="center"
+            >
+                <div style={{color: "#a0a0a0"}}>설정한 집 해시태그가 없습니다.</div>
+            </MyInfoFlexDiv>
+          :
+          <MyInfoFlexDiv 
+            width="34rem" 
+            height="auto"
+            marginTop="1rem"
+            flexDirection="row"
+            flexWrap="wrap"
+            gap="0.5rem">
+            {myHomeHashtags.map((data, idx) => (
+              <HashTagButton key={idx}>
+                {data}
+              </HashTagButton>
+            ))}
+          </MyInfoFlexDiv>
+          }
+          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
+            <MyInfoSpan fontSize="1.2rem">내 선호 해시태그</MyInfoSpan>
+          </MyInfoFlexDiv>
+          {likeHashtags.length === 0 ? 
+            <MyInfoFlexDiv
+              width="34rem"
+              height="auto"
+              marginTop="1rem"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <div style={{color: "#a0a0a0"}}>설정한 내 해시태그가 없습니다.</div>
+            </MyInfoFlexDiv>
+          :
+            <MyInfoFlexDiv 
+              width="34rem" 
+              height="auto"
+              marginTop="1rem"
+              flexDirection="row"
+              flexWrap="wrap"
+              gap="0.3rem"
+            >
+              {likeHashtags.map((data, idx) => (
+                <HashTagButton key={idx}>
+                  {data}
+                </HashTagButton>
+              ))}
+            </MyInfoFlexDiv>
+          }
+          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
+            <MyInfoSpan fontSize="1.2rem">내 집 선호 해시태그</MyInfoSpan>
+          </MyInfoFlexDiv>
+          {likeHomeHashtags.length === 0 ? 
+            <MyInfoFlexDiv
+              width="35rem"
+              height="auto"
+              marginTop="1rem"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <div style={{color: "#a0a0a0"}}>설정한 내 해시태그가 없습니다.</div>
+            </MyInfoFlexDiv>
+          :
+            <MyInfoFlexDiv 
+              width="34rem" 
+              height="auto"
+              marginTop="1rem"
+              flexDirection="row"
+              flexWrap="wrap"
+              gap="0.3rem"
+            >
+              {likeHomeHashtags.map((data, idx) => (
+                <HashTagButton key={idx}>
+                  {data}
+                </HashTagButton>
+              ))}
+            </MyInfoFlexDiv>
+          }
+        </MyInfoFlexDiv>
+      </MyInfoFlexDiv>
   );
 };
 

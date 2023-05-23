@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { AiFillHeart } from "react-icons/ai";
-import CardPost from "../postmappage/MapPostComponents/CardPost";
+import CardPost from "../../postmappage/MapPostComponents/CardPost";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import baseURL from "../api/baseURL";
+import baseURL from "../../api/baseURL";
 
-const EmptyLikedListDiv = styled.div`
+const EmptyRecentViewAreaDiv = styled.div`
     width: 37.3rem;
     height: 33rem;
     display: flex;
@@ -14,7 +13,7 @@ const EmptyLikedListDiv = styled.div`
     align-items: center;
 `;
 
-const LikedListDiv = styled.div`
+const RecentViewAreaDiv = styled.div`
     margin-top: 0.5rem;
     margin-left: 1.5rem;
     width: 35.7rem;
@@ -42,7 +41,7 @@ const LikedListDiv = styled.div`
     }
 `;
 
-const LikedElementDiv = styled.div`
+const RecentViewElementDiv = styled.div`
     position: relative;
     left: 0.6rem;
     width: 16rem;
@@ -51,48 +50,39 @@ const LikedElementDiv = styled.div`
     align-items: center;
 `;
 
-const heartStyle = {
-    position: "absolute",
-    top: "0.2rem",
-    right: "0px",
-    zIndex: "3",
-    color: "#47A5FD"
-};
-
 const LinkToCardStyle = {
     textDecoration: 'none',
     color: 'black'
 }
 
-const LikedListPage = () => {
+
+const RecentViewPageArea = () => {
     const [responseData, setResponseData] = useState([]);
-    async function fetchLikePost() {
-        await axios.get(`${baseURL}/api/heart`, {
+    async function fetchRecentViewData() {
+        await axios.get(`${baseURL}/api/recentView`, {
             withCredentials:true
         })
         .then((response) => {
-            console.log('response.data: ', response.data);
+            console.log(`response data`, response.data);
             setResponseData(response.data);
         })
         .catch((error) => {
-            console.log('fetchLikePost fetch error');
+            console.log(`axios fetchRecentViewData error`);
         })
     }
-
     useEffect(() => {
-        fetchLikePost();
-    }, []);
-
+        fetchRecentViewData();
+    }, [])
     return (
         <>
         {responseData.length === 0 ?
-            <EmptyLikedListDiv>
+            <EmptyRecentViewAreaDiv>
                 <div style={{color: "#a0a0a0"}}>좋아요 방이 없습니다.</div>
-            </EmptyLikedListDiv>
+            </EmptyRecentViewAreaDiv>
         :
-            <LikedListDiv>
+            <RecentViewAreaDiv>
                 {responseData.map((data, idx) => (
-                    <LikedElementDiv key={idx}>
+                    <RecentViewElementDiv key={idx}>
                         <Link to={`../postInfoPage/${data.boardId}`} style={LinkToCardStyle}>
                         <CardPost 
                             type="룸메이트" 
@@ -108,13 +98,12 @@ const LikedListPage = () => {
                             startDate={data.startDate}
                             />    
                         </Link>
-                        <AiFillHeart size={40} style={heartStyle}/>
-                    </LikedElementDiv>    
+                    </RecentViewElementDiv>    
                 ))}
-            </LikedListDiv>
+            </RecentViewAreaDiv>
         }
         </>
     );
 }
 
-export default LikedListPage;
+export default RecentViewPageArea;
