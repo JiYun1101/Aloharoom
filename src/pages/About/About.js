@@ -145,9 +145,9 @@ const About = () => {
               <Form.Item label="Input">
                 <Input value={flat} onChange={handleInputChange} />
               </Form.Item>
-              <Form.Item label="Button">
+              {/* <Form.Item label="Button">
                 <Button onClick={handleButtonClick}>Button</Button>
-              </Form.Item>
+              </Form.Item> */}
             </Form>
             {/* 데이터 출력을 위한 컴포넌트 */}
           </>

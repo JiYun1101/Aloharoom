@@ -194,11 +194,10 @@ const CardPost = ({ communityId, code }) => {
   };
 
   return (
-    <CardBox2 ref={cardRef}>
+    <CardBox2>
       {data.map((post, index) => (
-        <Link to={`../CommunityInfoPage/${post.communityId}`} key={index}>
+        <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code}>
           <Card2
-            key={index}
             onClick={(event) => {
               setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
               handleLinkClick(
@@ -208,15 +207,27 @@ const CardPost = ({ communityId, code }) => {
             }}
           >
             <DateDiv>
-              <DateSpan>{post.createdAt}</DateSpan>
+              <RoomTypeDiv>
+                <RoomTypeButton>{post.userId}</RoomTypeButton>
+              </RoomTypeDiv>
             </DateDiv>
             <TitleDiv>
               <TitleSpan>{post.title}</TitleSpan>
             </TitleDiv>
             <CardImageDiv>
-              <CardImage src={post.imgUrls} />
+              <CardImage src={post.imgUrls[0]} />
               {/* <CardImage src={post.imgUrls[0]} /> */}
             </CardImageDiv>
+            <ProfileCommentDiv>
+              <ProfileDiv>
+                <ProfileImg src={post.userUrls} />
+                <ProfileSpan>{post.nickname}</ProfileSpan>
+              </ProfileDiv>
+              <CommentDiv>
+                <CommentSpan>{post.userPost}</CommentSpan>
+                <FaRegCommentDots size={25} style={CommentLogoStyle} />
+              </CommentDiv>
+            </ProfileCommentDiv>
           </Card2>
         </Link>
       ))}
