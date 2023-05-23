@@ -22,7 +22,8 @@ import SearchTitle from "../postmappage/SearchHashTagComponents/SearchTitle";
 import NotificationModal2 from "../postmappage/SearchHashTagComponents/NotificationModal2";
 import { IoFilterOutline } from "react-icons/io5";
 import axios from "axios";
-// import baseURL from "../../api/baseURL";
+import baseURL from "../api/baseURL";
+import { useRef } from "react";
 
 const SearchHashTagContainer = styled.div`
   position: absolute;
@@ -242,6 +243,41 @@ const PostContent = (
     // window.location.reload(); // 현재 페이지 새로고침
   };
   console.log("code =", code); // 콘솔에 code 값 출력
+  const [data, setData] = useState([]);
+
+  const cardRef = useRef(null);
+
+  console.log(code);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(`${baseURL}/api/communityboard/code/1`);
+      setData(result.data[1]);
+      console.log("여기", result.data[1]);
+    };
+    fetchData();
+  }, [code]); // code를 의존성 배열에 추가
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (cardRef.current) {
+  //       setScrollTop(cardRef.current.scrollTop);
+  //     }
+  //   };
+
+  //   if (cardRef.current) {
+  //     cardRef.current.addEventListener("scroll", handleScroll);
+  //   }
+
+  //   return () => {
+  //     if (cardRef.current) {
+  //       cardRef.current.removeEventListener("scroll", handleScroll);
+  //     }
+  //   };
+  // }, []);
+  // const handleLinkClick = (event, message) => {
+  //   console.log(message);
+  // };
 
   return (
     <PostMapContentContainer>
@@ -295,10 +331,7 @@ const PostContent = (
       </SearchSectionContainer>
       <CardPosts code={code} />
       <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
-        <h2>가장 인기 있는 글</h2>
-        <p>1. 내 방 자랑</p>
-        <p>2. 새로운 청소기</p>
-        <p>3. 오늘의 일기</p>
+        {data.title}
       </CardPost3>{" "}
       <Link to="/newCommunityPostPage" style={LinkToStyle}>
         <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />

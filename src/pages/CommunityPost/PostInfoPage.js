@@ -521,7 +521,7 @@ const PostInfoPage = () => {
           <ProfileHeartDiv>
             <ProfileDiv>
               <ProfileImg src="blue.png" />
-              {/* <ProfileName>{nickname}</ProfileName> */}
+              <ProfileName>{data.nickname}</ProfileName>
             </ProfileDiv>
             <HeartDiv>
               {localStorage.getItem("userId") ? (

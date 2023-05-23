@@ -21,7 +21,6 @@ const NewPostContentWritingContainer2 = styled.div`
 
 const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   const navigate = useNavigate();
-  
   const [code, setCode] = useState("");
   const [userId, setUserId] = useState("");
   const [nickname, setNickname] = useState("");
