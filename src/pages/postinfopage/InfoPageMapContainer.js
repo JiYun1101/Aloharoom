@@ -56,7 +56,7 @@ const InfoPageMapContainer = ({
         >
             <div style={FacilityCategoryMenuDivStyle}>
                 <Select
-                    placeholder="주변편의시설"
+                    placeholder="주변 편의시설"
                     onChange={handleCategoryChange}
                     style={{
                         width: 120,
