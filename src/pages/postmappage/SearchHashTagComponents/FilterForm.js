@@ -122,15 +122,35 @@ const FilterForm = ({
     }
   };
 
+  // useEffect(() => {
+  //   let isFilterPressed = parseInt(localStorage.getItem('pressFilterButton'));
+  //   if(isFilterPressed === 1) {
+  //     console.log('=====필터링을 눌렀을 경우 호출되는 함수=====');
+  //     setGender(localStorage.getItem('gender'));
+  //     setRoomCount(parseInt(localStorage.getItem('roomCount')) === 0 ? `상관없음`: `${parseInt(localStorage.getItem('roomCount'))}개`);
+      
+  //   }
+  // })
+
   useEffect(() => {
     let isFilterPressed = parseInt(localStorage.getItem('pressFilterButton'));
-    if(isFilterPressed === 1) {
-      console.log('=====필터링을 눌렀을 경우 호출되는 함수=====');
+    //필터링을 설정했을 경우,
+    if (isFilterPressed === 1) {
+      console.log('filter setting complete');
       setGender(localStorage.getItem('gender'));
-      setRoomCount(parseInt(localStorage.getItem('roomCount')) === 0 ? `상관없음`: `${parseInt(localStorage.getItem('roomCount'))}개`);
-      
+      setRoomCount(localStorage.getItem('roomCount'));
+      setHomeType(localStorage.getItem('homeType'));
+      setAgeRange(JSON.parse(localStorage.getItem('ageRange')));
+      setRentRange(JSON.parse(localStorage.getItem('rentRange')));
+      setFlatRange(JSON.parse(localStorage.getItem('flatRange')));
+      setLikeHashtags(JSON.parse(localStorage.getItem('likeHashtags')));
+      setLikeHomeHashtags(JSON.parse(localStorage.getItem('likeHomeHashtags')));
     }
-  })
+    //초기화 버튼이나 필터링을 누르지 않았을 경우,
+    else{
+      console.log(`초기화 버튼이나 필터링을 누르지 않았을 경우,`)
+    }
+  }, []);
 
   return (
     <>
@@ -140,10 +160,14 @@ const FilterForm = ({
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setGender(value);}}>
+          <Select 
+            value={gender === 'male' ? "남자": gender === 'female' ? "여자" : "상관없음"}
+            style={{ fontSize: "4rem" }} 
+            onChange={(value) => {setGender(value);}}
+          >
             <Select.Option value="male">남자</Select.Option>
             <Select.Option value="female">여자</Select.Option>
-            <Select.Option value="notcare">상관없음</Select.Option>
+            <Select.Option value="nocare">상관없음</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -151,7 +175,11 @@ const FilterForm = ({
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setRoomCount(value);}}>
+          <Select 
+            value={parseInt(roomCount) === 0 ? '상관없음' : `${roomCount}개`}
+            style={{ fontSize: "4rem" }} 
+            onChange={(value) => {setRoomCount(value);}}
+          >
             <Select.Option value="1">1개</Select.Option>
             <Select.Option value="2">2개</Select.Option>
             <Select.Option value="3">3개</Select.Option>
@@ -163,7 +191,14 @@ const FilterForm = ({
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
         >
-          <Select style={{ fontSize: "4rem" }} onChange={(value) => {setHomeType(value);}}>
+          <Select 
+            value={homeType === 'officetel' ? '오피스텔' :
+            homeType === 'apartment' ? '아파트' :
+            homeType === 'villa' ? '주택' :
+            '상관없음'
+          }
+            style={{ fontSize: "4rem" }} 
+            onChange={(value) => {setHomeType(value);}}>
             <Select.Option value="officetel">오피스텔</Select.Option>
             <Select.Option value="apartment">아파트</Select.Option>
             <Select.Option value="villa">주택</Select.Option>
@@ -171,13 +206,13 @@ const FilterForm = ({
           </Select>
         </Form.Item>
         <Form.Item label="평수">
-          <Slider range marks={flatMarks} onChange={(value) => { setFlatRange(value)}}/>
+          <Slider value={flatRange} range marks={flatMarks} onChange={(value) => { setFlatRange(value)}}/>
         </Form.Item>
         <Form.Item label="월세">
-          <Slider range marks={rentMarks} onChange={(value) => { setRentRange(value);}}/>{" "}
+          <Slider value={rentRange} range marks={rentMarks} onChange={(value) => { setRentRange(value);}}/>{" "}
         </Form.Item>
         <Form.Item label="나이">
-          <Slider range marks={ageMarks} onChange={(value) => { setAgeRange(value);}} />{" "}
+          <Slider value={ageRange} range marks={ageMarks} onChange={(value) => { setAgeRange(value);}} />{" "}
         </Form.Item>
       </Form>
           <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
