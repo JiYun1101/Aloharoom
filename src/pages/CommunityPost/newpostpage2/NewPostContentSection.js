@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import NewPostContentWritingSection from "./NewPostContentWritingSection";
+import NewPostContentWritingSection from "./NewPostContentWritingSection"; // 변경된 부분
+import baseURL from "../../api/baseURL";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import baseURL from "../../api/baseURL";
 
 const NewPostContentDiv = styled.div`
   height: 100%;
@@ -20,33 +20,14 @@ const NewPostContentWritingContainer2 = styled.div`
 `;
 
 const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
-  const navigate = useNavigate();
   const [code, setCode] = useState("");
-  const [userId, setUserId] = useState("");
-  const [nickname, setNickname] = useState("");
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  const [openChatUrl, setOpenChatUrl] = useState("");
-  const [roomCount, setRoomCount] = useState("");
-  const [address, setAddress] = useState("");
-  const [homeType, setHomeType] = useState("");
-  const [tradeType, setTradeType] = useState("");
-  const [price, setPrice] = useState("");
-  const [deposit, setDeposit] = useState("");
-  const [rent, setRent] = useState("");
-  const [flat, setFlat] = useState("");
-  const [maintenance, setMaintenance] = useState("");
-  const [floor, setFloor] = useState("");
-  const [totalFloor, setTotalFloor] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [x, setX] = useState(null);
-  const [y, setY] = useState(null);
-  const [ageRange, setAgeRange] = useState([20, 25]);
   const [imgFiles, setImgFiles] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
 
   const updateID = useParams().id;
-
   useEffect(() => {
     if (updateID != null) {
       FetchPostInfoData();
@@ -59,86 +40,33 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
         `${baseURL}/api/communityboard/edit/${updateID}`
       );
       console.log("FetchPostInfoData: ", response.data);
-      setUserId(response.data.id);
-      setNickname(response.data.nickname);
       setTitle(response.data.title);
       setCode(response.data.code);
-      setAddress(response.data.address);
-      setAgeRange(response.data.ageRange);
       setContents(response.data.contents);
-      setDeposit(response.data.deposit);
-      setFlat(response.data.flat);
-      setFloor(response.data.floor);
-      setHomeType(response.data.homeType);
-      setMaintenance(response.data.maintenance);
-      setOpenChatUrl(response.data.openChatUrl);
-      setPrice(response.data.price);
-      setRent(response.data.rent);
-      setRoomCount(response.data.roomCount);
-      setStartDate(response.data.startDate);
-      setTotalFloor(response.data.totalFloor);
-      setTradeType(response.data.tradeType);
-      setX(response.data.x);
-      setY(response.data.y);
       urlsToFileList(response.data.imgUrls);
     } catch (error) {
-      console.log("FetchPostInfoData axios error:", error);
+      console.log("FetchPostInfoData axios error", error);
     }
   }
 
   console.log("==============================");
-  console.log("userId ", userId);
-  console.log("nickname ", nickname);
   console.log("title ", title);
   console.log("contents ", contents);
   console.log("imgFiles ", imgFiles);
   console.log("code ", code);
-  console.log("roomCount ", roomCount);
-  console.log("address ", address);
-  console.log("homeType ", homeType);
-  console.log("tradeType ", tradeType);
-  console.log("price ", price);
-  console.log("deposit ", deposit);
-  console.log("rent ", rent);
-  console.log("flat ", flat);
-  console.log("maintenance ", maintenance);
-  console.log("floor ", floor);
-  console.log("totalFloor ", totalFloor);
-  console.log("startDate ", startDate);
-  console.log("x ", x);
-  console.log("y ", y);
-  console.log("ageRange ", ageRange);
-  console.log("imgFiles ", imgFiles);
-  console.log("openChatUrl", openChatUrl);
   console.log("==============================");
 
   const modifyPost = () => {
     const data = {
       title: title,
-      code: code,
       contents: contents,
-      roomCount: roomCount,
-      address: address,
-      homeType: homeType,
-      tradeType: tradeType,
-      price: price,
-      deposit: deposit,
-      rent: rent,
-      flat: flat,
-      maintenance: maintenance,
-      floor: floor,
-      totalFloor: totalFloor,
-      startDate: startDate,
-      x: x,
-      y: y,
-      ageRange: ageRange,
-      imgUrls: previewImages,
-      openChatUrl: openChatUrl,
+      code: code,
     };
+
     const jsonData = JSON.stringify(data);
     const blob = new Blob([jsonData], { type: "application/json" });
     const formData = new FormData();
-    formData.append("communityEditDto", blob);
+    formData.append("communityEditDto", blob); // 수정된 부분
     for (let i = 0; i < imgFiles.length; i++) {
       formData.append("imgFiles", imgFiles[i]);
     }
@@ -149,7 +77,7 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
         },
       })
       .then((response) => {
-        navigate(`../CommunityPage/${updateID}`);
+        navigate(`../CommunityPage`);
       })
       .catch((error) => {
         console.log(error);
@@ -158,34 +86,15 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
 
   const PostInfoSubmit = () => {
     const data = {
-      userId: userId,
-      nickname: nickname,
       title: title,
-      code: code,
       contents: contents,
-      openChatUrl: openChatUrl,
-      roomCount: roomCount,
-      address: address,
-      homeType: homeType,
-      tradeType: tradeType,
-      price: price,
-      deposit: deposit,
-      rent: rent,
-      flat: flat,
-      maintenance: maintenance,
-      floor: floor,
-      totalFloor: totalFloor,
-      startDate: startDate,
-      x: x,
-      y: y,
-      ageRange: ageRange,
+      code: code,
     };
     const jsonData = JSON.stringify(data);
     const blob = new Blob([jsonData], { type: "application/json" });
     const formData = new FormData();
-    formData.append("communityBoardDto", blob);
+    formData.append("communityBoardDto", blob); // 수정된 부분
     for (let i = 0; i < imgFiles.length; i++) {
-      formData.append("title", title);
       formData.append("imgFiles", imgFiles[i]);
     }
     axios
@@ -196,13 +105,12 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
         withCredentials: true,
       })
       .then((response) => {
-        navigate(`../CommunityPage`);
+        navigate(`../CommunityPage`); // 수정된 부분: postMapPage로 이동
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
   async function urlsToFileList(urls) {
     console.log("urls ", urls);
     const files = await Promise.all(
@@ -217,11 +125,12 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
     setImgFiles(files);
     setPreviewImages(urls);
   }
+
   return (
     <NewPostContentDiv>
       <NewPostContentWritingContainer2>
         <NewPostContentWritingSection
-          title={title}
+          setTitle={setTitle}
           contents={contents}
           setCode={setCode}
           imgFiles={imgFiles}
