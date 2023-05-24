@@ -40,7 +40,7 @@ const WriteReplyComment = ({
                 <PostInfoSpan fontSize="1.2rem" marginLeft="0.5rem">{localStorage.getItem('nickname')}</PostInfoSpan>
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="4rem" alignItems="center">
-                <CommentInput type="text" value={inputValue} placeholder="대댓글을 입력하세요." onChange={(e) => { setInputValue(e.target.value)}}/>
+                <CommentInput type="text" width="80%" value={inputValue} placeholder="대댓글을 입력하세요." onChange={(e) => { setInputValue(e.target.value)}}/>
                 <CommentWriteButton
                     onClick={() =>{ 
                         console.log('clickTargetUserId', clickTargetUserId);

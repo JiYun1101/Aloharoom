@@ -83,7 +83,7 @@ const ReadComment = ({
                 {editMode 
                 ? 
                 <>
-                    <CommentInput type="text" defaultValue={content} onChange={(e) => {setEditInputValue(e.target.value);}}/>
+                    <CommentInput type="text" width="80%" defaultValue={content} onChange={(e) => {setEditInputValue(e.target.value);}}/>
                     <CommentWriteButton
                         onClick={() => {
                             updateComment(commentId, editInputValue);
@@ -127,16 +127,16 @@ const ReadComment = ({
                     >
                         {showReplies ? "대댓글 가리기" : "대댓글 보기"}
                     </PostInfoSpan>
+                    <PostInfoSpan
+                        marginLeft="1rem"
+                        marginTop="0.5rem" 
+                        fontSize="0.8rem" 
+                        color="#a0a0a0"
+                    >
+                        {createdDate}
+                    </PostInfoSpan>
                 </>
                 }
-                <PostInfoSpan
-                    marginLeft="1rem"
-                    marginTop="0.5rem" 
-                    fontSize="0.8rem" 
-                    color="#a0a0a0"
-                >
-                    {createdDate}
-                </PostInfoSpan>
             </PostInfoFlexDiv>
         </PostInfoFlexDiv>
         </>

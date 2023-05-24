@@ -25,11 +25,11 @@ const WriteComment = ({
                 <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{localStorage.getItem('nickname')}</PostInfoSpan>
             </PostInfoFlexDiv>
             <PostInfoFlexDiv width="100%" minHeight="4rem" alignItems="center"> 
-                <CommentInput type="text" value={inputValue} placeholder="댓글을 입력하세요." onChange={(e) => { setInputValue(e.target.value);}}/>
+                <CommentInput type="text" width="80%" value={inputValue} placeholder="댓글을 입력하세요." onChange={(e) => { setInputValue(e.target.value);}}/>
                 <CommentWriteButton 
                     onClick={() => {
                         setInputValue("");
-                        makeCommentRequest(localStorage.getItem('userId'), 1, boardId, 0, inputValue, null, 0, null);
+                        makeCommentRequest(localStorage.getItem('userId'), localStorage.getItem('userId'), boardId, 0, inputValue, null, 0, null);
                     }}
                 >
                     쓰기

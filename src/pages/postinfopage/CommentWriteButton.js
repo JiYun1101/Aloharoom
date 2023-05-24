@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const CommentWriteButton = styled.button`
     margin-left: 3%;
-    width: 10%;
+    width: 5rem;
     height: 2rem;
     font-size: 1rem;
     border-width: 0.1rem;
