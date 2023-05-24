@@ -358,15 +358,15 @@ const PostInfoPage = () => {
                                 } 
                                 {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
                                     <>
-                                        <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
-                                            {<AiOutlineEdit size={40}/>}
-                                        </Link>
                                         <AiOutlineDelete 
                                             onClick={() => {
                                                 showDeletePostModal();
                                             }}
                                             size={40}
                                         />
+                                        <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
+                                            {<AiOutlineEdit size={40}/>}
+                                        </Link>
                                     </>
                                 :
                                     <></>
