@@ -122,7 +122,7 @@ const SecondContent = ({ onClick }) => {
       <div className="tagWrap">
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "-5px", zIndex: 1 }}
+          style={{ marginLeft: "5px", zIndex: 1 }}
         >
           <button
             onClick={() => handleTagClick2("night")}
@@ -136,7 +136,7 @@ const SecondContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "-30px", zIndex: 1 }}
+          style={{ marginLeft: "-20px", zIndex: 1 }}
         >
           <button
             onClick={() => handleTagClick2("delivery")}
@@ -158,13 +158,13 @@ const SecondContent = ({ onClick }) => {
               tagPressed2.includes("morning") && "tag-button-pressed"
             }`}
           >
-            #아침형
+            #아침형 인간
           </button>
         </div>
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "0px", marginTop: "-40px" }}
+          style={{ marginLeft: "20px", marginTop: "-40px" }}
         >
           <button
             onClick={() => handleTagClick2("in")}
@@ -172,13 +172,13 @@ const SecondContent = ({ onClick }) => {
               tagPressed2.includes("in") && "tag-button-pressed"
             }`}
           >
-            #집순/집돌이
+            #집순이/집돌이
           </button>
         </div>
 
         <div
           className="tag-button-wrap"
-          style={{ marginTop: "-40px", marginLeft: "-20px" }}
+          style={{ marginTop: "-40px", marginLeft: "0px" }}
         >
           <button
             onClick={() => handleTagClick2("out")}
@@ -186,7 +186,7 @@ const SecondContent = ({ onClick }) => {
               tagPressed2.includes("out") && "tag-button-pressed"
             }`}
           >
-            #밖순/밖돌이
+            #밖순이/밖돌이
           </button>
         </div>
         <div
@@ -209,7 +209,7 @@ const SecondContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "5px",
+            marginLeft: "18px",
             marginBottom: "65%",
           }}
         >
@@ -219,7 +219,7 @@ const SecondContent = ({ onClick }) => {
               tagPressed2.includes("qym") && "tag-button-pressed"
             }`}
           >
-            #헬스 매니아
+            #헬스매니아
           </button>
         </div>
 
@@ -227,7 +227,7 @@ const SecondContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-25px",
+            marginLeft: "-32px",
             marginBottom: "65%",
           }}
         >
@@ -244,7 +244,7 @@ const SecondContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-28px",
+            marginLeft: "-49px",
             marginBottom: "65%",
           }}
         >
@@ -255,6 +255,23 @@ const SecondContent = ({ onClick }) => {
             }`}
           >
             # P형
+          </button>
+        </div>
+        <div
+          className="tag-button-wrap"
+          style={{
+            marginTop: "-40px",
+            marginLeft: "-64px",
+            marginBottom: "65%",
+          }}
+        >
+          <button
+            onClick={() => handleTagClick2("nightWork")}
+            className={`tag-button ${
+              tagPressed2.includes("mbti-j") && "tag-button-pressed"
+            }`}
+          >
+            #J형
           </button>
         </div>
       </div>
@@ -282,11 +299,14 @@ const ThirdContent = ({ onClick }) => {
   return (
     <div>
       <div className="titleWrap2">
-        선호하는 사람에 대한 해시태그를 골라주세요!
+        선호하는 집에 대한 해시태그를 골라주세요!
       </div>
       {/* <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div> */}
       <div className="tagWrap">
-        <div className="tag-button-wrap" style={{ zIndex: 1 }}>
+        <div
+          className="tag-button-wrap"
+          style={{ marginLeft: "15px", zIndex: 1 }}
+        >
           <button
             onClick={() => handleTagClick3("quiet")}
             className={`tag-button ${
@@ -321,13 +341,13 @@ const ThirdContent = ({ onClick }) => {
               tagPressed3.includes("quiet") && "tag-button-pressed"
             }`}
           >
-            #조용한 주거환경
+            #조용한 주거지
           </button>
         </div>
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "-5px", marginTop: "-40px" }}
+          style={{ marginLeft: "5px", marginTop: "-40px" }}
         >
           <button
             onClick={() => handleTagClick3("smoking")}
@@ -341,7 +361,7 @@ const ThirdContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginTop: "-40px", marginLeft: "-25px" }}
+          style={{ marginTop: "-40px", marginLeft: "-10px" }}
         >
           <button
             onClick={() => handleTagClick3("convenience")}
@@ -349,14 +369,14 @@ const ThirdContent = ({ onClick }) => {
               tagPressed3.includes("convenience") && "tag-button-pressed"
             }`}
           >
-            #근처 편의점
+            #집 근처 편의점
           </button>
         </div>
         <div
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-17px",
+            marginLeft: "5px",
           }}
         >
           <button
@@ -365,14 +385,14 @@ const ThirdContent = ({ onClick }) => {
               tagPressed3.includes("gym") && "tag-button-pressed"
             }`}
           >
-            #주변 체육시설
+            #성당/교회
           </button>
         </div>
         <div
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "0px",
+            marginLeft: "15px",
             marginBottom: "65%",
           }}
         >
@@ -382,7 +402,7 @@ const ThirdContent = ({ onClick }) => {
               tagPressed3.includes("church") && "tag-button-pressed"
             }`}
           >
-            #성당/교회
+            #주변 체육시설
           </button>
         </div>
 
@@ -390,7 +410,7 @@ const ThirdContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-20px",
+            marginLeft: "5px",
             marginBottom: "65%",
           }}
         >
@@ -407,7 +427,7 @@ const ThirdContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-28px",
+            marginLeft: "-5px",
             marginBottom: "65%",
           }}
         >
@@ -449,7 +469,7 @@ const FourthContent = ({ onClick }) => {
       <div className="tagWrap">
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "-5px", zIndex: 1 }}
+          style={{ marginLeft: "8px", zIndex: 1 }}
         >
           <button
             onClick={() => handleTagClick4("quiet")}
@@ -463,7 +483,7 @@ const FourthContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "-30px", zIndex: 1 }}
+          style={{ marginLeft: "-33px", zIndex: 1 }}
         >
           <button
             onClick={() => handleTagClick4("out")}
@@ -477,7 +497,7 @@ const FourthContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "5px", zIndex: 1 }}
+          style={{ marginLeft: "-20px", zIndex: 1 }}
         >
           <button
             onClick={() => handleTagClick4("eat")}
@@ -485,13 +505,13 @@ const FourthContent = ({ onClick }) => {
               tagPressed4.includes("eat") && "tag-button-pressed"
             }`}
           >
-            #맛집 러버
+            #야간근무/교대근무
           </button>
         </div>
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "0px", marginTop: "-40px" }}
+          style={{ marginLeft: "22px", marginTop: "-40px" }}
         >
           <button
             onClick={() => handleTagClick4("out")}
@@ -505,7 +525,7 @@ const FourthContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginTop: "-40px", marginLeft: "-20px" }}
+          style={{ marginTop: "-40px", marginLeft: "-8px" }}
         >
           <button
             onClick={() => handleTagClick4("nightWork")}
@@ -513,14 +533,14 @@ const FourthContent = ({ onClick }) => {
               tagPressed4.includes("nightWork") && "tag-button-pressed"
             }`}
           >
-            #야간근무/교대근무
+            #맛집 러버
           </button>
         </div>
         <div
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-15px",
+            marginLeft: "-22px",
           }}
         >
           <button
@@ -529,14 +549,14 @@ const FourthContent = ({ onClick }) => {
               tagPressed4.includes("qym") && "tag-button-pressed"
             }`}
           >
-            #운동을 좋아하는
+            #요리 마스터
           </button>
         </div>
         <div
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "5px",
+            marginLeft: "22px",
             marginBottom: "65%",
           }}
         >
@@ -571,7 +591,7 @@ const FourthContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-28px",
+            marginLeft: "-27px",
             marginBottom: "65%",
           }}
         >
@@ -581,7 +601,7 @@ const FourthContent = ({ onClick }) => {
               tagPressed4.includes("cook") && "tag-button-pressed"
             }`}
           >
-            #요리마스터
+            #운동을 좋아하는
           </button>
         </div>
       </div>
@@ -611,11 +631,11 @@ const LastContent = ({ onClick }) => {
       <div className="titleWrap2">
         선호하는 집에 대한 해시태그를 제공하세요!
       </div>
-      
+      <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div>
       <div className="tagWrap">
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "-5px", zIndex: 1 }}
+          style={{ marginLeft: "5px", zIndex: 1 }}
         >
           <button
             onClick={() => handleTagClick5("dust")}
@@ -629,7 +649,7 @@ const LastContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "-30px", zIndex: 1 }}
+          style={{ marginLeft: "-40px", zIndex: 1 }}
         >
           <button
             onClick={() => handleTagClick5("cough")}
@@ -643,7 +663,7 @@ const LastContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "5px", zIndex: 1 }}
+          style={{ marginLeft: "0px", zIndex: 1 }}
         >
           <button
             onClick={() => handleTagClick5("quiet")}
@@ -657,7 +677,7 @@ const LastContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginLeft: "0px", marginTop: "-40px" }}
+          style={{ marginLeft: "10px", marginTop: "-40px" }}
         >
           <button
             onClick={() => handleTagClick5("convenience")}
@@ -671,7 +691,7 @@ const LastContent = ({ onClick }) => {
 
         <div
           className="tag-button-wrap"
-          style={{ marginTop: "-40px", marginLeft: "-20px" }}
+          style={{ marginTop: "-40px", marginLeft: "0px" }}
         >
           <button
             onClick={() => handleTagClick5("calm")}
@@ -686,7 +706,7 @@ const LastContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-15px",
+            marginLeft: "-5px",
           }}
         >
           <button
@@ -702,7 +722,7 @@ const LastContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "5px",
+            marginLeft: "15px",
             marginBottom: "65%",
           }}
         >
@@ -720,7 +740,7 @@ const LastContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-25px",
+            marginLeft: "-20px",
             marginBottom: "65%",
           }}
         >
@@ -737,7 +757,7 @@ const LastContent = ({ onClick }) => {
           className="tag-button-wrap"
           style={{
             marginTop: "-40px",
-            marginLeft: "-28px",
+            marginLeft: "-19px",
             marginBottom: "65%",
           }}
         >
@@ -881,14 +901,14 @@ function RegisterPage2() {
     setClickedButton2((prevButtons) => [...prevButtons, buttonName2]);
   };
 
-  const handleTagClick4 = (buttonName4) => {
-    setIsClicked(true);
-    setClickedButton4((prevButtons) => [...prevButtons, buttonName4]);
-  };
-
   const handleTagClick3 = (buttonName3) => {
     setIsClicked(true);
     setClickedButton3((prevButtons) => [...prevButtons, buttonName3]);
+  };
+
+  const handleTagClick4 = (buttonName4) => {
+    setIsClicked(true);
+    setClickedButton4((prevButtons) => [...prevButtons, buttonName4]);
   };
 
   const handleTagClick5 = (buttonName5) => {

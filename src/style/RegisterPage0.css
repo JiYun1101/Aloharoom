@@ -11,15 +11,16 @@
   margin-left: 6%;
   display: flex;
   flex-wrap: wrap; /* 추가 */
-  justify-content: left;
-  margin-top: -35%;
-  margin: 30% -2.5% 30%;
+  justify-content: center;
+  margin-top: -25%;
+  margin-left: -10px;
+
   position: absolute;
   width: 100%;
   top: 3rem;
   font-size: 1rem;
   text-align: center;
-  height: 300px;
+  height: 10%;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
@@ -118,7 +119,7 @@
   white-space: nowrap; /* 추가 */
   overflow: hidden; /* 추가 */
   text-overflow: ellipsis; /* 추가 */
-  max-width: 100px; /* 추가 */
+  max-width: 150px; /* 추가 */
 }
 
 .tag-button:hover {
