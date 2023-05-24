@@ -92,6 +92,12 @@ const CommentSpan = styled.span`
   margin-right: 0.5rem;
 `;
 
+const CommentSpan2 = styled.span`
+  font-size: 1rem;
+  font-weight: 600;
+  margin-right: 0rem;
+`;
+
 const Card2 = styled.div`
   min-width: 150%;
   height: 10rem;
@@ -207,6 +213,19 @@ const CardPost = ({ communityId, code }) => {
     console.log(message);
   };
 
+  const getRoomTypeText = (code) => {
+    switch (code) {
+      case 1:
+        return "방자랑";
+      case 2:
+        return "정보 공유";
+      case 3:
+        return "자유";
+      default:
+        return "";
+    }
+  };
+
   return (
     <CardBox2 ref={cardRef}>
       {data.map((post, index) => (
@@ -227,7 +246,9 @@ const CardPost = ({ communityId, code }) => {
           >
             <DateDiv>
               <RoomTypeDiv>
-                <RoomTypeButton style={LinkToStyle}>{post.code}</RoomTypeButton>
+                <RoomTypeButton style={LinkToStyle}>
+                  {getRoomTypeText(post.code)}
+                </RoomTypeButton>
               </RoomTypeDiv>
             </DateDiv>
             <TitleDiv>
@@ -252,6 +273,8 @@ const CardPost = ({ communityId, code }) => {
               </ViewsDiv>
               <CommentDiv>
                 <CommentSpan>{post.userPost}</CommentSpan>
+
+                <CommentSpan2>{post.commentNum}</CommentSpan2>
                 <FaRegCommentDots size={25} style={CommentLogoStyle} />
               </CommentDiv>
             </ProfileCommentDiv>
