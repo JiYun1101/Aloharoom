@@ -535,6 +535,11 @@ const PostInfoPage = () => {
                         </PostInfoFlexDiv>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv> */}
+                <PostInfoDiv width="95%" minHeight="5rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
+                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500" style={PostInfoContentstyles}>
+                        {contents}
+                    </PostInfoSpan>
+                </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
                     <PostInfoDiv width="90%" height="28rem" position="relative">
                         <InfoPageMapContainer 
@@ -545,11 +550,6 @@ const PostInfoPage = () => {
                         />
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" minHeight="5rem" marginTop="1rem">
-                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500" style={PostInfoContentstyles}>
-                        {contents}
-                    </PostInfoSpan>
-                </PostInfoDiv>
                 {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
                     <>
                         {isActivate ?
