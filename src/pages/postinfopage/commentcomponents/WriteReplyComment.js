@@ -30,7 +30,8 @@ const WriteReplyComment = ({
     clickTargetUserId,
     clickTargetContent,
     clickGroupId,
-    myProfileURL
+    myProfileURL,
+    flag
 }) => {
     const [inputValue, setInputValue] = useState();
     return (
@@ -47,7 +48,7 @@ const WriteReplyComment = ({
                         console.log('clickTargetContent', clickTargetContent);
                         console.log('clickGroupId', clickGroupId);
                         setInputValue("");
-                        makeCommentRequest(localStorage.getItem('userId'), clickTargetUserId, boardId, 0, inputValue, clickTargetContent, 1, clickGroupId);
+                        makeCommentRequest(localStorage.getItem('userId'), clickTargetUserId, boardId, flag, inputValue, clickTargetContent, 1, clickGroupId);
                     }}
                 >
                     쓰기

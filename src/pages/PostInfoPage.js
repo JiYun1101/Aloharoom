@@ -110,6 +110,7 @@ const PostInfoPage = () => {
     const navigate = useNavigate();
     const postInfoContentSpanRef = useRef(null);
     const [commentData, setCommentData] = useState([]);
+    const flag = 0;
     const [address, setAddress] = useState('');
     const [age, setAge] = useState('');
     const [contents, setContents] = useState('');
@@ -591,6 +592,7 @@ const PostInfoPage = () => {
                             deleteComment={deleteComment}
                             updateComment={updateComment}
                             myProfileURL={myProfileURL}
+                            flag={flag}
                         />
                     ))}
                     {localStorage.getItem('userId') ? 
@@ -598,6 +600,7 @@ const PostInfoPage = () => {
                             makeCommentRequest={makeCommentRequest}
                             boardId={boardId}
                             myProfileURL={myProfileURL}
+                            flag={flag}
                         />
                     :
                         <></>

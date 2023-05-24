@@ -9,7 +9,8 @@ const ReadCommentSection = ({
     boardId,
     deleteComment,
     updateComment,
-    myProfileURL
+    myProfileURL,
+    flag
 }) => {
     const [clickTargetUserId, setClickTargetUserId] = useState();
     const [clickTargetContent, setClickTargetContent] = useState();
@@ -72,6 +73,7 @@ const ReadCommentSection = ({
                     clickTargetContent={clickTargetContent}
                     clickGroupId={clickGroupId}
                     myProfileURL={myProfileURL}
+                    flag={flag}
                 />
             )}
         </>

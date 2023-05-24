@@ -15,7 +15,8 @@ const CommentProfileImg = styled.img`
 const WriteComment = ({
     makeCommentRequest,
     boardId,
-    myProfileURL
+    myProfileURL,
+    flag
 }) => {
     const [inputValue, setInputValue] = useState("");
     return (
@@ -29,7 +30,7 @@ const WriteComment = ({
                 <CommentWriteButton 
                     onClick={() => {
                         setInputValue("");
-                        makeCommentRequest(localStorage.getItem('userId'), localStorage.getItem('userId'), boardId, 0, inputValue, null, 0, null);
+                        makeCommentRequest(localStorage.getItem('userId'), localStorage.getItem('userId'), boardId, flag, inputValue, null, 0, null);
                     }}
                 >
                     쓰기
