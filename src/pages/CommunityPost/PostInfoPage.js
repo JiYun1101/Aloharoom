@@ -371,6 +371,8 @@ const PostInfoPage = () => {
       } catch (error) {
         if (error.response && error.response.status === 500) {
           navigate("../Login");
+        } else if (error.response && error.response.status === 400) {
+          navigate("../Login");
         } else {
           console.log("DeletePostInfoData axios error", error);
         }
@@ -425,7 +427,7 @@ const PostInfoPage = () => {
     await axios
       .delete(`${baseURL}/api/communityboard/${communityId}`)
       .then((response) => {
-        navigate(`../postMapPage`);
+        navigate(`../CommunityPage`);
       })
       .catch((error) => {
         console.log("DeletePostInfoData axios error");

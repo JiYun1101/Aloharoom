@@ -1,6 +1,6 @@
 import { Button, message, Steps, theme } from "antd";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import "../style/RegisterPage0.css"; // importing the CSS file
 import cheersImg from "../img/cheers.png";
@@ -15,13 +15,16 @@ import axios from "axios";
 import baseURL from "./api/baseURL";
 
 const FirstContent = ({ onClick }) => {
-  const [clickedButton, setClickedButton] = useState(null);
+  const [clickedButton, setClickedButton] = useState(
+    localStorage.getItem("clickedButton")
+  );
 
   const handleClick = (buttonName) => {
     setClickedButton(buttonName);
     onClick(buttonName);
     console.log(buttonName);
   };
+
   return (
     <div>
       <div className="titleWrap2">당신은 집에서 주로 어떤 유형인가요?</div>
@@ -94,16 +97,18 @@ const FirstContent = ({ onClick }) => {
   );
 };
 const SecondContent = ({ onClick }) => {
-  const [tagPressed3, setTagPressed3] = useState([]);
+  const [tagPressed2, setTagPressed2] = useState([
+    localStorage.getItem("clickedButton2"),
+  ]);
 
-  const handleTagClick3 = (buttonName2) => {
-    if (tagPressed3.includes(buttonName2)) {
-      setTagPressed3((prevTags) =>
+  const handleTagClick2 = (buttonName2) => {
+    if (tagPressed2.includes(buttonName2)) {
+      setTagPressed2((prevTags) =>
         prevTags.filter((tag) => tag !== buttonName2)
       );
       onClick(null); // 값이 없어졌으므로 null 전달
     } else {
-      setTagPressed3((prevTags) => [...prevTags, buttonName2]);
+      setTagPressed2((prevTags) => [...prevTags, buttonName2]);
       onClick(String(buttonName2)); // 문자열로 변환하여 전달
     }
   };
@@ -120,9 +125,9 @@ const SecondContent = ({ onClick }) => {
           style={{ marginLeft: "-5px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick3("night")}
+            onClick={() => handleTagClick2("night")}
             className={`tag-button ${
-              tagPressed3.includes("night") && "tag-button-pressed"
+              tagPressed2.includes("night") && "tag-button-pressed"
             }`}
           >
             #야행성
@@ -134,9 +139,9 @@ const SecondContent = ({ onClick }) => {
           style={{ marginLeft: "-30px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick3("delivery")}
+            onClick={() => handleTagClick2("delivery")}
             className={`tag-button ${
-              tagPressed3.includes("delivery") && "tag-button-pressed"
+              tagPressed2.includes("delivery") && "tag-button-pressed"
             }`}
           >
             #배달의 민족
@@ -148,9 +153,9 @@ const SecondContent = ({ onClick }) => {
           style={{ marginLeft: "5px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick3("morning")}
+            onClick={() => handleTagClick2("morning")}
             className={`tag-button ${
-              tagPressed3.includes("morning") && "tag-button-pressed"
+              tagPressed2.includes("morning") && "tag-button-pressed"
             }`}
           >
             #아침형
@@ -162,9 +167,9 @@ const SecondContent = ({ onClick }) => {
           style={{ marginLeft: "0px", marginTop: "-40px" }}
         >
           <button
-            onClick={() => handleTagClick3("in")}
+            onClick={() => handleTagClick2("in")}
             className={`tag-button ${
-              tagPressed3.includes("in") && "tag-button-pressed"
+              tagPressed2.includes("in") && "tag-button-pressed"
             }`}
           >
             #집순/집돌이
@@ -176,9 +181,9 @@ const SecondContent = ({ onClick }) => {
           style={{ marginTop: "-40px", marginLeft: "-20px" }}
         >
           <button
-            onClick={() => handleTagClick3("out")}
+            onClick={() => handleTagClick2("out")}
             className={`tag-button ${
-              tagPressed3.includes("out") && "tag-button-pressed"
+              tagPressed2.includes("out") && "tag-button-pressed"
             }`}
           >
             #밖순/밖돌이
@@ -192,9 +197,9 @@ const SecondContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick3("quiet")}
+            onClick={() => handleTagClick2("quiet")}
             className={`tag-button ${
-              tagPressed3.includes("quiet") && "tag-button-pressed"
+              tagPressed2.includes("quiet") && "tag-button-pressed"
             }`}
           >
             #조용한
@@ -209,9 +214,9 @@ const SecondContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick3("qym")}
+            onClick={() => handleTagClick2("qym")}
             className={`tag-button ${
-              tagPressed3.includes("qym") && "tag-button-pressed"
+              tagPressed2.includes("qym") && "tag-button-pressed"
             }`}
           >
             #헬스 매니아
@@ -227,9 +232,9 @@ const SecondContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick3("nightWork")}
+            onClick={() => handleTagClick2("nightWork")}
             className={`tag-button ${
-              tagPressed3.includes("nightWork") && "tag-button-pressed"
+              tagPressed2.includes("nightWork") && "tag-button-pressed"
             }`}
           >
             #야간근무
@@ -244,9 +249,9 @@ const SecondContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick3("mbti-p")}
+            onClick={() => handleTagClick2("mbti-p")}
             className={`tag-button ${
-              tagPressed3.includes("mbti-p") && "tag-button-pressed"
+              tagPressed2.includes("mbti-p") && "tag-button-pressed"
             }`}
           >
             # P형
@@ -258,16 +263,18 @@ const SecondContent = ({ onClick }) => {
 };
 
 const ThirdContent = ({ onClick }) => {
-  const [tagPressed3, setTagPressed] = useState([]);
+  const [tagPressed3, setTagPressed3] = useState([
+    localStorage.getItem("clickedButton3"),
+  ]);
 
-  const handleTagClick = (buttonName3) => {
+  const handleTagClick3 = (buttonName3) => {
     if (tagPressed3.includes(buttonName3)) {
-      setTagPressed((prevTags) =>
+      setTagPressed3((prevTags) =>
         prevTags.filter((tag) => tag !== buttonName3)
       );
       onClick(null); // 값이 없어졌으므로 null 전달
     } else {
-      setTagPressed((prevTags) => [...prevTags, buttonName3]);
+      setTagPressed3((prevTags) => [...prevTags, buttonName3]);
       onClick(String(buttonName3)); // 문자열로 변환하여 전달
     }
   };
@@ -281,7 +288,7 @@ const ThirdContent = ({ onClick }) => {
       <div className="tagWrap">
         <div className="tag-button-wrap" style={{ zIndex: 1 }}>
           <button
-            onClick={() => handleTagClick("quiet")}
+            onClick={() => handleTagClick3("quiet")}
             className={`tag-button ${
               tagPressed3.includes("quiet") && "tag-button-pressed"
             }`}
@@ -295,7 +302,7 @@ const ThirdContent = ({ onClick }) => {
           style={{ marginLeft: "-5px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick("subway")}
+            onClick={() => handleTagClick3("subway")}
             className={`tag-button ${
               tagPressed3.includes("subway") && "tag-button-pressed"
             }`}
@@ -309,7 +316,7 @@ const ThirdContent = ({ onClick }) => {
           style={{ marginLeft: "-22px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick("quiet")}
+            onClick={() => handleTagClick3("quiet")}
             className={`tag-button ${
               tagPressed3.includes("quiet") && "tag-button-pressed"
             }`}
@@ -323,7 +330,7 @@ const ThirdContent = ({ onClick }) => {
           style={{ marginLeft: "-5px", marginTop: "-40px" }}
         >
           <button
-            onClick={() => handleTagClick("smoking")}
+            onClick={() => handleTagClick3("smoking")}
             className={`tag-button ${
               tagPressed3.includes("smoking") && "tag-button-pressed"
             }`}
@@ -337,7 +344,7 @@ const ThirdContent = ({ onClick }) => {
           style={{ marginTop: "-40px", marginLeft: "-25px" }}
         >
           <button
-            onClick={() => handleTagClick("convenience")}
+            onClick={() => handleTagClick3("convenience")}
             className={`tag-button ${
               tagPressed3.includes("convenience") && "tag-button-pressed"
             }`}
@@ -353,7 +360,7 @@ const ThirdContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("gym")}
+            onClick={() => handleTagClick3("gym")}
             className={`tag-button ${
               tagPressed3.includes("gym") && "tag-button-pressed"
             }`}
@@ -370,7 +377,7 @@ const ThirdContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("church")}
+            onClick={() => handleTagClick3("church")}
             className={`tag-button ${
               tagPressed3.includes("church") && "tag-button-pressed"
             }`}
@@ -388,7 +395,7 @@ const ThirdContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("car")}
+            onClick={() => handleTagClick3("car")}
             className={`tag-button ${
               tagPressed3.includes("car") && "tag-button-pressed"
             }`}
@@ -405,7 +412,7 @@ const ThirdContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick("park")}
+            onClick={() => handleTagClick3("park")}
             className={`tag-button ${
               tagPressed3.includes("park") && "tag-button-pressed"
             }`}
@@ -419,7 +426,9 @@ const ThirdContent = ({ onClick }) => {
 };
 
 const FourthContent = ({ onClick }) => {
-  const [tagPressed4, setTagPressed4] = useState([]);
+  const [tagPressed4, setTagPressed4] = useState([
+    localStorage.getItem("clickedButton4"),
+  ]);
 
   const handleTagClick4 = (buttonName4) => {
     if (tagPressed4.includes(buttonName4)) {
@@ -581,16 +590,18 @@ const FourthContent = ({ onClick }) => {
 };
 
 const LastContent = ({ onClick }) => {
-  const [tagPressed2, setTagPressed2] = useState([]);
+  const [tagPressed5, setTagPressed5] = useState([
+    localStorage.getItem("clickedButton5"),
+  ]);
 
-  const handleTagClick2 = (buttonName5) => {
-    if (tagPressed2.includes(buttonName5)) {
-      setTagPressed2((prevTags) =>
+  const handleTagClick5 = (buttonName5) => {
+    if (tagPressed5.includes(buttonName5)) {
+      setTagPressed5((prevTags) =>
         prevTags.filter((tag) => tag !== buttonName5)
       );
       onClick(null); // 값이 없어졌으므로 null 전달
     } else {
-      setTagPressed2((prevTags) => [...prevTags, buttonName5]);
+      setTagPressed5((prevTags) => [...prevTags, buttonName5]);
       onClick(String(buttonName5)); // 문자열로 변환하여 전달
     }
   };
@@ -600,16 +611,16 @@ const LastContent = ({ onClick }) => {
       <div className="titleWrap2">
         선호하는 집에 대한 해시태그를 제공하세요!
       </div>
-      <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div>
+      
       <div className="tagWrap">
         <div
           className="tag-button-wrap"
           style={{ marginLeft: "-5px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick2("dust")}
+            onClick={() => handleTagClick5("dust")}
             className={`tag-button ${
-              tagPressed2.includes("dust") && "tag-button-pressed"
+              tagPressed5.includes("dust") && "tag-button-pressed"
             }`}
           >
             #역세권
@@ -621,9 +632,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginLeft: "-30px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick2("cough")}
+            onClick={() => handleTagClick5("cough")}
             className={`tag-button ${
-              tagPressed2.includes("cough") && "tag-button-pressed"
+              tagPressed5.includes("cough") && "tag-button-pressed"
             }`}
           >
             #층간소음이 없는
@@ -635,9 +646,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginLeft: "5px", zIndex: 1 }}
         >
           <button
-            onClick={() => handleTagClick2("quiet")}
+            onClick={() => handleTagClick5("quiet")}
             className={`tag-button ${
-              tagPressed2.includes("quiet") && "tag-button-pressed"
+              tagPressed5.includes("quiet") && "tag-button-pressed"
             }`}
           >
             #조용한 주거환경
@@ -649,9 +660,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginLeft: "0px", marginTop: "-40px" }}
         >
           <button
-            onClick={() => handleTagClick2("convenience")}
+            onClick={() => handleTagClick5("convenience")}
             className={`tag-button ${
-              tagPressed2.includes("convenience") && "tag-button-pressed"
+              tagPressed5.includes("convenience") && "tag-button-pressed"
             }`}
           >
             #성당/교회
@@ -663,9 +674,9 @@ const LastContent = ({ onClick }) => {
           style={{ marginTop: "-40px", marginLeft: "-20px" }}
         >
           <button
-            onClick={() => handleTagClick2("calm")}
+            onClick={() => handleTagClick5("calm")}
             className={`tag-button ${
-              tagPressed2.includes("calm") && "tag-button-pressed"
+              tagPressed5.includes("calm") && "tag-button-pressed"
             }`}
           >
             #주차공간의 유무
@@ -679,9 +690,9 @@ const LastContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick2("park")}
+            onClick={() => handleTagClick5("park")}
             className={`tag-button ${
-              tagPressed2.includes("park") && "tag-button-pressed"
+              tagPressed5.includes("park") && "tag-button-pressed"
             }`}
           >
             #공원
@@ -696,9 +707,9 @@ const LastContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick2("church")}
+            onClick={() => handleTagClick5("church")}
             className={`tag-button ${
-              tagPressed2.includes("church") && "tag-button-pressed"
+              tagPressed5.includes("church") && "tag-button-pressed"
             }`}
           >
             #근처 편의점
@@ -714,9 +725,9 @@ const LastContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick2("car")}
+            onClick={() => handleTagClick5("car")}
             className={`tag-button ${
-              tagPressed2.includes("car") && "tag-button-pressed"
+              tagPressed5.includes("car") && "tag-button-pressed"
             }`}
           >
             #비흡연자
@@ -731,9 +742,9 @@ const LastContent = ({ onClick }) => {
           }}
         >
           <button
-            onClick={() => handleTagClick2("gym")}
+            onClick={() => handleTagClick5("gym")}
             className={`tag-button ${
-              tagPressed2.includes("gym") && "tag-button-pressed"
+              tagPressed5.includes("gym") && "tag-button-pressed"
             }`}
           >
             #주변 체육시설
@@ -808,7 +819,10 @@ function RegisterPage2() {
   const location = useLocation();
   const navigate = useNavigate();
   const { token } = theme.useToken();
+  console.log("저기", useState(0));
   const [current, setCurrent] = useState(0);
+  console.log("여기", useState(0));
+  const [current1, setCurrent1] = useState(1);
   const [clickedButton, setClickedButton] = useState([]);
   const [clickedButton2, setClickedButton2] = useState([]);
   const [clickedButton3, setClickedButton3] = useState([]);
@@ -818,6 +832,94 @@ function RegisterPage2() {
   const [firstClick, setFirstClick] = useState("");
 
   const use_state = location.state;
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton", JSON.stringify(clickedButton));
+    console.log("이름", clickedButton);
+  }, [clickedButton]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton2", JSON.stringify(clickedButton2));
+    console.log("이름2", clickedButton2);
+  }, [clickedButton2]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton3", JSON.stringify(clickedButton3));
+  }, [clickedButton3]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton4", JSON.stringify(clickedButton4));
+  }, [clickedButton4]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton5", JSON.stringify(clickedButton5));
+  }, [clickedButton5]);
+
+  useEffect(() => {
+    localStorage.setItem("current", JSON.stringify(current));
+  }, [current]);
+
+  // ...
+
+  const next = () => {
+    setCurrent(current + 1);
+  };
+
+  const prev = () => {
+    setCurrent(current - 1);
+  };
+
+  // ...
+
+  const handleClick = (buttonName) => {
+    setIsClicked(true);
+    setClickedButton((prevButtons) => [...prevButtons, buttonName]);
+  };
+
+  const handleTagClick2 = (buttonName2) => {
+    setIsClicked(true);
+    setClickedButton2((prevButtons) => [...prevButtons, buttonName2]);
+  };
+
+  const handleTagClick4 = (buttonName4) => {
+    setIsClicked(true);
+    setClickedButton4((prevButtons) => [...prevButtons, buttonName4]);
+  };
+
+  const handleTagClick3 = (buttonName3) => {
+    setIsClicked(true);
+    setClickedButton3((prevButtons) => [...prevButtons, buttonName3]);
+  };
+
+  const handleTagClick5 = (buttonName5) => {
+    setIsClicked(true);
+    setClickedButton5((prevButtons) => [...prevButtons, buttonName5]);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton", clickedButton);
+  }, [clickedButton]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton2", clickedButton2);
+    console.log("이름2", clickedButton2);
+  }, [clickedButton2]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton3", JSON.stringify(clickedButton3));
+  }, [clickedButton3]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton4", JSON.stringify(clickedButton4));
+  }, [clickedButton4]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton5", JSON.stringify(clickedButton5));
+  }, [clickedButton5]);
+
+  useEffect(() => {
+    localStorage.setItem("current", JSON.stringify(current));
+  }, [current]);
 
   // const username = location.state.username;
   // const password = location.state.password;
@@ -830,13 +932,6 @@ function RegisterPage2() {
   // console.log("reg2 page:" + nickname);
   // console.log("reg2 page:" + age);
   // console.log("reg2 page:" + gender);
-
-  const next = () => {
-    setCurrent(current + 1);
-  };
-  const prev = () => {
-    setCurrent(current - 1);
-  };
 
   const items = steps.map((item) => ({
     key: item.title,
@@ -853,48 +948,6 @@ function RegisterPage2() {
     marginTop: 16,
   };
 
-  const handleClick = (buttonName) => {
-    setIsClicked(true);
-    setClickedButton(buttonName);
-    // if (!firstClick) {
-    //   setFirstClick(buttonName);
-    // }
-  };
-
-  const handleTagClick3 = (buttonName2) => {
-    setClickedButton2((prevState) => [...prevState, buttonName2]);
-    console.log(buttonName2);
-    setIsClicked(true);
-    {
-      console.log("buttonName2 :", clickedButton2);
-    }
-  };
-  const handleTagClick4 = (buttonName4) => {
-    setClickedButton4((prevState) => [...prevState, buttonName4]);
-    console.log(buttonName4);
-    setIsClicked(true);
-    {
-      console.log("buttonName4 :", clickedButton4);
-    }
-  };
-
-  const handleTagClick = (buttonName3) => {
-    setClickedButton3((prevState) => [...prevState, buttonName3]);
-    console.log(buttonName3);
-    setIsClicked(true);
-    {
-      console.log("buttonName3 :", clickedButton3);
-    }
-  };
-
-  const handleTagClick2 = (buttonName5) => {
-    setClickedButton5((prevState) => [...prevState, buttonName5]);
-    console.log(buttonName5);
-    setIsClicked(true);
-    {
-      console.log("buttonName5 :", clickedButton5);
-    }
-  };
   return (
     <div className="page">
       <div class="terms__content" style={{ margin: "10px" }}>
@@ -906,18 +959,22 @@ function RegisterPage2() {
                 current === 0
                   ? handleClick
                   : current === 1
-                  ? handleTagClick3
+                  ? handleTagClick2
                   : current === 2
-                  ? handleTagClick
+                  ? handleTagClick3
                   : current === 3
                   ? handleTagClick4
                   : current === 4
-                  ? handleTagClick2
+                  ? handleTagClick5
                   : null,
               // current 값에 따라 handleClick, handleClick2, handleClick3 함수 중 하나를 호출하도록 설정
             })}
           </div>
-          {/* {console.log("buttonName3 :", clickedButton3)} */}
+          {console.log("buttonName :", clickedButton)}
+          {console.log("buttonName2 :", clickedButton2)}
+          {console.log("buttonName3 :", clickedButton3)}
+          {console.log("buttonName4 :", clickedButton4)}
+          {console.log("buttonName5 :", clickedButton5)}
           <div
             style={{
               marginTop: 24,
@@ -977,10 +1034,10 @@ function RegisterPage2() {
                   // console.log("newButtonName3: ", newButtonName3); // ["quiet", "gym"]
 
                   use_state["tendency"] = buttonName;
-                  use_state["likeHashtags"] = buttonName3;
-                  use_state["likeHomeHashtags"] = buttonName2;
-                  use_state["myHashtags"] = clickedButton5;
-                  use_state["myHomeHashtags"] = clickedButton4;
+                  use_state["likeHashtags"] = buttonName2;
+                  use_state["likeHomeHashtags"] = buttonName3;
+                  use_state["myHashtags"] = clickedButton4;
+                  use_state["myHomeHashtags"] = clickedButton5;
 
                   onFinish(use_state, navigate);
 

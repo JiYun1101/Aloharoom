@@ -131,12 +131,17 @@ const About = () => {
           <MainBox2 />
 
           <SpanDiv />
+          <p>지금 알로하룸을 이용중인 사람의 수!</p>
           <Graph_number />
           <SpanDiv />
+          <p>알로하룸을 방문한 이용자수의 변화!</p>
           <Graph_user />
           <SpanDiv />
+          <p>알로하룸에 있는 방의 지역별 그래프!</p>
           <Graph_map />
           <SpanDiv />
+          <p>알로하룸의 평수 별 월세 그래프!</p>
+          <p>(직접 궁금한 평수를 넣어보세요)</p>
           <Graph_cost flat={flat} />
           <SpanDiv />
           <>
