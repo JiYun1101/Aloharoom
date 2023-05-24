@@ -14,11 +14,11 @@ import { useRef } from "react";
 import baseURL from "../api/baseURL";
 
 import PostInfoDiv from "./postinfopage2/PostInfoDiv";
-import PostInfoFlexDiv from "./postinfopage2/PostInfoFlexDiv";
 import PostInfoSpan from "./postinfopage2/PostInfoSpan";
 import UserProfileImg from "./postinfopage2/UserProfileImg";
-import WriteComment from "./postinfopage2/commentcomponents/WriteComment";
-import ReadCommentSection from "./postinfopage2/commentcomponents/ReadCommentSection";
+import ReadCommentSection from "../postinfopage/commentcomponents/ReadCommentSection";
+import WriteComment from "../postinfopage/commentcomponents/WriteComment";
+import PostInfoFlexDiv from "../postinfopage/PostInfoFlexDiv";
 import DeletePostModal from "../modal/DeletePostModal";
 
 import "swiper/css";
@@ -148,7 +148,7 @@ const PostContentSpan = styled.span`
 `;
 
 const CommentSection = styled.div`
-  margin-top: 1rem;
+  margin-top: 2rem;
   width: 95%;
   min-height: 5rem;
   display: flex;
@@ -299,12 +299,13 @@ const CardImage = styled.img`
 const PostInfoPage = () => {
   const { communityId } = useParams();
   const [data, setData] = useState({}); // 조회된 데이터를 저장할 상태 변수
-
+  const [commentData, setCommentData] = useState([]);
+  const flag = 1;
+  const [myProfileURL, setMyProfileURL] = useState("");
   console.log("1: ", communityId);
   const boardId = useParams().id;
   const navigate = useNavigate();
   const postInfoContentSpanRef = useRef(null);
-  const [commentData, setCommentData] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -334,7 +335,6 @@ const PostInfoPage = () => {
   const [userId, setUserId] = useState("");
   const [x, setX] = useState("");
   const [y, setY] = useState("");
-  const [myProfileURL, setMyProfileURL] = useState("");
   const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
   const showDeletePostModal = () => {
     setIsDeletePostModalOpen(true);
@@ -423,11 +423,11 @@ const PostInfoPage = () => {
 
   async function FetchBoardComment() {
     await axios
-      .get(`${baseURL}/api/communityboard/${communityId}`, {
+      .get(`${baseURL}/api/comment/community/${communityId}`, {
         withCredentials: true,
       })
       .then((response) => {
-        console.log("response.data ", response.data);
+        console.log("FetchBoardComment response.data ", response.data);
         setCommentData(response.data);
       })
       .catch((error) => {
@@ -464,12 +464,28 @@ const PostInfoPage = () => {
       });
   }
 
+  async function deleteComment(commentId) {
+      await axios.delete(`${baseURL}/api/comment/${commentId}`)
+      .then((response) => { FetchBoardComment();})
+      .catch((error) => {console.log('deleteComment axios error')});
+  }
+
+  async function updateComment(commentId, content) {
+      await axios.patch(`${baseURL}/api/comment`, {
+          "homeCommentId": commentId, 
+          "content": content
+      })
+      .then((response) => { FetchBoardComment();})
+      .catch((error) => {console.log('updateComment axios error')});
+  }
+
   async function fetchMyInfo() {
     await axios
-      .get(`${baseURL}/api/communityboard/myPage`, {
+      .get(`${baseURL}/api/myPage`, {
         withCredentials: true,
       })
       .then((response) => {
+        console.log('fetchMyInfo response data', response.data);
         setMyProfileURL(response.data.profileUrl);
       })
       .catch((error) => {
@@ -556,28 +572,32 @@ const PostInfoPage = () => {
           <PostContentDiv>
             <PostContentSpan>{data.contents}</PostContentSpan>
           </PostContentDiv>
-
+          <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+            <PostInfoSpan fontSize="1.5rem" fontWeight="600">댓글</PostInfoSpan>
+          </PostInfoDiv>
           <CommentSection>
-            <CommentBox>
-              <CommentProfileDiv>
-                <CommentProfileImg src="blue.png" />
-                <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-              </CommentProfileDiv>
-              <CommentInputDiv>
-                <CommentSpan>안녕하세요!</CommentSpan>
-                <AddCommentSpan>답글 쓰기</AddCommentSpan>
-              </CommentInputDiv>
-            </CommentBox>
-            <SubCommentBox>
-              <CommentProfileDiv>
-                <CommentProfileImg src="blue.png" />
-                <CommentProfileSpan>wkdgns1979</CommentProfileSpan>
-              </CommentProfileDiv>
-              <CommentInputDiv>
-                <CommentInput type="text" />
-                <CommentWriteButton>쓰기</CommentWriteButton>
-              </CommentInputDiv>
-            </SubCommentBox>
+            {commentData.map((data, idx) => (
+              <ReadCommentSection
+                key={idx} 
+                data={data}
+                makeCommentRequest={makeCommentRequest}
+                boardId={communityId}
+                deleteComment={deleteComment}
+                updateComment={updateComment}
+                myProfileURL={myProfileURL}
+                flag={flag}
+              />
+            ))}
+            {localStorage.getItem('userId') ? 
+              <WriteComment 
+                makeCommentRequest={makeCommentRequest}
+                boardId={communityId}
+                myProfileURL={myProfileURL}
+                flag={flag}
+              />
+            :
+              <></>
+            }
           </CommentSection>
         </PostInfoPageBox>
       </PostInfoPageContainer>
