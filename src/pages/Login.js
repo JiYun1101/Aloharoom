@@ -10,6 +10,7 @@ import axios from "axios";
 import styled from "styled-components";
 import baseURL from "./api/baseURL";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineLeft } from "react-icons/ai";
 
 const Logo = styled.span`
   position: absolute;
@@ -20,6 +21,17 @@ const Logo = styled.span`
   font-weight: 500;
   font-size: 1.5rem;
   color: #47a5fd;
+`;
+
+const BackPageIconStyle = {
+  position: "absolute",
+  top: "1vh",
+  left: "1vw",
+  color: "#47a5fd",
+};
+
+const SpanDiv = styled.div`
+  height: 1rem;
 `;
 
 const qs = require("qs");
@@ -59,49 +71,57 @@ const Login = () => {
     }
   };
   return (
-    <div className="page">
-      {" "}
-      <div className="titleWrap">
-        <Link to="../">
-          <Logo>aloharoom</Logo>
-        </Link>
-      </div>
-      {/* page 안쪽 */}
-      <div className="loginPage">
-        <div className="inputWrap">
-          <Form
-            name="normal_login"
-            className="login-form"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-          >
-            <Form.Item
-              name="username"
-              rules={[
-                { required: true, message: "아이디가 입력되지 않았습니다!" },
-              ]}
+    <>
+      <AiOutlineLeft
+        size={40}
+        style={BackPageIconStyle}
+        onClick={() => navigate("../")}
+      />
+      <div className="page">
+        <div className="titleWrap">
+          <Link to="../">
+            <Logo>aloharoom</Logo>
+          </Link>
+        </div>
+        {/* page 안쪽 */}
+        <div className="loginPage">
+          <div className="inputWrap">
+            <Form
+              name="normal_login"
+              className="login-form"
+              initialValues={{ remember: true }}
               onFinish={onFinish}
             >
-              <Input
-                prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Username"
-              />
-            </Form.Item>
-            <Form.Item
-              name="password"
-              rules={[
-                { required: true, message: "비밀번호가 입력되지 않았습니다!" },
-              ]}
-              onFinish={onFinish}
-            >
-              <Input
-                prefix={<LockOutlined className="site-form-item-icon" />}
-                type="password"
-                placeholder="Password"
-              />
-            </Form.Item>
-            <Form.Item></Form.Item>
-            {/* <Form.Item>
+              <Form.Item
+                name="username"
+                rules={[
+                  { required: true, message: "아이디가 입력되지 않았습니다!" },
+                ]}
+                onFinish={onFinish}
+              >
+                <Input
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                  placeholder="Username"
+                />
+              </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "비밀번호가 입력되지 않았습니다!",
+                  },
+                ]}
+                onFinish={onFinish}
+              >
+                <Input
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                  type="password"
+                  placeholder="Password"
+                />
+              </Form.Item>
+              <Form.Item></Form.Item>
+              {/* <Form.Item>
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>로그인 상태유지</Checkbox>
               </Form.Item>
@@ -111,24 +131,28 @@ const Login = () => {
               </a>
             </Form.Item> */}
 
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Log in
-              </Button>
-              <Link to="../RegisterPage">
-                <a href="RegisterPage" font color="#85afe1">
-                  새로운 계정 만들기
-                </a>
-              </Link>
-            </Form.Item>
-          </Form>
+              <Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button"
+                >
+                  로그인
+                </Button>
+                <SpanDiv />
+                <Link to="../RegisterPage">
+                  {" "}
+                  {/* Link 컴포넌트로 감싸서 클릭 시 페이지 이동 */}
+                  <Button type="primary" className="login-form-button">
+                    새로운 계정 만들기
+                  </Button>
+                </Link>
+              </Form.Item>
+            </Form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

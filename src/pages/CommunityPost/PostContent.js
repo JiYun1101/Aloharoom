@@ -235,12 +235,8 @@ const PostContent = (
   console.log(code);
 
   const [data, setData] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
 
   const cardRef = useRef(null);
-  const [scrollTop, setScrollTop] = useState(0);
-
-  console.log(code);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -249,7 +245,7 @@ const PostContent = (
       console.log(result.data[1]);
     };
     fetchData();
-  }, [communityId, code]); // code를 의존성 배열에 추가
+  }, [communityId]); // code를 의존성 배열에 추가
   return (
     <PostMapContentContainer>
       <Space.Compact
@@ -300,7 +296,7 @@ const PostContent = (
           }}
         />
       </SearchSectionContainer>
-      <CardPosts code={code} />{" "}
+      <CardPosts code={code} />
       <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
         <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b> <br />
         {data.map((post, index) => (

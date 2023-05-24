@@ -35,7 +35,7 @@ const BackPageIconStyle = {
   position: "absolute",
   top: "1vh",
   left: "1vw",
-  color: "black",
+  color: "#47a5fd",
 };
 
 const PostInfoPageContainer = styled.div`
@@ -540,7 +540,7 @@ const PostInfoPage = () => {
           </TitleDiv>
           <ProfileHeartDiv>
             <ProfileDiv>
-              <ProfileImg src="blue.png" />
+              <ProfileImg src={data.profile} />
               <ProfileName>{data.nickname}</ProfileName>
             </ProfileDiv>
             <HeartDiv>
@@ -549,18 +549,18 @@ const PostInfoPage = () => {
                   {parseInt(userId) ===
                   parseInt(localStorage.getItem("userId")) ? (
                     <>
-                      <Link
-                        to={`../updateCommunityPostPage/${communityId}`}
-                        style={LinkToIconStyle}
-                      >
-                        {<AiOutlineEdit size={40} />}
-                      </Link>
                       <AiOutlineDelete
                         onClick={() => {
                           showDeletePostModal();
                         }}
                         size={40}
                       />
+                      <Link
+                        to={`../updateCommunityPostPage/${communityId}`}
+                        style={{ ...LinkToIconStyle, marginRight: "0.8rem" }}
+                      >
+                        {<AiOutlineEdit size={40} />}
+                      </Link>
                     </>
                   ) : (
                     <></>

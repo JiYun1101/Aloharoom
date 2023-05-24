@@ -44,7 +44,7 @@
 }
 
 .inputWrap {
-  width: 80%;
+  width: 70%;
   position: absolute;
   line-height: 4rem;
   /* top: 10%; */
@@ -166,7 +166,16 @@
   position: fixed;
   top: 25%;
   bottom: 0;
-  width: 90%;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.registerPage {
+  position: fixed;
+  top: 25%;
+  bottom: 0;
+  width: 125%;
   left: 50%;
   transform: translate(-50%, 0);
 }

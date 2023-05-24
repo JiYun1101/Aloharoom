@@ -21,8 +21,9 @@ import styled from "styled-components";
 
 const Logo = styled.span`
   position: absolute;
-  left: 12.5vw;
-  top: 2vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-family: "Comfortaa" !important;
   font-weight: 500;
   font-size: 1.5rem;
@@ -109,15 +110,14 @@ function RegisterPage() {
 
   return (
     <div className="page">
-      {" "}
       <div className="titleWrap">
         <Link to="../">
           <Logo>aloharoom</Logo>
         </Link>
       </div>
       {/* page 안쪽 */}
-      <div className="loginPage">
-        <div className="inputWrap" style={{ margin: "0 -37px" }}>
+      <div className="registerPage">
+        <div className="inputWrap" style={{ margin: "20px -40px 0" }}>
           <Form
             name="normal_login"
             className="login-form"
@@ -183,11 +183,11 @@ function RegisterPage() {
             >
               <Input.Password />
             </Form.Item>
-            <Form.Item style={{ marginLeft: "100px" }}>
+            <Form.Item style={{ marginLeft: "97px" }}>
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
-                    style={{ width: "180px" }}
+                    style={{ width: "200px" }}
                     label="나이"
                     name="age"
                     rules={[
@@ -198,12 +198,12 @@ function RegisterPage() {
                     ]}
                     onFinish={onFinish}
                   >
-                    <InputNumber />
+                    <InputNumber style={{ width: "115px" }} />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
                   <Form.Item
-                    style={{ marginLeft: "50px" }}
+                    style={{ marginLeft: "55px" }}
                     label="성별"
                     name="gender"
                     rules={[
@@ -216,7 +216,7 @@ function RegisterPage() {
                   >
                     <Select
                       placeholder="성별을 골라주세요."
-                      style={{ width: "127px" }}
+                      style={{ width: "115px" }}
                     >
                       <Option value="male">남성</Option>
                       <Option value="female">여성</Option>
@@ -240,7 +240,7 @@ function RegisterPage() {
             >
               <Checkbox
                 style={{
-                  margin: "20px -60px auto",
+                  margin: "15px -60px auto",
                   width: "120%",
                   textAlign: "left",
                 }}
@@ -258,7 +258,7 @@ function RegisterPage() {
                 htmlType="submit"
                 className="login-form-button"
                 style={{
-                  margin: "20px -60px auto",
+                  margin: "15px -60px auto",
                   width: "120%",
                 }}
               >
