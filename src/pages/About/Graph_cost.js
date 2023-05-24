@@ -23,7 +23,14 @@ const DemoColumn = ({ flat }) => {
   }, [flat]);
 
   // 데이터 포인트를 올바르게 구성합니다.
-  const data = Object.entries(dataPoints).map(([key, value]) => ({
+  const filteredDataPoints = Object.entries(dataPoints)
+    .filter(([key]) => key !== "userTotal")
+    .reduce((obj, [key, value]) => {
+      obj[key] = value;
+      return obj;
+    }, {});
+
+  const data = Object.entries(filteredDataPoints).map(([key, value]) => ({
     range: key,
     count: value,
   }));
