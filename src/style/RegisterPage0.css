@@ -7,29 +7,50 @@
   text-align: center;
   height: 300px;
 }
-
 .titleWrap3 {
-  margin: -25% -2.5%;
+  margin-left: 6%;
+  display: flex;
+  flex-wrap: wrap; /* 추가 */
+  justify-content: left;
+  margin-top: -35%;
+  margin: 30% -2.5% 30%;
   position: absolute;
   width: 100%;
   top: 3rem;
   font-size: 1rem;
   text-align: center;
   height: 300px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.button-img {
+  width: 70%;
+  height: auto;
+  object-fit: contain; /* modify object-fit to contain */
+}
+
+.button-text {
+  font-size: 15px;
+  margin-top: 15px;
+  text-align: center;
+  height: 40px; /* Add a fixed height value */
 }
 .button {
-  width: 130px;
+  width: calc(
+    33.33% - 20px
+  ); /* change width to fit 3 columns with 20px margin between buttons */
   height: 130px;
   padding: 0;
   border: none;
   outline: none;
   transition: all 0.15s ease-in-out;
-  margin: 25% 10px 0;
+  margin: 30% 10px 38.9%; /* add margin-bottom for spacing between rows */
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  display: flex; /* add display:flex to container */
-  justify-content: center; /* add justify-content:center to align the child element horizontally */
-  align-items: center; /* add align-items:center to align the child element vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-box {
@@ -45,19 +66,6 @@
   transform: scale(0.95);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
-
-.button-img {
-  width: 10%; /* modify width to 100% */
-  height: auto; /* change height to auto to preserve aspect ratio */
-  object-fit: cover;
-}
-
-.button-text {
-  font-size: 15px;
-  margin-top: 1px;
-  text-align: center;
-}
-
 .button-pressed {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
   transform: scale(0.95);

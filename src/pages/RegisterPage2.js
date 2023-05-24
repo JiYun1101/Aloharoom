@@ -22,12 +22,12 @@ const FirstContent = ({ onClick }) => {
     onClick(buttonName);
     console.log(buttonName);
   };
-
   return (
     <div>
       <div className="titleWrap2">당신은 집에서 주로 어떤 유형인가요?</div>
       <div
         style={{
+          display: "flex",
           justifyContent: "center",
           marginTop: "5%",
           marginBottom: "-5%",
@@ -36,9 +36,23 @@ const FirstContent = ({ onClick }) => {
         <Button
           onClick={() => handleClick("cheers")}
           className={`button ${clickedButton === "cheers" && "button-pressed"}`}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          <img src={cheersImg} alt="Cheers!" className="button-img" />
-          <div className="button-text">친구와 함께</div>
+          <div>
+            <img
+              src={cheersImg}
+              alt="Cheers!"
+              className="button-img"
+              style={{ marginBottom: "5px" }}
+            />
+          </div>
+          <div className="button-text" style={{ marginTop: "0px" }}>
+            친구와 함께
+          </div>
         </Button>
 
         <Button
@@ -46,8 +60,15 @@ const FirstContent = ({ onClick }) => {
           className={`button ${
             clickedButton === "freelance" && "button-pressed"
           }`}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          <img src={freelanceImg} alt="freelance!" className="button-img" />
+          <div>
+            <img src={freelanceImg} alt="freelance!" className="button-img" />
+          </div>
           <div className="button-text">혼자서 느긋하게</div>
         </Button>
 
@@ -56,8 +77,15 @@ const FirstContent = ({ onClick }) => {
           className={`button ${
             clickedButton === "thinking" && "button-pressed"
           }`}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          <img src={thinkingImg} alt="thinking!" className="button-img" />
+          <div>
+            <img src={thinkingImg} alt="thinking!" className="button-img" />
+          </div>
           <div className="button-text">잘 모르겠다</div>
         </Button>
       </div>
@@ -65,7 +93,6 @@ const FirstContent = ({ onClick }) => {
     </div>
   );
 };
-
 const SecondContent = ({ onClick }) => {
   const [tagPressed3, setTagPressed3] = useState([]);
 

@@ -258,7 +258,7 @@ function RegisterPage() {
                 htmlType="submit"
                 className="login-form-button"
                 style={{
-                  margin: "15px -60px auto",
+                  margin: "3px -60px auto",
                   width: "120%",
                 }}
               >
