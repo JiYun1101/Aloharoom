@@ -201,7 +201,7 @@ function RegisterPage() {
                 <Row gutter={16}>
                   <Col span={12}>
                     <Form.Item
-                      style={{ width: "200px" }}
+                      style={{ width: "180px" }}
                       label="나이"
                       name="age"
                       rules={[
@@ -217,7 +217,7 @@ function RegisterPage() {
                   </Col>
                   <Col span={12}>
                     <Form.Item
-                      style={{ marginLeft: "55px" }}
+                      style={{ marginLeft: "57px", width: "160px" }} // 수정된 부분
                       label="성별"
                       name="gender"
                       rules={[
@@ -228,13 +228,7 @@ function RegisterPage() {
                       ]}
                       onFinish={onFinish}
                     >
-                      <Select
-                        placeholder="성별을 골라주세요."
-                        style={{ width: "115px" }}
-                      >
-                        <Option value="male">남성</Option>
-                        <Option value="female">여성</Option>
-                      </Select>
+                      <Input /> {/* 성별 입력 필드가 Input 컴포넌트로 가정 */}
                     </Form.Item>
                   </Col>
                 </Row>
