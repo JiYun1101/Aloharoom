@@ -26,6 +26,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useRef } from "react";
+import Header from "./Header";
 
 SwiperCore.use([Pagination]);
 
@@ -312,6 +313,7 @@ const PostInfoPage = () => {
         :
             <></>
         }
+        <Header/>
         <PostInfoPageContainer>
         <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate('../postMapPage')}/>
             <PostInfoPageSection>
