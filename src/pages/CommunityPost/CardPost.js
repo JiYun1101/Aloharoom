@@ -58,6 +58,9 @@ const ProfileSpan = styled.span`
   margin-left: 0.5rem;
   color: black;
   font-size: 0.9rem;
+  white-space: nowrap; /* 줄 바꿈을 방지하여 오른쪽으로 길게 표시 */
+  overflow: hidden; /* 넘치는 부분을 숨김 */
+  text-overflow: ellipsis; /* 넘치는 부분에 ...으로 표시 */
 `;
 
 const ViewsSpan = styled.span`
@@ -162,7 +165,7 @@ const CardImageDiv = styled.div`
 `;
 
 const CardImage = styled.img`
-  width: 10rem; /* 이미지 너비를 100%로 설정 */
+  width: 15rem; /* 이미지 너비를 100%로 설정 */
   height: 9rem; /* 이미지 높이를 자동으로 조정 */
   margin-left: 1rem; /* 왼쪽으로 1rem 떨어뜨리기 */
   border-radius: 10px; /* 가로에 둥글게 깍기 */
@@ -261,7 +264,7 @@ const CardPost = ({ communityId, code }) => {
             <ProfileCommentDiv>
               <ProfileDiv>
                 <ProfileImg src={post.profile} />
-                <ProfileSpan>{post.nickname}</ProfileSpan>
+                <ProfileSpan> {post.nickname}</ProfileSpan>
               </ProfileDiv>
               <ViewsDiv>
                 <ViewsSpan>
