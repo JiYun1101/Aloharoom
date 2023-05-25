@@ -66,7 +66,7 @@ const MyProfileUpdateModal = ({
         .then((response) => {
             console.log('response data', response.data);
             setResponseData(response.data);
-            setPassword(response.data.password);
+            //setPassword(response.data.password);
             setNickname(response.data.nickname);
             setAge(response.data.age);
             setLikeHashtags(response.data.likeHashtags);
