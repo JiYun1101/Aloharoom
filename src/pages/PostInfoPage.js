@@ -19,6 +19,7 @@ import WriteComment from "./postinfopage/commentcomponents/WriteComment";
 import ReadCommentSection from "./postinfopage/commentcomponents/ReadCommentSection";
 import baseURL from "./api/baseURL";
 import DeletePostModal from "./modal/DeletePostModal";
+import MatchingCompleteModal from "./modal/MatchingCompleteModal";
 import HashTagButton from "./HashTagButton";
 
 import "swiper/css";
@@ -141,8 +142,17 @@ const PostInfoPage = () => {
     const [y, setY] = useState('');
     const [myProfileURL, setMyProfileURL] = useState('');
     const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
+    const [isMatchingCompleteModalOpen, setIsMatchingCompleteModalOpen] = useState(false);
+    const showMatchingCompleteModal = () => { setIsMatchingCompleteModalOpen(true);}
     const showDeletePostModal = () => {setIsDeletePostModalOpen(true);}
+    const handleMatchingCompleteModalCancel = () => {setIsMatchingCompleteModalOpen(false);}
     const handleDeletePostCancel = () => {setIsDeletePostModalOpen(false);}
+
+    const handleMatchingCompleteModalOk = () => {
+        PostDeActivate();
+        setIsMatchingCompleteModalOpen(false);
+    }
+
     const handleDeletePostOk = () => {
         DeletePostInfoData();
         setIsDeletePostModalOpen(false);
@@ -291,7 +301,10 @@ const PostInfoPage = () => {
         await axios.post(`${baseURL}/api/board/activate/${boardId}`, {
             withCredentials:true
         })
-        .then((response) => { FetchPostInfoData(); })
+        .then((response) => { 
+            FetchPostInfoData(); 
+            FetchBoardComment(); 
+        })
         .catch((error) => { console.log(`axios PostActivate error`);})
     }
 
@@ -309,6 +322,15 @@ const PostInfoPage = () => {
                 isDeletePostModalOpen={isDeletePostModalOpen}
                 handleOk={handleDeletePostOk}
                 handelCancel={handleDeletePostCancel}
+            />
+        :
+            <></>
+        }
+        {isMatchingCompleteModalOpen ?
+            <MatchingCompleteModal
+                isMatchingCompleteModalOpen={isMatchingCompleteModalOpen}
+                handleOk={handleMatchingCompleteModalOk}
+                handelCancel={handleMatchingCompleteModalCancel}
             />
         :
             <></>
@@ -559,7 +581,7 @@ const PostInfoPage = () => {
                             <PostInfoFlexDiv width="95%" minHeight="4rem" alignItems="center" flexDirection="row-reverse">
                                 <MatchingCompleteButton
                                     onClick={() => {
-                                        PostDeActivate();
+                                        showMatchingCompleteModal();
                                     }}
                                 >
                                     매칭완료
