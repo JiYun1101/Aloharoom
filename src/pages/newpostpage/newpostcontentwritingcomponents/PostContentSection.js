@@ -26,7 +26,7 @@ const PostContentSection = ({ contents, setContents }) => {
     <PostContentDiv>
       <PostContentTextArea
         value={isNotEmpty ? contents : undefined}
-        placeholder="집에 대한 상세한 내용을 작성해주세요. (인원, 교통시설, 편의시설, 층수 등)"
+        placeholder="집에 대한 상세한 내용을 작성해주세요. (인원, 교통시설, 편의시설 등)"
         onChange={(e) => {
           setContents(e.target.value);
         }}

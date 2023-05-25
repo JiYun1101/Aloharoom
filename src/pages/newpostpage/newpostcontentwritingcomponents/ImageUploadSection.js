@@ -4,7 +4,7 @@ import { BiImageAdd } from "react-icons/bi";
 
 const ImageUploadDiv = styled.div`
     margin-top: 2vh;
-    margin-left: 1vw;
+    margin-left: 3vw;
     width: 100%;
     height: 3.5vh;
 `;

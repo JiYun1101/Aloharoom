@@ -10,7 +10,7 @@ const DragDropDiv = styled.div`
 const UploadImg = styled.img`
     width: 30vw;
     height: 35vh;
-    margin-left: 0.5%;
+    margin-left: 3.5%;
     margin-right: 0.5%;
     margin-top: 0.5%;
     margin-bottom: 0.5%;
