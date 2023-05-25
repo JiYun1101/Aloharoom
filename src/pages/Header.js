@@ -35,6 +35,7 @@ const NavGroup = styled.span`
 const NavElement = styled.span`
   margin-left: 3vw;
   margin-right: 3vw;
+  font-size: 1.2rem;
   font-weight: ${props => props.fontWeight};
   &:hover {
     text-decoration: underline;
