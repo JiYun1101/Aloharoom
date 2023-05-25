@@ -35,13 +35,29 @@ const WriteReplyComment = ({
 }) => {
     const [inputValue, setInputValue] = useState();
     return (
-        <PostInfoFlexDiv width="85%" minHeight="7rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%" borderBottom="solid #bbbbbb">
-            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src={myProfileURL}/>
-                <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600">{localStorage.getItem('nickname')}</PostInfoSpan>
-            </PostInfoFlexDiv>
+        <PostInfoFlexDiv 
+            width="85%" 
+            minHeight="4rem" 
+            flexDirection="column" 
+            marginLeft="15%" 
+            borderBottom="solid #bbbbbb"
+            alignItem="center"
+        >    
             <PostInfoFlexDiv width="100%" minHeight="4rem" alignItems="center">
-                <CommentInput type="text" width="80%" value={inputValue} placeholder="대댓글을 입력하세요." onChange={(e) => { setInputValue(e.target.value)}}/>
+                <UserProfileImg 
+                    marginLeft="0.7rem" 
+                    borderRadius="10rem" 
+                    width="2.5rem" 
+                    height="2.5rem" 
+                    src={myProfileURL}
+                />
+                <CommentInput 
+                    type="text" 
+                    width="75%" 
+                    value={inputValue} 
+                    placeholder="대댓글을 입력하세요." 
+                    onChange={(e) => { setInputValue(e.target.value)}}
+                />
                 <CommentWriteButton
                     onClick={() =>{ 
                         console.log('clickTargetUserId', clickTargetUserId);

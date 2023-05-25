@@ -20,13 +20,23 @@ const WriteComment = ({
 }) => {
     const [inputValue, setInputValue] = useState("");
     return (
-        <PostInfoFlexDiv width="100%" minHeight="7rem" marginTop="0.5rem" marginBottom="2rem" flexDirection="column" borderBottom="solid #bbbbbb">
-            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center">
-                <CommentProfileImg src={myProfileURL}/>
-                <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600">{localStorage.getItem('nickname')}</PostInfoSpan>
-            </PostInfoFlexDiv>
+        <PostInfoFlexDiv 
+            width="100%" 
+            minHeight="4rem" 
+            marginBottom="2rem" 
+            flexDirection="column" 
+            borderBottom="solid #bbbbbb"
+            alignItems="center"
+        >
             <PostInfoFlexDiv width="100%" minHeight="4rem" alignItems="center"> 
-                <CommentInput type="text" width="80%" value={inputValue} placeholder="댓글을 입력하세요." onChange={(e) => { setInputValue(e.target.value);}}/>
+                <CommentProfileImg src={myProfileURL}/>
+                <CommentInput 
+                    type="text" 
+                    width="75%"
+                    value={inputValue} 
+                    placeholder="댓글을 입력하세요." 
+                    onChange={(e) => { setInputValue(e.target.value);}}
+                />
                 <CommentWriteButton 
                     onClick={() => {
                         setInputValue("");
