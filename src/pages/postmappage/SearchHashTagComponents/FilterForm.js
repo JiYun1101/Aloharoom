@@ -27,7 +27,7 @@ const flatMarks = {
     style: {
       color: "#f50",
     },
-    label: <strong>100평</strong>,
+    label: <strong>무제한</strong>,
   },
 };
 
@@ -51,7 +51,7 @@ const rentMarks = {
     style: {
       color: "#f50",
     },
-    label: <strong>100만원</strong>,
+    label: <strong>무제한</strong>,
   },
 };
 
