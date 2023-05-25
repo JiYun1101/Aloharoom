@@ -238,6 +238,18 @@ const PostContent = (
 
   const cardRef = useRef(null);
 
+  const [selectedTitle, setSelectedTitle] = useState("");
+
+  const handleCardPostClick = (title) => {
+    setSelectedTitle(title); // 클릭된 제목을 선택된 제목 상태로 설정
+  };
+
+  const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
+  
+  const handleLinkClick = (event, message) => {
+    console.log(message);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
@@ -303,12 +315,33 @@ const PostContent = (
         <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b> <br />
         {data.map((post, index) => (
           <React.Fragment key={index}>
-            <b>{post.title}</b>
-
+            <b
+              onClick={() => handleCardPostClick(post.title)}
+              style={{
+                textDecoration: "underline", // 밑줄 스타일 추가
+                cursor: "pointer", // 클릭 가능한 커서 스타일 추가
+              }}
+            >
+              <Link
+                to={`../CommunityInfoPage/${post.communityId}`}
+                style={LinkToStyle}
+                onClick={(event) => {
+                  setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
+                  handleLinkClick(
+                    event,
+                    `../CommunityInfoPage/${post.communityId}`
+                  );
+                }}
+              >
+                {post.title}
+              </Link>
+            </b>
             <br />
           </React.Fragment>
         ))}
       </CardPost3>
+
+      {selectedTitle && <CardPosts title={selectedTitle} />}
       <Link to="/newCommunityPostPage" style={LinkToStyle}>
         <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
       </Link>
