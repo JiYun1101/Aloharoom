@@ -54,7 +54,7 @@ const NotificationTitleDiv2 = styled.div`
 `;
 
 const NotificationTitle2 = styled.div`
-  font-weight: 400;
+  font-weight: 500;
   font-size: 2rem;
   text-align: center; 
   margin-top: 1.4px;
@@ -146,7 +146,7 @@ const NotificationModal2 = ({
           </FilterClearButton>
         </NotificationDiv3>
         <NotificationTitleDiv2>
-          <NotificationTitle2>맞춤필터</NotificationTitle2>
+          <NotificationTitle2>{`맞춤 필터`}</NotificationTitle2>
         </NotificationTitleDiv2>
         <NotificationModalCloseButtonDiv2>
           <NotificationModalCloseButton2

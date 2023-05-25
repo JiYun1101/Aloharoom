@@ -159,6 +159,7 @@ const FilterForm = ({
           label="성별"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
+          style={{fontWeight: "600"}}
         >
           <Select 
             value={gender === 'male' ? "남자": gender === 'female' ? "여자" : "상관없음"}
@@ -174,6 +175,7 @@ const FilterForm = ({
           label="방 개수"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
+          style={{fontWeight: "600"}}
         >
           <Select 
             value={parseInt(roomCount) === 0 ? '상관없음' : `${roomCount}개`}
@@ -190,6 +192,7 @@ const FilterForm = ({
           label="주거 형태"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
+          style={{fontWeight: "600"}}
         >
           <Select 
             value={homeType === 'officetel' ? '오피스텔' :
@@ -205,13 +208,13 @@ const FilterForm = ({
             <Select.Option value="notcare">상관없음</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item label="평수">
+        <Form.Item label="평수" style={{fontWeight: "600"}}>
           <Slider value={flatRange} range marks={flatMarks} onChange={(value) => { setFlatRange(value)}}/>
         </Form.Item>
-        <Form.Item label="월세">
+        <Form.Item label="월세" style={{fontWeight: "600"}}>
           <Slider value={rentRange} range marks={rentMarks} onChange={(value) => { setRentRange(value);}}/>{" "}
         </Form.Item>
-        <Form.Item label="나이">
+        <Form.Item label="나이" style={{fontWeight: "600"}}>
           <Slider value={ageRange} range marks={ageMarks} onChange={(value) => { setAgeRange(value);}} />{" "}
         </Form.Item>
       </Form>
