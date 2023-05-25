@@ -240,12 +240,14 @@ const PostContent = (
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`${baseURL}/api/communityboard/code/1`);
+      const result = await axios.get(
+        `${baseURL}/api/communityboard/code/${code}`
+      );
       setData(result.data[1]);
       console.log(result.data[1]);
     };
     fetchData();
-  }, [communityId]); // code를 의존성 배열에 추가
+  }, [code]); // code를 의존성 배열에 추가
   return (
     <PostMapContentContainer>
       <Space.Compact
@@ -280,7 +282,7 @@ const PostContent = (
           }}
           onClick={() => handleButtonClick(3)} // 세 번째 버튼 클릭 시 handleButtonClick(3) 호출
         >
-          자랑
+          자유
         </Button>
       </Space.Compact>
       <SearchSectionContainer>
