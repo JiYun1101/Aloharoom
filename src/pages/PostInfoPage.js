@@ -48,8 +48,8 @@ const PostInfoPageSection  = styled.div`
 `;
 
 const PostInfoImage = styled.img`
-    width: 40vw;
-    height: 50vh;
+    width: 43rem;
+    height: 29rem;
 `;
 
 const SwiperContainer = styled.div`
