@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import NotificationModal from "./modal/NotificationModal";
 import { Badge,  Dropdown, Menu } from "antd";
 import axios from "axios";
@@ -81,6 +81,8 @@ const LinkToStyle = {
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log('location', location);
   const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
   const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
@@ -91,7 +93,12 @@ const Header = () => {
   const handleIsLogoutOk = () => {
     userLogout();
     localStorage.clear();
-    navigate(`../login`);
+    if (location.pathname === '/about') {
+      handleIsLogoutCancel();
+    }
+    else {
+      navigate(`../about`);  
+    }
   };
 
   const ModalOpen = () => {
