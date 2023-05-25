@@ -28,6 +28,7 @@ const PriceInfoInput = styled.input`
 `;
 
 const PriceInfoSpan = styled.span`
+  color: ${props => props.color};
   font-size: ${props => props.fontSize || "1rem"};
   margin-right: ${props => props.marginRight || "0rem"};
   font-weight: ${props => props.fontWeight};
@@ -74,7 +75,7 @@ const PriceInfoSection = ({
         <PriceInfoContainer>
           <PriceInfoBox width="50%" height="5vh">
             <PriceInfoInput value={price} width="5vw" height="3.5vh" type="text" onChange={(e) => { setPrice(e.target.value); }}/>
-            <PriceInfoSpan fontSize="2rem">(</PriceInfoSpan>
+            <PriceInfoSpan fontSize="2rem" color="#bbbbbb">(</PriceInfoSpan>
             <Select
               showSearch
               placeholder="계약형태 선택"
@@ -83,7 +84,7 @@ const PriceInfoSection = ({
               options={TradeTypeOptions}
               style={{ width: 130 }}
             />
-            <PriceInfoSpan fontSize="2rem">)</PriceInfoSpan>
+            <PriceInfoSpan fontSize="2rem" color="#bbbbbb">)</PriceInfoSpan>
           </PriceInfoBox>
           <PriceInfoBox width="50%" height="5vh">
             <ManageMentPriceCheckbox type="checkbox" checked={maintenance !== "" ?  true : maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>

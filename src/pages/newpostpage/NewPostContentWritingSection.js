@@ -25,8 +25,12 @@ const NewPostContentWritingArea = styled.div`
 `;
 
 const NewPostContentImageArea = styled.div`
+    margin-top: 2%;
+    border-style: solid;
+    border-color: #bbbbbb;
+    border-radius: 1rem;
     width: 100%;
-    height: 50%;
+    height: 55%;
     display: flex;
     flex-direction: column;
     align-items: center;
