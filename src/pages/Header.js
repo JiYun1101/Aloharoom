@@ -37,6 +37,10 @@ const NavElement = styled.span`
   margin-right: 3vw;
   font-size: 1.2rem;
   font-weight: ${props => props.fontWeight};
+  text-decoration: ${props => (props.underline ? 'underline' : 'none')};
+  text-decoration-color: ${props => (props.underline ? '#47a5fd' : 'none')};
+  text-decoration-thickness: ${props => (props.underline ? '0.15rem' : 'none')};
+  text-underline-offset: ${props => (props.underline ? '0.4rem' : 'none')};
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;
@@ -82,7 +86,6 @@ const LinkToStyle = {
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('location', location);
   const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
   const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
@@ -191,7 +194,6 @@ const Header = () => {
     </Menu>
   );
 
-
   useEffect(() => {
     if (localStorage.getItem("username")) {
       fetchUserId();
@@ -224,10 +226,20 @@ const Header = () => {
         </Link>
         <NavGroup>
           <Link to="/postMapPage" style={LinkToStyle}>
-            <NavElement fontWeight="600">Roommate</NavElement>
+            <NavElement 
+              fontWeight="600"
+              underline={location.pathname === "/postMapPage"}
+            >
+              Roommate
+            </NavElement>
           </Link>
           <Link to="/CommunityPage" style={LinkToStyle}>
-            <NavElement fontWeight="600">Community</NavElement>
+            <NavElement 
+              fontWeight="600"
+              underline={location.pathname === "/CommunityPage"}
+            >
+              Community
+            </NavElement>
           </Link>
         </NavGroup>
         {localStorage.getItem("username") ? (

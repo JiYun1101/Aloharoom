@@ -122,16 +122,6 @@ const FilterForm = ({
     }
   };
 
-  // useEffect(() => {
-  //   let isFilterPressed = parseInt(localStorage.getItem('pressFilterButton'));
-  //   if(isFilterPressed === 1) {
-  //     console.log('=====필터링을 눌렀을 경우 호출되는 함수=====');
-  //     setGender(localStorage.getItem('gender'));
-  //     setRoomCount(parseInt(localStorage.getItem('roomCount')) === 0 ? `상관없음`: `${parseInt(localStorage.getItem('roomCount'))}개`);
-      
-  //   }
-  // })
-
   useEffect(() => {
     let isFilterPressed = parseInt(localStorage.getItem('pressFilterButton'));
     //필터링을 설정했을 경우,
