@@ -29,7 +29,7 @@ const Logo = styled.span`
 const NavGroup = styled.span`
   position: absolute;
   top: 0.5rem;
-  left: 42.5vw;
+  left: 40.5vw;
 `;
 
 const NavElement = styled.span`
@@ -216,10 +216,10 @@ const Header = () => {
         </Link>
         <NavGroup>
           <Link to="/postMapPage" style={LinkToStyle}>
-            <NavElement fontWeight="600">방 보기</NavElement>
+            <NavElement fontWeight="600">Roommate</NavElement>
           </Link>
           <Link to="/CommunityPage" style={LinkToStyle}>
-            <NavElement fontWeight="600">커뮤니티</NavElement>
+            <NavElement fontWeight="600">Community</NavElement>
           </Link>
         </NavGroup>
         {localStorage.getItem("username") ? (

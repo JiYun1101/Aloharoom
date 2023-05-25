@@ -10,7 +10,6 @@ const NewPostHeaderDiv = styled.div`
     justify-content: center;
     font-size: 2rem;
     font-weight: ${props => props.fontWeight};
-    color: #47a5fd;
 `;
 
 const NewPostHeaderSection = () => {

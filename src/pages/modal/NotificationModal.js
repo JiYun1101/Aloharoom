@@ -59,7 +59,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                 {notificationData.map((data, index) => (
                     <Link 
                         key={index} 
-                        to={data.flag === 0 ? `${startUrl}postInfoPage/${data.boardId}`: ``} 
+                        to={data.flag === 0 ? `${startUrl}postInfoPage/${data.boardId}`: `${startUrl}CommunityInfoPage/${data.boardId}`} 
                         style={LinkToStyle}
                         onClick={() => { ReadNotification(data.notificationId);}}
                     >

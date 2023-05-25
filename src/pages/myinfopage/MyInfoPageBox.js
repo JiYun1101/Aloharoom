@@ -31,6 +31,18 @@ const MyPageBoxContainer = styled.div`
     flex-direction: column;
 `;
 
+const MyInfoUpdateButton = styled.button`
+    width: auto;
+    height: 2rem;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    background-color: #E2E2E2;
+    border-style: none;
+    border-radius: 0.5rem;
+    margin-top: 15px;
+    cursor: pointer;
+`;
+
 const MyPageBox = () => {
     const [isMyProfileUpdateModalOpen, setIsMyProfileUpdateModalOpen] = useState(false);
     const [responseData, setResponseData] = useState({});
@@ -76,14 +88,14 @@ const MyPageBox = () => {
             <></>
         }
         <MyPageBoxContainer>
-            <HoverHashTagButton 
+            <MyInfoUpdateButton 
                 onClick={() => {
                     showMyProfileUpdateModal();
                 }}
-                style={{ position: "absolute", top:"1rem", right: "1rem"}}
+                style={{ position: "absolute", top:"0.2rem", right: "1rem"}}
             >
                 내 정보 수정
-            </HoverHashTagButton>
+            </MyInfoUpdateButton>
             <MyPageTitle title="내 정보"/>
             <MyInfoPageContent
                 responseData={responseData}

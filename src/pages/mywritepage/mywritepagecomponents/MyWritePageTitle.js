@@ -15,6 +15,7 @@ const MyWriteTitleContainer = styled.div`
 `;
 
 const MyWriteTitleNav = styled.div`
+    font-weight: 600;
     &:hover {
         text-decoration: underline;
         text-decoration-color: #47a5fd;

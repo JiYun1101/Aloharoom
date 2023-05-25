@@ -17,7 +17,7 @@ const MyPageTitleContainer = styled.div`
 const MyPageTitle = ({title}) => {
     return (
         <MyPageTitleContainer>
-            <div>{title}</div>
+            <div style={{fontWeight: "600"}}>{title}</div>
         </MyPageTitleContainer>
     );
 }

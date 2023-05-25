@@ -28,7 +28,6 @@ const PriceInfoInput = styled.input`
 `;
 
 const PriceInfoSpan = styled.span`
-  color: #47a5fd;
   font-size: ${props => props.fontSize || "1rem"};
   margin-right: ${props => props.marginRight || "0rem"};
   font-weight: ${props => props.fontWeight};

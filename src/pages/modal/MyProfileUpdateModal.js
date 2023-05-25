@@ -233,7 +233,7 @@ const MyProfileUpdateModal = ({
             onOk={handleOk}
             centered
             onCancel={handelCancel}
-            bodyStyle={{height: "40rem", overflowY: 'auto '}}
+            bodyStyle={{height: "40rem", overflowY: 'auto'}}
             width={600}
         >
             <ModalFlexDiv width="99%" height="10rem" alignItems="center" justifyContent="center">
@@ -304,7 +304,7 @@ const MyProfileUpdateModal = ({
                     />
                 </Form.Item>
             </Form>
-            <ModalFlexDiv width="99%" height="auto" marginTop="0.5rem" alignItems="center">
+            <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
                 <ModalSpan fontSize="1.2rem">내 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
@@ -318,7 +318,7 @@ const MyProfileUpdateModal = ({
                     </HoverHashTagButton>
                 ))}
             </ModalFlexDiv>
-            <ModalFlexDiv width="99%" height="auto" marginTop="0.5rem" alignItems="center">
+            <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
                 <ModalSpan fontSize="1.2rem">집 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
@@ -332,7 +332,7 @@ const MyProfileUpdateModal = ({
                     </HoverHashTagButton>
                 ))}
             </ModalFlexDiv>
-            <ModalFlexDiv width="99%" height="auto" marginTop="0.5rem" alignItems="center">
+            <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
                 <ModalSpan fontSize="1.2rem">내 선호 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
@@ -346,7 +346,7 @@ const MyProfileUpdateModal = ({
                     </HoverHashTagButton>
                 ))}
             </ModalFlexDiv>
-            <ModalFlexDiv width="99%" height="auto" marginTop="0.5rem" alignItems="center">
+            <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
                 <ModalSpan fontSize="1.2rem">집 선호 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">

@@ -53,7 +53,6 @@ const TitleBox = styled.div`
 `;
 
 const TitleSpan = styled.span`
-  color: #47a5fd;
   font-size: ${ props => props.fontSize || "1rem"};
   line-height: ${ props => props.lineHeight || "0rem"};
   margin-right: ${ props => props.marginRight || "0rem"};
@@ -209,13 +208,13 @@ const NewPostContentInfoSection = ({
                           setDeposit={setDeposit} 
                           setOpenChatUrl={setOpenChatUrl}
                         />
-                        <TitleDiv height="3.5vh" marginTop="1.5vh">
+                        <TitleDiv height="4vh" marginTop="1.5vh">
                             <TitleSpan fontSize="1rem" marginRight="3.5vh" lineHeight="3.5vh" fontWeight="600">내 해시태그</TitleSpan>
                         </TitleDiv>    
                         <MyHashTagButtonSection
                           myHashtags={myHashtags}
                         />
-                        <TitleDiv height="3.5vh" marginTop="1.5vh">
+                        <TitleDiv height="4vh" marginTop="1.5vh">
                             <TitleSpan fontSize="1rem" marginRight="2rem" lineHeight="3.5vh" fontWeight="600">집 해시태그</TitleSpan>
                         </TitleDiv>
                         <HouseHashTagButtonSection 

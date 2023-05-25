@@ -22,7 +22,7 @@ const GuaranteePriceCheckbox = styled.input`
 `;
 
 const GuaranteeSpan = styled.span`
-    color: #47a5fd;
+    //color: #47a5fd;
     font-size: 1rem;
     margin-right: 2vw;
     font-weight: ${props => props.fontWeight};

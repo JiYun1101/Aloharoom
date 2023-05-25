@@ -12,11 +12,11 @@ const PostInfoFlexDiv = styled.div`
     justify-content: ${ props => props.justifyContent || "flex-start" };
     gap: ${ props => props.gap || "0rem"};
 
-    border-style: ${ props => props.borderStyle || "none"};
-    border-radius: ${ props => props.borderRadius || "0rem"};
-    border-color: ${ props => props.borderColor || "black"};
+    border-style: ${ props => props.borderStyle};
+    border-radius: ${ props => props.borderRadius};
+    border-color: ${ props => props.borderColor};
 
-    border-bottom: ${ props => props.borderBottom || "none"};
+    border-bottom: ${ props => props.borderBottom};
 
     margin-top: ${ props => props.marginTop || "0rem"};
     margin-left: ${ props => props.marginLeft || "0rem"};

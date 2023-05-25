@@ -17,7 +17,7 @@ const CommentProfileImg = styled.img`
 const ReadComment = ({
     commentId,
     content,
-    //createdDate,
+    createdDate,
     nickname,
     userId,
     profileUrl,
@@ -52,13 +52,13 @@ const ReadComment = ({
         :
             <></>
         }
-        <PostInfoFlexDiv width="100%" minHeight="6rem" flexDirection="column" borderStyle="solid" borderRadius="0.5rem" borderColor="#47a5fd">
+        <PostInfoFlexDiv width="100%" minHeight="7rem" flexDirection="column" borderBottom="solid #bbbbbb" marginTop="1rem">
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center" flexDirection="row">
-                <PostInfoFlexDiv width="50%" height="100%" alignItems="center">
+                <PostInfoFlexDiv width="50%" minHeight="100%" alignItems="center">
                     <CommentProfileImg src={profileUrl}/>
-                    <PostInfoSpan color="#47a5fd" fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
                 </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="50%" height="100%" alignItems="center" flexDirection="row-reverse">
+                <PostInfoFlexDiv width="50%" minHeight="100%" alignItems="center" flexDirection="row-reverse">
                     {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
                         <>
                             <AiOutlineDelete 
@@ -79,11 +79,11 @@ const ReadComment = ({
                     }
                 </PostInfoFlexDiv>
             </PostInfoFlexDiv>
-            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
+            <PostInfoFlexDiv width="100%" minHeight="4rem" alignItems="center"> 
                 {editMode 
                 ? 
                 <>
-                    <CommentInput type="text" defaultValue={content} onChange={(e) => {setEditInputValue(e.target.value);}}/>
+                    <CommentInput type="text" width="80%" defaultValue={content} onChange={(e) => {setEditInputValue(e.target.value);}}/>
                     <CommentWriteButton
                         onClick={() => {
                             updateComment(commentId, editInputValue);
@@ -126,6 +126,14 @@ const ReadComment = ({
                         }}
                     >
                         {showReplies ? "대댓글 가리기" : "대댓글 보기"}
+                    </PostInfoSpan>
+                    <PostInfoSpan
+                        marginLeft="1rem"
+                        marginTop="0.5rem" 
+                        fontSize="0.8rem" 
+                        color="#a0a0a0"
+                    >
+                        {createdDate}
                     </PostInfoSpan>
                 </>
                 }

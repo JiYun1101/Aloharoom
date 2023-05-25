@@ -110,6 +110,7 @@ const PostInfoPage = () => {
     const navigate = useNavigate();
     const postInfoContentSpanRef = useRef(null);
     const [commentData, setCommentData] = useState([]);
+    const flag = 0;
     const [address, setAddress] = useState('');
     const [age, setAge] = useState('');
     const [contents, setContents] = useState('');
@@ -314,7 +315,7 @@ const PostInfoPage = () => {
         <PostInfoPageContainer>
         <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate('../postMapPage')}/>
             <PostInfoPageSection>
-                <PostInfoDiv width="100%" height="auto" marginTop="3rem">
+                <PostInfoDiv width="100%" minHeight="30rem" marginTop="3rem">
                     <SwiperContainer>
                         <Swiper
                             // install Swiper modules
@@ -358,15 +359,15 @@ const PostInfoPage = () => {
                                 } 
                                 {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
                                     <>
-                                        <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
-                                            {<AiOutlineEdit size={40}/>}
-                                        </Link>
                                         <AiOutlineDelete 
                                             onClick={() => {
                                                 showDeletePostModal();
                                             }}
                                             size={40}
                                         />
+                                        <Link to={`../updatePostPage/${boardId}`} style={LinkToIconStyle}>
+                                            {<AiOutlineEdit size={40}/>}
+                                        </Link>
                                     </>
                                 :
                                     <></>
@@ -415,84 +416,96 @@ const PostInfoPage = () => {
                     <></>
                 }
                 <PostInfoFlexDiv width="95%" borderBottom="solid 0.1rem #bbbbbb"/>
-                <PostInfoDiv width="95%" height="auto" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 성향</PostInfoSpan>
+                {myHashtag.length === 0 ? 
+                    <></>
+                :
+                    <>
+                        <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                            <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 성향</PostInfoSpan>
+                        </PostInfoDiv>
+                        <PostInfoFlexDiv 
+                            width="95%" 
+                            minHeight="auto" 
+                            paddingTop="1rem"
+                            paddingBottom="1rem"
+                            flexDirections="row" 
+                            flexWrap="wrap" 
+                            gap="0.5rem" 
+                            borderBottom="solid 0.1rem #bbbbbb"
+                        >
+                            { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                        </PostInfoFlexDiv>
+                    </>
+                }
+                {myHomeHashtag.length === 0 ?
+                    <></>
+                :
+                    <>
+                        <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                            <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 거주지 성향</PostInfoSpan>
+                        </PostInfoDiv>
+                        <PostInfoFlexDiv 
+                            width="95%" 
+                            minHeight="auto" 
+                            paddingTop="1rem"
+                            paddingBottom="1rem"
+                            flexDirections="row" 
+                            flexWrap="wrap" 
+                            gap="0.5rem" 
+                            borderBottom="solid 0.1rem #bbbbbb"
+                        >
+                            { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
+                        </PostInfoFlexDiv>
+                    </>
+                }
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 거주지 정보</PostInfoSpan>
                 </PostInfoDiv>
-                <PostInfoFlexDiv 
-                    width="95%" 
-                    minHeight="auto" 
-                    paddingTop="1rem"
-                    paddingBottom="1rem"
-                    flexDirections="row" 
-                    flexWrap="wrap" 
-                    gap="0.5rem" 
-                    borderBottom="solid 0.1rem #bbbbbb"
-                >
-                    { myHashtag && myHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" height="auto" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 거주지 성향</PostInfoSpan>
-                </PostInfoDiv>
-                <PostInfoFlexDiv 
-                    width="95%" 
-                    minHeight="auto" 
-                    paddingTop="1rem"
-                    paddingBottom="1rem"
-                    flexDirections="row" 
-                    flexWrap="wrap" 
-                    gap="0.5rem" 
-                    borderBottom="solid 0.1rem #bbbbbb"
-                >
-                    { myHomeHashtag && myHomeHashtag.map((data, idx) => <HashTagButton key={idx}>{data}</HashTagButton>)}
-                </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" height="3rem" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.5rem">작성자 거주지 정보</PostInfoSpan>
-                </PostInfoDiv>
-                <PostInfoDiv width="95%" height="3rem" marginTop="1rem">
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
                     <PostInfoSpan fontSize="1.2rem">입주 가능 날짜: {startDate}</PostInfoSpan>
                 </PostInfoDiv>
-                <PostInfoDiv width="95%" height="3rem" marginTop="1rem">
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
                     <PostInfoSpan fontSize="1.2rem">주소: {address}</PostInfoSpan>
                 </PostInfoDiv>
-                <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row" marginTop="1rem">
+                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">방 개수: {roomCount}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">주거 형태: 
+                        <PostInfoSpan fontSize="1.2rem">주거 형태:
                         {homeType === 'apartment' ?
-                            `아파트` 
-                            : homeType === 'villa' ? `주택` : `오피스텔`
+                            ` 아파트` 
+                            : homeType === 'villa' ? ` 주택` : ` 오피스텔`
                         }
                         </PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">평수: {flat}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">{`방 개수: ${roomCount}개`}</PostInfoSpan>
+                    </PostInfoFlexDiv>
+                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
+                        <PostInfoSpan fontSize="1.2rem">{`평수: ${flat}평`}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row">
+                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">전체층수: {totalFloor}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">{`전체 층수: ${totalFloor}층`}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">층수: {floor}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">{`층수: ${floor}층`}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="3rem" flexDirections="row">
+                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">계약형태: {tradeType}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">{`계약 형태: ${tradeType}`}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
                         <PostInfoSpan fontSize="1.2rem">가격: {price}</PostInfoSpan>
                     </PostInfoFlexDiv>
                     <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">관리비: {maintenance}</PostInfoSpan>
+                        <PostInfoSpan fontSize="1.2rem">{`관리비: ${maintenance}만원`}</PostInfoSpan>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" height="5rem" marginTop="1rem" paddingBottom="1rem" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoSpan fontSize="1.2rem">룸메이트 가격: {rent}</PostInfoSpan>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem" paddingBottom="1rem" borderBottom="solid 0.1rem #bbbbbb">
+                    <PostInfoSpan fontSize="1.2rem">{`룸메이트 가격: ${rent}만원`}</PostInfoSpan>
                 </PostInfoDiv>
-                <PostInfoFlexDiv width="95%" minHeight="3rem" marginTop="0.7rem" alignItems="center">
+                {/* <PostInfoFlexDiv width="95%" minHeight="3rem" marginTop="0.7rem" alignItems="center">
                     <PostInfoSpan color="#bbbbbb" fontSize="1.2rem">이 지역은 하루 배송권이에요.</PostInfoSpan>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="95%" minHeight="10rem" flexDirection="column" borderBottom="solid 0.1rem #bbbbbb">
@@ -522,7 +535,12 @@ const PostInfoPage = () => {
                             <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">마켓컬리</PostInfoSpan>
                         </PostInfoFlexDiv>
                     </PostInfoFlexDiv>
-                </PostInfoFlexDiv>
+                </PostInfoFlexDiv> */}
+                <PostInfoDiv width="95%" minHeight="5rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
+                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500" style={PostInfoContentstyles}>
+                        {contents}
+                    </PostInfoSpan>
+                </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
                     <PostInfoDiv width="90%" height="28rem" position="relative">
                         <InfoPageMapContainer 
@@ -533,11 +551,6 @@ const PostInfoPage = () => {
                         />
                     </PostInfoDiv>
                 </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" height="auto" marginTop="1rem">
-                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500" style={PostInfoContentstyles}>
-                        {contents}
-                    </PostInfoSpan>
-                </PostInfoDiv>
                 {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
                     <>
                         {isActivate ?
@@ -566,7 +579,10 @@ const PostInfoPage = () => {
                     <></>
                 }
                 <PostInfoFlexDiv width="95%" borderBottom="solid 0.1rem #bbbbbb"/>
-                <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column">
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.5rem" fontWeight="600">댓글</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column" gap="1rem">
                     {commentData.map((data, idx) => (
                         <ReadCommentSection
                             key={idx} 
@@ -576,6 +592,7 @@ const PostInfoPage = () => {
                             deleteComment={deleteComment}
                             updateComment={updateComment}
                             myProfileURL={myProfileURL}
+                            flag={flag}
                         />
                     ))}
                     {localStorage.getItem('userId') ? 
@@ -583,6 +600,7 @@ const PostInfoPage = () => {
                             makeCommentRequest={makeCommentRequest}
                             boardId={boardId}
                             myProfileURL={myProfileURL}
+                            flag={flag}
                         />
                     :
                         <></>
