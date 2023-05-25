@@ -16,24 +16,30 @@ const MyWriteTitleContainer = styled.div`
 
 const MyWriteTitleNav = styled.div`
     font-weight: 600;
+    cursor: pointer;
+    border-bottom: ${props => (props.underline ? 'solid #47a5fd 0.2rem' : 'none')};
     &:hover {
-        text-decoration: underline;
-        text-decoration-color: #47a5fd;
-        text-decoration-thickness: 0.15rem;
-        text-underline-offset: 0.4rem;
+        border-bottom: solid #47a5fd 0.2rem;
     }
 `;
 
 
-const MyWritePageTitle = ({roomClicked, communityClicked}) => {
+const MyWritePageTitle = ({
+    roomClick,
+    communityClick,
+    roomClicked,
+    communityClicked
+}) => {
     return (
     <MyWriteTitleContainer>
         <MyWriteTitleNav
+            underline={roomClick}
             onClick={roomClicked}
         >
             방 작성
         </MyWriteTitleNav>
         <MyWriteTitleNav
+            underline={communityClick}
             onClick={communityClicked}
         >
             커뮤니티 작성

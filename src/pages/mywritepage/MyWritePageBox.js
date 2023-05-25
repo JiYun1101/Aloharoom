@@ -43,6 +43,8 @@ const MyWritePageBox = () => {
     return (
         <MyWritePageContainer>
             <MyWritePageTitle
+                roomClick={roomClick}
+                communityClick={communityClick}
                 roomClicked={roomClicked}
                 communityClicked={communityClicked}
             />

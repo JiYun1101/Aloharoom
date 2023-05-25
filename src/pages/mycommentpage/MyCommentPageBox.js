@@ -42,6 +42,8 @@ const MyCommentPageBox = () => {
     return (
         <MyCommentPageContainer>
             <MyCommentPageTitle
+                roomClick={roomClick}
+                communityClick={communityClick}
                 roomClicked={roomClicked}
                 communityClicked={communityClicked}
             />
