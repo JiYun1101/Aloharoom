@@ -448,8 +448,6 @@ const PostInfoPage = () => {
   }
 
   async function makeCommentRequest(
-    title,
-    code,
     userId,
     targetUserId,
     boardId,
@@ -461,8 +459,6 @@ const PostInfoPage = () => {
   ) {
     await axios
       .post(`${baseURL}/api/comment`, {
-        title: title,
-        code: code,
         userId: userId,
         targetUserId: targetUserId,
         boardId: boardId,
