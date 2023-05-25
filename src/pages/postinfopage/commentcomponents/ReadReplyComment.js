@@ -46,7 +46,7 @@ const ReadReplyComment = ({
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center" flexDirection="row">
                 <PostInfoFlexDiv width="50%" minHeight="100%" alignItems="center">
                     <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src={profileUrl}/>
-                    <PostInfoSpan fontSize="1.2rem" marginLeft="0.5rem">{nickname}</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.2rem" marginLeft="1rem" fontWeight="600">{nickname}</PostInfoSpan>
                 </PostInfoFlexDiv>
                 <PostInfoFlexDiv width="50%" minHeight="100%" alignItems="center" flexDirection="row-reverse">
                     {parseInt(userId) === parseInt(localStorage.getItem('userId')) ?
