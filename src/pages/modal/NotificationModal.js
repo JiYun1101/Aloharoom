@@ -24,10 +24,10 @@ const NotificationModalContainer = styled.div`
 const NotificationModalCloseButton = styled.button`
     margin-right: 0.5rem;
     font-size: 1.5rem;
-    color: #47a5fd;
     background-color: white;
     border-radius: 0.5rem;
     border-style:none;
+    cursor: pointer;
 `;
 
 const LinkToStyle = {
@@ -47,15 +47,15 @@ const NotificationModal = ({ModalClose, notificationData}) => {
     const startUrl = location.pathname === "/" ? "./" : "../";
     return (
         <NotificationModalContainer>
-            <ModalFlexDiv width="25rem" height="3rem">
+            <ModalFlexDiv width="25rem" height="3rem" borderBottom="solid 0.05rem black">
                 <ModalDiv width="12rem" height="3rem">
-                    <ModalDiv fontWeight="400" fontSize="1.5rem" marginTop="0.7rem" marginLeft="0.5rem">알림</ModalDiv>
+                    <ModalDiv fontWeight="600" fontSize="1.5rem" marginTop="0.7rem" marginLeft="0.5rem">알림</ModalDiv>
                 </ModalDiv>
-                <ModalFlexDiv width="13rem" height="2rem" flexDirection="row-reverse">
+                <ModalFlexDiv width="13rem" height="3rem" flexDirection="row-reverse" alignItems="center">
                     <NotificationModalCloseButton onClick={ModalClose}>x</NotificationModalCloseButton> 
                 </ModalFlexDiv>
             </ModalFlexDiv>
-            <ModalFlexDiv width="99%" height="22rem" flexDirection="column" overFlowY="auto">
+            <ModalFlexDiv width="99%" height="21.9rem" flexDirection="column" overFlowY="auto">
                 {notificationData.map((data, index) => (
                     <Link 
                         key={index} 
