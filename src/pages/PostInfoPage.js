@@ -337,7 +337,6 @@ const PostInfoPage = () => {
         }
         <Header/>
         <PostInfoPageContainer>
-        <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate('../postMapPage')}/>
             <PostInfoPageSection>
                 <PostInfoDiv width="100%" minHeight="30rem" marginTop="3rem">
                     <SwiperContainer>
