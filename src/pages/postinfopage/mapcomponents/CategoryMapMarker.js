@@ -10,7 +10,20 @@ const CategoryMapMarker = ({data}) => {
             onMouseOver={() => setIsVisible(true)}
             onMouseOut={() => setIsVisible(false)}
         >
-            { isVisible && <div style={{ color: "#000"}}>{data.place_name}</div>}
+            { isVisible && 
+                <div 
+                    style={{ 
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        color: "black",
+                        minWidth: "15vw",
+                        padding: "1px"
+                    }}
+                >
+                    {data.place_name}
+                </div>
+            }
         </MapMarker>
     );
 }
