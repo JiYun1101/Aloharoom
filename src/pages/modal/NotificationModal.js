@@ -43,6 +43,39 @@ const NotificationModal = ({ModalClose, notificationData}) => {
         .then((response) => { console.log(`알림 읽기 성공`); })
         .catch((error) => { console.log(`알림 읽기 실패`);})
     }
+    const prefixArr = [];
+    const nicknames = [];
+    const suffixArr = [];
+
+    const extractPrefixSuffixStr = (content, target) => {
+        // 정규식을 사용하여 admin3 앞의 문자열과 뒤의 문자열 추출
+        const regex = new RegExp(`(.*)${target}`);
+        const match = regex.exec(content);
+        // 결과 출력
+        if (match && match.length > 1) {
+            const prefix = match[1];
+            prefixArr.push(prefix);
+            const suffix = content.substring(prefix.length + target.length);
+            suffixArr.push(suffix);
+        } else {
+            console.log(`"${target}"을 찾을 수 없습니다.`);
+        }
+    }
+
+    const extractNickname = (content) => {
+        const regex = /에\s(.*?)님이/;
+        const match = regex.exec(content);
+        if (match && match.length > 1) {
+            nicknames.push(match[1]);
+            return match[1];
+        } 
+    }
+    //문장에서 닉네임과 앞, 뒤 문자열 추출
+    notificationData.map((data) => {
+        const target = extractNickname(data.content);
+        extractPrefixSuffixStr(data.content, target);
+    })
+
     const location = useLocation();
     const startUrl = location.pathname === "/" ? "./" : "../";
     return (
@@ -101,8 +134,19 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                         color={!data.isCheck ? `black`: `#a0a0a0`}
                                         fontWeight={!data.isCheck && `600`}
                                     >
-                                        {/* {data.flag === 0 ? `방 보기 페이지 ${data.content}` : `커뮤니티 페이지 ${data.content}`} */}
-                                        {data.content}
+                                        {prefixArr[index]}
+                                    </ModalSpan>
+                                    <ModalSpan 
+                                        color={!data.isCheck ? `#47a5fd`: `#a0a0a0`}
+                                        fontWeight={!data.isCheck && `600`}
+                                    >
+                                        {nicknames[index]}
+                                    </ModalSpan>
+                                    <ModalSpan 
+                                        color={!data.isCheck ? `black`: `#a0a0a0`}
+                                        fontWeight={!data.isCheck && `600`}
+                                    >
+                                        {suffixArr[index]}
                                     </ModalSpan>
                                 </ModalDiv>
                                 <ModalFlexDiv width="100%" height="25%" flexDirection="row-reverse" alignItems="center">
