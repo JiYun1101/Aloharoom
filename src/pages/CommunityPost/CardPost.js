@@ -13,6 +13,7 @@ import box from "../../img/box.jpg";
 import blue from "../../img/blue.jpg";
 import mint from "../../img/mint.jpg";
 import baseURL from "../api/baseURL";
+import { AiFillEye } from "react-icons/ai";
 
 const RoomTypeDiv = styled.div`
   width: 90%;
@@ -31,6 +32,8 @@ const RoomTypeButton = styled.button`
   border: 2px solid #47a5fd;
   border-radius: 0.5rem;
   margin-left: 15rem;
+  textdecoration: "none";
+  color: "inherit";
 `;
 
 const ProfileCommentDiv = styled.div`
@@ -64,7 +67,7 @@ const ProfileSpan = styled.span`
 `;
 
 const ViewsSpan = styled.span`
-  margin-right: 0.5rem;
+  margin-right: -1.5rem;
   color: black;
   font-size: 0.9rem;
 `;
@@ -102,7 +105,7 @@ const CommentSpan2 = styled.span`
 `;
 
 const Card2 = styled.div`
-  min-width: 150%;
+  width: 900px; /* 원하는 너비 값으로 설정 */
   height: 10rem;
   border-style: solid;
   border-color: #bbbbbb;
@@ -111,15 +114,18 @@ const Card2 = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin: 0 auto; /* 가운데 정렬 */
   &:hover {
     border-color: #47a5fd;
   }
 `;
+
 const CardBox2 = styled.div`
   position: absolute;
   top: 10rem;
-  left: 5.5vw;
-  width: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -165,6 +171,7 @@ const CardImageDiv = styled.div`
 `;
 
 const CardImage = styled.img`
+  display: fixed;
   width: 15rem; /* 이미지 너비를 100%로 설정 */
   height: 9rem; /* 이미지 높이를 자동으로 조정 */
   margin-left: 1rem; /* 왼쪽으로 1rem 떨어뜨리기 */
@@ -191,27 +198,11 @@ const CardPost = ({ communityId, code }) => {
       );
       setData(result.data[0]);
       console.log(result.data[0]);
+      console.log("여기", result.data.commentNum);
     };
     fetchData();
   }, [communityId, code]); // code를 의존성 배열에 추가
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (cardRef.current) {
-        setScrollTop(cardRef.current.scrollTop);
-      }
-    };
-
-    if (cardRef.current) {
-      cardRef.current.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        cardRef.current.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
   const handleLinkClick = (event, message) => {
     console.log(message);
   };
@@ -249,9 +240,7 @@ const CardPost = ({ communityId, code }) => {
           >
             <DateDiv>
               <RoomTypeDiv>
-                <RoomTypeButton style={LinkToStyle}>
-                  {getRoomTypeText(post.code)}
-                </RoomTypeButton>
+                <RoomTypeButton>{getRoomTypeText(post.code)}</RoomTypeButton>
               </RoomTypeDiv>
             </DateDiv>
             <TitleDiv>
@@ -269,7 +258,7 @@ const CardPost = ({ communityId, code }) => {
               <ViewsDiv>
                 <ViewsSpan>
                   <b>
-                    조회수
+                    <AiFillEye size={25} style={{ marginRight: "0.5vw" }} />
                     {post.views}
                   </b>
                 </ViewsSpan>

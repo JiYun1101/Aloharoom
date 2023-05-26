@@ -9,7 +9,7 @@ const BannerImageBox = styled.div`
 
 const BannerImage = styled.img`
   width: 60rem;
-  height: 30rem;
+  height: 33rem;
   border-radius: 0.5rem;
 `;
 

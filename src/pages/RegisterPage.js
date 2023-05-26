@@ -166,7 +166,6 @@ function RegisterPage() {
               >
                 <Input />
               </Form.Item>
-
               <Form.Item
                 name="nickname"
                 label="닉네임"
@@ -182,7 +181,6 @@ function RegisterPage() {
               >
                 <Input />
               </Form.Item>
-
               <Form.Item
                 name="password"
                 label="비밀번호"
@@ -228,7 +226,10 @@ function RegisterPage() {
                       ]}
                       onFinish={onFinish}
                     >
-                      <Input /> {/* 성별 입력 필드가 Input 컴포넌트로 가정 */}
+                      <Select style={{ width: "115px" }}>
+                        <Option value="male">남성</Option>
+                        <Option value="female">여성</Option>
+                      </Select>
                     </Form.Item>
                   </Col>
                 </Row>

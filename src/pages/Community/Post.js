@@ -4,6 +4,7 @@ import CardPosts from "./CardPosts";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Input, Segmented, Select, Space } from "antd";
 import { Pagination } from "antd";
+import { AiFillEye } from "react-icons/ai";
 // import CardPost2 from "./Community";
 
 import { Button, Form, Input, Radio } from "antd";
@@ -144,34 +145,37 @@ const Post = ({ clickedCommunityId, cardPostData }) => {
           <p>3. 오늘의 일기</p>
         </CardPost3>{" "}
         {/* CardPost3에 ref 추가 */}
-        <Input 
-          placeholder={selectSearchType === '제목'? `제목을 입력하세요.` : `닉네임을 입력하세요.`}
+        <Input
+          placeholder={
+            selectSearchType === "제목"
+              ? `제목을 입력하세요.`
+              : `닉네임을 입력하세요.`
+          }
           size="small"
           onChange={handleInputChange}
         />
-        <Select 
+        <Select
           defaultValue="제목"
           style={{
             width: 120,
           }}
           options={[
-          {
-            value: '제목',
-            label: '제목'
-          },
-          {
-            value: '닉네임',
-            label: '닉네임'
-          },
-        ]}
+            {
+              value: "제목",
+              label: "제목",
+            },
+            {
+              value: "닉네임",
+              label: "닉네임",
+            },
+          ]}
           onChange={SearchTypeChange}
         />
         <button
           onClick={() => {
-            if (selectSearchType === '제목') {
+            if (selectSearchType === "제목") {
               CommunityPostTitleSearch(inputValue, code);
-            }
-            else {
+            } else {
               CommunityPostNicknameSearch(inputValue, code);
             }
           }}

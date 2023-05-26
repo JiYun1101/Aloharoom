@@ -13,9 +13,7 @@ const CardPosts = (props) => {
   const [data, setData] = useState([]);
 
   // 게시물 리스트를 가져올 API 호출 등의 로직은 생략하고, 하드코딩으로 데이터를 만듦
-  const initialData = [
-    { id: 1 },
-  ];
+  const initialData = [{ id: 1, title: "Title 1", content: "Content 1" }];
 
   useEffect(() => {
     // 코드가 변경될 때마다 데이터를 새로 불러옴

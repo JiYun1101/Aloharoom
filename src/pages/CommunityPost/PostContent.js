@@ -86,15 +86,20 @@ const FormContainer = styled.div`
 `;
 
 const FormItemContainer = styled.div`
-  display: flex;
+  display: fixed;
   justify-content: center;
   align-items: center;
 `;
 
 const PostMapContentContainer = styled.div`
+  display: fixed;
+`;
+
+const PostMapContentContainer2 = styled.div`
+  margin-top: -3vm;
   position: relative;
   width: 100%;
-  height: 86.8vh;
+  height: 6.8vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -150,7 +155,7 @@ const PostContent = (
     formLayout === "horizontal"
       ? {
           labelCol: {
-            span: 4,
+            span: 5,
           },
           wrapperCol: {
             span: 14,
@@ -162,7 +167,7 @@ const PostContent = (
       ? {
           wrapperCol: {
             span: 14,
-            offset: 4,
+            offset: 5,
           },
         }
       : null;
@@ -230,6 +235,7 @@ const PostContent = (
     }
     // window.location.reload(); // 현재 페이지 새로고침
   };
+
   console.log("code =", code); // 콘솔에 code 값 출력
 
   console.log(code);
@@ -245,7 +251,7 @@ const PostContent = (
   };
 
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
-  
+
   const handleLinkClick = (event, message) => {
     console.log(message);
   };
@@ -261,42 +267,44 @@ const PostContent = (
     fetchData();
   }, [code]); // code를 의존성 배열에 추가
   return (
-    <PostMapContentContainer>
-      <Space.Compact
-        block
-        style={{
-          width: 600,
-          marginLeft: "29rem",
-          marginTop: "5.7rem",
-          border: "1px solid black",
-          borderRadius: "5px", // 모서리를 둥글게 만듦
-        }}
-      >
-        <Button
+    <>
+      <PostMapContentContainer>
+        <Space.Compact
+          block
           style={{
-            color: button1Color,
+            width: "210px",
+            marginLeft: "29rem",
+            marginTop: "5.7rem",
+            border: "1px solid black",
+            borderRadius: "5px", // 모서리를 둥글게 만듦
           }}
-          onClick={() => handleButtonClick(1)} // 첫 번째 버튼 클릭 시 handleButtonClick(1) 호출
         >
-          방자랑
-        </Button>
-        <Button
-          style={{
-            color: button2Color,
-          }}
-          onClick={() => handleButtonClick(2)} // 두 번째 버튼 클릭 시 handleButtonClick(2) 호출
-        >
-          정보 공유
-        </Button>
-        <Button
-          style={{
-            color: button3Color,
-          }}
-          onClick={() => handleButtonClick(3)} // 세 번째 버튼 클릭 시 handleButtonClick(3) 호출
-        >
-          자유
-        </Button>
-      </Space.Compact>
+          <Button
+            style={{
+              color: button1Color,
+            }}
+            onClick={() => handleButtonClick(1)} // 첫 번째 버튼 클릭 시 handleButtonClick(1) 호출
+          >
+            방자랑
+          </Button>
+          <Button
+            style={{
+              color: button2Color,
+            }}
+            onClick={() => handleButtonClick(2)} // 두 번째 버튼 클릭 시 handleButtonClick(2) 호출
+          >
+            정보/공유
+          </Button>
+          <Button
+            style={{
+              color: button3Color,
+            }}
+            onClick={() => handleButtonClick(3)} // 세 번째 버튼 클릭 시 handleButtonClick(3) 호출
+          >
+            자유
+          </Button>
+        </Space.Compact>
+      </PostMapContentContainer>
       <SearchSectionContainer>
         <Search
           placeholder="게시물 키워드를 입력하세요"
@@ -304,48 +312,65 @@ const PostContent = (
           allowClear
           onSearch={onSearch}
           style={{
-            width: 300,
-            marginLeft: "13.7rem",
-            marginTop: "5.7rem",
+            width: "3100px",
+            left: "30rem",
+            marginLeft: "29rem",
+            marginTop: "0.7rem",
           }}
         />
       </SearchSectionContainer>
-      <CardPosts code={code} />
-      <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
-        <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b> <br />
-        {data.map((post, index) => (
-          <React.Fragment key={index}>
-            <b
-              onClick={() => handleCardPostClick(post.title)}
-              style={{
-                textDecoration: "underline", // 밑줄 스타일 추가
-                cursor: "pointer", // 클릭 가능한 커서 스타일 추가
-              }}
-            >
-              <Link
-                to={`../CommunityInfoPage/${post.communityId}`}
-                style={LinkToStyle}
-                onClick={(event) => {
-                  setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
-                  handleLinkClick(
-                    event,
-                    `../CommunityInfoPage/${post.communityId}`
-                  );
+
+      <PostMapContentContainer2>
+        <CardPosts code={code} />
+        <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
+          <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b> <br />
+          {data.map((post, index) => (
+            <React.Fragment key={index}>
+              <b
+                onClick={() => handleCardPostClick(post.title)}
+                style={{
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                  width: "70%",
                 }}
               >
-                {post.title}
-              </Link>
-            </b>
-            <br />
-          </React.Fragment>
-        ))}
-      </CardPost3>
+                <Link
+                  to={`../CommunityInfoPage/${post.communityId}`}
+                  style={LinkToStyle}
+                  onClick={(event) => {
+                    setCurrentIndex(index);
+                    handleLinkClick(
+                      event,
+                      `../CommunityInfoPage/${post.communityId}`
+                    );
+                  }}
+                >
+                  {index === 0 && (
+                    <span style={{ textDecoration: "none" }}>1위 </span>
+                  )}{" "}
+                  {/* 1위일 경우 '1위' 추가 */}
+                  {index === 1 && (
+                    <span style={{ textDecoration: "none" }}>2위 </span>
+                  )}{" "}
+                  {/* 2위일 경우 '2위' 추가 */}
+                  {index === 2 && (
+                    <span style={{ textDecoration: "none" }}>3위 </span>
+                  )}{" "}
+                  {/* 3위일 경우 '3위' 추가 */}
+                  {post.title}
+                </Link>
+              </b>
+              <br />
+            </React.Fragment>
+          ))}
+        </CardPost3>
 
-      {selectedTitle && <CardPosts title={selectedTitle} />}
-      <Link to="/newCommunityPostPage" style={LinkToStyle}>
-        <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
-      </Link>
-    </PostMapContentContainer>
+        {selectedTitle && <CardPosts title={selectedTitle} />}
+        <Link to="/newCommunityPostPage" style={LinkToStyle}>
+          <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+        </Link>
+      </PostMapContentContainer2>
+    </>
   );
 };
 

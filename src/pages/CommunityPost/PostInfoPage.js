@@ -53,21 +53,22 @@ const PostInfoPageBox = styled.div`
 `;
 
 const PostInfoImageBox = styled.div`
+  align-content: center;
+  align-items: center;
   margin-top: 3rem;
   width: 100%;
-  height: 15rem;
+  height: 53vh;
 `;
 
 const Container = styled.div`
   margin-top: 1rem;
-  .swiper-slide {
-    margin-right: 20px; /* SwiperSlide 간격 조정 */
-  }
+  height: 15rem;
 `;
 
 const PostInfoImage = styled.img`
-  width: 20rem;
-  height: 13rem;
+  width: 40vw;
+  height: 50vh;
+  margin-left: 2.2rem;
 `;
 
 const TitleDiv = styled.div`
@@ -481,18 +482,28 @@ const PostInfoPage = () => {
   }
 
   async function deleteComment(commentId) {
-      await axios.delete(`${baseURL}/api/comment/${commentId}`)
-      .then((response) => { FetchBoardComment();})
-      .catch((error) => {console.log('deleteComment axios error')});
+    await axios
+      .delete(`${baseURL}/api/comment/${commentId}`)
+      .then((response) => {
+        FetchBoardComment();
+      })
+      .catch((error) => {
+        console.log("deleteComment axios error");
+      });
   }
 
   async function updateComment(commentId, content) {
-      await axios.patch(`${baseURL}/api/comment`, {
-          "homeCommentId": commentId, 
-          "content": content
+    await axios
+      .patch(`${baseURL}/api/comment`, {
+        homeCommentId: commentId,
+        content: content,
       })
-      .then((response) => { FetchBoardComment();})
-      .catch((error) => {console.log('updateComment axios error')});
+      .then((response) => {
+        FetchBoardComment();
+      })
+      .catch((error) => {
+        console.log("updateComment axios error");
+      });
   }
 
   async function fetchMyInfo() {
@@ -501,7 +512,7 @@ const PostInfoPage = () => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log('fetchMyInfo response data', response.data);
+        console.log("fetchMyInfo response data", response.data);
         setMyProfileURL(response.data.profileUrl);
       })
       .catch((error) => {
@@ -558,7 +569,7 @@ const PostInfoPage = () => {
           <ProfileHeartDiv>
             <ProfileDiv>
               <ProfileImg src={data.profile} />
-              <ProfileName>{data.nickname}</ProfileName>
+              <ProfileName>{data.nickname} </ProfileName>
             </ProfileDiv>
             <HeartDiv>
               {localStorage.getItem("userId") ? (
@@ -593,12 +604,14 @@ const PostInfoPage = () => {
             <PostContentSpan>{data.contents}</PostContentSpan>
           </PostContentDiv>
           <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
-            <PostInfoSpan fontSize="1.5rem" fontWeight="600">댓글</PostInfoSpan>
+            <PostInfoSpan fontSize="1.5rem" fontWeight="600">
+              댓글
+            </PostInfoSpan>
           </PostInfoDiv>
           <CommentSection>
             {commentData.map((data, idx) => (
               <ReadCommentSection
-                key={idx} 
+                key={idx}
                 data={data}
                 makeCommentRequest={makeCommentRequest}
                 boardId={communityId}
@@ -608,16 +621,16 @@ const PostInfoPage = () => {
                 flag={flag}
               />
             ))}
-            {localStorage.getItem('userId') ? 
-              <WriteComment 
+            {localStorage.getItem("userId") ? (
+              <WriteComment
                 makeCommentRequest={makeCommentRequest}
                 boardId={communityId}
                 myProfileURL={myProfileURL}
                 flag={flag}
               />
-            :
+            ) : (
               <></>
-            }
+            )}
           </CommentSection>
         </PostInfoPageBox>
       </PostInfoPageContainer>

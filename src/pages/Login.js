@@ -56,7 +56,7 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        message.success("Processing complete!");
+        message.success("로그인에 성공했습니다!", 0.8);
         console.log("username:" + value.username);
         console.log("Registration successful");
         localStorage.clear();

@@ -37,12 +37,15 @@ const normFile = (e) => {
 };
 
 const MainBox = styled.section`
+  font-size: 1.3rem;
   position: relative;
   width: 100%;
   height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* 수직 중앙 정렬을 위해 추가 */
+  text-align: center; /* 내용을 가로 중앙 정렬하기 위해 추가 */
 `;
 
 const MainBox2 = styled.section`
@@ -54,11 +57,33 @@ const MainBox2 = styled.section`
   align-items: center;
 `;
 
-const IntroBox = styled.div`
-  width: 40%;
-  margin: 0 30%;
+const IntroBox0 = styled.div`
+  font-size: 1.3rem;
+  width: 100%;
   text-align: center;
   margin-top: 2rem;
+  display: grid;
+`;
+
+const IntroBox = styled.div`
+  font-size: 1.3rem;
+  width: 80%;
+  text-align: center;
+  margin: 4rem auto; /* 수직 및 수평 가운데 정렬 */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2열로 분할, 각 열의 너비를 1fr로 설정 */
+  grid-template-rows: auto auto; /* 각 행의 높이를 자동으로 조정 */
+  gap: 8rem; /* 열 사이의 간격 설정 */
+`;
+
+const IntroBox1 = styled.div`
+  margin-top: 200px;
+  grid-column: 1; /* 첫 번째 열에 배치 */
+`;
+
+const IntroBox2 = styled.div`
+  margin-top: 2rem;
+  grid-column: 2; /* 두 번째 열에 배치 */
 `;
 
 const SpanDiv = styled.div`
@@ -82,6 +107,30 @@ const MainPage = styled.section`
 
 const letter = styled.section`
   font-weight: bold;
+`;
+
+const GraphBox = styled.div`
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 40px;
+  border: 2px solid black;
+  border-radius: 10px;
+`;
+
+const LoginButton = styled.div`
+  font-size: 1.3rem;
+  width: 200px;
+  transform: translate(350%, 0);
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #85afe1;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  cursor: pointer;
 `;
 
 const About = () => {
@@ -121,55 +170,67 @@ const About = () => {
         <div className="App"></div>
         <MainBox>
           <BannerSection />
-        </MainBox>
+        </MainBox>{" "}
+        <IntroBox0>
+          <div>높아지는 물가와 어려워지는 내집마련,</div>
+          <div>어딘가에 나랑 잘 맞는 룸메이트가 있지 않을까요?</div>
+        </IntroBox0>
         <IntroBox>
-          <p>높아지는 물가와 어려워지는 내집마련,</p>
-          <p>어딘가에 나랑 잘 맞는 룸메이트가 있지 않을까요?</p>
-          <MainBox2 />
-          <p>지금까지 공유공간을 찾은 사람의 수!</p>
-          <SpanDiv />
-          <MainBox2 />
-
-          <SpanDiv />
-          <p>지금 알로하룸을 이용중인 사람의 수!</p>
-          <Graph_number />
-          <SpanDiv />
-          <p>알로하룸을 방문한 이용자수의 변화!</p>
-          <Graph_user />
-          <SpanDiv />
-          <p>알로하룸에 있는 방의 지역별 그래프!</p>
-          <Graph_map />
-          <SpanDiv />
-          <p>알로하룸의 평수 별 월세 그래프!</p>
-          <p>(직접 궁금한 평수를 넣어보세요)</p>
-          <Graph_cost flat={flat} />
-          <SpanDiv />
-          <>
-            <Form
-              labelCol={{
-                span: 4,
-              }}
-              wrapperCol={{
-                span: 14,
-              }}
-              layout="horizontal"
-              disabled={componentDisabled}
-              style={{
-                maxWidth: 600,
-              }}
-            >
-              <Form.Item label="Input">
-                <Input value={flat} onChange={handleInputChange} />
-              </Form.Item>
-              {/* <Form.Item label="Button">
-                <Button onClick={handleButtonClick}>Button</Button>
-              </Form.Item> */}
-            </Form>
-            {/* 데이터 출력을 위한 컴포넌트 */}
-          </>
+          <IntroBox1>
+            <GraphBox>
+              <div>지금 알로하룸을 이용중인 사람의 수!</div>
+              <Graph_number />
+            </GraphBox>
+            <SpanDiv />
+            <SpanDiv />
+            <SpanDiv />
+            <SpanDiv />
+            <SpanDiv />
+            <SpanDiv />
+            <GraphBox>
+              <div>알로하룸을 방문한 이용자수의 변화!</div>
+              <Graph_user />
+            </GraphBox>
+          </IntroBox1>
+          <IntroBox2>
+            <GraphBox>
+              <div>알로하룸에 있는 방의 지역별 그래프!</div>
+              <Graph_map />
+            </GraphBox>
+            <SpanDiv />
+            <GraphBox>
+              <div>알로하룸의 평수 별 월세 그래프!</div>
+              <div>(직접 궁금한 평수를 넣어보세요)</div>
+              <Graph_cost flat={flat} />
+              <SpanDiv />
+              <>
+                <Form
+                  labelCol={{
+                    span: 4,
+                  }}
+                  wrapperCol={{
+                    span: 14,
+                  }}
+                  layout="horizontal"
+                  disabled={componentDisabled}
+                  style={{
+                    maxWidth: 600,
+                  }}
+                >
+                  <Form.Item label="Input">
+                    <Input value={flat} onChange={handleInputChange} />
+                  </Form.Item>
+                </Form>
+              </>
+            </GraphBox>
+          </IntroBox2>
         </IntroBox>
       </>
       <SpanDiv />
+      <SpanDiv />
+      <a to="/Login">
+        <LoginButton>로그인 하러가기!</LoginButton>
+      </a>
       <SpanDiv />
     </MainContainer>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/About/About";
 import PostMapPage from "./pages/PostMapPage";
 import Login from "./pages/Login";
 import RegisterPage from "./pages/RegisterPage";
@@ -39,9 +39,9 @@ const App = () => {
         <Route path="/termUser" element={<TermUser />} />
         <Route path="/myInfoPage" element={<MyInfoPage />} />
         <Route path="/likeListPage" element={<LikedListPage />} />
-        <Route path="/myWritePage" element={<MyWritePage/>}/>
-        <Route path="/myCommentPage" element={<MyCommentPage/>}/>
-        <Route path="/recentViewPage" element={<RecentViewPage/>}/>
+        <Route path="/myWritePage" element={<MyWritePage />} />
+        <Route path="/myCommentPage" element={<MyCommentPage />} />
+        <Route path="/recentViewPage" element={<RecentViewPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/postInfoPage" element={<PostInfoPage />} />
         <Route path="/postInfoPage/:id" element={<PostInfoPage />} />
