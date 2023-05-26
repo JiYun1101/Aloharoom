@@ -122,14 +122,16 @@ const MyCommentPageCommunityArea = () => {
                             </MyCommentCommunityPageAreaFlexDiv>
                             <MyCommentCommunityPageAreaFlexDiv width="33vw" height="13vh" flexDirection="column">
                                 <MyCommentCommunityPageAreaFlexDiv width="100%" height="4vh" alignItems="center" marginLeft="0.5vw">
-                                    <CommunityTypeButton height="2.5vh" width="auto">{data.contents}</CommunityTypeButton>
+                                    <CommunityTypeButton height="2.5vh" width="auto">
+                                        {data.code === 1 ? `방자랑` : data.code === 2 ? `정보 공유` : `자랑`}
+                                    </CommunityTypeButton>
                                 </MyCommentCommunityPageAreaFlexDiv>
                                 <MyCommentCommunityPageAreaFlexDiv width="100%" height="4vh" alignItems="center">
                                     <MyCommentCommunityPageAreaSpan marginLeft="1vw" fontWeight="700">{data.title}</MyCommentCommunityPageAreaSpan>
                                 </MyCommentCommunityPageAreaFlexDiv>
                                 <MyCommentCommunityPageAreaFlexDiv width="100%" height="5vh" flexDirection="row">
                                     <MyCommentCommunityPageAreaFlexDiv width="50%" height="5vh" alignItems="center">
-                                        <MyCommentCommunityPageProfile width="2vw" height="2vw" marginLeft="1vw" borderRadius="3rem" src="blue.png"/>
+                                        <MyCommentCommunityPageProfile width="2vw" height="2vw" marginLeft="1vw" borderRadius="3rem" src={data.profile}/>
                                         <MyCommentCommunityPageAreaSpan marginLeft="0.5vw" fontSize="1rem" fontWeight="500">{data.nickname}</MyCommentCommunityPageAreaSpan>
                                     </MyCommentCommunityPageAreaFlexDiv>
                                     <MyCommentCommunityPageAreaFlexDiv width="50%" height="5vh" flexDirection="row-reverse" alignItems="center">

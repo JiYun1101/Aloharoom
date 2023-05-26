@@ -121,14 +121,16 @@ const MyWriteCommunityPageArea = () => {
                             </MyWriteCommunityPageAreaFlexDiv>
                             <MyWriteCommunityPageAreaFlexDiv width="33vw" height="13vh" flexDirection="column">
                                 <MyWriteCommunityPageAreaFlexDiv width="100%" height="4vh" alignItems="center" marginLeft="0.5vw">
-                                    <CommunityTypeButton height="2.5vh" width="auto">{data.contents}</CommunityTypeButton>
+                                    <CommunityTypeButton height="2.5vh" width="auto">
+                                        {data.code === 1 ? `방자랑` : data.code === 2 ? `정보 공유` : `자랑`}
+                                    </CommunityTypeButton>
                                 </MyWriteCommunityPageAreaFlexDiv>
                                 <MyWriteCommunityPageAreaFlexDiv width="100%" height="4vh" alignItems="center">
                                     <MyWriteCommunityPageAreaSpan marginLeft="1vw" fontWeight="700">{data.title}</MyWriteCommunityPageAreaSpan>
                                 </MyWriteCommunityPageAreaFlexDiv>
                                 <MyWriteCommunityPageAreaFlexDiv width="100%" height="5vh" flexDirection="row">
                                     <MyWriteCommunityPageAreaFlexDiv width="50%" height="5vh" alignItems="center">
-                                        <MyWriteCommunityPageProfile width="2vw" height="2vw" marginLeft="1vw" borderRadius="3rem" src="blue.png"/>
+                                        <MyWriteCommunityPageProfile width="2vw" height="2vw" marginLeft="1vw" borderRadius="3rem" src={data.profile}/>
                                         <MyWriteCommunityPageAreaSpan marginLeft="0.5vw" fontSize="1rem" fontWeight="500">{data.nickname}</MyWriteCommunityPageAreaSpan>
                                     </MyWriteCommunityPageAreaFlexDiv>
                                     <MyWriteCommunityPageAreaFlexDiv width="50%" height="5vh" flexDirection="row-reverse" alignItems="center">
