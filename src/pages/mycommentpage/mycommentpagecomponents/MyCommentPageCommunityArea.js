@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import baseURL from "../../api/baseURL";
 import styled from "styled-components";
 import { AiFillEye } from "react-icons/ai";
+import { FaRegCommentDots } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const LinkToCardStyle = {
@@ -135,6 +136,8 @@ const MyCommentPageCommunityArea = () => {
                                         <MyCommentCommunityPageAreaSpan marginLeft="0.5vw" fontSize="1rem" fontWeight="500">{data.nickname}</MyCommentCommunityPageAreaSpan>
                                     </MyCommentCommunityPageAreaFlexDiv>
                                     <MyCommentCommunityPageAreaFlexDiv width="50%" height="5vh" flexDirection="row-reverse" alignItems="center">
+                                        <MyCommentCommunityPageAreaSpan marginRight="0.5vw" fontSize="1rem" fontWeight="500">{data.commentNum}</MyCommentCommunityPageAreaSpan>
+                                        <FaRegCommentDots size={25} style={{ marginRight: "0.5vw"}}/>
                                         <MyCommentCommunityPageAreaSpan marginRight="0.5vw" fontSize="1rem" fontWeight="500">{data.views}</MyCommentCommunityPageAreaSpan>
                                         <AiFillEye size={25} style={{ marginRight: "0.5vw"}}/>
                                     </MyCommentCommunityPageAreaFlexDiv>
