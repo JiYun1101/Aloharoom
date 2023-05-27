@@ -37,11 +37,12 @@ const EventMarkerContainer = ({
                         justifyContent: "center",
                         alignItems: "center",
                         color: "black",
-                        minWidth: "17vw",
+                        minWidth: "20vw",
                         padding: "1px"
                     }}
                 >
                     {content}
+                    {/* {`부산광역시 강서구 녹산산단382로14번가길 10~29번지(송정동)`} */}
                 </div>
             }
         </MapMarker>
