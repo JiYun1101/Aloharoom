@@ -92,11 +92,18 @@ const FormItemContainer = styled.div`
 `;
 
 const PostMapContentContainer = styled.div`
-  display: fixed;
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-top: 3vm;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 const PostMapContentContainer2 = styled.div`
-  margin-top: -3vm;
+  margin-top: -8rem;
   position: relative;
   width: 100%;
   height: 6.8vh;
@@ -125,7 +132,7 @@ const SearchSectionContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  z-index: 1;
+  margin-left: -11rem;
 `;
 
 const PostContent = (
@@ -214,13 +221,15 @@ const PostContent = (
 
     if (buttonNumber === 1) {
       setButton1Color("#85afe1");
+      setCode(1);
     } else if (buttonNumber === 2) {
       setButton2Color("#85afe1");
+      setCode(2);
     } else if (buttonNumber === 3) {
       setButton3Color("#85afe1");
+      setCode(3);
     }
   };
-
   return (
     <>
       <PostMapContentContainer>
@@ -232,40 +241,58 @@ const PostContent = (
           }}
           onValuesChange={onRequiredTypeChange}
           requiredMark={requiredMark}
+          style={{ marginTop: "5.2rem", marginLeft: "1rem" }}
         >
-          <Form.Item label="Required Mark">
+          <Form.Item>
             <Radio.Group onChange={(e) => handleButtonClick(e.target.value)}>
-              <Radio.Button value={1} style={{ color: button1Color }}>
-                Optional
+              <Radio.Button
+                value={1}
+                onClick={() => handleButtonClick(1)}
+                style={{ color: button1Color }}
+              >
+                방자랑
               </Radio.Button>
-              <Radio.Button value={2} style={{ color: button2Color }}>
-                Required
+              <Radio.Button
+                value={2}
+                onClick={() => handleButtonClick(2)}
+                style={{ color: button2Color }}
+              >
+                정보 공유
               </Radio.Button>
-              <Radio.Button value={3} style={{ color: button3Color }}>
-                Hidden
+              <Radio.Button
+                value={3}
+                onClick={() => handleButtonClick(3)}
+                style={{ color: button3Color }}
+              >
+                자랑
               </Radio.Button>
             </Radio.Group>
           </Form.Item>
         </Form>
+        <SearchSectionContainer>
+          <Search
+            placeholder="게시물 키워드를 입력하세요"
+            size="large"
+            allowClear
+            onSearch={onSearch}
+            style={{
+              width: "3100px",
+              left: "30rem",
+              marginLeft: "29rem",
+              marginTop: "5rem",
+            }}
+          />
+        </SearchSectionContainer>
       </PostMapContentContainer>
-      <SearchSectionContainer>
-        <Search
-          placeholder="게시물 키워드를 입력하세요"
-          size="large"
-          allowClear
-          onSearch={onSearch}
-          style={{
-            width: "3100px",
-            left: "30rem",
-            marginLeft: "29rem",
-            marginTop: "0.7rem",
-          }}
-        />
-      </SearchSectionContainer>
-
       <PostMapContentContainer2>
         <CardPosts code={code} />
-        <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
+        <CardPost3
+          style={{
+            textAlign: "center",
+            alignItems: "center",
+            marginTop: "3rem",
+          }}
+        >
           <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b> <br />
           {data.map((post, index) => (
             <React.Fragment key={index}>
