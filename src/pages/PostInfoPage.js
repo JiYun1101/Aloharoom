@@ -568,8 +568,8 @@ const PostInfoPage = () => {
                     width="95%" 
                     minHeight="auto"
                     height="fit-content"
-                    marginTop="1rem" 
-                    borderBottom="solid 0.1rem #bbbbbb" 
+                    marginTop="1.5rem" 
+                    marginBottom="1.5rem"
                 >
                     <PostInfoSpan 
                         dangerouslySetInnerHTML={{ __html: changeBrTag(contents)}}
@@ -579,6 +579,10 @@ const PostInfoPage = () => {
                         fontWeight="500"
                     />
                 </PostInfoDiv>
+                <PostInfoDiv 
+                    width="95%"
+                    borderBottom="solid 0.1rem #bbbbbb" 
+                />
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
                     <PostInfoDiv width="90%" height="28rem" position="relative">
                         <InfoPageMapContainer 
