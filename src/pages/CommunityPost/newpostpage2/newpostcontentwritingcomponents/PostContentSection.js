@@ -15,19 +15,19 @@ const PostContentTextArea = styled.textarea`
   border-right: none;
   border-left: none;
   border-bottom: none;
+  white-space: pre-wrap; /* 개행 문자 인식 및 유지 */
   :focus {
     outline: none;
   }
 `;
 
 const PostContentSection = ({ contents, setContents }) => {
-  // console.log("여기", contents);
   const isNotEmpty = contents !== "";
   return (
     <PostContentDiv>
       <PostContentTextArea
-        value={isNotEmpty ? contents : ""}
-        placeholder="게시물에 대한 상세한 내용을 작성해주세요. "
+        value={contents} // value 속성으로 상태값을 바인딩
+        placeholder="게시물에 대한 상세한 내용을 작성해주세요."
         onChange={(e) => {
           setContents(e.target.value);
         }}

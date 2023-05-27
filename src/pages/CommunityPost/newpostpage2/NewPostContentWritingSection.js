@@ -59,7 +59,6 @@ const RoomTypeButton = styled.button`
   justify-content: center;
 `;
 
-
 const NewPostContentWritingSection = ({
   title,
   code,
@@ -76,7 +75,7 @@ const NewPostContentWritingSection = ({
 }) => {
   const Id = useParams().id;
   const IdExist = Id != null;
-  console.log("이거", title);
+  console.log("이거", contents);
   const handleImageFilesInputChange = (e) => {
     const files = e.target.files;
     setImgFiles((prevImgFiles) => [...prevImgFiles, ...files]);

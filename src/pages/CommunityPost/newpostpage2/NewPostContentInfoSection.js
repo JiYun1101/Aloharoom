@@ -38,6 +38,7 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   const [ageRange, setAgeRange] = useState([20, 25]);
   const [imgFiles, setImgFiles] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
+  
 
   const updateID = useParams().id;
   useEffect(() => {

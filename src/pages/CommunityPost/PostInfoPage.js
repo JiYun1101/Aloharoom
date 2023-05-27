@@ -146,7 +146,7 @@ const HashTagButton = styled.button`
 const PostContentDiv = styled.div`
   margin-top: 1rem;
   width: 95%;
-  height: 15rem;
+  height: 10rem;
   border-bottom: solid 0.1rem #bbbbbb;
 `;
 
@@ -154,6 +154,7 @@ const PostContentSpan = styled.span`
   color: black;
   font-size: 1.2rem;
   font-weight: 500;
+  white-space: pre-wrap;
 `;
 
 const CommentSection = styled.div`
@@ -303,6 +304,17 @@ const CardImageDiv = styled.div`
 const CardImage = styled.img`
   width: 15%;
   height: 100%;
+`;
+
+const WrapButton = styled.div`
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 4px solid #85afe1;
+  &:hover {
+    border-color: #47a5fd;
+    color: #47a5fd;
+  }
 `;
 
 const PostInfoPage = () => {
@@ -543,22 +555,28 @@ const PostInfoPage = () => {
       <PostInfoPageContainer>
         <PostInfoPageBox>
           <PostInfoImageBox>
-            <Container>
-              <Swiper
-                modules={[Navigation, Scrollbar, Pagination, A11y]}
-                spaceBetween={20}
-                slidesPerView={1}
-                navigation
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log("slide change")}
-              >
-                {imgUrls.map((data, index) => (
-                  <SwiperSlide key={index}>
-                    <PostInfoImage src={data} key={index} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </Container>
+            {imgUrls.length === 1 ? (
+              <WrapButton>
+                <PostInfoImage src={imgUrls[0]} />
+              </WrapButton>
+            ) : (
+              <Container>
+                <Swiper
+                  modules={[Navigation, Scrollbar, Pagination, A11y]}
+                  spaceBetween={20}
+                  slidesPerView={1}
+                  navigation
+                  onSwiper={(swiper) => console.log(swiper)}
+                  onSlideChange={() => console.log("slide change")}
+                >
+                  {imgUrls.map((data, index) => (
+                    <SwiperSlide key={index}>
+                      <PostInfoImage src={data} key={index} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Container>
+            )}
           </PostInfoImageBox>
           <TitleDiv>
             <TitleSpan>{data.title}</TitleSpan>
