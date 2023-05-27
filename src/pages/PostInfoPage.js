@@ -621,7 +621,7 @@ const PostInfoPage = () => {
                     <></>
                 }
                 <PostInfoFlexDiv width="95%" borderBottom="solid 0.1rem #bbbbbb"/>
-                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                <PostInfoDiv width="95%" minHeight="2.5rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
                     <PostInfoSpan fontSize="1.5rem" fontWeight="600">댓글</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column" gap="1rem">

@@ -23,7 +23,6 @@ const WriteComment = ({
         <PostInfoFlexDiv 
             width="100%" 
             minHeight="4rem" 
-            marginBottom="2rem" 
             flexDirection="column" 
             borderBottom="solid #bbbbbb"
             alignItems="center"
