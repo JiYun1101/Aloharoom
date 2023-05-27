@@ -6,7 +6,7 @@
 .page {
   position: fixed;
   /* 기준이 되는 조상 페이지 */
-  margin-top: 5rem;
+  margin-top: 0rem;
   /* 위 간격 */
   max-width: 500px;
   /* 좌우 간격 */
