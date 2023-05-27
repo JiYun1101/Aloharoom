@@ -59,6 +59,7 @@ const RoomTypeButton = styled.button`
   justify-content: center;
 `;
 
+
 const NewPostContentWritingSection = ({
   title,
   code,

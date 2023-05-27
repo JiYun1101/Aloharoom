@@ -11,6 +11,7 @@ import { GiMeal } from "react-icons/gi";
 import { Map } from "react-kakao-maps-sdk";
 import { useRef } from "react";
 import baseURL from "../api/baseURL";
+import Header from "../Header";
 
 import PostInfoDiv from "./postinfopage2/PostInfoDiv";
 import PostInfoSpan from "./postinfopage2/PostInfoSpan";
@@ -538,12 +539,8 @@ const PostInfoPage = () => {
       ) : (
         <></>
       )}
+      <Header />
       <PostInfoPageContainer>
-        <AiOutlineLeft
-          size={40}
-          style={BackPageIconStyle}
-          onClick={() => navigate("../CommunityPage")}
-        />
         <PostInfoPageBox>
           <PostInfoImageBox>
             <Container>
