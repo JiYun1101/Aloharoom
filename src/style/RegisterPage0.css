@@ -82,8 +82,8 @@
   position: flex;
   margin-left: 30px;
   max-width: 430px;
-  min-height: 470px;
-  max-height: 300px;
+  min-height: 459px;
+  max-height: 250px;
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
