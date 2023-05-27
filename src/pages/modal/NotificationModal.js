@@ -80,7 +80,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
     const startUrl = location.pathname === "/" ? "./" : "../";
     return (
         <NotificationModalContainer>
-            <ModalFlexDiv width="25rem" height="3rem" borderBottom="solid 0.05rem black">
+            <ModalFlexDiv width="25rem" height="3rem" borderBottom="solid 1px #808080">
                 <ModalDiv width="12rem" height="3rem">
                     <ModalDiv fontWeight="600" fontSize="1.5rem" marginTop="0.7rem" marginLeft="0.5rem">알림</ModalDiv>
                 </ModalDiv>
@@ -98,10 +98,10 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                     >
                         <ModalFlexDiv 
                             key={index} 
-                            width="98%" 
-                            height="6rem" 
+                            width="99%" 
+                            height="5rem" 
                             flexDirection="row" 
-                            borderBottom={`1px solid ${!data.isCheck ? `black`: `#a0a0a0`}`}
+                            borderBottom={`1px solid ${!data.isCheck ? `#808080`: `#a0a0a0`}`}
                         >
                             <ModalFlexDiv
                                 width="20%"
@@ -152,8 +152,8 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                 <ModalFlexDiv width="100%" height="25%" flexDirection="row-reverse" alignItems="center">
                                     <ModalSpan 
                                         marginRight="0.5rem"
-                                        color={!data.isCheck ? `black`: `#a0a0a0`}
-                                        fontWeight={!data.isCheck && `600`}
+                                        color={!data.isCheck ? `#808080`: `#a0a0a0`}
+                                        fontWeight={!data.isCheck && `500`}
                                     >
                                         {data.createdDate}
                                     </ModalSpan>
