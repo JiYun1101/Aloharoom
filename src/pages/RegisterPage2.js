@@ -274,17 +274,26 @@ const ThirdContent = ({ onClick }) => {
   const [tagPressed3, setTagPressed3] = useState(
     localStorage.getItem("clickedButton3")
   );
+  const [clickButton3, setClickButton3] = useState([]);
 
   const handleTagClick3 = (buttonName3) => {
-    if (tagPressed3.includes(buttonName3)) {
-      setTagPressed3((prevTags) =>
-        prevTags.filter((tag) => tag !== buttonName3)
-      );
-      onClick(null); // 값이 없어졌으므로 null 전달
+    console.log(buttonName3);
+
+    const isButtonAlreadyClicked = clickButton3.includes(buttonName3);
+    let newClickButton3;
+    if (isButtonAlreadyClicked) {
+      newClickButton3 = clickButton3.filter((button) => button !== buttonName3);
     } else {
-      setTagPressed3((prevTags) => [...prevTags, buttonName3]);
-      onClick(String(buttonName3)); // 문자열로 변환하여 전달
+      newClickButton3 = [...clickButton3, buttonName3];
     }
+    setClickButton3(newClickButton3);
+    onClick(newClickButton3);
+
+    const lastArray = newClickButton3[newClickButton3.length - 1]; // 마지막 배열 추출
+    console.log("마지막 배열:", lastArray);
+
+    // 버튼 클릭 시 태그 상태 업데이트
+    setTagPressed3(newClickButton3);
   };
 
   return (
@@ -910,7 +919,10 @@ function RegisterPage2() {
   }, [clickedButton2]);
 
   useEffect(() => {
-    localStorage.setItem("clickedButton3", clickedButton3);
+    localStorage.setItem(
+      "clickedButton3",
+      clickedButton3[clickedButton3.length - 1]
+    );
   }, [clickedButton3]);
 
   useEffect(() => {
@@ -924,18 +936,6 @@ function RegisterPage2() {
   useEffect(() => {
     localStorage.setItem("current", JSON.stringify(current));
   }, [current]);
-
-  // const username = location.state.username;
-  // const password = location.state.password;
-  // const nickname = location.state.nickname;
-  // const age = location.state.age;
-  // const gender = location.state.gender;
-
-  // console.log("reg2 page:" + username);
-  // console.log("reg2 page:" + password);
-  // console.log("reg2 page:" + nickname);
-  // console.log("reg2 page:" + age);
-  // console.log("reg2 page:" + gender);
 
   const items = steps.map((item) => ({
     key: item.title,
@@ -1027,7 +1027,10 @@ function RegisterPage2() {
                     // setClickedButton5([...clickedButton5, buttonName5]);
 
                     console.log("buttonName :", buttonName);
-                    console.log("buttonName2 :", buttonName2);
+                    console.log(
+                      "buttonName2 :",
+                      buttonName2[buttonName2.length - 1]
+                    );
                     // console.log("buttonName3 :", buttonName3);
                     console.log(
                       "buttonName3 :",
