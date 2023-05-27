@@ -9,7 +9,7 @@ const CardPostListWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const CardPosts = (props) => {
+const CardPosts = ({code, cardPostData, setCardPostData}) => {
   const [data, setData] = useState([]);
 
   // 게시물 리스트를 가져올 API 호출 등의 로직은 생략하고, 하드코딩으로 데이터를 만듦
@@ -26,7 +26,7 @@ const CardPosts = (props) => {
     };
 
     fetchData();
-  }, [props.code]);
+  }, [code]);
 
   return (
     <CardPostListWrapper>
@@ -35,7 +35,9 @@ const CardPosts = (props) => {
           key={post.id}
           title={post.title}
           content={post.content}
-          code={props.code}
+          code={code}
+          cardPostData={cardPostData}
+          setCardPostData={setCardPostData}
         />
       ))}
     </CardPostListWrapper>

@@ -172,7 +172,12 @@ const LinkToStyle = {
   textDecoration: "none",
   color: "inherit",
 };
-const CardPost = ({ communityId, code }) => {
+const CardPost = ({
+  communityId,
+  code,
+  cardPostData,
+  setCardPostData
+}) => {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
 
@@ -186,7 +191,7 @@ const CardPost = ({ communityId, code }) => {
       const result = await axios.get(
         `${baseURL}/api/communityboard/code/${code}`
       );
-      setData(result.data[0]);
+      setCardPostData(result.data[0]);
       console.log(result.data[0]);
     };
     fetchData();
@@ -228,7 +233,7 @@ const CardPost = ({ communityId, code }) => {
 
   return (
     <CardBox2 ref={cardRef}>
-      {data.map((post, index) => (
+      {cardPostData.map((post, index) => (
         <Link
           to={`../CommunityInfoPage/${post.communityId}`}
           key={index}

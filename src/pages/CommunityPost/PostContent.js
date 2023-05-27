@@ -8,7 +8,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Segmented, Space } from "antd";
+import { Avatar, Segmented, Select, Space } from "antd";
 
 import { Button, Form, Input, Radio } from "antd";
 import CardPosts from "./CardPosts"; // CardPosts import
@@ -118,7 +118,7 @@ const { Search } = Input;
 const SearchSectionContainer = styled.div`
   width: 50%;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   z-index: 1;
 `;
@@ -238,6 +238,57 @@ const PostContent = (
 
   const cardRef = useRef(null);
 
+  const [selectCategory, setSelectCategory] = useState('제목');
+
+  function handleSelectChange(value) {
+    console.log('selectCategory', value);
+    setSelectCategory(value);
+  }
+
+  const onInputSearch = (value) => {
+    console.log('입력한 값', value);
+    console.log('선택한 카테고리', selectCategory);
+
+    if (selectCategory === '제목') {
+      fetchTitleSearchData(value);
+    }
+    else if(selectCategory === '닉네임') {
+      fetchNicknameSearchData(value);
+    }
+  }
+
+  async function fetchTitleSearchData(keyword) {
+    await axios.get(`${baseURL}/api/communitySearch`, {
+      params: {
+        keyword: keyword,
+        code: code
+      },
+      withCredentials:true
+    })
+    .then((response) => {
+      console.log('fetchTitleSearchData response data', response.data);
+      setCardPostData(response.data);
+    })
+    .catch((error) => { console.log('fetchTitleSearchData fetch error');})
+  }
+
+  async function fetchNicknameSearchData(nickname) {
+    await axios.get(`${baseURL}/api/communitySearch/nickname`, {
+      params: {
+        nickname: nickname,
+        code: code
+      },
+      withCredentials:true
+    })
+    .then((response) => {
+      console.log('fetchNicknameSearchData response data', response.data);
+      setCardPostData(response.data);
+    })
+    .catch((error) => {console.log(`fetchNicknameSearchData axios error`);})
+  }
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`${baseURL}/api/communityboard/code/1`);
@@ -288,15 +339,38 @@ const PostContent = (
           placeholder="게시물 키워드를 입력하세요"
           size="large"
           allowClear
-          onSearch={onSearch}
+          onSearch={onInputSearch}
           style={{
             width: 300,
-            marginLeft: "13.7rem",
+            marginLeft: "3rem",
             marginTop: "5.7rem",
           }}
         />
+        <Select
+          style={{
+            width: "8rem",
+            marginLeft: "1rem",
+            marginTop: "5.7rem",
+          }}
+          defaultValue={selectCategory}
+          options={[
+            {
+              value: "제목",
+              label: "제목"
+            },
+            {
+              value: "닉네임",
+              label: "닉네임"
+            },
+          ]}
+          onChange={handleSelectChange}
+        />
       </SearchSectionContainer>
-      <CardPosts code={code} />
+      <CardPosts 
+        code={code}
+        cardPostData={cardPostData} 
+        setCardPostData={setCardPostData}
+      />
       <CardPost3 style={{ textAlign: "center", alignItems: "center" }}>
         <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b> <br />
         {data.map((post, index) => (
