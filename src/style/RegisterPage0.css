@@ -1,3 +1,25 @@
+.page {
+  position: fixed;
+  /* 기준이 되는 조상 페이지 */
+  margin-top: 0rem;
+  /* 위 간격 */
+  max-width: 500px;
+  /* 좌우 간격 */
+  min-height: 600px;
+  max-height: 600px;
+  /* min/max-height = 크기고정 */
+
+  left: 50%;
+  transform: translate(-50%, 25%);
+  /* 중앙고정 */
+
+  background-color: #ffffff;
+  border: 2px solid;
+  border-radius: 1.8rem;
+  border-color: #85afe1;
+  /* 페이지 디자인 */
+}
+
 .titleWrap2 {
   margin: -30% -2.5%;
   position: absolute;
@@ -7,6 +29,7 @@
   text-align: center;
   height: 300px;
 }
+
 .titleWrap3 {
   margin-left: 6%;
   display: flex;
@@ -25,6 +48,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
 .button-img {
   width: 70%;
   height: auto;
@@ -33,10 +57,11 @@
 
 .button-text {
   font-size: 15px;
-  margin-top: 15px;
+  margin-top: 1px;
   text-align: center;
   height: 40px; /* Add a fixed height value */
 }
+
 .button {
   width: calc(
     33.33% - 20px
@@ -52,6 +77,61 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.hashtagWrap {
+  position: flex;
+  margin-left: 30px;
+  max-width: 430px;
+  min-height: 470px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px;
+}
+
+.hashtagWrap::before,
+.hashtagWrap::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  height: calc(
+    (300px - 70px) / 2
+  ); /* 수정: max-height 값을 300px로 변경합니다. */
+}
+
+.button2 {
+  padding: 0;
+  border: none;
+  outline: none;
+  transition: all 0.15s ease-in-out;
+  margin: 0; /* 수정: 불필요한 마진을 제거합니다. */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.tag-button {
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-right: 2%;
+  margin-top: 10px;
+  line-height: 28px;
+  max-height: 28px;
+  padding: 0 13px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.15s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
 }
 
 .button-box {
@@ -79,7 +159,7 @@
 .flex-container {
   justify-content: center;
   display: flex;
-  margin: 30px;
+  margin: 0px;
   margin-left: 85px;
   width: 300px;
   font-size: 20px;
@@ -92,34 +172,11 @@
 /* tag */
 
 .tagWrap {
-  margin-left: 6%;
+  margin-left: 1%;
   display: flex;
   flex-wrap: wrap; /* 추가 */
   justify-content: left;
-  margin-top: -35%;
-}
-
-.tag-button {
-  display: inline-block;
-  margin: 20% 10% 0;
-  height: auto; /* 수정 */
-  line-height: 28px;
-  padding: 0 13px;
-  border-radius: 20px;
-  background-color: #fff; /* modified */
-  border: 1px solid #ccc;
-  /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); */
-  cursor: pointer;
-  color: #000; /* modified */
-  font-size: 14px;
-  font-weight: bold;
-  /* text-shadow: 1px 1px #fff; */
-  transition: all 0.15s ease-in-out; /* Modified transition speed */
-  box-sizing: content-box;
-  white-space: nowrap; /* 추가 */
-  overflow: hidden; /* 추가 */
-  text-overflow: ellipsis; /* 추가 */
-  max-width: 150px; /* 추가 */
+  margin-top: 5%;
 }
 
 .tag-button:hover {
@@ -147,6 +204,6 @@
 .tag-button-wrap {
   width: 130px;
   height: 100px;
-  margin: 28% 2% -1.25%;
+  margin: 2% 2% -1.25%;
   box-sizing: content-box;
 }

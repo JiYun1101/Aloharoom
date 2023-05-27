@@ -126,145 +126,87 @@ const SecondContent = ({ onClick }) => {
       <div className="titleWrap2">
         선호하는 사람에 대한 해시태그를 골라주세요!
       </div>
-      {/* <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div> */}
-      <div className="tagWrap">
-        <div
-          className="tag-button-wrap"
-          style={{ marginLeft: "-5px", zIndex: 1 }}
+      <div className="hashtagWrap">
+        <button2
+          onClick={() => handleTagClick3("night")}
+          className={`tag-button ${
+            tagPressed2.includes("night") && "tag-button-pressed"
+          }`}
         >
-          <button
-            onClick={() => handleTagClick3("night")}
-            className={`tag-button ${
-              tagPressed2.includes("night") && "tag-button-pressed"
-            }`}
-          >
-            #야행성
-          </button>
-        </div>
+          #야행성
+        </button2>
 
-        <div
-          className="tag-button-wrap"
-          style={{ marginLeft: "-30px", zIndex: 1 }}
+        <button2
+          onClick={() => handleTagClick3("delivery")}
+          className={`tag-button ${
+            tagPressed2.includes("delivery") && "tag-button-pressed"
+          }`}
         >
-          <button
-            onClick={() => handleTagClick3("delivery")}
-            className={`tag-button ${
-              tagPressed2.includes("delivery") && "tag-button-pressed"
-            }`}
-          >
-            #배달의 민족
-          </button>
-        </div>
+          #배달의 민족
+        </button2>
 
-        <div
-          className="tag-button-wrap"
-          style={{ marginLeft: "5px", zIndex: 1 }}
+        <button2
+          onClick={() => handleTagClick3("morning")}
+          className={`tag-button ${
+            tagPressed2.includes("morning") && "tag-button-pressed"
+          }`}
         >
-          <button
-            onClick={() => handleTagClick3("morning")}
-            className={`tag-button ${
-              tagPressed2.includes("morning") && "tag-button-pressed"
-            }`}
-          >
-            #아침형
-          </button>
-        </div>
+          #아침형
+        </button2>
 
-        <div
-          className="tag-button-wrap"
-          style={{ marginLeft: "0px", marginTop: "-40px" }}
+        <button2
+          onClick={() => handleTagClick3("in")}
+          className={`tag-button ${
+            tagPressed2.includes("in") && "tag-button-pressed"
+          }`}
         >
-          <button
-            onClick={() => handleTagClick3("in")}
-            className={`tag-button ${
-              tagPressed2.includes("in") && "tag-button-pressed"
-            }`}
-          >
-            #집순/집돌이
-          </button>
-        </div>
+          #집순/집돌이
+        </button2>
 
-        <div
-          className="tag-button-wrap"
-          style={{ marginTop: "-40px", marginLeft: "-20px" }}
+        <button2
+          onClick={() => handleTagClick3("out")}
+          className={`tag-button ${
+            tagPressed2.includes("out") && "tag-button-pressed"
+          }`}
         >
-          <button
-            onClick={() => handleTagClick3("out")}
-            className={`tag-button ${
-              tagPressed2.includes("out") && "tag-button-pressed"
-            }`}
-          >
-            #밖순/밖돌이
-          </button>
-        </div>
-        <div
-          className="tag-button-wrap"
-          style={{
-            marginTop: "-40px",
-            marginLeft: "-15px",
-          }}
-        >
-          <button
-            onClick={() => handleTagClick3("quiet")}
-            className={`tag-button ${
-              tagPressed2.includes("quiet") && "tag-button-pressed"
-            }`}
-          >
-            #조용한
-          </button>
-        </div>
-        <div
-          className="tag-button-wrap"
-          style={{
-            marginTop: "-40px",
-            marginLeft: "5px",
-            marginBottom: "65%",
-          }}
-        >
-          <button
-            onClick={() => handleTagClick3("qym")}
-            className={`tag-button ${
-              tagPressed2.includes("qym") && "tag-button-pressed"
-            }`}
-          >
-            #헬스 매니아
-          </button>
-        </div>
+          #밖순/밖돌이
+        </button2>
 
-        <div
-          className="tag-button-wrap"
-          style={{
-            marginTop: "-40px",
-            marginLeft: "-25px",
-            marginBottom: "65%",
-          }}
+        <button2
+          onClick={() => handleTagClick3("quiet")}
+          className={`tag-button ${
+            tagPressed2.includes("quiet") && "tag-button-pressed"
+          }`}
         >
-          <button
-            onClick={() => handleTagClick3("nightWork")}
-            className={`tag-button ${
-              tagPressed2.includes("nightWork") && "tag-button-pressed"
-            }`}
-          >
-            #야간근무
-          </button>
-        </div>
-        <div
-          className="tag-button-wrap"
-          style={{
-            marginTop: "-40px",
-            marginLeft: "-28px",
-            marginBottom: "65%",
-          }}
+          #조용한
+        </button2>
+
+        <button2
+          onClick={() => handleTagClick3("qym")}
+          className={`tag-button ${
+            tagPressed2.includes("qym") && "tag-button-pressed"
+          }`}
         >
-          <button
-            onClick={() => handleTagClick3("mbti-p")}
-            className={`tag-button ${
-              tagPressed2.includes("mbti-p") && "tag-button-pressed"
-            }`}
-          >
-            # P형
-          </button>
-        </div>
+          #헬스 매니아
+        </button2>
+
+        <button2
+          onClick={() => handleTagClick3("nightWork")}
+          className={`tag-button ${
+            tagPressed2.includes("nightWork") && "tag-button-pressed"
+          }`}
+        >
+          #야간근무
+        </button2>
+
+        <button2
+          onClick={() => handleTagClick3("mbti-p")}
+          className={`tag-button ${
+            tagPressed2.includes("mbti-p") && "tag-button-pressed"
+          }`}
+        >
+          # P형
+        </button2>
       </div>
     </div>
   );
@@ -947,7 +889,7 @@ function RegisterPage2() {
   }));
 
   const contentStyle = {
-    lineHeight: "460px",
+    lineHeight: "360px",
     textAlign: "center",
     color: token.colorTextTertiary,
     backgroundColor: token.colorFillAlter,
