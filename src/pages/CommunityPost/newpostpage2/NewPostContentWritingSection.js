@@ -99,9 +99,15 @@ const NewPostContentWritingSection = ({
   return (
     <NewPostContentWritingDiv>
       {IdExist ? (
-        <RoomTypeDiv>
-          <RoomTypeButton>{code}</RoomTypeButton>
-        </RoomTypeDiv>
+        <RoomTypeButton>
+          {code === 1
+            ? "방자랑"
+            : code === 2
+            ? "정보공유"
+            : code === 3
+            ? "자유"
+            : ""}
+        </RoomTypeButton>
       ) : (
         <PostCodeSection code={code} setCode={setCode} />
       )}
