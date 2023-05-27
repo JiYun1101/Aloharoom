@@ -109,17 +109,26 @@ const SecondContent = ({ onClick }) => {
   const [tagPressed2, setTagPressed2] = useState(
     localStorage.getItem("clickedButton2")
   );
+  const [clickButton2, setClickButton2] = useState([]);
 
   const handleTagClick2 = (buttonName2) => {
-    if (tagPressed2.includes(buttonName2)) {
-      setTagPressed2((prevTags) =>
-        prevTags.filter((tag) => tag !== buttonName2)
-      );
-      onClick(null); // 값이 없어졌으므로 null 전달
+    console.log(buttonName2);
+
+    const isButtonAlreadyClicked = clickButton2.includes(buttonName2);
+    let newClickButton2;
+    if (isButtonAlreadyClicked) {
+      newClickButton2 = clickButton2.filter((button) => button !== buttonName2);
     } else {
-      setTagPressed2((prevTags) => [...prevTags, buttonName2]);
-      onClick(String(buttonName2)); // 문자열로 변환하여 전달
+      newClickButton2 = [...clickButton2, buttonName2];
     }
+    setClickButton2(newClickButton2);
+    onClick(newClickButton2);
+
+    const lastArray = newClickButton2[newClickButton2.length - 1]; // 마지막 배열 추출
+    console.log("마지막 배열:", lastArray);
+
+    // 버튼 클릭 시 태그 상태 업데이트
+    setTagPressed2(newClickButton2);
   };
 
   return (
@@ -449,17 +458,26 @@ const FourthContent = ({ onClick }) => {
   const [tagPressed4, setTagPressed4] = useState(
     localStorage.getItem("clickedButton4")
   );
+  const [clickButton4, setClickButton4] = useState([]);
 
   const handleTagClick4 = (buttonName4) => {
-    if (tagPressed4.includes(buttonName4)) {
-      setTagPressed4((prevTags) =>
-        prevTags.filter((tag) => tag !== buttonName4)
-      );
-      onClick(null); // 값이 없어졌으므로 null 전달
+    console.log(buttonName4);
+
+    const isButtonAlreadyClicked = clickButton4.includes(buttonName4);
+    let newClickButton4;
+    if (isButtonAlreadyClicked) {
+      newClickButton4 = clickButton4.filter((button) => button !== buttonName4);
     } else {
-      setTagPressed4((prevTags) => [...prevTags, buttonName4]);
-      onClick(String(buttonName4)); // 문자열로 변환하여 전달
+      newClickButton4 = [...clickButton4, buttonName4];
     }
+    setClickButton4(newClickButton4);
+    onClick(newClickButton4);
+
+    const lastArray = newClickButton4[newClickButton4.length - 1]; // 마지막 배열 추출
+    console.log("마지막 배열:", lastArray);
+
+    // 버튼 클릭 시 태그 상태 업데이트
+    setTagPressed4(newClickButton4);
   };
 
   return (
@@ -610,21 +628,29 @@ const FourthContent = ({ onClick }) => {
 };
 const LastContent = ({ onClick }) => {
   const [tagPressed5, setTagPressed5] = useState(
-    localStorage.getItem("buttonName5") || []
+    localStorage.getItem("clickedButton5")
   );
+  const [clickButton5, setClickButton5] = useState([]);
 
   const handleTagClick5 = (buttonName5) => {
-    if (tagPressed5.includes(buttonName5)) {
-      setTagPressed5((prevTags) =>
-        prevTags.filter((tag) => tag !== buttonName5)
-      );
-      onClick(null); // 값이 없어졌으므로 null 전달
-    } else {
-      setTagPressed5((prevTags) => [...prevTags, buttonName5]);
-      onClick(String(buttonName5)); // 문자열로 변환하여 전달
-    }
-  };
+    console.log(buttonName5);
 
+    const isButtonAlreadyClicked = clickButton5.includes(buttonName5);
+    let newClickButton5;
+    if (isButtonAlreadyClicked) {
+      newClickButton5 = clickButton5.filter((button) => button !== buttonName5);
+    } else {
+      newClickButton5 = [...clickButton5, buttonName5];
+    }
+    setClickButton5(newClickButton5);
+    onClick(newClickButton5);
+
+    const lastArray = newClickButton5[newClickButton5.length - 1]; // 마지막 배열 추출
+    console.log("마지막 배열:", lastArray);
+
+    // 버튼 클릭 시 태그 상태 업데이트
+    setTagPressed5(newClickButton5);
+  };
   return (
     <div>
       <div className="titleWrap2">
@@ -910,11 +936,17 @@ function RegisterPage2() {
   };
 
   useEffect(() => {
-    localStorage.setItem("clickedButton", clickedButton);
+    localStorage.setItem(
+      "clickedButton",
+      clickedButton[clickedButton.length - 1]
+    );
   }, [clickedButton]);
 
   useEffect(() => {
-    localStorage.setItem("clickedButton2", clickedButton2);
+    localStorage.setItem(
+      "clickedButton2",
+      clickedButton2[clickedButton2.length - 1]
+    );
     console.log("이름2", clickedButton2);
   }, [clickedButton2]);
 
@@ -926,11 +958,17 @@ function RegisterPage2() {
   }, [clickedButton3]);
 
   useEffect(() => {
-    localStorage.setItem("clickedButton4", clickedButton4);
+    localStorage.setItem(
+      "clickedButton4",
+      clickedButton4[clickedButton4.length - 1]
+    );
   }, [clickedButton4]);
 
   useEffect(() => {
-    localStorage.setItem("clickedButton5", clickedButton5);
+    localStorage.setItem(
+      "clickedButton5",
+      clickedButton5[clickedButton5.length - 1]
+    );
   }, [clickedButton5]);
 
   useEffect(() => {
@@ -1026,7 +1064,10 @@ function RegisterPage2() {
                     // setClickedButton4([...clickedButton4, buttonName4]);
                     // setClickedButton5([...clickedButton5, buttonName5]);
 
-                    console.log("buttonName :", buttonName);
+                    console.log(
+                      "buttonName :",
+                      buttonName[buttonName.length - 1]
+                    );
                     console.log(
                       "buttonName2 :",
                       buttonName2[buttonName2.length - 1]
@@ -1037,8 +1078,14 @@ function RegisterPage2() {
                       buttonName3[buttonName3.length - 1]
                     );
 
-                    console.log("buttonName4 :", buttonName4);
-                    console.log("buttonName5 :", buttonName5);
+                    console.log(
+                      "buttonName4 :",
+                      buttonName4[buttonName4.length - 1]
+                    );
+                    console.log(
+                      "buttonName5 :",
+                      buttonName5[buttonName5.length - 1]
+                    );
 
                     // const newButtonName3 = clickedButton3.map(
                     //   (str) => `"${str.trim()}"`
@@ -1047,12 +1094,15 @@ function RegisterPage2() {
                     // console.log("buttonName3: ", clickedButton3); // ['quiet', 'gym']
                     // console.log("newButtonName3: ", newButtonName3); // ["quiet", "gym"]
 
-                    use_state["tendency"] = buttonName;
+                    use_state["tendency"] = buttonName[buttonName.length - 1];
                     use_state["likeHashtags"] =
                       buttonName3[buttonName3.length - 1];
-                    use_state["likeHomeHashtags"] = buttonName2;
-                    use_state["myHashtags"] = clickedButton5;
-                    use_state["myHomeHashtags"] = clickedButton4;
+                    use_state["likeHomeHashtags"] =
+                      buttonName2[buttonName2.length - 1];
+                    use_state["myHashtags"] =
+                      buttonName5[buttonName5.length - 1];
+                    use_state["myHomeHashtags"] =
+                      buttonName4[buttonName4.length - 1];
 
                     onFinish(use_state, navigate);
 
