@@ -77,7 +77,7 @@ const IntroBox = styled.div`
 `;
 
 const IntroBox1 = styled.div`
-  margin-top: 200px;
+  margin-top: 2rem;
   grid-column: 1; /* 첫 번째 열에 배치 */
 `;
 
@@ -110,12 +110,12 @@ const letter = styled.section`
 `;
 
 const GraphBox = styled.div`
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  height: 700px;
   border: 2px solid black;
-  border-radius: 10px;
 `;
 
 const LoginButton = styled.div`
@@ -127,11 +127,13 @@ const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #85afe1;
+  border: 2px solid #47a5fd;
   border-radius: 10px;
   margin-top: 20px;
+  margin-left: 20px;
   padding: 10px;
   cursor: pointer;
+  color: "#47a5fd";
 `;
 
 const About = () => {
@@ -178,58 +180,55 @@ const About = () => {
         </IntroBox0>
         <IntroBox>
           <IntroBox1>
+            <div>지금 알로하룸을 이용중인 사람의 수!</div>
             <GraphBox>
-              <div>지금 알로하룸을 이용중인 사람의 수!</div>
-              <Graph_number />
+              <div style={{ width: "1000px" }}>
+                <Graph_number />
+              </div>
             </GraphBox>
             <SpanDiv />
-            <SpanDiv />
-            <SpanDiv />
-            <SpanDiv />
-            <SpanDiv />
-            <SpanDiv />
+            <div>알로하룸을 방문한 이용자수의 변화!</div>
             <GraphBox>
-              <div>알로하룸을 방문한 이용자수의 변화!</div>
               <Graph_user />
             </GraphBox>
           </IntroBox1>
           <IntroBox2>
+            <div>알로하룸에 있는 방의 지역별 그래프!</div>
             <GraphBox>
-              <div>알로하룸에 있는 방의 지역별 그래프!</div>
               <Graph_map />
             </GraphBox>
             <SpanDiv />
+            <div>알로하룸의 평수 별 월세 그래프!</div>
+            <div>(직접 궁금한 평수를 넣어보세요)</div>{" "}
             <GraphBox>
-              <div>알로하룸의 평수 별 월세 그래프!</div>
-              <div>(직접 궁금한 평수를 넣어보세요)</div>
-              <Graph_cost flat={flat} />
-              <SpanDiv />
-              <>
-                <Form
-                  labelCol={{
-                    span: 4,
-                  }}
-                  wrapperCol={{
-                    span: 14,
-                  }}
-                  layout="horizontal"
-                  disabled={componentDisabled}
-                  style={{
-                    maxWidth: 600,
-                  }}
-                >
-                  <Form.Item label="Input">
-                    <Input value={flat} onChange={handleInputChange} />
-                  </Form.Item>
-                </Form>
-              </>
+              <Graph_cost flat={flat} />{" "}
             </GraphBox>
+            <SpanDiv />
+            <>
+              <Form
+                labelCol={{
+                  span: 4,
+                }}
+                wrapperCol={{
+                  span: 14,
+                }}
+                layout="horizontal"
+                disabled={componentDisabled}
+                style={{
+                  maxWidth: 600,
+                }}
+              >
+                <Form.Item label="평수">
+                  <Input value={flat} onChange={handleInputChange} />
+                </Form.Item>
+              </Form>
+            </>
           </IntroBox2>
         </IntroBox>
       </>
       <SpanDiv />
       <SpanDiv />
-      <Link to="../Login" style={{ textDecoration: "none" }}>
+      <Link to="../Login" style={{ textDecoration: "none", color: "#47a5fd" }}>
         <LoginButton>로그인 하러가기!</LoginButton>
       </Link>
       <SpanDiv />
