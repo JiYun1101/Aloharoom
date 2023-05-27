@@ -147,33 +147,11 @@ const PostContent = (
   const [isCardPostsVisible, setIsCardPostsVisible] = useState(true); // CardPosts의 가시성 상태 추가
 
   const [form] = Form.useForm();
-  const [formLayout, setFormLayout] = useState("horizontal");
-  const onFormLayoutChange = ({ layout }) => {
-    setFormLayout(layout);
+  const [requiredMark, setRequiredMarkType] = useState("optional");
+  const onRequiredTypeChange = ({ requiredMarkValue }) => {
+    setRequiredMarkType(requiredMarkValue);
   };
-  const formItemLayout =
-    formLayout === "horizontal"
-      ? {
-          labelCol: {
-            span: 5,
-          },
-          wrapperCol: {
-            span: 14,
-          },
-        }
-      : null;
-  const buttonItemLayout =
-    formLayout === "horizontal"
-      ? {
-          wrapperCol: {
-            span: 14,
-            offset: 5,
-          },
-        }
-      : null;
 
-  const [myLikeHashtags, setMyLikeHashtags] = useState([]);
-  const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
   async function fetchHashtag() {}
 
   const onSearch = (value) => {
@@ -201,45 +179,6 @@ const PostContent = (
     setInputValue(e.target.value);
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleButtonClick();
-    }
-  };
-  const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
-
-  const ModalOpen = () => {
-    setNotifyModalOpen(true);
-  };
-
-  const ModalClose = () => {
-    setNotifyModalOpen(false);
-  };
-  const handleButtonClick = (buttonNumber) => {
-    // 버튼에 따라 상태를 개별적으로 변경
-    if (buttonNumber === 1) {
-      setButton1Color("#85afe1");
-      setButton2Color("#000000");
-      setButton3Color("#000000");
-      setCode(1); // code 값을 1로 변경
-    } else if (buttonNumber === 2) {
-      setButton1Color("#000000");
-      setButton2Color("#85afe1");
-      setButton3Color("#000000");
-      setCode(2); // code 값을 2로 변경
-    } else if (buttonNumber === 3) {
-      setButton1Color("#000000");
-      setButton2Color("#000000");
-      setButton3Color("#85afe1");
-      setCode(3); // code 값을 3으로 변경
-    }
-    // window.location.reload(); // 현재 페이지 새로고침
-  };
-
-  console.log("code =", code); // 콘솔에 code 값 출력
-
-  console.log(code);
-
   const [data, setData] = useState([]);
 
   const cardRef = useRef(null);
@@ -256,6 +195,7 @@ const PostContent = (
     console.log(message);
   };
 
+  const [selectedButton, setSelectedButton] = useState(1);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
@@ -266,44 +206,47 @@ const PostContent = (
     };
     fetchData();
   }, [code]); // code를 의존성 배열에 추가
+
+  const handleButtonClick = (buttonNumber) => {
+    setButton1Color("#000000");
+    setButton2Color("#000000");
+    setButton3Color("#000000");
+
+    if (buttonNumber === 1) {
+      setButton1Color("#85afe1");
+    } else if (buttonNumber === 2) {
+      setButton2Color("#85afe1");
+    } else if (buttonNumber === 3) {
+      setButton3Color("#85afe1");
+    }
+  };
+
   return (
     <>
       <PostMapContentContainer>
-        <Space.Compact
-          block
-          style={{
-            width: "210px",
-            marginLeft: "29rem",
-            marginTop: "5.7rem",
-            border: "1px solid black",
-            borderRadius: "5px", // 모서리를 둥글게 만듦
+        <Form
+          form={form}
+          layout="vertical"
+          initialValues={{
+            requiredMarkValue: requiredMark,
           }}
+          onValuesChange={onRequiredTypeChange}
+          requiredMark={requiredMark}
         >
-          <Button
-            style={{
-              color: button1Color,
-            }}
-            onClick={() => handleButtonClick(1)} // 첫 번째 버튼 클릭 시 handleButtonClick(1) 호출
-          >
-            방자랑
-          </Button>
-          <Button
-            style={{
-              color: button2Color,
-            }}
-            onClick={() => handleButtonClick(2)} // 두 번째 버튼 클릭 시 handleButtonClick(2) 호출
-          >
-            정보/공유
-          </Button>
-          <Button
-            style={{
-              color: button3Color,
-            }}
-            onClick={() => handleButtonClick(3)} // 세 번째 버튼 클릭 시 handleButtonClick(3) 호출
-          >
-            자유
-          </Button>
-        </Space.Compact>
+          <Form.Item label="Required Mark">
+            <Radio.Group onChange={(e) => handleButtonClick(e.target.value)}>
+              <Radio.Button value={1} style={{ color: button1Color }}>
+                Optional
+              </Radio.Button>
+              <Radio.Button value={2} style={{ color: button2Color }}>
+                Required
+              </Radio.Button>
+              <Radio.Button value={3} style={{ color: button3Color }}>
+                Hidden
+              </Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+        </Form>
       </PostMapContentContainer>
       <SearchSectionContainer>
         <Search

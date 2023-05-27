@@ -104,6 +104,12 @@ const CommentSpan2 = styled.span`
   margin-right: 0rem;
 `;
 
+const CommentSpan3 = styled.span`
+  font-size: 1rem;
+  font-weight: 600;
+  margin-right: -3rem;
+`;
+
 const Card2 = styled.div`
   width: 900px; /* 원하는 너비 값으로 설정 */
   height: 10rem;
@@ -257,11 +263,14 @@ const CardPost = ({ communityId, code }) => {
               </ProfileDiv>
               <ViewsDiv>
                 <ViewsSpan>
-                  <b>
-                    <AiFillEye size={25} style={{ marginRight: "0.5vw" }} />
-                    {post.views}
-                  </b>
-                </ViewsSpan>
+                  <AiFillEye
+                    size={30}
+                    style={{ marginRight: "0.5vw", marginTop: "0.1vw" }}
+                  />
+                </ViewsSpan>{" "}
+                <CommentDiv>
+                  <CommentSpan3>{post.views}</CommentSpan3>{" "}
+                </CommentDiv>
               </ViewsDiv>
               <CommentDiv>
                 <CommentSpan>{post.userPost}</CommentSpan>
