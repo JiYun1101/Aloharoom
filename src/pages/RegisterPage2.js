@@ -104,6 +104,7 @@ const FirstContent = ({ onClick }) => {
     </div>
   );
 };
+
 const SecondContent = ({ onClick }) => {
   const [tagPressed2, setTagPressed2] = useState(
     localStorage.getItem("clickedButton2")
@@ -830,6 +831,7 @@ function RegisterPage2() {
   const { token } = theme.useToken();
 
   const [current, setCurrent] = useState(0);
+  const [current1, setCurrent1] = useState(1);
   const [clickedButton, setClickedButton] = useState([]);
   const [clickedButton2, setClickedButton2] = useState([]);
   const [clickedButton3, setClickedButton3] = useState([]);
@@ -897,6 +899,31 @@ function RegisterPage2() {
     setIsClicked(true);
     setClickedButton5((prevButtons) => [...prevButtons, buttonName5]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton", clickedButton);
+  }, [clickedButton]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton2", clickedButton2);
+    console.log("이름2", clickedButton2);
+  }, [clickedButton2]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton3", clickedButton3);
+  }, [clickedButton3]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton4", clickedButton4);
+  }, [clickedButton4]);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton5", clickedButton5);
+  }, [clickedButton5]);
+
+  useEffect(() => {
+    localStorage.setItem("current", JSON.stringify(current));
+  }, [current]);
 
   // const username = location.state.username;
   // const password = location.state.password;
