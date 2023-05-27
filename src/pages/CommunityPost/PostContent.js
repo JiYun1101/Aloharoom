@@ -100,6 +100,10 @@ const PostMapContentContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  &:hover {
+    border-color: #47a5fd;
+    color: #47a5fd;
+  }
 `;
 
 const PostMapContentContainer2 = styled.div`
@@ -135,6 +139,26 @@ const SearchSectionContainer = styled.div`
   margin-left: -11rem;
 `;
 
+const HoverableRadio = styled(Radio.Button)`
+  &:hover {
+    border-color: #47a5fd;
+    color: #47a5fd;
+  }
+`;
+
+const WrapButton = styled.div`
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #85afe1;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    border-color: #47a5fd;
+    color: #47a5fd;
+  }
+`;
+
 const PostContent = (
   setSearchStr,
   fetchCardPostData,
@@ -142,6 +166,7 @@ const PostContent = (
   communityId
 ) => {
   const [cardPostData, setCardPostData] = useState([]);
+
   const [swLat, setSWLat] = useState("");
   const [swLon, setSWLon] = useState("");
   const [neLat, setNELat] = useState("");
@@ -150,7 +175,7 @@ const PostContent = (
   const [button1Color, setButton1Color] = useState("#000000");
   const [button2Color, setButton2Color] = useState("#000000");
   const [button3Color, setButton3Color] = useState("#000000");
-  const [code, setCode] = useState(1);
+
   const [isCardPostsVisible, setIsCardPostsVisible] = useState(true); // CardPosts의 가시성 상태 추가
 
   const [form] = Form.useForm();
@@ -170,15 +195,6 @@ const PostContent = (
       fetchHashtag();
     }
   }, []);
-
-  const handleAvatarClick = (code) => {
-    setCode(code);
-    console.log(code);
-  };
-
-  const handleNavigation = () => {
-    setIsCardPostsVisible(false); // navigation 이벤트가 발생하면 CardPosts를 가려줍니다.
-  };
 
   const [inputValue, setInputValue] = useState(null);
 
@@ -202,7 +218,9 @@ const PostContent = (
     console.log(message);
   };
 
-  const [selectedButton, setSelectedButton] = useState(1);
+  const lastClickedCode =
+    parseInt(localStorage.getItem("lastClickedCode")) || 1;
+  const [code, setCode] = useState(lastClickedCode);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
@@ -214,22 +232,26 @@ const PostContent = (
     fetchData();
   }, [code]); // code를 의존성 배열에 추가
 
-  const handleButtonClick = (buttonNumber) => {
+  const handleButtonClick = (code) => {
     setButton1Color("#000000");
     setButton2Color("#000000");
     setButton3Color("#000000");
 
-    if (buttonNumber === 1) {
+    if (code === 1) {
       setButton1Color("#85afe1");
       setCode(1);
-    } else if (buttonNumber === 2) {
+    } else if (code === 2) {
       setButton2Color("#85afe1");
       setCode(2);
-    } else if (buttonNumber === 3) {
+    } else if (code === 3) {
       setButton3Color("#85afe1");
       setCode(3);
     }
+
+    // 마지막으로 클릭한 code 값을 localStorage에 저장
+    localStorage.setItem("lastClickedCode", code);
   };
+
   return (
     <>
       <PostMapContentContainer>
@@ -244,28 +266,31 @@ const PostContent = (
           style={{ marginTop: "5.2rem", marginLeft: "1rem" }}
         >
           <Form.Item>
-            <Radio.Group onChange={(e) => handleButtonClick(e.target.value)}>
-              <Radio.Button
+            <Radio.Group
+              onChange={(e) => handleButtonClick(e.target.value)}
+              defaultValue={lastClickedCode}
+            >
+              <HoverableRadio
                 value={1}
                 onClick={() => handleButtonClick(1)}
                 style={{ color: button1Color }}
               >
                 방자랑
-              </Radio.Button>
-              <Radio.Button
+              </HoverableRadio>
+              <HoverableRadio
                 value={2}
                 onClick={() => handleButtonClick(2)}
                 style={{ color: button2Color }}
               >
                 정보 공유
-              </Radio.Button>
-              <Radio.Button
+              </HoverableRadio>
+              <HoverableRadio
                 value={3}
                 onClick={() => handleButtonClick(3)}
                 style={{ color: button3Color }}
               >
-                자랑
-              </Radio.Button>
+                자유
+              </HoverableRadio>
             </Radio.Group>
           </Form.Item>
         </Form>
@@ -286,55 +311,41 @@ const PostContent = (
       </PostMapContentContainer>
       <PostMapContentContainer2>
         <CardPosts code={code} />
-        <CardPost3
-          style={{
-            textAlign: "center",
-            alignItems: "center",
-            marginTop: "3rem",
-          }}
-        >
-          <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b> <br />
+        <CardPost3>
+          <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b>
+          <br />
           {data.map((post, index) => (
             <React.Fragment key={index}>
               <b
                 onClick={() => handleCardPostClick(post.title)}
                 style={{
-                  textDecoration: "underline",
                   cursor: "pointer",
                   width: "70%",
                 }}
               >
-                <Link
-                  to={`../CommunityInfoPage/${post.communityId}`}
-                  style={LinkToStyle}
-                  onClick={(event) => {
-                    setCurrentIndex(index);
-                    handleLinkClick(
-                      event,
-                      `../CommunityInfoPage/${post.communityId}`
-                    );
-                  }}
-                >
-                  {index === 0 && (
-                    <span style={{ textDecoration: "none" }}>1위 </span>
-                  )}{" "}
-                  {/* 1위일 경우 '1위' 추가 */}
-                  {index === 1 && (
-                    <span style={{ textDecoration: "none" }}>2위 </span>
-                  )}{" "}
-                  {/* 2위일 경우 '2위' 추가 */}
-                  {index === 2 && (
-                    <span style={{ textDecoration: "none" }}>3위 </span>
-                  )}{" "}
-                  {/* 3위일 경우 '3위' 추가 */}
-                  {post.title}
-                </Link>
+                <WrapButton>
+                  <Link
+                    to={`../CommunityInfoPage/${post.communityId}`}
+                    style={LinkToStyle}
+                    onClick={(event) => {
+                      setCurrentIndex(index);
+                      handleLinkClick(
+                        event,
+                        `../CommunityInfoPage/${post.communityId}`
+                      );
+                    }}
+                  >
+                    {index === 0 && <span>1위 </span>}
+                    {index === 1 && <span>2위 </span>}
+                    {index === 2 && <span>3위 </span>}
+                    {post.title}
+                  </Link>{" "}
+                </WrapButton>
               </b>
               <br />
             </React.Fragment>
           ))}
         </CardPost3>
-
         {selectedTitle && <CardPosts title={selectedTitle} />}
         <Link to="/newCommunityPostPage" style={LinkToStyle}>
           <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />

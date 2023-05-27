@@ -4,6 +4,8 @@ import { Column } from "@ant-design/charts";
 import axios from "axios";
 import baseURL from "../api/baseURL";
 
+// 이전 코드 생략...
+
 const DemoColumn = ({ flat }) => {
   // 컴포넌트 이름을 DemoColumn으로 변경
   const [dataPoints, setDataPoints] = useState([]);
@@ -30,10 +32,15 @@ const DemoColumn = ({ flat }) => {
       return obj;
     }, {});
 
-  const data = Object.entries(filteredDataPoints).map(([key, value]) => ({
-    range: key,
-    count: value,
-  }));
+  const data = Object.entries(filteredDataPoints).map(([key, value]) => {
+    const [start, end] = key.slice(1).split("e"); // key 값을 분할하여 시작과 끝 값을 추출합니다.
+    const range = `${start}평~${end}평`; // "key(1) 평~ key(2)평" 형식으로 range 값을 생성합니다.
+
+    return {
+      range,
+      count: value,
+    };
+  });
 
   const config = {
     data: data,

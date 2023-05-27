@@ -119,10 +119,11 @@ const GraphBox = styled.div`
 `;
 
 const LoginButton = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   width: 200px;
   transform: translate(350%, 0);
-  height: 50px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -134,7 +135,6 @@ const LoginButton = styled.div`
 `;
 
 const About = () => {
-  const [flat, setFlat] = useState("");
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -162,6 +162,7 @@ const About = () => {
   };
 
   const [componentDisabled, setComponentDisabled] = useState(false);
+  const [flat, setFlat] = useState("34"); // 초기값을 34로 설정
 
   return (
     <MainContainer>
@@ -228,9 +229,9 @@ const About = () => {
       </>
       <SpanDiv />
       <SpanDiv />
-      <a to="/Login">
+      <Link to="../Login" style={{ textDecoration: "none" }}>
         <LoginButton>로그인 하러가기!</LoginButton>
-      </a>
+      </Link>
       <SpanDiv />
     </MainContainer>
   );

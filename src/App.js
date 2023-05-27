@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
-import MainPage from "./pages/About/About";
 import PostMapPage from "./pages/PostMapPage";
 import Login from "./pages/Login";
 import RegisterPage from "./pages/RegisterPage";
@@ -25,7 +24,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<About />} />
         <Route path="/postMapPage" element={<PostMapPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/newPostPage" element={<NewPostPage />} />
