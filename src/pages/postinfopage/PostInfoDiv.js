@@ -10,6 +10,7 @@ const PostInfoDiv = styled.div`
     padding-bottom: ${props => props.paddingBottom};
     border-bottom: ${ props => props.borderBottom || "none"};
     position: ${props => props.position};
+    overflow: ${props => props.overflow};
 `;
 
 export default PostInfoDiv;

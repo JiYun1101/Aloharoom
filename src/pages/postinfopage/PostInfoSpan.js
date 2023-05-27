@@ -7,6 +7,7 @@ const PostInfoSpan = styled.span`
     font-weight: ${ props => props.fontWeight || "normal"};
     margin-left: ${ props => props.marginLeft || "0rem"};
     margin-top: ${ props => props.marginTop || "0rem"};
+    min-height: ${ props => props.minHeight};
 `;
 
 export default PostInfoSpan;

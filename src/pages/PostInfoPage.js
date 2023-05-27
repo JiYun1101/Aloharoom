@@ -308,6 +308,11 @@ const PostInfoPage = () => {
         .catch((error) => { console.log(`axios PostActivate error`);})
     }
 
+    const changeBrTag = (text) => {
+        const changedText = text.replace(/\n/g, '<br />');
+        return changedText;
+    }
+
     //한번 렌더링 될때 데이터를 받아온다.
     useEffect(() => {
         FetchPostInfoData();
@@ -559,10 +564,20 @@ const PostInfoPage = () => {
                         </PostInfoFlexDiv>
                     </PostInfoFlexDiv>
                 </PostInfoFlexDiv> */}
-                <PostInfoDiv width="95%" minHeight="5rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500" style={PostInfoContentstyles}>
-                        {contents}
-                    </PostInfoSpan>
+                <PostInfoDiv 
+                    width="95%" 
+                    minHeight="auto"
+                    height="fit-content"
+                    marginTop="1rem" 
+                    borderBottom="solid 0.1rem #bbbbbb" 
+                >
+                    <PostInfoSpan 
+                        dangerouslySetInnerHTML={{ __html: changeBrTag(contents)}}
+                        ref={postInfoContentSpanRef} 
+                        color="black" 
+                        fontSize="1.2rem" 
+                        fontWeight="500"
+                    />
                 </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
                     <PostInfoDiv width="90%" height="28rem" position="relative">
