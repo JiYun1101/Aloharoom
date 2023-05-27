@@ -132,7 +132,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                 <ModalDiv width="100%" height="50%">
                                     <ModalSpan 
                                         color={!data.isCheck ? `black`: `#a0a0a0`}
-                                        fontWeight={!data.isCheck && `600`}
+                                        fontWeight={!data.isCheck && `500`}
                                     >
                                         {prefixArr[index]}
                                     </ModalSpan>
@@ -144,7 +144,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                     </ModalSpan>
                                     <ModalSpan 
                                         color={!data.isCheck ? `black`: `#a0a0a0`}
-                                        fontWeight={!data.isCheck && `600`}
+                                        fontWeight={!data.isCheck && `500`}
                                     >
                                         {suffixArr[index]}
                                     </ModalSpan>
