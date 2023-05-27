@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react';
 import styled from 'styled-components';
 import { Select } from 'antd';
 
@@ -33,11 +32,6 @@ const PriceInfoSpan = styled.span`
   margin-right: ${props => props.marginRight || "0rem"};
   font-weight: ${props => props.fontWeight};
   margin-left: ${props => props.marginLeft};
-`;
-
-const ManageMentPriceCheckbox = styled.input`
-  background-color: #47a5fd;
-  margin-right: 0.5vw;
 `;
 
 const TradeTypeOptions = [

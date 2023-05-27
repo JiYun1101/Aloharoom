@@ -93,19 +93,6 @@ const FilterForm = ({
   const [rentRange, setRentRange] = useState([0, 100]);
   const [likeHashtags, setLikeHashtags] = useState([]);
   const [likeHomeHashtags, setLikeHomeHashtags] = useState([]);
-  // const [myLikeHashtags, setMyLikeHashtags] = useState([]);
-  // const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
-  console.log('===========================');
-  console.log('gender', gender);
-  console.log('roomCount', roomCount);
-  console.log('homeType', homeType);
-  console.log('ageRange', ageRange);
-  console.log('flatRange', flatRange);
-  console.log('rentRange', rentRange);
-  console.log('likeHashtags', likeHashtags);
-  console.log('likeHomeHashtags', likeHomeHashtags);
-  console.log('')
-  console.log('===========================');
 
   const handleLikeHashTagClick = (index) => {
     if (likeHashtags.includes(index)) {
@@ -137,9 +124,7 @@ const FilterForm = ({
       setLikeHomeHashtags(JSON.parse(localStorage.getItem('likeHomeHashtags')));
     }
     //초기화 버튼이나 필터링을 누르지 않았을 경우,
-    else{
-      console.log(`초기화 버튼이나 필터링을 누르지 않았을 경우,`)
-    }
+    else{}
   }, []);
 
   return (

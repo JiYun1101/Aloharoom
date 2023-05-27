@@ -50,14 +50,6 @@ const MyCommentPageRoomElementDiv = styled.div`
     align-items: center;
 `;
 
-const heartStyle = {
-    position: "absolute",
-    top: "0.2rem",
-    right: "0px",
-    zIndex: "3",
-    color: "#47A5FD"
-};
-
 const LinkToCardStyle = {
     textDecoration: 'none',
     color: 'black'
@@ -71,7 +63,7 @@ const MyCommentPageRoomArea = () => {
         })
         .then((response) => { 
             setResponseData(response.data);
-            console.log('response.data', response.data);})
+        })
         .catch((error) => { console.log(`axios fetchMyCommentRoomInfo error`);})
     }
 

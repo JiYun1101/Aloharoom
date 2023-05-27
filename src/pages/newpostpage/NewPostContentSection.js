@@ -54,7 +54,6 @@ const NewPostContentSection = ({
     async function FetchPostInfoData() {
         await axios.get(`${baseURL}/api/board/edit/${updateID}`)
             .then((response) => {
-                console.log('FetchPostInfoData: ', response.data);
                 setAddress(response.data.address);
                 setAgeRange(response.data.ageRange);
                 setContents(response.data.contents);

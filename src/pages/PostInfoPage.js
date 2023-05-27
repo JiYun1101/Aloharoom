@@ -6,9 +6,6 @@ import SwiperCore from 'swiper/core';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit, AiFillHeart} from "react-icons/ai";
 import { BiMale, BiFemale } from "react-icons/bi";
-import { GrDeliver } from "react-icons/gr";
-import { GiMeal } from "react-icons/gi";
-import { AiOutlineLeft } from "react-icons/ai";
 import axios from "axios";
 import InfoPageMapContainer from "./postinfopage/InfoPageMapContainer";
 import PostInfoDiv from "./postinfopage/PostInfoDiv";
@@ -95,17 +92,6 @@ const LinkToIconStyle = {
     color: "black",
 };
 
-const PostInfoContentstyles = {
-    whiteSpace: "pre-line"
-};
-
-
-const BackPageIconStyle = {
-    position: "absolute",
-    top: "1vh",
-    left: "1vw",
-    color: "#47a5fd",
-};
 
 const PostInfoPage = () => {
     const boardId = useParams().id;
@@ -162,7 +148,6 @@ const PostInfoPage = () => {
                 withCredentials:true
             })
             .then((response) => {
-                console.log('FetchPostInfoData ', response.data);
                 setAddress(response.data.address);
                 setAge(response.data.age);
                 setContents(response.data.contents);
@@ -232,7 +217,6 @@ const PostInfoPage = () => {
             withCredentials:true
         })
         .then((response) => {
-            console.log('response.data ', response.data);
             setCommentData(response.data);
         })
         .catch((error) => {
@@ -533,37 +517,6 @@ const PostInfoPage = () => {
                 <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem" paddingBottom="1rem" borderBottom="solid 0.1rem #bbbbbb">
                     <PostInfoSpan fontSize="1.2rem">{`룸메이트 가격: ${rent}만원`}</PostInfoSpan>
                 </PostInfoDiv>
-                {/* <PostInfoFlexDiv width="95%" minHeight="3rem" marginTop="0.7rem" alignItems="center">
-                    <PostInfoSpan color="#bbbbbb" fontSize="1.2rem">이 지역은 하루 배송권이에요.</PostInfoSpan>
-                </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="10rem" flexDirection="column" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row">
-                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
-                            <GrDeliver size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">쿠팡</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                        <PostInfoFlexDiv width="70%" minHeight="3rem" alignItems="center">
-                            <GiMeal size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">배달의 민족</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row">
-                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
-                            <GrDeliver size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">SSG</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                        <PostInfoFlexDiv width="70%" minHeight="3rem" alignItems="center">
-                            <GiMeal size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">요기요</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row"erInfoDiv>
-                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
-                            <GrDeliver size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">마켓컬리</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                    </PostInfoFlexDiv>
-                </PostInfoFlexDiv> */}
                 <PostInfoDiv 
                     width="95%" 
                     minHeight="auto"

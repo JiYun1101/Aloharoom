@@ -27,7 +27,6 @@ const KakaoMapPart = ({
     const centerLat = localStorage.getItem('centerLat') ? parseFloat(localStorage.getItem('centerLat')) : 37.56682420267543;
     const centerLng = localStorage.getItem('centerLng') ? parseFloat(localStorage.getItem('centerLng')) : 126.978652258823;
     const zoomLevel = localStorage.getItem('mapLevel') ? parseInt(localStorage.getItem('mapLevel')) : 4;
-    console.log('cardPostData ', cardPostData);
     useEffect(() => {
         if(!map) return;
         const ps = new window.kakao.maps.services.Places() 

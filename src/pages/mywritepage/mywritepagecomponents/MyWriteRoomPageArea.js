@@ -27,7 +27,6 @@ const MyWriteRoomPageArea= () => {
             withCredentials:true
         })
         .then((response) => { 
-            console.log('response data', response.data);
             setResponseData(response.data);
         })
         .catch((error) => {console.log(`axios fetchMyWriteRoomInfo error`);})

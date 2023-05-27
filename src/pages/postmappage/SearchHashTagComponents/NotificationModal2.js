@@ -37,13 +37,6 @@ const NotificationDiv3 = styled.div`
   z-index: 999;
 `;
 
-const Notification3 = styled.div`
-  font-weight: 400;
-  font-size: 1.5rem;
-  margin-top: 15px;
-  color: #47a5fd;
-`;
-
 const NotificationTitleDiv2 = styled.div`
   width: 100%;
   margin-left: 0px;

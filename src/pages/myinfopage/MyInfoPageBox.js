@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MyPageTitle from "./myinfopagecomponents/MyInfoPageTitle";
 import MyInfoPageContent from "./myinfopagecomponents/MyInfoPageContent";
-import HoverHashTagButton from "../HoverHashTagButton";
 import MyProfileUpdateModal from "../modal/MyProfileUpdateModal";
 import axios from "axios";
 import baseURL from "../api/baseURL";
@@ -55,7 +54,6 @@ const MyPageBox = () => {
             withCredentials:true
         }) 
         .then((response) => {
-            console.log('response.data', response.data);
             setResponseData(response.data);
             setMyHashtags(response.data.myHashtags);
             setMyHomeHashtags(response.data.myHomeHashtags);

@@ -63,7 +63,6 @@ const RecentViewPageArea = () => {
             withCredentials:true
         })
         .then((response) => {
-            console.log(`response data`, response.data);
             setResponseData(response.data);
         })
         .catch((error) => {

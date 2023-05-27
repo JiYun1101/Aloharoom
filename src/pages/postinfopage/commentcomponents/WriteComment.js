@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import PostInfoFlexDiv from '../PostInfoFlexDiv';
-import PostInfoSpan from '../PostInfoSpan';
 import CommentInput from '../CommentInput';
 import CommentWriteButton from '../CommentWriteButton';
 

@@ -135,7 +135,6 @@ const Header = () => {
         localStorage.remove("username");
         localStorage.remove("nickname");
         localStorage.remove("userId");
-        console.log("axios logout success");
       })
       .catch((error) => {
         console.log("axios userLogOut error");
@@ -148,7 +147,6 @@ const Header = () => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log("notification Data:", response.data);
         setNotificationData(response.data);
       })
       .catch((error) => {
@@ -162,7 +160,6 @@ const Header = () => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log("notification count:", response.data);
         setNotReadNotificationCount(response.data);
       })
       .catch((error) => {
@@ -170,12 +167,8 @@ const Header = () => {
       });
   }
 
-  const handleMenuClick = (e) => {
-    console.log('Menu clicked:', e);
-  };
-
   const menu = (
-    <Menu onClick={handleMenuClick}>
+    <Menu>
       <Menu.Item key="1">
         <Link to="/myInfoPage">내 정보</Link>
       </Menu.Item>

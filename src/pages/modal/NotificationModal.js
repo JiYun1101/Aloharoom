@@ -40,8 +40,8 @@ const NotificationModal = ({ModalClose, notificationData}) => {
         await axios.post(`${baseURL}/api/notification/${notificationId}`,{}, {
             withCredentials:true
         })
-        .then((response) => { console.log(`알림 읽기 성공`); })
-        .catch((error) => { console.log(`알림 읽기 실패`);})
+        .then((response) => {})
+        .catch((error) => {})
     }
     const prefixArr = [];
     const nicknames = [];

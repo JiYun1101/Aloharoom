@@ -99,7 +99,7 @@ const MyWriteCommunityPageArea = () => {
         })
         .then((response) => { 
             setResponseData(response.data);
-            console.log('response.data', response.data);})
+        })
         .catch((error) => { console.log(`axios fetchMyWriteCommunityInfo error`);})
     }
 

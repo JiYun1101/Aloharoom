@@ -49,7 +49,6 @@ const PostMapContent = () => {
         })
         .then((response) => {
             setCardPostData(response.data);
-            console.log("cardPostData => response.data : ", response.data);
         })
         .catch((error) => {
             console.log("fetchCardPostData axios error");
@@ -75,7 +74,6 @@ const PostMapContent = () => {
             }
         })
         .then((response) => { 
-            console.log('fetchFilterCardPostData response data', response.data);
             setCardPostData(response.data);
         })
         .catch((error) => { console.log(`fetchFilterCardPostData axios error`);})
@@ -84,15 +82,12 @@ const PostMapContent = () => {
     useEffect(() => {
       let isFilterPressed = parseInt(localStorage.getItem('pressFilterButton'));
       if (isFilterPressed === 1) {
-          console.log(`필터링 모달을 설정했을 경우,`);
           fetchFilterCardPostData();
       }
       else if (isFilterPressed === 0) {
-          console.log(`필터링 모달을 설정하지 않았을 경우,`);
           fetchCardPostData();    
       }
       else {
-        console.log(`필터링 모달을 눌러보지도 않았을 경우,`);
         fetchCardPostData();    
       }
     }, [swLat, swLon, neLat, neLon]);
