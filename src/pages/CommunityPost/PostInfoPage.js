@@ -321,6 +321,7 @@ const WrapButton = styled.div`
 `;
 
 const PostInfoPage = () => {
+  const postInfoPageRef = useRef(null);
   const { communityId } = useParams();
   const [data, setData] = useState({}); // 조회된 데이터를 저장할 상태 변수
   const [commentData, setCommentData] = useState([]);
@@ -371,6 +372,14 @@ const PostInfoPage = () => {
     DeletePostInfoData();
     setIsDeletePostModalOpen(false);
   };
+
+  useEffect(() => {
+    // 페이지 로드 후 맨 위로 스크롤
+    postInfoPageRef.current.scrollIntoView({
+      behavior: "auto",
+      block: "start",
+    });
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -555,7 +564,7 @@ const PostInfoPage = () => {
         <></>
       )}
       <Header />
-      <PostInfoPageContainer>
+      <PostInfoPageContainer ref={postInfoPageRef}>
         <PostInfoPageBox>
           <PostInfoImageBox>
             {imgUrls.length === 1 ? (
