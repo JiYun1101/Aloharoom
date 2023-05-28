@@ -13,6 +13,7 @@ const UploadImg = styled.img`
     margin-right: 0.5%;
     margin-top: 0.5%;
     margin-bottom: 0.5%;
+    border: ${({ isSelected }) => (isSelected ? '2px solid red' : 'none')};
 `;
 
 const droppableDivStyle = {
@@ -24,6 +25,8 @@ const droppableDivStyle = {
 const ImageSwiperSection = ({
     imgFiles,
     previewImages,
+    selectedImage,
+    handleImageClick,
     setImgFiles,
     setPreviewImages
 }) => {
@@ -40,25 +43,45 @@ const ImageSwiperSection = ({
     };
     
     return (
-        <DragDropDiv>
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-                <Droppable droppableId="image-list">
-                    {(provided) => (
-                        <div className='image-list' {...provided.droppableProps} ref={provided.innerRef} style={droppableDivStyle}>
-                            {previewImages.map((previewImage, index) => (
-                                <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
-                                    {(provided) => (
-                                        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                            <UploadImg src={previewImage}/>
-                                        </div>
-                                    )}
-                                </Draggable>
-                            ))}
-                        </div>
-                    )}
-                </Droppable>
-            </DragDropContext>
-        </DragDropDiv>
+        <>
+        {previewImages.length === 0 ?
+            <div
+                style={{
+                    width: "100%",
+                    height: "75%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                }}
+            >
+                <div style={{ color: "#bbbbbb "}}>업로드한 이미지가 없습니다.</div>
+            </div>
+        :
+            <DragDropDiv>
+                <DragDropContext onDragEnd={handleOnDragEnd}>
+                    <Droppable droppableId="image-list">
+                        {(provided) => (
+                            <div className='image-list' {...provided.droppableProps} ref={provided.innerRef} style={droppableDivStyle}>
+                                {previewImages.map((previewImage, index) => (
+                                    <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
+                                        {(provided) => (
+                                            <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                <UploadImg 
+                                                    src={previewImage}
+                                                    isSelected={selectedImage === index}
+                                                    onClick={() => handleImageClick(index)}
+                                                />
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
+            </DragDropDiv>
+        }
+        </>
     );
 }
 
