@@ -474,48 +474,57 @@ const PostInfoPage = () => {
                     <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 거주지 정보</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.2rem">입주 가능 날짜: {startDate}</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">주소</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem">
+                    <PostInfoSpan fontSize="1.2rem">{address}</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.2rem">주소: {address}</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">입주 가능 날짜</PostInfoSpan>
                 </PostInfoDiv>
-                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">주거 형태:
-                        {homeType === 'apartment' ?
-                            ` 아파트` 
-                            : homeType === 'villa' ? ` 주택` : ` 오피스텔`
-                        }
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem">
+                    <PostInfoSpan fontSize="1.2rem">{startDate}</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">주거형태</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="0.5rem">
+                    <PostInfoFlexDiv width="100%" minHeight="100%" alignItems="center">
+                        <PostInfoSpan fontSize="1.2rem">
+                            {homeType === 'apartment' ?
+                                ` 아파트` 
+                                : homeType === 'villa' ? ` 주택` : ` 오피스텔`
+                            }
+                            {`, `}
+                            {`방 ${roomCount}개`}
+                            {`, `}
+                            {`${flat}평`}
                         </PostInfoSpan>
                     </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`방 개수: ${roomCount}개`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`평수: ${flat}평`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`전체 층수: ${totalFloor}층`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`층수: ${floor}층`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`계약 형태: ${tradeType}`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">가격: {price}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`관리비: ${maintenance}만원`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem" paddingBottom="1rem" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoSpan fontSize="1.2rem">{`룸메이트 가격: ${rent}만원`}</PostInfoSpan>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">층수</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem">
+                    <PostInfoSpan fontSize="1.2rem">{`${floor}/${totalFloor}층`}</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">계약</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem">
+                    <PostInfoSpan fontSize="1.2rem">
+                        {`${tradeType}`}
+                        {`, `}
+                        {`${price}`}
+                        {`, `}
+                        {`${maintenance}만원(관리비)`}
+                    </PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem" >
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">룸메이트 가격</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem" borderBottom="solid 0.1rem #bbbbbb">
+                    <PostInfoSpan fontSize="1.2rem">{`${rent}만원`}</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoDiv 
                     width="95%" 
