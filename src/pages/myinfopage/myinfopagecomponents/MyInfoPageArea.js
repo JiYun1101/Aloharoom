@@ -58,9 +58,9 @@ const MyInfoPage = ({
 }) => {
 
   return (
-      <MyInfoFlexDiv marginTop="0.5rem" marginLeft="0.5rem" width="36.5rem" height="500px" alignItems="center" justifyContent="center">
-        <MyInfoFlexDiv width="36.5rem" height="500px" flexDirection="column" overflowY="auto" overflowX="auto" alignItems="center">
-          <MyInfoFlexDiv width="34rem" height="25vh">
+      <MyInfoFlexDiv marginTop="0.7vh" marginLeft="0.4vw" width="34.2vw" height="55vh" alignItems="center" justifyContent="center">
+        <MyInfoFlexDiv width="34.2vw" height="55vh" flexDirection="column" overflowY="auto" overflowX="auto" alignItems="center">
+          <MyInfoFlexDiv width="99%" height="25vh">
             <MyInfoFlexDiv width="40%" height="25vh" alignItems="center" justifyContent="center">
               <MyInfoProfile width="70%" height="70%" borderRadius="70%" src={responseData.profileUrl} />
             </MyInfoFlexDiv>
@@ -107,14 +107,14 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
             </MyInfoFlexDiv>
           </MyInfoFlexDiv>
-          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
+          <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="2vh">
             <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {myHashtags.length === 0 ? 
             <MyInfoFlexDiv
-              width="34rem"
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               alignItems="center"
               justifyContent="center"
             >
@@ -122,12 +122,12 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           :
             <MyInfoFlexDiv 
-              width="34rem" 
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               flexDirection="row"
               flexWrap="wrap"
-              gap="0.3rem"
+              gap="0.3vw"
             >
               {myHashtags.map((data, idx) => (
                 <HashTagButton key={idx}>
@@ -136,12 +136,12 @@ const MyInfoPage = ({
               ))}
             </MyInfoFlexDiv>
           }
-          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
+          <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="1rem">
             <MyInfoSpan fontSize="1.2rem" fontWeight="600">집 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {myHomeHashtags.length === 0 ? 
             <MyInfoFlexDiv
-              width="34rem"
+              width="94%"
               height="auto"
               marginTop="1rem"
               alignItems="center"
@@ -151,12 +151,13 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           :
           <MyInfoFlexDiv 
-            width="34rem" 
+            width="94%" 
             height="auto"
             marginTop="1rem"
             flexDirection="row"
             flexWrap="wrap"
-            gap="0.5rem">
+            gap="0.3vw"
+          >
             {myHomeHashtags.map((data, idx) => (
               <HashTagButton key={idx}>
                 {data}
@@ -164,14 +165,14 @@ const MyInfoPage = ({
             ))}
           </MyInfoFlexDiv>
           }
-          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
+          <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="1rem">
             <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 선호 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {likeHashtags.length === 0 ? 
             <MyInfoFlexDiv
-              width="34rem"
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               alignItems="center"
               justifyContent="center"
             >
@@ -179,12 +180,12 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           :
             <MyInfoFlexDiv 
-              width="34rem" 
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               flexDirection="row"
               flexWrap="wrap"
-              gap="0.3rem"
+              gap="0.3vw"
             >
               {likeHashtags.map((data, idx) => (
                 <HashTagButton key={idx}>
@@ -193,14 +194,14 @@ const MyInfoPage = ({
               ))}
             </MyInfoFlexDiv>
           }
-          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
+          <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="2vh">
             <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 집 선호 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {likeHomeHashtags.length === 0 ? 
             <MyInfoFlexDiv
-              width="35rem"
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               alignItems="center"
               justifyContent="center"
             >
@@ -208,12 +209,12 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           :
             <MyInfoFlexDiv 
-              width="34rem" 
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               flexDirection="row"
               flexWrap="wrap"
-              gap="0.3rem"
+              gap="0.3vw"
             >
               {likeHomeHashtags.map((data, idx) => (
                 <HashTagButton key={idx}>
