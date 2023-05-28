@@ -6,12 +6,11 @@ import LikeListPageContent from "./likelistpagecomponents/LikeListPageContent";
 const LikeListPageBoxContainer = styled.div`
     position: relative;
     /* 기준이 되는 조상 페이지 */
-    margin-top: 5rem;
+    margin-top: 9vh;
     /* 위 간격 */
-    max-width: 600px;
+    max-width: 35vw;
     /* 좌우 간격 */
-    min-height: 600px;
-    max-height: 700px;
+    height: 65vh;
     /* min/max-height = 크기고정 */
     
     left: 50%;
@@ -21,7 +20,7 @@ const LikeListPageBoxContainer = styled.div`
     background-color: #ffffff;
     border: 2px solid;
     border-radius: 1.8rem;
-    border-color: #85afe1;
+    border-color: #47A5FD;
     /* 페이지 디자인 */
     display: flex;
     flex-direction: column;
