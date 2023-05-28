@@ -58,24 +58,30 @@ const MainBox2 = styled.section`
 `;
 
 const IntroBox0 = styled.div`
+  z-index: 1;
   font-size: 1.3rem;
   width: 100%;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: -30rem;
   display: grid;
+  justify-content: center;
+  text-align: center;
+  color: white;
 `;
 
 const IntroBox = styled.div`
   font-size: 1.3rem;
-  width: 80%;
+  width: 100%;
+  justify-content: center;
   text-align: center;
-  margin: 4rem auto; /* 수직 및 수평 가운데 정렬 */
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2열로 분할, 각 열의 너비를 1fr로 설정 */
-  grid-template-rows: auto auto; /* 각 행의 높이를 자동으로 조정 */
-  gap: 8rem; /* 열 사이의 간격 설정 */
-`;
 
+  display: grid;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #85afe1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+`;
 const IntroBox1 = styled.div`
   margin-top: 2rem;
   grid-column: 1; /* 첫 번째 열에 배치 */
@@ -111,11 +117,14 @@ const letter = styled.section`
 
 const GraphBox = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  width: 700px;
-  height: 700px;
-  border: 2px solid black;
+  width: 600px;
+  height: 600px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 const LoginButton = styled.div`
@@ -130,7 +139,7 @@ const LoginButton = styled.div`
   border: 2px solid #47a5fd;
   border-radius: 10px;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 10px;
   padding: 10px;
   cursor: pointer;
   color: "#47a5fd";
@@ -177,53 +186,69 @@ const About = () => {
         <IntroBox0>
           <div>높아지는 물가와 어려워지는 내집마련,</div>
           <div>어딘가에 나랑 잘 맞는 룸메이트가 있지 않을까요?</div>
+          <div>지금 알로하룸을 이용중인 사람의 수!</div>
+          <div style={{ width: "1000px", color: "white" }}>
+            <Graph_number />
+          </div>
         </IntroBox0>
         <IntroBox>
-          <IntroBox1>
-            <div>지금 알로하룸을 이용중인 사람의 수!</div>
-            <GraphBox>
-              <div style={{ width: "1000px" }}>
-                <Graph_number />
-              </div>
-            </GraphBox>
-            <SpanDiv />
-            <div>알로하룸을 방문한 이용자수의 변화!</div>
-            <GraphBox>
+          <SpanDiv />
+          <SpanDiv />
+          <SpanDiv />
+          <SpanDiv />
+          <SpanDiv />
+          <SpanDiv />
+          <div>&lt;알로하룸을 방문한 이용자수의 변화!&gt;</div>
+          <SpanDiv />
+          <GraphBox>
+            <div style={{ width: "30rem", height: "30rem" }}>
               <Graph_user />
-            </GraphBox>
-          </IntroBox1>
-          <IntroBox2>
-            <div>알로하룸에 있는 방의 지역별 그래프!</div>
-            <GraphBox>
+            </div>
+          </GraphBox>
+          <SpanDiv />
+          <div>&lt;알로하룸에 있는 방의 지역별 그래프!&gt;</div>
+          <SpanDiv />
+          <GraphBox>
+            <div
+              style={{
+                width: "20rem",
+                height: "20rem",
+                marginTop: "-23rem",
+                marginLeft: "-10rem",
+              }}
+            >
               <Graph_map />
-            </GraphBox>
-            <SpanDiv />
-            <div>알로하룸의 평수 별 월세 그래프!</div>
-            <div>(직접 궁금한 평수를 넣어보세요)</div>{" "}
-            <GraphBox>
+            </div>
+          </GraphBox>
+          <SpanDiv />
+          <div>&lt;알로하룸의 평수 별 월세 그래프!&gt;</div>
+          <div>(직접 궁금한 평수를 넣어보세요)</div> <SpanDiv />
+          <GraphBox>
+            <div style={{ width: "30rem", height: "30rem", marginTop: "2rem" }}>
               <Graph_cost flat={flat} />{" "}
-            </GraphBox>
-            <SpanDiv />
-            <>
-              <Form
-                labelCol={{
-                  span: 4,
-                }}
-                wrapperCol={{
-                  span: 14,
-                }}
-                layout="horizontal"
-                disabled={componentDisabled}
-                style={{
-                  maxWidth: 600,
-                }}
-              >
-                <Form.Item label="평수">
-                  <Input value={flat} onChange={handleInputChange} />
-                </Form.Item>
-              </Form>
-            </>
-          </IntroBox2>
+            </div>
+            <Form
+              labelCol={{
+                span: 4,
+              }}
+              wrapperCol={{
+                span: 14,
+              }}
+              layout="horizontal"
+              disabled={componentDisabled}
+              style={{
+                width: 200,
+                margin: "0 auto",
+                fontSize: "1.2rem",
+                fontWeight: "700",
+                marginTop: "2rem",
+              }}
+            >
+              <Form.Item label="평수">
+                <Input value={flat} onChange={handleInputChange} />
+              </Form.Item>
+            </Form>
+          </GraphBox>
         </IntroBox>
       </>
       <SpanDiv />

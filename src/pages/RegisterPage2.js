@@ -150,7 +150,16 @@ const SecondContent = ({ onClick }) => {
     // 버튼 클릭 시 태그 상태 업데이트
     setTagPressed2(newClickButton2);
   };
+  useEffect(() => {
+    const savedTagPressed2 = localStorage.getItem("clickedButton2");
+    if (savedTagPressed2) {
+      setClickButton2(savedTagPressed2.split(","));
+    }
+  }, []);
 
+  useEffect(() => {
+    localStorage.setItem("clickedButton2", clickButton2.join(","));
+  }, [clickButton2]);
   return (
     <div>
       <div className="titleWrap2">
@@ -217,6 +226,16 @@ const ThirdContent = ({ onClick }) => {
     // 버튼 클릭 시 태그 상태 업데이트
     setTagPressed3(newClickButton3);
   };
+  useEffect(() => {
+    const savedTagPressed3 = localStorage.getItem("clickedButton3");
+    if (savedTagPressed3) {
+      setClickButton3(savedTagPressed3.split(","));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton3", clickButton3.join(","));
+  }, [clickButton3]);
   return (
     <div>
       <div className="titleWrap2">
@@ -260,7 +279,7 @@ const tags4 = [
 ];
 const FourthContent = ({ onClick }) => {
   const [tagPressed4, setTagPressed4] = useState(
-    localStorage.getItem("clickedButton4")
+    localStorage.getItem("clickedButton4") || null
   );
   const [clickButton4, setClickButton4] = useState([]);
 
@@ -283,6 +302,17 @@ const FourthContent = ({ onClick }) => {
     // 버튼 클릭 시 태그 상태 업데이트
     setTagPressed4(newClickButton4);
   };
+
+  useEffect(() => {
+    const savedTagPressed4 = localStorage.getItem("clickedButton4");
+    if (savedTagPressed4) {
+      setClickButton4(savedTagPressed4.split(","));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton4", clickButton4.join(","));
+  }, [clickButton4]);
 
   return (
     <div>
@@ -349,6 +379,16 @@ const LastContent = ({ onClick }) => {
     // 버튼 클릭 시 태그 상태 업데이트
     setTagPressed5(newClickButton5);
   };
+  useEffect(() => {
+    const savedTagPressed5 = localStorage.getItem("clickedButton5");
+    if (savedTagPressed5) {
+      setClickButton5(savedTagPressed5.split(","));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("clickedButton5", clickButton5.join(","));
+  }, [clickButton5]);
   return (
     <div>
       <div className="titleWrap2">

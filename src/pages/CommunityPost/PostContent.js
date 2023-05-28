@@ -159,12 +159,12 @@ const WrapButton = styled.div`
   }
 `;
 
-const PostContent = (
+const PostContent = ({
   setSearchStr,
   fetchCardPostData,
   fetchFilterCardPostData,
-  communityId
-) => {
+  communityId,
+}) => {
   const [cardPostData, setCardPostData] = useState([]);
 
   const [swLat, setSWLat] = useState("");
@@ -311,6 +311,7 @@ const PostContent = (
       </PostMapContentContainer>
       <PostMapContentContainer2>
         <CardPosts code={code} />
+        {/* <Pagination defaultCurrent={1} total={50} />; */}
         <CardPost3>
           <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b>
           <br />

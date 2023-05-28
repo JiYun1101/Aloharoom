@@ -393,6 +393,7 @@ const PostInfoPage = () => {
     };
 
     fetchData();
+    window.scrollTo(0, 0); // 스크롤이 맨 위로 올라가게 함
   }, [communityId]);
 
   async function FetchPostInfoData() {
