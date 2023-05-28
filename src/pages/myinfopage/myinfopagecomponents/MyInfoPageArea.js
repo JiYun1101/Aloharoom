@@ -67,7 +67,7 @@ const MyInfoPage = ({
             <MyInfoFlexDiv width="60%" height="100%" flexDirection="column">
               <MyInfoFlexDiv width="100%" height="20%">
                 <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                  <MyInfoSpan>아이디:</MyInfoSpan>
+                  <MyInfoSpan fontWeight="600">아이디:</MyInfoSpan>
                 </MyInfoFlexDiv>
                 <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                   <MyInfoSpan>{responseData.username}</MyInfoSpan>
@@ -75,7 +75,7 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
               <MyInfoFlexDiv width="100%" height="20%">
                 <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                  <MyInfoSpan>비밀번호:</MyInfoSpan>
+                  <MyInfoSpan fontWeight="600">비밀번호:</MyInfoSpan>
                 </MyInfoFlexDiv>
                 <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                   <MyInfoSpan>{`*******`}</MyInfoSpan>
@@ -83,7 +83,7 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
               <MyInfoFlexDiv width="100%" height="20%">
                 <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                  <MyInfoSpan>닉네임:</MyInfoSpan>
+                  <MyInfoSpan fontWeight="600">닉네임:</MyInfoSpan>
                 </MyInfoFlexDiv>
                 <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                   <MyInfoSpan>{responseData.nickname}</MyInfoSpan>
@@ -91,7 +91,7 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
               <MyInfoFlexDiv width="100%" height="20%">
                   <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                    <MyInfoSpan>나이:</MyInfoSpan>
+                    <MyInfoSpan fontWeight="600">나이:</MyInfoSpan>
                   </MyInfoFlexDiv>
                   <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                     <MyInfoSpan>{responseData.age}</MyInfoSpan>
@@ -99,7 +99,7 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
               <MyInfoFlexDiv width="100%" height="20%">
                   <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                    <MyInfoSpan>성별:</MyInfoSpan>
+                    <MyInfoSpan fontWeight="600">성별:</MyInfoSpan>
                   </MyInfoFlexDiv>
                   <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                     <MyInfoSpan>{responseData.gender === 'male' ? `남자` : `여자`}</MyInfoSpan> 
@@ -108,7 +108,7 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           </MyInfoFlexDiv>
           <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem">내 해시태그</MyInfoSpan>
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {myHashtags.length === 0 ? 
             <MyInfoFlexDiv
@@ -137,7 +137,7 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           }
           <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem">집 해시태그</MyInfoSpan>
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">집 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {myHomeHashtags.length === 0 ? 
             <MyInfoFlexDiv
@@ -165,7 +165,7 @@ const MyInfoPage = ({
           </MyInfoFlexDiv>
           }
           <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem">내 선호 해시태그</MyInfoSpan>
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 선호 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {likeHashtags.length === 0 ? 
             <MyInfoFlexDiv
@@ -194,7 +194,7 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           }
           <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem">내 집 선호 해시태그</MyInfoSpan>
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 집 선호 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {likeHomeHashtags.length === 0 ? 
             <MyInfoFlexDiv
