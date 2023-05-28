@@ -44,7 +44,6 @@ const LikedListAreaDiv = styled.div`
 
 const LikedElementDiv = styled.div`
     position: relative;
-    //border-style: solid;
     left: 0.6vw;
     width: 15vw;
     height: 40vh;

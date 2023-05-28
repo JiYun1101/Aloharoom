@@ -6,18 +6,18 @@ import { Link } from 'react-router-dom';
 import baseURL from "../../api/baseURL";
 
 const EmptyRecentViewAreaDiv = styled.div`
-    width: 37.3rem;
-    height: 33rem;
+    width: 34.8vw;
+    height: 56.9vh;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
 const RecentViewAreaDiv = styled.div`
-    margin-top: 0.5rem;
-    margin-left: 1.5rem;
-    width: 35.7rem;
-    max-height: 480px;
+    margin-top: 0.7vh;
+    margin-left: 1.3vw;
+    width: 33.4vw;
+    max-height: 55vh;
     display: flex;  
     flex-direction: row;
     flex-wrap: wrap;
@@ -43,9 +43,9 @@ const RecentViewAreaDiv = styled.div`
 
 const RecentViewElementDiv = styled.div`
     position: relative;
-    left: 0.6rem;
-    width: 16rem;
-    height: 24rem;;
+    left: 0.6vw;
+    width: 15vw;
+    height: 40vh;
     display: flex;
     align-items: center;
 `;
