@@ -145,9 +145,11 @@ const HashTagButton = styled.button`
 
 const PostContentDiv = styled.div`
   margin-top: 1rem;
+  padding-bottom: 1rem;
   width: 95%;
-  height: 10rem;
+  height: auto;
   border-bottom: solid 0.1rem #bbbbbb;
+  overflow: visible; /* 스크롤바 표시하지 않음 */
 `;
 
 const PostContentSpan = styled.span`
@@ -155,6 +157,7 @@ const PostContentSpan = styled.span`
   font-size: 1.2rem;
   font-weight: 500;
   white-space: pre-wrap;
+  min-height: auto;
 `;
 
 const CommentSection = styled.div`
