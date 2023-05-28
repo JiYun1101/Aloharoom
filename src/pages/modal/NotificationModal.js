@@ -44,9 +44,9 @@ const NotificationModal = ({ModalClose, notificationData}) => {
         .catch((error) => {})
     }
 
-    const preprefixArr = [];
+    const frontStrArr = [];
     const commentArr = [];
-    const sufsuffixArr = [];
+    const backStrArr = [];
     const prefixArr = [];
     const nicknames = [];
     const suffixArr = [];
@@ -78,26 +78,17 @@ const NotificationModal = ({ModalClose, notificationData}) => {
     const extractComment = (comment) => {
         const extractedString = comment.match(/"(.*?)"/)[1];
         commentArr.push(extractedString);
-        return extractedString;
-    }
-
-    const extractCommentPreSufStr = (comment, keyword) => {
-        const keywordIndex = comment.indexOf('"' + keyword + '"');
-        const frontString = comment.substring(0, keywordIndex);
-        preprefixArr.push(frontString);
-        const afterString = comment.substring(keywordIndex + keyword.length);
-        sufsuffixArr.push(afterString);
+        const frontStr = comment.split(`"${extractedString}"`)[0]
+        frontStrArr.push(frontStr);
+        const backStr = comment.split(`"${extractedString}"`)[1]
+        backStrArr.push(backStr);
     }
 
     //문장에서 닉네임과 앞, 뒤 문자열 추출
     notificationData.map((data, index) => {
         const target = extractNickname(data.content);
         extractPrefixSuffixStr(data.content, target);
-        const comment = extractComment(prefixArr[index]);
-        extractCommentPreSufStr(prefixArr[index], comment);
-        console.log(comment);
-        console.log(preprefixArr[index]);
-        console.log(sufsuffixArr[index]);
+        extractComment(prefixArr[index]);
     })
 
     const location = useLocation();
@@ -158,7 +149,19 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                         color={!data.isCheck ? `black`: `#a0a0a0`}
                                         fontWeight={!data.isCheck && `500`}
                                     >
-                                        {prefixArr[index]}
+                                        {frontStrArr[index]}
+                                    </ModalSpan>
+                                    <ModalSpan 
+                                        color={!data.isCheck ? `black`: `#a0a0a0`}
+                                        fontWeight={!data.isCheck && `600`}
+                                    >
+                                        {`"${commentArr[index]}"`}
+                                    </ModalSpan>
+                                    <ModalSpan 
+                                        color={!data.isCheck ? `black`: `#a0a0a0`}
+                                        fontWeight={!data.isCheck && `500`}
+                                    >
+                                        {backStrArr[index]}
                                     </ModalSpan>
                                     <ModalSpan 
                                         color={!data.isCheck ? `#47a5fd`: `#a0a0a0`}
