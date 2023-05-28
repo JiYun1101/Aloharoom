@@ -2,6 +2,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Col, Row, Statistic } from "antd";
 import baseURL from "../api/baseURL";
+import styled from "styled-components";
+import { SearchOutlined } from "@ant-design/icons";
+
+const TextWrap = styled.section`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+  margin-top: 2rem;
+`;
 
 const Graph_number = () => {
   const [userTotal, setUserTotal] = useState(0);
@@ -40,27 +49,44 @@ const Graph_number = () => {
   };
 
   return (
-    <Row justify="center" gutter={16}>
-      <Col span={12}>
-        <div
-          style={{
-            border: "1px solid white",
-            borderRadius: 8,
-            padding: 16,
-          }}
-        >
-          <Statistic title="이용자 수" value={userTotal} precision={2} />
-          {/* <Button
-            style={{
-              marginTop: 16,
-            }}
-            type="primary"
-            onClick={handleRecharge}
-            loading={isFetching}
-          >
-            Recharge
-          </Button> */}
-        </div>
+    <Row justify="center" gutter={36}>
+      <Col span={22}>
+        <Row justify="center">
+          <Col>
+            <TextWrap>지금 알로하룸을 이용중인 사람의 수!</TextWrap>
+          </Col>
+        </Row>
+        <Row justify="center">
+          <Col>
+            <Statistic
+              style={{ marginTop: "1rem", color: "white" }}
+              value={userTotal}
+              precision={2}
+            />
+          </Col>
+        </Row>
+        <Row justify="center">
+          <Col>
+            <Button
+              style={{
+                marginTop: "1rem",
+                color: "#85afe1",
+                fontSize: "1.1rem",
+                fontWeight: "700",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onClick={handleRecharge}
+              loading={isFetching}
+            >
+              <SearchOutlined
+                style={{ marginRight: "0.5rem", marginLeft: "-0.5rem" }}
+              />
+              지금 확인하기
+            </Button>
+          </Col>
+        </Row>
       </Col>
     </Row>
   );

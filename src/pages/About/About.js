@@ -36,6 +36,11 @@ const normFile = (e) => {
   return e?.fileList;
 };
 
+const StyledTextArea = styled.section`
+  font-size: 1.5rem;
+  font-weight: 700;
+`;
+
 const MainBox = styled.section`
   font-size: 1.3rem;
   position: relative;
@@ -126,22 +131,19 @@ const GraphBox = styled.div`
   border-radius: 10px;
   overflow: hidden;
 `;
-
 const LoginButton = styled.div`
   font-size: 1.2rem;
   font-weight: 700;
   width: 200px;
-  transform: translate(350%, 0);
-  height: 30px;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid #85afe1;
   border-radius: 10px;
-  margin-top: 20px;
   padding: 10px;
   cursor: pointer;
-  color: "#85afe1";
+  color: #85afe1;
 `;
 
 const About = () => {
@@ -185,7 +187,7 @@ const About = () => {
         <IntroBox0>
           <div>높아지는 물가와 어려워지는 내집마련,</div>
           <div>어딘가에 나랑 잘 맞는 룸메이트가 있지 않을까요?</div>
-          <div>지금 알로하룸을 이용중인 사람의 수!</div>
+          <StyledTextArea>지금 알로하룸을 이용중인 사람의 수!</StyledTextArea>
           <div style={{ width: "1000px", color: "white" }}>
             <Graph_number />
           </div>
@@ -195,7 +197,9 @@ const About = () => {
           <SpanDiv />
           <SpanDiv />
           <SpanDiv />
-          <div>&lt;알로하룸을 방문한 이용자수의 변화!&gt;</div>
+          <StyledTextArea>
+            &lt;알로하룸을 방문한 이용자수의 변화!&gt;
+          </StyledTextArea>
           <SpanDiv />
           <GraphBox>
             <div
@@ -210,7 +214,9 @@ const About = () => {
             </div>
           </GraphBox>
           <SpanDiv />
-          <div>&lt;알로하룸에 있는 방의 지역별 그래프!&gt;</div>
+          <StyledTextArea>
+            &lt;알로하룸에 있는 방의 지역별 그래프!&gt;
+          </StyledTextArea>
           <SpanDiv />
           <GraphBox>
             <div
@@ -225,8 +231,11 @@ const About = () => {
             </div>
           </GraphBox>
           <SpanDiv />
-          <div>&lt;알로하룸의 평수 별 월세 그래프!&gt;</div>
-          <div>(직접 궁금한 평수를 넣어보세요)</div> <SpanDiv />
+          <StyledTextArea>
+            &lt;알로하룸의 평수 별 월세 그래프!&gt;
+          </StyledTextArea>
+          <StyledTextArea>(직접 궁금한 평수를 넣어보세요)</StyledTextArea>{" "}
+          <SpanDiv />
           <GraphBox>
             <div style={{ width: "30rem", height: "30rem", marginTop: "2rem" }}>
               <Graph_cost flat={flat} />{" "}
