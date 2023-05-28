@@ -43,6 +43,10 @@ const NotificationModal = ({ModalClose, notificationData}) => {
         .then((response) => {})
         .catch((error) => {})
     }
+
+    const preprefixArr = [];
+    const commentArr = [];
+    const sufsuffixArr = [];
     const prefixArr = [];
     const nicknames = [];
     const suffixArr = [];
@@ -70,10 +74,30 @@ const NotificationModal = ({ModalClose, notificationData}) => {
             return match[1];
         } 
     }
+
+    const extractComment = (comment) => {
+        const extractedString = comment.match(/"(.*?)"/)[1];
+        commentArr.push(extractedString);
+        return extractedString;
+    }
+
+    const extractCommentPreSufStr = (comment, keyword) => {
+        const keywordIndex = comment.indexOf('"' + keyword + '"');
+        const frontString = comment.substring(0, keywordIndex);
+        preprefixArr.push(frontString);
+        const afterString = comment.substring(keywordIndex + keyword.length);
+        sufsuffixArr.push(afterString);
+    }
+
     //문장에서 닉네임과 앞, 뒤 문자열 추출
-    notificationData.map((data) => {
+    notificationData.map((data, index) => {
         const target = extractNickname(data.content);
         extractPrefixSuffixStr(data.content, target);
+        const comment = extractComment(prefixArr[index]);
+        extractCommentPreSufStr(prefixArr[index], comment);
+        console.log(comment);
+        console.log(preprefixArr[index]);
+        console.log(sufsuffixArr[index]);
     })
 
     const location = useLocation();
@@ -99,7 +123,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                         <ModalFlexDiv 
                             key={index} 
                             width="99%" 
-                            height="5rem" 
+                            height="4.5rem" 
                             flexDirection="row" 
                             borderBottom={`1px solid ${!data.isCheck ? `#808080`: `#a0a0a0`}`}
                         >
@@ -121,15 +145,15 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                 height="100%"
                                 flexDirection="column"
                             >
-                                <ModalDiv width="100%" height="25%">
+                                {/* <ModalDiv width="100%" height="25%">
                                     <ModalSpan 
                                         color={!data.isCheck ? `black`: `#a0a0a0`}
                                         fontWeight="600"
                                     >
                                         {data.flag === 0 ? `[방]` : `[커뮤니티]`}
                                     </ModalSpan>
-                                </ModalDiv>
-                                <ModalDiv width="100%" height="50%">
+                                </ModalDiv> */}
+                                <ModalDiv width="100%" height="59%" marginTop="1%">
                                     <ModalSpan 
                                         color={!data.isCheck ? `black`: `#a0a0a0`}
                                         fontWeight={!data.isCheck && `500`}
@@ -149,7 +173,7 @@ const NotificationModal = ({ModalClose, notificationData}) => {
                                         {suffixArr[index]}
                                     </ModalSpan>
                                 </ModalDiv>
-                                <ModalFlexDiv width="100%" height="25%" flexDirection="row-reverse" alignItems="center">
+                                <ModalFlexDiv width="100%" height="40%" flexDirection="row-reverse" alignItems="center">
                                     <ModalSpan 
                                         marginRight="0.5rem"
                                         color={!data.isCheck ? `#808080`: `#a0a0a0`}
