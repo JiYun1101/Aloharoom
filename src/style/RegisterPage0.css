@@ -47,6 +47,7 @@
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
+  z-index: -1;
 }
 
 .button-img {
@@ -110,6 +111,7 @@
   margin: 0; /* 수정: 불필요한 마진을 제거합니다. */
   display: flex;
   justify-content: flex-start;
+  z-index: 1;
 }
 
 .tag-button {
