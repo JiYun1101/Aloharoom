@@ -110,9 +110,15 @@ const PostMapContent = () => {
         fetchFilterCardPostData={fetchFilterCardPostData}
       />
       {localStorage.getItem('userId') ?
-        <Link to="/newPostPage" style={LinkToStyle}>
-          <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
-        </Link>
+        <>
+          {localStorage.getItem('isRoom') === 'true' ? 
+            <></>
+          :
+            <Link to="/newPostPage" style={LinkToStyle}>
+              <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+            </Link>
+          }
+        </>
       :
         <></>
       }

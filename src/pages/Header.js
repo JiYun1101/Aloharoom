@@ -167,6 +167,17 @@ const Header = () => {
       });
   }
 
+  async function fetchUserWritten() {
+    await axios.get(`${baseURL}/api/board/userId/${localStorage.getItem('userId')}`,{
+      withCredentials:true
+    })
+    .then((response) => {
+      localStorage.setItem("isRoom", response.data);
+    })
+    .catch((error) => { console.log(`fetchUserWritten axios error`); })
+  }
+
+
   const menu = (
     <Menu>
       <Menu.Item key="1">
@@ -192,6 +203,7 @@ const Header = () => {
       fetchUserId();
       fetchNotificationInfo();
       fetchNotReadNotificationCount();
+      fetchUserWritten();
     }
   }, []);
   return (
