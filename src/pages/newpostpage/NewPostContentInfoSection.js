@@ -218,13 +218,13 @@ const NewPostContentInfoSection = ({
                           setDeposit={setDeposit} 
                           setOpenChatUrl={setOpenChatUrl}
                         />
-                        <TitleDiv height="4vh" marginTop="1.5vh">
+                        <TitleDiv height="4vh" marginTop="2vh">
                             <TitleSpan fontSize="1rem" marginRight="3.5vh" lineHeight="3.5vh" fontWeight="600">내 해시태그</TitleSpan>
-                        </TitleDiv>    
+                        </TitleDiv> 
                         <MyHashTagButtonSection
                           myHashtags={myHashtags}
                         />
-                        <TitleDiv height="4vh" marginTop="5vh">
+                        <TitleDiv height="4vh" marginTop="2vh">
                             <TitleSpan fontSize="1rem" marginRight="2rem" lineHeight="3.5vh" fontWeight="600">집 해시태그</TitleSpan>
                         </TitleDiv>
                         <HouseHashTagButtonSection 

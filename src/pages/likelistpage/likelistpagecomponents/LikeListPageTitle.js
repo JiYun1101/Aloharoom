@@ -10,7 +10,7 @@ const LikeListPageTitleContainer = styled.div`
     justify-content: center;
     font-size: 1.5rem;
     border-style: none none solid none;
-    border-color: #BBBBBB;
+    border-color: #bbbbbb;
     border-width: 0.05rem;
 `;
 
