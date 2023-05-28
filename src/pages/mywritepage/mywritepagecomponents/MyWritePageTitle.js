@@ -10,7 +10,7 @@ const MyWriteTitleContainer = styled.div`
     justify-content: space-around;
     font-size: 1.2rem;
     border-style: none none solid none;
-    border-color: #BBBBBB;
+    border-color: #bbbbbb;
     border-width: 0.05rem;
 `;
 

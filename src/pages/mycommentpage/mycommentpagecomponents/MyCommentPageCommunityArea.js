@@ -24,8 +24,8 @@ const MyCommentCommunityPageEmptyContainer = styled.div`
 const MyCommentCommunityPageAreaContainer = styled.div`
     margin-top: 1vh;
     margin-left: 0.5vw;
-    width: 34.5vw;
-    height: 55vh;
+    width: 34.2vw;
+    height: 54.9vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -117,7 +117,7 @@ const MyCommentPageCommunityArea = () => {
             <MyCommentCommunityPageAreaContainer>    
                 {responseData.map((data, idx) => (
                     <Link to={`../CommunityInfoPage/${data.communityId}`} style={LinkToCardStyle}>
-                        <MyCommentCommunityPageAreaFlexDiv key={idx} width="33.5vw" height="13vh" flexDirection="row" borderStyle="solid" borderColor="#bbbbbb" borderWidth="0.2rem" borderRadius="1rem" marginTop="1vh ">
+                        <MyCommentCommunityPageAreaFlexDiv key={idx} width="33vw" height="13vh" flexDirection="row" borderStyle="solid" borderColor="#bbbbbb" borderWidth="0.2rem" borderRadius="1rem" marginTop="1vh ">
                             <MyCommentCommunityPageAreaFlexDiv width="10vw" height="13vh" alignItems="center" justifyContent="center">
                                 <MyCommentCommunityPageProfile width="90%" height="90%" src={data.imgUrls[0]}/>
                             </MyCommentCommunityPageAreaFlexDiv>
