@@ -302,7 +302,7 @@ const MyProfileUpdateModal = ({
                 </Form.Item>
             </Form>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem">내 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">내 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {PersonHashtags.map((data, idx) => (
@@ -316,7 +316,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem">집 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">집 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {HomeHashtags.map((data, idx) => (
@@ -330,7 +330,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem">내 선호 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">내 선호 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {PersonHashtags.map((data, idx) => (
@@ -344,7 +344,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem">집 선호 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">집 선호 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {HomeHashtags.map((data, idx) => (
