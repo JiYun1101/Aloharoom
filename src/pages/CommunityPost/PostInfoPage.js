@@ -155,8 +155,6 @@ const PostContentSpan = styled.span`
   font-size: 1.2rem;
   font-weight: 500;
   white-space: pre-wrap;
-  minHeight="auto"
-  height="fit-content"
 `;
 
 const CommentSection = styled.div`
@@ -395,7 +393,6 @@ const PostInfoPage = () => {
     };
 
     fetchData();
-    window.scrollTo(0, 0); // 스크롤이 맨 위로 올라가게 함
   }, [communityId]);
 
   async function FetchPostInfoData() {
