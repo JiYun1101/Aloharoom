@@ -8,8 +8,8 @@ import { SearchOutlined } from "@ant-design/icons";
 const TextWrap = styled.section`
   font-size: 1.5rem;
   font-weight: 700;
-  color: black;
-  margin-top: 2rem;
+  color: white;
+  margin-top: 10rem;
 `;
 
 const Graph_number = () => {
@@ -53,13 +53,23 @@ const Graph_number = () => {
       <Col span={22}>
         <Row justify="center">
           <Col>
-            <TextWrap>지금 알로하룸을 이용중인 사람의 수!</TextWrap>
+            {/* <TextWrap>지금 알로하룸을 이용중인 사람의 수!</TextWrap> */}
+            <TextWrap />
           </Col>
         </Row>
         <Row justify="center">
           <Col>
             <Statistic
-              style={{ marginTop: "1rem", color: "white" }}
+              style={{
+                marginTop: "-1rem",
+                marginBottom: "3rem",
+                color: "white",
+              }}
+              valueStyle={{
+                color: "white",
+                fontSize: "3rem",
+                fontWeight: "700",
+              }}
               value={userTotal}
               precision={2}
             />
