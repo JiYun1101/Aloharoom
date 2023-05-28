@@ -155,6 +155,8 @@ const PostContentSpan = styled.span`
   font-size: 1.2rem;
   font-weight: 500;
   white-space: pre-wrap;
+  minHeight="auto"
+  height="fit-content"
 `;
 
 const CommentSection = styled.div`
