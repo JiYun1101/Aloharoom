@@ -44,13 +44,13 @@ const Graph_number = () => {
       <Col span={12}>
         <div
           style={{
-            border: "1px solid #000",
+            border: "1px solid white",
             borderRadius: 8,
             padding: 16,
           }}
         >
           <Statistic title="이용자 수" value={userTotal} precision={2} />
-          <Button
+          {/* <Button
             style={{
               marginTop: 16,
             }}
@@ -59,7 +59,7 @@ const Graph_number = () => {
             loading={isFetching}
           >
             Recharge
-          </Button>
+          </Button> */}
         </div>
       </Col>
     </Row>

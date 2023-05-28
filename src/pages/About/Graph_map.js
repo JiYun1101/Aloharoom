@@ -11,66 +11,63 @@ const DemoScatter = () => {
   const fetchData = async () => {
     try {
       const {
-        data: { userTotal, regionBoardMap },
+        data: { regionBoardMap },
       } = await axios.get(`${baseURL}/api/data`);
+      console.log("지역 데이터", Object.values(regionBoardMap));
+      console.log("지역 데이터(서울)", Object.values(regionBoardMap)[2]);
 
       const modifiedData = [
         {
           city: "울산",
-          UV: 2.7,
-          DAU: 1.8,
-          region: 3,
+          UV: 2.5,
+          DAU: 1.7,
+          region: Object.values(regionBoardMap)[0],
         },
         {
           city: "광주",
-          UV: 1.7,
-          DAU: 1.8,
-          region: 13,
-        },
-        {
-          city: "경기도",
-          UV: 1.68,
-          DAU: 4.2,
-          region: 16,
+          UV: 1.0,
+          DAU: 1.3,
+          region: Object.values(regionBoardMap)[1],
         },
         {
           city: "서울",
-          UV: 1.6,
-          DAU: 4,
-          region: 16,
+          UV: 1.3,
+          DAU: 2.6,
+          region: Object.values(regionBoardMap)[2],
+        },
+        {
+          city: "인천",
+          UV: 1.0,
+          DAU: 2.4,
+          region: Object.values(regionBoardMap)[5],
         },
         {
           city: "강원도",
-          UV: 2.6,
-          DAU: 4,
-          region: 19,
+          UV: 2.3,
+          DAU: 2.5,
+          region: Object.values(regionBoardMap)[4],
         },
         {
           city: "대전",
-          UV: 2.1,
+          UV: 1.2,
           DAU: 3,
-          region: 90,
+          region: Object.values(regionBoardMap)[5],
         },
         {
-          city: "제주도",
-          UV: 1.6,
-          DAU: 0.0,
-          region: 30,
+          city: "부산",
+          UV: 2.0,
+          DAU: 1.6,
+          region: Object.values(regionBoardMap)[6],
         },
       ];
 
-      modifiedData.forEach((item) => {
-        const target = regionBoardMap[item.city];
-        if (target) {
-          item.region = target.region;
-        }
+      modifiedData.forEach((item, index) => {
+        item.region = Object.values(regionBoardMap)[index]; // 배열의 각 요소를 region에 할당합니다.
       });
 
       setData(modifiedData);
-
-      console.log("Data loaded successfully");
     } catch (error) {
-      console.error("Data loading failed", error);
+      console.error(error);
     }
   };
 

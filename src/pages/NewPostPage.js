@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import NewPostHeaderSection from "./newpostpage/NewPostHeaderSection";
 import NewPostContentSection from "./newpostpage/NewPostContentSection";
 import { useState } from "react";
@@ -25,31 +25,41 @@ const NewPostPage = () => {
   const [isAddressInfoModalOpen, setIsAddressInfoModalOpen] = useState(false);
   const [addressData, setAddressData] = useState(null);
   const navigate = useNavigate();
-  const showAddressInfoModal = () => { setIsAddressInfoModalOpen(true); }
-  const handleAddressInfoOk = () => { setIsAddressInfoModalOpen(false); }
-  const handleAddressInfoCancel = () => { setIsAddressInfoModalOpen(false); }
-    return (
-      <>
-        {isAddressInfoModalOpen ? 
-          <AddressInfoModal
-            isAddressInfoModalOpen={isAddressInfoModalOpen}
-            handleOk={handleAddressInfoOk}
-            handelCancel={handleAddressInfoCancel}
-            addressData={addressData}
-          />
-          :
-          <></>
-        }
-        <NewPostContainer>
-            <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate(-1)}/>
-            <NewPostHeaderSection/>
-            <NewPostContentSection
-              showAddressInfoModal={showAddressInfoModal}
-              setAddressData={setAddressData}
-            />
-        </NewPostContainer>
-      </>
-    );
-}
+  const showAddressInfoModal = () => {
+    setIsAddressInfoModalOpen(true);
+  };
+  const handleAddressInfoOk = () => {
+    setIsAddressInfoModalOpen(false);
+  };
+  const handleAddressInfoCancel = () => {
+    setIsAddressInfoModalOpen(false);
+  };
+  return (
+    <>
+      {isAddressInfoModalOpen ? (
+        <AddressInfoModal
+          isAddressInfoModalOpen={isAddressInfoModalOpen}
+          handleOk={handleAddressInfoOk}
+          handelCancel={handleAddressInfoCancel}
+          addressData={addressData}
+        />
+      ) : (
+        <></>
+      )}
+      <NewPostContainer>
+        <AiOutlineLeft
+          size={40}
+          style={BackPageIconStyle}
+          onClick={() => navigate(-1)}
+        />
+        <NewPostHeaderSection />
+        <NewPostContentSection
+          showAddressInfoModal={showAddressInfoModal}
+          setAddressData={setAddressData}
+        />
+      </NewPostContainer>
+    </>
+  );
+};
 
 export default NewPostPage;

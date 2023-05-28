@@ -136,13 +136,12 @@ const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #47a5fd;
+  border: 2px solid #85afe1;
   border-radius: 10px;
   margin-top: 20px;
-  margin-left: 10px;
   padding: 10px;
   cursor: pointer;
-  color: "#47a5fd";
+  color: "#85afe1";
 `;
 
 const About = () => {
@@ -196,12 +195,17 @@ const About = () => {
           <SpanDiv />
           <SpanDiv />
           <SpanDiv />
-          <SpanDiv />
-          <SpanDiv />
           <div>&lt;알로하룸을 방문한 이용자수의 변화!&gt;</div>
           <SpanDiv />
           <GraphBox>
-            <div style={{ width: "30rem", height: "30rem" }}>
+            <div
+              style={{
+                width: "30rem",
+                height: "30rem",
+                marginTop: "4rem",
+                marginLeft: "-1rem",
+              }}
+            >
               <Graph_user />
             </div>
           </GraphBox>
@@ -211,10 +215,10 @@ const About = () => {
           <GraphBox>
             <div
               style={{
-                width: "20rem",
-                height: "20rem",
-                marginTop: "-23rem",
-                marginLeft: "-10rem",
+                width: "10rem",
+                height: "10rem",
+                marginTop: "-3rem",
+                marginLeft: "-20rem",
               }}
             >
               <Graph_map />
@@ -253,7 +257,7 @@ const About = () => {
       </>
       <SpanDiv />
       <SpanDiv />
-      <Link to="../Login" style={{ textDecoration: "none", color: "#47a5fd" }}>
+      <Link to="../Login" style={{ textDecoration: "none", color: "#85afe1" }}>
         <LoginButton>로그인 하러가기!</LoginButton>
       </Link>
       <SpanDiv />
