@@ -20,7 +20,7 @@ const LikeListPageBoxContainer = styled.div`
     background-color: #ffffff;
     border: 2px solid;
     border-radius: 1.8rem;
-    border-color: #47A5FD;
+    border-color: #47a5fd;
     /* 페이지 디자인 */
     display: flex;
     flex-direction: column;
