@@ -6,12 +6,6 @@ import axios from "axios";
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { FaRegCommentDots } from "react-icons/fa";
-import neonsign from "../../img/neonsign.jpg";
-import music from "../../img/music.jpg";
-import clock from "../../img/clock.jpg";
-import box from "../../img/box.jpg";
-import blue from "../../img/blue.jpg";
-import mint from "../../img/mint.jpg";
 import baseURL from "../api/baseURL";
 import { AiFillEye } from "react-icons/ai";
 
