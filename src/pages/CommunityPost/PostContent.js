@@ -149,7 +149,7 @@ const HoverableRadio = styled(Radio.Button)`
 const WrapButton = styled.div`
   justify-content: center;
   align-items: center;
-  border: 2px solid #85afe1;
+  border: 2px solid #47a5fd;
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
@@ -238,13 +238,13 @@ const PostContent = ({
     setButton3Color("#000000");
 
     if (code === 1) {
-      setButton1Color("#85afe1");
+      setButton1Color("#47a5fd");
       setCode(1);
     } else if (code === 2) {
-      setButton2Color("#85afe1");
+      setButton2Color("#47a5fd");
       setCode(2);
     } else if (code === 3) {
-      setButton3Color("#85afe1");
+      setButton3Color("#47a5fd");
       setCode(3);
     }
 
@@ -300,7 +300,7 @@ const PostContent = ({
       <PostMapContentContainer2>
         <CardPosts code={code} />
         <CardPost3>
-          <b style={{ color: "#85afe1", fontWeight: "bold" }}>인기글</b>
+          <b style={{ color: "#47a5fd", fontWeight: "bold" }}>인기글</b>
           <br />
           {data.map((post, index) => (
             <React.Fragment key={index}>

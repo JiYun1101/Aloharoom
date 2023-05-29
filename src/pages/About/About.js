@@ -39,6 +39,7 @@ const normFile = (e) => {
 const StyledTextArea = styled.section`
   font-size: 1.5rem;
   font-weight: 700;
+  color: ${ props => props.color};
 `;
 
 const MainBox = styled.section`
@@ -139,11 +140,11 @@ const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #85afe1;
+  border: 2px solid #47a5fd;
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
-  color: #85afe1;
+  color: #47a5fd;
 `;
 
 const About = () => {
@@ -197,7 +198,7 @@ const About = () => {
           <SpanDiv />
           <SpanDiv />
           <SpanDiv />
-          <StyledTextArea>
+          <StyledTextArea color="#47a5fd">
             &lt;알로하룸을 방문한 이용자수의 변화!&gt;
           </StyledTextArea>
           <SpanDiv />
@@ -214,7 +215,7 @@ const About = () => {
             </div>
           </GraphBox>
           <SpanDiv />
-          <StyledTextArea>
+          <StyledTextArea color="#47a5fd">
             &lt;알로하룸에 있는 방의 지역별 그래프!&gt;
           </StyledTextArea>
           <SpanDiv />
@@ -231,10 +232,10 @@ const About = () => {
             </div>
           </GraphBox>
           <SpanDiv />
-          <StyledTextArea>
+          <StyledTextArea color="#47a5fd">
             &lt;알로하룸의 평수 별 월세 그래프!&gt;
           </StyledTextArea>
-          <StyledTextArea>(직접 궁금한 평수를 넣어보세요)</StyledTextArea>{" "}
+          <StyledTextArea color="#47a5fd">(직접 궁금한 평수를 넣어보세요)</StyledTextArea>{" "}
           <SpanDiv />
           <GraphBox>
             <div style={{ width: "30rem", height: "30rem", marginTop: "2rem" }}>
@@ -266,7 +267,7 @@ const About = () => {
       </>
       <SpanDiv />
       <SpanDiv />
-      <Link to="../Login" style={{ textDecoration: "none", color: "#85afe1" }}>
+      <Link to="../Login" style={{ textDecoration: "none", color: "#47a5fd" }}>
         <LoginButton>로그인 하러가기!</LoginButton>
       </Link>
       <SpanDiv />
