@@ -8,7 +8,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Segmented, Space } from "antd";
+import { Avatar, Segmented, Select, Space } from "antd";
 
 import { Button, Form, Input, Radio } from "antd";
 import CardPosts from "./CardPosts"; // CardPosts import
@@ -134,7 +134,7 @@ const { Search } = Input;
 const SearchSectionContainer = styled.div`
   width: 50%;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   margin-left: -11rem;
 `;
@@ -165,16 +165,19 @@ const PostContent = ({
   fetchFilterCardPostData,
   communityId,
 }) => {
-  const [cardPostData, setCardPostData] = useState([]);
 
   const [swLat, setSWLat] = useState("");
   const [swLon, setSWLon] = useState("");
   const [neLat, setNELat] = useState("");
   const [neLon, setNELon] = useState("");
-
   const [button1Color, setButton1Color] = useState("#000000");
   const [button2Color, setButton2Color] = useState("#000000");
   const [button3Color, setButton3Color] = useState("#000000");
+  const lastClickedCode =
+    parseInt(localStorage.getItem("lastClickedCode")) || 1;
+  const [code, setCode] = useState(lastClickedCode);
+  const [selectCategory, setSelectCategory] = useState('제목');
+  const [cardPostData, setCardPostData] = useState([]);
 
   const [isCardPostsVisible, setIsCardPostsVisible] = useState(true); // CardPosts의 가시성 상태 추가
 
@@ -189,11 +192,12 @@ const PostContent = ({
   const onSearch = (value) => {
     setSearchStr(value);
   };
-
   useEffect(() => {
     if (localStorage.getItem("userId")) {
       fetchHashtag();
     }
+    console.log('최초 렌더링시');
+    console.log('cardPostData', cardPostData);
   }, []);
 
   const [inputValue, setInputValue] = useState(null);
@@ -218,14 +222,59 @@ const PostContent = ({
     console.log(message);
   };
 
-  const lastClickedCode =
-    parseInt(localStorage.getItem("lastClickedCode")) || 1;
-  const [code, setCode] = useState(lastClickedCode);
+  function handleSelectChange(value) {
+    console.log('selectCategory', value);
+    setSelectCategory(value);
+  }
+
+  const onInputSearch = (value) => {
+    console.log('입력한 값', value);
+    console.log('선택한 카테고리', selectCategory);
+
+    if (selectCategory === '제목') {
+      fetchTitleSearchData(value);
+    }
+    else if(selectCategory === '닉네임') {
+      fetchNicknameSearchData(value);
+    }
+  }
+
+  async function fetchTitleSearchData(keyword) {
+    await axios.get(`${baseURL}/api/communitySearch`, {
+      params: {
+        keyword: keyword,
+        code: code
+      },
+      withCredentials:true
+    })
+    .then((response) => {
+      console.log('fetchTitleSearchData response data', response.data);
+      setCardPostData(response.data);
+    })
+    .catch((error) => { console.log('fetchTitleSearchData fetch error');})
+  }
+
+  async function fetchNicknameSearchData(nickname) {
+    await axios.get(`${baseURL}/api/communitySearch/nickname`, {
+      params: {
+        nickname: nickname,
+        code: code
+      },
+      withCredentials:true
+    })
+    .then((response) => {
+      console.log('fetchNicknameSearchData response data', response.data);
+      setCardPostData(response.data);
+    })
+    .catch((error) => {console.log(`fetchNicknameSearchData axios error`);})
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
         `${baseURL}/api/communityboard/code/${code}`
       );
+      setCardPostData(result.data[0]);
       setData(result.data[1]);
       console.log(result.data[1]);
     };
@@ -263,7 +312,7 @@ const PostContent = ({
           }}
           onValuesChange={onRequiredTypeChange}
           requiredMark={requiredMark}
-          style={{ marginTop: "5.2rem", marginLeft: "1rem" }}
+          style={{ marginTop: "6rem", marginLeft: "1rem" }}
         >
           <Form.Item>
             <Radio.Group
@@ -294,17 +343,35 @@ const PostContent = ({
             </Radio.Group>
           </Form.Item>
         </Form>
-        <SearchSectionContainer>
+        <SearchSectionContainer style={{borderStyle: "solid"}}>
+          <Select
+            style={{
+              width: "8rem",
+              marginLeft: "13rem",
+              marginTop: "5.7rem"
+            }}
+            defaultValue={selectCategory}
+            options={[
+              {
+                value: "제목",
+                label: "제목"
+              },
+              {
+                value: "닉네임",
+                label: "닉네임"
+              },
+            ]}
+            onChange={handleSelectChange}
+          />
           <Search
             placeholder="게시물 키워드를 입력하세요"
             size="large"
             allowClear
-            onSearch={onSearch}
+            onSearch={onInputSearch}
             style={{
-              width: "3100px",
-              left: "30rem",
-              marginLeft: "29rem",
-              marginTop: "5rem",
+              width: 300,
+              marginLeft: "3rem",
+              marginTop: "5.7rem",
             }}
           />
         </SearchSectionContainer>
@@ -346,7 +413,13 @@ const PostContent = ({
             </React.Fragment>
           ))}
         </CardPost3>
-        {selectedTitle && <CardPosts title={selectedTitle} />}
+        {console.log('postcontent cardPostData', cardPostData)}
+        <CardPosts 
+          title={selectedTitle} 
+          code={code}
+          cardPostData={cardPostData}
+          setCardPostData={setCardPostData}
+        />
         <Link to="/newCommunityPostPage" style={LinkToStyle}>
           <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
         </Link>

@@ -77,7 +77,6 @@ const CardPost = ({ communityId }) => {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
 
-  const cardRef = useRef(null);
   const [scrollTop, setScrollTop] = useState(0);
   const location = useLocation();
   const code = 0; // 1이 아닌 다른 값으로 변경
@@ -92,29 +91,12 @@ const CardPost = ({ communityId }) => {
     fetchData();
   }, [communityId, code]); // code를 의존성 배열에 추가
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (cardRef.current) {
-        setScrollTop(cardRef.current.scrollTop);
-      }
-    };
-
-    if (cardRef.current) {
-      cardRef.current.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        cardRef.current.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
   const handleLinkClick = (event, message) => {
     console.log(message);
   };
 
   return (
-    <CardBox2 ref={cardRef}>
+    <CardBox2>
       {data.map((post, index) => (
         <Link to={`../CommunityInfoPage/${post.communityId}`} key={post.code}>
           <Card2

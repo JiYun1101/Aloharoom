@@ -13,6 +13,7 @@ const PostButtonDiv = styled.div`
 const PostButton = styled.button`
     width: 7rem;
     height: 2rem;
+    margin-right: 1rem;
     font-size: 1rem;
     border-width: 0.1rem;
     border-style: solid;

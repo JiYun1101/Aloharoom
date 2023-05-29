@@ -34,7 +34,6 @@ const SearchSection = ({
       withCredentials:true
     })
     .then((response) => { 
-      console.log('fetchHashtag', response.data);
       setMyLikeHashtags(response.data.likeHashtags);
       setMyLikeHomeHashtags(response.data.likeHomeHashtags);
     })

@@ -3,11 +3,8 @@ import styled from "styled-components";
 import { FaRegCommentDots } from "react-icons/fa";
 
 const Card = styled.div`
-  //width: 15.5rem;
-  //height: 22rem;
   width: 14.6vw;
   height: 38vh;
-  //height: 22rem;
   border-style: solid;
   border-color: #bbbbbb;
   border-radius: 1rem;
@@ -23,15 +20,15 @@ const Card = styled.div`
 
 const RoomTypeDiv = styled.div`
   width: 90%;
-  height: 2rem;
+  height: 3.5vh;
   display: flex;
   align-items: flex-end;
 `;
 
 const RoomTypeButton = styled.button`
   background-color: white;
-  width: 4.5rem;
-  height: 1.5rem;
+  width: 4.5vw;
+  height: 2.8vh;
   color: #47a5fd;
   font-weight: 500;
   font-size: 0.8rem;
@@ -41,18 +38,18 @@ const RoomTypeButton = styled.button`
 
 const MoveInDateDiv = styled.div`
   width: 88%;
-  height: 2rem;
+  height: 3.5vh;
 `;
 
 const MoveInDateSpan = styled.span`
   font-size: 0.8rem;
   color: black;
-  line-height: 2rem;
+  line-height: 3.5vh;
 `;
 
 const AddressInfoDiv = styled.div`
   width: 88%;
-  height: 2.5rem;
+  height: 4.2vh;
 `;
 
 const AddressInfoSpan = styled.span`
@@ -62,18 +59,18 @@ const AddressInfoSpan = styled.span`
 
 const PriceInfoDiv = styled.div`
   width: 88%;
-  height: 2rem;
+  height: 3.5vh;
 `;
 
 const PriceInfoSpan = styled.span`
   font-size: 1.2rem;
-  line-height: 2rem;
+  line-height: 3.5vh;
   font-weight: 600;
 `;
 
 const CardImageDiv = styled.div`
   width: 99%;
-  height: 11rem;
+  height: 19vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,51 +78,51 @@ const CardImageDiv = styled.div`
 
 const CardImage = styled.img`
   width: 95%;
-  height: 10rem;
+  height: 18vh;
 `;
 
 const ProfileCommentDiv = styled.div`
   width: 95%;
-  height: 2rem;
+  height: 3.5vh;
   display: flex;
   flex-direction: row;
 `;
 
 const ProfileDiv = styled.div`
   width: 65%;
-  height: 2rem;
+  height: 3.5vh;
   display: flex;
   align-items: center;
 `;
 
 const ProfileImg = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 1.8vw;
+  height: 1.8vw;
   border-radius: 70%;
 `;
 
 const ProfileSpan = styled.span`
-  margin-left: 0.5rem;
+  margin-left: 0.5vw;
   color: black;
   font-size: 0.9rem;
 `;
 
 const CommentDiv = styled.div`
   width: 34%;
-  height: 2rem;
+  height: 3.5vh;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
 `;
 
 const CommentLogoStyle = {
-  marginRight: "0.5rem",
+  marginRight: "0.5vw",
 };
 
 const CommentSpan = styled.span`
   font-size: 1rem;
   font-weight: 700;
-  margin-right: 0.5rem;
+  margin-right: 0.2vw;
 `;
 
 const CardPost = ({

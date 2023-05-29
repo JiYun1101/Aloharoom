@@ -7,24 +7,24 @@ import { Link } from 'react-router-dom';
 import baseURL from "../../api/baseURL";
 
 const EmptyLikedListAreaDiv = styled.div`
-    width: 37.3rem;
-    height: 33rem;
+    width: 34.8vw;
+    height: 56.9vh;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
 const LikedListAreaDiv = styled.div`
-    margin-top: 0.5rem;
-    margin-left: 1.5rem;
-    width: 35.7rem;
-    max-height: 480px;
+    margin-top: 0.7vh;
+    margin-left: 1.3vw;
+    width: 33.4vw;
+    max-height: 55vh;
     display: flex;  
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
-    gap: 1.2rem;
+    gap: 1vw;
     overflow-x: hidden;
     overflow-y: auto;
     &::-webkit-scrollbar {
@@ -44,19 +44,19 @@ const LikedListAreaDiv = styled.div`
 
 const LikedElementDiv = styled.div`
     position: relative;
-    left: 0.6rem;
-    width: 16rem;
-    height: 24rem;;
+    left: 0.6vw;
+    width: 15vw;
+    height: 40vh;
     display: flex;
     align-items: center;
 `;
 
 const heartStyle = {
     position: "absolute",
-    top: "0.2rem",
+    top: "0.05vw",
     right: "0px",
     zIndex: "3",
-    color: "#47A5FD"
+    color: "red"
 };
 
 const LinkToCardStyle = {
@@ -71,7 +71,6 @@ const LikedListPageArea = () => {
             withCredentials:true
         })
         .then((response) => {
-            console.log('response.data: ', response.data);
             setResponseData(response.data);
         })
         .catch((error) => {

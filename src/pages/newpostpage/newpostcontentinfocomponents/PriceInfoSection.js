@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react';
 import styled from 'styled-components';
 import { Select } from 'antd';
 
@@ -28,14 +27,11 @@ const PriceInfoInput = styled.input`
 `;
 
 const PriceInfoSpan = styled.span`
+  color: ${props => props.color};
   font-size: ${props => props.fontSize || "1rem"};
   margin-right: ${props => props.marginRight || "0rem"};
   font-weight: ${props => props.fontWeight};
-`;
-
-const ManageMentPriceCheckbox = styled.input`
-  background-color: #47a5fd;
-  margin-right: 0.5vw;
+  margin-left: ${props => props.marginLeft};
 `;
 
 const TradeTypeOptions = [
@@ -64,17 +60,12 @@ const PriceInfoSection = ({
     const TradeTypeOnChange = (value) => {
       setTradeType(value);
     };
-    //체크 박스 클릭시 활성화 되도록 하는 상태 변수
-    const [maintenanceChecked, setMaintenanceChecked] = useState(false);
-    const handleMaintenanceCheckboxChange = () => {
-        setMaintenanceChecked(!maintenanceChecked);
-    };
     
     return (
         <PriceInfoContainer>
           <PriceInfoBox width="50%" height="5vh">
             <PriceInfoInput value={price} width="5vw" height="3.5vh" type="text" onChange={(e) => { setPrice(e.target.value); }}/>
-            <PriceInfoSpan fontSize="2rem">(</PriceInfoSpan>
+            <PriceInfoSpan fontSize="2rem" color="#bbbbbb">(</PriceInfoSpan>
             <Select
               showSearch
               placeholder="계약형태 선택"
@@ -83,12 +74,11 @@ const PriceInfoSection = ({
               options={TradeTypeOptions}
               style={{ width: 130 }}
             />
-            <PriceInfoSpan fontSize="2rem">)</PriceInfoSpan>
+            <PriceInfoSpan fontSize="2rem" color="#bbbbbb">)</PriceInfoSpan>
           </PriceInfoBox>
           <PriceInfoBox width="50%" height="5vh">
-            <ManageMentPriceCheckbox type="checkbox" checked={maintenance !== "" ?  true : maintenanceChecked} onChange={handleMaintenanceCheckboxChange}/>
-            <PriceInfoSpan marginRight="2vw" fontWeight="600">관리비 별도</PriceInfoSpan>
-            <PriceInfoInput value={maintenance} width="7.5vw" height="3.5vh" type="text" disabled={maintenance !== "" ?  false : !maintenanceChecked} onChange={(e) => { setMaintenance(e.target.value);}}/>
+            <PriceInfoSpan marginLeft="1.5vw" marginRight="2vw" fontWeight="600">관리비 별도</PriceInfoSpan>
+            <PriceInfoInput value={maintenance} width="7.5vw" height="3.5vh" type="text"  onChange={(e) => { setMaintenance(e.target.value);}}/>
           </PriceInfoBox>
         </PriceInfoContainer>
     );

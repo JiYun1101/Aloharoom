@@ -75,9 +75,6 @@ const RoomCountTypeFlatInfoSection = ({
     setHomeType(homeType);
   }
 
-  const onChange = (value) => {
-    console.log(`selected ${value}`);
-  };
   return (
     <RoomCountTypeFlatInfoContainer>
       <RoomCountTypeFlatInfoBox width="25%">

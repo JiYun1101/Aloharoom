@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Space } from "antd";
+import { Button, Form, Select, Space } from "antd";
 import { useState } from "react";
 
 const { Option } = Select;

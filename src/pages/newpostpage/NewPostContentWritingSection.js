@@ -4,6 +4,7 @@ import PostContentSection from "./newpostcontentwritingcomponents/PostContentSec
 import ImageUploadSection from "./newpostcontentwritingcomponents/ImageUploadSection";
 import ImageSwiperSection from "./newpostcontentwritingcomponents/ImageSwiperSection";
 import PostButtonSection from "./newpostcontentwritingcomponents/PostButtonSection";
+import { useState } from "react";
 
 const NewPostContentWritingDiv = styled.div`
     width: 80%;
@@ -25,8 +26,12 @@ const NewPostContentWritingArea = styled.div`
 `;
 
 const NewPostContentImageArea = styled.div`
+    margin-top: 2%;
+    border-style: solid;
+    border-color: #bbbbbb;
+    border-radius: 1rem;
     width: 100%;
-    height: 50%;
+    height: 55%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,6 +47,20 @@ const NewPostContentWritingSection = ({
     PostInfoSubmit,
     modifyPost
 }) => {
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const handleImageClick = (index) => {
+        setSelectedImage(index);
+    };
+
+    const removeElementByIndex = (index) => {
+        const newPreviewImages = [...previewImages];
+        const newImgFiles = [...imgFiles]
+        newPreviewImages.splice(index, 1);
+        newImgFiles.splice(index, 1);
+        setPreviewImages(newPreviewImages);
+        setImgFiles(newImgFiles);
+    };
 
     const handleImageFilesInputChange = (e) => {
         const files = e.target.files;
@@ -69,10 +88,16 @@ const NewPostContentWritingSection = ({
                 />
             </NewPostContentWritingArea>
             <NewPostContentImageArea>
-                <ImageUploadSection handleImageFilesInputChange={handleImageFilesInputChange}/>
+                <ImageUploadSection 
+                    handleImageFilesInputChange={handleImageFilesInputChange}
+                    selectedImage={selectedImage}
+                    removeElementByIndex={removeElementByIndex}
+                />
                 <ImageSwiperSection 
                     imgFiles={imgFiles}
                     previewImages={previewImages}
+                    selectedImage={selectedImage}
+                    handleImageClick={handleImageClick}
                     setImgFiles={setImgFiles}
                     setPreviewImages={setPreviewImages}
                 />

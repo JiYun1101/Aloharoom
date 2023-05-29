@@ -6,33 +6,33 @@ import { Link } from 'react-router-dom';
 import baseURL from "../../api/baseURL";
 
 const EmptyMyCommentPageRoomAreaDiv = styled.div`
-    width: 37.3rem;
-    height: 33rem;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
 const MyCommentPageRoomAreaDiv = styled.div`
-    margin-top: 0.5rem;
-    margin-left: 1.5rem;
-    width: 35.7rem;
-    max-height: 480px;
+    margin-top: 0.7vh;
+    margin-left: 1.4vw;
+    width: 33.3vw;
+    max-height: 55vh;
     display: flex;  
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
-    gap: 1.2rem;
+    gap: 1.1vw;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     &::-webkit-scrollbar {
         width: 0.4rem;          /* 스크롤바의 너비 */
     }
 
     &::-webkit-scrollbar-thumb {
         height: 1%;             /* 스크롤바의 길이 */
-        background: #BBBBBB;    /* 스크롤바의 색상 */
+        background: #bbbbbb;    /* 스크롤바의 색상 */
         border-radius: 1rem;
     }
 
@@ -43,20 +43,12 @@ const MyCommentPageRoomAreaDiv = styled.div`
 
 const MyCommentPageRoomElementDiv = styled.div`
     position: relative;
-    left: 0.6rem;
-    width: 16rem;
-    height: 24rem;;
+    left: 0.6vw;
+    width: 15vw;
+    height: 40vh;
     display: flex;
     align-items: center;
 `;
-
-const heartStyle = {
-    position: "absolute",
-    top: "0.2rem",
-    right: "0px",
-    zIndex: "3",
-    color: "#47A5FD"
-};
 
 const LinkToCardStyle = {
     textDecoration: 'none',
@@ -71,7 +63,7 @@ const MyCommentPageRoomArea = () => {
         })
         .then((response) => { 
             setResponseData(response.data);
-            console.log('response.data', response.data);})
+        })
         .catch((error) => { console.log(`axios fetchMyCommentRoomInfo error`);})
     }
 

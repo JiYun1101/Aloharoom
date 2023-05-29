@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MyPageTitle from "./myinfopagecomponents/MyInfoPageTitle";
 import MyInfoPageContent from "./myinfopagecomponents/MyInfoPageContent";
-import HoverHashTagButton from "../HoverHashTagButton";
 import MyProfileUpdateModal from "../modal/MyProfileUpdateModal";
 import axios from "axios";
 import baseURL from "../api/baseURL";
@@ -10,12 +9,13 @@ import baseURL from "../api/baseURL";
 const MyPageBoxContainer = styled.div`
     position: relative;
     /* 기준이 되는 조상 페이지 */
-    margin-top: 5rem;
+    margin-top: 9vh;
     /* 위 간격 */
-    max-width: 600px;
+    max-width: 35vw;
     /* 좌우 간격 */
-    min-height: 600px;
-    max-height: 700px;
+    height: 65vh;
+    //min-height: 35vh;
+    //max-height: 68vh;
     /* min/max-height = 크기고정 */
     
     left: 50%;
@@ -25,7 +25,7 @@ const MyPageBoxContainer = styled.div`
     background-color: #ffffff;
     border: 2px solid;
     border-radius: 1.8rem;
-    border-color: #85afe1;
+    border-color: #47A5FD;
     /* 페이지 디자인 */
     display: flex;
     flex-direction: column;
@@ -55,7 +55,6 @@ const MyPageBox = () => {
             withCredentials:true
         }) 
         .then((response) => {
-            console.log('response.data', response.data);
             setResponseData(response.data);
             setMyHashtags(response.data.myHashtags);
             setMyHomeHashtags(response.data.myHomeHashtags);
@@ -92,7 +91,7 @@ const MyPageBox = () => {
                 onClick={() => {
                     showMyProfileUpdateModal();
                 }}
-                style={{ position: "absolute", top:"0.2rem", right: "1rem"}}
+                style={{ position: "absolute", top:"1vh", right: "1vw"}}
             >
                 내 정보 수정
             </MyInfoUpdateButton>

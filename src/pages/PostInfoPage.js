@@ -6,9 +6,6 @@ import SwiperCore from 'swiper/core';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiOutlineHeart, AiOutlineDelete, AiOutlineEdit, AiFillHeart} from "react-icons/ai";
 import { BiMale, BiFemale } from "react-icons/bi";
-import { GrDeliver } from "react-icons/gr";
-import { GiMeal } from "react-icons/gi";
-import { AiOutlineLeft } from "react-icons/ai";
 import axios from "axios";
 import InfoPageMapContainer from "./postinfopage/InfoPageMapContainer";
 import PostInfoDiv from "./postinfopage/PostInfoDiv";
@@ -19,6 +16,7 @@ import WriteComment from "./postinfopage/commentcomponents/WriteComment";
 import ReadCommentSection from "./postinfopage/commentcomponents/ReadCommentSection";
 import baseURL from "./api/baseURL";
 import DeletePostModal from "./modal/DeletePostModal";
+import MatchingCompleteModal from "./modal/MatchingCompleteModal";
 import HashTagButton from "./HashTagButton";
 
 import "swiper/css";
@@ -26,6 +24,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useRef } from "react";
+import Header from "./Header";
 
 SwiperCore.use([Pagination]);
 
@@ -46,8 +45,8 @@ const PostInfoPageSection  = styled.div`
 `;
 
 const PostInfoImage = styled.img`
-    width: 40vw;
-    height: 50vh;
+    width: 43rem;
+    height: 29rem;
 `;
 
 const SwiperContainer = styled.div`
@@ -93,17 +92,6 @@ const LinkToIconStyle = {
     color: "black",
 };
 
-const PostInfoContentstyles = {
-    whiteSpace: "pre-line"
-};
-
-
-const BackPageIconStyle = {
-    position: "absolute",
-    top: "1vh",
-    left: "1vw",
-    color: "#47a5fd",
-};
 
 const PostInfoPage = () => {
     const boardId = useParams().id;
@@ -140,8 +128,17 @@ const PostInfoPage = () => {
     const [y, setY] = useState('');
     const [myProfileURL, setMyProfileURL] = useState('');
     const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
+    const [isMatchingCompleteModalOpen, setIsMatchingCompleteModalOpen] = useState(false);
+    const showMatchingCompleteModal = () => { setIsMatchingCompleteModalOpen(true);}
     const showDeletePostModal = () => {setIsDeletePostModalOpen(true);}
+    const handleMatchingCompleteModalCancel = () => {setIsMatchingCompleteModalOpen(false);}
     const handleDeletePostCancel = () => {setIsDeletePostModalOpen(false);}
+
+    const handleMatchingCompleteModalOk = () => {
+        PostDeActivate();
+        setIsMatchingCompleteModalOpen(false);
+    }
+
     const handleDeletePostOk = () => {
         DeletePostInfoData();
         setIsDeletePostModalOpen(false);
@@ -151,7 +148,6 @@ const PostInfoPage = () => {
                 withCredentials:true
             })
             .then((response) => {
-                console.log('FetchPostInfoData ', response.data);
                 setAddress(response.data.address);
                 setAge(response.data.age);
                 setContents(response.data.contents);
@@ -221,7 +217,6 @@ const PostInfoPage = () => {
             withCredentials:true
         })
         .then((response) => {
-            console.log('response.data ', response.data);
             setCommentData(response.data);
         })
         .catch((error) => {
@@ -290,8 +285,16 @@ const PostInfoPage = () => {
         await axios.post(`${baseURL}/api/board/activate/${boardId}`, {
             withCredentials:true
         })
-        .then((response) => { FetchPostInfoData(); })
+        .then((response) => { 
+            FetchPostInfoData(); 
+            FetchBoardComment(); 
+        })
         .catch((error) => { console.log(`axios PostActivate error`);})
+    }
+
+    const changeBrTag = (text) => {
+        const changedText = text.replace(/\n/g, '<br />');
+        return changedText;
     }
 
     //한번 렌더링 될때 데이터를 받아온다.
@@ -312,8 +315,17 @@ const PostInfoPage = () => {
         :
             <></>
         }
+        {isMatchingCompleteModalOpen ?
+            <MatchingCompleteModal
+                isMatchingCompleteModalOpen={isMatchingCompleteModalOpen}
+                handleOk={handleMatchingCompleteModalOk}
+                handelCancel={handleMatchingCompleteModalCancel}
+            />
+        :
+            <></>
+        }
+        <Header/>
         <PostInfoPageContainer>
-        <AiOutlineLeft size={40} style={BackPageIconStyle} onClick={() => navigate('../postMapPage')}/>
             <PostInfoPageSection>
                 <PostInfoDiv width="100%" minHeight="30rem" marginTop="3rem">
                     <SwiperContainer>
@@ -462,87 +474,79 @@ const PostInfoPage = () => {
                     <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 거주지 정보</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.2rem">입주 가능 날짜: {startDate}</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">주소</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem">
+                    <PostInfoSpan fontSize="1.2rem">{address}</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
-                    <PostInfoSpan fontSize="1.2rem">주소: {address}</PostInfoSpan>
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">입주 가능 날짜</PostInfoSpan>
                 </PostInfoDiv>
-                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">주거 형태:
-                        {homeType === 'apartment' ?
-                            ` 아파트` 
-                            : homeType === 'villa' ? ` 주택` : ` 오피스텔`
-                        }
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem">
+                    <PostInfoSpan fontSize="1.2rem">{startDate}</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">주거형태</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="0.5rem">
+                    <PostInfoFlexDiv width="100%" minHeight="100%" alignItems="center">
+                        <PostInfoSpan fontSize="1.2rem">
+                            {homeType === 'apartment' ?
+                                ` 아파트` 
+                                : homeType === 'villa' ? ` 주택` : ` 오피스텔`
+                            }
+                            {`, `}
+                            {`방 ${roomCount}개`}
+                            {`, `}
+                            {`${flat}평`}
                         </PostInfoSpan>
                     </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`방 개수: ${roomCount}개`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`평수: ${flat}평`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
                 </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`전체 층수: ${totalFloor}층`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`층수: ${floor}층`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="2rem" flexDirections="row" marginTop="1rem">
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`계약 형태: ${tradeType}`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">가격: {price}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="33%" minHeight="100%" alignItems="center">
-                        <PostInfoSpan fontSize="1.2rem">{`관리비: ${maintenance}만원`}</PostInfoSpan>
-                    </PostInfoFlexDiv>
-                </PostInfoFlexDiv>
-                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem" paddingBottom="1rem" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoSpan fontSize="1.2rem">{`룸메이트 가격: ${rent}만원`}</PostInfoSpan>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">층수</PostInfoSpan>
                 </PostInfoDiv>
-                {/* <PostInfoFlexDiv width="95%" minHeight="3rem" marginTop="0.7rem" alignItems="center">
-                    <PostInfoSpan color="#bbbbbb" fontSize="1.2rem">이 지역은 하루 배송권이에요.</PostInfoSpan>
-                </PostInfoFlexDiv>
-                <PostInfoFlexDiv width="95%" minHeight="10rem" flexDirection="column" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row">
-                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
-                            <GrDeliver size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">쿠팡</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                        <PostInfoFlexDiv width="70%" minHeight="3rem" alignItems="center">
-                            <GiMeal size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">배달의 민족</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row">
-                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
-                            <GrDeliver size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">SSG</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                        <PostInfoFlexDiv width="70%" minHeight="3rem" alignItems="center">
-                            <GiMeal size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">요기요</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                    </PostInfoFlexDiv>
-                    <PostInfoFlexDiv width="100%" minHeight="3rem" flexDirection="row"erInfoDiv>
-                        <PostInfoFlexDiv width="30%" minHeight="3rem" alignItems="center">
-                            <GrDeliver size={30}/>
-                            <PostInfoSpan fontSize="1.2rem" marginLeft="1rem">마켓컬리</PostInfoSpan>
-                        </PostInfoFlexDiv>
-                    </PostInfoFlexDiv>
-                </PostInfoFlexDiv> */}
-                <PostInfoDiv width="95%" minHeight="5rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
-                    <PostInfoSpan ref={postInfoContentSpanRef} color="black" fontSize="1.2rem" fontWeight="500" style={PostInfoContentstyles}>
-                        {contents}
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem">
+                    <PostInfoSpan fontSize="1.2rem">{`${floor}/${totalFloor}층`}</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">계약</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem">
+                    <PostInfoSpan fontSize="1.2rem">
+                        {`${tradeType}`}
+                        {`, `}
+                        {`${price}`}
+                        {`, `}
+                        {`${maintenance}만원(관리비)`}
                     </PostInfoSpan>
                 </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem" >
+                    <PostInfoSpan fontSize="1.3rem" fontWeight="600">룸메이트 가격</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="0.5rem" borderBottom="solid 0.1rem #bbbbbb">
+                    <PostInfoSpan fontSize="1.2rem">{`${rent}만원`}</PostInfoSpan>
+                </PostInfoDiv>
+                <PostInfoDiv 
+                    width="95%" 
+                    minHeight="auto"
+                    height="fit-content"
+                    marginTop="1.5rem" 
+                    marginBottom="1.5rem"
+                >
+                    <PostInfoSpan 
+                        dangerouslySetInnerHTML={{ __html: changeBrTag(contents)}}
+                        ref={postInfoContentSpanRef} 
+                        color="black" 
+                        fontSize="1.2rem" 
+                        fontWeight="500"
+                    />
+                </PostInfoDiv>
+                <PostInfoDiv 
+                    width="95%"
+                    borderBottom="solid 0.1rem #bbbbbb" 
+                />
                 <PostInfoFlexDiv width="95%" minHeight="30rem" marginTop="1rem" justifyContent="center" alignItems="center">
-                    <PostInfoDiv width="90%" height="28rem" position="relative">
+                    <PostInfoDiv width="100%" height="29rem" position="relative">
                         <InfoPageMapContainer 
                             x={x} 
                             y={y} 
@@ -557,7 +561,7 @@ const PostInfoPage = () => {
                             <PostInfoFlexDiv width="95%" minHeight="4rem" alignItems="center" flexDirection="row-reverse">
                                 <MatchingCompleteButton
                                     onClick={() => {
-                                        PostDeActivate();
+                                        showMatchingCompleteModal();
                                     }}
                                 >
                                     매칭완료
@@ -579,7 +583,7 @@ const PostInfoPage = () => {
                     <></>
                 }
                 <PostInfoFlexDiv width="95%" borderBottom="solid 0.1rem #bbbbbb"/>
-                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                <PostInfoDiv width="95%" minHeight="2.5rem" marginTop="1rem" borderBottom="solid 0.1rem #bbbbbb">
                     <PostInfoSpan fontSize="1.5rem" fontWeight="600">댓글</PostInfoSpan>
                 </PostInfoDiv>
                 <PostInfoFlexDiv width="95%" minHeight="5rem" marginTop="1rem" flexDirection="column" gap="1rem">

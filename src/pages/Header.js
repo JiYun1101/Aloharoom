@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import NotificationModal from "./modal/NotificationModal";
 import { Badge,  Dropdown, Menu } from "antd";
 import axios from "axios";
@@ -29,13 +29,18 @@ const Logo = styled.span`
 const NavGroup = styled.span`
   position: absolute;
   top: 0.5rem;
-  left: 40.5vw;
+  left: 38vw;
 `;
 
 const NavElement = styled.span`
   margin-left: 3vw;
   margin-right: 3vw;
+  font-size: 1.2rem;
   font-weight: ${props => props.fontWeight};
+  text-decoration: ${props => (props.underline ? 'underline' : 'none')};
+  text-decoration-color: ${props => (props.underline ? '#47a5fd' : 'none')};
+  text-decoration-thickness: ${props => (props.underline ? '0.15rem' : 'none')};
+  text-underline-offset: ${props => (props.underline ? '0.4rem' : 'none')};
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;
@@ -80,6 +85,7 @@ const LinkToStyle = {
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
   const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
@@ -90,7 +96,12 @@ const Header = () => {
   const handleIsLogoutOk = () => {
     userLogout();
     localStorage.clear();
-    navigate(`../login`);
+    if (location.pathname === '/about') {
+      handleIsLogoutCancel();
+    }
+    else {
+      navigate(`../about`);  
+    }
   };
 
   const ModalOpen = () => {
@@ -124,7 +135,6 @@ const Header = () => {
         localStorage.remove("username");
         localStorage.remove("nickname");
         localStorage.remove("userId");
-        console.log("axios logout success");
       })
       .catch((error) => {
         console.log("axios userLogOut error");
@@ -137,7 +147,6 @@ const Header = () => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log("notification Data:", response.data);
         setNotificationData(response.data);
       })
       .catch((error) => {
@@ -151,7 +160,6 @@ const Header = () => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log("notification count:", response.data);
         setNotReadNotificationCount(response.data);
       })
       .catch((error) => {
@@ -159,12 +167,19 @@ const Header = () => {
       });
   }
 
-  const handleMenuClick = (e) => {
-    console.log('Menu clicked:', e);
-  };
+  async function fetchUserWritten() {
+    await axios.get(`${baseURL}/api/board/userId/${localStorage.getItem('userId')}`,{
+      withCredentials:true
+    })
+    .then((response) => {
+      localStorage.setItem("isRoom", response.data);
+    })
+    .catch((error) => { console.log(`fetchUserWritten axios error`); })
+  }
+
 
   const menu = (
-    <Menu onClick={handleMenuClick}>
+    <Menu>
       <Menu.Item key="1">
         <Link to="/myInfoPage">내 정보</Link>
       </Menu.Item>
@@ -183,12 +198,12 @@ const Header = () => {
     </Menu>
   );
 
-
   useEffect(() => {
     if (localStorage.getItem("username")) {
       fetchUserId();
       fetchNotificationInfo();
       fetchNotReadNotificationCount();
+      fetchUserWritten();
     }
   }, []);
   return (
@@ -216,10 +231,20 @@ const Header = () => {
         </Link>
         <NavGroup>
           <Link to="/postMapPage" style={LinkToStyle}>
-            <NavElement fontWeight="600">Roommate</NavElement>
+            <NavElement 
+              fontWeight="600"
+              underline={location.pathname === "/postMapPage"}
+            >
+              Roommate
+            </NavElement>
           </Link>
           <Link to="/CommunityPage" style={LinkToStyle}>
-            <NavElement fontWeight="600">Community</NavElement>
+            <NavElement 
+              fontWeight="600"
+              underline={location.pathname === "/CommunityPage"}
+            >
+              Community
+            </NavElement>
           </Link>
         </NavGroup>
         {localStorage.getItem("username") ? (

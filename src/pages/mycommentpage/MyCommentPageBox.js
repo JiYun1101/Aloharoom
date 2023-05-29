@@ -7,12 +7,11 @@ import { useState } from "react";
 const MyCommentPageContainer = styled.div`
     position: relative;
     /* 기준이 되는 조상 페이지 */
-    margin-top: 5rem;
+    margin-top: 9vh;
     /* 위 간격 */
-    max-width: 600px;
+    max-width: 35vw;
     /* 좌우 간격 */
-    min-height: 600px;
-    max-height: 700px;
+    height: 65vh;
     /* min/max-height = 크기고정 */
     
     left: 50%;
@@ -22,7 +21,7 @@ const MyCommentPageContainer = styled.div`
     background-color: #ffffff;
     border: 2px solid;
     border-radius: 1.8rem;
-    border-color: #85afe1;
+    border-color: #47a5fd;
     /* 페이지 디자인 */
     display: flex;
     flex-direction: column;
@@ -42,6 +41,8 @@ const MyCommentPageBox = () => {
     return (
         <MyCommentPageContainer>
             <MyCommentPageTitle
+                roomClick={roomClick}
+                communityClick={communityClick}
                 roomClicked={roomClicked}
                 communityClicked={communityClicked}
             />

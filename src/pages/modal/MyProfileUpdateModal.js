@@ -64,9 +64,7 @@ const MyProfileUpdateModal = ({
             withCredentials:true
         })
         .then((response) => {
-            console.log('response data', response.data);
             setResponseData(response.data);
-            setPassword(response.data.password);
             setNickname(response.data.nickname);
             setAge(response.data.age);
             setLikeHashtags(response.data.likeHashtags);
@@ -147,7 +145,6 @@ const MyProfileUpdateModal = ({
             withCredentials:true
         })
         .then((response) => { 
-            console.log('response data', response.data);
             fetchMyInfoData();
         })
         .catch((error) => {console.log(`UpdateMyInfoData error`);})
@@ -305,7 +302,7 @@ const MyProfileUpdateModal = ({
                 </Form.Item>
             </Form>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem">내 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">내 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {PersonHashtags.map((data, idx) => (
@@ -319,7 +316,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem">집 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">집 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {HomeHashtags.map((data, idx) => (
@@ -333,7 +330,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem">내 선호 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">내 선호 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {PersonHashtags.map((data, idx) => (
@@ -347,7 +344,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem">집 선호 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">집 선호 해시태그</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {HomeHashtags.map((data, idx) => (

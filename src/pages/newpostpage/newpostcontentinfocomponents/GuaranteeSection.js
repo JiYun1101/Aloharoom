@@ -58,9 +58,9 @@ const GuaranteeSection = ({
                 />
             </GuaranteeBox>
             <GuaranteeBox width="50%">
-                <GuaranteePriceCheckbox type="checkbox" checked={deposit !== "" ? true : depositChecked} onChange={handleDepositCheckboxChange}/>
+                <GuaranteePriceCheckbox type="checkbox" checked={(deposit !== null) ? true : depositChecked} onChange={handleDepositCheckboxChange}/>
                 <GuaranteeSpan fontWeight="600">보증금 별도</GuaranteeSpan>
-                <GuaranteeInputText value={deposit} type="text" disabled={deposit !== "" ? false : !depositChecked} onChange={(e) => { setDeposit(e.target.value);}}/>
+                <GuaranteeInputText value={deposit} type="text" disabled={(deposit !== null) ? false : !depositChecked} onChange={(e) => { setDeposit(e.target.value);}}/>
             </GuaranteeBox>
         </GuaranteeContainer>
     );

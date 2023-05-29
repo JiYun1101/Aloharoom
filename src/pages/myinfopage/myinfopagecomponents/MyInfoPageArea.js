@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import HashTagButton from "../../HashTagButton";
 const MyInfoFlexDiv = styled.div`
@@ -58,16 +58,16 @@ const MyInfoPage = ({
 }) => {
 
   return (
-      <MyInfoFlexDiv marginTop="0.5rem" marginLeft="0.5rem" width="36.5rem" height="500px" alignItems="center" justifyContent="center">
-        <MyInfoFlexDiv width="36.5rem" height="500px" flexDirection="column" overflowY="auto" overflowX="auto" alignItems="center">
-          <MyInfoFlexDiv width="34rem" height="25vh">
+      <MyInfoFlexDiv marginTop="0.7vh" marginLeft="0.4vw" width="34.2vw" height="55vh" alignItems="center" justifyContent="center">
+        <MyInfoFlexDiv width="34.2vw" height="55vh" flexDirection="column" overflowY="auto" overflowX="auto" alignItems="center">
+          <MyInfoFlexDiv width="99%" height="25vh">
             <MyInfoFlexDiv width="40%" height="25vh" alignItems="center" justifyContent="center">
               <MyInfoProfile width="70%" height="70%" borderRadius="70%" src={responseData.profileUrl} />
             </MyInfoFlexDiv>
             <MyInfoFlexDiv width="60%" height="100%" flexDirection="column">
               <MyInfoFlexDiv width="100%" height="20%">
                 <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                  <MyInfoSpan>아이디:</MyInfoSpan>
+                  <MyInfoSpan fontWeight="600">아이디:</MyInfoSpan>
                 </MyInfoFlexDiv>
                 <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                   <MyInfoSpan>{responseData.username}</MyInfoSpan>
@@ -75,7 +75,7 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
               <MyInfoFlexDiv width="100%" height="20%">
                 <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                  <MyInfoSpan>비밀번호:</MyInfoSpan>
+                  <MyInfoSpan fontWeight="600">비밀번호:</MyInfoSpan>
                 </MyInfoFlexDiv>
                 <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                   <MyInfoSpan>{`*******`}</MyInfoSpan>
@@ -83,7 +83,7 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
               <MyInfoFlexDiv width="100%" height="20%">
                 <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                  <MyInfoSpan>닉네임:</MyInfoSpan>
+                  <MyInfoSpan fontWeight="600">닉네임:</MyInfoSpan>
                 </MyInfoFlexDiv>
                 <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                   <MyInfoSpan>{responseData.nickname}</MyInfoSpan>
@@ -91,7 +91,7 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
               <MyInfoFlexDiv width="100%" height="20%">
                   <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                    <MyInfoSpan>나이:</MyInfoSpan>
+                    <MyInfoSpan fontWeight="600">나이:</MyInfoSpan>
                   </MyInfoFlexDiv>
                   <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                     <MyInfoSpan>{responseData.age}</MyInfoSpan>
@@ -99,7 +99,7 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
               <MyInfoFlexDiv width="100%" height="20%">
                   <MyInfoFlexDiv width="30%" height="100%" alignItems="center">
-                    <MyInfoSpan>성별:</MyInfoSpan>
+                    <MyInfoSpan fontWeight="600">성별:</MyInfoSpan>
                   </MyInfoFlexDiv>
                   <MyInfoFlexDiv width="70%" height="100%" alignItems="center">
                     <MyInfoSpan>{responseData.gender === 'male' ? `남자` : `여자`}</MyInfoSpan> 
@@ -107,14 +107,14 @@ const MyInfoPage = ({
               </MyInfoFlexDiv>
             </MyInfoFlexDiv>
           </MyInfoFlexDiv>
-          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem">내 해시태그</MyInfoSpan>
+          <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="2vh">
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {myHashtags.length === 0 ? 
             <MyInfoFlexDiv
-              width="34rem"
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               alignItems="center"
               justifyContent="center"
             >
@@ -122,12 +122,12 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           :
             <MyInfoFlexDiv 
-              width="34rem" 
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               flexDirection="row"
               flexWrap="wrap"
-              gap="0.3rem"
+              gap="0.3vw"
             >
               {myHashtags.map((data, idx) => (
                 <HashTagButton key={idx}>
@@ -136,12 +136,12 @@ const MyInfoPage = ({
               ))}
             </MyInfoFlexDiv>
           }
-          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem">집 해시태그</MyInfoSpan>
+          <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="1rem">
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">집 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {myHomeHashtags.length === 0 ? 
             <MyInfoFlexDiv
-              width="34rem"
+              width="94%"
               height="auto"
               marginTop="1rem"
               alignItems="center"
@@ -151,12 +151,13 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           :
           <MyInfoFlexDiv 
-            width="34rem" 
+            width="94%" 
             height="auto"
             marginTop="1rem"
             flexDirection="row"
             flexWrap="wrap"
-            gap="0.5rem">
+            gap="0.3vw"
+          >
             {myHomeHashtags.map((data, idx) => (
               <HashTagButton key={idx}>
                 {data}
@@ -164,14 +165,14 @@ const MyInfoPage = ({
             ))}
           </MyInfoFlexDiv>
           }
-          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem">내 선호 해시태그</MyInfoSpan>
+          <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="1rem">
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 선호 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {likeHashtags.length === 0 ? 
             <MyInfoFlexDiv
-              width="34rem"
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               alignItems="center"
               justifyContent="center"
             >
@@ -179,12 +180,12 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           :
             <MyInfoFlexDiv 
-              width="34rem" 
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               flexDirection="row"
               flexWrap="wrap"
-              gap="0.3rem"
+              gap="0.3vw"
             >
               {likeHashtags.map((data, idx) => (
                 <HashTagButton key={idx}>
@@ -193,14 +194,14 @@ const MyInfoPage = ({
               ))}
             </MyInfoFlexDiv>
           }
-          <MyInfoFlexDiv width="34rem" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem">내 집 선호 해시태그</MyInfoSpan>
+          <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="2vh">
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 집 선호 해시태그</MyInfoSpan>
           </MyInfoFlexDiv>
           {likeHomeHashtags.length === 0 ? 
             <MyInfoFlexDiv
-              width="35rem"
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               alignItems="center"
               justifyContent="center"
             >
@@ -208,12 +209,12 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           :
             <MyInfoFlexDiv 
-              width="34rem" 
+              width="94%"
               height="auto"
-              marginTop="1rem"
+              marginTop="2vh"
               flexDirection="row"
               flexWrap="wrap"
-              gap="0.3rem"
+              gap="0.3vw"
             >
               {likeHomeHashtags.map((data, idx) => (
                 <HashTagButton key={idx}>

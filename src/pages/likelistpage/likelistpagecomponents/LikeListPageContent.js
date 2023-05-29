@@ -3,8 +3,8 @@ import LikeListPageArea from "./LikeListPageArea";
 import styled from "styled-components";
 
 const LikeListPageContentDiv = styled.div`
-    max-width: 500px;
-    min-height: 525px;
+    max-width: 50vw;
+    min-height: 45vh;
 `;
 
 const LikeListPageContent = ({myInfoPage, likedListPage, chattingPage}) => {

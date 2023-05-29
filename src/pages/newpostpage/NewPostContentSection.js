@@ -31,7 +31,7 @@ const NewPostContentSection = ({
     const [homeType, setHomeType] = useState("");
     const [tradeType, setTradeType] = useState("");
     const [price, setPrice] = useState("");
-    const [deposit, setDeposit] = useState("");
+    const [deposit, setDeposit] = useState(null);
     const [rent, setRent] = useState("");
     const [flat, setFlat] = useState("");
     const [maintenance, setMaintenance] = useState("");
@@ -54,7 +54,6 @@ const NewPostContentSection = ({
     async function FetchPostInfoData() {
         await axios.get(`${baseURL}/api/board/edit/${updateID}`)
             .then((response) => {
-                console.log('FetchPostInfoData: ', response.data);
                 setAddress(response.data.address);
                 setAgeRange(response.data.ageRange);
                 setContents(response.data.contents);

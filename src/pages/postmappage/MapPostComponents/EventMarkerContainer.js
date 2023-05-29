@@ -30,7 +30,20 @@ const EventMarkerContainer = ({
                 },
             }}
         >
-            { isVisible && <div style={{ color: "#000"}}>{content}</div>}
+            { isVisible && 
+                <div 
+                    style={{ 
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        color: "black",
+                        minWidth: "16vw",
+                        padding: "1px"
+                    }}
+                >
+                    {content}
+                </div>
+            }
         </MapMarker>
     ); 
 }

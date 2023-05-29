@@ -13,16 +13,25 @@ import baseURL from "../api/baseURL";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const NewPostContentInfoDiv = styled.div`
+const NewPostContentInfoContainer = styled.div`
   border-style: solid;
   border-color: #47a5fd;
   border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 85%;
   height: 95%;
+`;
+
+const NewPostContentInfoDiv = styled.div`
+  //border-style: solid;
+  width: 99%;
+  height: 98%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: auto;
+  overflow: scroll;
   &::-webkit-scrollbar {
     width: 0.4rem;          /* 스크롤바의 너비 */
   }
@@ -128,6 +137,7 @@ const NewPostContentInfoSection = ({
     }, [])
 
     return (
+        <NewPostContentInfoContainer>
         <NewPostContentInfoDiv>
                         <TitleDiv height="4vh" marginTop="2vh">
                             <TitleBox width="90%" height="4vh">
@@ -208,19 +218,20 @@ const NewPostContentInfoSection = ({
                           setDeposit={setDeposit} 
                           setOpenChatUrl={setOpenChatUrl}
                         />
-                        <TitleDiv height="4vh" marginTop="1.5vh">
+                        <TitleDiv height="4vh" marginTop="2vh">
                             <TitleSpan fontSize="1rem" marginRight="3.5vh" lineHeight="3.5vh" fontWeight="600">내 해시태그</TitleSpan>
-                        </TitleDiv>    
+                        </TitleDiv> 
                         <MyHashTagButtonSection
                           myHashtags={myHashtags}
                         />
-                        <TitleDiv height="4vh" marginTop="1.5vh">
+                        <TitleDiv height="4vh" marginTop="2vh">
                             <TitleSpan fontSize="1rem" marginRight="2rem" lineHeight="3.5vh" fontWeight="600">집 해시태그</TitleSpan>
                         </TitleDiv>
                         <HouseHashTagButtonSection 
                           myHomeHashtags={myHomeHashtags}
                         />
-                    </NewPostContentInfoDiv>
+        </NewPostContentInfoDiv>
+        </NewPostContentInfoContainer>
     );
 }
 

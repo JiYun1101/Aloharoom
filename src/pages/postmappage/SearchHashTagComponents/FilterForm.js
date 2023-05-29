@@ -27,7 +27,7 @@ const flatMarks = {
     style: {
       color: "#f50",
     },
-    label: <strong>100평</strong>,
+    label: <strong>무제한</strong>,
   },
 };
 
@@ -51,7 +51,7 @@ const rentMarks = {
     style: {
       color: "#f50",
     },
-    label: <strong>100만원</strong>,
+    label: <strong>무제한</strong>,
   },
 };
 
@@ -93,19 +93,6 @@ const FilterForm = ({
   const [rentRange, setRentRange] = useState([0, 100]);
   const [likeHashtags, setLikeHashtags] = useState([]);
   const [likeHomeHashtags, setLikeHomeHashtags] = useState([]);
-  // const [myLikeHashtags, setMyLikeHashtags] = useState([]);
-  // const [myLikeHomeHashtags, setMyLikeHomeHashtags] = useState([]);
-  console.log('===========================');
-  console.log('gender', gender);
-  console.log('roomCount', roomCount);
-  console.log('homeType', homeType);
-  console.log('ageRange', ageRange);
-  console.log('flatRange', flatRange);
-  console.log('rentRange', rentRange);
-  console.log('likeHashtags', likeHashtags);
-  console.log('likeHomeHashtags', likeHomeHashtags);
-  console.log('')
-  console.log('===========================');
 
   const handleLikeHashTagClick = (index) => {
     if (likeHashtags.includes(index)) {
@@ -122,16 +109,6 @@ const FilterForm = ({
     }
   };
 
-  // useEffect(() => {
-  //   let isFilterPressed = parseInt(localStorage.getItem('pressFilterButton'));
-  //   if(isFilterPressed === 1) {
-  //     console.log('=====필터링을 눌렀을 경우 호출되는 함수=====');
-  //     setGender(localStorage.getItem('gender'));
-  //     setRoomCount(parseInt(localStorage.getItem('roomCount')) === 0 ? `상관없음`: `${parseInt(localStorage.getItem('roomCount'))}개`);
-      
-  //   }
-  // })
-
   useEffect(() => {
     let isFilterPressed = parseInt(localStorage.getItem('pressFilterButton'));
     //필터링을 설정했을 경우,
@@ -147,9 +124,7 @@ const FilterForm = ({
       setLikeHomeHashtags(JSON.parse(localStorage.getItem('likeHomeHashtags')));
     }
     //초기화 버튼이나 필터링을 누르지 않았을 경우,
-    else{
-      console.log(`초기화 버튼이나 필터링을 누르지 않았을 경우,`)
-    }
+    else{}
   }, []);
 
   return (
@@ -159,6 +134,7 @@ const FilterForm = ({
           label="성별"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
+          style={{fontWeight: "600"}}
         >
           <Select 
             value={gender === 'male' ? "남자": gender === 'female' ? "여자" : "상관없음"}
@@ -174,6 +150,7 @@ const FilterForm = ({
           label="방 개수"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
+          style={{fontWeight: "600"}}
         >
           <Select 
             value={parseInt(roomCount) === 0 ? '상관없음' : `${roomCount}개`}
@@ -190,6 +167,7 @@ const FilterForm = ({
           label="주거 형태"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 12 }}
+          style={{fontWeight: "600"}}
         >
           <Select 
             value={homeType === 'officetel' ? '오피스텔' :
@@ -205,13 +183,13 @@ const FilterForm = ({
             <Select.Option value="notcare">상관없음</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item label="평수">
+        <Form.Item label="평수" style={{fontWeight: "600"}}>
           <Slider value={flatRange} range marks={flatMarks} onChange={(value) => { setFlatRange(value)}}/>
         </Form.Item>
-        <Form.Item label="월세">
+        <Form.Item label="월세" style={{fontWeight: "600"}}>
           <Slider value={rentRange} range marks={rentMarks} onChange={(value) => { setRentRange(value);}}/>{" "}
         </Form.Item>
-        <Form.Item label="나이">
+        <Form.Item label="나이" style={{fontWeight: "600"}}>
           <Slider value={ageRange} range marks={ageMarks} onChange={(value) => { setAgeRange(value);}} />{" "}
         </Form.Item>
       </Form>
