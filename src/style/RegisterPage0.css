@@ -21,15 +21,23 @@
 }
 
 .titleWrap2 {
-  margin: -30% -2.5%;
+  margin-top: 23rem;
+  margin: 10%;
   position: absolute;
   width: 100%;
-  top: 3rem;
+  min-width: 480px;
+  max-width: 480px;
+  margin-left: 0rem;
+  top: 1rem;
   font-size: 1rem;
   text-align: center;
-  height: 300px;
+  min-height: 49px;
+  max-height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 }
-
 .titleWrap3 {
   margin-left: 6%;
   display: flex;
