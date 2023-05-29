@@ -10,6 +10,7 @@ const CardPostListWrapper = styled.div`
 `;
 
 const CardPosts = (props) => {
+  console.log('cardPostData', props.cardPostData);
   const [data, setData] = useState([]);
 
   // 게시물 리스트를 가져올 API 호출 등의 로직은 생략하고, 하드코딩으로 데이터를 만듦
@@ -34,6 +35,8 @@ const CardPosts = (props) => {
           title={post.title}
           content={post.content}
           code={props.code}
+          cardPostData={props.cardPostData}
+          setCardPostData={props.setCardPostData}
         />
       ))}
     </CardPostListWrapper>

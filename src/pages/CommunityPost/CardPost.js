@@ -188,27 +188,16 @@ const LinkToStyle = {
   textDecoration: "none",
   color: "inherit",
 };
-const CardPost = ({ communityId, code }) => {
-  const [data, setData] = useState([]);
+const CardPost = ({ communityId, code, cardPostData, setCardPostData = f => f}) => {
+  console.log('cardPostData', cardPostData);
+  //const [data, setData] = useState(cardPostData === undefined ?  [] : cardPostData);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
 
   const cardRef = useRef(null);
   const [scrollTop, setScrollTop] = useState(0);
   const location = useLocation();
   console.log(code);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get(
-        `${baseURL}/api/communityboard/code/${code}`
-      );
-      setData(result.data[0]);
-      console.log(result.data[0]);
-      console.log("여기", result.data.commentNum);
-    };
-    fetchData();
-  }, [communityId, code]); // code를 의존성 배열에 추가
-
+  
   const handleLinkClick = (event, message) => {
     console.log(message);
   };
@@ -228,7 +217,7 @@ const CardPost = ({ communityId, code }) => {
 
   return (
     <CardBox2 ref={cardRef}>
-      {data.map((post, index) => (
+      {cardPostData.map((post, index) => (
         <Link
           to={`../CommunityInfoPage/${post.communityId}`}
           key={index}
@@ -274,7 +263,6 @@ const CardPost = ({ communityId, code }) => {
               </ViewsDiv>
               <CommentDiv>
                 <CommentSpan>{post.userPost}</CommentSpan>
-
                 <CommentSpan2>{post.commentNum}</CommentSpan2>
                 <FaRegCommentDots size={25} style={CommentLogoStyle} />
               </CommentDiv>
