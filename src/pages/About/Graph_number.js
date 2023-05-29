@@ -63,6 +63,7 @@ const Graph_number = () => {
               style={{
                 marginTop: "-1rem",
                 marginBottom: "3rem",
+                marginLeft: "0.5rem",
                 color: "white",
               }}
               valueStyle={{
@@ -86,6 +87,7 @@ const Graph_number = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                zIndex: "1",
               }}
               onClick={handleRecharge}
               loading={isFetching}
