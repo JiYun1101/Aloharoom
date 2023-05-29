@@ -24,6 +24,7 @@ import axios from "axios";
 import baseURL from "../api/baseURL";
 import { useRef } from "react";
 import CardPosts from "./CardPosts";
+import { Pagination } from "antd";
 
 const SearchHashTagContainer = styled.div`
   position: absolute;
@@ -106,16 +107,6 @@ const PostMapContentContainer = styled.div`
   }
 `;
 
-const PostMapContentContainer2 = styled.div`
-  margin-top: -8rem;
-  position: relative;
-  width: 100%;
-  height: 6.8vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-`;
-
 const LinkToStyle = {
   textDecoration: "none",
   color: "inherit",
@@ -159,13 +150,50 @@ const WrapButton = styled.div`
   }
 `;
 
+const PostMapContentContainer3 = styled.div`
+  margin-top: -8rem;
+  position: relative;
+  width: 100%;
+  height: 6.8vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+`;
+const PostDiv = styled.div`
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const PageDiv = styled.div`
+  margin-top: 10rem; //나중에 110으로 고치기
+  margin-bottom: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const PostMapContentContainer2 = styled.div`
+  margin-top: 13rem;
+  margin-bottom: 10rem;
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 6.8vh;
+  display: fixed;
+  justify-content: center;
+`;
 const PostContent = ({
   setSearchStr,
   fetchCardPostData,
   fetchFilterCardPostData,
   communityId,
 }) => {
-
   const [swLat, setSWLat] = useState("");
   const [swLon, setSWLon] = useState("");
   const [neLat, setNELat] = useState("");
@@ -212,55 +240,62 @@ const PostContent = ({
     parseInt(localStorage.getItem("lastClickedCode")) || 1;
   const [code, setCode] = useState(lastClickedCode);
 
-  const [selectCategory, setSelectCategory] = useState('제목');
+  const [selectCategory, setSelectCategory] = useState("제목");
   const [cardPostData, setCardPostData] = useState([]);
 
   function handleSelectChange(value) {
-    console.log('selectCategory', value);
+    console.log("selectCategory", value);
     setSelectCategory(value);
   }
 
   const onInputSearch = (value) => {
-    console.log('입력한 값', value);
-    console.log('선택한 카테고리', selectCategory);
+    console.log("입력한 값", value);
+    console.log("선택한 카테고리", selectCategory);
 
-    if (selectCategory === '제목') {
+    if (selectCategory === "제목") {
       fetchTitleSearchData(value);
-    }
-    else if(selectCategory === '닉네임') {
+    } else if (selectCategory === "닉네임") {
       fetchNicknameSearchData(value);
     }
-  }
+  };
 
   async function fetchTitleSearchData(keyword) {
-    await axios.get(`${baseURL}/api/communitySearch`, {
-      params: {
-        keyword: keyword,
-        code: code
-      },
-      withCredentials:true
-    })
-    .then((response) => {
-      console.log('fetchTitleSearchData response data', response.data);
-      setCardPostData(response.data);
-    })
-    .catch((error) => { console.log('fetchTitleSearchData fetch error');})
+    await axios
+      .get(`${baseURL}/api/communitySearch`, {
+        params: {
+          keyword: keyword,
+          code: code,
+        },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log("fetchTitleSearchData response data", response.data);
+        setCardPostData(response.data);
+      })
+      .catch((error) => {
+        console.log("fetchTitleSearchData fetch error");
+      });
   }
 
   async function fetchNicknameSearchData(nickname) {
-    await axios.get(`${baseURL}/api/communitySearch/nickname`, {
-      params: {
-        nickname: nickname,
-        code: code
-      },
-      withCredentials:true
-    })
-    .then((response) => {
-      console.log('fetchNicknameSearchData response data', response.data);
-      setCardPostData(response.data);
-    })
-    .catch((error) => {console.log(`fetchNicknameSearchData axios error`);})
+    await axios
+      .get(`${baseURL}/api/communitySearch/nickname`, {
+        params: {
+          nickname: nickname,
+          code: code,
+        },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log("fetchNicknameSearchData response data", response.data);
+        setCardPostData(response.data);
+      })
+      .catch((error) => {
+        console.log(`fetchNicknameSearchData axios error`);
+      });
   }
+
+  const [totalPages, setTotalPages] = useState(0); // pagination 숫자 상태 추가
 
   useEffect(() => {
     const fetchData = async () => {
@@ -268,13 +303,32 @@ const PostContent = ({
         `${baseURL}/api/communityboard/code/${code}`
       );
       setCardPostData(result.data[0]);
-      console.log('cardPostData', cardPostData);
+      console.log("cardPostData", cardPostData);
       setData(result.data[1]);
       console.log(result.data[0]);
       console.log(result.data[1]);
+
+      const totalPosts = result.data[0].length; // 배열의 개수
+
+      const totalPages = Math.ceil(totalPosts / 5); // pagination 숫자 계산
+      // setTotalPages(totalPages); // pagination 숫자 설정
+      // console.log("page", totalPages);
     };
+
     fetchData();
   }, [code]); // code를 의존성 배열에 추가
+
+  const groupCardPostData = () => {
+    const groupedData = [];
+    for (let i = 0; i < cardPostData.length; i += 5) {
+      groupedData.push(cardPostData.slice(i, i + 5));
+    }
+    return groupedData;
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const handleButtonClick = (code) => {
     setButton1Color("#000000");
@@ -295,6 +349,8 @@ const PostContent = ({
     // 마지막으로 클릭한 code 값을 localStorage에 저장
     localStorage.setItem("lastClickedCode", code);
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <>
@@ -354,17 +410,17 @@ const PostContent = ({
             style={{
               width: "8rem",
               marginLeft: "1rem",
-              marginTop: "5.7rem"
+              marginTop: "5.7rem",
             }}
             defaultValue={selectCategory}
             options={[
               {
                 value: "제목",
-                label: "제목"
+                label: "제목",
               },
               {
                 value: "닉네임",
-                label: "닉네임"
+                label: "닉네임",
               },
             ]}
             onChange={handleSelectChange}
@@ -372,11 +428,24 @@ const PostContent = ({
         </SearchSectionContainer>
       </PostMapContentContainer>
       <PostMapContentContainer2>
-        <CardPosts 
-          code={code} 
-          cardPostData={cardPostData} 
-          setCardPostData={setCardPostData}
-        />
+        <PostDiv>
+          {groupCardPostData().map(
+            (group, index) =>
+              // 현재 페이지와 인덱스가 일치할 때만 배열을 출력
+              currentPage === index + 1 && (
+                <CardPosts
+                  key={index}
+                  code={code}
+                  cardPostData={group}
+                  setCardPostData={setCardPostData}
+                  totalPages={totalPages} // totalPages를 추가로 전달
+                />
+              )
+          )}
+        </PostDiv>
+        <Pagination onChange={handlePageChange} total={50} />
+      </PostMapContentContainer2>
+      <PostMapContentContainer3>
         <CardPost3>
           <b style={{ color: "#47a5fd", fontWeight: "bold" }}>인기글</b>
           <br />
@@ -415,7 +484,7 @@ const PostContent = ({
         <Link to="/newCommunityPostPage" style={LinkToStyle}>
           <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
         </Link>
-      </PostMapContentContainer2>
+      </PostMapContentContainer3>
     </>
   );
 };

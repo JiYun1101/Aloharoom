@@ -188,8 +188,13 @@ const LinkToStyle = {
   textDecoration: "none",
   color: "inherit",
 };
-const CardPost = ({ communityId, code, cardPostData, setCardPostData = f => f}) => {
-  console.log('cardPostData', cardPostData);
+const CardPost = ({
+  communityId,
+  code,
+  cardPostData,
+  setCardPostData = (f) => f,
+}) => {
+  console.log("cardPostData", cardPostData);
   //const [data, setData] = useState(cardPostData === undefined ?  [] : cardPostData);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
 
@@ -197,7 +202,7 @@ const CardPost = ({ communityId, code, cardPostData, setCardPostData = f => f}) 
   const [scrollTop, setScrollTop] = useState(0);
   const location = useLocation();
   console.log(code);
-  
+
   const handleLinkClick = (event, message) => {
     console.log(message);
   };
@@ -214,6 +219,17 @@ const CardPost = ({ communityId, code, cardPostData, setCardPostData = f => f}) 
         return "";
     }
   };
+
+  const chunkArray = (array, size) => {
+    const chunkedArray = [];
+    for (let i = 0; i < array.length; i += size) {
+      const chunk = array.slice(i, i + size);
+      chunkedArray.push(chunk);
+    }
+    return chunkedArray;
+  };
+
+  const chunkedData = chunkArray(cardPostData, 5);
 
   return (
     <CardBox2 ref={cardRef}>
