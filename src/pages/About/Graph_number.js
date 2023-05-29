@@ -63,7 +63,7 @@ const Graph_number = () => {
               style={{
                 marginTop: "-1rem",
                 marginBottom: "3rem",
-                marginLeft: "0.5rem",
+                marginLeft: "0rem",
                 color: "white",
               }}
               valueStyle={{
@@ -80,9 +80,9 @@ const Graph_number = () => {
           <Col>
             <Button
               style={{
-                marginTop: "1rem",
+                marginTop: "-1.5rem",
                 color: "#85afe1",
-                fontSize: "1.1rem",
+                fontSize: "1.3rem",
                 fontWeight: "700",
                 display: "flex",
                 alignItems: "center",

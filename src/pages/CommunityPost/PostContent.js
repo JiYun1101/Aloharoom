@@ -12,7 +12,6 @@ import { Avatar, Segmented, Select, Space } from "antd";
 
 import { Button, Form, Input, Radio } from "antd";
 
-import { useEffect } from "react";
 import SearchHashTag from "../postmappage/SearchHashTag";
 
 import EmptyBox from "../postmappage/SearchHashTagComponents/EmptyBox";
@@ -22,9 +21,9 @@ import NotificationModal2 from "../postmappage/SearchHashTagComponents/Notificat
 import { IoFilterOutline } from "react-icons/io5";
 import axios from "axios";
 import baseURL from "../api/baseURL";
-import { useRef } from "react";
 import CardPosts from "./CardPosts";
 import { Pagination } from "antd";
+import { useRef, useEffect } from "react";
 
 const SearchHashTagContainer = styled.div`
   position: absolute;
@@ -159,6 +158,7 @@ const PostMapContentContainer3 = styled.div`
   align-items: flex-start;
   justify-content: center;
 `;
+
 const PostDiv = styled.div`
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -168,7 +168,9 @@ const PostDiv = styled.div`
 `;
 
 const PageDiv = styled.div`
-  margin-top: 10rem; //나중에 110으로 고치기
+  font-size: 1.5rem;
+  margin-top: 180rem; //나중에 110으로 고치기
+  bottom: 20rem;
   margin-bottom: 20rem;
   display: flex;
   align-items: center;
@@ -176,7 +178,7 @@ const PageDiv = styled.div`
 `;
 
 const PostMapContentContainer2 = styled.div`
-  margin-top: 13rem;
+  margin-top: -8rem;
   margin-bottom: 10rem;
   display: flex;
   // flex-direction: column;
@@ -185,9 +187,10 @@ const PostMapContentContainer2 = styled.div`
   position: relative;
   width: 100%;
   height: 6.8vh;
-  display: fixed;
+  /* display: fixed; */
   justify-content: center;
 `;
+
 const PostContent = ({
   setSearchStr,
   fetchCardPostData,
@@ -295,8 +298,6 @@ const PostContent = ({
       });
   }
 
-  const [totalPages, setTotalPages] = useState(0); // pagination 숫자 상태 추가
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
@@ -307,14 +308,7 @@ const PostContent = ({
       setData(result.data[1]);
       console.log(result.data[0]);
       console.log(result.data[1]);
-
-      const totalPosts = result.data[0].length; // 배열의 개수
-
-      const totalPages = Math.ceil(totalPosts / 5); // pagination 숫자 계산
-      // setTotalPages(totalPages); // pagination 숫자 설정
-      // console.log("page", totalPages);
     };
-
     fetchData();
   }, [code]); // code를 의존성 배열에 추가
 
@@ -328,6 +322,10 @@ const PostContent = ({
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+
+    if (cardRef.current) {
+      cardRef.current.scrollTop = 0; // 맨 위로 스크롤
+    }
   };
 
   const handleButtonClick = (code) => {
@@ -338,20 +336,39 @@ const PostContent = ({
     if (code === 1) {
       setButton1Color("#47a5fd");
       setCode(1);
+      // index 값을 1로 변경
+      setCurrentPage(1);
+      cardRef.current.firstChild.firstChild.click(1);
     } else if (code === 2) {
       setButton2Color("#47a5fd");
       setCode(2);
+      // index 값을 1로 변경
+      setCurrentPage(1);
+      cardRef.current.firstChild.firstChild.click(1);
     } else if (code === 3) {
       setButton3Color("#47a5fd");
       setCode(3);
+      // index 값을 1로 변경
+      setCurrentPage(1);
+      cardRef.current.firstChild.firstChild.click(1);
     }
 
     // 마지막으로 클릭한 code 값을 localStorage에 저장
     localStorage.setItem("lastClickedCode", code);
   };
-
   const [currentPage, setCurrentPage] = useState(1);
 
+  function YourComponent() {
+    const cardRef = useRef(null);
+
+    useEffect(() => {
+      if (cardRef.current) {
+        cardRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, [cardRef.current]);
+  }
+
+  const [postDiv, setPostDiv] = useState(1);
   return (
     <>
       <PostMapContentContainer>
@@ -431,19 +448,22 @@ const PostContent = ({
         <PostDiv>
           {groupCardPostData().map(
             (group, index) =>
-              // 현재 페이지와 인덱스가 일치할 때만 배열을 출력
               currentPage === index + 1 && (
                 <CardPosts
                   key={index}
                   code={code}
                   cardPostData={group}
                   setCardPostData={setCardPostData}
-                  totalPages={totalPages} // totalPages를 추가로 전달
+                  ref={cardRef} // cardRef를 CardPosts 컴포넌트에 전달
                 />
               )
           )}
         </PostDiv>
-        <Pagination onChange={handlePageChange} total={50} />
+        <PageDiv>
+          <div ref={cardRef}>
+            <Pagination onChange={handlePageChange} total={50} />{" "}
+          </div>
+        </PageDiv>
       </PostMapContentContainer2>
       <PostMapContentContainer3>
         <CardPost3>

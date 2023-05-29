@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import aloharoom from "../../img/aloharoom.png";
+import aloharoom from "../../img/aloharoom.jpg";
 
 const BannerImageBox = styled.div`
   position: absolute;
