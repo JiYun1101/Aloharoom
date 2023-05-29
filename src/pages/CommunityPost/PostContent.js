@@ -346,7 +346,6 @@ const PostContent = ({
             </React.Fragment>
           ))}
         </CardPost3>
-        {selectedTitle && <CardPosts title={selectedTitle} />}
         <Link to="/newCommunityPostPage" style={LinkToStyle}>
           <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
         </Link>

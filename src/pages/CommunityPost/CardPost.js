@@ -203,8 +203,8 @@ const CardPost = ({ communityId, code }) => {
         `${baseURL}/api/communityboard/code/${code}`
       );
       setData(result.data[0]);
-      console.log(result.data[0]);
-      console.log("여기", result.data.commentNum);
+      console.log("저기!!", result.data[0]);
+      console.log("여기!!", result.data.communityId);
     };
     fetchData();
   }, [communityId, code]); // code를 의존성 배열에 추가
