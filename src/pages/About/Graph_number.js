@@ -22,7 +22,7 @@ const Graph_number = () => {
       .get(`${baseURL}/api/data`)
       .then((response) => {
         const newData = response.data;
-        const parsedTotal = parseFloat(newData.userTotal);
+        const parsedTotal = parseInt(newData.userTotal, 10); // 정수로 변환
         let count = 0;
         const intervalId = setInterval(() => {
           if (count === parsedTotal) {
@@ -71,8 +71,8 @@ const Graph_number = () => {
                 fontSize: "3rem",
                 fontWeight: "700",
               }}
-              value={userTotal}
-              precision={2}
+              value={parseInt(userTotal, 10)} // 자연수로 변환
+              precision={0} // 소수점 없음
             />
           </Col>
         </Row>
