@@ -337,20 +337,23 @@ const PostContent = ({
       setButton1Color("#47a5fd");
       setCode(1);
       // index 값을 1로 변경
-      setCurrentPage(1);
+
       cardRef.current.firstChild.firstChild.click(1);
+      setCurrentPage(1);
     } else if (code === 2) {
       setButton2Color("#47a5fd");
       setCode(2);
       // index 값을 1로 변경
-      setCurrentPage(1);
+
       cardRef.current.firstChild.firstChild.click(1);
+      setCurrentPage(1);
     } else if (code === 3) {
       setButton3Color("#47a5fd");
       setCode(3);
       // index 값을 1로 변경
-      setCurrentPage(1);
+
       cardRef.current.firstChild.firstChild.click(1);
+      setCurrentPage(1);
     }
 
     // 마지막으로 클릭한 code 값을 localStorage에 저장

@@ -24,9 +24,8 @@ const BackPageIconStyle = {
 
 const FirstContent = ({ onClick }) => {
   const [clickedButton, setClickedButton] = useState(
-    localStorage.getItem("clickedButton")
+    localStorage.getItem("clickedButton") || ""
   );
-
   const handleClick = (buttonName) => {
     setClickedButton(buttonName);
     onClick(buttonName);
@@ -141,7 +140,7 @@ const tags2 = [
 
 const SecondContent = ({ onClick }) => {
   const [tagPressed2, setTagPressed2] = useState(
-    localStorage.getItem("clickedButton2")
+    localStorage.getItem("clickedButton2") || ""
   );
   const [clickButton2, setClickButton2] = useState([]);
 
@@ -165,6 +164,25 @@ const SecondContent = ({ onClick }) => {
     setTagPressed2(newClickButton2);
   };
 
+  useEffect(() => {
+    const savedTagPressed2 = localStorage.getItem("clickedButton2");
+    if (savedTagPressed2) {
+      setClickButton2(
+        savedTagPressed2.split(",").filter((item) => item !== undefined)
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedTagPressed2 = localStorage.getItem("clickedButton2");
+    if (savedTagPressed2) {
+      const parsedArray = savedTagPressed2
+        .split(",")
+        .filter((item) => item !== undefined && item !== "undefined");
+      setClickButton2(parsedArray);
+      console.log("parsedArray", parsedArray);
+    }
+  }, []);
   return (
     <div>
       <div className="titleWrap2">
@@ -220,7 +238,7 @@ const tags3 = [
 
 const ThirdContent = ({ onClick }) => {
   const [tagPressed3, setTagPressed3] = useState(
-    localStorage.getItem("clickedButton3")
+    localStorage.getItem("clickedButton3") || ""
   );
   const [clickButton3, setClickButton3] = useState([]);
 
@@ -237,12 +255,32 @@ const ThirdContent = ({ onClick }) => {
     setClickButton3(newClickButton3);
     onClick(newClickButton3);
 
-    const lastArray = newClickButton3[newClickButton3.length - 1]; // 마지막 배열 추출
-    console.log("마지막 배열:", lastArray);
+    const lastArray3 = newClickButton3[newClickButton3.length - 1]; // 마지막 배열 추출
+    console.log("마지막 배열:", lastArray3);
 
     // 버튼 클릭 시 태그 상태 업데이트
     setTagPressed3(newClickButton3);
   };
+
+  useEffect(() => {
+    const savedTagPressed3 = localStorage.getItem("clickedButton3");
+    if (savedTagPressed3) {
+      setClickButton3(
+        savedTagPressed3.split(",").filter((item) => item !== undefined)
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedTagPressed3 = localStorage.getItem("clickedButton3");
+    if (savedTagPressed3) {
+      const parsedArray = savedTagPressed3
+        .split(",")
+        .filter((item) => item !== undefined && item !== "undefined");
+      setClickButton3(parsedArray);
+      console.log("parsedArray", parsedArray);
+    }
+  }, []);
   return (
     <div>
       <div className="titleWrap2">
@@ -300,7 +338,7 @@ const tags4 = [
 ];
 const FourthContent = ({ onClick }) => {
   const [tagPressed4, setTagPressed4] = useState(
-    localStorage.getItem("clickedButton4")
+    localStorage.getItem("clickedButton4") || ""
   );
   const [clickButton4, setClickButton4] = useState([]);
 
@@ -317,12 +355,32 @@ const FourthContent = ({ onClick }) => {
     setClickButton4(newClickButton4);
     onClick(newClickButton4);
 
-    const lastArray = newClickButton4[newClickButton4.length - 1]; // 마지막 배열 추출
-    console.log("마지막 배열:", lastArray);
+    const lastArray4 = newClickButton4[newClickButton4.length - 1]; // 마지막 배열 추출
+    console.log("마지막 배열:", lastArray4);
 
     // 버튼 클릭 시 태그 상태 업데이트
     setTagPressed4(newClickButton4);
   };
+
+  useEffect(() => {
+    const savedTagPressed4 = localStorage.getItem("clickedButton4");
+    if (savedTagPressed4) {
+      setClickButton4(
+        savedTagPressed4.split(",").filter((item) => item !== undefined)
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedTagPressed4 = localStorage.getItem("clickedButton4");
+    if (savedTagPressed4) {
+      const parsedArray = savedTagPressed4
+        .split(",")
+        .filter((item) => item !== undefined && item !== "undefined");
+      setClickButton4(parsedArray);
+      console.log("parsedArray", parsedArray);
+    }
+  }, []);
 
   return (
     <div>
@@ -378,7 +436,7 @@ const tags5 = [
 
 const LastContent = ({ onClick }) => {
   const [tagPressed5, setTagPressed5] = useState(
-    localStorage.getItem("clickedButton5")
+    localStorage.getItem("clickedButton5") || ""
   );
   const [clickButton5, setClickButton5] = useState([]);
 
@@ -401,6 +459,26 @@ const LastContent = ({ onClick }) => {
     // 버튼 클릭 시 태그 상태 업데이트
     setTagPressed5(newClickButton5);
   };
+
+  useEffect(() => {
+    const savedTagPressed5 = localStorage.getItem("clickedButton5");
+    if (savedTagPressed5) {
+      setClickButton5(
+        savedTagPressed5.split(",").filter((item) => item !== undefined)
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedTagPressed5 = localStorage.getItem("clickedButton5");
+    if (savedTagPressed5) {
+      const parsedArray = savedTagPressed5
+        .split(",")
+        .filter((item) => item !== undefined && item !== "undefined");
+      setClickButton5(parsedArray);
+      console.log("parsedArray", parsedArray);
+    }
+  }, []);
   return (
     <div>
       <div className="titleWrap2">
