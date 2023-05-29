@@ -188,17 +188,25 @@ const LinkToStyle = {
   textDecoration: "none",
   color: "inherit",
 };
-const CardPost = ({
-  communityId,
-  code,
-  cardPostData,
-  setCardPostData
-}) => {
-  console.log('cardPostData', cardPostData);
+const CardPost = ({ communityId, code, cardPostData, setCardPostData }) => {
+  console.log("cardPostData", cardPostData);
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
   const [scrollTop, setScrollTop] = useState(0);
   const location = useLocation();
+  console.log(code);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        `${baseURL}/api/communityboard/code/${code}`
+      );
+      setData(result.data[0]);
+      console.log("저기!!", result.data[0]);
+      console.log("여기!!", result.data.communityId);
+    };
+    fetchData();
+  }, [communityId, code]); // code를 의존성 배열에 추가
 
   const handleLinkClick = (event, message) => {
     console.log(message);
