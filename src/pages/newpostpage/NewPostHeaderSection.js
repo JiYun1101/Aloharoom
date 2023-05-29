@@ -16,7 +16,7 @@ const NewPostHeaderSection = () => {
     const Id = useParams().id;
     const IdExist = Id != null;
     return(
-        <NewPostHeaderDiv fontWeight="600">{IdExist ? `글 수정` : `새 글 쓰기`}</NewPostHeaderDiv>
+        <NewPostHeaderDiv fontWeight="600">{IdExist ? `방 수정` : `방 생성`}</NewPostHeaderDiv>
     );
 }
 
