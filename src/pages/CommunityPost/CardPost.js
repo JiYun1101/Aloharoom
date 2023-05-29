@@ -188,10 +188,11 @@ const LinkToStyle = {
   textDecoration: "none",
   color: "inherit",
 };
-const CardPost = ({ communityId, code, cardPostData, setCardPostData }) => {
-  console.log("cardPostData", cardPostData);
+const CardPost = ({ communityId, code }) => {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null); // 클릭한 게시물의 인덱스를 저장할 변수
+
+  const cardRef = useRef(null);
   const [scrollTop, setScrollTop] = useState(0);
   const location = useLocation();
   console.log(code);
@@ -226,62 +227,62 @@ const CardPost = ({ communityId, code, cardPostData, setCardPostData }) => {
   };
 
   return (
-    <></>
-    // <CardBox2>
-    //   {cardPostData.map((post, index) => (
-    //     <Link
-    //       to={`../CommunityInfoPage/${post.communityId}`}
-    //       key={index}
-    //       style={LinkToStyle}
-    //     >
-    //       <Card2
-    //         key={index}
-    //         onClick={(event) => {
-    //           setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
-    //           handleLinkClick(
-    //             event,
-    //             `../CommunityInfoPage/${post.communityId}`
-    //           );
-    //         }}
-    //       >
-    //         <DateDiv>
-    //           <RoomTypeDiv>
-    //             <RoomTypeButton>{getRoomTypeText(post.code)}</RoomTypeButton>
-    //           </RoomTypeDiv>
-    //         </DateDiv>
-    //         <TitleDiv>
-    //           <TitleSpan>{post.title}</TitleSpan>
-    //         </TitleDiv>
-    //         <CardImageDiv>
-    //           <CardImage src={post.imgUrls[0]} />
-    //           {/* <CardImage src={post.imgUrls[0]} /> */}
-    //         </CardImageDiv>
-    //         <ProfileCommentDiv>
-    //           <ProfileDiv>
-    //             <ProfileImg src={post.profile} />
-    //             <ProfileSpan> {post.nickname}</ProfileSpan>
-    //           </ProfileDiv>
-    //           <ViewsDiv>
-    //             <ViewsSpan>
-    //               <AiFillEye
-    //                 size={30}
-    //                 style={{ marginRight: "0.5vw", marginTop: "0.1vw" }}
-    //               />
-    //             </ViewsSpan>{" "}
-    //             <CommentDiv>
-    //               <CommentSpan3>{post.views}</CommentSpan3>{" "}
-    //             </CommentDiv>
-    //           </ViewsDiv>
-    //           <CommentDiv>
-    //             <CommentSpan>{post.userPost}</CommentSpan>
-    //             <CommentSpan2>{post.commentNum}</CommentSpan2>
-    //             <FaRegCommentDots size={25} style={CommentLogoStyle} />
-    //           </CommentDiv>
-    //         </ProfileCommentDiv>
-    //       </Card2>
-    //     </Link>
-    //   ))}
-    // </CardBox2>
+    <CardBox2 ref={cardRef}>
+      {data.map((post, index) => (
+        <Link
+          to={`../CommunityInfoPage/${post.communityId}`}
+          key={index}
+          style={LinkToStyle}
+        >
+          <Card2
+            key={index}
+            onClick={(event) => {
+              setCurrentIndex(index); // 클릭한 게시물의 인덱스를 저장
+              handleLinkClick(
+                event,
+                `../CommunityInfoPage/${post.communityId}`
+              );
+            }}
+          >
+            <DateDiv>
+              <RoomTypeDiv>
+                <RoomTypeButton>{getRoomTypeText(post.code)}</RoomTypeButton>
+              </RoomTypeDiv>
+            </DateDiv>
+            <TitleDiv>
+              <TitleSpan>{post.title}</TitleSpan>
+            </TitleDiv>
+            <CardImageDiv>
+              <CardImage src={post.imgUrls[0]} />
+              {/* <CardImage src={post.imgUrls[0]} /> */}
+            </CardImageDiv>
+            <ProfileCommentDiv>
+              <ProfileDiv>
+                <ProfileImg src={post.profile} />
+                <ProfileSpan> {post.nickname}</ProfileSpan>
+              </ProfileDiv>
+              <ViewsDiv>
+                <ViewsSpan>
+                  <AiFillEye
+                    size={30}
+                    style={{ marginRight: "0.5vw", marginTop: "0.1vw" }}
+                  />
+                </ViewsSpan>{" "}
+                <CommentDiv>
+                  <CommentSpan3>{post.views}</CommentSpan3>{" "}
+                </CommentDiv>
+              </ViewsDiv>
+              <CommentDiv>
+                <CommentSpan>{post.userPost}</CommentSpan>
+
+                <CommentSpan2>{post.commentNum}</CommentSpan2>
+                <FaRegCommentDots size={25} style={CommentLogoStyle} />
+              </CommentDiv>
+            </ProfileCommentDiv>
+          </Card2>
+        </Link>
+      ))}
+    </CardBox2>
   );
 };
 export default CardPost;

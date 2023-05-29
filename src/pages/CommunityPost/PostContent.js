@@ -295,18 +295,6 @@ const PostContent = ({
           </Form.Item>
         </Form>
         <SearchSectionContainer>
-          <Search
-            placeholder="게시물 키워드를 입력하세요"
-            size="large"
-            allowClear
-            onSearch={onSearch}
-            style={{
-              width: "3100px",
-              left: "30rem",
-              marginLeft: "29rem",
-              marginTop: "5rem",
-            }}
-          />
         </SearchSectionContainer>
       </PostMapContentContainer>
       <PostMapContentContainer2>
