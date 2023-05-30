@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Form, Input, Modal, Select } from "antd";
 import ModalFlexDiv from "./modalcomponents/ModalFlexDiv";
 import ModalProfileImg from "./modalcomponents/ModalProfileImg";
 import ModalSpan from "./modalcomponents/ModalSpan";
@@ -46,7 +46,7 @@ const MyProfileUpdateModal = ({
     const [myHashtags, setMyHashtags] = useState([]);
     const [myHomeHashtags, setMyHomeHashtags] = useState([]);
     const [nickname, setNickname] = useState("");
-    const [password, setPassword] = useState("");
+    const [gender, setGender] = useState("");
     const [profileImg, setProfileImg] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
     const [isNickNameDuplicatedModalOpen, setNickNameDuplicatedModalOpen] = useState(false);
@@ -66,7 +66,9 @@ const MyProfileUpdateModal = ({
             withCredentials:true
         })
         .then((response) => {
+            console.log('response data', response.data);
             setResponseData(response.data);
+            setGender(response.data.gender);
             setNickname(response.data.nickname);
             setAge(response.data.age);
             setLikeHashtags(response.data.likeHashtags);
@@ -126,8 +128,8 @@ const MyProfileUpdateModal = ({
 
     async function UpdateMyInfoData() {
         const data = {
-            "password": password,
             "nickname": nickname,
+            "gender": gender,
             "age": age,
             "likeHashtags": likeHashtags,
             "likeHomeHashtags": likeHomeHashtags,
@@ -198,6 +200,10 @@ const MyProfileUpdateModal = ({
             }
     };
 
+    const onGenderChange = (value) => {
+        setGender(value);
+    }
+
     const handleOk = () => {
         UpdateMyInfoData();
         fetchMyInfoData();
@@ -207,6 +213,8 @@ const MyProfileUpdateModal = ({
     useEffect(() => {
         fetchMyEditData();
     }, []);
+
+    console.log('gender', gender);
     return (
         <>
         {isNickNameDuplicatedModalOpen ?
@@ -260,16 +268,6 @@ const MyProfileUpdateModal = ({
                     {responseData.username}
                 </Form.Item>
                 <Form.Item
-                    label="비밀번호"
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 12 }}
-                >
-                    <Input.Password
-                        value={password}
-                        onChange={(e) => {setPassword(e.target.value);}}
-                    />
-                </Form.Item>
-                <Form.Item
                     label="닉네임"
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 12 }}
@@ -300,6 +298,28 @@ const MyProfileUpdateModal = ({
                         value={age}
                         onChange={(e) => { setAge(e.target.value); }}
                         style={{width: 50}}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="성별"
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 12 }}
+                >
+                    <Select
+                        value={gender}
+                        onChange={onGenderChange}
+                        placeholder="Select a person"
+                        options={[
+                            {
+                                value: 'male',
+                                label: '남자',
+                            },
+                            {
+                                value: 'female',
+                                label: '여자',
+                            },
+                            
+                        ]}
                     />
                 </Form.Item>
             </Form>
