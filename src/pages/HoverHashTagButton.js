@@ -7,10 +7,12 @@ const HoverHashTagButton = styled.button`
     border-width: 0.1rem;
     border-style: solid;
     border-radius: 1rem;
-    background-color: white;
-    border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
-    color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};
+    background-color: ${(props) => (props.selected ? "#47A5FD" : "white")};
+    border-color: ${(props) => (props.selected ? "#47A5FD" : "#bbbbbb")};   
+    color: ${(props) => (props.selected ? "white" : "#bbbbbb")};
+    //color: ${(props) => (props.selected ? "white" : "#bbbbbb")};
     &:hover {
+        background-color: white;
         border-color: #47a5fd;
         color: #47a5fd;
     }
