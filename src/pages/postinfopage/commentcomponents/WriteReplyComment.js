@@ -54,7 +54,7 @@ const WriteReplyComment = ({
                     type="text" 
                     width="75%" 
                     value={inputValue} 
-                    placeholder="대댓글을 입력하세요." 
+                    placeholder="댓글을 입력하세요." 
                     onChange={(e) => { setInputValue(e.target.value)}}
                 />
                 <CommentWriteButton
