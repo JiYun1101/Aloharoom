@@ -42,7 +42,7 @@ const ReadReplyComment = ({
         :
             <></>
         }
-        <PostInfoFlexDiv width="85%" minHeight="7rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%"  borderBottom="solid #bbbbbb">
+        <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%"  borderBottom="solid #bbbbbb">
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center" flexDirection="row">
                 <PostInfoFlexDiv width="50%" minHeight="100%" alignItems="center">
                     <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src={profileUrl}/>
@@ -69,7 +69,7 @@ const ReadReplyComment = ({
                     }
                 </PostInfoFlexDiv>
             </PostInfoFlexDiv>
-            <PostInfoFlexDiv width="100%" minHeight="4rem" alignItems="center"> 
+            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
                 {editMode
                 ? 
                     <>
@@ -99,7 +99,7 @@ const ReadReplyComment = ({
                                     toggleWriteReplies();
                                 }}
                             >
-                                {showWriteReplies ? "답글 안쓰기" : "답글 쓰기"}
+                                {showWriteReplies ? "답글 안쓰기" : "댓글 쓰기"}
                             </PostInfoSpan>
                         :
                             <></>
