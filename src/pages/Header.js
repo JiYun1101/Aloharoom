@@ -222,6 +222,7 @@ const Header = () => {
           <NotificationModal
             ModalClose={ModalClose}
             notificationData={notificationData}
+            fetchNotReadNotificationCount={fetchNotReadNotificationCount}
           />
         ) : (
           <></>
