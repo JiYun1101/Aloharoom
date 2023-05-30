@@ -13,7 +13,7 @@ import NickNameDuplicatedModal from "./NickNameDuplicatedModal";
 import NickNameNotDuplicatedModal from "./NickNameNotDuplicatedModal";
 
 const PersonHashtags = [
-    "조용한", "활발한", "규칙적인", "깔끔한", "차분한", "잠귀가 밝은”",
+    "조용한", "활발한", "규칙적인", "깔끔한", "차분한", "잠귀가 밝은",
     "수다쟁이",  "아침형", "저녁형", "집돌이/집순이", "밖돌이/밖순이",
     "배달마스터", "요리마스터", "맛집러버", "애주가", "헬짱", "게임", 
     "흡연", "비흡연", "메이트경험 O", "메이트경험 X", "평일근무", "주말근무",
