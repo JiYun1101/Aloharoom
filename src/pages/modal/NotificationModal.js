@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import baseURL from "../api/baseURL";
@@ -35,14 +35,21 @@ const LinkToStyle = {
     color: "inherit",
 };
 
-const NotificationModal = ({ModalClose, notificationData}) => {
+const NotificationModal = ({ModalClose, notificationData, fetchNotReadNotificationCount}) => {
     async function ReadNotification(notificationId) {
         await axios.post(`${baseURL}/api/notification/${notificationId}`,{}, {
             withCredentials:true
         })
-        .then((response) => {})
+        .then((response) => {
+            fetchNotReadNotificationCount();
+            ModalClose();
+        })
         .catch((error) => {})
     }
+
+    useEffect(() => {
+        fetchNotReadNotificationCount();
+    }, []);
 
     const frontStrArr = [];
     const commentArr = [];
