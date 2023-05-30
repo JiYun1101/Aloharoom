@@ -18,6 +18,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
 import baseURL from "./api/baseURL";
+import NickNameDuplicatedModal from "./modal/NickNameDuplicatedModal";
+import NickNameNotDuplicatedModal from "./modal/NickNameNotDuplicatedModal";
+import EmailDuplicatedModal from "./modal/EmailDuplicatedModal";
+import EmailNotDuplicatedModal from "./modal/EmailNotDuplicatedModal";
 
 // import RegisterPage2 from "./RegisterPage2";
 
@@ -90,10 +94,15 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [profileImg, setProfileImg] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  const [isNickNameDuplicatedModalOpen, setNickNameDuplicatedModalOpen] =
-    useState(false);
-  const [isNickNameNotDuplicatedModalOpen, setNickNameNotDuplicatedModalOpen] =
-    useState(false);
+
+  const [isNickNameDuplicatedModalOpen, setNickNameDuplicatedModalOpen] =useState(false);
+  const [isNickNameNotDuplicatedModalOpen, setNickNameNotDuplicatedModalOpen] = useState(false);
+  const [isEmailDuplicatedModalOpen, setEmailDuplicatedModalOpen] =useState(false);
+  const [isEmailNotDuplicatedModalOpen, setEmailNotDuplicatedModalOpen] = useState(false);
+
+
+  const [inputNickname, setInputNickname] = useState('');
+  const [inputEmail, setInputEmail] = useState('');
   const showNickNameDuplicatedModal = () => {
     setNickNameDuplicatedModalOpen(true);
   };
@@ -113,6 +122,35 @@ function RegisterPage() {
   const handleNickNameNotDuplicatedModalOk = () => {
     setNickNameNotDuplicatedModalOpen(false);
   };
+
+  const showEmailDuplicatedModal = () => {
+    setEmailDuplicatedModalOpen(true);
+  };
+  const handleEmailDuplicatedModalCancel = () => {
+    setEmailDuplicatedModalOpen(false);
+  };
+  const handleEmailDuplicatedModalOk = () => {
+    setEmailDuplicatedModalOpen(false);
+  };
+
+  const showEmailNotDuplicatedModal = () => {
+    setEmailNotDuplicatedModalOpen(true);
+  };
+  const handleEmailNotDuplicatedModalCancel = () => {
+    setEmailNotDuplicatedModalOpen(false);
+  };
+  const handleEmailNotDuplicatedModalOk = () => {
+    setEmailNotDuplicatedModalOpen(false);
+  };
+
+
+  const handleNicknameChange = (e) => {
+    setInputNickname(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setInputEmail(e.target.value);
+  }
 
   const onWebsiteChange = (value) => {
     if (!value) {
@@ -152,6 +190,24 @@ function RegisterPage() {
     }
   };
 
+  async function nicknameDuplicated(email) {
+    await axios.get(`${baseURL}/api/username/${email}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log('200')
+          showEmailNotDuplicatedModal();
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 409) {
+          console.log('409')
+          showEmailDuplicatedModal();
+        }
+      })
+  }
+
   async function usernameDuplicated(nickname) {
     await axios
       .get(`${baseURL}/api/nickname/${nickname}`, {
@@ -175,6 +231,42 @@ function RegisterPage() {
 
   return (
     <>
+      {isEmailDuplicatedModalOpen ?
+            <EmailDuplicatedModal
+                isEmailDuplicatedModalOpen={isEmailDuplicatedModalOpen}
+                handleOk={handleEmailDuplicatedModalOk}
+                handelCancel={handleEmailDuplicatedModalCancel}
+            />
+        :
+            <></>
+      }
+      {isEmailNotDuplicatedModalOpen ?
+            <EmailNotDuplicatedModal
+                isEmailNotDuplicatedModalOpen={isEmailNotDuplicatedModalOpen}
+                handleOk={handleEmailNotDuplicatedModalOk}
+                handelCancel={handleEmailNotDuplicatedModalCancel}
+            />
+        :
+            <></>
+      }
+      {isNickNameDuplicatedModalOpen ?
+            <NickNameDuplicatedModal
+                isNickNameDuplicatedModalOpen={isNickNameDuplicatedModalOpen}
+                handleOk={handleNickNameDuplicatedModalOk}
+                handelCancel={handleNickNameDuplicatedModalCancel}
+            />
+        :
+            <></>
+      }
+      {isNickNameNotDuplicatedModalOpen ?
+          <NickNameNotDuplicatedModal
+              isNickNameNotDuplicatedModalOpen={isNickNameNotDuplicatedModalOpen}
+              handleOk={handleNickNameNotDuplicatedModalOk}
+              handelCancel={handleNickNameNotDuplicatedModalCancel}
+          />
+      :
+        <></>
+      }
       <AiOutlineLeft
         size={40}
         style={BackPageIconStyle}
@@ -221,15 +313,15 @@ function RegisterPage() {
                   },
                 ]}
               >
-                <Input />
+                <Input onChange={handleEmailChange}/>
                 <Button
                   style={{ marginTop: "0.5rem" }}
                   onClick={() => {
-                    console.log("username", username);
-                    usernameDuplicated(username);
+                    console.log("username", inputEmail);
+                    nicknameDuplicated(inputEmail);
                   }}
                 >
-                  유저네임 중복 확인
+                  이메일 중복 확인
                 </Button>
               </Form.Item>
               <Form.Item
@@ -245,12 +337,12 @@ function RegisterPage() {
                   },
                 ]}
               >
-                <Input />
+                <Input onChange={handleNicknameChange}/>
                 <Button
                   style={{ marginTop: "0.5rem" }}
                   onClick={() => {
-                    console.log("nickname", nickname);
-                    usernameDuplicated(nickname);
+                    console.log("nickname", inputNickname);
+                    usernameDuplicated(inputNickname);
                   }}
                 >
                   닉네임 중복 확인
