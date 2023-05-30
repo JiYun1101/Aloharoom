@@ -301,7 +301,7 @@ const MyProfileUpdateModal = ({
                 </Form.Item>
             </Form>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem" fontWeight="600">내 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">내 성향</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {PersonHashtags.map((data, idx) => (
@@ -315,7 +315,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem" fontWeight="600">집 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">거주지 성향</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {HomeHashtags.map((data, idx) => (
@@ -329,7 +329,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem" fontWeight="600">내 선호 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">선호하는 사람</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {PersonHashtags.map((data, idx) => (
@@ -343,7 +343,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem" fontWeight="600">집 선호 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">선호하는 거주지</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {HomeHashtags.map((data, idx) => (
