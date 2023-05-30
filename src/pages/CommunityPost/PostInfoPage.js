@@ -309,16 +309,16 @@ const CardImage = styled.img`
   height: 100%;
 `;
 
-const WrapButton = styled.div`
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  border: 4px solid #85afe1;
-  &:hover {
-    border-color: #47a5fd;
-    color: #47a5fd;
-  }
-`;
+// const WrapButton = styled.div`
+//   justify-content: center;
+//   align-items: center;
+//   border-radius: 4px;
+//   border: 4px solid #85afe1;
+//   &:hover {
+//     border-color: #47a5fd;
+//     color: #47a5fd;
+//   }
+// `;
 
 const PostInfoPage = () => {
   const postInfoPageRef = useRef(null);
@@ -564,9 +564,7 @@ const PostInfoPage = () => {
         <PostInfoPageBox>
           <PostInfoImageBox>
             {imgUrls.length === 1 ? (
-              <WrapButton>
-                <PostInfoImage src={imgUrls[0]} />
-              </WrapButton>
+              <PostInfoImage src={imgUrls[0]} />
             ) : (
               <Container>
                 <Swiper
