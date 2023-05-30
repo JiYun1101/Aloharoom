@@ -481,24 +481,25 @@ const PostContent = ({
                   width: "70%",
                 }}
               >
-                <WrapButton>
-                  <Link
-                    to={`../CommunityInfoPage/${post.communityId}`}
-                    style={LinkToStyle}
-                    onClick={(event) => {
-                      setCurrentIndex(index);
-                      handleLinkClick(
-                        event,
-                        `../CommunityInfoPage/${post.communityId}`
-                      );
-                    }}
-                  >
+                {" "}
+                <Link
+                  to={`../CommunityInfoPage/${post.communityId}`}
+                  style={LinkToStyle}
+                  onClick={(event) => {
+                    setCurrentIndex(index);
+                    handleLinkClick(
+                      event,
+                      `../CommunityInfoPage/${post.communityId}`
+                    );
+                  }}
+                >
+                  <WrapButton>
                     {index === 0 && <span>1위 </span>}
                     {index === 1 && <span>2위 </span>}
                     {index === 2 && <span>3위 </span>}
                     {post.title}
-                  </Link>{" "}
-                </WrapButton>
+                  </WrapButton>{" "}
+                </Link>
               </b>
               <br />
             </React.Fragment>
