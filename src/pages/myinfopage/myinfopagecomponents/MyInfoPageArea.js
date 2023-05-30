@@ -108,7 +108,7 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           </MyInfoFlexDiv>
           <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="2vh">
-            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 해시태그</MyInfoSpan>
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 성향</MyInfoSpan>
           </MyInfoFlexDiv>
           {myHashtags.length === 0 ? 
             <MyInfoFlexDiv
@@ -137,7 +137,7 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           }
           <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem" fontWeight="600">집 해시태그</MyInfoSpan>
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 거주지 성향</MyInfoSpan>
           </MyInfoFlexDiv>
           {myHomeHashtags.length === 0 ? 
             <MyInfoFlexDiv
@@ -166,7 +166,7 @@ const MyInfoPage = ({
           </MyInfoFlexDiv>
           }
           <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="1rem">
-            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 선호 해시태그</MyInfoSpan>
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">선호하는 사람</MyInfoSpan>
           </MyInfoFlexDiv>
           {likeHashtags.length === 0 ? 
             <MyInfoFlexDiv
@@ -195,7 +195,7 @@ const MyInfoPage = ({
             </MyInfoFlexDiv>
           }
           <MyInfoFlexDiv width="94%" height="auto" alignItems="center" marginTop="2vh">
-            <MyInfoSpan fontSize="1.2rem" fontWeight="600">내 집 선호 해시태그</MyInfoSpan>
+            <MyInfoSpan fontSize="1.2rem" fontWeight="600">선호하는 거주지</MyInfoSpan>
           </MyInfoFlexDiv>
           {likeHomeHashtags.length === 0 ? 
             <MyInfoFlexDiv

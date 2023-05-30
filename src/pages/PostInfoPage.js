@@ -428,13 +428,21 @@ const PostInfoPage = () => {
                     <></>
                 }
                 <PostInfoFlexDiv width="95%" borderBottom="solid 0.1rem #bbbbbb"/>
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 성향</PostInfoSpan>
+                </PostInfoDiv>
                 {myHashtag.length === 0 ? 
-                    <></>
+                    <PostInfoFlexDiv 
+                        width="95%" 
+                        minHeight="3rem" 
+                        alignItems="center"
+                        justifyContent="center"
+                        borderBottom="solid 0.1rem #bbbbbb"
+                    >
+                        <div style={{ color: "#bbbbbb", fontSize: "1.2rem"}}>작성자가 성향을 설정하지 않았습니다.</div>
+                    </PostInfoFlexDiv>
                 :
                     <>
-                        <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
-                            <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 성향</PostInfoSpan>
-                        </PostInfoDiv>
                         <PostInfoFlexDiv 
                             width="95%" 
                             minHeight="auto" 
@@ -449,13 +457,21 @@ const PostInfoPage = () => {
                         </PostInfoFlexDiv>
                     </>
                 }
+                <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+                    <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 거주지 성향</PostInfoSpan>
+                </PostInfoDiv>
                 {myHomeHashtag.length === 0 ?
-                    <></>
+                    <PostInfoFlexDiv 
+                        width="95%" 
+                        minHeight="3rem" 
+                        alignItems="center"
+                        justifyContent="center"
+                        borderBottom="solid 0.1rem #bbbbbb"
+                    >
+                        <div style={{ color: "#bbbbbb", fontSize: "1.2rem"}}>작성자가 거주지 성향을 설정하지 않았습니다.</div>
+                    </PostInfoFlexDiv>
                 :
                     <>
-                        <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
-                            <PostInfoSpan fontSize="1.5rem" fontWeight="600">작성자 거주지 성향</PostInfoSpan>
-                        </PostInfoDiv>
                         <PostInfoFlexDiv 
                             width="95%" 
                             minHeight="auto" 

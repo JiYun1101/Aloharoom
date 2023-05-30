@@ -13,17 +13,20 @@ import NickNameDuplicatedModal from "./NickNameDuplicatedModal";
 import NickNameNotDuplicatedModal from "./NickNameNotDuplicatedModal";
 
 const PersonHashtags = [
-    "조용한", "활발한", "규칙적인", "깔끔한", "차분한", "잠귀가 밝은", "수다쟁이",  "아침형", "저녁형", 
-    "집돌이/집순이", "밖돌이/밖순이", "배달의 민족", "맛집러버", "요리마스터", "애주가", "헬창", "게임", 
-    "홈짐", "흡연", "비흡연", "메이트경험 O", "메이트경험 X", "평일근무", "주말근무", "교대근무", "야간근무",
-    "출장근무", "프리랜서", "I", "E", "S", "N", "F", "T", "J", "P"
+    "조용한", "활발한", "규칙적인", "깔끔한", "차분한", "잠귀가 밝은”",
+    "수다쟁이",  "아침형", "저녁형", "집돌이/집순이", "밖돌이/밖순이",
+    "배달마스터", "요리마스터", "맛집러버", "애주가", "헬짱", "게임", 
+    "흡연", "비흡연", "메이트경험 O", "메이트경험 X", "평일근무", "주말근무",
+    "교대근무", "야간근무", "출장근무", "프리랜서",
+    "I", "E", "S", "N", "F", "T", "J", "P"
 ];
 
 const HomeHashtags = [
-    "엘리베이터", "주차가능", "관리실", "택배함", "베란다/발코니", "화장실 여러개", 
-    "신발장", "건조기", "공기청정기", "스타일러", "강아지", "고양이", "역세권", "버스세권", 
-    "편세권", "먹세권", "헬세권", "숲세권", "한강세권", "야경맛집", "복층", "통창", "주변 소음 없는", 
-    "방음 잘 되는", "환기 잘 되는", "로켓와우", "샛별배송", "SSG배송", "동향", "서향", "남향", "북향"
+    "엘리베이터", "주차가능", "베란다/발코니", "화장실 여러개",
+    "신발장", "건조기", "공기청정기", "스타일러","반려동물",
+    "홈짐", "역세권", "버스세권", "편세권", "먹세권", "헬세권",
+    "숲세권", "한강세권", "야경맛집", "복층", "통창", "주변 소음 X",
+    "방음 O", "수압 좋음", "환기 잘 되는", "로켓와우", "샛별배송", "SSG배송" ,"남향"
 ];
 
 const ImageUploadInput = styled.input`
@@ -301,7 +304,7 @@ const MyProfileUpdateModal = ({
                 </Form.Item>
             </Form>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem" fontWeight="600">내 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">내 성향</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {PersonHashtags.map((data, idx) => (
@@ -315,7 +318,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem" fontWeight="600">집 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">거주지 성향</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {HomeHashtags.map((data, idx) => (
@@ -329,7 +332,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem" fontWeight="600">내 선호 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">선호하는 사람</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {PersonHashtags.map((data, idx) => (
@@ -343,7 +346,7 @@ const MyProfileUpdateModal = ({
                 ))}
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="3.5rem" marginTop="0.5rem" alignItems="center">
-                <ModalSpan fontSize="1.2rem" fontWeight="600">집 선호 해시태그</ModalSpan>
+                <ModalSpan fontSize="1.2rem" fontWeight="600">선호하는 거주지</ModalSpan>
             </ModalFlexDiv>
             <ModalFlexDiv width="99%" height="auto" flexDirection="row" flexWrap="wrap" gap="0.5rem">
                 {HomeHashtags.map((data, idx) => (

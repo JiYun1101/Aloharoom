@@ -8,8 +8,8 @@ const HashTagButton = styled.button`
     border-style: solid;
     border-radius: 1rem;
     background-color: white;
-    border-color: #47a5fd;
-    color: #47a5fd;
+    border-color: #47A5FD;
+    color: #47A5FD;
 `;
 
 export default HashTagButton;

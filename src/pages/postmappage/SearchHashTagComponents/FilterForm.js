@@ -194,7 +194,7 @@ const FilterForm = ({
         </Form.Item>
       </Form>
           <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
-            사람 해시태그
+            선호하는 사람
           </ModalFlexDiv>
           {localStorage.getItem('userId') ?
             <> 
@@ -241,7 +241,7 @@ const FilterForm = ({
             </ModalFlexDiv>
           }
           <ModalFlexDiv alignItems="center" width="100%" height="3rem" fontSize="1.5rem">
-            집 해시태그
+            선호하는 거주지
           </ModalFlexDiv>
           {localStorage.getItem('userId') ? 
             <>

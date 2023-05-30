@@ -110,7 +110,7 @@ const ReadComment = ({
                                 toggleWriteReplies();
                             }}
                         >
-                            {showWriteReplies ? "대댓글 안쓰기" : "댓글 쓰기"}
+                            {showWriteReplies ? "댓글 안쓰기" : "댓글 쓰기"}
                         </PostInfoSpan>
                     :
                         <></>
@@ -125,7 +125,7 @@ const ReadComment = ({
                             setClickGroupId(commentId);
                         }}
                     >
-                        {showReplies ? "대댓글 가리기" : "대댓글 보기"}
+                        {showReplies ? "댓글 가리기" : "댓글 보기"}
                     </PostInfoSpan>
                     <PostInfoSpan
                         marginLeft="1rem"
