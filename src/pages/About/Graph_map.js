@@ -19,7 +19,7 @@ const DemoScatter = () => {
       const modifiedData = [
         {
           city: "울산",
-          UV: 2.5,
+          UV: 3.5,
           DAU: 1.7,
           region: Object.values(regionBoardMap)[0],
         },
@@ -27,12 +27,18 @@ const DemoScatter = () => {
           city: "광주",
           UV: 1.0,
           DAU: 1.3,
-          region: Object.values(regionBoardMap)[1],
+          region: Object.values(regionBoardMap)[6],
+        },
+        {
+          city: "서울(가짜)",
+          UV: 1.3,
+          DAU: 2.8,
+          region: 0,
         },
         {
           city: "서울",
           UV: 1.3,
-          DAU: 2.6,
+          DAU: 2.45,
           region: Object.values(regionBoardMap)[2],
         },
         {
@@ -42,22 +48,22 @@ const DemoScatter = () => {
           region: Object.values(regionBoardMap)[5],
         },
         {
-          city: "강원도",
+          city: "대구",
           UV: 2.3,
           DAU: 2.5,
           region: Object.values(regionBoardMap)[4],
         },
         {
           city: "대전",
-          UV: 1.2,
-          DAU: 3,
-          region: Object.values(regionBoardMap)[5],
+          UV: 2,
+          DAU: 2,
+          region: Object.values(regionBoardMap)[1],
         },
         {
           city: "부산",
-          UV: 2.0,
-          DAU: 1.6,
-          region: Object.values(regionBoardMap)[6],
+          UV: 2.5,
+          DAU: 1.4,
+          region: Object.values(regionBoardMap)[3],
         },
       ];
 
