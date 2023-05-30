@@ -72,7 +72,6 @@
 }
 
 .button {
-  z-index: 1;
   width: calc(
     33.33% - 20px
   ); /* change width to fit 3 columns with 20px margin between buttons */
