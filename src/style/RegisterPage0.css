@@ -108,7 +108,7 @@
   flex-basis: 100%;
   width: 0;
   height: calc(
-    (300px - 70px) / 2
+    (210px - 70px) / 2
   ); /* 수정: max-height 값을 300px로 변경합니다. */
 }
 
