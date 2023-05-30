@@ -254,6 +254,8 @@ const PostContent = ({
   const onInputSearch = (value) => {
     console.log("입력한 값", value);
     console.log("선택한 카테고리", selectCategory);
+    setCurrentPage(1);
+    cardRef.current.firstChild.firstChild.click(1);
 
     if (selectCategory === "제목") {
       fetchTitleSearchData(value);
