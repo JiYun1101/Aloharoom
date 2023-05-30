@@ -95,13 +95,13 @@ const DemoScatter = () => {
     tooltip: {
       showTitle: true,
       showMarkers: false,
-      fields: ["UV", "DAU", "region"],
+      fields: ["region"],
       customContent: (title, items) => {
         const field = items?.[0];
         const formatterInfo = {
           UV: (value) => value + "万",
           DAU: (value) => value + "万",
-          region: () => "%",
+          지역: () => "개수",
         };
 
         let htmlStr = `<div style="margin:10px 0;font-weight:700;">${field?.data?.city}</div><div class="g2-tooltip-items">`;
@@ -112,7 +112,7 @@ const DemoScatter = () => {
                 }</span>
                 <span class="g2-tooltip-item-value">${
                   item.name === "region"
-                    ? field.data[item.name] + "%"
+                    ? field.data[item.name] + "개"
                     : item.value + formatterInfo[item.name](item.value)
                 }</span>
               </div>`;

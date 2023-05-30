@@ -17,6 +17,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/ai";
+import baseURL from "./api/baseURL";
 
 // import RegisterPage2 from "./RegisterPage2";
 
@@ -74,9 +75,44 @@ const tailFormItemLayout = {
 
 function RegisterPage() {
   const navigate = useNavigate();
+  const username = useNavigate();
 
   const [form] = Form.useForm();
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
+
+  const [responseData, setResponseData] = useState({});
+  const [age, setAge] = useState("");
+  const [likeHashtags, setLikeHashtags] = useState([]);
+  const [likeHomeHashtags, setLikeHomeHashtags] = useState([]);
+  const [myHashtags, setMyHashtags] = useState([]);
+  const [myHomeHashtags, setMyHomeHashtags] = useState([]);
+  const [nickname, setNickname] = useState("");
+  const [password, setPassword] = useState("");
+  const [profileImg, setProfileImg] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [isNickNameDuplicatedModalOpen, setNickNameDuplicatedModalOpen] =
+    useState(false);
+  const [isNickNameNotDuplicatedModalOpen, setNickNameNotDuplicatedModalOpen] =
+    useState(false);
+  const showNickNameDuplicatedModal = () => {
+    setNickNameDuplicatedModalOpen(true);
+  };
+  const handleNickNameDuplicatedModalCancel = () => {
+    setNickNameDuplicatedModalOpen(false);
+  };
+  const handleNickNameDuplicatedModalOk = () => {
+    setNickNameDuplicatedModalOpen(false);
+  };
+
+  const showNickNameNotDuplicatedModal = () => {
+    setNickNameNotDuplicatedModalOpen(true);
+  };
+  const handleNickNameNotDuplicatedModalCancel = () => {
+    setNickNameNotDuplicatedModalOpen(false);
+  };
+  const handleNickNameNotDuplicatedModalOk = () => {
+    setNickNameNotDuplicatedModalOpen(false);
+  };
 
   const onWebsiteChange = (value) => {
     if (!value) {
@@ -115,6 +151,27 @@ function RegisterPage() {
       console.error("Registration failed:", error);
     }
   };
+
+  async function usernameDuplicated(nickname) {
+    await axios
+      .get(`${baseURL}/api/nickname/${nickname}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          showNickNameNotDuplicatedModal();
+        }
+        // else if (response.status === 409) {
+        //     showNickNameDuplicatedModal();
+        // }
+      })
+      .catch((error) => {
+        if (error.response.status === 409) {
+          showNickNameDuplicatedModal();
+        }
+        console.log(`axios usernameDuplicated error`);
+      });
+  }
 
   return (
     <>
@@ -165,6 +222,15 @@ function RegisterPage() {
                 ]}
               >
                 <Input />
+                <Button
+                  style={{ marginTop: "0.5rem" }}
+                  onClick={() => {
+                    console.log("username", username);
+                    usernameDuplicated(username);
+                  }}
+                >
+                  유저네임 중복 확인
+                </Button>
               </Form.Item>
               <Form.Item
                 name="nickname"
@@ -180,6 +246,15 @@ function RegisterPage() {
                 ]}
               >
                 <Input />
+                <Button
+                  style={{ marginTop: "0.5rem" }}
+                  onClick={() => {
+                    console.log("nickname", nickname);
+                    usernameDuplicated(nickname);
+                  }}
+                >
+                  닉네임 중복 확인
+                </Button>
               </Form.Item>
               <Form.Item
                 name="password"
@@ -195,6 +270,7 @@ function RegisterPage() {
               >
                 <Input.Password />
               </Form.Item>
+
               <Form.Item style={{ marginLeft: "97px" }}>
                 <Row gutter={16}>
                   <Col span={12}>
