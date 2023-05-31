@@ -110,7 +110,7 @@ const MyWriteCommunityPageArea = () => {
         <>
         {responseData.length === 0 ? 
             <MyWriteCommunityPageEmptyContainer>
-                <div style={{color: "#a0a0a0"}}>작성한 방이 없습니다.</div>
+                <div style={{color: "#a0a0a0"}}>작성한 커뮤니티 글이 없습니다.</div>
             </MyWriteCommunityPageEmptyContainer>    
         :
             <MyWriteCommunityPageAreaContainer>    

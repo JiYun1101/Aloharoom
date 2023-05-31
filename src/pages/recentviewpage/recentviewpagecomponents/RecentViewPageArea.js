@@ -76,7 +76,7 @@ const RecentViewPageArea = () => {
         <>
         {responseData.length === 0 ?
             <EmptyRecentViewAreaDiv>
-                <div style={{color: "#a0a0a0"}}>좋아요 방이 없습니다.</div>
+                <div style={{color: "#a0a0a0"}}>최근본 방이 없습니다.</div>
             </EmptyRecentViewAreaDiv>
         :
             <RecentViewAreaDiv>

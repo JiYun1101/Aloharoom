@@ -490,7 +490,7 @@ const LastContent = ({ onClick }) => {
   return (
     <div>
       <div className="titleWrap2">
-        선호하는 집에 대한 해시태그를 제공하세요!
+        내 집에 대한 해시태그를 제공하세요!
       </div>
       <div className="titleWrap3">!룸메이트만 구하고 있다면 스킵!</div>
       <div className="hashtagWrap">
