@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import FilterForm from "./FilterForm";
+import { MdCancel } from "react-icons/md";
 
 const NotificationModalDiv2 = styled.div`
   position: absolute;
@@ -54,12 +55,13 @@ const NotificationTitle2 = styled.div`
 `;
 
 const NotificationModalCloseButtonDiv2 = styled.div`
+  margin-left: 1rem;
   display: flex;
   align-items: center;
 `;
 
 const NotificationModalCloseButton2 = styled.button`
-  margin-right: 3.5rem;
+  margin-right: 2.5rem;
   font-size: 2.5rem;
   background-color: white;
   border-radius: 0.5rem;
@@ -102,7 +104,8 @@ const FilterClearButton = styled.button`
   background-color: #E2E2E2;
   border-style: none;
   border-radius: 0.5rem;
-  margin-top: 15px;
+  margin-top: 5px;
+  //margin-top: 15px;
   cursor: pointer;
 `;
 
@@ -145,7 +148,7 @@ const NotificationModal2 = ({
           <NotificationModalCloseButton2
             onClick={ModalClose}
           >
-            x
+            <MdCancel size={25}/>
           </NotificationModalCloseButton2>
         </NotificationModalCloseButtonDiv2>
       </NotificationModalHeaderDiv2>
