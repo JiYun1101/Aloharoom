@@ -175,7 +175,7 @@ const About = () => {
   };
 
   const [componentDisabled, setComponentDisabled] = useState(false);
-  const [flat, setFlat] = useState("34"); // 초기값을 34로 설정
+  const [flat, setFlat] = useState(""); // 초기값을 34로 설정
 
   return (
     <MainContainer>
