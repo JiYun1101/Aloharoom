@@ -7,6 +7,7 @@ import ModalDiv from "./modalcomponents/ModalDiv";
 import ModalFlexDiv from "./modalcomponents/ModalFlexDiv";
 import ModalSpan from "./modalcomponents/ModalSpan";
 import ModalProfileImg from "./modalcomponents/ModalProfileImg";
+import { MdCancel } from "react-icons/md";
 
 const NotificationModalContainer = styled.div`
     position: absolute;
@@ -107,7 +108,7 @@ const NotificationModal = ({ModalClose, notificationData, fetchNotReadNotificati
                     <ModalDiv fontWeight="600" fontSize="1.5rem" marginTop="0.7rem" marginLeft="0.5rem">알림</ModalDiv>
                 </ModalDiv>
                 <ModalFlexDiv width="13rem" height="3rem" flexDirection="row-reverse" alignItems="center">
-                    <NotificationModalCloseButton onClick={ModalClose}>x</NotificationModalCloseButton> 
+                    <MdCancel style={{ marginRight: "0.5rem"}} size={25} onClick={ModalClose}/>
                 </ModalFlexDiv>
             </ModalFlexDiv>
             {notificationData.length === 0 ? 
