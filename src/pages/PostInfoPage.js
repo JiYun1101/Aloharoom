@@ -75,7 +75,6 @@ const MatchingCompleteButton = styled.button`
 `;
 
 const KakaoUrlSpan = styled.span`
-    text-decoration: underline;
     font-size: 1rem;
     border-radius: 0.3rem;
     background-color: #bbbbbb;
