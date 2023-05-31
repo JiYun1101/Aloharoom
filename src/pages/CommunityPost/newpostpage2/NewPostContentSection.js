@@ -80,10 +80,15 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
         navigate(`../CommunityPage`);
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response && error.response.status === 500) {
+          navigate("../Login");
+        } else if (error.response && error.response.status === 400) {
+          navigate("../Login");
+        } else {
+          console.log("DeletePostInfoData axios error", error);
+        }
       });
   };
-
   const PostInfoSubmit = () => {
     const data = {
       title: title,
@@ -108,7 +113,13 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
         navigate(`../CommunityPage`); // 수정된 부분: postMapPage로 이동
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response && error.response.status === 500) {
+          navigate("../Login");
+        } else if (error.response && error.response.status === 400) {
+          navigate("../Login");
+        } else {
+          console.log("DeletePostInfoData axios error", error);
+        }
       });
   };
   async function urlsToFileList(urls) {
