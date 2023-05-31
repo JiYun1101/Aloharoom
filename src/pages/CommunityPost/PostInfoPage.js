@@ -62,14 +62,22 @@ const PostInfoImageBox = styled.div`
 `;
 
 const Container = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; 
   margin-top: 1rem;
-  height: 15rem;
+  height: 30rem;
+  .swiper-slide {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+  }
 `;
 
 const PostInfoImage = styled.img`
-  width: 40vw;
-  height: 50vh;
-  margin-left: 2.2rem;
+  width: 43rem;
+  height: 29rem;
 `;
 
 const TitleDiv = styled.div`
