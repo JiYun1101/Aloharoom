@@ -5,6 +5,7 @@ const ModalProfileImg = styled.img`
     width: ${ props => props.width || "0rem"};
     height: ${ props => props.height || "0rem"};
     border-radius: ${ props => props.borderRadius || "0rem"};
+    border: ${props => props.border};
 `;
 
 export default ModalProfileImg;

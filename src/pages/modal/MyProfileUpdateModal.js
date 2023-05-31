@@ -248,6 +248,7 @@ const MyProfileUpdateModal = ({
                     <ModalProfileImg 
                         width="9rem" 
                         height="9rem" 
+                        border="1px solid #bbbbbb"
                         borderRadius="10rem" 
                         src={previewImage}
                     />

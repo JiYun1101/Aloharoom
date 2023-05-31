@@ -45,6 +45,7 @@ const MyInfoProfile = styled.img`
     height: ${props => props.height};
     margin-left: ${props => props.marginLeft};
     margin-right: ${props => props.marginRight};
+    border: ${props => props.border};
     border-radius: ${props => props.borderRadius};
 `;
 //아이디, 비밀번호, 닉네임, 나이, 성별, 프로필 사진, 해시태그 목록
@@ -62,7 +63,7 @@ const MyInfoPage = ({
         <MyInfoFlexDiv width="34.2vw" height="55vh" flexDirection="column" overflowY="auto" overflowX="auto" alignItems="center">
           <MyInfoFlexDiv width="99%" height="25vh">
             <MyInfoFlexDiv width="40%" height="25vh" alignItems="center" justifyContent="center">
-              <MyInfoProfile width="70%" height="70%" borderRadius="70%" src={responseData.profileUrl} />
+              <MyInfoProfile width="70%" height="70%" borderRadius="70%" border="1px solid #bbbbbb" src={responseData.profileUrl} />
             </MyInfoFlexDiv>
             <MyInfoFlexDiv width="60%" height="100%" flexDirection="column">
               <MyInfoFlexDiv width="100%" height="20%">
