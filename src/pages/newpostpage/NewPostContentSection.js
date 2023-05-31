@@ -5,6 +5,7 @@ import NewPostContentInfoSection from "./NewPostContentInfoSection";
 import NewPostContentWritingSection from "./NewPostContentWritingSection";
 import { useNavigate, useParams } from "react-router-dom";
 import baseURL from "../api/baseURL";
+import RoomPostExceptionModal from "../modal/RoomPostExceptionModal";
 
 const NewPostContentDiv = styled.div`
     height: 94vh;
@@ -43,8 +44,11 @@ const NewPostContentSection = ({
     const [ageRange, setAgeRange] = useState([20, 25]);
     const [imgFiles, setImgFiles] = useState([]);
     const [previewImages, setPreviewImages] = useState([]);
-
+    const [isRoomPostExceptionModalOpen, setIsRoomPostExceptionModalOpen] = useState(false);
     const updateID = useParams().id;
+    const showRoomPostExceptionModalModal = () => {setIsRoomPostExceptionModalOpen(true);}
+    const handleRoomPostExceptionCancel = () => {setIsRoomPostExceptionModalOpen(false);}
+    const handleRoomPostExceptionOk = () => { setIsRoomPostExceptionModalOpen(false);}
     useEffect(() => {
         if (updateID != null) {
             FetchPostInfoData();
@@ -100,6 +104,12 @@ const NewPostContentSection = ({
     console.log("==============================");
 
     const modifyPost = () => {
+        if (contents === "" || openChatUrl === "" || roomCount === "" || address === "" 
+        || homeType === "" || tradeType === "" || price === "" || rent === "" || flat === ""
+        || maintenance === "" || floor === "" || totalFloor === "" || startDate === ""|| imgFiles.length === 0) {
+            showRoomPostExceptionModalModal();
+            return;
+        }
         const data = {
             "contents": contents,
             "roomCount": roomCount,
@@ -141,6 +151,12 @@ const NewPostContentSection = ({
     }
 
     const PostInfoSubmit = () => {
+        if (contents === "" || openChatUrl === "" || roomCount === "" || address === "" 
+        || homeType === "" || tradeType === "" || price === "" || rent === "" || flat === ""
+        || maintenance === "" || floor === "" || totalFloor === "" || startDate === ""|| imgFiles.length === 0) {
+            showRoomPostExceptionModalModal();
+            return;
+        }
         const data = {
             "contents": contents,
             "openChatUrl": openChatUrl,
@@ -197,6 +213,16 @@ const NewPostContentSection = ({
     }
 
     return (
+        <>
+        {isRoomPostExceptionModalOpen ? 
+            <RoomPostExceptionModal
+                isRoomPostExceptionModalOpen={isRoomPostExceptionModalOpen}
+                handleOk={handleRoomPostExceptionOk}
+                handelCancel={handleRoomPostExceptionCancel}
+            />
+        :
+            <></>
+        }
         <NewPostContentDiv>
                 <NewPostContentContainer>
                     <NewPostContentInfoSection
@@ -247,6 +273,7 @@ const NewPostContentSection = ({
                     />
                 </NewPostContentContainer>
         </NewPostContentDiv>
+        </>
     );
 }
 
