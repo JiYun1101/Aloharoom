@@ -154,17 +154,18 @@ const About = () => {
   const userId = localStorage.getItem("username");
   const requestURL = `http://localhost:8080/api/board/userId/${userId}`;
   const [myProfileData, setMyProfileData] = useState("");
-    async function fetchMyInfoData() {
-        await axios.get(`${baseURL}/api/myPage`, {
-            withCredentials:true
-        }) 
-        .then((response) => {
-            setMyProfileData(response.data.profileUrl);
-        })
-        .catch((error) => {
-            console.log(`axios MyInfoPage error`);
-        })
-    }
+  async function fetchMyInfoData() {
+    await axios
+      .get(`${baseURL}/api/myPage`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setMyProfileData(response.data.profileUrl);
+      })
+      .catch((error) => {
+        console.log(`axios MyInfoPage error`);
+      });
+  }
   useEffect(() => {
     // 데이터를 받아오는 API 호출
     fetchMyInfoData();
@@ -198,7 +199,7 @@ const About = () => {
   return (
     <MainContainer>
       <>
-        <Header 
+        <Header
           myProfileData={myProfileData}
           setMyProfileData={setMyProfileData}
         />
@@ -219,7 +220,8 @@ const About = () => {
           <SpanDiv />
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
-            &lt;aloharoom을 방문한 이용자수의 변화!&gt;
+            {/* &lt;방문한 이용자수의 변화&gt; */}
+            방문한 이용자수의 변화
           </StyledTextArea>
           <GraphBox>
             <div
@@ -235,7 +237,8 @@ const About = () => {
           </GraphBox>
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
-            &lt;aloharoom에 있는 방의 지역별 그래프!&gt;
+            {/* &lt;룸메이트 게시물의 지역별 그래프&gt; */}
+            룸메이트 게시물의 지역별 그래프
           </StyledTextArea>
           <GraphBox>
             <div
@@ -251,7 +254,8 @@ const About = () => {
           </GraphBox>
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
-            &lt;aloharoom의 평수 별 월세 그래프!&gt;
+            {/* &lt;평수 별 월세 그래프&gt; */}
+            평수 별 월세 그래프
           </StyledTextArea>
           <StyledTextArea color="#47a5fd">
             (직접 궁금한 평수를 넣어보세요)
