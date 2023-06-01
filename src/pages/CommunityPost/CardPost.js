@@ -49,6 +49,7 @@ const ProfileImg = styled.img`
   height: 30px;
   border-radius: 70%;
   margin-left: 16.5rem;
+  border: 1px solid gray;
 `;
 
 const ProfileSpan = styled.span`
