@@ -62,10 +62,10 @@ const PostInfoImageBox = styled.div`
 `;
 
 const Container = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center; /* 가로 중앙 정렬 */
-  align-items: center;
+  //position: relative;
+  //display: flex;
+  //justify-content: center; /* 가로 중앙 정렬 */
+  //align-items: center;
   margin-top: 1rem;
   height: auto;
   .swiper-slide {
@@ -81,7 +81,7 @@ const PostInfoImage = styled.img`
 `;
 
 const TitleDiv = styled.div`
-  margin-top: -6rem;
+  margin-top: 0.3rem;
   width: 95%;
   height: 3rem;
   display: flex;
@@ -118,7 +118,7 @@ const ProfileImg = styled.img`
 
 const ProfileName = styled.span`
   margin-left: 1rem;
-  color: #black;
+  color: black;
   font-size: 1.2rem;
 `;
 
