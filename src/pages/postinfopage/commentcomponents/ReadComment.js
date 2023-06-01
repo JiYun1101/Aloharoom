@@ -79,7 +79,7 @@ const ReadComment = ({
                     }
                 </PostInfoFlexDiv>
             </PostInfoFlexDiv>
-            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="end" marginBottom="0.5rem"> 
+            <PostInfoFlexDiv width="100%" minHeight="2rem" alignItems="end" marginBottom="0.5rem"> 
                 {editMode 
                 ? 
                 <>
