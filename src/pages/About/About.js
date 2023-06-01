@@ -174,7 +174,9 @@ const About = () => {
   };
 
   const handleInputChange = (e) => {
-    setFlat(e.target.value); // 입력한 값을 flat에 저장
+    const value = e.target.value;
+    const flatValue = value !== "" ? value : ""; // 입력값이 비어있는 경우 빈 문자열로 설정
+    setFlat(flatValue); // flat 값을 업데이트
   };
 
   const [componentDisabled, setComponentDisabled] = useState(false);
@@ -260,7 +262,7 @@ const About = () => {
               }}
             >
               <Form.Item label="평수">
-                <Input value={flat} onChange={handleInputChange} />
+                <Input min={0} value={flat} onChange={handleInputChange} />
               </Form.Item>
             </Form>
           </GraphBox>
