@@ -267,7 +267,7 @@ const About = () => {
         </IntroBox>{" "}
         <SpanDiv />
         <SpanDiv />
-        {/* {userId ? null : (
+        {userId ? null : (
           <>
             <Link
               to="../Login"
@@ -277,7 +277,7 @@ const About = () => {
             </Link>
             <SpanDiv />
           </>
-        )} */}
+        )}
       </>
     </MainContainer>
   );

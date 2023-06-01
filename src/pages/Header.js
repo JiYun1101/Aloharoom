@@ -201,10 +201,6 @@ const Header = () => {
   );
 
   useEffect(() => {
-    fetchNotReadNotificationCount();
-  }, [notReadNotificationCount])
-
-  useEffect(() => {
     if (localStorage.getItem("username")) {
       fetchUserId();
       fetchNotificationInfo();
