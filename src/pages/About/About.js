@@ -221,7 +221,7 @@ const About = () => {
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
             {/* &lt;방문한 이용자수의 변화&gt; */}
-            방문한 이용자수의 변화
+            가입한 이용자 수의 변화
           </StyledTextArea>
           <GraphBox>
             <div
@@ -238,7 +238,7 @@ const About = () => {
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
             {/* &lt;룸메이트 게시물의 지역별 그래프&gt; */}
-            룸메이트 게시물의 지역별 그래프
+            방의 지역별 그래프
           </StyledTextArea>
           <GraphBox>
             <div
@@ -255,11 +255,8 @@ const About = () => {
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
             {/* &lt;평수 별 월세 그래프&gt; */}
-            평수 별 월세 그래프
+            평수별 월세 그래프
           </StyledTextArea>
-          <StyledTextArea color="#47a5fd">
-            (직접 궁금한 평수를 넣어보세요)
-          </StyledTextArea>{" "}
           <GraphBox>
             <div style={{ width: "30rem", height: "30rem", marginTop: "2rem" }}>
               <Graph_cost flat={flat} />{" "}
