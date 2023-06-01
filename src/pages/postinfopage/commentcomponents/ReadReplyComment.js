@@ -42,7 +42,7 @@ const ReadReplyComment = ({
         :
             <></>
         }
-        <PostInfoFlexDiv width="85%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="15%"  borderBottom="solid #bbbbbb">
+        <PostInfoFlexDiv width="92%" minHeight="6rem" flexDirection="column" marginTop="0.5rem" marginLeft="8%"  borderBottom="solid #bbbbbb">
             <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center" flexDirection="row">
                 <PostInfoFlexDiv width="50%" minHeight="100%" alignItems="center">
                     <UserProfileImg marginLeft="0.7rem" borderRadius="10rem" width="2.5rem" height="2.5rem" src={profileUrl}/>
@@ -69,7 +69,7 @@ const ReadReplyComment = ({
                     }
                 </PostInfoFlexDiv>
             </PostInfoFlexDiv>
-            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
+            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="end" marginBottom="0.5rem"> 
                 {editMode
                 ? 
                     <>
@@ -90,6 +90,7 @@ const ReadReplyComment = ({
                         {localStorage.getItem('userId') ? 
                             <PostInfoSpan 
                                 color="#47a5fd"
+                                width="4rem"
                                 marginLeft="1rem"
                                 marginTop="0.5rem"
                                 fontSize="0.8rem"
@@ -105,7 +106,7 @@ const ReadReplyComment = ({
                             <></>
                         }
                         <PostInfoSpan
-                            marginLeft="1rem"
+                            marginLeft="0.5rem"
                             marginTop="0.5rem" 
                             fontSize="0.8rem" 
                             color="#a0a0a0"

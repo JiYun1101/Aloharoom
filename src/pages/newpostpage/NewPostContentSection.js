@@ -201,7 +201,7 @@ const NewPostContentSection = ({
         console.log('urls ', urls);
         const files = await Promise.all(
             urls.map(async (url) => {
-                const response = await fetch(url);
+                const response = await fetch(url , { mode: 'no-cors' });
                 const blob = await response.blob();
                 const fileName = url.substring(url.lastIndexOf('/') + 1);
                 return new File([blob], fileName, { type: blob.type });

@@ -35,10 +35,10 @@ const WriteReplyComment = ({
     const [inputValue, setInputValue] = useState();
     return (
         <PostInfoFlexDiv 
-            width="85%" 
+            width="92%" 
             minHeight="4rem" 
             flexDirection="column" 
-            marginLeft="15%" 
+            marginLeft="8%" 
             borderBottom="solid #bbbbbb"
             alignItem="center"
         >    

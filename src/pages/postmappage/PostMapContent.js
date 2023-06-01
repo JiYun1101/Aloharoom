@@ -26,7 +26,7 @@ const NewPostIconStyle = {
   right: "2rem",
   bottom: "0.001rem",
   zIndex: "2",
-  color: "#bbbbbb",
+  color: "#47a5fd"
 };
 
 const PostMapContent = () => {
@@ -120,7 +120,9 @@ const PostMapContent = () => {
           }
         </>
       :
-        <></>
+        <Link to="/login" style={LinkToStyle}>
+          <AiOutlinePlusCircle size={50} style={NewPostIconStyle} />
+        </Link>
       }
     </PostMapContentContainer>
   );

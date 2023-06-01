@@ -79,7 +79,7 @@ const ReadComment = ({
                     }
                 </PostInfoFlexDiv>
             </PostInfoFlexDiv>
-            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="center"> 
+            <PostInfoFlexDiv width="100%" minHeight="3rem" alignItems="end" marginBottom="0.5rem"> 
                 {editMode 
                 ? 
                 <>
@@ -96,10 +96,11 @@ const ReadComment = ({
                 </>
                 :
                 <>
-                    <PostInfoSpan color="black" marginLeft="4rem" fontSize="1.2rem">{content}</PostInfoSpan>
+                    <PostInfoSpan width="33rem" color="black" marginLeft="4rem" fontSize="1.2rem">{content}</PostInfoSpan>
                     {localStorage.getItem('userId') ? 
                         <PostInfoSpan
                             color="#47a5fd" 
+                            width="5rem"    
                             marginLeft="1rem" 
                             marginTop="0.5rem" 
                             fontSize="0.8rem"
@@ -117,7 +118,7 @@ const ReadComment = ({
                     }
                     <PostInfoSpan 
                         color="#47a5fd" 
-                        marginLeft="1rem" 
+                        width="5rem"
                         marginTop="0.5rem" 
                         fontSize="0.8rem"
                         onClick={() =>{
@@ -128,7 +129,8 @@ const ReadComment = ({
                         {showReplies ? "댓글 가리기" : "댓글 보기"}
                     </PostInfoSpan>
                     <PostInfoSpan
-                        marginLeft="1rem"
+                        marginLeft="0.5rem"
+                        width="8rem"
                         marginTop="0.5rem" 
                         fontSize="0.8rem" 
                         color="#a0a0a0"
