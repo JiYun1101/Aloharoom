@@ -17,7 +17,7 @@ const NewPostContentWritingContainer2 = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
+const NewPostContentSection = ({ showAddressInfoModal, setAddressData }) => {
   const navigate = useNavigate();
   const [contents, setContents] = useState("");
   const [openChatUrl, setOpenChatUrl] = useState("");
@@ -38,7 +38,6 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   const [ageRange, setAgeRange] = useState([20, 25]);
   const [imgFiles, setImgFiles] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
-  
 
   const updateID = useParams().id;
   useEffect(() => {
@@ -140,6 +139,11 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   };
 
   const PostInfoSubmit = () => {
+    // Check if code exists
+    if (!code) {
+      console.error("Error: Code is required");
+      return;
+    }
     const data = {
       contents: contents,
       openChatUrl: openChatUrl,
@@ -213,4 +217,4 @@ const NewPostContentSection2 = ({ showAddressInfoModal, setAddressData }) => {
   );
 };
 
-export default NewPostContentSection2;
+export default NewPostContentSection;

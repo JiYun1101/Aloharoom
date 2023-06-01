@@ -60,7 +60,7 @@ const Login = () => {
         console.log("username:" + value.username);
         console.log("Registration successful");
         localStorage.clear();
-        localStorage.setItem("username", value.username);
+        localStorage.setItem("username", value.username); // 사용자 이름을 로컬 스토리지에 저장
         navigate("../about");
       } else {
         throw new Error("로그인 요청 실패");

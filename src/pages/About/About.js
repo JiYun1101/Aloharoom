@@ -39,7 +39,7 @@ const normFile = (e) => {
 const StyledTextArea = styled.section`
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${ props => props.color};
+  color: ${(props) => props.color};
 `;
 
 const MainBox = styled.section`
@@ -122,6 +122,7 @@ const letter = styled.section`
 `;
 
 const GraphBox = styled.div`
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -149,6 +150,8 @@ const LoginButton = styled.div`
 
 const About = () => {
   const [data, setData] = useState([]);
+  const userId = localStorage.getItem("username");
+  const requestURL = `http://localhost:8080/api/board/userId/${userId}`;
 
   useEffect(() => {
     // 데이터를 받아오는 API 호출
@@ -197,11 +200,9 @@ const About = () => {
           <SpanDiv />
           <SpanDiv />
           <SpanDiv />
-          <SpanDiv />
           <StyledTextArea color="#47a5fd">
             &lt;알로하룸을 방문한 이용자수의 변화!&gt;
           </StyledTextArea>
-          <SpanDiv />
           <GraphBox>
             <div
               style={{
@@ -218,7 +219,6 @@ const About = () => {
           <StyledTextArea color="#47a5fd">
             &lt;알로하룸에 있는 방의 지역별 그래프!&gt;
           </StyledTextArea>
-          <SpanDiv />
           <GraphBox>
             <div
               style={{
@@ -235,8 +235,9 @@ const About = () => {
           <StyledTextArea color="#47a5fd">
             &lt;알로하룸의 평수 별 월세 그래프!&gt;
           </StyledTextArea>
-          <StyledTextArea color="#47a5fd">(직접 궁금한 평수를 넣어보세요)</StyledTextArea>{" "}
-          <SpanDiv />
+          <StyledTextArea color="#47a5fd">
+            (직접 궁금한 평수를 넣어보세요)
+          </StyledTextArea>{" "}
           <GraphBox>
             <div style={{ width: "30rem", height: "30rem", marginTop: "2rem" }}>
               <Graph_cost flat={flat} />{" "}
@@ -263,14 +264,21 @@ const About = () => {
               </Form.Item>
             </Form>
           </GraphBox>
-        </IntroBox>
+        </IntroBox>{" "}
+        <SpanDiv />
+        <SpanDiv />
+        {/* {userId ? null : (
+          <>
+            <Link
+              to="../Login"
+              style={{ textDecoration: "none", color: "#47a5fd" }}
+            >
+              <LoginButton>로그인 하러가기!</LoginButton>
+            </Link>
+            <SpanDiv />
+          </>
+        )} */}
       </>
-      <SpanDiv />
-      <SpanDiv />
-      <Link to="../Login" style={{ textDecoration: "none", color: "#47a5fd" }}>
-        <LoginButton>로그인 하러가기!</LoginButton>
-      </Link>
-      <SpanDiv />
     </MainContainer>
   );
 };
