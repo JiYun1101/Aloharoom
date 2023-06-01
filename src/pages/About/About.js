@@ -209,7 +209,7 @@ const About = () => {
         <IntroBox0>
           <div>높아지는 물가와 어려워지는 내집마련,</div>
           <div>어딘가에 나랑 잘 맞는 룸메이트가 있지 않을까요?</div>
-          <StyledTextArea>지금 알로하룸을 이용중인 사람의 수!</StyledTextArea>
+          <StyledTextArea>aloharoom에 가입한 이용자수의 변화</StyledTextArea>
           <div style={{ width: "1000px", color: "white" }}>
             <Graph_number />
           </div>
@@ -219,7 +219,7 @@ const About = () => {
           <SpanDiv />
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
-            &lt;알로하룸을 방문한 이용자수의 변화!&gt;
+            &lt;aloharoom을 방문한 이용자수의 변화!&gt;
           </StyledTextArea>
           <GraphBox>
             <div
@@ -235,7 +235,7 @@ const About = () => {
           </GraphBox>
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
-            &lt;알로하룸에 있는 방의 지역별 그래프!&gt;
+            &lt;aloharoom에 있는 방의 지역별 그래프!&gt;
           </StyledTextArea>
           <GraphBox>
             <div
@@ -251,7 +251,7 @@ const About = () => {
           </GraphBox>
           <SpanDiv />
           <StyledTextArea color="#47a5fd">
-            &lt;알로하룸의 평수 별 월세 그래프!&gt;
+            &lt;aloharoom의 평수 별 월세 그래프!&gt;
           </StyledTextArea>
           <StyledTextArea color="#47a5fd">
             (직접 궁금한 평수를 넣어보세요)
