@@ -128,6 +128,7 @@ const PostInfoPage = () => {
     const [myProfileURL, setMyProfileURL] = useState('');
     const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
     const [isMatchingCompleteModalOpen, setIsMatchingCompleteModalOpen] = useState(false);
+    const [myProfileData, setMyProfileData] = useState("");
     const showMatchingCompleteModal = () => { setIsMatchingCompleteModalOpen(true);}
     const showDeletePostModal = () => {setIsDeletePostModalOpen(true);}
     const handleMatchingCompleteModalCancel = () => {setIsMatchingCompleteModalOpen(false);}
@@ -291,6 +292,18 @@ const PostInfoPage = () => {
         .catch((error) => { console.log(`axios PostActivate error`);})
     }
 
+    async function fetchMyInfoData() {
+        await axios.get(`${baseURL}/api/myPage`, {
+            withCredentials:true
+        }) 
+        .then((response) => {
+            setMyProfileData(response.data.profileUrl);
+        })
+        .catch((error) => {
+            console.log(`axios MyInfoPage error`);
+        })
+    }
+
     const changeBrTag = (text) => {
         const changedText = text.replace(/\n/g, '<br />');
         return changedText;
@@ -301,6 +314,7 @@ const PostInfoPage = () => {
         FetchPostInfoData();
         FetchBoardComment();
         fetchMyInfo();
+        fetchMyInfoData();
     }, []);
 
     return (
@@ -323,7 +337,10 @@ const PostInfoPage = () => {
         :
             <></>
         }
-        <Header/>
+        <Header
+            myProfileData={myProfileData}
+            setMyProfileData={setMyProfileData}
+        />
         <PostInfoPageContainer>
             <PostInfoPageSection>
                 <PostInfoDiv width="100%" minHeight="30rem" marginTop="3rem">

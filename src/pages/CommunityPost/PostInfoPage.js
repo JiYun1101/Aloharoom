@@ -549,12 +549,25 @@ const PostInfoPage = () => {
         console.log("axios fetchMyInfo error");
       });
   }
+  const [myProfileData, setMyProfileData] = useState("");
+    async function fetchMyInfoData() {
+        await axios.get(`${baseURL}/api/myPage`, {
+            withCredentials:true
+        }) 
+        .then((response) => {
+            setMyProfileData(response.data.profileUrl);
+        })
+        .catch((error) => {
+            console.log(`axios MyInfoPage error`);
+        })
+    }
 
   //한번 렌더링 될때 데이터를 받아온다.
   useEffect(() => {
     FetchPostInfoData();
     FetchBoardComment();
     fetchMyInfo();
+    fetchMyInfoData();
   }, []);
 
   return (
@@ -568,7 +581,10 @@ const PostInfoPage = () => {
       ) : (
         <></>
       )}
-      <Header />
+      <Header 
+        myProfileData={myProfileData}
+        setMyProfileData={setMyProfileData}
+      />
       <PostInfoPageContainer ref={postInfoPageRef}>
         <PostInfoPageBox>
           <PostInfoImageBox>
