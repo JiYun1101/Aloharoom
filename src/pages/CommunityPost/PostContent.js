@@ -150,7 +150,7 @@ const WrapButton = styled.div`
 `;
 
 const PostMapContentContainer3 = styled.div`
-  margin-top: -8rem;
+  margin-top: -4rem;
   position: relative;
   width: 100%;
   height: 6.8vh;
@@ -169,12 +169,12 @@ const PostDiv = styled.div`
 
 const PageDiv = styled.div`
   font-size: 1.5rem;
-  margin-top: 180rem; //나중에 110으로 고치기
-  bottom: 20rem;
-  margin-bottom: 20rem;
+  margin-top: 67rem; //나중에 110으로 고치기
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 2rem;
 `;
 
 const PostMapContentContainer2 = styled.div`
@@ -187,6 +187,20 @@ const PostMapContentContainer2 = styled.div`
   position: relative;
   width: 100%;
   height: 6.8vh;
+  /* display: fixed; */
+  justify-content: center;
+`;
+
+const PostMapContentContainer4 = styled.div`
+  margin-top: -8rem;
+  margin-bottom: 10rem;
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 56.8vh;
   /* display: fixed; */
   justify-content: center;
 `;
@@ -464,12 +478,14 @@ const PostContent = ({
               )
           )}
         </PostDiv>
-        <PageDiv>
+      </PostMapContentContainer2>{" "}
+      <PageDiv>
+        <div style={{ marginTop: "1px", marginBottom: "80px" }}>
           <div ref={cardRef}>
             <Pagination onChange={handlePageChange} total={50} />{" "}
           </div>
-        </PageDiv>
-      </PostMapContentContainer2>
+        </div>
+      </PageDiv>
       <PostMapContentContainer3>
         <CardPost3>
           <b style={{ color: "#47a5fd", fontWeight: "bold" }}>인기글</b>

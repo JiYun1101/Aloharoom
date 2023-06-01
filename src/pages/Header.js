@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import NotificationModal from "./modal/NotificationModal";
-import { Badge,  Dropdown, Menu } from "antd";
+import { Badge, Dropdown, Menu } from "antd";
 import axios from "axios";
 import baseURL from "./api/baseURL";
 import LogoutModal from "./modal/LogoutModal";
@@ -36,11 +36,12 @@ const NavElement = styled.span`
   margin-left: 3vw;
   margin-right: 3vw;
   font-size: 1.2rem;
-  font-weight: ${props => props.fontWeight};
-  text-decoration: ${props => (props.underline ? 'underline' : 'none')};
-  text-decoration-color: ${props => (props.underline ? '#47a5fd' : 'none')};
-  text-decoration-thickness: ${props => (props.underline ? '0.15rem' : 'none')};
-  text-underline-offset: ${props => (props.underline ? '0.4rem' : 'none')};
+  font-weight: ${(props) => props.fontWeight};
+  text-decoration: ${(props) => (props.underline ? "underline" : "none")};
+  text-decoration-color: ${(props) => (props.underline ? "#47a5fd" : "none")};
+  text-decoration-thickness: ${(props) =>
+    props.underline ? "0.15rem" : "none"};
+  text-underline-offset: ${(props) => (props.underline ? "0.4rem" : "none")};
   &:hover {
     text-decoration: underline;
     text-decoration-color: #47a5fd;
@@ -96,11 +97,10 @@ const Header = () => {
   const handleIsLogoutOk = () => {
     userLogout();
     localStorage.clear();
-    if (location.pathname === '/about') {
+    if (location.pathname === "/about") {
       handleIsLogoutCancel();
-    }
-    else {
-      navigate(`../about`);  
+    } else {
+      navigate(`../about`);
     }
   };
 
@@ -168,15 +168,17 @@ const Header = () => {
   }
 
   async function fetchUserWritten() {
-    await axios.get(`${baseURL}/api/board/userId/${localStorage.getItem('userId')}`,{
-      withCredentials:true
-    })
-    .then((response) => {
-      localStorage.setItem("isRoom", response.data);
-    })
-    .catch((error) => { console.log(`fetchUserWritten axios error`); })
+    await axios
+      .get(`${baseURL}/api/board/userId/${localStorage.getItem("userId")}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        localStorage.setItem("isRoom", response.data);
+      })
+      .catch((error) => {
+        console.log(`fetchUserWritten axios error`);
+      });
   }
-
 
   const menu = (
     <Menu>
@@ -236,7 +238,7 @@ const Header = () => {
         </Link>
         <NavGroup>
           <Link to="/postMapPage" style={LinkToStyle}>
-            <NavElement 
+            <NavElement
               fontWeight="600"
               underline={location.pathname === "/postMapPage"}
             >
@@ -244,7 +246,7 @@ const Header = () => {
             </NavElement>
           </Link>
           <Link to="/CommunityPage" style={LinkToStyle}>
-            <NavElement 
+            <NavElement
               fontWeight="600"
               underline={location.pathname === "/CommunityPage"}
             >
@@ -271,7 +273,12 @@ const Header = () => {
             </LogoElement>
             <LogoElement>
               <Dropdown overlay={menu}>
-                <a className="ant-dropdown-link" onClick={(e) => {e.preventDefault()}}>
+                <a
+                  className="ant-dropdown-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                >
                   <AiOutlineUser size={30} />
                 </a>
               </Dropdown>
