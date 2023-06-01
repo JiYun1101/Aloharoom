@@ -116,7 +116,7 @@ const NewPostIconStyle = {
   right: "2rem",
   bottom: "2rem",
   zIndex: "2",
-  color: "#bbbbbb",
+  color: "#47a5fd",
 };
 
 const { Search } = Input;
