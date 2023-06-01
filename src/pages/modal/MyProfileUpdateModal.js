@@ -111,8 +111,11 @@ const MyProfileUpdateModal = ({
     async function urlToFile(url) {
         setPreviewImage(url);
         try {
-            const response = await fetch(url , { mode: 'no-cors' });
-            const blob = await response.blob();
+            const response = await axios.get(url, {
+                responseType: 'blob'
+            });
+            console.log(response);
+            const blob = response.data;
             const filename = getFilenameFromURL(url);
             console.log(filename);
             const newFile = new File([blob], filename, { type: blob.type });
