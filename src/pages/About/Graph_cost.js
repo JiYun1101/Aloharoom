@@ -36,7 +36,7 @@ const DemoColumn = ({ flat }) => {
       .filter(([, value]) => value > 0) // count 값이 0보다 큰 데이터만 선택합니다.
       .map(([key, value]) => {
         const [start, end] = key.slice(1).split("e"); // key 값을 분할하여 시작과 끝 값을 추출합니다.
-        const range = `${start}만원~${end}만원`; // "key(1)만원~key(2)만원" 형식으로 range 값을 생성합니다.
+        const range = `${start}~${end}만원`; // "key(1)만원~key(2)만원" 형식으로 range 값을 생성합니다.
 
         return {
           range,
