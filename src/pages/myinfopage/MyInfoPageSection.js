@@ -5,10 +5,28 @@ import MyInfoPageBox from "./MyInfoPageBox";
 const MyInfoPageContainer = styled.div`
     width: 100%;  
 `;
-const MyPageSection = () => {
+const MyPageSection = ({
+    isMyProfileUpdateModalOpen,
+    setIsMyProfileUpdateModalOpen,
+    responseData,
+    myHashtags,
+    myHomeHashtags,
+    likeHashtags,
+    likeHomeHashtags,
+    fetchMyInfoData
+}) => {
     return (
         <MyInfoPageContainer>
-            <MyInfoPageBox/>
+            <MyInfoPageBox
+                isMyProfileUpdateModalOpen={isMyProfileUpdateModalOpen}
+                setIsMyProfileUpdateModalOpen={setIsMyProfileUpdateModalOpen}
+                responseData={responseData}
+                myHashtags={myHashtags}
+                myHomeHashtags={myHomeHashtags}
+                likeHashtags={likeHashtags}
+                likeHomeHashtags={likeHomeHashtags}
+                fetchMyInfoData={fetchMyInfoData}
+            />
         </MyInfoPageContainer>
     );
 }

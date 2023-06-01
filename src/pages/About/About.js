@@ -26,6 +26,7 @@ import {
   TreeSelect,
   Upload,
 } from "antd";
+import axios from "axios";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -152,9 +153,21 @@ const About = () => {
   const [data, setData] = useState([]);
   const userId = localStorage.getItem("username");
   const requestURL = `http://localhost:8080/api/board/userId/${userId}`;
-
+  const [myProfileData, setMyProfileData] = useState("");
+    async function fetchMyInfoData() {
+        await axios.get(`${baseURL}/api/myPage`, {
+            withCredentials:true
+        }) 
+        .then((response) => {
+            setMyProfileData(response.data.profileUrl);
+        })
+        .catch((error) => {
+            console.log(`axios MyInfoPage error`);
+        })
+    }
   useEffect(() => {
     // 데이터를 받아오는 API 호출
+    fetchMyInfoData();
     fetchData();
   }, []);
 
@@ -183,7 +196,10 @@ const About = () => {
   return (
     <MainContainer>
       <>
-        <Header />
+        <Header 
+          myProfileData={myProfileData}
+          setMyProfileData={setMyProfileData}
+        />
         <div className="App"></div>
         <MainBox>
           <BannerSection />

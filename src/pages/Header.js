@@ -84,13 +84,22 @@ const LinkToStyle = {
   color: "inherit",
 };
 
-const Header = () => {
+const HeaderMyProfile = styled.img`
+  margin-left: ${ props => props.marginLeft || "0rem"};
+  width: ${ props => props.width || "0rem"};
+  height: ${ props => props.height || "0rem"};
+  border-radius: ${ props => props.borderRadius || "0rem"};
+  border: ${props => props.border};
+`;
+
+const Header = ({myProfileData, setMyProfileData}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [notificationData, setNotificationData] = useState([]);
   const [NotifyModalOpen, setNotifyModalOpen] = useState(false);
   const [notReadNotificationCount, setNotReadNotificationCount] = useState({});
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  //const [myProfileData, setMyProfileData] = useState("");
   const handleIsLogoutCancel = () => {
     setIsLogoutModalOpen(false);
   };
@@ -180,6 +189,19 @@ const Header = () => {
       });
   }
 
+  async function fetchMyInfoData() {
+    await axios.get(`${baseURL}/api/myPage`, {
+        withCredentials:true
+    }) 
+    .then((response) => {
+      console.log('response data', response.data);
+      setMyProfileData(response.data.profileUrl);
+    })
+    .catch((error) => {
+        console.log(`axios MyInfoPage error`);
+    })
+}
+
   const menu = (
     <Menu>
       <Menu.Item key="1">
@@ -210,6 +232,8 @@ const Header = () => {
       fetchNotificationInfo();
       fetchNotReadNotificationCount();
       fetchUserWritten();
+      fetchMyInfoData();
+      console.log('header rendering');
     }
   }, []);
   return (
@@ -279,7 +303,13 @@ const Header = () => {
                     e.preventDefault();
                   }}
                 >
-                  <AiOutlineUser size={30} />
+                  <HeaderMyProfile 
+                    width="1.8rem" 
+                    height="1.8rem" 
+                    borderRadius="10rem" 
+                    src={myProfileData} 
+                    border="1px solid #bbbbbb"
+                  />
                 </a>
               </Dropdown>
             </LogoElement>
