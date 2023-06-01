@@ -6,7 +6,6 @@ import NewPostHeaderSection from "./newpostpage2/NewPostHeaderSection";
 import NewPostContentSection from "./newpostpage2/NewPostContentSection";
 import { useState } from "react";
 import AddressInfoModal from "../modal/AddressInfoModal";
-import { useEffect } from "react";
 
 const NewPostContainer = styled.div`
   position: relative;
@@ -26,13 +25,6 @@ const NewCommunityPostPage = () => {
   const [isAddressInfoModalOpen, setIsAddressInfoModalOpen] = useState(false);
   const [addressData, setAddressData] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const username = localStorage.getItem("username");
-    if (!username) {
-      navigate("../Login"); // 로그인 페이지로 이동
-    }
-  }, [navigate]);
   const showAddressInfoModal = () => {
     setIsAddressInfoModalOpen(true);
   };

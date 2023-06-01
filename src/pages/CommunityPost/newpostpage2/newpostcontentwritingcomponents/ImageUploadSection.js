@@ -22,7 +22,12 @@ const ImageUploadInput = styled.input`
 const ImageUploadSection = ({ handleImageFilesInputChange }) => {
   return (
     <ImageUploadDiv>
-      <ImageUploadLabel htmlFor="imageUpload" fontWeight="600">
+      <ImageUploadLabel
+        htmlFor="imageUpload"
+        fontWeight="600"
+        color="black"
+        style={{ color: "black" }}
+      >
         이미지 업로드 <BiImageAdd size={25} htmlFor="imageUpload" />
       </ImageUploadLabel>
       <ImageUploadInput

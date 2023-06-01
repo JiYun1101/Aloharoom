@@ -65,9 +65,9 @@ const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: center; /* 가로 중앙 정렬 */
-  align-items: center; 
+  align-items: center;
   margin-top: 1rem;
-  height: 30rem;
+  height: auto;
   .swiper-slide {
     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
@@ -81,6 +81,7 @@ const PostInfoImage = styled.img`
 `;
 
 const TitleDiv = styled.div`
+  margin-top: -6rem;
   width: 95%;
   height: 3rem;
   display: flex;
@@ -89,7 +90,7 @@ const TitleDiv = styled.div`
 
 const TitleSpan = styled.span`
   color: black;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
 `;
 
@@ -116,7 +117,7 @@ const ProfileImg = styled.img`
 
 const ProfileName = styled.span`
   margin-left: 1rem;
-  color: #47a5fd;
+  color: #black;
   font-size: 1.2rem;
 `;
 
@@ -157,7 +158,7 @@ const PostContentDiv = styled.div`
   width: 95%;
   height: auto;
   border-bottom: solid 0.1rem #bbbbbb;
-  overflow: visible; /* 스크롤바 표시하지 않음 */
+  overflow: visible;
 `;
 
 const PostContentSpan = styled.span`
@@ -168,7 +169,6 @@ const PostContentSpan = styled.span`
   min-height: auto;
   line-height: 33px;
 `;
-
 const CommentSection = styled.div`
   margin-top: 2rem;
   width: 95%;
@@ -550,17 +550,18 @@ const PostInfoPage = () => {
       });
   }
   const [myProfileData, setMyProfileData] = useState("");
-    async function fetchMyInfoData() {
-        await axios.get(`${baseURL}/api/myPage`, {
-            withCredentials:true
-        }) 
-        .then((response) => {
-            setMyProfileData(response.data.profileUrl);
-        })
-        .catch((error) => {
-            console.log(`axios MyInfoPage error`);
-        })
-    }
+  async function fetchMyInfoData() {
+    await axios
+      .get(`${baseURL}/api/myPage`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setMyProfileData(response.data.profileUrl);
+      })
+      .catch((error) => {
+        console.log(`axios MyInfoPage error`);
+      });
+  }
 
   //한번 렌더링 될때 데이터를 받아온다.
   useEffect(() => {
@@ -581,105 +582,107 @@ const PostInfoPage = () => {
       ) : (
         <></>
       )}
-      <Header 
-        myProfileData={myProfileData}
-        setMyProfileData={setMyProfileData}
-      />
-      <PostInfoPageContainer ref={postInfoPageRef}>
-        <PostInfoPageBox>
-          <PostInfoImageBox>
-            {imgUrls.length === 1 ? (
-              <PostInfoImage src={imgUrls[0]} />
-            ) : (
-              <Container>
-                <Swiper
-                  modules={[Navigation, Scrollbar, Pagination, A11y]}
-                  spaceBetween={20}
-                  slidesPerView={1}
-                  navigation
-                  onSwiper={(swiper) => console.log(swiper)}
-                  onSlideChange={() => console.log("slide change")}
-                >
-                  {imgUrls.map((data, index) => (
-                    <SwiperSlide key={index}>
-                      <PostInfoImage src={data} key={index} />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </Container>
-            )}
-          </PostInfoImageBox>
-          <TitleDiv>
-            <TitleSpan>{data.title}</TitleSpan>
-          </TitleDiv>
-          <ProfileHeartDiv>
-            <ProfileDiv>
-              <ProfileImg src={data.profile} />
-              <ProfileName>{data.nickname} </ProfileName>
-            </ProfileDiv>
-            <HeartDiv>
+      <div ref={postInfoPageRef}>
+        <Header
+          myProfileData={myProfileData}
+          setMyProfileData={setMyProfileData}
+        />
+        <PostInfoPageContainer>
+          <PostInfoPageBox>
+            <PostInfoImageBox>
+              {imgUrls.length === 1 ? (
+                <PostInfoImage src={imgUrls[0]} />
+              ) : (
+                <Container>
+                  <Swiper
+                    modules={[Navigation, Scrollbar, Pagination, A11y]}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    navigation
+                    onSwiper={(swiper) => console.log(swiper)}
+                    onSlideChange={() => console.log("slide change")}
+                  >
+                    {imgUrls.map((data, index) => (
+                      <SwiperSlide key={index}>
+                        <PostInfoImage src={data} key={index} />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </Container>
+              )}
+            </PostInfoImageBox>
+            <TitleDiv>
+              <TitleSpan>{data.title}</TitleSpan>
+            </TitleDiv>
+            <ProfileHeartDiv>
+              <ProfileDiv>
+                <ProfileImg src={data.profile} />
+                <ProfileName>{data.nickname} </ProfileName>
+              </ProfileDiv>
+              <HeartDiv>
+                {localStorage.getItem("userId") ? (
+                  <>
+                    {parseInt(userId) ===
+                    parseInt(localStorage.getItem("userId")) ? (
+                      <>
+                        <AiOutlineDelete
+                          onClick={() => {
+                            showDeletePostModal();
+                          }}
+                          size={40}
+                        />
+                        <Link
+                          to={`../updateCommunityPostPage/${communityId}`}
+                          style={{ ...LinkToIconStyle, marginRight: "0.8rem" }}
+                        >
+                          {<AiOutlineEdit size={40} />}
+                        </Link>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </HeartDiv>
+            </ProfileHeartDiv>
+
+            <PostContentDiv>
+              <PostContentSpan>{data.contents}</PostContentSpan>
+            </PostContentDiv>
+            <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
+              <PostInfoSpan fontSize="1.5rem" fontWeight="600">
+                댓글
+              </PostInfoSpan>
+            </PostInfoDiv>
+            <CommentSection>
+              {commentData.map((data, idx) => (
+                <ReadCommentSection
+                  key={idx}
+                  data={data}
+                  makeCommentRequest={makeCommentRequest}
+                  boardId={communityId}
+                  deleteComment={deleteComment}
+                  updateComment={updateComment}
+                  myProfileURL={myProfileURL}
+                  flag={flag}
+                />
+              ))}
               {localStorage.getItem("userId") ? (
-                <>
-                  {parseInt(userId) ===
-                  parseInt(localStorage.getItem("userId")) ? (
-                    <>
-                      <AiOutlineDelete
-                        onClick={() => {
-                          showDeletePostModal();
-                        }}
-                        size={40}
-                      />
-                      <Link
-                        to={`../updateCommunityPostPage/${communityId}`}
-                        style={{ ...LinkToIconStyle, marginRight: "0.8rem" }}
-                      >
-                        {<AiOutlineEdit size={40} />}
-                      </Link>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </>
+                <WriteComment
+                  makeCommentRequest={makeCommentRequest}
+                  boardId={communityId}
+                  myProfileURL={myProfileURL}
+                  flag={flag}
+                />
               ) : (
                 <></>
               )}
-            </HeartDiv>
-          </ProfileHeartDiv>
-
-          <PostContentDiv>
-            <PostContentSpan>{data.contents}</PostContentSpan>
-          </PostContentDiv>
-          <PostInfoDiv width="95%" minHeight="2rem" marginTop="1rem">
-            <PostInfoSpan fontSize="1.5rem" fontWeight="600">
-              댓글
-            </PostInfoSpan>
-          </PostInfoDiv>
-          <CommentSection>
-            {commentData.map((data, idx) => (
-              <ReadCommentSection
-                key={idx}
-                data={data}
-                makeCommentRequest={makeCommentRequest}
-                boardId={communityId}
-                deleteComment={deleteComment}
-                updateComment={updateComment}
-                myProfileURL={myProfileURL}
-                flag={flag}
-              />
-            ))}
-            {localStorage.getItem("userId") ? (
-              <WriteComment
-                makeCommentRequest={makeCommentRequest}
-                boardId={communityId}
-                myProfileURL={myProfileURL}
-                flag={flag}
-              />
-            ) : (
-              <></>
-            )}
-          </CommentSection>
-        </PostInfoPageBox>
-      </PostInfoPageContainer>
+            </CommentSection>
+          </PostInfoPageBox>
+        </PostInfoPageContainer>
+      </div>
     </>
   );
 };
