@@ -50,22 +50,15 @@
 http://3.34.33.83:3000/
 
 ## 🏃 실행 및 설치 방법
-1. aloharoom 원격 저장소를 클론합니다.
+1. Clone the repository
    ```shell
-   git clone https://github.com/capstone-aloha/aloharoom-backend.git
+   git clone https://github.com/capstone-aloha/aloharoom-frontend.git
    ```
-2. 생성된 로컬 저장소로 이동 후 빌드
+2. Install NPM packages and run
     ```shell
-    /* windows */
-    $ gradlew build
-
-    /* linux */
-    $ ./gradlew build
+    $ npm install
+    $ npm start
     ```
-3. ./build/libs 에서 .jar파일 실행
-   ```shell
-   java -jar aloharoom-backend-0.0.1-SNAPSHOT.jar
-   ```
 
 ## ✨ 핵심 기능
 
