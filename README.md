@@ -7,6 +7,7 @@
 
 <div align="center">
   룸메이트를 모집하는 1인 가구 웹서비스
+  ![스크린샷 2023-05-18 230117](https://github.com/JiYun1101/Aloharoom/assets/91119322/31a1176f-7d6a-44d3-9f63-577ded73f77c)
 </div>
 
 <div align="center">
