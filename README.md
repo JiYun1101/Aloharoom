@@ -9,6 +9,10 @@
   룸메이트를 모집하는 1인 가구 웹서비스
 </div>
 
+
+![스크린샷 2023-05-18 230117](https://github.com/JiYun1101/Aloharoom/assets/91119322/53838fbf-bc3e-4e5d-b3a8-75e11f1a96bd)
+
+
 <div align="center">
   <h3>
     <a href="https://github.com/capstone-aloha/aloharoom-backend">
